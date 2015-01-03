@@ -13,6 +13,12 @@
     },
     "express/express.d.ts": {
       "ref": "a5c5c908920a7d3d7b127b63bdeabe1d8911a284"
+    },
+    "async/async.d.ts": {
+      "ref": "494b30d2327ab489fa5b5f082a3c9a299e4c5644"
+    },
+    "mysql/mysql.d.ts": {
+      "ref": "494b30d2327ab489fa5b5f082a3c9a299e4c5644"
     }
   }
 }
