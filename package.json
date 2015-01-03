@@ -1,0 +1,22 @@
+{
+  "name": "misskey",
+  "description": "Misskey",
+  "version": "0.0.6",
+  "private": false,
+  "main": "./index.js",
+  "devDependencies": {
+    "coffee-script": "^1.8.0",
+    "del": "^1.1.1",
+    "dtsm": "^0.1.0",
+    "gulp": "^3.8.10",
+    "gulp-typescript": "^2.3.0"
+  },
+  "dependencies": {
+    "express": "^4.10.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Misskeyz/Misskey.git"
+  },
+  "homepage": "https://github.com/Misskeyz/Misskey.git"
+}
