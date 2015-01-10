@@ -19,6 +19,15 @@
     },
     "mysql/mysql.d.ts": {
       "ref": "494b30d2327ab489fa5b5f082a3c9a299e4c5644"
+    },
+    "body-parser/body-parser.d.ts": {
+      "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "express-session/express-session.d.ts": {
+      "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
     }
   }
 }
