@@ -19,7 +19,7 @@ function router(app: express.Express): void {
 	app.all('*', (req: express.Request, res: express.Response, next) => {
 		app.disable('x-powered-by');
 		res.set({
-			'Access-Control-Allow-Origin': 'http://llli.co',
+			'Access-Control-Allow-Origin': 'https://misskey.xyz',
 			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 			'Access-Control-Allow-Credentials': true,
 			'X-Frame-Options': 'DENY'
