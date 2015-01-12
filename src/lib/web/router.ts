@@ -29,8 +29,8 @@ function router(app: express.Express): void {
 		req.login = (req.session != null && req.session.userId != null);
 
 		req.data = {};
-		req.data.url = config.url;
-		req.data.apiUrl = config.apiUrl;
+		req.data.url = config.publicConfig.url;
+		req.data.apiUrl = config.publicConfig.apiUrl;
 		req.data.login = login;
 
 		req.pretty = '  ';
