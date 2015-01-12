@@ -29,7 +29,7 @@ function router(app: express.Express): void {
 		req.login = (req.session != null && req.session.userId != null);
 
 		req.data = {};
-		req.data.siteUrl = config.siteUrl;
+		req.data.url = config.url;
 		req.data.apiUrl = config.apiUrl;
 		req.data.login = login;
 
@@ -63,7 +63,11 @@ function router(app: express.Express): void {
 	});
 
 	app.get('/', (req: express.Request, res: express.Response) => {
-		display(req, res, 'index', { });
+		if (req.login) {
+			display(req, res, 'home', {});
+		} else {
+			display(req, res, 'entrance', {});
+		}
 	});
 
 	app.get('/login', function (req: express.Request, res: express.Response) {
