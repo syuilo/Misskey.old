@@ -1,0 +1,29 @@
+doctype html
+
+html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
+	head
+		meta(charset='utf-8')
+		meta(name='description', content='思い出した時に来るくらいが丁度いい、ゆるいSNS「Misskey」！')
+		meta(name='keywords', content='Misskey')
+		title Misskey
+		link(rel='shortcut icon', href='#{url}/favicon.icon')
+		link(rel='stylesheet', href='#{url}/assets/css/entrance.css')
+		include templates/head
+	
+	body
+		main
+			h1 Misskey
+			div#form
+				img#icon(src='#{url}/img/icon/default.png', alt='')
+				form#login(action='#{url}/login', method='post')
+					input#id(name='screen_name', type='text', pattern='^[0-9A-Za-z_]+$', placeholder='ユーザーID', autocomplete='off', autofocus, required)
+					input(name='password', type='password', placeholder='パスワード', autocomplete='off', required)
+					input(type='submit', value='Login')
+				
+				span#new
+					p Misskeyに興味がありますか？
+						a(href='#{url}/new!') アカウントを作成する
+			
+			nav(role='navigation')
+				ul
+					li: a(href='#{url}/thread', title='共通の話題で会話しよう。') Misskey掲示板
