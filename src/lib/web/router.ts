@@ -2,6 +2,7 @@
 
 import express = require('express');
 import User = require('../model/user');
+import doLogin = require('./models/login');
 
 export = router;
 
@@ -63,6 +64,21 @@ function router(app: express.Express): void {
 
 	app.get('/', (req: express.Request, res: express.Response) => {
 		display(req, res, 'index', { });
+	});
+
+	app.get('/login', function (req: express.Request, res: express.Response) {
+		display(req, res, 'login', {});
+	});
+
+	app.post('/login', function (req: express.Request, res: express.Response) {
+		doLogin(app, req.body.screen_name, req.body.password, (user: User) => {
+			req.session.userId = user.id;
+			res.write(200);
+			res.end();
+		}, () => {
+			res.write(400);
+			res.end();
+		});
 	});
 
 	app.get('/logout', function (req: express.Request, res: express.Response) {
