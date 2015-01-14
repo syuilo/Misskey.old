@@ -8,3 +8,5 @@ npm-debug.log
 /src/lib/*.js
 /src/lib/*.js.map
 /src/lib/*.d.ts
+
+.DS_Store
