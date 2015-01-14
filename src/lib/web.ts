@@ -5,7 +5,7 @@ import mysql = require('mysql');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
 import session = require('express-session');
-import RedisStore = require('connect-redis')(session);
+var RedisStore: any = require('connect-redis')(session);
 
 /* Import router */
 import router = require('./web/router');
