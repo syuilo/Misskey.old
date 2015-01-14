@@ -28,6 +28,12 @@
     },
     "express-session/express-session.d.ts": {
       "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "redis/redis.d.ts": {
+      "ref": "2cc4331067a81e2ae6bc4590e7b33bf286c8f28f"
+    },
+    "bcrypt/bcrypt.d.ts": {
+      "ref": "2cc4331067a81e2ae6bc4590e7b33bf286c8f28f"
     }
   }
 }
