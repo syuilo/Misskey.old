@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../../typings/bundle.d.ts" />
 
-import db = require('./db');
+import db = require('../db');
 export = CircleMember;
 
 class CircleMember {
