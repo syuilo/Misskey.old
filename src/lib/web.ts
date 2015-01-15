@@ -15,8 +15,8 @@ module.exports = (config: any, db: mysql.IPool) => {
 	webServer.set('config', config);
 	webServer.set('db', db);
 	webServer.set('view engine', 'jade');
-	webServer.set('views', __dirname + 'web/views');
-	webServer.use(express.static(__dirname + 'web/public'));
+	webServer.set('views', __dirname + '/web/views');
+	webServer.use(express.static(__dirname + '/web/public'));
 	webServer.use(bodyParser.urlencoded({ extended: true }));
 	webServer.use(cookieParser(config.cookie_pass));
 
