@@ -41,10 +41,10 @@ class CircleMember {
             (err, circleMembers) => callback(new CircleMember(circleMembers[0])));
     }
 
-    public static findByCircleId(circleId: number, limit: number, callback: (circleMember: CircleMember) => void): void {
+    public static findByCircleId(circleId: number, limit: number, callback: (circleMembers: CircleMember[]) => void): void {
         db.query("SELECT * FROM circle_members WHERE circle_id = ? ORDER BY created_at DESC" + (limit != null) ? " LIMIT ?" : "",
             [circleId, limit],
-            (err, circleMembers) => callback(new CircleMember(circleMembers[0])));
+			(err: any, circleMembers: any[]) => callback(circleMembers.map((circleMember) => new CircleMember(circleMember))));
     }
 
     public static findByUserId(userId: number, limit: number, callback: (circleMember: CircleMember) => void): void {
