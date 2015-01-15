@@ -63,24 +63,24 @@ class User {
 	public static create(screenName: string, password: string, tutorial: number, name: string, callback: (user: User) => void): void {
 		db.query('insert into users (screen_name, password, tutorial, name) values (?, ?, ?, ?)',
 			[screenName, password, tutorial, name],
-			(err, users) => callback(new User(users[0])));
+			(err: any, users: any[]) => callback(new User(users[0])));
 	}
 
 	public static find(id: number, callback: (user: User) => void): void {
 		db.query("select * from users where id = ?",
 			[id],
-			(err, users) => callback(users[0]!= null ? new User(users[0]): null));
+			(err: any, users: any[]) => callback(users[0]!= null ? new User(users[0]): null));
 	}
 
 	public static findByScreenName(screenName: string, callback: (user: User) => void): void {
 		db.query("select * from users where screen_name = ?",
 			[screenName],
-			(err, users) => callback(users[0] != null ? new User(users[0]) : null));
+			(err: any, users: any[]) => callback(users[0] != null ? new User(users[0]) : null));
 	}
 
 	public static getLevelRanking(callback: (users: User[]) => void): void {
 		db.query('select * from users where is_suspended = 0 order by level desc limit 10',
-			(err, users: any[]) => callback(users.map((user) => new User(user))));
+			(err: any, users: any[]) => callback(users.map((user) => new User(user))));
 	}
 
     public update(callback?: () => void): void {

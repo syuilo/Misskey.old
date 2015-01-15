@@ -9,7 +9,7 @@ gulp.task 'public-copy', ->
 		.pipe gulp.dest './app/public/'
 
 gulp.task 'typescript-compile', ->
-	gulp.src './src/lib/*.ts'
+	gulp.src './src/lib/model/*.ts'
 		.pipe ts
 			target: 'ES5'
 			removeComments: true

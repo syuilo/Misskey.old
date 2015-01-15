@@ -34,31 +34,31 @@ class AccessToken {
 		var token = AccessToken.generateToken(userId);
 		db.query('insert into accesstokens (app_id, user_id, token) values (?, ?, ?)',
 			[appId, userId, token],
-			(err, accessTokens) => callback(new AccessToken(accessTokens[0])));
+			(err: any, accessTokens: any[]) => callback(new AccessToken(accessTokens[0])));
 	}
 
 	public static find(accessToken: string, callback: (accessToken: AccessToken) => void): void {
 		db.query("select * from accesstokens where token = ?",
 			[accessToken],
-			(err, accessTokens) => callback(accessTokens[0] != null ? new AccessToken(accessTokens[0]) : null));
+			(err: any, accessTokens: any[]) => callback(accessTokens[0] != null ? new AccessToken(accessTokens[0]) : null));
 	}
 
 	public static findByUserId(userId: number, callback: (accessTokens: AccessToken[]) => void): void {
 		db.query("select * from accesstokens where user_id = ?",
 			[userId],
-			(err, accessTokens: any[]) => callback(accessTokens[0] != null ? accessTokens.map((accessToken) => new AccessToken(accessToken)) : null));
+			(err: any, accessTokens: any[]) => callback(accessTokens[0] != null ? accessTokens.map((accessToken) => new AccessToken(accessToken)) : null));
 	}
 
 	public static findByAppId(appId: number, callback: (accessTokens: AccessToken[]) => void): void {
 		db.query("select * from accesstokens where app_id = ?",
 			[appId],
-			(err, accessTokens: any[]) => callback(accessTokens[0] != null ? accessTokens.map((accessToken) => new AccessToken(accessToken)) : null));
+			(err: any, accessTokens: any[]) => callback(accessTokens[0] != null ? accessTokens.map((accessToken) => new AccessToken(accessToken)) : null));
 	}
 
 	public static findByUserIdAndAppId(userId: number, appId: number, callback: (accessToken: AccessToken) => void): void {
 		db.query("select * from accesstokens where user_id = ?, app_id = ?",
 			[userId, appId],
-			(err, accessTokens) => callback(accessTokens[0] != null ? new AccessToken(accessTokens[0]) : null));
+			(err: any, accessTokens: any[]) => callback(accessTokens[0] != null ? new AccessToken(accessTokens[0]) : null));
     }
 
     public destroy(callback?: () => void): void {

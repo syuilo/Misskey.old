@@ -1,6 +1,8 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import UserFollowing = require('./user-following');
+import CircleMember = require('./circle-member');
 export = Post;
 
 class Post {
@@ -27,17 +29,17 @@ class Post {
 	public static create(appId: number, inReplyToPostId: number, image: string, isImageAttached: Boolean, text: string, userId: number, callback: (post: Post) => void): void {
 		db.query('insert into posts (app_id, in_reply_to_post_id, image, is_image_attached, text, user_id) values (?, ?, ?, ?, ?, ?)',
 			[appId, inReplyToPostId, image, isImageAttached, text, userId],
-			(err, posts) => callback(new Post(posts[0])));
+			(err: any, posts: any[]) => callback(new Post(posts[0])));
 	}
 
 	public static find(id: number, callback: (post: Post) => void): void {
 		db.query("select * from posts where id = ?",
 			[id],
-			(err, posts) => callback(new Post(posts[0])));
+			(err: any, posts: any[]) => callback(new Post(posts[0])));
 	}
 
 	public static findByUserId(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
-		var q, p;
+		var q: string, p: any;
 		if ((sinceId === null) && (maxId === null)) {
 			q = "select * from posts where user_id = ? order by id desc limit ?";
 			p = [userId, limit];
@@ -48,16 +50,16 @@ class Post {
 			q = "select * from posts where user_id = ? and id < ? order by id desc limit ?";
 			p = [userId, maxId, limit];
 		}
-		db.query(q, p, (err, posts: any[]) => callback(posts.map((post) => new Post(post))));
+		db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
 	}
 
 	public static getTimeline(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
 		UserFollowing.findByFollowerId(userId, (userFollowings: UserFollowing[]) => {
-			var followingsStr = null;
+			var followingsStr: string = null;
 			if (userFollowings.length !== 0) {
 				followingsStr = userFollowings.join(',');
 			}
-			var q, p;
+			var q: string, p: any;
 			if ((sinceId === null) && (maxId === null)) {
 				q = "select * from posts where " + (followingsStr !== null ? "user_id in (" + followingsStr + ") or " : "") + "user_id = ? order by id desc limit ?";
 				p = [userId, limit];
@@ -68,14 +70,14 @@ class Post {
 				q = "select * from posts where (" + (followingsStr !== null ? "user_id in (" + followingsStr + ") or " : "") + "user_id = ?) and id < ? order by id desc limit ?";
 				p = [userId, maxId, limit];
 			}
-			db.query(q, p, (err, posts: any[]) => callback(posts.map((post) => new Post(post))));
+			db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
 		});
 	}
 
 	public static getCircleTimeline(circleId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
-		CircleMember.findByCircleId(circleId, (circleMembers: CircleMember[]) => {
+		CircleMember.findByCircleId(circleId, null, (circleMembers: CircleMember[]) => {
 			var circleMembersStr = circleMembers.join(',');
-			var q, p;
+			var q: string, p: any;
 			if ((sinceId === null) && (maxId === null)) {
 				q = "select * from posts where user_id in (" + circleMembersStr + ") order by id desc limit ?";
 				p = [limit];
@@ -86,7 +88,7 @@ class Post {
 				q = "select * from posts where user_id in (" + circleMembersStr + ") and id < ? order by id desc limit ?";
 				p = [maxId, limit];
 			}
-			db.query(q, p, (err, posts: any[]) => callback(posts.map((post) => new Post(post))));
+			db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
 		});
     }
 

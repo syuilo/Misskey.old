@@ -6,7 +6,7 @@ import doLogin = require('./models/login');
 
 export = router;
 
-var extend = (destination, source): Object => {
+var extend = (destination: any, source: any): Object => {
 	for (var k in source) {
 		if (source.hasOwnProperty(k)) {
 			destination[k] = source[k];
@@ -15,9 +15,9 @@ var extend = (destination, source): Object => {
 	return destination;
 }
 
-function router(app: express.Express): void {
+var router = (app: express.Express): void => {
 	
-	app.all('*', (req: express.Request, res: express.Response, next) => {
+	app.all('*', (req: express.Request, res: express.Response, next: () => void ) => {
 		app.disable('x-powered-by');
 		res.set({
 			'Access-Control-Allow-Origin': 'https://misskey.xyz',
@@ -50,7 +50,7 @@ function router(app: express.Express): void {
 		}
 	});
 
-	app.param('userSn', (req: express.Request, res: express.Response, next, sn: string) => {
+	app.param('userSn', (req: express.Request, res: express.Response, next: () => void, sn: string) => {
 		User.findByScreenName(sn, (user: User) => {
 			if (user != null) {
 				req.rootUser = user;

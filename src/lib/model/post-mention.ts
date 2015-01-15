@@ -17,11 +17,11 @@ class PostMention {
 	public static create(postId: number, userId: number, callback: (postMention: PostMention) => void): void {
 		db.query('insert into post_mentions (post_id, user_id) values (?, ?)',
 			[postId, userId],
-			(err, postMentions) => callback(new PostMention(postMentions[0])));
+			(err: any, postMentions: any[]) => callback(new PostMention(postMentions[0])));
 	}
 
 	public static findByUserId(userId: number, limit: number, offset: number, callback: (postMentions: PostMention[]) => void): void {
-		var q, p;
+		var q: string, p: any;
 		if (limit === null) {
 			q = "select * from post_mentions where user_id = ? order by id desc";
 			p = [userId];
@@ -29,11 +29,11 @@ class PostMention {
 			q = "select * from post_mentions where user_id = ? order by id desc limit ?, ?";
 			p = [userId, offset, limit];
 		}
-		db.query(q, p, (err, postMentions: any[]) => callback(postMentions.map((postMention) => new PostMention(postMention))));
+		db.query(q, p, (err: any, postMentions: any[]) => callback(postMentions.map((postMention) => new PostMention(postMention))));
 	}
 
 	public static findByPostId(postId: number, limit: number, offset: number, callback: (postMentions: PostMention[]) => void): void {
-		var q, p;
+		var q: string, p: any;
 		if (limit === null) {
 			q = "select * from post_mentions where post_id = ? order by id desc";
 			p = [postId];
@@ -41,6 +41,6 @@ class PostMention {
 			q = "select * from post_mentions where post_id = ? order by id desc limit ?, ?";
 			p = [postId, offset, limit];
 		}
-		db.query(q, p, (err, postMentions: any[]) => callback(postMentions.map((postMention) => new PostMention(postMention))));
+		db.query(q, p, (err: any, postMentions: any[]) => callback(postMentions.map((postMention) => new PostMention(postMention))));
 	}
 }

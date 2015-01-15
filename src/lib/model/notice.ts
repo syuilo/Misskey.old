@@ -21,19 +21,19 @@ class Notice {
 	public static create(appId: number, content: string, userId: number, callback: (notice: Notice) => void): void {
 		db.query('insert into notices (app_id, content, user_id) values (?, ?, ?)',
 			[appId, content, userId],
-			(err, info) => { Notice.find(info.insertId, (notice: Notice) => { callback(notice); });});
+			(err: any, info: any) => { Notice.find(info.insertId, (notice: Notice) => { callback(notice); });});
 	}
 
 	public static find(id: number, callback: (notice: Notice) => void): void {
 		db.query("select * from notices where id = ?",
 			[id],
-			(err, notices) => callback(new Notice(notices[0])));
+			(err: any, notices: any[]) => callback(new Notice(notices[0])));
 	}
 
 	public static findByuserId(userId: number, callback: (notices: Notice[]) => void): void {
 		db.query("select * from notices where user_id = ? order by created_at desc",
 			[userId],
-			(err, notices: any[]) => callback(notices.map((notice) => new Notice(notice))));
+			(err: any, notices: any[]) => callback(notices.map((notice) => new Notice(notice))));
 	}
 
 	public destroy(callback?: () => void): void {
