@@ -9,7 +9,7 @@ gulp.task 'public-copy', ->
 		.pipe gulp.dest './app/public/'
 
 gulp.task 'typescript-compile', ->
-	gulp.src './src/lib/model/*.ts'
+	gulp.src './src/lib/*.ts'
 		.pipe ts
 			target: 'ES5'
 			removeComments: true
@@ -17,6 +17,30 @@ gulp.task 'typescript-compile', ->
 			declarationFiles: false
 		.js
 		.pipe gulp.dest './app/lib/'
+	gulp.src './src/lib/model/*.ts'
+		.pipe ts
+			target: 'ES5'
+			removeComments: true
+			noImplicitAny: true
+			declarationFiles: false
+		.js
+		.pipe gulp.dest './app/lib/model/'
+	gulp.src './src/lib/web/*.ts'
+		.pipe ts
+			target: 'ES5'
+			removeComments: true
+			noImplicitAny: true
+			declarationFiles: false
+		.js
+		.pipe gulp.dest './app/lib/web/'
+	gulp.src './src/lib/web/models/*.ts'
+		.pipe ts
+			target: 'ES5'
+			removeComments: true
+			noImplicitAny: true
+			declarationFiles: false
+		.js
+		.pipe gulp.dest './app/lib/web/models/'
 
 gulp.task 'watch', ['build'], ->
 	gulp.watch './src/lib/*.ts', ['typescript-compile']
