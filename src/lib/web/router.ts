@@ -33,7 +33,7 @@ var router = (app: express.Express): void => {
 		req.data = {};
 		req.data.url = config.publicConfig.url;
 		req.data.apiUrl = config.publicConfig.apiUrl;
-		req.data.login = login;
+		req.data.login = req.login;
 
 		req.pretty = '  ';
 		res.display = display;
