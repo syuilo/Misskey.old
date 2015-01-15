@@ -79,11 +79,9 @@ var router = (app: express.Express): void => {
 	app.post('/login', function (req: express.Request, res: express.Response) {
 		doLogin(app, req.body.screen_name, req.body.password, (user: User) => {
 			req.session.userId = user.id;
-			res.write(200);
-			res.end();
+			res.send(200);
 		}, () => {
-			res.write(400);
-			res.end();
+			res.send(400);
 		});
 	});
 
