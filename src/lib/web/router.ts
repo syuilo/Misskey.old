@@ -90,7 +90,7 @@ var router = (app: express.Express): void => {
 	app.get('/logout', function (req: express.Request, res: express.Response) {
 		req.session.destroy(function (err) {
 			res.redirect('/');
-		})
+		});
 	});
 
 	//app.get('/:userSn', require('./models/user'));
