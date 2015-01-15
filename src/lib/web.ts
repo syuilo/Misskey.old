@@ -20,6 +20,8 @@ module.exports = (config: any, db: mysql.IPool) => {
 	webServer.use(bodyParser.urlencoded({ extended: true }));
 	webServer.use(cookieParser(config.cookie_pass));
 
+	var year = ((60 * 60 * 24 * 365) * 1000);
+
 	/* Session settings */
 	webServer.use(session({
 		key: 'sid',
@@ -31,8 +33,8 @@ module.exports = (config: any, db: mysql.IPool) => {
 			domain: ".misskey.xyz", // サブドメイン間で共有できるようにする
 			httpOnly: false, // HTTPオンリーにするとスクリプトからCookieにアクセスできなくなり api.misskey.xyz にセッションクッキーを送れなくなったりする
 			secure: true, // HTTPSのみ
-			expires: new Date(Date.now() + ((60 * 60 * 24 * 365) * 1000)),
-			maxAge: ((60 * 60 * 24 * 365) * 1000)
+			expires: new Date(Date.now() + year),
+			maxAge: year
 		},
 		/* Session store settings */
 		store: new RedisStore({
