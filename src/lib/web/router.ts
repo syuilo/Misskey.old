@@ -16,6 +16,8 @@ var extend = (destination: any, source: any): Object => {
 }
 
 var router = (app: express.Express): void => {
+
+	var config = app.get('config');
 	
 	app.all('*', (req: express.Request, res: express.Response, next: () => void ) => {
 		app.disable('x-powered-by');
