@@ -1,7 +1,6 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import mysql = require('mysql');
+var config: any = require('../../../../config.json');
 
-module.exports = (config: any) => {
-	return mysql.createPool(config.db);
-};
+export = mysql.createPool(config.db);
