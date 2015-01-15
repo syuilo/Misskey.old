@@ -24,6 +24,8 @@ module.exports = (config: any, db: mysql.IPool) => {
 	webServer.use(session({
 		key: 'sid',
 		secret: "akari",
+		resave: false,
+		saveUninitialized: true,
 		cookie: {
 			path: "/",
 			domain: ".misskey.xyz", // サブドメイン間で共有できるようにする
