@@ -91,7 +91,7 @@ var router = (app: express.Express): void => {
 		})
 	});
 
-	app.get('/:userSn', require('./models/user'));
+	//app.get('/:userSn', require('./models/user'));
 
 	function display(req: express.Request, res: express.Response, name: string, renderData: any) {
 		/* Mixin */
