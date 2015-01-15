@@ -2,5 +2,5 @@
 
 import mysql = require('mysql');
 var config: any = require('../../../../config.json');
-
-export = mysql.createPool(config.db);
+var db: mysql.IPool = mysql.createPool(config.db);
+export = db;
