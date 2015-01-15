@@ -7,6 +7,10 @@ gulp.task 'clean', del.bind(null, ['./app/**'])
 gulp.task 'public-copy', ->
 	gulp.src './src/public/**'
 		.pipe gulp.dest './app/public/'
+	gulp.src './src/lib/web/public/**'
+		.pipe gulp.dest './app/lib/web/public/'
+	gulp.src './src/lib/web/views/**'
+		.pipe gulp.dest './app/lib/web/views/'
 
 gulp.task 'typescript-compile', ->
 	gulp.src './src/lib/*.ts'
