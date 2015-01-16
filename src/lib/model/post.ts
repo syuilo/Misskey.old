@@ -60,8 +60,9 @@ class Post {
 		UserFollowing.findByFollowerId(userId, (userFollowings: UserFollowing[]) => {
 			var followingsStr: string = null;
 			if (userFollowings.length !== 0) {
+				followingsStr = "";
 				userFollowings.forEach((userFollowing: UserFollowing) => {
-					followingsStr = userFollowing.followeeId + ',';
+					followingsStr += userFollowing.followeeId + ',';
 				});
 			}
 			var q: string, p: any;
