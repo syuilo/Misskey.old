@@ -13,8 +13,6 @@ var createHash = (() => {
 	};
 })();
 
-var config: any = require('../config/config.json');
-
 class Application {
 	id: number;
 	name: string;
