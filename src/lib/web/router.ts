@@ -19,6 +19,8 @@ var extend = (destination: any, source: any): Object => {
 var router = (app: express.Express): void => {
 
 	var config = app.get('config');
+
+	/* General */
 	
 	app.all('*', (req: any, res: any, next: () => void ) => {
 		/* Response header setting */
@@ -73,12 +75,15 @@ var router = (app: express.Express): void => {
 
 	app.get('/', require('./models/root'));
 
+	/* Images */
+
 	app.get('/img/icon/:sn', (req: any, res: any) => {
 		User.findByScreenName(req.params.sn, (user: User) => {
 			if (user != null) {
 				var img = user.icon;
 				res.send(img, { 'Content-Type': 'image/jpeg' }, 200);
 			} else {
+				res.sendStatus(404);
 			}
 		});
 	});
@@ -90,11 +95,15 @@ var router = (app: express.Express): void => {
 					var img = post.image;
 					res.send(img, { 'Content-Type': 'image/jpeg' }, 200);
 				} else {
+					res.sendStatus(404);
 				}
 			} else {
+				res.sendStatus(404);
 			}
 		});
 	});
+
+	/* Actions */
 
 	app.get('/login', (req: any, res: any) => {
 		res.display(req, res, 'login', {});
@@ -116,6 +125,8 @@ var router = (app: express.Express): void => {
 			res.redirect('/');
 		});
 	});
+
+	/* Pages */
 
 	//app.get('/:userSn', require('./models/user'));
 
