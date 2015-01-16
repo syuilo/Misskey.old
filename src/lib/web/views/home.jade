@@ -1,0 +1,43 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		meta(charset='utf-8')
+		meta(name='description', content='ママに咲いたカーネーション')
+		meta(name='keywords', content='Misskey')
+		title Misskey ホーム
+		link(rel='shortcut icon', href='#{url}/favicon.icon')
+		link(rel='stylesheet', href='#{url}/assets/style/ui.css')
+		link(rel='stylesheet', href='#{url}/assets/style/home.css')
+		include templates/head
+	
+	body
+		nav
+			div#me
+				img#meIcon(src=url + '/img/icon/' + me.screenName, alt='icon')
+				span#meName(contenteditable)= me.name
+				span#meScreenName= me.screenName
+				p#meComment(contenteditable)= me.comment
+		
+		main
+			div#timeline
+				div.timeline
+					ol.posts
+						each post in timeline
+							li.post(title='#{post.createdAt}&#x0A;via #{post.app.name}'
+									data-id=post.id
+									data-user_id=post.user.id)
+								if post.isReply
+									div.replyTo
+										p.text= post.reply.text
+								article
+									a(href=url + '/' + post.user.screenName)
+										img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
+									header
+										h2
+											a(href=url + '/' + post.user.screenName)= post.user.name
+										span.screenName= '@' + post.user.screenName
+										time= post.createdAt
+									p.text= post.text
+									if post.isImageAttached
+										img.image(src=url + '/img/post/' + post.id, alt='image')
