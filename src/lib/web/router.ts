@@ -13,29 +13,35 @@ var extend = (destination: any, source: any): Object => {
 		}
 	}
 	return destination;
-}
+};
 
 var router = (app: express.Express): void => {
 
 	var config = app.get('config');
 	
 	app.all('*', (req: any, res: any, next: () => void ) => {
-		app.disable('x-powered-by');
+		/* Response header setting */
 		res.set({
-			'Access-Control-Allow-Origin': 'https://misskey.xyz',
+			'Access-Control-Allow-Origin': config.publicConfig.url,
 			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 			'Access-Control-Allow-Credentials': true,
 			'X-Frame-Options': 'DENY'
 		});
 
+		/* Is logged */
 		req.login = (req.session != null && req.session.userId != null);
 
+		/* Render datas */
 		req.data = {};
+		req.data.config = config;
 		req.data.url = config.publicConfig.url;
 		req.data.apiUrl = config.publicConfig.apiUrl;
 		req.data.login = req.login;
 
+		/* Jade  pretty setting */
 		req.pretty = '  ';
+
+		/* Renderer function */
 		res.display = display;
 
 		if (req.login) {
@@ -72,11 +78,11 @@ var router = (app: express.Express): void => {
 		}
 	});
 
-	app.get('/login', function (req: any, res: any) {
+	app.get('/login', (req: any, res: any) => {
 		res.display(req, res, 'login', {});
 	});
 
-	app.post('/login', function (req: any, res: any) {
+	app.post('/login', (req: any, res: any) => {
 		doLogin(app, req.body.screen_name, req.body.password, (user: User) => {
 			req.session.userId = user.id;
 			req.session.save(() => {
@@ -87,7 +93,7 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/logout', function (req: any, res: any) {
+	app.get('/logout', (req: any, res: any) => {
 		req.session.destroy((err: any) => {
 			res.redirect('/');
 		});
@@ -95,8 +101,8 @@ var router = (app: express.Express): void => {
 
 	//app.get('/:userSn', require('./models/user'));
 
-	function display(req: any, res: any, name: string, renderData: any) {
+	var display = (req: any, res: any, name: string, renderData: any) => {
 		/* Mixin */
 		res.render(name, extend(req.data, renderData));
-	}
+	};
 };
