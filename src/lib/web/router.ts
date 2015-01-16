@@ -2,6 +2,7 @@
 
 import express = require('express');
 import User = require('../model/user');
+import Post = require('../model/post');
 import doLogin = require('./models/login');
 
 export = router;
@@ -72,7 +73,11 @@ var router = (app: express.Express): void => {
 
 	app.get('/', (req: any, res: any) => {
 		if (req.login) {
-			res.display(req, res, 'home', {});
+			Post.getTimeline(req.me.id, 30, null, null, (posts: Post[]) => {
+				res.display(req, res, 'home', {
+					timeline: posts
+				});
+			});
 		} else {
 			res.display(req, res, 'entrance', {});
 		}
