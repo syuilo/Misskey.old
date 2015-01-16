@@ -1,0 +1,345 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background: #fff;
+	color: #000;
+}
+
+body {
+
+}
+
+/* Timeline
+ * ---------------------------------------------------------------- */
+
+.timeline {
+	
+}
+	.timeline > .posts {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+		.timeline > .posts > .post {
+			border-left: solid 3px transparent;
+			background-color: #FFF;
+			transition: background-color 0.2s ease;
+		}
+		.timeline > .posts > .post:before {
+			/*
+			content: "";
+			display: block;
+			width: 100%;
+			height: 1px;
+			background: #eee;
+			*/
+		}
+		.timeline > .posts > .post:hover {
+		   background-color: #F8F8F8;
+		   transition: background-color 0s ease;
+		}
+		.timeline > .posts > .post:active {
+		   background-color: #EEE;
+		   transition: background-color 0s ease;
+		}
+		
+			.timeline > .posts > .post > article {
+				position: relative;
+				padding: 12px;
+			}
+			.timeline > .posts > .post > article:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+				.timeline > .posts > .post > article > header {
+					margin-bottom: 2px;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+				.timeline > .posts > .post > article > header:after {
+					
+				}
+					.timeline > .posts > .post > article > header > h2 {
+						text-align: left;
+						display: inline;
+						margin: 0;
+						padding: 0;
+						font-weight: normal;
+						font-size: 1em;
+					}
+						.timeline > .posts > .post > article > header > h2 a {
+							color: #000;
+							font-weight: bold;
+							text-decoration: none;
+						}
+				
+					.timeline > .posts > .post > article > header > time {
+						position: absolute;
+						top: 8px;
+						right: 8px;
+						display: inline;
+						vertical-align: top;
+						color: rgba(0, 0, 0, 0.6);
+						font-size: small;
+					}
+
+						.timeline > .posts > .post > article > header > .m input {
+							width: 100%;
+						}
+
+						.timeline > .posts > .post > article > header > .m input[type="submit"] {
+							display: none;
+						}
+
+							.timeline > .posts > .post > article > header > .m > a > img {
+								display: inline-block;
+							}
+
+								.timeline > .posts > .post > article > header > .m > a > img {
+									width: 22px;
+								}
+					
+
+					.timeline > .posts > .post > article > header > .b {
+						text-align: left;
+						display: inline;
+						font-size: .7em;
+						margin-right: 4px;
+						padding: 2px 6px;
+						vertical-align: middle;
+
+						background-color: #1bb3b3;
+						border-radius: 2px;
+						color: #fff;
+						font-weight: bold;
+/*
+						border: solid 1px #81b781;
+						border-radius: 2px;
+						color: #079500;
+						font-weight: bold;
+						background: #fbfefb;
+						background: -moz-linear-gradient(top,  #fbfefb 0%, #c6e9c6 100%);
+						background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fbfefb), color-stop(100%,#c6e9c6));
+						background: -webkit-linear-gradient(top,  #fbfefb 0%,#c6e9c6 100%);
+						background: -o-linear-gradient(top,  #fbfefb 0%,#c6e9c6 100%);
+						background: -ms-linear-gradient(top,  #fbfefb 0%,#c6e9c6 100%);
+						background: linear-gradient(to bottom,  #fbfefb 0%,#c6e9c6 100%);
+						filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfefb', endColorstr='#c6e9c6',GradientType=0 );
+*/
+					}
+					
+					.timeline > .posts > .post > article > header > .screenName {
+						text-align: left;
+						margin: 0 4px;
+						color: rgba(0, 0, 0, 0.5);
+					}
+					
+					.timeline > .posts > .post > article > header a {
+						text-decoration: none;
+					}
+					.timeline > .posts > .post > article > header a:hover {
+						color: #00a0a0;
+					}
+
+					.timeline > .posts > .post > article > a > .icon {
+						float: left;
+						min-width: 48px;
+						min-height: 48px;
+						max-width: 48px;
+						max-height: 48px;
+						margin: 0 8px 4px 0;
+						border-radius: 8px;
+
+						transition: transform 0.2s ease;
+					}
+					.timeline > .posts > .post:hover > article > a > .icon {
+						transform: scale(1.2) rotateZ(10deg);
+					}
+
+				.timeline > .posts > .post > article > .text {
+					display: block;
+					margin: 0 0 0 0;
+					padding: 0;
+					overflow: hidden;
+					word-wrap: break-word;
+				}
+
+					.timeline > .posts > .post > article > .text > a {
+						color: #1bb3b3;
+						text-decoration: underline;
+					}
+					.timeline > .posts > .post > article > .text > .r {
+						color: #1bb3b3;
+						text-decoration: none;
+					}
+					.timeline > .posts > .post > article > .text > .r:hover {
+						background: #1bb3b3;
+						border-radius: 2px;
+						color: #fff;
+					}
+				
+				.timeline > .posts > .post > article > .img {
+					display: block;
+					max-width: 100%;
+					max-height: 512px;
+				}
+				
+			.timeline > .posts > .post > .replyTo {
+				display: inline-block;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 8px 8px 4px 8px;
+				word-wrap: break-word;
+				word-break: break-all;
+
+				color: rgba(0, 0, 0, 0.4);
+				border-bottom: dashed 1px #eee;
+			}
+
+				.timeline > .posts > .post > .replyTo > .text {
+					margin: 0;
+					word-wrap: break-word;
+				}
+				
+				.timeline > .posts > .post > .replyTo > .n {
+					display: block;
+					font-weight: bold;
+					text-decoration: none;
+					color: #888;
+				}
+
+				.timeline > .posts > .post > .replyTo > .img {
+					display: block;
+					max-width: 100%;
+					max-height: 256px;
+				}
+	
+				.timeline > .posts > .post > article > .as {
+					position: absolute;
+					bottom: 0px;
+					right: 4px;
+					margin: 0;
+				}
+					.timeline > .posts > .post > article > .as .fc {
+						margin: 0;
+						padding: 0;
+						color: rgba(0, 0, 0, 0.5);
+					}
+				.timeline > .posts > .post > article > .as .fr {
+					display: inline;
+				}
+				.timeline > .posts > .post > article > .as .fr > input[type=image] {
+					width: 24px;
+					height: 24px;
+				}
+				.timeline > .posts > .post > .rf {
+					display: none;
+					padding: 4px;
+				}
+					.timeline > .posts > .post > .rf textarea {
+						box-sizing: border-box;
+						width: 100%;
+						max-width: 100%;
+						height: 64px;
+						min-height: 64px;
+						vertical-align: bottom;
+						margin: 0;
+						padding: 4px;
+						
+						outline: 0;
+						border: solid 1px #CCC;
+						border-radius: 0;
+						font-family: Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3', Meiryo UI, Meiryo, ãƒ¡ã‚¤ãƒªã‚ª, sans-serif;
+						font-size: 1em;
+					}
+						.timeline > .posts > .post > .rf textarea:focus {
+							border-color: #1bb3b3;
+						}
+						.timeline > .posts > .post > .rf textarea:active {
+							/*border-color: #00a0e0;*/
+							border-color: #1bb3b3;
+						}
+				.timeline > .posts > .post > .rf input[type=submit] {
+					outline: 0;
+					border: none;
+					border-radius: 0;
+
+					margin: 0;
+					padding: 8px 32px;
+
+					-webkit-appearance: none;
+					font-family: Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3', Meiryo UI, Meiryo, ãƒ¡ã‚¤ãƒªã‚ª, sans-serif;
+					font-weight: normal;
+					font-size: 1em;
+					cursor: pointer;
+					color: #FFF;
+					background-color: #1bb3b3;
+
+					transition: all 0.5s linear;
+				}
+				.timeline > .posts > .post > .rf input[type=submit]:hover {
+					background-color: #4fe5e5;
+					text-shadow: 0 0 8px #FFF;
+					transition: all 0.1s linear;
+				}
+				.timeline > .posts > .post > .rf input[type=submit]:active {
+					background-color: #0e5a5a;
+					transition: all 0.1s linear;
+				}
+				.timeline > .posts > .post > .rf .im {
+					box-sizing: border-box;
+					display: inline-block;
+					position: relative;
+					margin: 4px;
+					padding: 4px 16px;
+					vertical-align: top;
+					
+					outline: dashed 2px #ccc;
+				}
+				.timeline > .posts > .post > .rf .im:hover {
+					outline: dashed 2px #777;
+				}
+				.timeline > .posts > .post > .rf .im input[type=file] {
+					display: inline;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+				}
+				.timeline > .posts > .post > .rf .im p {
+					margin: 0;
+					color: #777;
+					font-size: 1em;
+				}
+				.timeline > .posts > .post > .rf .im img {
+					max-width: 100%;
+					max-height: 128px;
+				}
+	.timeline > .loadMore {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 3em;
+		line-height: 3em;
+
+		cursor: pointer;
+
+		background: #fff;
+		outline: none;
+		border: none;
+	}
+	.timeline > .loadMore:hover,
+	.timeline > .loadMore:focus {
+		background: #eee;
+		color: #1bb3b3;
+	}
+	.timeline > .loadMore:active {
+		background: #ddd;
+	}
