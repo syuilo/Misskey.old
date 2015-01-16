@@ -12,23 +12,27 @@ body {
 
 }
 	body > nav {
+		display: block;
 		float: left;
 		width: 300px;
 		text-align: center;
+		background: #fff;
 	}
 		body > nav > #me {
 			
 		}
 			body > nav > #me #meIcon {
-				display: inline-block;
+				display: block;
 				max-width: 128px;
-				max-height: 128pxpx;
-				margin: 8px;
+				max-height: 128px;
+				margin: 8px auto;
 				padding: 0;
 				vertical-align: bottom;
+				border-radius: 64px;
 			}
 
 main {
+	display: block;
 	float: left;
 	width: calc(100% - 300px);
 }
@@ -51,6 +55,7 @@ main {
 		list-style: none;
 	}
 		.timeline > .posts > .post {
+			padding: 4px 0;
 			border-left: solid 3px transparent;
 			background-color: #FFF;
 			transition: background-color 0.2s ease;
