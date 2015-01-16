@@ -84,7 +84,7 @@ var router = (app: express.Express): void => {
 				res.set('Content-Type', 'image/jpeg');
 				res.send(img);
 			} else {
-				res.sendStatus(404).send('User not found.');
+				res.status(404).send('User not found.');
 			}
 		});
 	});
