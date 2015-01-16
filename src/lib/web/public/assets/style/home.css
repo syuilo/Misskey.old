@@ -31,6 +31,77 @@ body {
 				border-radius: 64px;
 			}
 
+#me-status {
+	width: 100%;
+	border-collapse: collapse;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.8);
+}
+	#me-status a {
+		text-decoration: none;
+		color: #1bb3b3;
+	}
+	#me-status a:hover {
+		border-bottom: dashed 1px #1bb3b3;
+	}
+	#me-status th {
+		margin-left: 16px;
+		color: #333;
+	}
+	#me-status td {
+		margin-right: 16px;
+	}
+	#me-status th,
+	#me-status td {
+		display: inline-block;
+		box-sizing: border-box;
+		width: calc(50% - 16px);
+		padding: 8px;
+		border-top: solid 1px #eee;
+	}
+	#me-status tr:first-child th,
+	#me-status tr:first-child td {
+		margin-top: 8px;
+		border-top: none;
+	}
+	#me-status tr:last-child th,
+	#me-status tr:last-child td {
+		margin-bottom: 8px;
+	}
+
+		body > nav > ul {
+			width: 100%;
+			margin: 16px 0;
+			padding: 0;
+			list-style: none;
+		}
+			body > nav > ul li {
+				background: #fff;
+				
+				border-top: solid 1px #eee;
+			}
+			body > nav > ul li:first-child {
+				border-top: none;
+			}
+			body > nav > ul li:last-child {
+			}
+				body > nav > ul li a {
+					display: block;
+					padding: 10px 16px;
+
+					background-image: url("/assets/img/system/allow.svg");
+					background-repeat: no-repeat;
+					background-position: calc(100% - 8px) center;
+
+					text-decoration: none;
+					color: #111;
+					font-size: 1.1em;
+				}
+				body > nav > ul li a:hover {
+					background-color: #1bb3b3;
+					color: #fff;
+				}
+
 main {
 	display: block;
 	float: left;
