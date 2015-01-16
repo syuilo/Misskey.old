@@ -30,7 +30,7 @@ module.exports = (config: any, db: mysql.IPool) => {
 		saveUninitialized: true,
 		cookie: {
 			path: '/',
-			domain: '.' + config.publicConfig.portDomain, // サブドメイン間で共有できるようにする
+			domain: '.' + config.publicConfig.domain, // サブドメイン間で共有できるようにする
 			httpOnly: false, // HTTPオンリーにするとスクリプトからCookieにアクセスできなくなり api.misskey.xyz にセッションクッキーを送れなくなったりする
 			secure: true, // HTTPSのみ
 			expires: new Date(Date.now() + year),
