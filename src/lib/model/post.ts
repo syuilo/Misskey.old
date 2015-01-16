@@ -60,10 +60,11 @@ class Post {
 		UserFollowing.findByFollowerId(userId, (userFollowings: UserFollowing[]) => {
 			var followingsStr: string = null;
 			if (userFollowings.length !== 0) {
-				followingsStr = "";
+				var followingsStrs: string[];
 				userFollowings.forEach((userFollowing: UserFollowing) => {
-					followingsStr += userFollowing.followeeId + ',';
+					followingsStrs.push(userFollowing.followeeId.toString());
 				});
+				followingsStr = followingsStrs.join(',');
 			}
 			var q: string, p: any;
 			if ((sinceId === null) && (maxId === null)) {
