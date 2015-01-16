@@ -1,6 +1,9 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import async = require('async');
+import Application = require('./application');
+import User = require('./user');
 import UserFollowing = require('./user-following');
 import CircleMember = require('./circle-member');
 export = Post;
@@ -90,7 +93,32 @@ class Post {
 			}
 			db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
 		});
-    }
+	}
+
+	public static generateTimeline(posts: Post[], callback: (posts: Post[]) => void): void {
+		async.map(posts, (post: any, next: any) => {
+			post.isReply = post.inReplyToPostId != null;
+			User.find(post.userId, (user: User) => {
+				post.user = user;
+				Application.find(post.appId, (app: Application) => {
+					post.app = app;
+					if (post.isReply) {
+						Post.find(post.inReplyToPostId, (replyPost: any) => {
+							post.reply = replyPost;
+							User.find(post.reply.userId, (replyUser: User) => {
+								post.reply.user = replyUser;
+								next(null, post);
+							});
+						});
+					} else {
+						next(null, post);
+					}
+				});
+			});
+		}, (err: any, results: Post[]) => {
+			callback(results);
+		});
+	}
 
     public update(callback?: () => void): void {
         db.query("UPDATE posts SET user_id=?, app_id=?, in_reply_to_post_id=?, text=? WHERE id=?",

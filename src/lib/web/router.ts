@@ -2,6 +2,7 @@
 
 import express = require('express');
 import User = require('../model/user');
+import Post = require('../model/post');
 import doLogin = require('./models/login');
 
 export = router;
@@ -70,13 +71,7 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/', (req: any, res: any) => {
-		if (req.login) {
-			res.display(req, res, 'home', {});
-		} else {
-			res.display(req, res, 'entrance', {});
-		}
-	});
+	app.get('/', require('./models/root'));
 
 	app.get('/login', (req: any, res: any) => {
 		res.display(req, res, 'login', {});
