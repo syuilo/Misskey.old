@@ -27,12 +27,12 @@ module.exports = (config: any, db: mysql.IPool) => {
 		key: 'sid',
 		secret: 'akaritinatuyuikyouko',
 		resave: false,
-		saveUninitialized: true,
+		saveUninitialized: false,
 		cookie: {
 			path: '/',
-			domain: '.' + config.publicConfig.domain, // ƒTƒuƒhƒƒCƒ“ŠÔ‚Å‹¤—L‚Å‚«‚é‚æ‚¤‚É‚·‚é
-			httpOnly: false, // HTTPƒIƒ“ƒŠ[‚É‚·‚é‚ÆƒXƒNƒŠƒvƒg‚©‚çCookie‚ÉƒAƒNƒZƒX‚Å‚«‚È‚­‚È‚è api.misskey.xyz ‚ÉƒZƒbƒVƒ‡ƒ“ƒNƒbƒL[‚ğ‘—‚ê‚È‚­‚È‚Á‚½‚è‚·‚é
-			secure: true, // HTTPS‚Ì‚İ
+			domain: '.' + config.publicConfig.domain, // ã‚µãƒ–ãƒ‰ãƒ¡ã‚¤ãƒ³é–“ã§å…±æœ‰ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
+			httpOnly: false, // HTTPã‚ªãƒ³ãƒªãƒ¼ã«ã™ã‚‹ã¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰Cookieã«ã‚¢ã‚¯ã‚»ã‚¹ã§ããªããªã‚Š api.misskey.xyz ã«ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¯ãƒƒã‚­ãƒ¼ã‚’é€ã‚Œãªããªã£ãŸã‚Šã™ã‚‹
+			secure: true, // HTTPSã®ã¿
 			expires: new Date(Date.now() + year),
 			maxAge: year
 		},
