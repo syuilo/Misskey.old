@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-	background-image: url("https://misskey.xyz/assets/img/top/bug.jpg");
+	background-image: url("/assets/img/top/bug.jpg");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -120,7 +120,6 @@ input:focus {
 	outline: none;
 	border: solid 1px #E0E0E0;
 	font-size: 1.2em;
-	font-family: Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo UI, Meiryo, メイリオ, sans-serif;
 
 	transition: all 0.5s ease;
 }
