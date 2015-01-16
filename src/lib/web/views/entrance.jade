@@ -13,12 +13,11 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 	body
 		main
 			h1 Misskey
-			div#form
-				img#icon(src='#{url}/img/icon/default.png', alt='')
-				form#login(action='#{url}/login', method='post')
-					input#id(name='screen_name', type='text', pattern='^[0-9A-Za-z_]+$', placeholder='ユーザーID', autocomplete='off', autofocus, required)
-					input(name='password', type='password', placeholder='パスワード', autocomplete='off', required)
-					input(type='submit', value='Login')
+			img#icon(src='#{url}/img/icon/default.png', alt='')
+			form#loginForm(action='#{url}/login', method='post')
+				input#id(name='screen_name', type='text', pattern='^[0-9A-Za-z_]+$', placeholder='ユーザーID', autocomplete='off', autofocus, required)
+				input(name='password', type='password', placeholder='パスワード', autocomplete='off', required)
+				input(type='submit', value='Login')
 				
 				span#new
 					p Misskeyに興味がありますか？

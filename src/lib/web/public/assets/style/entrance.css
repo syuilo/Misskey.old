@@ -28,7 +28,7 @@ main {
 	height: 100%;
 }
 
-	main > form {
+	main #loginForm {
 		position: absolute;
 		width: 256px;
 		margin: 0 auto;
@@ -37,8 +37,8 @@ main {
 		transform: perspective(512px);
 	}
 
-		main > form input[type=text],
-		main > form input[type=password] {
+		main #loginForm input[type=text],
+		main #loginForm input[type=password] {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
