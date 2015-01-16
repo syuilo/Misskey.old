@@ -19,6 +19,8 @@ var extend = (destination: any, source: any): Object => {
 var router = (app: express.Express): void => {
 
 	var config = app.get('config');
+
+	/* General */
 	
 	app.all('*', (req: any, res: any, next: () => void ) => {
 		/* Response header setting */
@@ -73,6 +75,38 @@ var router = (app: express.Express): void => {
 
 	app.get('/', require('./models/root'));
 
+	/* Images */
+
+	app.get('/img/icon/:sn', (req: any, res: any) => {
+		User.findByScreenName(req.params.sn, (user: User) => {
+			if (user != null) {
+				var img = user.icon;
+				res.set('Content-Type', 'image/jpeg');
+				res.send(img);
+			} else {
+				res.status(404).send('User not found.');
+			}
+		});
+	});
+
+	app.get('/img/post/:id', (req: any, res: any) => {
+		Post.find(req.params.id, (post: Post) => {
+			if (post != null) {
+				if (post.isImageAttached) {
+					var img = post.image;
+					res.set('Content-Type', 'image/jpeg');
+					res.send(img);
+				} else {
+					res.status(404).send('Image not found.');
+				}
+			} else {
+				res.status(404).send('Post not found.');
+			}
+		});
+	});
+
+	/* Actions */
+
 	app.get('/login', (req: any, res: any) => {
 		res.display(req, res, 'login', {});
 	});
@@ -93,6 +127,8 @@ var router = (app: express.Express): void => {
 			res.redirect('/');
 		});
 	});
+
+	/* Pages */
 
 	//app.get('/:userSn', require('./models/user'));
 
