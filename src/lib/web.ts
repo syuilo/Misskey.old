@@ -32,7 +32,7 @@ module.exports = (config: any, db: mysql.IPool) => {
 			path: '/',
 			domain: '.' + config.publicConfig.domain, // サブドメイン間で共有できるようにする
 			httpOnly: false, // HTTPオンリーにするとスクリプトからCookieにアクセスできなくなり api.misskey.xyz にセッションクッキーを送れなくなったりする
-			secure: true, // HTTPSのみ
+			secure: false, // HTTPSのみ
 			expires: new Date(Date.now() + year),
 			maxAge: year
 		},
