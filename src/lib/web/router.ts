@@ -81,7 +81,8 @@ var router = (app: express.Express): void => {
 		User.findByScreenName(req.params.sn, (user: User) => {
 			if (user != null) {
 				var img = user.icon;
-				res.send(img, { 'Content-Type': 'image/jpeg' }, 200);
+				res.set('Content-Type', 'image/jpeg');
+				res.send(img);
 			} else {
 				res.sendStatus(404);
 			}
@@ -93,7 +94,8 @@ var router = (app: express.Express): void => {
 			if (post != null) {
 				if (post.isImageAttached) {
 					var img = post.image;
-					res.send(img, { 'Content-Type': 'image/jpeg' }, 200);
+					res.set('Content-Type', 'image/jpeg');
+					res.send(img);
 				} else {
 					res.sendStatus(404);
 				}
