@@ -19,7 +19,7 @@ var router = (app: express.Express): void => {
 
 	var config = app.get('config');
 	
-	app.all('*', (req: express.Request, res: express.Response, next: () => void ) => {
+	app.all('*', (req: any, res: any, next: () => void ) => {
 		app.disable('x-powered-by');
 		res.set({
 			'Access-Control-Allow-Origin': 'https://misskey.xyz',
@@ -52,31 +52,31 @@ var router = (app: express.Express): void => {
 		}
 	});
 
-	app.param('userSn', (req: express.Request, res: express.Response, next: () => void, sn: string) => {
+	app.param('userSn', (req: any, res: any, next: () => void, sn: string) => {
 		User.findByScreenName(sn, (user: User) => {
 			if (user != null) {
 				req.rootUser = user;
 				next();
 			} else {
-				display(req, res, 'user-notFound', {
+				res.display(req, res, 'user-notFound', {
 				});
 			}
 		});
 	});
 
-	app.get('/', (req: express.Request, res: express.Response) => {
+	app.get('/', (req: any, res: any) => {
 		if (req.login) {
-			display(req, res, 'home', {});
+			res.display(req, res, 'home', {});
 		} else {
-			display(req, res, 'entrance', {});
+			res.display(req, res, 'entrance', {});
 		}
 	});
 
-	app.get('/login', function (req: express.Request, res: express.Response) {
-		display(req, res, 'login', {});
+	app.get('/login', function (req: any, res: any) {
+		res.display(req, res, 'login', {});
 	});
 
-	app.post('/login', function (req: express.Request, res: express.Response) {
+	app.post('/login', function (req: any, res: any) {
 		doLogin(app, req.body.screen_name, req.body.password, (user: User) => {
 			req.session.userId = user.id;
 			req.session.save(() => {
@@ -87,15 +87,15 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/logout', function (req: express.Request, res: express.Response) {
-		req.session.destroy(function (err) {
+	app.get('/logout', function (req: any, res: any) {
+		req.session.destroy((err: any) => {
 			res.redirect('/');
 		});
 	});
 
 	//app.get('/:userSn', require('./models/user'));
 
-	function display(req: express.Request, res: express.Response, name: string, renderData: any) {
+	function display(req: any, res: any, name: string, renderData: any) {
 		/* Mixin */
 		res.render(name, extend(req.data, renderData));
 	}
