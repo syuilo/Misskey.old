@@ -1,143 +1,58 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
+* {
+	font-family: 'Open Sans', Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo UI, Meiryo, メイリオ, sans-serif;
+}
+
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
 }
 
-* {
-	font-family: 'Open Sans', Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo UI, Meiryo, メイリオ, sans-serif;
+html {
+	background: #910099;
+	color: #fff;
 }
 
 body {
+/*
 	background-image: url("/assets/img/top/bug.jpg");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
+*/
 }
 
 main {
 	height: 100%;
 }
 
-form {
-	position: absolute;
-	top: 30%;
-	left: 5%;
-	width: 256px;
-	margin: 0;
-	padding: 0;
-	
-	transform: perspective(512px);
-}
+	main > form {
+		position: absolute;
+		width: 256px;
+		margin: 0 auto;
+		padding: 0;
+		
+		transform: perspective(512px);
+	}
 
-h1 {
-	display: inline-block;
-	position: absolute;
-	top: 5%;
-	right: 5%;
+		main > form input[type=text],
+		main > form input[type=password] {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			
+			box-sizing: border-box;
+			padding: 8px;
+			margin: 8px 0;
+			width: 100%;
+			
+			font-size: 1.2em;
+			outline: none;
+			border: solid 1px #fff;
+			border-radius: 4px;
+			box-shadow: none;
+			background: transparent;
+		}
 
-	margin: 0;
-	padding: 0;
-	
-	font-weight: normal;
-	font-size: 5em;
-	color: rgba(255, 255, 255, 0.5);
-}
-
-main input::-webkit-input-placeholder {
-	color: rgba(255, 255, 255, 0.3);
-}
-main input:-moz-placeholder {
-	color: rgba(255, 255, 255, 0.3);
-}
-
-main input:-webkit-autofill {
-	background-color: transparent;
-}
-
-#register-form input::-webkit-input-placeholder {
-	color: rgba(0, 0, 0, 0.3);
-}
-#register-form input:-moz-placeholder {
-	color: rgba(0, 0, 0, 0.3);
-}
-
-main input[type=email], main input[type=text], main input[type=password] {
-	display: inline-block;
-	box-sizing: border-box;
-	width: 100%;
-
-	font-size: 1.3em;
-	color: rgba(255, 255, 255, 0.7);
-	border: none;
-	border-bottom: solid 1px #fff;
-	background: transparent;
-
-	text-align: center;
-}
-
-input:focus {
-	outline: 0;
-	border: solid 2px #aaf;
-}
-
-#login-form input[type=submit] {
-	display: block;
-	outline: 0;
-	border: none;
-	border-radius: 0;
-
-	margin: 8px auto;
-	padding: 8px 32px;
-
-	-webkit-appearance: none;
-	cursor: pointer;
-	font-size: 1.8em;
-	color: #FFF;
-	background: transparent;
-
-	transition: all 0.5s linear;
-}
-#login-form input[type=submit]:hover {
-	transition: all 0.1s linear;
-}
-#login-form input[type=submit]:active {
-	transition: all 0.1s linear;
-}
-
-#register-form {
-	min-width: 384px;
-}
-
-#register-form input[type="text"],
-#register-form input[type="password"] {
-	box-sizing: border-box;
-	padding: 2px;
-	width: 100%;
-	
-	outline: none;
-	border: solid 1px #E0E0E0;
-	font-size: 1.2em;
-
-	transition: all 0.5s ease;
-}
-#register-form input[type="text"]:hover,
-#register-form input[type="password"]:hover {
-	border: solid 1px #1bb3b3;
-	transition: all 0.2s ease;
-}
-#register-form input[type="text"]:focus,
-#register-form input[type="password"]:focus {
-	border: solid 1px #1bb3b3;
-	transition: all 0.5s ease;
-}
-
-#new p {
-	color: rgba(255, 255, 255, 0.5);
-}
-#new a {
-	text-decoration: none;
-	color: rgba(255, 255, 255, 0.7);
-}
