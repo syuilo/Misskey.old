@@ -11,6 +11,33 @@ html {
 body {
 
 }
+	body > nav {
+		float: left;
+		width: 300px;
+		text-align: center;
+	}
+		body > nav > #me {
+			
+		}
+			body > nav > #me #meIcon {
+				display: inline-block;
+				max-width: 128px;
+				max-height: 128pxpx;
+				margin: 8px;
+				padding: 0;
+				vertical-align: bottom;
+			}
+
+main {
+	float: left;
+	width: calc(100% - 300px);
+}
+
+	main #timeline {
+		width: 100%;
+		max-width: 800px;
+		margin: 0 auto;
+	}
 
 /* Timeline
  * ---------------------------------------------------------------- */
