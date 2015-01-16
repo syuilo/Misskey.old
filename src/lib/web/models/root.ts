@@ -12,7 +12,7 @@ export = render;
 var render = (req: any, res: any): void => {
 	if (req.login) {
 		Post.getTimeline(req.me.id, 30, null, null, (posts: Post[]) => {
-			async.map(posts, (post: any, next) => {
+			async.map(posts, (post: any, next: any) => {
 				post.isReply = post.inReplyToPostId != null;
 				User.find(post.userId, (user: User) => {
 					post.user = user;
