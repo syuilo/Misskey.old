@@ -71,17 +71,7 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/', (req: any, res: any) => {
-		if (req.login) {
-			Post.getTimeline(req.me.id, 30, null, null, (posts: Post[]) => {
-				res.display(req, res, 'home', {
-					timeline: posts
-				});
-			});
-		} else {
-			res.display(req, res, 'entrance', {});
-		}
-	});
+	app.get('/', require('./models/root'));
 
 	app.get('/login', (req: any, res: any) => {
 		res.display(req, res, 'login', {});
