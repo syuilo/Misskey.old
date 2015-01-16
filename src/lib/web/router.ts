@@ -84,7 +84,7 @@ var router = (app: express.Express): void => {
 				res.set('Content-Type', 'image/jpeg');
 				res.send(img);
 			} else {
-				res.sendStatus(404);
+				res.sendStatus(404).send('User not found.');
 			}
 		});
 	});
@@ -97,10 +97,10 @@ var router = (app: express.Express): void => {
 					res.set('Content-Type', 'image/jpeg');
 					res.send(img);
 				} else {
-					res.sendStatus(404);
+					res.status(404).send('Image not found.');
 				}
 			} else {
-				res.sendStatus(404);
+				res.status(404).send('Post not found.');
 			}
 		});
 	});
