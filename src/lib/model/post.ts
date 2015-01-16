@@ -101,7 +101,7 @@ class Post {
 
 	public static generateTimeline(posts: Post[], callback: (posts: Post[]) => void): void {
 		async.map(posts, (post: any, next: any) => {
-			post.isReply = post.inReplyToPostId != null;
+			post.isReply = post.inReplyToPostId != 0;
 			User.find(post.userId, (user: User) => {
 				post.user = user;
 				Application.find(post.appId, (app: Application) => {
