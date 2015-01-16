@@ -73,6 +73,29 @@ var router = (app: express.Express): void => {
 
 	app.get('/', require('./models/root'));
 
+	app.get('/img/icon/:sn', (req: any, res: any) => {
+		User.findByScreenName(req.params.sn, (user: User) => {
+			if (user != null) {
+				var img = user.icon;
+				res.send(img, { 'Content-Type': 'image/jpeg' }, 200);
+			} else {
+			}
+		});
+	});
+
+	app.get('/img/post/:id', (req: any, res: any) => {
+		Post.find(req.params.id, (post: Post) => {
+			if (post != null) {
+				if (post.isImageAttached) {
+					var img = post.image;
+					res.send(img, { 'Content-Type': 'image/jpeg' }, 200);
+				} else {
+				}
+			} else {
+			}
+		});
+	});
+
 	app.get('/login', (req: any, res: any) => {
 		res.display(req, res, 'login', {});
 	});
