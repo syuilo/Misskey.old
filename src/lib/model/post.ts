@@ -53,7 +53,7 @@ class Post {
 			q = "select * from posts where user_id = ? and id < ? order by id desc limit ?";
 			p = [userId, maxId, limit];
 		}
-		db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
+		db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 	}
 
 	public static getTimeline(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
@@ -73,7 +73,7 @@ class Post {
 				q = "select * from posts where (" + (followingsStr !== null ? "user_id in (" + followingsStr + ") or " : "") + "user_id = ?) and id < ? order by id desc limit ?";
 				p = [userId, maxId, limit];
 			}
-			db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
+			db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 		});
 	}
 
@@ -91,7 +91,7 @@ class Post {
 				q = "select * from posts where user_id in (" + circleMembersStr + ") and id < ? order by id desc limit ?";
 				p = [maxId, limit];
 			}
-			db.query(q, p, (err: any, posts: any[]) => callback(posts.map((post) => new Post(post))));
+			db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 		});
 	}
 
