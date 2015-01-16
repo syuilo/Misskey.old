@@ -25,12 +25,12 @@ module.exports = (config: any, db: mysql.IPool) => {
 	/* Session settings */
 	webServer.use(session({
 		key: 'sid',
-		secret: "akari",
+		secret: 'akaritinatuyuikyouko',
 		resave: false,
 		saveUninitialized: true,
 		cookie: {
-			path: "/",
-			domain: ".misskey.xyz", // サブドメイン間で共有できるようにする
+			path: '/',
+			domain: '.' + config.publicConfig.portDomain, // サブドメイン間で共有できるようにする
 			httpOnly: false, // HTTPオンリーにするとスクリプトからCookieにアクセスできなくなり api.misskey.xyz にセッションクッキーを送れなくなったりする
 			secure: true, // HTTPSのみ
 			expires: new Date(Date.now() + year),
