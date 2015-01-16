@@ -27,12 +27,12 @@ module.exports = (config: any, db: mysql.IPool) => {
 		key: 'sid',
 		secret: 'akaritinatuyuikyouko',
 		resave: false,
-		saveUninitialized: false,
+		saveUninitialized: true,
 		cookie: {
 			path: '/',
 			domain: '.' + config.publicConfig.domain, // サブドメイン間で共有できるようにする
 			httpOnly: false, // HTTPオンリーにするとスクリプトからCookieにアクセスできなくなり api.misskey.xyz にセッションクッキーを送れなくなったりする
-			secure: false, // HTTPSのみ
+			secure: true, // HTTPSのみ
 			expires: new Date(Date.now() + year),
 			maxAge: year
 		},
