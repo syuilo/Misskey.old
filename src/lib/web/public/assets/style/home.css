@@ -30,6 +30,10 @@ body {
 				vertical-align: bottom;
 				border-radius: 64px;
 			}
+			body > nav > #me #meScreenName {
+				margin: 0 8px;
+				color: rgba(0, 0, 0, 0.5);
+			}
 
 #me-status {
 	width: 100%;
@@ -122,6 +126,11 @@ main {
 
 #postForm {
 	
+}
+#postForm:after {
+	content: "";
+	display: block;
+	clear: both;
 }
 	#postForm textarea {
 		box-sizing: border-box;
