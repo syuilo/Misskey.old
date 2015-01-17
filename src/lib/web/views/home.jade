@@ -38,10 +38,11 @@ html(lang='ja', dir='ltr')
 			div#timeline
 				form#postForm(action=apiUrl + '/post/create', method='post', enctype='multipart/form-data')
 					textarea(name='text', placeholder='What\'s up?')
+					input(type='submit', value='Update')
 					div.image
 						p 画像を添付
 						input(name='image', type='file')
-					input(type='submit', value='Update')
+					
 				div.timeline
 					ol.posts
 						each post in timeline
