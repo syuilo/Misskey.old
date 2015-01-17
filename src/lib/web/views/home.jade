@@ -10,7 +10,9 @@ html(lang='ja', dir='ltr')
 		link(rel='stylesheet', href='#{url}/assets/style/ui.css')
 		link(rel='stylesheet', href='#{url}/assets/style/home.css')
 		include templates/head
-	
+		script(src='#{url}/assets/script/home.js')
+		script(src='#{url}/socket.io/socket.io.js')
+		
 	body
 		nav
 			div#me
@@ -34,6 +36,12 @@ html(lang='ja', dir='ltr')
 		
 		main
 			div#timeline
+				form#postForm(action=apiUrl + '/post/create', method='post', enctype='multipart/form-data')
+					textarea(name='text', placeholder='What\'s up?')
+					div.image
+						p 画像を添付
+						input(name='image', type='file')
+					input(type='submit', value='Update')
 				div.timeline
 					ol.posts
 						each post in timeline
