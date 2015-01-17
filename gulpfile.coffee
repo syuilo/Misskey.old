@@ -13,7 +13,7 @@ gulp.task 'public-copy', ->
 		.pipe gulp.dest './app/lib/web/views/'
 
 gulp.task 'typescript-compile', ->
-	gulp.src './src/lib/**.ts'
+	gulp.src './src/lib/**/*.ts'
 		.pipe ts
 			target: 'ES5'
 			removeComments: true
