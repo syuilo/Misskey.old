@@ -1,12 +1,12 @@
+# npm
 npm-debug.log
-/node_modules
+/node_modules/
 
-/typings
+# TypeScript definition file
+/typings/
 
-/app
+# Output
+/bin/
 
-/src/lib/*.js
-/src/lib/*.js.map
-/src/lib/*.d.ts
-
+# Others
 .DS_Store

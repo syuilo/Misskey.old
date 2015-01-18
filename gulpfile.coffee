@@ -2,30 +2,36 @@ gulp = require 'gulp'
 ts = require 'gulp-typescript'
 del = require 'del'
 
-gulp.task 'clean', del.bind(null, ['./app/**'])
+paths =
+	ts: './src/**/*.ts'
+	webRes: './src/web/resources/**/**'
+	webViews: './src/web/views/**/*.jade'
 
-gulp.task 'public-copy', ->
-	gulp.src './src/public/**'
-		.pipe gulp.dest './app/public/'
-	gulp.src './src/lib/web/public/**'
-		.pipe gulp.dest './app/lib/web/public/'
-	gulp.src './src/lib/web/views/**'
-		.pipe gulp.dest './app/lib/web/views/'
+gulp.task 'clean', del.bind(null, ['./bin/**'])
 
-gulp.task 'typescript-compile', ->
-	gulp.src './src/lib/**/*.ts'
+gulp.task 'build-ts', ->
+	gulp.src paths.ts
 		.pipe ts
 			target: 'ES5'
 			removeComments: true
 			noImplicitAny: true
 			declarationFiles: false
 		.js
-		.pipe gulp.dest './app/lib/'
+		.pipe gulp.dest './bin/'
+
+gulp.task 'build-web-res', ->
+	gulp.src paths.webRes
+		.pipe gulp.dest './bin/web/resources'
+
+gulp.task 'build-web-views', ->
+	gulp.src paths.webViews
+		.pipe gulp.dest './bin/web/views'
+
+gulp.task 'build', ['build-ts', 'build-web-res', 'build-web-views']
 
 gulp.task 'watch', ['build'], ->
-	gulp.watch './src/lib/*.ts', ['typescript-compile']
-	gulp.watch './src/public/**', ['public-copy']
+	gulp.watch paths.ts, ['build-ts']
+	gulp.watch paths.webRes, ['build-web-res']
+	gulp.watch paths.webViews, ['build-web-views']
 
-gulp.task 'build', ['public-copy', 'typescript-compile']
-
-gulp.task 'default', ['clean', 'build']
+gulp.task 'default', ['build']
