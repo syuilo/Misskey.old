@@ -68,7 +68,13 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/', require('../controllers/root'));
+	app.get('/', (req: any, res: any, next: () => void) => {
+		if (req.login) {
+			require('../controllers/home')(req, res);
+		} else {
+			res.display(req, res, 'entrance', {});
+		}
+	});
 
 	/* Images */
 
