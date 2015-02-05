@@ -13,6 +13,7 @@ gulp.task 'build-ts', ->
 	gulp.src paths.ts
 		.pipe ts
 			target: 'ES5'
+			module: 'commonjs'
 			removeComments: true
 			noImplicitAny: true
 			declarationFiles: false
