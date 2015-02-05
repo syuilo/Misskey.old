@@ -22,7 +22,7 @@ gulp.task 'build-ts', ->
 
 gulp.task 'build-web-res', ->
 	gulp.src paths.webRes
-		.pipe gulp.dest './bin/web/resources'
+		.pipe gulp.dest './bin/web/statics/resources'
 
 gulp.task 'build-web-views', ->
 	gulp.src paths.webViews
