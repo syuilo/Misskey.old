@@ -4,7 +4,7 @@ del = require 'del'
 
 paths =
 	ts: './src/**/*.ts'
-	webRes: './src/web/resources/**/**'
+	webRes: './src/web/statics/resources/**/**'
 	webViews: './src/web/views/**/*.jade'
 
 gulp.task 'clean', del.bind(null, ['./bin/**'])
