@@ -19,8 +19,7 @@ var postCreate = (req: any, res: APIResponse) => {
 		var irtpi = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
 		var image: string = null;
 		var isImageAttached = false;
-		if (req.files.length === 1) {
-			console.log(req.files);
+		if (Object.keys(req.files).length === 1) {
 			isImageAttached = true;
 			var path = req.files.image.path;
 			image = jpeg.encode(fs.readFileSync(path), 50);
