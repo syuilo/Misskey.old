@@ -13,11 +13,16 @@ var publisher = redis.createClient(6379, 'localhost');
 
 var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
-		var text = req.params.text;
-		var irtpi = req.params.in_reply_to_post_id;
-		var image = req.params.image;
-		console.log(image);
-		Post.create(app.id, irtpi, null, false, text,user.id, (post: Post) => {
+		var text = req.params.text != null ? req.params.text : '';
+		var irtpi = req.params.in_reply_to_post_id != null ? req.params.in_reply_to_post_id : null;
+		var image = req.params.image != null ? req.params.image : null;
+		var isImageAttached = false;
+		if (image != null) {
+			console.log(image);
+			isImageAttached = true;
+		}
+
+		Post.create(app.id, irtpi, null, isImageAttached, text, user.id, (post: Post) => {
 			var streamObj: any = {};
 			streamObj.type = 'post';
 			streamObj.value = post;
