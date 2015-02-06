@@ -11,10 +11,15 @@ import User = require('../models/user');
 
 export = authorize;
 
-var authorize = (req: Express.Request, res: APIResponse, success: (user: User, app: Application) => void): void  => {
+var authorize = (req: any, res: APIResponse, success: (user: User, app: Application) => void): void  => {
 	var isLogged = (req.session != null && req.session.userId != null);
 	var consumerKey = req.param('consumer_key');
 	var accessToken = req.param('access_token');
+
+	var fail = (message: string): void => {
+		res.apiRender({ error: message });
+		return;
+	};
 
 	if (consumerKey == null || accessToken == null) {
 		if (req.header('Referer') === config.publicConfig.url || req.header('Referer') === config.publicConfig.url + '/') {
@@ -59,9 +64,4 @@ var authorize = (req: Express.Request, res: APIResponse, success: (user: User, a
 			fail('Bad request');
 		}
 	});
-
-	var fail = (message: string): void => {
-		res.apiRender({ error: message });
-		return;
-	};
 };
