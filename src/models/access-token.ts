@@ -56,14 +56,14 @@ class AccessToken {
 	}
 
 	public static findByUserIdAndAppId(userId: number, appId: number, callback: (accessToken: AccessToken) => void): void {
-		db.query("select * from accesstokens where user_id = ?, app_id = ?",
+		db.query("select * from accesstokens where user_id = ? and app_id = ?",
 			[userId, appId],
 			(err: any, accessTokens: any[]) => callback(accessTokens[0] != null ? new AccessToken(accessTokens[0]) : null));
-    }
+	}
 
-    public destroy(callback?: () => void): void {
-        db.query('delete from accesstokens where token = ?',
-            [this.token],
-            callback);
-    }
+	public destroy(callback?: () => void): void {
+		db.query('delete from accesstokens where token = ?',
+			[this.token],
+			callback);
+	}
 }

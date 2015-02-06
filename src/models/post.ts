@@ -17,7 +17,7 @@ class Post {
 	isImageAttached: boolean;
 	text: string;
 	userId: number;
-	
+
 	public constructor(post: any) {
 		this.appId = post.app_id;
 		this.createdAt = post.created_at;
@@ -32,7 +32,12 @@ class Post {
 	public static create(appId: number, inReplyToPostId: number, image: string, isImageAttached: Boolean, text: string, userId: number, callback: (post: Post) => void): void {
 		db.query('insert into posts (app_id, in_reply_to_post_id, image, is_image_attached, text, user_id) values (?, ?, ?, ?, ?, ?)',
 			[appId, inReplyToPostId, image, isImageAttached, text, userId],
-			(err: any, posts: any[]) => callback(new Post(posts[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				Post.find(info.insertId, (post: Post) => {
+					callback(post);
+				});
+			});
 	}
 
 	public static find(id: number, callback: (post: Post) => void): void {
@@ -101,7 +106,7 @@ class Post {
 
 	public static generateTimeline(posts: Post[], callback: (posts: Post[]) => void): void {
 		async.map(posts, (post: any, next: any) => {
-			post.isReply = post.inReplyToPostId != 0;
+			post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
 			User.find(post.userId, (user: User) => {
 				post.user = user;
 				Application.find(post.appId, (app: Application) => {
@@ -120,13 +125,7 @@ class Post {
 				});
 			});
 		}, (err: any, results: Post[]) => {
-			callback(results);
-		});
+				callback(results);
+			});
 	}
-
-    public update(callback?: () => void): void {
-        db.query("UPDATE posts SET user_id=?, app_id=?, in_reply_to_post_id=?, text=? WHERE id=?",
-            [this.userId, this.appId, this.inReplyToPostId, this.text, this.id],
-            callback);
-    }
 }
