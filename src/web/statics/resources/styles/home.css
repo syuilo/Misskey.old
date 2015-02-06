@@ -256,7 +256,7 @@ main {
 		
 			.timeline > .posts > .post > article {
 				position: relative;
-				padding: 12px;
+				padding: 16px 12px;
 			}
 			.timeline > .posts > .post > article:after {
 				content: "";
