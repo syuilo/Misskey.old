@@ -43,10 +43,10 @@ body {
 }
 	#me-status a {
 		text-decoration: none;
-		color: #1bb3b3;
+		color: #5e0;
 	}
 	#me-status a:hover {
-		border-bottom: dashed 1px #1bb3b3;
+		border-bottom: dashed 1px #5e0;
 	}
 	#me-status th {
 		margin-left: 16px;
@@ -93,7 +93,7 @@ body {
 					display: block;
 					padding: 10px 16px;
 
-					background-image: url("/assets/img/system/allow.svg");
+					background-image: url("/resources/images/system/allow.svg");
 					background-repeat: no-repeat;
 					background-position: calc(100% - 8px) center;
 
@@ -102,7 +102,7 @@ body {
 					font-size: 1.1em;
 				}
 				body > nav > ul li a:hover {
-					background-color: #1bb3b3;
+					background-color: #5e0;
 					color: #fff;
 				}
 
@@ -117,15 +117,17 @@ main {
 	main #timeline {
 		box-sizing: border-box;
 		width: 100%;
-		max-width: 800px;
+		max-width: 900px;
 		margin: 0 auto;
-		padding: 16px;
+		padding: 16px 64px;
 		
 		background: #fff;
 	}
 
 #postForm {
-	
+	margin-bottom: 8px;
+	padding-bottom: 8px;
+	border-bottom: solid 1px #eee;
 }
 #postForm:after {
 	content: "";
