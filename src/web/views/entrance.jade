@@ -4,13 +4,23 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 	head
 		include templates/head
 		title Misskey
-		link(rel='stylesheet', href='/styles/entrance.css')
+		link(rel='stylesheet', href='#{url}/resources/styles/entrance.css')
 		meta(name='description', content='思い出した時に来るくらいが丁度いい、ゆるいSNS「Misskey」！')
 		meta(name='keywords', content='Misskey')
 	body
 		main
 			h1 Misskey
 			form#loginForm(action='/login', method='post')
-				input#id(name='screen_name', type='text', pattern='^[0-9A-Za-z_]+$', placeholder='ユーザーID', autocomplete='off', autofocus, required)
-				input(name='password', type='password', placeholder='パスワード', autocomplete='off', required)
+				input#id(name='screen_name'
+					type='text'
+					pattern='^[0-9A-Za-z_]+$'
+					placeholder='ユーザー名'
+					autocomplete='off'
+					autofocus
+					required)
+				input(name='password'
+					type='password'
+					placeholder='パスワード'
+					autocomplete='off'
+					required)
 				input(type='submit', value='Login')
