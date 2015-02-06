@@ -32,7 +32,12 @@ class Post {
 	public static create(appId: number, inReplyToPostId: number, image: string, isImageAttached: Boolean, text: string, userId: number, callback: (post: Post) => void): void {
 		db.query('insert into posts (app_id, in_reply_to_post_id, image, is_image_attached, text, user_id) values (?, ?, ?, ?, ?, ?)',
 			[appId, inReplyToPostId, image, isImageAttached, text, userId],
-			(err: any, posts: any[]) => callback(new Post(posts[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				Post.find(info.insertId, (post: Post) => {
+					callback(post);
+				});
+			});
 	}
 
 	public static find(id: number, callback: (post: Post) => void): void {
