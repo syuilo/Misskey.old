@@ -17,7 +17,7 @@ class Post {
 	isImageAttached: boolean;
 	text: string;
 	userId: number;
-	
+
 	public constructor(post: any) {
 		this.appId = post.app_id;
 		this.createdAt = post.created_at;
@@ -101,7 +101,7 @@ class Post {
 
 	public static generateTimeline(posts: Post[], callback: (posts: Post[]) => void): void {
 		async.map(posts, (post: any, next: any) => {
-			post.isReply = post.inReplyToPostId != 0;
+			post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
 			User.find(post.userId, (user: User) => {
 				post.user = user;
 				Application.find(post.appId, (app: Application) => {
@@ -120,13 +120,7 @@ class Post {
 				});
 			});
 		}, (err: any, results: Post[]) => {
-			callback(results);
-		});
+				callback(results);
+			});
 	}
-
-    public update(callback?: () => void): void {
-        db.query("UPDATE posts SET user_id=?, app_id=?, in_reply_to_post_id=?, text=? WHERE id=?",
-            [this.userId, this.appId, this.inReplyToPostId, this.text, this.id],
-            callback);
-    }
 }
