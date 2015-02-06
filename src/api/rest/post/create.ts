@@ -22,7 +22,7 @@ var postCreate = (req: any, res: APIResponse) => {
 		if (Object.keys(req.files).length === 1) {
 			isImageAttached = true;
 			var path = req.files.image.path;
-			image = jpeg.encode(fs.readFileSync(path), 50).data;
+			image = jpeg.encode(jpeg.decode(fs.readFileSync(path)), 50).data;
 			fs.unlink(path);
 		}
 
