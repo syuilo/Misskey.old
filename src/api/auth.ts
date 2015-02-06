@@ -13,9 +13,15 @@ export = authorize;
 
 var authorize = (req: any, res: APIResponse, success: (user: User, app: Application) => void): void  => {
 	var isLogged = (req.session != null && req.session.userId != null);
-	var consumerKey = req.params.consumer_key;
-	var accessToken = req.params.access_token;
 
+	if (req.method === 'GET') {
+		var consumerKey = req.query.consumer_key;
+		var accessToken = req.query.access_token;
+	} else {
+		var consumerKey = req.body.consumer_key;
+		var accessToken = req.body.access_token;
+	}
+	
 	var fail = (message: string): void => {
 		res.apiRender({ error: message });
 		return;

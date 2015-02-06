@@ -3,6 +3,7 @@
 import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
+import multer = require('multer'); 
 import session = require('express-session');
 
 import config = require('../config');
@@ -15,6 +16,7 @@ var RedisStore: any = require('connect-redis')(session);
 var apiServer = express();
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
+apiServer.use(multer());
 apiServer.use(cookieParser(config.cookie_pass));
 apiServer.use(session({
 	key: 'sid',
