@@ -11,14 +11,14 @@ var authorize = require('../../auth');
 var redis = require('redis');
 var publisher = redis.createClient(6379, 'localhost');
 
-var postCreate = (req: Express.Request, res: APIResponse) => {
+var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
 		var text = req.param('text');
 		var irtpi = req.param('in_reply_to_post_id');
 		var image = req.param('image');
 		console.log(image);
 		Post.create(app.id, irtpi, null, false, text,user.id, (post: Post) => {
-			var streamObj = {};
+			var streamObj: any = {};
 			streamObj.type = 'post';
 			streamObj.value = post;
 			publisher.publish('misskey:userStream', JSON.stringify(streamObj));
