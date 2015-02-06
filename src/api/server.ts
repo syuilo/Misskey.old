@@ -19,6 +19,8 @@ apiServer.use(cookieParser(config.cookie_pass));
 apiServer.use(session({
 	key: 'sid',
 	secret: 'akaritinatuyuikyouko',
+	resave: false,
+	saveUninitialized: true,
 	cookie: {
 		path: '/',
 		domain: '.' + config.publicConfig.domain,
