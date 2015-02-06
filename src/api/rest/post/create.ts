@@ -12,7 +12,7 @@ var redis = require('redis');
 var publisher = redis.createClient(6379, 'localhost');
 
 var postCreate = (req: Express.Request, res: APIResponse) => {
-	authorize(req, (user: User, app: Application) => {
+	authorize(req, res, (user: User, app: Application) => {
 		var text = req.param('text');
 		var irtpi = req.param('in_reply_to_post_id');
 		var image = req.param('image');

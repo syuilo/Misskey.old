@@ -11,7 +11,7 @@ import User = require('../models/user');
 
 export = authorize;
 
-var authorize = (req: Express.Request, success: (user: User, app: Application) => void, fail: () => void): void  => {
+var authorize = (req: Express.Request, res: APIResponse, success: (user: User, app: Application) => void): void  => {
 	var isLogged = (req.session != null && req.session.userId != null);
 	var consumerKey = req.param('consumer_key');
 	var accessToken = req.param('access_token');
@@ -23,15 +23,15 @@ var authorize = (req: Express.Request, success: (user: User, app: Application) =
 					consumerKey = req.session.consumerKey;
 					accessToken = req.session.accessToken;
 				} else {
-					fail();
+					fail('You are logged in, but, CK or CS has not been set.');
 					return;
 				}
 			} else {
-				fail();
+				fail('not logged');
 				return;
 			}
 		} else {
-			fail();
+			fail('CK or CS is null and empty Referer');
 			return;
 		}
 	}
@@ -45,18 +45,23 @@ var authorize = (req: Express.Request, success: (user: User, app: Application) =
 							if (user != null) {
 								success(user, application);
 							} else {
-								fail();
+								fail('Bad request');
 							}
 						});
 					} else {
-						fail();
+						fail('Bad request');
 					}
 				} else {
-					fail();
+					fail('Bad request');
 				}
 			});
 		} else {
-			fail();
+			fail('Bad request');
 		}
 	});
+
+	var fail = (message: string): void => {
+		res.apiRender({ error: message });
+		return;
+	};
 };
