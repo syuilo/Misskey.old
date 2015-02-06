@@ -32,7 +32,7 @@ apiServer.use(session({
 	})
 }));
 
-apiServer.use((req, res: APIResponse, next) => {
+apiServer.use((req: any, res: APIResponse, next: any) => {
 	res.apiRender = (data: any) => {
 		res.json(data);
 	};
@@ -46,7 +46,7 @@ apiServer.use((req, res: APIResponse, next) => {
 	next();
 });
 
-apiServer.all('*', (req: express.Request, res: express.Response, next) => {
+apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 	res.set({
 		'Access-Control-Allow-Origin': config.publicConfig.url,
 		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
