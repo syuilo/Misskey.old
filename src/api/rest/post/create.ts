@@ -17,12 +17,12 @@ var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
 		var text = req.body.text != null ? req.body.text : '';
 		var irtpi = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
-		var image = null;
+		var image: string = null;
 		var isImageAttached = false;
-		if (req.files != null) {
+		if (req.files != {}) {
 			console.log(req.files);
 			isImageAttached = true;
-			var path = req.files.path;
+			var path = req.files.image.path;
 			image = jpeg.encode(fs.readFileSync(path), 50);
 			fs.unlink(path);
 		}
