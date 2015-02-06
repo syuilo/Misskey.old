@@ -43,10 +43,10 @@ body {
 }
 	#me-status a {
 		text-decoration: none;
-		color: #5e0;
+		color: #b0dd1a;
 	}
 	#me-status a:hover {
-		border-bottom: dashed 1px #5e0;
+		border-bottom: dashed 1px #b0dd1a;
 	}
 	#me-status th {
 		margin-left: 16px;
@@ -102,7 +102,7 @@ body {
 					font-size: 1.1em;
 				}
 				body > nav > ul li a:hover {
-					background-color: #5e0;
+					background-color: #b0dd1a;
 					color: #fff;
 				}
 
