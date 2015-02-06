@@ -21,7 +21,11 @@ var postCreate = (req: any, res: APIResponse) => {
 			console.log(image);
 			isImageAttached = true;
 		}
-
+		console.log(app.id);
+		console.log(irtpi);
+		console.log(isImageAttached);
+		console.log(text);
+		console.log(user.id);
 		Post.create(app.id, irtpi, null, isImageAttached, text, user.id, (post: Post) => {
 			var streamObj: any = {};
 			streamObj.type = 'post';
