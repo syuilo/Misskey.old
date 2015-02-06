@@ -13,9 +13,9 @@ var publisher = redis.createClient(6379, 'localhost');
 
 var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
-		var text = req.param('text');
-		var irtpi = req.param('in_reply_to_post_id');
-		var image = req.param('image');
+		var text = req.paramstext;
+		var irtpi = req.paramsin_reply_to_post_id;
+		var image = req.paramsimage;
 		console.log(image);
 		Post.create(app.id, irtpi, null, false, text,user.id, (post: Post) => {
 			var streamObj: any = {};
