@@ -72,6 +72,7 @@ router(apiServer);
 
 io.use((socket: any, next: any) => {
 	var handshake = socket.request;
+	console.log(handshake);
 
 	if (!handshake) {
 		return next(new Error('[[error:not-authorized]]'));
