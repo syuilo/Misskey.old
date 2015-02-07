@@ -16,9 +16,10 @@ import router = require('./router');
 var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
-var server = require('http').Server(apiServer);
-var io = SocketIO(server);
-io.set('origins', 'misskey.xyz:*');
+var server = http.createServer(apiServer);
+var io = SocketIO().listen(server, {
+	origins: 'misskey.xyz:*'
+});
 server.listen(config.port.api);
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
