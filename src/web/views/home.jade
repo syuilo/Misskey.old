@@ -6,12 +6,12 @@ html(lang='ja', dir='ltr')
 		meta(name='description', content='ママに咲いたカーネーション')
 		meta(name='keywords', content='Misskey')
 		title Misskey ホーム
-		link(rel='shortcut icon', href='#{url}/favicon.icon')
-		link(rel='stylesheet', href='#{url}/resources/styles/ui.css')
-		link(rel='stylesheet', href='#{url}/resources/styles/home.css')
+		link(rel='shortcut icon', href='/favicon.icon')
+		link(rel='stylesheet', href='/resources/styles/ui.css')
+		link(rel='stylesheet', href='/resources/styles/home.css')
 		include templates/head
-		script(src='#{url}/resources/scripts/home.js')
-		script(src='#{url}/socket.io/socket.io.js')
+		script(src='/resources/scripts/home.js')
+		script(src=apiUrl + '/socket.io/socket.io.js')
 		
 	body
 		nav

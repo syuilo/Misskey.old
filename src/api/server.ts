@@ -3,8 +3,9 @@
 import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
-import multer = require('multer'); 
+import multer = require('multer');
 import session = require('express-session');
+import redis = require('redis');
 
 import config = require('../config');
 
@@ -14,6 +15,8 @@ import router = require('./router');
 var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
+
+var io = require('socket.io')(apiServer);
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
 apiServer.use(multer());
@@ -62,3 +65,21 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 
 router(apiServer);
 apiServer.listen(config.port.api);
+
+var home = io.of('/streaming/home').on('connection', (socket) => {
+	var uid = socket.handshake.session.userId;
+	console.log(socket.handshake);
+	console.log(uid);
+	if (uid != null) {
+		socket.userId = uid;
+
+		var pubsub = redis.createClient();
+		pubsub.subscribe('misskey:userStream:' + uid);
+		pubsub.on('message', function (channel, content) {
+			socket.emit(JSON.parse(content).type, JSON.parse(content).value);
+		});
+
+		socket.on('disconnect', () => {
+		});
+	}
+});
