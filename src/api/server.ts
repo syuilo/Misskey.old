@@ -70,8 +70,9 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 router(apiServer);
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
-	var uid = socket.handshake.session.userId;
 	console.log(socket.handshake);
+	console.log(socket.handshake.session);
+	var uid = socket.handshake.session.userId;
 	console.log(uid);
 	if (uid != null) {
 		socket.userId = uid;
