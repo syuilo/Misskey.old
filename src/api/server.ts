@@ -17,7 +17,9 @@ var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
 var server = require('http').Server(apiServer);
-var io = SocketIO(server);
+var io = SocketIO(server, {
+	origins: 'misskey.xyz:*'
+});
 server.listen(config.port.api);
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
