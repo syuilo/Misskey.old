@@ -1,5 +1,6 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
+import http = require('http');
 import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
