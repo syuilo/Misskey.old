@@ -1,6 +1,5 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
-import http = require('http');
 import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
@@ -17,8 +16,8 @@ import router = require('./router');
 var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
-var server = http.createServer(apiServer);
-var io = SocketIO().listen(server, {
+var server = require('http').Server(apiServer);
+var io = SocketIO(server, {
 	origins: 'misskey.xyz:*'
 });
 server.listen(config.port.api);
