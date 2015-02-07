@@ -6,6 +6,7 @@ import cookieParser = require('cookie-parser');
 import multer = require('multer');
 import session = require('express-session');
 import redis = require('redis');
+import SocketIO = require('socket.io');
 
 import config = require('../config');
 
@@ -15,8 +16,7 @@ import router = require('./router');
 var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
-
-var io = require('socket.io')(require('http').Server(apiServer));
+var io = SocketIO(require('http').Server(apiServer));
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
 apiServer.use(multer());
