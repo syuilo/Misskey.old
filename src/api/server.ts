@@ -66,7 +66,7 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 router(apiServer);
 apiServer.listen(config.port.api);
 
-var home = io.of('/streaming/home').on('connection', (socket) => {
+var home = io.of('/streaming/home').on('connection', (socket: any) => {
 	var uid = socket.handshake.session.userId;
 	console.log(socket.handshake);
 	console.log(uid);
@@ -75,7 +75,7 @@ var home = io.of('/streaming/home').on('connection', (socket) => {
 
 		var pubsub = redis.createClient();
 		pubsub.subscribe('misskey:userStream:' + uid);
-		pubsub.on('message', function (channel, content) {
+		pubsub.on('message', (channel: any, content: any) => {
 			socket.emit(JSON.parse(content).type, JSON.parse(content).value);
 		});
 
