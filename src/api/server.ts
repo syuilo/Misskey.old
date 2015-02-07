@@ -66,7 +66,6 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 });
 
 router(apiServer);
-//apiServer.listen(config.port.api);
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
 	var uid = socket.handshake.session.userId;
