@@ -7,7 +7,7 @@ import cookie = require('cookie');
 import multer = require('multer');
 import session = require('express-session');
 import redis = require('redis');
-import SocketIO = require('socket.io');
+//import SocketIO = require('socket.io');
 
 import config = require('../config');
 
@@ -18,7 +18,7 @@ var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
 var server = require('http').Server(apiServer);
-var io = SocketIO(server, {
+var io = require('socket.io')(server, {
 	origins: 'misskey.xyz:*'
 });
 server.listen(config.port.api);
