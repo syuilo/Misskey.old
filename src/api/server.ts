@@ -16,7 +16,7 @@ var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
 
-var io = require('socket.io')(apiServer);
+var io = require('socket.io')(apiServer.createServer());
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
 apiServer.use(multer());
