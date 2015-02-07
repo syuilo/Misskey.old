@@ -3,6 +3,7 @@
 import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
+import cookie = require('cookie');
 import multer = require('multer');
 import session = require('express-session');
 import redis = require('redis');
@@ -69,12 +70,26 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 
 router(apiServer);
 
+io.configure(() => {
+	io.set('authorization', (handshakeData: any, callback: any) => {
+		if (handshakeData.headers.cookie) {
+			var cookie = cookie.parse(handshakeData.headers.cookie);
+			if (cookie.sid != null) {
+				var sessionID = cookie.sid;
+				handshakeData.sessionID = sessionID;
+			} else {
+				return callback('No session cookie', false);
+			}
+		} else {
+			return callback('Empty cookie', false);
+		}
+		callback(null, true);
+	});
+});
+
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
 	console.log(socket.handshake);
-	console.log(socket.handshake.session);
-	var uid = socket.handshake.session.userId;
-	console.log(uid);
-	if (uid != null) {
+	/*if (uid != null) {
 		socket.userId = uid;
 
 		var pubsub = redis.createClient();
@@ -85,5 +100,5 @@ var home = io.of('/streaming/home').on('connection', (socket: any) => {
 
 		socket.on('disconnect', () => {
 		});
-	}
+	}*/
 });
