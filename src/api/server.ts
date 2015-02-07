@@ -80,6 +80,7 @@ io.use((socket: any, next: any) => {
 	if (handshake.headers.cookie) {
 		var cookie: any = cookie.parse(handshake.headers.cookie);
 		if (cookie.sid != null) {
+			console.log(cookie.sid);
 			var sessionID = cookie.sid;
 			handshake.sessionID = sessionID;
 		} else {
