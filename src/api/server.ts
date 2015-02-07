@@ -16,7 +16,9 @@ import router = require('./router');
 var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
-var io = SocketIO(require('http').Server(apiServer));
+var server = require('http').Server(apiServer);
+var io = SocketIO(server);
+server.listen(config.port.api);
 
 apiServer.use(bodyParser.urlencoded({ extended: true }));
 apiServer.use(multer());
@@ -64,7 +66,7 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 });
 
 router(apiServer);
-apiServer.listen(config.port.api);
+//apiServer.listen(config.port.api);
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
 	var uid = socket.handshake.session.userId;
