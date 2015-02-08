@@ -23,6 +23,10 @@ var io = SocketIO(server, {
 });
 server.listen(config.port.api);
 
+var sessionStore = new RedisStore({
+	db: 1,
+	prefix: 'misskey-session:'
+});
 apiServer.use(bodyParser.urlencoded({ extended: true }));
 apiServer.use(multer());
 apiServer.use(cookieParser(config.cookie_pass));
@@ -38,10 +42,7 @@ apiServer.use(session({
 		secure: false,
 		maxAge: null
 	},
-	store: new RedisStore({
-		db: 1,
-		prefix: 'misskey-session:'
-	})
+	store: sessionStore
 }));
 
 apiServer.use((req: any, res: APIResponse, next: any) => {
@@ -80,8 +81,7 @@ io.use((socket: any, next: any) => {
 	if (handshake.headers.cookie != null) {
 		var cookies: any = cookie.parse(handshake.headers.cookie);
 		if (cookies.sid != null) {
-			var sessionID = cookies.sid;
-			socket.sessionID = sessionID;
+			
 		} else {
 			return next(new Error('[[error:not-authorized]]'));
 		}
@@ -92,7 +92,17 @@ io.use((socket: any, next: any) => {
 });
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
-	console.log(socket.sessionID);
+	var cookies: any = cookie.parse(socket.handshake.headers.cookie);
+	var sid = cookies.sid;
+	console.log(sid);
+
+	sessionStore.get(sid, (err: any, session: any) => {
+		if (err) {
+			console.log(err.message);
+		} else {
+			console.log(session);
+		}
+	});
 	/*if (uid != null) {
 		socket.userId = uid;
 
