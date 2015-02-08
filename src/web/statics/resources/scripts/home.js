@@ -1,5 +1,5 @@
 $(function() {
-	socket = io.connect("https://api.misskey.xyz/streaming/home", { port: 443 });
+	socket = io.connect("https://api.misskey.xyz:1207/streaming/home", { port: 1207 });
 
 	socket.on("connected", function() {
 		console.log('Connected');
