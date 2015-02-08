@@ -9,7 +9,8 @@ $(function() {
 	});
 
 	socket.on('post', function(content) {
-		console.log(content);
+	    console.log(content);
+	    $('#timeline > .timeline > .posts').prepend(generatePost(JSON.parse(content)));
 	});
 
 

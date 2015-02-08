@@ -75,7 +75,12 @@ var router = (app: express.Express): void => {
 		} else {
 			res.display(req, res, 'entrance', {});
 		}
-	});
+    });
+
+    app.get('/config',(req: any, res: any, next: () => void) => {
+        res.set('Content-Type', 'application/javascript');
+        res.send('var conf = ' + config.publicConfig.toString() + ';');
+    });
 
 	/* Images */
 

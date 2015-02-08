@@ -9,8 +9,10 @@ html(lang='ja', dir='ltr')
 		link(rel='shortcut icon', href='/favicon.icon')
 		link(rel='stylesheet', href='/resources/styles/ui.css')
 		link(rel='stylesheet', href='/resources/styles/home.css')
+		script(src='/config')
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 		script(src=apiUrl + ':1207/socket.io/socket.io.js')
+		script(src='/resources/common/timeline.js')
 		script(src='/resources/scripts/home.js')
 		
 	body
@@ -48,7 +50,7 @@ html(lang='ja', dir='ltr')
 						each post in timeline
 							li.post(title='#{post.createdAt}&#x0A;via #{post.app.name}'
 									data-id=post.id
-									data-user_id=post.user.id)
+									data-userId=post.user.id)
 								if post.isReply
 									div.replyTo
 										p.text= post.reply.text
@@ -63,3 +65,11 @@ html(lang='ja', dir='ltr')
 									p.text= post.text
 									if post.isImageAttached
 										img.image(src=url + '/img/post/' + post.id, alt='image')
+								footer
+									form.replyForm
+										textarea(name='text')
+										input(name='in_reply_to_post_id', type='hidden', value=post.id)
+										input(type='submit', value='Update')
+										div.imageAttacher
+											p 画像を添付
+											input(name='image', type='file')
