@@ -81,7 +81,7 @@ io.use((socket: any, next: any) => {
 		var cookies: any = cookie.parse(handshake.headers.cookie);
 		if (cookies.sid != null) {
 			var sessionID = cookies.sid;
-			handshake.sessionID = sessionID;
+			socket.sessionID = sessionID;
 		} else {
 			return next(new Error('[[error:not-authorized]]'));
 		}
@@ -92,7 +92,7 @@ io.use((socket: any, next: any) => {
 });
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
-	console.log(socket.handshake.sessionID);
+	console.log(socket.sessionID);
 	/*if (uid != null) {
 		socket.userId = uid;
 
