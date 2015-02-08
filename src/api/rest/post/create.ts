@@ -6,6 +6,7 @@ import APIResponse = require('../../api-response');
 import AccessToken = require('../../../models/access-token');
 import Application = require('../../../models/application');
 import User = require('../../../models/user');
+import UserFollowing = require('../../../models/user-following');
 import Post = require('../../../models/post');
 
 var authorize = require('../../auth');
@@ -27,10 +28,24 @@ var postCreate = (req: any, res: APIResponse) => {
 		}
 
 		Post.create(app.id, irtpi, image, isImageAttached, text, user.id, (post: Post) => {
+			/* Publish post event */
 			var streamObj: any = {};
 			streamObj.type = 'post';
 			streamObj.value = post;
-			publisher.publish('misskey:userStream', JSON.stringify(streamObj));
+
+			// Me
+			publisher.publish('misskey:userStream:' + user.id, JSON.stringify(streamObj));
+
+			// Followers
+			UserFollowing.findByFolloweeId(user.id, (userFollowings: UserFollowing[]) => {
+				if (userFollowings != null) {
+					userFollowings.forEach((userFollowing: UserFollowing) => {
+						publisher.publish('misskey:userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+					});
+				}
+			});
+
+			// Sent response
 			res.apiRender({ message: "ok" });
 		});
 	});
