@@ -72,7 +72,6 @@ router(apiServer);
 
 io.use((socket: any, next: any) => {
 	var handshake = socket.request;
-	console.log(handshake);
 
 	if (handshake == null) {
 		return next(new Error('[[error:not-authorized]]'));
@@ -80,9 +79,7 @@ io.use((socket: any, next: any) => {
 
 	if (handshake.headers.cookie != null) {
 		var cookies: any = cookie.parse(handshake.headers.cookie);
-		console.log(cookies);
 		if (cookies.sid != null) {
-			console.log(cookies.sid);
 			var sessionID = cookies.sid;
 			handshake.sessionID = sessionID;
 		} else {
@@ -95,7 +92,7 @@ io.use((socket: any, next: any) => {
 });
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
-	console.log(socket.handshake);
+	console.log(socket.handshake.sessionID);
 	/*if (uid != null) {
 		socket.userId = uid;
 
