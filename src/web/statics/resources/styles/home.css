@@ -343,7 +343,7 @@ main {
 					
 					.timeline > .posts > .post > article > header > .screenName {
 						text-align: left;
-						margin: 0 4px;
+						margin: 0 0 0 8px;
 						color: rgba(0, 0, 0, 0.5);
 					}
 					
@@ -360,13 +360,8 @@ main {
 						min-height: 48px;
 						max-width: 48px;
 						max-height: 48px;
-						margin: 0 8px 4px 0;
+						margin: 0 12px 4px 0;
 						border-radius: 8px;
-
-						transition: transform 0.2s ease;
-					}
-					.timeline > .posts > .post:hover > article > a > .icon {
-						transform: scale(1.2) rotateZ(10deg);
 					}
 
 				.timeline > .posts > .post > article > .text {
@@ -375,6 +370,7 @@ main {
 					padding: 0;
 					overflow: hidden;
 					word-wrap: break-word;
+					font-size: 1.1em;
 				}
 
 					.timeline > .posts > .post > article > .text > a {
@@ -427,29 +423,11 @@ main {
 					max-height: 256px;
 				}
 	
-				.timeline > .posts > .post > article > .as {
-					position: absolute;
-					bottom: 0px;
-					right: 4px;
-					margin: 0;
-				}
-					.timeline > .posts > .post > article > .as .fc {
-						margin: 0;
-						padding: 0;
-						color: rgba(0, 0, 0, 0.5);
-					}
-				.timeline > .posts > .post > article > .as .fr {
-					display: inline;
-				}
-				.timeline > .posts > .post > article > .as .fr > input[type=image] {
-					width: 24px;
-					height: 24px;
-				}
-				.timeline > .posts > .post > .rf {
+				.timeline > .posts > .post > footer {
 					display: none;
 					padding: 4px;
 				}
-					.timeline > .posts > .post > .rf textarea {
+					.timeline > .posts > .post > footer > .replyForm > textarea {
 						box-sizing: border-box;
 						width: 100%;
 						max-width: 100%;
@@ -465,14 +443,14 @@ main {
 						font-family: Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3', Meiryo UI, Meiryo, ãƒ¡ã‚¤ãƒªã‚ª, sans-serif;
 						font-size: 1em;
 					}
-						.timeline > .posts > .post > .rf textarea:focus {
+						.timeline > .posts > .post > footer > .replyForm > textarea:focus {
 							border-color: #1bb3b3;
 						}
-						.timeline > .posts > .post > .rf textarea:active {
+						.timeline > .posts > .post > footer > .replyForm > textarea:active {
 							/*border-color: #00a0e0;*/
 							border-color: #1bb3b3;
 						}
-				.timeline > .posts > .post > .rf input[type=submit] {
+				.timeline > .posts > .post > footer > .replyForm > input[type=submit] {
 					outline: 0;
 					border: none;
 					border-radius: 0;
@@ -490,16 +468,16 @@ main {
 
 					transition: all 0.5s linear;
 				}
-				.timeline > .posts > .post > .rf input[type=submit]:hover {
+				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:hover {
 					background-color: #4fe5e5;
 					text-shadow: 0 0 8px #FFF;
 					transition: all 0.1s linear;
 				}
-				.timeline > .posts > .post > .rf input[type=submit]:active {
+				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:active {
 					background-color: #0e5a5a;
 					transition: all 0.1s linear;
 				}
-				.timeline > .posts > .post > .rf .im {
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher {
 					box-sizing: border-box;
 					display: inline-block;
 					position: relative;
@@ -509,10 +487,10 @@ main {
 					
 					outline: dashed 2px #ccc;
 				}
-				.timeline > .posts > .post > .rf .im:hover {
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher:hover {
 					outline: dashed 2px #777;
 				}
-				.timeline > .posts > .post > .rf .im input[type=file] {
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher input[type=file] {
 					display: inline;
 					position: absolute;
 					top: 0;
@@ -521,12 +499,12 @@ main {
 					height: 100%;
 					opacity: 0;
 				}
-				.timeline > .posts > .post > .rf .im p {
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher p {
 					margin: 0;
 					color: #777;
 					font-size: 1em;
 				}
-				.timeline > .posts > .post > .rf .im img {
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher img {
 					max-width: 100%;
 					max-height: 128px;
 				}
