@@ -10,7 +10,7 @@ $(function() {
 
 	socket.on('post', function(content) {
 	    console.log(content);
-	    $('#timeline > .timeline > .posts').prepend(generatePost(JSON.parse(content)));
+	    $('#timeline > .timeline > .posts').prepend(generatePost(JSON.parse(content), conf));
 	});
 
 

@@ -3,41 +3,7 @@
 import Post = require('../../models/post');
 import $ = require('jquery');
 
-/*
-var conf = {
-    url: 'https://misskey.xyz:1206'
-};
-*/
-
-function parseText(text: string): string {
-    text = escapeHtml(text);
-    text = parseReply(text);
-    text = parseURL(text);
-    text = parseNewLine(text);
-    return text;
-       
-    function parseReply(text: string): string {
-        return text.replace(/@([a-zA-Z0-9_]+)/g, (_: string, screenName: string) => {
-            return `<a href="${conf.url}/${screenName}" target="_blank">@${screenName}</a>`;
-        });
-    }
-
-    function parseURL(text: string): string {
-        return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,(url: string) => {
-            return `<a href="${url}" target="_blank">${url}</a>`;
-        });
-    }
-
-    function parseNewLine(text: string): string {
-        return text.replace(/(\r\n|\r|\n)/g, '<br>');
-    }
-}
-
-function escapeHtml(text: string): string {
-    return $('<div>').text(text).html();
-}
-
-function generatePost(post: any): JQuery {
+function generatePost(post: any, conf: any): JQuery {
     return $('<li class="post">')
         .attr({
         title: `${post.createdAt}&#x0A;via ${post.app.name}`,
@@ -133,5 +99,33 @@ function generatePost(post: any): JQuery {
                     .append($('<input name="image" type="file">'));
             }
         }
+    }
+
+    function parseText(text: string): string {
+        text = escapeHtml(text);
+        text = parseReply(text);
+        text = parseURL(text);
+        text = parseNewLine(text);
+        return text;
+
+        function parseReply(text: string): string {
+            return text.replace(/@([a-zA-Z0-9_]+)/g,(_: string, screenName: string) => {
+                return `<a href="${conf.url}/${screenName}" target="_blank">@${screenName}</a>`;
+            });
+        }
+
+        function parseURL(text: string): string {
+            return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,(url: string) => {
+                return `<a href="${url}" target="_blank">${url}</a>`;
+            });
+        }
+
+        function parseNewLine(text: string): string {
+            return text.replace(/(\r\n|\r|\n)/g, '<br>');
+        }
+    }
+
+    function escapeHtml(text: string): string {
+        return $('<div>').text(text).html();
     }
 }
