@@ -19,7 +19,7 @@ $(function() {
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
-		$submitButton.text('‘—M’†...');
+		$submitButton.text('Updating...');
 
 		$.ajax($form.attr('action'), {
 			type: $form.attr('method'),
@@ -33,12 +33,12 @@ $(function() {
 		}).done(function(data) {
 			$form[0].reset();
 			$submitButton.attr('disabled', false);
-			$submitButton.text('‘—M');
+			$submitButton.text('Update');
 		}).fail(function(data) {
 			$form[0].reset();
 			/*alert('error');*/
 			$submitButton.attr('disabled', false);
-			$submitButton.text('‘—M');
+			$submitButton.text('Update');
 		});
 	});
 });
