@@ -40,14 +40,17 @@ io.use((socket: any, next: any) => {
 	if (handshake.headers.cookie != null) {
 		var cookies: any = cookie.parse(handshake.headers.cookie);
 		if (cookies[config.sessionKey] != null) {
-
+			if (cookies[config.sessionKey].match(/s:(.+?)\./)) {
+				next();
+			} else {
+				return next(new Error('[[error:not-authorized]]'));
+			}
 		} else {
 			return next(new Error('[[error:not-authorized]]'));
 		}
 	} else {
 		return next(new Error('[[error:not-authorized]]'));
 	}
-	next();
 });
 
 /* Home stream */
