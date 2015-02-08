@@ -93,7 +93,7 @@ body {
 					display: block;
 					padding: 10px 16px;
 
-					background-image: url("/resources/images/system/allow.svg");
+					background-image: url("/resources/images/allow.svg");
 					background-repeat: no-repeat;
 					background-position: calc(100% - 8px) center;
 
