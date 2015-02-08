@@ -15,7 +15,7 @@ var server = https.createServer({
 		res.writeHead(200, { "Content-Type": "text/plain" });
 		var output = 'kyoppie';
 		res.end(output);
-	}).listen(1206);
+	}).listen(1207);
 
 import SocketIO = require('socket.io');
 var io = SocketIO.listen(server, {
