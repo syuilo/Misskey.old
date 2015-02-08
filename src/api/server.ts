@@ -79,11 +79,11 @@ io.use((socket: any, next: any) => {
 	}
 
 	if (handshake.headers.cookie != null) {
-		var cookie: any = cookie.parse(handshake.headers.cookie);
-		console.log(cookie);
-		if (cookie.sid != null) {
-			console.log(cookie.sid);
-			var sessionID = cookie.sid;
+		var cookies: any = cookie.parse(handshake.headers.cookie);
+		console.log(cookies);
+		if (cookies.sid != null) {
+			console.log(cookies.sid);
+			var sessionID = cookies.sid;
 			handshake.sessionID = sessionID;
 		} else {
 			return next(new Error('[[error:not-authorized]]'));
