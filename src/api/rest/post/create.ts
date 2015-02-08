@@ -54,6 +54,7 @@ var postCreate = (req: any, res: APIResponse) => {
 }
 
 var generateStreamingObject = (post: Post, callback: (obj: any) => void): void => {
+	delete post.image;
 	var obj: any = post;
 	obj.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
 	Application.find(post.appId,(app: Application) => {
@@ -71,7 +72,8 @@ var generateStreamingObject = (post: Post, callback: (obj: any) => void): void =
 			delete user.wallpaper;
 			obj.user = user;
 			if (obj.isReply) {
-				Post.find(post.inReplyToPostId,(replyPost: any) => {
+				Post.find(post.inReplyToPostId,(replyPost: Post) => {
+					delete replyPost.image;
 					obj.reply = replyPost;
 					User.find(obj.reply.userId,(replyUser: User) => {
 						delete replyUser.header;
