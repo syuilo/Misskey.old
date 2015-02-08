@@ -79,7 +79,7 @@ var router = (app: express.Express): void => {
 
     app.get('/config',(req: any, res: any, next: () => void) => {
         res.set('Content-Type', 'application/javascript');
-        res.send('var conf = ' + config.publicConfig.toString() + ';');
+        res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
     });
 
 	/* Images */
