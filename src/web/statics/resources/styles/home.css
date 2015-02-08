@@ -362,6 +362,15 @@ main {
 						max-height: 48px;
 						margin: 0 12px 4px 0;
 						border-radius: 8px;
+
+						transition: all 0.1s ease;
+					}
+					.timeline > .posts > .post:hover > article > a > .icon {
+						filter: saturate(200%);
+						-webkit-filter: saturate(200%);
+						-moz-filter: saturate(200%);
+						-o-filter: saturate(200%);
+						-ms-filter: saturate(200%);
 					}
 
 				.timeline > .posts > .post > article > .text {
