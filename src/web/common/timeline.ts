@@ -1,8 +1,5 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
-import Post = require('../../models/post');
-import $ = require('jquery');
-
 function generatePost(post: any, conf: any): JQuery {
     return $('<li class="post">')
         .attr({
@@ -95,7 +92,7 @@ function generatePost(post: any, conf: any): JQuery {
 
             function generateImageAttacher(): JQuery {
                 return $('<div class="imageAttacher">')
-                    .append($('<p>‰æ‘œ‚ğ“Y•t</p>'))
+                    .append($('<p>ç”»åƒã‚’æ·»ä»˜</p>'))
                     .append($('<input name="image" type="file">'));
             }
         }
