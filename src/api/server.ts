@@ -96,7 +96,7 @@ var home = io.of('/streaming/home').on('connection', (socket: any) => {
 	var sid = cookies[config.sessionKey];
 	console.log(sid);
 
-	sessionStore.get(sid, (err: any, session: any) => {
+	sessionStore.get(sid.match(/s:(.+?)\./)[1], (err: any, session: any) => {
 		if (err) {
 			console.log(err.message);
 		} else {
