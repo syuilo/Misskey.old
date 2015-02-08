@@ -74,12 +74,13 @@ io.use((socket: any, next: any) => {
 	var handshake = socket.request;
 	console.log(handshake);
 
-	if (!handshake) {
+	if (handshake == null) {
 		return next(new Error('[[error:not-authorized]]'));
 	}
 
-	if (handshake.headers.cookie) {
+	if (handshake.headers.cookie != null) {
 		var cookie: any = cookie.parse(handshake.headers.cookie);
+		console.log(cookie);
 		if (cookie.sid != null) {
 			console.log(cookie.sid);
 			var sessionID = cookie.sid;
