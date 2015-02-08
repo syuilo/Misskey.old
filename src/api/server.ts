@@ -7,7 +7,6 @@ import cookie = require('cookie');
 import multer = require('multer');
 import session = require('express-session');
 import redis = require('redis');
-import SocketIO = require('socket.io');
 
 import config = require('../config');
 
@@ -18,9 +17,7 @@ var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
 var server = require('http').Server(apiServer);
-var io = SocketIO(server, {
-	origins: 'misskey.xyz:*'
-});
+
 server.listen(config.port.api);
 
 var sessionStore = new RedisStore({
@@ -71,45 +68,4 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 
 router(apiServer);
 
-io.use((socket: any, next: any) => {
-	var handshake = socket.request;
-
-	if (handshake == null) {
-		return next(new Error('[[error:not-authorized]]'));
-	}
-
-	if (handshake.headers.cookie != null) {
-		var cookies: any = cookie.parse(handshake.headers.cookie);
-		if (cookies[config.sessionKey] != null) {
-			
-		} else {
-			return next(new Error('[[error:not-authorized]]'));
-		}
-	} else {
-		return next(new Error('[[error:not-authorized]]'));
-	}
-	next();
-});
-
-var home = io.of('/streaming/home').on('connection', (socket: any) => {
-	var cookies: any = cookie.parse(socket.handshake.headers.cookie);
-	var sid = cookies[config.sessionKey];
-	console.log(sid);
-
-	sessionStore.get(sid.match(/s:(.+?)\./)[1], (err: any, session: any) => {
-		if (err) {
-			console.log(err.message);
-		} else {
-			var uid = socket.userId = session.userId;
-
-			var pubsub = redis.createClient();
-			pubsub.subscribe('misskey:userStream:' + uid);
-			pubsub.on('message', (channel: any, content: any) => {
-				socket.emit(JSON.parse(content).type, JSON.parse(content).value);
-			});
-
-			socket.on('disconnect', () => {
-			});
-		}
-	});
-});
+require('./streaming-server');
