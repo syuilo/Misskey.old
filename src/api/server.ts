@@ -31,8 +31,8 @@ apiServer.use(bodyParser.urlencoded({ extended: true }));
 apiServer.use(multer());
 apiServer.use(cookieParser(config.cookie_pass));
 apiServer.use(session({
-	key: 'sid',
-	secret: 'akaritinatuyuikyouko',
+	key: config.sessionKey,
+	secret: config.sessionSecret,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
@@ -80,7 +80,7 @@ io.use((socket: any, next: any) => {
 
 	if (handshake.headers.cookie != null) {
 		var cookies: any = cookie.parse(handshake.headers.cookie);
-		if (cookies.sid != null) {
+		if (cookies[config.sessionKey] != null) {
 			
 		} else {
 			return next(new Error('[[error:not-authorized]]'));
@@ -93,7 +93,7 @@ io.use((socket: any, next: any) => {
 
 var home = io.of('/streaming/home').on('connection', (socket: any) => {
 	var cookies: any = cookie.parse(socket.handshake.headers.cookie);
-	var sid = cookies.sid;
+	var sid = cookies[config.sessionKey];
 	console.log(sid);
 
 	sessionStore.get(sid, (err: any, session: any) => {

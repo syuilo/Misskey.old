@@ -21,8 +21,8 @@ webServer.use(cookieParser(config.cookie_pass));
 var year = ((60 * 60 * 24 * 365) * 1000);
 
 webServer.use(session({
-	key: 'sid',
-	secret: 'akaritinatuyuikyouko',
+	key: config.sessionKey,
+	secret: config.sessionSecret,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
