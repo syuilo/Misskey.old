@@ -57,13 +57,30 @@ var generateStreamingObject = (post: Post, callback: (obj: any) => void): void =
 	var obj: any = post;
 	obj.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
 	Application.find(post.appId,(app: Application) => {
+		delete app.callbackUrl;
+		delete app.consumerKey;
+		delete app.icon;
 		obj.app = app;
 		User.find(post.userId,(user: User) => {
+			delete user.header;
+			delete user.icon;
+			delete user.mailAddress;
+			delete user.password;
+			delete user.twitterAccessToken;
+			delete user.twitterAccessTokenSecret;
+			delete user.wallpaper;
 			obj.user = user;
 			if (obj.isReply) {
 				Post.find(post.inReplyToPostId,(replyPost: any) => {
 					obj.reply = replyPost;
 					User.find(obj.reply.userId,(replyUser: User) => {
+						delete replyUser.header;
+						delete replyUser.icon;
+						delete replyUser.mailAddress;
+						delete replyUser.password;
+						delete replyUser.twitterAccessToken;
+						delete replyUser.twitterAccessTokenSecret;
+						delete replyUser.wallpaper;
 						obj.reply.user = replyUser;
 						callback(obj);
 					});
