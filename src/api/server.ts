@@ -100,19 +100,16 @@ var home = io.of('/streaming/home').on('connection', (socket: any) => {
 		if (err) {
 			console.log(err.message);
 		} else {
-			console.log(session);
+			var uid = socket.userId = session.userId;
+
+			var pubsub = redis.createClient();
+			pubsub.subscribe('misskey:userStream:' + uid);
+			pubsub.on('message', (channel: any, content: any) => {
+				socket.emit(JSON.parse(content).type, JSON.parse(content).value);
+			});
+
+			socket.on('disconnect', () => {
+			});
 		}
 	});
-	/*if (uid != null) {
-		socket.userId = uid;
-
-		var pubsub = redis.createClient();
-		pubsub.subscribe('misskey:userStream:' + uid);
-		pubsub.on('message', (channel: any, content: any) => {
-			socket.emit(JSON.parse(content).type, JSON.parse(content).value);
-		});
-
-		socket.on('disconnect', () => {
-		});
-	}*/
 });
