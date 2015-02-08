@@ -7,9 +7,9 @@ import fs = require('fs');
 
 import https = require('https');
 var server = https.createServer({
-	key: fs.readFileSync('../../../certs/server.key').toString(),
-	cert: fs.readFileSync('../../../certs/startssl.crt').toString(),
-	ca: fs.readFileSync('../../../certs/sub.class1.server.ca.pem').toString()
+	key: fs.readFileSync('../../../../certs/server.key').toString(),
+	cert: fs.readFileSync('../../../../certs/startssl.crt').toString(),
+	ca: fs.readFileSync('../../../../certs/sub.class1.server.ca.pem').toString()
 },
 	(req: any, res: any) => {
 		res.writeHead(200, { "Content-Type": "text/plain" });
