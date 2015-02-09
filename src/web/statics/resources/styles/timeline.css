@@ -155,6 +155,13 @@
 					.timeline > .posts > .post > article > .text .url:hover {
 						text-decoration: underline;
 					}
+					.timeline > .posts > .post > article > .text .url:after {
+						content: "\f14c";
+						font-family: FontAwesome;
+						font-weight: normal;
+						font-style: normal;
+						display: inline-block;
+					}
 					.timeline > .posts > .post > article > .text .screenName {
 						color: #831c86;
 						text-decoration: none;
@@ -291,6 +298,13 @@
 						.timeline > .posts > .post > .replyTo > article > .text .url {
 							color: #1bb3b3;
 							text-decoration: none;
+						}
+						.timeline > .posts > .post > .replyTo > article > .text .url:after {
+							content: "\f14c";
+							font-family: FontAwesome;
+							font-weight: normal;
+							font-style: normal;
+							display: inline-block;
 						}
 						.timeline > .posts > .post > .replyTo > article > .text .url:hover {
 							text-decoration: underline;
