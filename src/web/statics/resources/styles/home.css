@@ -143,8 +143,19 @@ main {
 		padding: 8px;
 
 		font-size: 1.2em;
+		color: #000;
 
+		outline: none;
 		border: solid 1px #eee;
+		box-shadow: none;
+
+		transition: all 0.2s ease;
+	}
+	#postForm textarea:focus {
+		color: #831c86;
+		outline: none;
+		border: solid 1px #831c86;
+		box-shadow: 2px 0 2px rgba(0, 0, 0, 0.2);
 	}
 
 	#postForm .image {
