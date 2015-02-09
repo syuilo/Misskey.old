@@ -286,7 +286,7 @@
 
 						.timeline > .posts > .post > .replyTo > article > .text .reply {
 							margin: 0 8px 0 0;
-							color: rgba(0, 0, 0, 0.8);
+							color: rgba(0, 0, 0, 0.5);
 						}
 						.timeline > .posts > .post > .replyTo > article > .text .url {
 							color: #1bb3b3;
