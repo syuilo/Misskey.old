@@ -95,7 +95,7 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 
 			function generateImageAttacher(): JQuery {
 				return $('<div class="imageAttacher">')
-					.append($('<p>画像を添付</p>'))
+					.append($('<p><i class="fa fa-picture-o"></i></p>'))
 					.append($('<input name="image" type="file">'));
 			}
 		}
@@ -143,9 +143,9 @@ TIMELINE.setEventPost = function ($post: JQuery) {
 			processData: false,
 			contentType: false,
 			dataType: 'json',
-            xhrFields: {
-                withCredentials: true
-            }
+			xhrFields: {
+				withCredentials: true
+			}
 		}).done(function () {
 			$submitButton.attr('disabled', false);
 			$form.text('送信しました');
