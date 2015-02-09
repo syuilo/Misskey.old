@@ -14,45 +14,12 @@ var render = (req: any, res: any): void => {
 			res.display(req, res, 'home', {
 				timeline: timeline,
 				timelineHtml: jade.compileFile(__dirname + '/../views/templates/timeline.jade', {
-					
+
 				})({
 					posts: timeline,
-					parseText: parseText
+					url: conf.publicConfig.url
 				}),
-				parseText: parseText
 			});
 		});
 	});
 };
-
-function parseText(text: string): string {
-	text = escapeHtml(text);
-	text = parseURL(text);
-	text = parseReply(text);
-	text = parseNewLine(text);
-	return text;
-
-	function parseURL(text: string): string {
-		return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,(url: string) => {
-			return `<a href="${url}" target="_blank" class="url">${url}</a>`;
-		});
-	}
-
-	function parseReply(text: string): string {
-		return text.replace(/@([a-zA-Z0-9_]+)/g,(_: string, screenName: string) => {
-			return `<a href="${conf.url}/${screenName}" target="_blank" class="screenName">@${screenName}</a>`;
-		});
-	}
-
-	function parseNewLine(text: string): string {
-		return text.replace(/(\r\n|\r|\n)/g, '<br>');
-	}
-}
-
-function escapeHtml(text: string): string {
-	return String(text)
-		.replace(/&(?!\w+;)/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;');
-}
