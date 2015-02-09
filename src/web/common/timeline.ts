@@ -23,7 +23,7 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 		return $('<article>')
 			.append(generateIcon())
 			.append(generateHeader())
-			.append($('<p class="text">').html(parseText(post.text)))
+			.append($('<p class="text">').html((post.isReply ? '<i class="fa fa-reply" > </i>' : '') + parseText(post.text)))
 			.append(post.isImageAttached ? generateImage() : null);
 
 		function generateIcon(): JQuery {
