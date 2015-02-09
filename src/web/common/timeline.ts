@@ -7,7 +7,8 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 		.attr({
 		title: `${post.createdAt}&#x0A;via ${post.app.name}`,
 		'data-id': post.id,
-		'data-userId': post.userId
+		'data-userId': post.userId,
+		style: post.isReply ? `border-color: ${post.reply.user.color};` : ''
 	})
 		.append(post.isReply ? generateReplyTo() : null)
 		.append(generateArticle())

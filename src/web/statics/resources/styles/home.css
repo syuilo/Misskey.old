@@ -251,13 +251,17 @@ main {
 			transition: background-color 0.2s ease;
 		}
 		.timeline > .posts > .post:before {
-			/*
 			content: "";
 			display: block;
 			width: 100%;
 			height: 1px;
-			background: #eee;
-			*/
+			background: #fafafa;
+		}
+		.timeline > .posts > .post:first-child:before {
+			content: "";
+			display: none;
+			width: 0;
+			height: 0;
 		}
 		.timeline > .posts > .post:hover {
 		   background-color: #F8F8F8;

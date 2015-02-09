@@ -48,9 +48,10 @@ html(lang='ja', dir='ltr')
 				div.timeline
 					ol.posts
 						each post in timeline
-							li.post(title='#{post.createdAt}&#x0A;via #{post.app.name}'
-									data-id=post.id
-									data-userId=post.user.id)
+							li.post(title= '#{post.createdAt}&#x0A;via #{post.app.name}'
+									style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
+									data-id= post.id
+									data-userId= post.user.id)
 								if post.isReply
 									div.replyTo
 										p.text= post.reply.text
