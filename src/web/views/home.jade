@@ -9,8 +9,10 @@ html(lang='ja', dir='ltr')
 		link(rel='shortcut icon', href='/favicon.icon')
 		link(rel='stylesheet', href='/resources/styles/ui.css')
 		link(rel='stylesheet', href='/resources/styles/home.css')
+		script(src='/config')
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 		script(src=apiUrl + ':1207/socket.io/socket.io.js')
+		script(src='/resources/common/timeline.js')
 		script(src='/resources/scripts/home.js')
 		
 	body
@@ -46,12 +48,23 @@ html(lang='ja', dir='ltr')
 				div.timeline
 					ol.posts
 						each post in timeline
-							li.post(title='#{post.createdAt}&#x0A;via #{post.app.name}'
-									data-id=post.id
-									data-user_id=post.user.id)
+							li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
+									style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
+									data-id= post.id
+									data-userId= post.user.id)
 								if post.isReply
 									div.replyTo
-										p.text= post.reply.text
+										article
+											a(href=url + '/' + post.reply.user.screenName)
+												img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
+											header
+												h2
+													a(href=url + '/' + post.reply.user.screenName)= post.reply.user.name
+												span.screenName= '@' + post.reply.user.screenName
+												time(datetime=post.reply.createdAt)= post.reply.createdAt
+											p.text!= parseText(post.reply.text)
+											if post.reply.isImageAttached
+												img.reply.image(src=url + '/img/post/' + post.reply.id, alt='image')
 								article
 									a(href=url + '/' + post.user.screenName)
 										img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
@@ -59,7 +72,15 @@ html(lang='ja', dir='ltr')
 										h2
 											a(href=url + '/' + post.user.screenName)= post.user.name
 										span.screenName= '@' + post.user.screenName
-										time= post.createdAt
-									p.text= post.text
+										time(datetime=post.createdAt)= post.createdAt
+									p.text!= parseText(post.text)
 									if post.isImageAttached
 										img.image(src=url + '/img/post/' + post.id, alt='image')
+								footer
+									form.replyForm
+										textarea(name='text')= '@' + post.user.screenName + ' '
+										input(name='in_reply_to_post_id', type='hidden', value=post.id)
+										input(type='submit', value='Reply')
+										div.imageAttacher
+											p 画像を添付
+											input(name='image', type='file')
