@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
-var TIMELINE: any;
+var TIMELINE: any = {};
 
 TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 	return $('<li class="post">')
