@@ -151,11 +151,14 @@ main {
 
 		transition: all 0.2s ease;
 	}
+	#postForm textarea:hover {
+		border: solid 1px #831c86;
+	}
 	#postForm textarea:focus {
 		color: #831c86;
 		outline: none;
 		border: solid 1px #831c86;
-		box-shadow: 0 0 2px rgba(131, 28, 134, 0.2);
+		box-shadow: 0 0 4px rgba(131, 28, 134, 0.3);
 	}
 
 	#postForm .image {
@@ -221,7 +224,7 @@ main {
 		border-radius: 2px;
 		box-shadow: none;
 		
-		transition: background 0.5s ease;
+		transition: background 0.1s ease;
 	}
 	#postForm input[type=submit]:hover {
 		background: #814584;
@@ -457,18 +460,21 @@ main {
 
 						transition: all 0.2s ease;
 					}
+						.timeline > .posts > .post > footer > .replyForm > textarea:hover {
+							border: solid 1px #831c86;
+						}
 						.timeline > .posts > .post > footer > .replyForm > textarea:focus {
 							color: #831c86;
 							outline: none;
 							border: solid 1px #831c86;
-							box-shadow: 0 0 2px rgba(131, 28, 134, 0.2);
+							box-shadow: 0 0 4px rgba(131, 28, 134, 0.3);
 						}
 				.timeline > .posts > .post > footer > .replyForm > input[type=submit] {
 					-webkit-appearance: none;
 					-moz-appearance: none;
 					appearance: none;
 					
-					display: block;
+					display: inline-block;
 					box-sizing: border-box;
 					margin: 0;
 					padding: 8px 16px;
@@ -485,10 +491,10 @@ main {
 					background: #831c86;
 					outline: none;
 					border: none;
-					border-radius: 2px;
+					border-radius: 0;
 					box-shadow: none;
 					
-					transition: background 0.5s ease;
+					transition: background 0.1s ease;
 				}
 				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:hover {
 					background: #814584;
