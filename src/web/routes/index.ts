@@ -1,6 +1,7 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import fs = require('fs');
+import path = require('path');
 import express = require('express');
 import less = require('less');
 import AccessToken = require('../../models/access-token');
@@ -73,7 +74,7 @@ var router = (app: express.Express): void => {
 
 	app.get('*.less',(req: any, res: any) => {
 		if (req.url.indexOf('..') === -1) {
-			var path = __dirname + '/..' + req.url;
+			var path = path.resolve(__dirname + '/..' + req.url);
 			fs.readFile(path, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 				if (err) throw err;
 				lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
@@ -89,8 +90,8 @@ var router = (app: express.Express): void => {
 
 	app.get(/^\/resources\/.*/,(req: any, res: any) => {
 		if (req.url.indexOf('..') === -1) {
-			var path = __dirname + '/..' + req.url;
-			res.sendfile(path);
+			var path = path.resolve(__dirname + '/..' + req.url);
+			res.sendFile(path);
 		}
 	});
 
