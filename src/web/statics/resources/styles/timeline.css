@@ -146,6 +146,7 @@
 
 					.timeline > .posts > .post > article > .text .reply {
 						margin: 0 8px 0 0;
+						color: rgba(0, 0, 0, 0.8);
 					}
 					.timeline > .posts > .post > article > .text .url {
 						color: #1bb3b3;
@@ -286,6 +287,7 @@
 
 						.timeline > .posts > .post > .replyTo > article > .text .reply {
 							margin: 0 8px 0 0;
+							color: rgba(0, 0, 0, 0.8);
 						}
 						.timeline > .posts > .post > .replyTo > article > .text .url {
 							color: #1bb3b3;
