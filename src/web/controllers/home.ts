@@ -1,6 +1,5 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
-import $ = require('jquery');
 import Application = require('../../models/application');
 import User = require('../../models/user');
 import Post = require('../../models/post');
@@ -44,5 +43,9 @@ function parseText(text: string): string {
 }
 
 function escapeHtml(text: string): string {
-	return $('<div>').text(text).html();
+	return String(text)
+		.replace(/&(?!\w+;)/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;');
 }
