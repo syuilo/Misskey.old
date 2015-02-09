@@ -18,6 +18,7 @@ class Timeline {
 				url: conf.publicConfig.url,
 				parseText: parseText
 			})
+			callback(html);
 		});
 	}
 
