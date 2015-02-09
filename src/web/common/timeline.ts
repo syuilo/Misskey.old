@@ -112,13 +112,13 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 
 		function parseURL(text: string): string {
 			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,(url: string) => {
-				return `<a href="${url}" target="_blank">${url}</a>`;
+				return `<a href="${url}" target="_blank" class="url">${url}</a>`;
 			});
 		}
 
 		function parseReply(text: string): string {
 			return text.replace(/@([a-zA-Z0-9_]+)/g,(_: string, screenName: string) => {
-				return `<a href="${conf.url}/${screenName}" target="_blank">@${screenName}</a>`;
+				return `<a href="${conf.url}/${screenName}" target="_blank" class="screenName">@${screenName}</a>`;
 			});
 		}
 

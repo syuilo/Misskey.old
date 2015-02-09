@@ -402,14 +402,9 @@ main {
 						color: #1bb3b3;
 						text-decoration: underline;
 					}
-					.timeline > .posts > .post > article > .text > .r {
+					.timeline > .posts > .post > article > .text > .screenName {
 						color: #1bb3b3;
 						text-decoration: none;
-					}
-					.timeline > .posts > .post > article > .text > .r:hover {
-						background: #1bb3b3;
-						border-radius: 2px;
-						color: #fff;
 					}
 				
 				.timeline > .posts > .post > article > .image {
@@ -434,6 +429,10 @@ main {
 					margin: 0;
 					word-wrap: break-word;
 				}
+					.timeline > .posts > .post > .replyTo > .text .screenName {
+						color: #1bb3b3;
+						text-decoration: none;
+					}
 				
 				.timeline > .posts > .post > .replyTo > .img {
 					display: block;
