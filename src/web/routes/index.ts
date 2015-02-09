@@ -21,7 +21,7 @@ var extend = (destination: any, source: any): Object => {
 };
 
 var router = (app: express.Express): void => {
-	app.all('*', (req: any, res: any, next: () => void ) => {
+	app.all('*',(req: any, res: any, next: () => void) => {
 		res.set({
 			'Access-Control-Allow-Origin': config.publicConfig.url,
 			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
@@ -47,7 +47,7 @@ var router = (app: express.Express): void => {
 
 		if (req.login) {
 			var userId = req.session.userId;
-			User.find(userId, (user: User) => {
+			User.find(userId,(user: User) => {
 				req.data.me = user;
 				req.me = user;
 				next();
@@ -59,8 +59,8 @@ var router = (app: express.Express): void => {
 		}
 	});
 
-	app.param('userSn', (req: any, res: any, next: () => void, sn: string) => {
-		User.findByScreenName(sn, (user: User) => {
+	app.param('userSn',(req: any, res: any, next: () => void, sn: string) => {
+		User.findByScreenName(sn,(user: User) => {
 			if (user != null) {
 				req.rootUser = user;
 				next();
@@ -72,8 +72,8 @@ var router = (app: express.Express): void => {
 	});
 
 	app.get('*.less',(req: any, res: any) => {
-		var path = __dirname + req.url;
-		if (path.indexOf('..') === -1) {
+		if (req.url.indexOf('..') === -1) {
+			var path = __dirname + '/..' + req.url;
 			fs.readFile(path, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 				if (err) throw err;
 				lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
@@ -87,13 +87,13 @@ var router = (app: express.Express): void => {
 	});
 
 	app.get('/resources/.*',(req: any, res: any) => {
-		var path = __dirname + req.url;
-		if (path.indexOf('..') === -1) {
+		if (req.url.indexOf('..') === -1) {
+			var path = __dirname + '/..' + req.url;
 			res.sendfile(path);
 		}
 	});
 
-	app.get('/', (req: any, res: any, next: () => void) => {
+	app.get('/',(req: any, res: any, next: () => void) => {
 		if (req.login) {
 			require('../controllers/home')(req, res);
 		} else {
@@ -108,8 +108,8 @@ var router = (app: express.Express): void => {
 
 	/* Images */
 
-	app.get('/img/icon/:sn', (req: any, res: any) => {
-		User.findByScreenName(req.params.sn, (user: User) => {
+	app.get('/img/icon/:sn',(req: any, res: any) => {
+		User.findByScreenName(req.params.sn,(user: User) => {
 			if (user != null) {
 				var img = user.icon;
 				res.set('Content-Type', 'image/jpeg');
@@ -120,8 +120,8 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/img/post/:id', (req: any, res: any) => {
-		Post.find(req.params.id, (post: Post) => {
+	app.get('/img/post/:id',(req: any, res: any) => {
+		Post.find(req.params.id,(post: Post) => {
 			if (post != null) {
 				if (post.isImageAttached) {
 					var img = post.image;
@@ -138,20 +138,20 @@ var router = (app: express.Express): void => {
 
 	/* Actions */
 
-	app.get('/login', (req: any, res: any) => {
+	app.get('/login',(req: any, res: any) => {
 		res.display(req, res, 'login', {});
 	});
 
-	app.post('/login', (req: any, res: any) => {
-		doLogin(app, req.body.screen_name, req.body.password, (user: User, webAccessToken: AccessToken) => {
+	app.post('/login',(req: any, res: any) => {
+		doLogin(app, req.body.screen_name, req.body.password,(user: User, webAccessToken: AccessToken) => {
 			req.session.userId = user.id;
 			req.session.consumerKey = config.webClientConsumerKey;
 			req.session.accessToken = webAccessToken.token;
 			req.session.save(() => res.sendStatus(200));
-		}, () => res.sendStatus(400));
+		},() => res.sendStatus(400));
 	});
 
-	app.get('/logout', (req: any, res: any) => {
+	app.get('/logout',(req: any, res: any) => {
 		req.session.destroy((err: any) => {
 			res.redirect('/');
 		});
