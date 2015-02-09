@@ -1,6 +1,8 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
-function generatePost(post: any, conf: any): JQuery {
+var TIMELINE: any;
+
+TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 	return $('<li class="post">')
 		.attr({
 		title: `${post.createdAt}&#x0A;via ${post.app.name}`,
@@ -125,4 +127,91 @@ function generatePost(post: any, conf: any): JQuery {
 	function escapeHtml(text: string): string {
 		return $('<div>').text(text).html();
 	}
+}
+
+TIMELINE.setEventPost = function ($post: JQuery) {
+	$post.find('.replyForm').submit(function (event) {
+		event.preventDefault();
+		var $form = $(this);
+		var $submitButton = $form.find('[type=submit]');
+		$submitButton.attr('disabled', true);
+		$.ajax({
+			url: 'https://api.misskey.xyz/post/create',
+			type: 'post',
+			data: new FormData($form[0]),
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            }
+		}).done(function () {
+			$submitButton.attr('disabled', false);
+			$form.text('送信しました');
+		}).fail(function () {
+			$submitButton.attr('disabled', false);
+		});
+	});
+
+	/*
+	$post.find('.fr').submit(function (event) {
+		event.preventDefault();
+		var $form = $(this);
+		var $submitButton = $form.find('[type=image]');
+		$submitButton.attr('disabled', true);
+		$.ajax({
+			url: $form.attr('action'),
+			type: $form.attr('method'),
+			data: new FormData($form[0]),
+			processData: false,
+			contentType: false,
+		}).done(function () {
+			$submitButton.attr('disabled', false);
+			if ($post.attr('data-is_favorite')) {
+				$post.attr('data-is_favorite', false);
+				$submitButton.attr('src', 'https://misskey.xyz/img/misskey/unfavorite.svg');
+				$form.attr('action', 'https://misskey.xyz/api/post/favorite/create');
+			} else {
+				$post.attr('data-is_favorite', true);
+				$submitButton.attr('src', 'https://misskey.xyz/img/misskey/favorite.svg');
+				$form.attr('action', 'https://misskey.xyz/api/post/favorite/delete');
+			}
+		}).fail(function () {
+			$submitButton.attr('disabled', false);
+		});
+	});
+	*/
+
+	$post.find('.imageAttacher input[name=image]').change(function () {
+		var $input = $(this);
+		var file = $(this).prop('files')[0];
+		if (!file.type.match('image.*')) return;
+		var reader = new FileReader();
+		reader.onload = function () {
+			var $img = $('<img>').attr('src', reader.result);
+			$input.parent('.imageAttacher').find('p, img').remove();
+			$input.parent('.imageAttacher').append($img);
+		};
+		reader.readAsDataURL(file);
+	});
+
+	$post.click(function (event) {
+		if ($(event.target).is('input') || $(event.target).is('textarea')) return;
+		if ($(this).find('.replyForm').css('display') === 'none') {
+			$('.replyForm').each(function () {
+				$(this).hide(200);
+			});
+			$(this).find('.replyForm').show(200);
+		} else {
+			$(this).find('.replyForm').hide(200);
+		}
+	});
+
+	/*
+	$post.dblclick(function (event) {
+		if ($(event.target).is('input') || $(event.target).is('textarea')) return;
+		window.open('https://misskey.xyz/' + $(this).attr('data-user-screen_name') + '/post/' + $(this).attr('data-id'));
+	});
+	*/
+
 }
