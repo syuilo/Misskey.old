@@ -382,8 +382,11 @@ main {
 						text-decoration: underline;
 					}
 					.timeline > .posts > .post > article > .text > .screenName {
-						color: #1bb3b3;
+						color: #831c86;
 						text-decoration: none;
+					}
+					.timeline > .posts > .post > article > .text > .screenName:hover {
+						text-decoration: underline;
 					}
 				
 				.timeline > .posts > .post > article > .image {
@@ -511,8 +514,11 @@ main {
 							text-decoration: underline;
 						}
 						.timeline > .posts > .post > .replyTo > article > .text > .screenName {
-							color: #1bb3b3;
+							color: #831c86;
 							text-decoration: none;
+						}
+						.timeline > .posts > .post > .replyTo > article > .text > .screenName:hover {
+							text-decoration: underline;
 						}
 					
 					.timeline > .posts > .post > .replyTo > article > .image {
