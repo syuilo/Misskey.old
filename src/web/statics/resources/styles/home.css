@@ -377,6 +377,9 @@ main {
 					color: rgba(0, 0, 0, 0.8);
 				}
 
+					.timeline > .posts > .post > article > .text > i {
+						margin: 0 8px 0 0;
+					}
 					.timeline > .posts > .post > article > .text > a {
 						color: #1bb3b3;
 						text-decoration: underline;
@@ -509,6 +512,9 @@ main {
 						color: rgba(0, 0, 0, 0.5);
 					}
 
+						.timeline > .posts > .post > .replyTo > article > .text > i {
+							margin: 0 8px 0 0;
+						}
 						.timeline > .posts > .post > .replyTo > article > .text > a {
 							color: #1bb3b3;
 							text-decoration: underline;
