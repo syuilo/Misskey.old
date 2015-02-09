@@ -8,6 +8,7 @@ export = render;
 
 var render = (req: any, res: any): void => {
 	res.display(req, res, 'user', {
-		user: req.rootUser
+		user: req.rootUser,
+		url: conf.publicConfig.url
 	});
 };
