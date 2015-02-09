@@ -1,0 +1,418 @@
+/* Timeline
+ * ---------------------------------------------------------------- */
+
+.timeline {
+	
+}
+	.timeline > .posts {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+		.timeline > .posts > .post {
+			position: relative;
+			padding: 8px 0;
+			border-left: solid 3px transparent;
+			background-color: #FFF;
+			transition: background-color 0.2s ease;
+		}
+		.timeline > .posts > .post:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: -3px;
+			display: block;
+			width: calc(100% + 3px);
+			height: 1px;
+			background: rgba(0, 0, 0, 0.05);
+		}
+		.timeline > .posts > .post:first-child:before {
+			content: "";
+			display: none;
+			width: 0;
+			height: 0;
+		}
+		.timeline > .posts > .post:hover {
+		   background-color: #F8F8F8;
+		   transition: background-color 0s ease;
+		}
+		.timeline > .posts > .post:active {
+		   background-color: #EEE;
+		   transition: background-color 0s ease;
+		}
+
+			/* Article */
+			.timeline > .posts > .post > article {
+				position: relative;
+				padding: 20px 12px;
+			}
+			.timeline > .posts > .post > article:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+				.timeline > .posts > .post > article > header {
+					margin-bottom: 2px;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+				.timeline > .posts > .post > article > header:after {
+					
+				}
+					.timeline > .posts > .post > article > header > h2 {
+						text-align: left;
+						display: inline;
+						margin: 0;
+						padding: 0;
+						font-weight: normal;
+						font-size: 1em;
+					}
+						.timeline > .posts > .post > article > header > h2 a {
+							color: rgba(0, 0, 0, 0.9);
+							font-weight: bold;
+							text-decoration: none;
+							transition: all 0.1s ease;
+						}
+						.timeline > .posts > .post:hover > article > header > h2 a {
+							color: #1bb3b3;
+						}
+				
+					.timeline > .posts > .post > article > header > time {
+						position: absolute;
+						top: 16px;
+						right: 12px;
+						display: inline;
+						vertical-align: top;
+						color: rgba(0, 0, 0, 0.6);
+						font-size: small;
+					}
+
+					.timeline > .posts > .post > article > header > .badge {
+						text-align: left;
+						display: inline;
+						font-size: .7em;
+						margin-right: 4px;
+						padding: 2px 6px;
+						vertical-align: middle;
+
+						background-color: #1bb3b3;
+						border-radius: 2px;
+						color: #fff;
+						font-weight: bold;
+					}
+					
+					.timeline > .posts > .post > article > header > .screenName {
+						text-align: left;
+						margin: 0 0 0 8px;
+						color: rgba(0, 0, 0, 0.5);
+					}
+					
+					.timeline > .posts > .post > article > header a {
+						text-decoration: none;
+					}
+					.timeline > .posts > .post > article > header a:hover {
+						color: #00a0a0;
+					}
+
+					.timeline > .posts > .post > article > a > .icon {
+						float: left;
+						min-width: 48px;
+						min-height: 48px;
+						max-width: 48px;
+						max-height: 48px;
+						margin: 0 12px 4px 0;
+						border-radius: 8px;
+
+						transition: all 0.1s ease;
+					}
+					.timeline > .posts > .post:hover > article > a > .icon {
+						filter: saturate(200%);
+						-webkit-filter: saturate(200%);
+						-moz-filter: saturate(200%);
+						-o-filter: saturate(200%);
+						-ms-filter: saturate(200%);
+					}
+
+				.timeline > .posts > .post > article > .text {
+					display: block;
+					margin: 0 0 0 0;
+					padding: 0;
+					overflow: hidden;
+					word-wrap: break-word;
+					font-size: 1.1em;
+					color: rgba(0, 0, 0, 0.8);
+				}
+
+					.timeline > .posts > .post > article > .text > i {
+						margin: 0 8px 0 0;
+					}
+					.timeline > .posts > .post > article > .text > a {
+						color: #1bb3b3;
+						text-decoration: underline;
+					}
+					.timeline > .posts > .post > article > .text > .screenName {
+						color: #831c86;
+						text-decoration: none;
+					}
+					.timeline > .posts > .post > article > .text > .screenName:hover {
+						text-decoration: underline;
+					}
+				
+				.timeline > .posts > .post > article > .image {
+					display: block;
+					max-width: 100%;
+					max-height: 512px;
+				}
+
+			/* Reply to */
+			.timeline > .posts > .post > .replyTo {
+				display: inline-block;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 8px 8px 4px 8px;
+				word-wrap: break-word;
+				word-break: break-all;
+
+				color: rgba(0, 0, 0, 0.4);
+				/*border-bottom: dashed 1px rgba(0, 0, 0, 0.05);*/
+			}
+				.timeline > .posts > .post > .replyTo > article {
+					position: relative;
+					padding: 8px 8px;
+				}
+				.timeline > .posts > .post > .replyTo > article:after {
+					content: "";
+					display: block;
+					clear: both;
+				}
+
+					.timeline > .posts > .post > .replyTo > article > header {
+						margin-bottom: 2px;
+						white-space: nowrap;
+						overflow: hidden;
+					}
+					.timeline > .posts > .post > .replyTo > article > header:after {
+						
+					}
+						.timeline > .posts > .post > .replyTo > article > header > h2 {
+							text-align: left;
+							display: inline;
+							margin: 0;
+							padding: 0;
+							font-weight: normal;
+							font-size: 1em;
+						}
+							.timeline > .posts > .post > .replyTo > article > header > h2 a {
+								color: rgba(0, 0, 0, 0.7);
+								font-weight: normal;
+								text-decoration: none;
+								transition: all 0.1s ease;
+							}
+							.timeline > .posts > .post > .replyTo:hover > article > header > h2 a {
+								color: #1bb3b3;
+							}
+					
+						.timeline > .posts > .post > .replyTo > article > header > time {
+							position: absolute;
+							top: 8px;
+							right: 8px;
+							display: inline;
+							vertical-align: top;
+							color: rgba(0, 0, 0, 0.4);
+							font-size: small;
+						}
+
+						.timeline > .posts > .post > .replyTo > article > header > .badge {
+							text-align: left;
+							display: inline;
+							font-size: .7em;
+							margin-right: 4px;
+							padding: 2px 6px;
+							vertical-align: middle;
+
+							background-color: #1bb3b3;
+							border-radius: 2px;
+							color: #fff;
+							font-weight: bold;
+						}
+						
+						.timeline > .posts > .post > .replyTo > article > header > .screenName {
+							text-align: left;
+							margin: 0 0 0 8px;
+							color: rgba(0, 0, 0, 0.5);
+						}
+						
+						.timeline > .posts > .post > .replyTo > article > header a {
+							text-decoration: none;
+						}
+						.timeline > .posts > .post > .replyTo > article > header a:hover {
+							color: #00a0a0;
+						}
+
+						.timeline > .posts > .post > .replyTo > article > a > .icon {
+							float: left;
+							min-width: 32px;
+							min-height: 32px;
+							max-width: 32px;
+							max-height: 32px;
+							margin: 0 12px 4px 0;
+							border-radius: 6px;
+
+							transition: all 0.1s ease;
+						}
+						.timeline > .posts > .post > .replyTo:hover > article > a > .icon {
+							filter: saturate(200%);
+							-webkit-filter: saturate(200%);
+							-moz-filter: saturate(200%);
+							-o-filter: saturate(200%);
+							-ms-filter: saturate(200%);
+						}
+
+					.timeline > .posts > .post > .replyTo > article > .text {
+						display: block;
+						margin: 0 0 0 0;
+						padding: 0;
+						overflow: hidden;
+						word-wrap: break-word;
+						font-size: 0.9em;
+						color: rgba(0, 0, 0, 0.5);
+					}
+
+						.timeline > .posts > .post > .replyTo > article > .text > i {
+							margin: 0 8px 0 0;
+						}
+						.timeline > .posts > .post > .replyTo > article > .text > a {
+							color: #1bb3b3;
+							text-decoration: underline;
+						}
+						.timeline > .posts > .post > .replyTo > article > .text > .screenName {
+							color: #831c86;
+							text-decoration: none;
+						}
+						.timeline > .posts > .post > .replyTo > article > .text > .screenName:hover {
+							text-decoration: underline;
+						}
+					
+					.timeline > .posts > .post > .replyTo > article > .image {
+						display: block;
+						max-width: 100%;
+						max-height: 256px;
+					}
+
+				/* Footer */
+				.timeline > .posts > .post > footer {
+					display: none;
+					padding: 4px 16px;
+				}
+					.timeline > .posts > .post > footer > .replyForm > textarea {
+						box-sizing: border-box;
+						width: 100%;
+						max-width: 100%;
+						height: 64px;
+						min-height: 64px;
+						vertical-align: bottom;
+						margin: 0;
+						padding: 8px;
+						
+						outline: 0;
+						border: solid 1px #eee;
+						border-radius: 0;
+						font-size: 1.1em;
+
+						transition: all 0.2s ease;
+					}
+						.timeline > .posts > .post > footer > .replyForm > textarea:hover {
+							border: solid 1px #831c86;
+						}
+						.timeline > .posts > .post > footer > .replyForm > textarea:focus {
+							color: #831c86;
+							outline: none;
+							border: solid 1px #831c86;
+							box-shadow: 0 0 4px rgba(131, 28, 134, 0.3);
+						}
+				.timeline > .posts > .post > footer > .replyForm > input[type=submit] {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					
+					display: inline-block;
+					box-sizing: border-box;
+					margin: 0;
+					padding: 8px 16px;
+					min-width: 5em;
+					
+					cursor: pointer;
+
+					line-height: 1.2em;
+					font-size: 1.2em;
+					font-weight: normal;
+					text-decoration: none;
+					color: #fff;
+					
+					background: #831c86;
+					outline: none;
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+					
+					transition: background 0.1s ease;
+				}
+				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:hover {
+					background: #814584;
+				}
+				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:active {
+					background: #4e1251;
+				}
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher {
+					box-sizing: border-box;
+					display: inline-block;
+					position: relative;
+					margin: 4px 8px;
+					padding: 6px 16px;
+					vertical-align: top;
+					
+					outline: dashed 2px #ccc;
+				}
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher:hover {
+					outline: dashed 2px #777;
+				}
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher input[type=file] {
+					display: inline;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+				}
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher p {
+					margin: 0;
+					color: #777;
+					font-size: 1em;
+				}
+				.timeline > .posts > .post > footer > .replyForm > .imageAttacher img {
+					max-width: 100%;
+					max-height: 128px;
+				}
+	.timeline > .loadMore {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 3em;
+		line-height: 3em;
+
+		cursor: pointer;
+
+		background: #fff;
+		outline: none;
+		border: none;
+	}
+	.timeline > .loadMore:hover,
+	.timeline > .loadMore:focus {
+		background: #eee;
+		color: #1bb3b3;
+	}
+	.timeline > .loadMore:active {
+		background: #ddd;
+	}
