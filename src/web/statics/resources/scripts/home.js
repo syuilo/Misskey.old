@@ -50,5 +50,24 @@ $(function()
             $submitButton.text('Update');
         });
     });
+
+    setInterval(function() {
+		var now = new Date();
+		$('time').each(function() {
+			function pad2(n) { return n < 10 ? '0' + n : n }
+			var date = new Date($(this).attr('datetime').replace(/\-/g, "/"));
+			var ago = ~~((now - date) / 1000);
+			var timeText =
+				ago >= 31536000 ? ~~(ago / 31536000) + "年前":
+				ago >= 2592000 ? ~~(ago / 2592000) + "ヶ月前":
+				ago >= 604800 ? ~~(ago / 604800) + "週間前":
+				ago >= 86400 ? ~~(ago / 86400) + "日前":
+				ago >= 3600 ? ~~(ago / 3600) + "時間前":
+				ago >= 60 ? ~~(ago / 60) + "分前":
+				ago >= 5 ? ~~(ago % 60) + "秒前":
+				ago < 5 ? 'いま' : "" ;
+			$(this).text(timeText);
+		});
+	}, 1000);
 });
 
