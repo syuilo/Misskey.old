@@ -74,8 +74,8 @@ var router = (app: express.Express): void => {
 
 	app.get('*.less',(req: any, res: any) => {
 		if (req.url.indexOf('..') === -1) {
-			var path = path.resolve(__dirname + '/..' + req.url);
-			fs.readFile(path, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
+			var resourcePath = path.resolve(__dirname + '/..' + req.url);
+			fs.readFile(resourcePath, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 				if (err) throw err;
 				lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
 				lessCss = lessCss.replace(/(\r\n|\r|\n|\t)/g, '');
@@ -90,8 +90,8 @@ var router = (app: express.Express): void => {
 
 	app.get(/^\/resources\/.*/,(req: any, res: any) => {
 		if (req.url.indexOf('..') === -1) {
-			var path = path.resolve(__dirname + '/..' + req.url);
-			res.sendFile(path);
+			var resourcePath = path.resolve(__dirname + '/..' + req.url);
+			res.sendFile(resourcePath);
 		}
 	});
 
