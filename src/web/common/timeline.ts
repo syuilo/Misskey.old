@@ -215,3 +215,9 @@ TIMELINE.setEventPost = function ($post: JQuery) {
 	*/
 
 }
+
+$(function () {
+	$('.timeline .post').each(function () {
+		TIMELINE.setEventPost($(this));
+	});
+});

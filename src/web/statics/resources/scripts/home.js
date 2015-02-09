@@ -18,7 +18,6 @@ $(function()
         $post.prependTo($('#timeline > .timeline > .posts')).show(200);
     });
 
-
     $('#postForm').submit(function(event)
     {
         event.preventDefault();
