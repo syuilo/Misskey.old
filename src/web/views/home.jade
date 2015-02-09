@@ -54,7 +54,7 @@ html(lang='ja', dir='ltr')
 									data-userId= post.user.id)
 								if post.isReply
 									div.replyTo
-										p.text= post.reply.text
+										p.text!= parseText(post.reply.text)
 								article
 									a(href=url + '/' + post.user.screenName)
 										img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
@@ -63,7 +63,7 @@ html(lang='ja', dir='ltr')
 											a(href=url + '/' + post.user.screenName)= post.user.name
 										span.screenName= '@' + post.user.screenName
 										time(datetime=post.createdAt)= post.createdAt
-									p.text= post.text
+									p.text!= parseText(post.text)
 									if post.isImageAttached
 										img.image(src=url + '/img/post/' + post.id, alt='image')
 								footer
