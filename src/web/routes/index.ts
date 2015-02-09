@@ -89,12 +89,10 @@ var router = (app: express.Express): void => {
 			fs.readFile(resourcePath, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 				if (err) throw err;
 				lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
-				console.log(lessCss);
-				less.render(lessCss, { compress: true },(err: any, css: string) => {
+				less.render(lessCss, { compress: true },(err: any, output: any) => {
 					if (err) throw err;
-					console.log(css);
 					res.header("Content-type", "text/css");
-					res.send(css);
+					res.send(output.css);
 				});
 			});
 		}
