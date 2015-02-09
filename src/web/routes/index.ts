@@ -22,6 +22,17 @@ var extend = (destination: any, source: any): Object => {
 };
 
 var router = (app: express.Express): void => {
+	app.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
+		if (req.url.indexOf('..') === -1) {
+			if (req.url.indexOf('.less') === -1) {
+				var resourcePath = path.resolve(__dirname + '/..' + req.url);
+				res.sendFile(resourcePath);
+			} else {
+				next();
+			}
+		}
+	});
+
 	app.all('*',(req: any, res: any, next: () => void) => {
 		res.set({
 			'Access-Control-Allow-Origin': config.publicConfig.url,
@@ -85,13 +96,6 @@ var router = (app: express.Express): void => {
 					res.send(css);
 				});
 			});
-		}
-	});
-
-	app.get(/^\/resources\/.*/,(req: any, res: any) => {
-		if (req.url.indexOf('..') === -1) {
-			var resourcePath = path.resolve(__dirname + '/..' + req.url);
-			res.sendFile(resourcePath);
 		}
 	});
 
