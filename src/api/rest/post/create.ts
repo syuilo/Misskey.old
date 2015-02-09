@@ -74,7 +74,9 @@ var generateStreamingObject = (post: Post, callback: (obj: any) => void): void =
 			if (obj.isReply) {
 				Post.find(post.inReplyToPostId,(replyPost: Post) => {
 					delete replyPost.image;
-					obj.reply = replyPost;
+					var replyObj: any = replyPost;
+					replyObj.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
+					obj.reply = replyObj;
 					User.find(obj.reply.userId,(replyUser: User) => {
 						delete replyUser.header;
 						delete replyUser.icon;
