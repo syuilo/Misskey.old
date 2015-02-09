@@ -54,7 +54,17 @@ html(lang='ja', dir='ltr')
 									data-userId= post.user.id)
 								if post.isReply
 									div.replyTo
-										p.text!= parseText(post.reply.text)
+										article
+											a(href=url + '/' + post.reply.user.screenName)
+												img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
+											header
+												h2
+													a(href=url + '/' + post.reply.user.screenName)= post.reply.user.name
+												span.screenName= '@' + post.reply.user.screenName
+												time(datetime=post.reply.createdAt)= post.reply.createdAt
+											p.text!= parseText(post.reply.text)
+											if post.reply.isImageAttached
+												img.reply.image(src=url + '/img/post/' + post.reply.id, alt='image')
 								article
 									a(href=url + '/' + post.user.screenName)
 										img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')

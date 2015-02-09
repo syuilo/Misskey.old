@@ -11,17 +11,15 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 		style: post.isReply ? `border-color: ${post.reply.user.color};` : ''
 	})
 		.append(post.isReply ? generateReplyTo() : null)
-		.append(generateArticle())
+		.append(generateArticle(post))
 		.append(generateFooter());
 
 	function generateReplyTo(): JQuery {
 		return $('<div class="replyTo">')
-			.append(
-			$('<p class="text">')
-				.html(parseText(post.reply.text)));
+			.append(generateArticle(post.reply));
 	}
 
-	function generateArticle(): JQuery {
+	function generateArticle(post: any): JQuery {
 		return $('<article>')
 			.append(generateIcon())
 			.append(generateHeader())
