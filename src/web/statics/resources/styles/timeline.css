@@ -157,9 +157,11 @@
 					.timeline > .posts > .post > article > .text .screenName {
 						color: #831c86;
 						text-decoration: none;
+						transition: box-shadow 0.1s ease;
 					}
 					.timeline > .posts > .post > article > .text .screenName:hover {
 						text-decoration: underline;
+						box-shadow: 0 0 4px rgba(131, 28, 134, 0.3);
 					}
 				
 				.timeline > .posts > .post > article > .image {
@@ -295,9 +297,11 @@
 						.timeline > .posts > .post > .replyTo > article > .text .screenName {
 							color: #831c86;
 							text-decoration: none;
+							transition: box-shadow 0.1s ease;
 						}
 						.timeline > .posts > .post > .replyTo > article > .text .screenName:hover {
 							text-decoration: underline;
+							box-shadow: 0 0 4px rgba(131, 28, 134, 0.3);
 						}
 					
 					.timeline > .posts > .post > .replyTo > article > .image {
