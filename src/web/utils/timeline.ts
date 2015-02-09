@@ -1,6 +1,7 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import jade = require('jade');
+import async = require('async');
 import Application = require('../../models/application');
 import User = require('../../models/user');
 import Post = require('../../models/post');
