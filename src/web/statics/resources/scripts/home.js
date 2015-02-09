@@ -55,7 +55,7 @@ $(function()
 		var now = new Date();
 		$('time').each(function() {
 			function pad2(n) { return n < 10 ? '0' + n : n }
-			var date = new Date($(this).attr('datetime').replace(/\-/g, "/"));
+			var date = new Date($(this).attr('datetime'));
 			var ago = ~~((now - date) / 1000);
 			var timeText =
 				ago >= 31536000 ? ~~(ago / 31536000) + "年前":
