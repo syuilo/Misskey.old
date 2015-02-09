@@ -197,13 +197,13 @@ TIMELINE.setEventPost = function ($post: JQuery) {
 
 	$post.click(function (event) {
 		if ($(event.target).is('input') || $(event.target).is('textarea')) return;
-		if ($(this).find('.replyForm').css('display') === 'none') {
-			$('.replyForm').each(function () {
+		if ($(this).find('footer').css('display') === 'none') {
+			$('.timeline > .posts > .post footer').each(function () {
 				$(this).hide(200);
 			});
-			$(this).find('.replyForm').show(200);
+			$(this).find('footer').show(200);
 		} else {
-			$(this).find('.replyForm').hide(200);
+			$(this).find('footer').hide(200);
 		}
 	});
 
