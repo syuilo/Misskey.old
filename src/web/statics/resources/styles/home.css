@@ -253,7 +253,7 @@ main {
 			display: block;
 			width: 100%;
 			height: 1px;
-			background: #fafafa;
+			background: rgba(0, 0, 0, 0.05);
 		}
 		.timeline > .posts > .post:first-child:before {
 			content: "";
@@ -398,11 +398,11 @@ main {
 				word-break: break-all;
 
 				color: rgba(0, 0, 0, 0.4);
-				border-bottom: dashed 1px #eee;
+				border-bottom: dashed 1px rgba(0, 0, 0, 0.05);
 			}
 				.timeline > .posts > .post > .replyTo > article {
 					position: relative;
-					padding: 20px 12px;
+					padding: 8px 8px;
 				}
 				.timeline > .posts > .post > .replyTo > article:after {
 					content: "";
@@ -428,7 +428,7 @@ main {
 						}
 							.timeline > .posts > .post > .replyTo > article > header > h2 a {
 								color: rgba(0, 0, 0, 0.7);
-								font-weight: bold;
+								font-weight: normal;
 								text-decoration: none;
 								transition: all 0.1s ease;
 							}
