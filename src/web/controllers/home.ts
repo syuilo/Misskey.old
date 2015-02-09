@@ -13,7 +13,7 @@ var render = (req: any, res: any): void => {
 		Post.generateTimeline(posts, (timeline: Post[]) => {
 			res.display(req, res, 'home', {
 				timeline: timeline,
-				timelineHtml: jade.compile('../../views/templates/timeline.jade', {
+				timelineHtml: jade.compileFile('../../views/templates/timeline.jade', {
 					
 				})({
 					posts: timeline
