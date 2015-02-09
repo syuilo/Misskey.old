@@ -16,11 +16,7 @@ $(function() {
 			type: $form.attr("method"),
 			data: $form.serialize()
 		}).done(function() {
-			if ($.cookie('origin') === undefined) {
-				location.reload();
-			} else {
-				location.href = $.cookie('origin');
-			}
+			location.reload();
 		}).fail(function() {
 			$submitButton.attr("disabled", false);
 			$("#failed").remove();
