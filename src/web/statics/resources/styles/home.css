@@ -297,7 +297,7 @@ main {
 						font-size: 1em;
 					}
 						.timeline > .posts > .post > article > header > h2 a {
-							color: #000;
+							color: rgba(0, 0, 0, 0.9);
 							font-weight: bold;
 							text-decoration: none;
 							transition: all 0.1s ease;
@@ -400,6 +400,7 @@ main {
 					overflow: hidden;
 					word-wrap: break-word;
 					font-size: 1.1em;
+					color: rgba(0, 0, 0, 0.8);
 				}
 
 					.timeline > .posts > .post > article > .text > a {
