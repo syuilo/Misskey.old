@@ -245,7 +245,7 @@ main {
 		list-style: none;
 	}
 		.timeline > .posts > .post {
-			padding: 4px 0;
+			padding: 0;
 			border-left: solid 3px transparent;
 			background-color: #FFF;
 			transition: background-color 0.2s ease;
@@ -274,7 +274,7 @@ main {
 		
 			.timeline > .posts > .post > article {
 				position: relative;
-				padding: 16px 12px;
+				padding: 20px 12px;
 			}
 			.timeline > .posts > .post > article:after {
 				content: "";
