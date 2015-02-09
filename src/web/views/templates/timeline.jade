@@ -1,31 +1,3 @@
-- function parseText(text) {
-- 	text = escapeHtml(text);
-- 	text = parseURL(text);
-- 	text = parseReply(text);
-- 	text = parseNewLine(text);
-- 	return text;
-- 	function parseURL(text) {
-- 		return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
-- 			return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
-- 		});
-- 	}
-- 	function parseReply(text) {
-- 		return text.replace(/@([a-zA-Z0-9_]+)/g, function(_, screenName) {
-- 			return '<a href="' + url + '/' + screenName + '" target="_blank" class="screenName">@' + screenName + '</a>';
-- 		});
-- 	}
-- 	function parseNewLine(text) {
-- 		return text.replace(/(\r\n|\r|\n)/g, '<br>');
-- 	}
-- }
-- function escapeHtml(text) {
-- 	return String(text)
-- 		.replace(/&(?!\w+;)/g, '&amp;')
-- 		.replace(/</g, '&lt;')
-- 		.replace(/>/g, '&gt;')
-- 		.replace(/"/g, '&quot;');
-- }
-
 div.timeline
 	ol.posts
 		each post in posts

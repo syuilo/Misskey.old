@@ -103,30 +103,4 @@ class Post {
 			db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 		});
 	}
-
-	public static generateTimeline(posts: Post[], callback: (posts: Post[]) => void): void {
-		async.map(posts, (post: any, next: any) => {
-			post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
-			User.find(post.userId, (user: User) => {
-				post.user = user;
-				Application.find(post.appId, (app: Application) => {
-					post.app = app;
-					if (post.isReply) {
-						Post.find(post.inReplyToPostId,(replyPost: any) => {
-							replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
-							post.reply = replyPost;
-							User.find(post.reply.userId, (replyUser: User) => {
-								post.reply.user = replyUser;
-								next(null, post);
-							});
-						});
-					} else {
-						next(null, post);
-					}
-				});
-			});
-		}, (err: any, results: Post[]) => {
-				callback(results);
-			});
-	}
 }
