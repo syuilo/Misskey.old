@@ -418,7 +418,7 @@ main {
 					.timeline > .posts > .post > .replyTo > article > header:after {
 						
 					}
-						..timeline > .posts > .post > .replyTo > article > header > h2 {
+						.timeline > .posts > .post > .replyTo > article > header > h2 {
 							text-align: left;
 							display: inline;
 							margin: 0;
@@ -427,7 +427,7 @@ main {
 							font-size: 1em;
 						}
 							.timeline > .posts > .post > .replyTo > article > header > h2 a {
-								color: rgba(0, 0, 0, 0.9);
+								color: rgba(0, 0, 0, 0.7);
 								font-weight: bold;
 								text-decoration: none;
 								transition: all 0.1s ease;
