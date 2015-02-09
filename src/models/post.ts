@@ -112,7 +112,8 @@ class Post {
 				Application.find(post.appId, (app: Application) => {
 					post.app = app;
 					if (post.isReply) {
-						Post.find(post.inReplyToPostId, (replyPost: any) => {
+						Post.find(post.inReplyToPostId,(replyPost: any) => {
+							replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
 							post.reply = replyPost;
 							User.find(post.reply.userId, (replyUser: User) => {
 								post.reply.user = replyUser;
