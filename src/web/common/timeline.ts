@@ -17,14 +17,14 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 		return $('<div class="replyTo">')
 			.append(
 			$('<p class="text">')
-				.text(parseText(post.reply.text)));
+				.html(parseText(post.reply.text)));
 	}
 
 	function generateArticle(): JQuery {
 		return $('<article>')
 			.append(generateIcon())
 			.append(generateHeader())
-			.append($('<p class="text">').text(parseText(post.text)))
+			.append($('<p class="text">').html(parseText(post.text)))
 			.append(post.isImageAttached ? generateImage() : null);
 
 		function generateIcon(): JQuery {
