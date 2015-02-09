@@ -53,7 +53,7 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 
 			function generateScreenName() {
 				return $('<span class="screenName">')
-					.text(post.user.screenName);
+					.text('@' + post.user.screenName);
 			}
 
 			function generateTime() {
