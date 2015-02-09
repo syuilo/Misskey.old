@@ -48,7 +48,7 @@ html(lang='ja', dir='ltr')
 				div.timeline
 					ol.posts
 						each post in timeline
-							li.post(title= '#{post.createdAt}&#x0A;via #{post.app.name}'
+							li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
 									style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 									data-id= post.id
 									data-userId= post.user.id)
