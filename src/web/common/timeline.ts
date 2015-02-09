@@ -59,6 +59,7 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 
 			function generateTime() {
 				return $('<time>')
+					.attr('datetime', post.createdAt)
 					.text(post.createdAt);
 			}
 		}

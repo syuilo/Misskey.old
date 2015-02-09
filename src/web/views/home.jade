@@ -62,7 +62,7 @@ html(lang='ja', dir='ltr')
 										h2
 											a(href=url + '/' + post.user.screenName)= post.user.name
 										span.screenName= '@' + post.user.screenName
-										time= post.createdAt
+										time(datetime=post.createdAt)= post.createdAt
 									p.text= post.text
 									if post.isImageAttached
 										img.image(src=url + '/img/post/' + post.id, alt='image')
