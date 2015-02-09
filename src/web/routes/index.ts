@@ -84,6 +84,8 @@ var router = (app: express.Express): void => {
 		});
 	});
 
+	app.use(express.static(__dirname + '/statics'));
+
 	app.get('/', (req: any, res: any, next: () => void) => {
 		if (req.login) {
 			require('../controllers/home')(req, res);
