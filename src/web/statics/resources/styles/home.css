@@ -313,8 +313,8 @@ main {
 				
 					.timeline > .posts > .post > article > header > time {
 						position: absolute;
-						top: 8px;
-						right: 8px;
+						top: 16px;
+						right: 12px;
 						display: inline;
 						vertical-align: top;
 						color: rgba(0, 0, 0, 0.6);
