@@ -188,7 +188,7 @@ main > #contents {
 			border-bottom: none;
 		}
 
-main > #contents h2 {
+main > #contents > section > h2 {
 	display: block;
 	box-sizing: border-box;
 	position: relative;
@@ -204,7 +204,7 @@ main > #contents h2 {
 
 	transition: all .5s ease;
 }
-main > #contents h2:before {
+main > #contents > section > h2:before {
 	content: "";
 	display: block;
 	position: absolute;
@@ -218,13 +218,13 @@ main > #contents h2:before {
 	
 	transition: all .5s ease;
 }
-main > #contents section:hover h2 {
+main > #contents > section:hover > h2 {
 	letter-spacing: 0.5em;
 	background: #ddd;
 
 	transition: all .3s ease;
 }
-main > #contents section:hover h2:before {
+main > #contents > section:hover > h2:before {
 	border-top: solid 8px #ddd;
 
 	transition: all .3s ease;
