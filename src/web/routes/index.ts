@@ -75,7 +75,7 @@ var router = (app: express.Express): void => {
 		var path = __dirname + '/statics' + req.url;
 		fs.readFile(path, 'utf8', (err: NodeJS.ErrnoException, lessCss: string) => {
 			if (err) throw err;
-			lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
+			lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
 			less.render(lessCss, (err: any, css: string) => {
 				if (err) throw err;
 				res.header("Content-type", "text/css");
