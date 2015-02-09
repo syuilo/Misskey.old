@@ -441,7 +441,7 @@ main {
 	
 				.timeline > .posts > .post > footer {
 					display: none;
-					padding: 4px 8px;
+					padding: 4px 16px;
 				}
 					.timeline > .posts > .post > footer > .replyForm > textarea {
 						box-sizing: border-box;
@@ -506,8 +506,8 @@ main {
 					box-sizing: border-box;
 					display: inline-block;
 					position: relative;
-					margin: 4px;
-					padding: 4px 16px;
+					margin: 4px 8px;
+					padding: 6px 16px;
 					vertical-align: top;
 					
 					outline: dashed 2px #ccc;
