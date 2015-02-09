@@ -1,0 +1,300 @@
+html, body {
+	height: 100%;
+}
+
+html {
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+main {
+	display: block;
+	width: 100%;
+	max-width: 1100px;
+	min-height: 100%;
+	margin: 0 auto;
+	padding: 0;
+
+	background: #fff;
+}
+main:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+main > header {
+	display: block;
+	position: fixed;
+	width: 300px;
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
+}
+main > header:before {
+	content: "";
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	
+	background-color: #333;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+	-moz-filter: blur(8px);
+	-o-filter: blur(8px);
+	-ms-filter: blur(8px);
+
+	transform: scale(1.5, 1.5);
+}
+main > header:after {
+	content: "";
+	pointer-events: none;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 56px;
+
+	border-top: solid 16px transparent;
+	border-right: solid 16px #fff;
+	border-bottom: solid 16px transparent;
+	border-left: solid 16px transparent;
+}
+
+	main > header a[itemprop=sameAs]:hover #user-icon {
+		filter: saturate(200%);
+		-webkit-filter: saturate(200%);
+		-moz-filter: saturate(200%);
+		-o-filter: saturate(200%);
+		-ms-filter: saturate(200%);
+	}
+	main > header #user-icon {
+		display: block;
+		width: 128px;
+		height: 128px;
+		max-width: 128px;
+		max-height: 128px;
+		margin: 8px auto;
+		padding: 0 0;
+		border-radius: 64px;
+
+		transition: all .2s ease;
+	}
+	main > header .name {
+		display: block;
+		box-sizing: border-box;
+		padding: 0;
+		text-align: center;
+	}
+	main > header #user-name {
+		margin: 8px 0 6px 0;
+		padding: 0;
+		
+		font-size: 1.7em;
+		font-weight: normal;
+		color: #fff;
+		text-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+	}
+	main > header #user-sn {
+		margin: 0 0 6px 0;
+		padding: 0;
+		
+		font-size: 0.9em;
+		font-weight: normal;
+		color: rgba(255, 255, 255, 0.8);
+	}
+	main > header #user-sn:before {
+		content: '@';
+	}
+	main > header #user-bio {
+		margin: 16px 0;
+		padding: 0 8px;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 0.8em;
+		text-shadow: 0 0 32px rgba(0, 0, 0, 0.7);
+	}
+	main > header #fans {
+		font-size: 0.7em;
+	}
+		main > header #fans small {
+			margin: 0 4px;
+		}
+	main > header .locationAndUrl {
+		color: rgba(255, 255, 255, 0.5);
+	}
+	main > header #user-location {
+		margin: 0 4px;
+		color: #fff;
+	}
+	main > header #user-url {
+		margin: 0 4px;
+	}
+	main > header #user-url:hover {
+		text-decoration: underline;
+	}
+
+
+main > #contents {
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+	left: 300px;
+	width: calc(100% - 300px);
+	padding: 0 64px 32px 64px;
+
+	background: #fff;
+}
+	main > #contents > #followForm {
+		position: absolute;
+		top: 12px;
+		right: 24px;
+	}
+	main > #contents > #user-profile {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 32px 16px;
+
+		font-size: 1.2em;
+
+		background: #fff;
+	}
+		
+		/*
+		main > #contents > #user-profile a {
+			text-decoration: none;
+			color: #ff006c;
+		}
+		*/
+
+		main > #contents > #user-profile .profileNotSet {
+			margin: 0;
+			color: #ccc;
+		}
+		main > #contents > #user-profile hr {
+			height: 0;
+			margin: 16px 0;
+			padding: 0;
+			border-top: 1px solid #eee;
+			border-bottom: none;
+		}
+
+main > #contents h2 {
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+	margin: 0;
+	padding: 8px;
+	width: 100%;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1em;
+	color: #555;
+	background: #eee;
+	border-radius: 4px;
+
+	transition: all .5s ease;
+}
+main > #contents h2:before {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -16px;
+	left: calc(50% - 8px);
+
+	border-top: solid 8px #eee;
+	border-right: solid 8px transparent;
+	border-bottom: solid 8px transparent;
+	border-left: solid 8px transparent;
+	
+	transition: all .5s ease;
+}
+main > #contents section:hover h2 {
+	letter-spacing: 0.5em;
+	background: #ddd;
+
+	transition: all .3s ease;
+}
+main > #contents section:hover h2:before {
+	border-top: solid 8px #ddd;
+
+	transition: all .3s ease;
+}
+
+main > #contents > .tags {
+	margin: 0;
+	padding: 8px 0;
+}
+	main > #contents > .tags ul {
+		margin: 0;
+		padding: 8px 8px;
+		list-style: none;
+		text-align: center;
+
+		/* hidden space */
+		font-size: 0;
+	}
+		main > #contents > .tags ul li {
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+		}
+			main > #contents > .tags ul li a {
+				display: inline-block;
+				position: relative;
+				box-sizing: border-box;
+				margin: 4px 4px 4px 4px;
+				padding: 4px 8px 4px 16px;
+				
+				line-height: 1.2em;
+				font-size: 1rem;
+				color: #000;
+				text-decoration: none;
+
+				background: #fff;
+				border: solid 1px #eee;
+			}
+			main > #contents > .tags ul li a:hover {
+				background: #eee;
+			}
+			main > #contents > .tags ul li a:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: calc(0.6em + 1px);
+				left: 4px;
+				width: 8px;
+				height: 8px;
+
+				font-size: 0.8em;
+
+				background: #eee;
+				border-radius: 4px;
+			}
+			main > #contents > .tags ul li a:focus:before {
+				box-shadow: 0 0 0 1px #ff006c inset;
+			}
+			/*main > #contents > .tags ul li a:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: -2.4em;
+
+				font-size: 0.8em;
+
+				border-top: solid 1.2em transparent;
+				border-right: solid 1.2em #fff;
+				border-bottom: solid 1.2em transparent;
+				border-left: solid 1.2em transparent;
+			}*/
+
