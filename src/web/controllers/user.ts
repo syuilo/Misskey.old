@@ -9,7 +9,7 @@ export = render;
 var render = (req: any, res: any): void => {
 	res.display(req, res, 'user', {
 		user: req.rootUser,
-		tags: req.rootUser.split(','),
+		tags: req.rootUser.tag.split(','),
 		url: conf.publicConfig.url
 	});
 };
