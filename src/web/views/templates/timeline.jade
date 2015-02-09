@@ -5,12 +5,12 @@
 - 	text = parseNewLine(text);
 - 	return text;
 - 	function parseURL(text) {
-- 		return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,(url) => {
+- 		return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
 - 			return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
 - 		});
 - 	}
 - 	function parseReply(text) {
-- 		return text.replace(/@([a-zA-Z0-9_]+)/g,(_, screenName) => {
+- 		return text.replace(/@([a-zA-Z0-9_]+)/g, function(_, screenName) {
 - 			return '<a href="' + url + '/' + screenName + '" target="_blank" class="screenName">@' + screenName + '</a>';
 - 		});
 - 	}
