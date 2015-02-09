@@ -72,16 +72,18 @@ var router = (app: express.Express): void => {
 	});
 
 	app.get('*.less',(req: any, res: any) => {
-		var path = __dirname + '/statics' + req.url;
-		fs.readFile(path, 'utf8', (err: NodeJS.ErrnoException, lessCss: string) => {
-			if (err) throw err;
-			lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
-			less.render(lessCss, (err: any, css: string) => {
+		var path = __dirname + req.url;
+		if (path.indexOf('..') === -1) {
+			fs.readFile(path, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 				if (err) throw err;
-				res.header("Content-type", "text/css");
-				res.send(css);
+				lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
+				less.render(lessCss,(err: any, css: string) => {
+					if (err) throw err;
+					res.header("Content-type", "text/css");
+					res.send(css);
+				});
 			});
-		});
+		}
 	});
 
 	app.get('/resources/.*',(req: any, res: any) => {
