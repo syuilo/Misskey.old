@@ -1,6 +1,8 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
+import fs = require('fs');
 import express = require('express');
+import less = require('less');
 import AccessToken = require('../../models/access-token');
 import User = require('../../models/user');
 import Post = require('../../models/post');
@@ -69,18 +71,31 @@ var router = (app: express.Express): void => {
 		});
 	});
 
+	app.get('*.less',(req: any, res: any) => {
+		var path = __dirname + '/statics' + req.url;
+		fs.readFile(path, 'utf8', (err: NodeJS.ErrnoException, lessCss: string) => {
+			if (err) throw err;
+			lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
+			less.render(lessCss, (err: any, css: string) => {
+				if (err) throw err;
+				res.header("Content-type", "text/css");
+				res.send(css);
+			});
+		});
+	});
+
 	app.get('/', (req: any, res: any, next: () => void) => {
 		if (req.login) {
 			require('../controllers/home')(req, res);
 		} else {
 			res.display(req, res, 'entrance', {});
 		}
-    });
+	});
 
-    app.get('/config',(req: any, res: any, next: () => void) => {
-        res.set('Content-Type', 'application/javascript');
-        res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
-    });
+	app.get('/config',(req: any, res: any, next: () => void) => {
+		res.set('Content-Type', 'application/javascript');
+		res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
+	});
 
 	/* Images */
 

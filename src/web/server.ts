@@ -4,6 +4,7 @@ import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
 import session = require('express-session');
+import less = require('less');
 
 import db = require('../db');
 import router = require('./routes/index');
