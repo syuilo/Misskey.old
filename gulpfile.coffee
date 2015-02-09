@@ -4,7 +4,7 @@ del = require 'del'
 
 paths =
 	ts: './src/**/*.ts'
-	webRes: './src/web/statics/resources/**/**'
+	webRes: './src/web/resources/**/**'
 	webViews: './src/web/views/**/*.jade'
 
 gulp.task 'clean', del.bind(null, ['./bin/**'])
@@ -22,7 +22,7 @@ gulp.task 'build-ts', ->
 
 gulp.task 'build-web-res', ->
 	gulp.src paths.webRes
-		.pipe gulp.dest './bin/web/statics/resources'
+		.pipe gulp.dest './bin/web/resources'
 
 gulp.task 'build-web-views', ->
 	gulp.src paths.webViews

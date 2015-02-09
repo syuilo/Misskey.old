@@ -84,7 +84,12 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.use(express.static(__dirname + '/statics'));
+	app.get('/resources/.*',(req: any, res: any) => {
+		var path = __dirname + req.url;
+		if (path.indexOf('..') === -1) {
+			res.sendfile(path);
+		}
+	});
 
 	app.get('/', (req: any, res: any, next: () => void) => {
 		if (req.login) {
