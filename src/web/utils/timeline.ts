@@ -96,7 +96,7 @@ function parseText(text: string): string {
 
 	function parseReply(text: string): string {
 		return text.replace(/@([a-zA-Z0-9_]+)/g,(_: string, screenName: string) => {
-			return `<a href="${conf.url}/${screenName}" target="_blank" class="screenName">@${screenName}</a>`;
+			return `<a href="${conf.publicConfig.url}/${screenName}" target="_blank" class="screenName">@${screenName}</a>`;
 		});
 	}
 
