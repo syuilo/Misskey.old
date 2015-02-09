@@ -14,7 +14,8 @@ $(function()
     socket.on('post', function(content)
     {
         console.log(content);
-        var $post = TIMELINE.setEventPost(TIMELINE.generatePostElement(content, conf).hide());
+        var $post = TIMELINE.generatePostElement(content, conf).hide()
+        TIMELINE.setEventPost($post);
         $post.prependTo($('#timeline > .timeline > .posts')).show(200);
     });
 
