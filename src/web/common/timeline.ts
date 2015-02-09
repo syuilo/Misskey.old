@@ -80,7 +80,8 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 				.append(generateImageAttacher());
 
 			function generateTextArea() {
-				return $('<textarea name="text">');
+				return $('<textarea name="text">')
+					.text(`@${post.user.screenName} `);
 			}
 
 			function generateInReplyToPostId(): JQuery {
@@ -89,7 +90,7 @@ TIMELINE.generatePostElement = function (post: any, conf: any): JQuery {
 			}
 
 			function generateSubmitButton(): JQuery {
-				return $('<input type="submit" value="Update">');
+				return $('<input type="submit" value="Reply">');
 			}
 
 			function generateImageAttacher(): JQuery {

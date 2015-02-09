@@ -67,9 +67,9 @@ html(lang='ja', dir='ltr')
 										img.image(src=url + '/img/post/' + post.id, alt='image')
 								footer
 									form.replyForm
-										textarea(name='text')
+										textarea(name='text')= '@' + post.user.screenName + ' '
 										input(name='in_reply_to_post_id', type='hidden', value=post.id)
-										input(type='submit', value='Update')
+										input(type='submit', value='Reply')
 										div.imageAttacher
 											p 画像を添付
 											input(name='image', type='file')
