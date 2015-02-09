@@ -155,7 +155,7 @@ main {
 		color: #831c86;
 		outline: none;
 		border: solid 1px #831c86;
-		box-shadow: 2px 0 2px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 0 2px rgba(131, 28, 134, 0.2);
 	}
 
 	#postForm .image {
@@ -221,7 +221,7 @@ main {
 		border-radius: 2px;
 		box-shadow: none;
 		
-		transition: border 0.5s ease;
+		transition: background 0.5s ease;
 	}
 	#postForm input[type=submit]:hover {
 		background: #814584;
@@ -430,13 +430,6 @@ main {
 					word-wrap: break-word;
 				}
 				
-				.timeline > .posts > .post > .replyTo > .n {
-					display: block;
-					font-weight: bold;
-					text-decoration: none;
-					color: #888;
-				}
-
 				.timeline > .posts > .post > .replyTo > .img {
 					display: block;
 					max-width: 100%;
@@ -445,7 +438,7 @@ main {
 	
 				.timeline > .posts > .post > footer {
 					display: none;
-					padding: 4px;
+					padding: 4px 8px;
 				}
 					.timeline > .posts > .post > footer > .replyForm > textarea {
 						box-sizing: border-box;
@@ -455,47 +448,53 @@ main {
 						min-height: 64px;
 						vertical-align: bottom;
 						margin: 0;
-						padding: 4px;
+						padding: 8px;
 						
 						outline: 0;
 						border: solid 1px #CCC;
 						border-radius: 0;
-						font-family: Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3', Meiryo UI, Meiryo, ãƒ¡ã‚¤ãƒªã‚ª, sans-serif;
-						font-size: 1em;
+						font-size: 1.1em;
+
+						transition: all 0.2s ease;
 					}
 						.timeline > .posts > .post > footer > .replyForm > textarea:focus {
-							border-color: #1bb3b3;
-						}
-						.timeline > .posts > .post > footer > .replyForm > textarea:active {
-							/*border-color: #00a0e0;*/
-							border-color: #1bb3b3;
+							color: #831c86;
+							outline: none;
+							border: solid 1px #831c86;
+							box-shadow: 0 0 2px rgba(131, 28, 134, 0.2);
 						}
 				.timeline > .posts > .post > footer > .replyForm > input[type=submit] {
-					outline: 0;
-					border: none;
-					border-radius: 0;
-
-					margin: 0;
-					padding: 8px 32px;
-
 					-webkit-appearance: none;
-					font-family: Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3', Meiryo UI, Meiryo, ãƒ¡ã‚¤ãƒªã‚ª, sans-serif;
-					font-weight: normal;
-					font-size: 1em;
+					-moz-appearance: none;
+					appearance: none;
+					
+					display: block;
+					box-sizing: border-box;
+					margin: 0;
+					padding: 8px 16px;
+					min-width: 5em;
+					
 					cursor: pointer;
-					color: #FFF;
-					background-color: #1bb3b3;
 
-					transition: all 0.5s linear;
+					line-height: 1.2em;
+					font-size: 1.2em;
+					font-weight: normal;
+					text-decoration: none;
+					color: #fff;
+					
+					background: #831c86;
+					outline: none;
+					border: none;
+					border-radius: 2px;
+					box-shadow: none;
+					
+					transition: background 0.5s ease;
 				}
 				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:hover {
-					background-color: #4fe5e5;
-					text-shadow: 0 0 8px #FFF;
-					transition: all 0.1s linear;
+					background: #814584;
 				}
 				.timeline > .posts > .post > footer > .replyForm > input[type=submit]:active {
-					background-color: #0e5a5a;
-					transition: all 0.1s linear;
+					background: #4e1251;
 				}
 				.timeline > .posts > .post > footer > .replyForm > .imageAttacher {
 					box-sizing: border-box;
