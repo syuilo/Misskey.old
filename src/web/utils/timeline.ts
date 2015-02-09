@@ -6,6 +6,8 @@ import User = require('../../models/user');
 import Post = require('../../models/post');
 import conf = require('../../config');
 
+export = Timeline;
+
 class Timeline {
 	public static generateHtml(posts: Post[], callback: (timelineHtml: string) => void) {
 		Timeline.selialyzeTimelineOnject(posts,(timeline: any[]) => {
