@@ -16,7 +16,8 @@ var render = (req: any, res: any): void => {
 				timelineHtml: jade.compileFile(__dirname + '/../views/templates/timeline.jade', {
 					
 				})({
-					posts: timeline
+					posts: timeline,
+					parseText: parseText
 				}),
 				parseText: parseText
 			});
