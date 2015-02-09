@@ -243,15 +243,19 @@ main {
 		list-style: none;
 	}
 		.timeline > .posts > .post {
-			padding: 0;
+			position: relative;
+			padding: 8px 0;
 			border-left: solid 3px transparent;
 			background-color: #FFF;
 			transition: background-color 0.2s ease;
 		}
 		.timeline > .posts > .post:before {
 			content: "";
+			position: absolute;
+			top: 0;
+			left: -3px;
 			display: block;
-			width: 100%;
+			width: calc(100% + 3px);
 			height: 1px;
 			background: rgba(0, 0, 0, 0.05);
 		}
