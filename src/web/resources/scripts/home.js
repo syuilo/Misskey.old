@@ -25,7 +25,7 @@ $(function() {
 		console.log('reply', post);
 		var n = new Notification(post.user.name, {
 			body: post.text,
-			icon: conf.url + '/img/icons/' + post.user.screenName
+			icon: conf.url + '/img/icon/' + post.user.screenName
 		});
 		n.onshow = function() {
 			setTimeout(function() {
