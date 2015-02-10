@@ -55,6 +55,14 @@ class Timeline {
 		text = parseNewLine(text);
 		return text;
 
+		function escapeHtml(text: string): string {
+			return String(text)
+				.replace(/&(?!\w+;)/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+		}
+
 		function parseURL(text: string): string {
 			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,(url: string) => {
 				return `<a href="${url}" target="_blank" class="url">${url}</a>`;
@@ -70,13 +78,5 @@ class Timeline {
 		function parseNewLine(text: string): string {
 			return text.replace(/(\r\n|\r|\n)/g, '<br>');
 		}
-	}
-
-	public static escapeHtml(text: string): string {
-		return String(text)
-			.replace(/&(?!\w+;)/g, '&amp;')
-			.replace(/</g, '&lt;')
-			.replace(/>/g, '&gt;')
-			.replace(/"/g, '&quot;');
 	}
 }
