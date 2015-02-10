@@ -202,6 +202,9 @@ TIMELINE.setEventPost = function($post) {
 					$(this).hide(200);
 				});
 				$(this).find('footer').show(200);
+				var text = $(this).find('footer .replyForm textarea').val();
+				$(this).find('footer .replyForm textarea').val('');
+				$(this).find('footer .replyForm textarea').focus().val(text);
 			} else {
 				$(this).find('footer').hide(200);
 			}
