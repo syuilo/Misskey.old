@@ -17,7 +17,18 @@ class PostMention {
 	public static create(postId: number, userId: number, callback: (postMention: PostMention) => void): void {
 		db.query('insert into post_mentions (post_id, user_id) values (?, ?)',
 			[postId, userId],
-			(err: any, postMentions: any[]) => callback(new PostMention(postMentions[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				PostMention.find(info.insertId,(postMention: PostMention) => {
+					callback(postMention);
+				});
+			});
+	}
+
+	public static find(id: number, callback: (postMention: PostMention) => void): void {
+		db.query("select * from post_mentions where id = ?",
+			[id],
+			(err: any, postmentions: any[]) => callback(new PostMention(postmentions[0])));
 	}
 
 	public static findByUserId(userId: number, limit: number, sinceId: number, maxId: number, callback: (postMentions: PostMention[]) => void): void {
