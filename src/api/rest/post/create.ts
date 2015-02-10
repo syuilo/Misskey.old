@@ -3,16 +3,15 @@
 import fs = require('fs');
 import jpeg = require('jpeg-js');
 import APIResponse = require('../../api-response');
+import Streamer = require('../../../utils/streaming');
 import AccessToken = require('../../../models/access-token');
 import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
 import Post = require('../../../models/post');
+import PostMention = require('../../../models/post-mention');
 
 var authorize = require('../../auth');
-
-var redis = require('redis');
-var publisher = redis.createClient(6379, 'localhost');
 
 var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
@@ -35,16 +34,34 @@ var postCreate = (req: any, res: APIResponse) => {
 				streamObj.value = obj;
 
 				// Me
-				publisher.publish('misskey:userStream:' + user.id, JSON.stringify(streamObj));
+				Streamer.publish('userStream:' + user.id, JSON.stringify(streamObj));
 
 				// Followers
 				UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
 					if (userFollowings != null) {
 						userFollowings.forEach((userFollowing: UserFollowing) => {
-							publisher.publish('misskey:userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+							Streamer.publish('userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
 						});
 					}
 				});
+
+				// Mentions
+				var mentions = post.text.match(/@[a-zA-Z0-9_]+/g);
+				if (mentions != null) {
+					mentions.forEach((mentionSn: string) => {
+						mentionSn = mentionSn.replace('@', '');
+						User.findByScreenName(mentionSn,(replyUser: User) => {
+							if (replyUser != null) {
+								PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
+									var streamMentionObj: any = {};
+									streamMentionObj.type = 'reply';
+									streamMentionObj.value = obj;
+									Streamer.publish('userStream:' + replyUser.id, JSON.stringify(streamMentionObj));
+								});
+							}
+						});
+					});
+				}
 
 				// Sent response
 				res.apiRender(obj);
