@@ -81,7 +81,7 @@ TIMELINE.generatePostElement = function(post) {
 
 			function generateTextArea() {
 				return $('<textarea name="text">')
-				.text('@' + post.user.screenName);
+				.text('@' + post.user.screenName + ' ');
 			}
 
 			function generateInReplyToPostId() {
