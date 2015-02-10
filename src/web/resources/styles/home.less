@@ -229,11 +229,11 @@ main {
 		transition: background 0.1s ease;
 
 		&:hover {
-			lighten(@themeColor, 10%);
+			background: lighten(@themeColor, 10%);
 		}
 
 		&:active {
-			darken(@themeColor, 10%);
+			background: darken(@themeColor, 10%);
 		}
 	}
 }
