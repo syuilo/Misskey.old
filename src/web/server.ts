@@ -15,7 +15,7 @@ var RedisStore: any = require('connect-redis')(session);
 var webServer = express();
 webServer.set('view engine', 'jade');
 webServer.set('views', __dirname + '/views');
-webServer.locals.pretty = '  ';
+//webServer.locals.pretty = '  ';
 webServer.use(bodyParser.urlencoded({ extended: true }));
 webServer.use(cookieParser(config.cookie_pass));
 
