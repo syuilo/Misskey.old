@@ -16,7 +16,7 @@ $(function()
         console.log(content);
         var $post = TIMELINE.generatePostElement(content, conf).hide()
         TIMELINE.setEventPost($post);
-        $post.prependTo($('#timeline > .timeline > .posts')).show(200);
+        $post.prependTo($('#timeline .timeline > .posts')).show(200);
     });
 
     $('#postForm').submit(function(event)
