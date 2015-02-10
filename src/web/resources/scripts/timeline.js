@@ -148,7 +148,7 @@ TIMELINE.setEventPost = function($post) {
 			}
 		}).done(function() {
 			$submitButton.attr('disabled', false);
-			$form.text('‘—M‚µ‚Ü‚µ‚½');
+			$form.text('é€ä¿¡ã—ã¾ã—ãŸ');
 		}).fail(function() {
 			$submitButton.attr('disabled', false);
 		});
