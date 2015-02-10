@@ -5,6 +5,7 @@ import async = require('async');
 import Application = require('./application');
 import User = require('./user');
 import UserFollowing = require('./user-following');
+import PostMention = require('./post-mention');
 import CircleMember = require('./circle-member');
 export = Post;
 
@@ -101,6 +102,16 @@ class Post {
 				p = [maxId, limit];
 			}
 			db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
+		});
+	}
+
+	public static getMentions(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
+		PostMention.findByUserId(userId, limit, sinceId, maxId,(postMentions: PostMention[]) => {
+			if (postMentions != null) {
+				callback(postMentions.map((mention) => new Post(mention.postId)));
+			} else {
+				callback(null);
+			}
 		});
 	}
 }

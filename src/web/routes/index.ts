@@ -123,6 +123,10 @@ var router = (app: express.Express): void => {
 		}
 	});
 
+	app.get('/i/mention',(req: any, res: any, next: () => void) => {
+		require('../controllers/i/mention')(req, res);
+	});
+
 	app.get('/config',(req: any, res: any, next: () => void) => {
 		res.set('Content-Type', 'application/javascript');
 		res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
