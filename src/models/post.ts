@@ -47,6 +47,12 @@ class Post {
 			(err: any, posts: any[]) => callback(new Post(posts[0])));
 	}
 
+	public static getUserPostsCount(userId: number, callback: (postsCount: number) => void): void {
+		db.query("select count(*) from posts where user_id = ?",
+			[userId],
+			(err: any, count: any[]) => callback(count[0]));
+	}
+
 	public static findByUserId(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
 		var q: string, p: any;
 		if ((sinceId === null) && (maxId === null)) {
