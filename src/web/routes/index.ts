@@ -52,9 +52,6 @@ var router = (app: express.Express): void => {
 		req.data.apiUrl = config.publicConfig.apiUrl;
 		req.data.login = req.login;
 
-		/* Jade  pretty setting */
-		req.pretty = '  ';
-
 		/* Renderer function */
 		res.display = display;
 
@@ -79,8 +76,8 @@ var router = (app: express.Express): void => {
 				if (fs.existsSync(resourcePath)) {
 					initSession(req, res,() => {
 						sentLess(req, res, resourcePath);
-						return;
 					});
+					return;
 				}
 			}
 			if (req.url.indexOf('.less') === -1) {
