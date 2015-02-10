@@ -1,4 +1,5 @@
 @themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
 
 html {
 	background: #fff;
@@ -6,6 +7,11 @@ html {
 }
 
 body {
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-image: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url(@wallpaperUrl);
 
 	> nav {
 		display: block;
