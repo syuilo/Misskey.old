@@ -28,13 +28,13 @@ html(lang='ja', dir='ltr')
 			table#me-status
 				tr
 					th 投稿
-					td: a#me-postsCount(href=url + '/' + me.screenName)= 'n'
+					td: a#me-postsCount(href=url + '/' + me.screenName)= postsCount
 				tr
 					th フォロー
-					td: a#me-followingsCount(href=url + '/' + me.screenName + '/following')= 'n'
+					td: a#me-followingsCount(href=url + '/' + me.screenName + '/following')= followingsCount
 				tr
 					th フォロワー
-					td: a#me-followersCount(href=url + '/' + me.screenName + '/followers')= 'n'
+					td: a#me-followersCount(href=url + '/' + me.screenName + '/followers')= followersCount
 			ul
 				li: a(href=url)
 					i(class='fa fa-home')
