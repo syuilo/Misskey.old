@@ -30,7 +30,7 @@ $(function() {
 		n.onshow = function() {
 			setTimeout(function() {
 				n.close();
-			}, 7000);
+			}, 10000);
 		};
 		n.onclick = function() {
 			window.open(conf.url + '/' + post.user.screenName + '/post/' + post.id);
