@@ -18,7 +18,7 @@ html {
 body {
 	> nav {
 		display: block;
-		float: left;
+		position: fixed;
 		width: 300px;
 		min-height: 100%;
 		text-align: center;
@@ -38,6 +38,38 @@ body {
 			#meScreenName {
 				margin: 0 8px;
 				color: rgba(0, 0, 0, 0.5);
+			}
+		}
+
+		> ul {
+			width: 100%;
+			margin: 16px 0;
+			padding: 0;
+			list-style: none;
+
+			> li {
+				background: #fff;
+				border-top: solid 1px #eee;
+
+				&:first-child {
+					border-top: none;
+				}
+
+				a {
+					display: block;
+					padding: 10px 16px;
+					background-image: url("/resources/images/allow.svg");
+					background-repeat: no-repeat;
+					background-position: ~"calc(100% - 8px)" center;
+					text-decoration: none;
+					color: #111;
+					font-size: 1.1em;
+
+					&:hover {
+						background-color: @themeColor;
+						color: #fff;
+					}
+				}
 			}
 		}
 	}
@@ -89,45 +121,10 @@ body {
 	}
 }
 
-
-
-body > nav {
-	> ul {
-		width: 100%;
-		margin: 16px 0;
-		padding: 0;
-		list-style: none;
-
-		> li {
-			background: #fff;
-			border-top: solid 1px #eee;
-
-			&:first-child {
-				border-top: none;
-			}
-
-			a {
-				display: block;
-				padding: 10px 16px;
-				background-image: url("/resources/images/allow.svg");
-				background-repeat: no-repeat;
-				background-position: ~"calc(100% - 8px)" center;
-				text-decoration: none;
-				color: #111;
-				font-size: 1.1em;
-
-				&:hover {
-					background-color: @themeColor;
-					color: #fff;
-				}
-			}
-		}
-	}
-}
-
 main {
 	display: block;
-	float: left;
+	position: absolute;
+	left: 300px;
 	width: ~"calc(100% - 300px)";
 
 	#timeline {
