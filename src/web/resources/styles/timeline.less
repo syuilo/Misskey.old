@@ -3,19 +3,19 @@
 /* Timeline
  * ---------------------------------------------------------------- */
 .timeline {
-	
+
 	> .posts {
 		margin: 0;
 		padding: 0;
 		list-style: none;
-		
+
 		> .post {
 			position: relative;
 			padding: 8px 0;
 			border-left: solid 3px transparent;
 			background-color: #FFF;
 			transition: background-color 0.2s ease;
-			
+
 			&:before {
 				content: "";
 				position: absolute;
@@ -26,22 +26,22 @@
 				height: 1px;
 				background: rgba(0, 0, 0, 0.05);
 			}
-			
+
 			&:first-child:before {
 				content: "";
 				display: none;
 				width: 0;
 				height: 0;
 			}
-			
+
 			&:hover {
 				background-color: #F8F8F8;
 				transition: background-color 0s ease;
-				
+
 				> article > header > h2 a {
 					color: #1bb3b3;
 				}
-				
+
 				> article > a > .icon {
 					filter: saturate(200%);
 					-webkit-filter: saturate(200%);
@@ -50,27 +50,27 @@
 					-ms-filter: saturate(200%);
 				}
 			}
-			
+
 			&:active {
 				background-color: #EEE;
 				transition: background-color 0s ease;
 			}
-			
+
 			> article {
 				position: relative;
 				padding: 20px 12px;
-				
+
 				&:after {
 					content: "";
 					display: block;
 					clear: both;
 				}
-				
+
 				> header {
 					margin-bottom: 2px;
 					white-space: nowrap;
 					overflow: hidden;
-					
+
 					> h2 {
 						text-align: left;
 						display: inline;
@@ -78,7 +78,7 @@
 						padding: 0;
 						font-weight: normal;
 						font-size: 1em;
-						
+
 						> a {
 							color: rgba(0, 0, 0, 0.9);
 							font-weight: bold;
@@ -86,7 +86,7 @@
 							transition: all 0.1s ease;
 						}
 					}
-					
+
 					> time {
 						position: absolute;
 						top: 16px;
@@ -96,7 +96,7 @@
 						color: rgba(0, 0, 0, 0.6);
 						font-size: small;
 					}
-					
+
 					> .badge {
 						text-align: left;
 						display: inline;
@@ -109,14 +109,14 @@
 						color: #fff;
 						font-weight: bold;
 					}
-					
+
 					> .screenName {
 						text-align: left;
 						margin: 0 0 0 8px;
 						color: rgba(0, 0, 0, 0.5);
 					}
 				}
-				
+
 				a > .icon {
 					float: left;
 					min-width: 54px;
@@ -127,7 +127,7 @@
 					border-radius: 8px;
 					transition: all 0.1s ease;
 				}
-				
+
 				> .text {
 					display: block;
 					margin: 0 0 0 0;
@@ -136,20 +136,20 @@
 					word-wrap: break-word;
 					font-size: 1.1em;
 					color: rgba(0, 0, 0, 0.8);
-					
+
 					.reply {
 						margin: 0 8px 0 0;
 						color: rgba(0, 0, 0, 0.8);
 					}
-					
+
 					.url {
 						color: #1bb3b3;
 						text-decoration: none;
-						
+
 						&:hover {
 							text-decoration: underline;
 						}
-						
+
 						&:after {
 							content: "\f14c";
 							display: inline-block;
@@ -160,25 +160,25 @@
 							font-style: normal;
 						}
 					}
-					
+
 					.screenName {
 						color: @themeColor;
 						text-decoration: none;
 						transition: text-shadow 0.2s ease;
-						
+
 						&:hover {
 							text-shadow: 0 0 4px fade(@themeColor, 30%);
 						}
 					}
 				}
-				
+
 				> .image {
 					display: block;
 					max-width: 100%;
 					max-height: 512px;
 				}
 			}
-			
+
 			.replyTo {
 				display: inline-block;
 				width: 100%;
@@ -187,12 +187,12 @@
 				word-wrap: break-word;
 				word-break: break-all;
 				color: rgba(0, 0, 0, 0.4);
-				
+
 				&:hover {
 					> article > header > h2 a {
 						color: #1bb3b3;
 					}
-					
+
 					> article > a > .icon {
 						filter: saturate(200%);
 						-webkit-filter: saturate(200%);
@@ -201,22 +201,22 @@
 						-ms-filter: saturate(200%);
 					}
 				}
-				
+
 				> article {
 					position: relative;
 					padding: 8px 8px;
-					
+
 					&:after {
 						content: "";
 						display: block;
 						clear: both;
 					}
-					
+
 					> header {
 						margin-bottom: 2px;
 						white-space: nowrap;
 						overflow: hidden;
-						
+
 						> h2 {
 							text-align: left;
 							display: inline;
@@ -224,7 +224,7 @@
 							padding: 0;
 							font-weight: normal;
 							font-size: 1em;
-							
+
 							> a {
 								color: rgba(0, 0, 0, 0.7);
 								font-weight: normal;
@@ -232,7 +232,7 @@
 								transition: all 0.1s ease;
 							}
 						}
-						
+
 						> time {
 							position: absolute;
 							top: 8px;
@@ -242,7 +242,7 @@
 							color: rgba(0, 0, 0, 0.4);
 							font-size: small;
 						}
-						
+
 						> .badge {
 							text-align: left;
 							display: inline;
@@ -255,14 +255,14 @@
 							color: #fff;
 							font-weight: bold;
 						}
-						
+
 						> .screenName {
 							text-align: left;
 							margin: 0 0 0 8px;
 							color: rgba(0, 0, 0, 0.5);
 						}
 					}
-					
+
 					> a > .icon {
 						float: left;
 						min-width: 32px;
@@ -273,7 +273,7 @@
 						border-radius: 6px;
 						transition: all 0.1s ease;
 					}
-					
+
 					> .text {
 						display: block;
 						margin: 0 0 0 0;
@@ -282,16 +282,16 @@
 						word-wrap: break-word;
 						font-size: 0.9em;
 						color: rgba(0, 0, 0, 0.5);
-						
+
 						.reply {
 							margin: 0 8px 0 0;
 							color: rgba(0, 0, 0, 0.5);
 						}
-						
+
 						.url {
 							color: #1bb3b3;
 							text-decoration: none;
-							
+
 							&:after {
 								content: "\f14c";
 								font-family: FontAwesome;
@@ -301,23 +301,23 @@
 								display: inline-block;
 								padding-left: 2px;
 							}
-							
+
 							&:hover {
 								text-decoration: underline;
 							}
 						}
-						
+
 						.screenName {
 							color: @themeColor;
 							text-decoration: none;
 							transition: text-shadow 0.2s ease;
-							
+
 							&:hover {
 								text-shadow: 0 0 4px fade(@themeColor, 30%);
 							}
 						}
 					}
-					
+
 					> .image {
 						display: block;
 						max-width: 100%;
@@ -325,13 +325,13 @@
 					}
 				}
 			}
-			
+
 			> footer {
 				display: none;
 				padding: 4px 16px;
-				
+
 				> .replyForm {
-					
+
 					> textarea {
 						box-sizing: border-box;
 						width: 100%;
@@ -346,11 +346,11 @@
 						border-radius: 0;
 						font-size: 1.1em;
 						transition: all 0.2s ease;
-						
+
 						&:hover {
 							border: solid 1px @themeColor;
 						}
-						
+
 						&:focus {
 							color: @themeColor;
 							outline: none;
@@ -358,7 +358,7 @@
 							box-shadow: 0 0 4px fade(@themeColor, 30%);
 						}
 					}
-					
+
 					> input[type=submit] {
 						-webkit-appearance: none;
 						-moz-appearance: none;
@@ -380,29 +380,29 @@
 						border-radius: 0;
 						box-shadow: none;
 						transition: background 0.1s ease;
-						
+
 						&:hover {
 							background: lighten(@themeColor, 10%);
 						}
-						
+
 						&:active {
 							background: darken(@themeColor, 10%);
 						}
 					}
-					
+
 					> .imageAttacher {
 						box-sizing: border-box;
 						display: inline-block;
 						position: relative;
-						margin: 4px 8px;
-						padding: 6px 16px;
+						margin: 5px 9px;
+						padding: 7px 16px;
 						vertical-align: top;
 						outline: dashed 2px #ccc;
-						
+
 						&:hover {
 							outline: dashed 2px #777;
 						}
-						
+
 						input[type=file] {
 							display: inline;
 							position: absolute;
@@ -410,15 +410,16 @@
 							left: 0;
 							width: 100%;
 							height: 100%;
+							overflow: hidden;
 							opacity: 0;
 						}
-						
+
 						p {
 							margin: 0;
 							color: #777;
 							font-size: 1em;
 						}
-						
+
 						img {
 							max-width: 100%;
 							max-height: 128px;
@@ -428,7 +429,7 @@
 			}
 		}
 	}
-	
+
 	> .loadMore {
 		margin: 0;
 		padding: 0;
@@ -439,12 +440,12 @@
 		background: #fff;
 		outline: none;
 		border: none;
-		
+
 		&:hover {
 			background: #eee;
 			color: #1bb3b3;
 		}
-		
+
 		&:active {
 			background: #ddd;
 		}
