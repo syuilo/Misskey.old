@@ -36,6 +36,13 @@ html(lang='ja', dir='ltr')
 					th フォロワー
 					td: a#me-followersCount(href=url + me.screenName + '/followers')= 'n'
 			ul
+				li: a(href=url)
+					i(class='fa fa-user')
+					| ホーム
+				li: a(href=url + '/i/mention')
+					i(class='fa fa-at')
+					| メンション
+			ul
 				li: a(href=url + '/i') マイ メニュー
 				li: a(href=url + '/i/setting') 設定
 		
