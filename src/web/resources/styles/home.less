@@ -1,7 +1,4 @@
-html, body {
-	margin: 0;
-	padding: 0;
-}
+@themeColor: <%themeColor%>;
 
 html {
 	background: #fff;
@@ -10,18 +7,15 @@ html {
 
 body {
 
-}
-	body > nav {
+	> nav {
 		display: block;
 		float: left;
 		width: 300px;
 		text-align: center;
 		background: #fff;
-	}
-		body > nav > #me {
-			
-		}
-			body > nav > #me #meIcon {
+
+		> #me {
+			#meIcon {
 				display: block;
 				max-width: 128px;
 				max-height: 128px;
@@ -30,136 +24,149 @@ body {
 				vertical-align: bottom;
 				border-radius: 64px;
 			}
-			body > nav > #me #meScreenName {
+
+			#meScreenName {
 				margin: 0 8px;
 				color: rgba(0, 0, 0, 0.5);
 			}
+		}
+	}
+}
 
 #me-status {
 	width: 100%;
 	border-collapse: collapse;
 	border-radius: 4px;
 	background: rgba(255, 255, 255, 0.8);
-}
-	#me-status a {
+
+	a {
 		text-decoration: none;
-		color: #b0dd1a;
+		color: @themeColor;
+
+		&:hover {
+			border-bottom: dashed 1px @themeColor;
+		}
 	}
-	#me-status a:hover {
-		border-bottom: dashed 1px #b0dd1a;
-	}
-	#me-status th {
+
+	th {
 		margin-left: 16px;
 		color: #333;
 	}
-	#me-status td {
+
+	td {
 		margin-right: 16px;
 	}
-	#me-status th,
-	#me-status td {
+
+	th,
+	td {
 		display: inline-block;
 		box-sizing: border-box;
 		width: calc(50% - 16px);
 		padding: 8px;
 		border-top: solid 1px #eee;
 	}
-	#me-status tr:first-child th,
-	#me-status tr:first-child td {
+
+	tr:first-child th,
+	tr:first-child td {
 		margin-top: 8px;
 		border-top: none;
 	}
-	#me-status tr:last-child th,
-	#me-status tr:last-child td {
+
+	tr:last-child th,
+	tr:last-child td {
 		margin-bottom: 8px;
 	}
+}
 
-		body > nav > ul {
-			width: 100%;
-			margin: 16px 0;
-			padding: 0;
-			list-style: none;
-		}
-			body > nav > ul li {
-				background: #fff;
-				
-				border-top: solid 1px #eee;
-			}
-			body > nav > ul li:first-child {
+
+
+body > nav {
+	> ul {
+		width: 100%;
+		margin: 16px 0;
+		padding: 0;
+		list-style: none;
+
+		> li {
+			background: #fff;
+			border-top: solid 1px #eee;
+
+			&:first-child {
 				border-top: none;
 			}
-			body > nav > ul li:last-child {
-			}
-				body > nav > ul li a {
-					display: block;
-					padding: 10px 16px;
 
-					background-image: url("/resources/images/allow.svg");
-					background-repeat: no-repeat;
-					background-position: calc(100% - 8px) center;
+			a {
+				display: block;
+				padding: 10px 16px;
+				background-image: url("/resources/images/allow.svg");
+				background-repeat: no-repeat;
+				background-position: calc(100% - 8px) center;
+				text-decoration: none;
+				color: #111;
+				font-size: 1.1em;
 
-					text-decoration: none;
-					color: #111;
-					font-size: 1.1em;
-				}
-				body > nav > ul li a:hover {
+				&:hover {
 					background-color: #b0dd1a;
 					color: #fff;
 				}
+			}
+		}
+	}
+}
 
 main {
 	display: block;
 	float: left;
 	width: calc(100% - 300px);
-}
 
-	main #timeline {
+	#timeline {
 		box-sizing: border-box;
 		width: 100%;
 		max-width: 800px;
 		margin: 0 auto;
 		padding: 16px;
-		
 		background: #fff;
 	}
+}
 
 #postForm {
 	margin-bottom: 8px;
 	padding-bottom: 8px;
 	border-bottom: solid 1px #eee;
-}
-#postForm:after {
-	content: "";
-	display: block;
-	clear: both;
-}
-	#postForm textarea {
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	textarea {
 		box-sizing: border-box;
 		width: 100%;
 		min-width: 100%;
 		max-width: 100%;
 		margin: 0;
 		padding: 8px;
-
 		font-size: 1.2em;
 		color: #000;
-
 		outline: none;
 		border: solid 1px #eee;
 		box-shadow: none;
-
 		transition: all 0.2s ease;
-	}
-	#postForm textarea:hover {
-		border: solid 1px #831c86;
-	}
-	#postForm textarea:focus {
-		color: #831c86;
-		outline: none;
-		border: solid 1px #831c86;
-		box-shadow: 0 0 4px rgba(131, 28, 134, 0.3);
+
+		&:hover {
+			border: solid 1px @themeColor;
+		}
+
+		&:focus {
+			color: #831c86;
+			outline: none;
+			border: solid 1px @themeColor;
+			box-shadow: 0 0 4px fade(@themeColor, 30%);
+		}
 	}
 
-	#postForm .image {
+	.image {
 		box-sizing: border-box;
 		display: inline-block;
 		position: relative;
@@ -168,13 +175,13 @@ main {
 		padding: 8px 16px;
 		vertical-align: top;
 		line-height: 1.2em;
-		
 		outline: dashed 2px #ccc;
-	}
-	#postForm .image:hover {
-		outline: dashed 2px #777;
-	}
-		#postForm .image input[type=file] {
+
+		&:hover {
+			outline: dashed 2px #777;
+		}
+
+		input[type=file] {
 			display: inline;
 			position: absolute;
 			top: 0;
@@ -183,50 +190,50 @@ main {
 			height: 100%;
 			opacity: 0;
 		}
-		#postForm .image p {
+
+		p {
 			margin: 0;
 			padding: 0;
-			
 			color: #777;
 			line-height: 1.2em;
 			font-size: 1em;
 		}
-		#postForm .image .im img {
+
+		img {
 			max-width: 100%;
 			max-height: 128px;
 		}
+	}
 
-	#postForm input[type=submit] {
+	input[type=submit] {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
-		
 		display: inline-block;
 		float: right;
 		box-sizing: border-box;
 		margin: 0;
 		padding: 8px 16px;
 		min-width: 5em;
-		
 		cursor: pointer;
-
 		line-height: 1.2em;
 		font-size: 1.2em;
 		font-weight: normal;
 		text-decoration: none;
 		color: #fff;
-		
-		background: #831c86;
+		background: @themeColor;
 		outline: none;
 		border: none;
 		border-radius: 2px;
 		box-shadow: none;
-		
 		transition: background 0.1s ease;
+
+		&:hover {
+			lighten(@themeColor, 10%);
+		}
+
+		&:active {
+			darken(@themeColor, 10%);
+		}
 	}
-	#postForm input[type=submit]:hover {
-		background: #814584;
-	}
-	#postForm input[type=submit]:active {
-		background: #4e1251;
-	}
+}
