@@ -23,7 +23,8 @@ $(function() {
 
 	socket.on('reply', function(post) {
 		console.log('reply', post);
-		var n = new Notification(post.text, {
+		var n = new Notification(post.user.name, {
+			body: post.text,
 			icon: conf.url + '/img/icons/' + post.user.screenName
 		});
 		n.onshow = function() {
