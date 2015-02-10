@@ -45,15 +45,15 @@ class UserFollowing {
 	}
 
 	public static getFollowersCount(meId: number, callback: (followersCount: number) => void): void {
-		db.query("select count(*) from user_followings where followee_id = ?",
+		db.query("select count(*) as count from user_followings where followee_id = ?",
 			[meId],
-			(err: any, userFollowings: any[]) => callback(userFollowings[0]));
+			(err: any, userFollowings: any[]) => callback(userFollowings[0].count));
 	}
 
 	public static getFollowingsCount(meId: number, callback: (followersCount: number) => void): void {
-		db.query("select count(*) from user_followings where follower_id = ?",
+		db.query("select count(*) as count from user_followings where follower_id = ?",
 			[meId],
-			(err: any, userFollowings: any[]) => callback(userFollowings[0]));
+			(err: any, userFollowings: any[]) => callback(userFollowings[0].count));
 	}
 
 	public static getFriends(meId: number, limit: number, callback: (userFollowings: UserFollowing[]) => void): void {
