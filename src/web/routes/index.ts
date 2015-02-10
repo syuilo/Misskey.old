@@ -34,25 +34,7 @@ function sentLess(req: any, res: any, resourcePath: string) {
 }
 
 var router = (app: express.Express): void => {
-	app.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
-		if (req.url.indexOf('..') === -1) {
-			if (req.url.match(/\.css$/)) {
-				var resourcePath = path.resolve(__dirname + '/..' + req.url.replace(/\.css$/, '.less'));
-				if (fs.existsSync(resourcePath)) {
-					sentLess(req, res, resourcePath);
-					return;
-				}
-			}
-			if (req.url.indexOf('.less') === -1) {
-				var resourcePath = path.resolve(__dirname + '/..' + req.url);
-				res.sendFile(resourcePath);
-			} else {
-				next();
-			}
-		}
-	});
-
-	app.all('*',(req: any, res: any, next: () => void) => {
+	function initSession(req: any, res: any, callback: () => void) {
 		res.set({
 			'Access-Control-Allow-Origin': config.publicConfig.url,
 			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
@@ -81,13 +63,39 @@ var router = (app: express.Express): void => {
 			User.find(userId,(user: User) => {
 				req.data.me = user;
 				req.me = user;
-				next();
+				callback();
 			});
 		} else {
 			req.data.me = null;
 			req.me = null;
-			next();
+			callback();
 		}
+	}
+
+	app.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
+		if (req.url.indexOf('..') === -1) {
+			if (req.url.match(/\.css$/)) {
+				var resourcePath = path.resolve(__dirname + '/..' + req.url.replace(/\.css$/, '.less'));
+				if (fs.existsSync(resourcePath)) {
+					initSession(req, res,() => {
+						sentLess(req, res, resourcePath);
+						return;
+					});
+				}
+			}
+			if (req.url.indexOf('.less') === -1) {
+				var resourcePath = path.resolve(__dirname + '/..' + req.url);
+				res.sendFile(resourcePath);
+			} else {
+				next();
+			}
+		}
+	});
+
+	app.all('*',(req: any, res: any, next: () => void) => {
+		initSession(req, res,() => {
+			next();
+		});
 	});
 
 	app.param('userSn',(req: any, res: any, next: () => void, sn: string) => {
