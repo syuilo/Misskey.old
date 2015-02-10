@@ -35,7 +35,7 @@ class Post {
 			[appId, inReplyToPostId, image, isImageAttached, text, userId],
 			(err: any, info: any) => {
 				if (err) console.log(err);
-				Post.find(info.insertId, (post: Post) => {
+				Post.find(info.insertId,(post: Post) => {
 					callback(post);
 				});
 			});
@@ -59,11 +59,11 @@ class Post {
 			q = "select * from posts where user_id = ? and id < ? order by id desc limit ?";
 			p = [userId, maxId, limit];
 		}
-		db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
+		db.query(q, p,(err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 	}
 
 	public static getTimeline(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
-		UserFollowing.findByFollowerId(userId, (userFollowings: UserFollowing[]) => {
+		UserFollowing.findByFollowerId(userId,(userFollowings: UserFollowing[]) => {
 			var followingsStr: string = null;
 			if (userFollowings.length !== 0) {
 				var followingsStrs: string[] = [];
@@ -83,12 +83,12 @@ class Post {
 				q = "select * from posts where (" + (followingsStr !== null ? "user_id in (" + followingsStr + ") or " : "") + "user_id = ?) and id < ? order by id desc limit ?";
 				p = [userId, maxId, limit];
 			}
-			db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
+			db.query(q, p,(err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 		});
 	}
 
 	public static getCircleTimeline(circleId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
-		CircleMember.findByCircleId(circleId, null, (circleMembers: CircleMember[]) => {
+		CircleMember.findByCircleId(circleId, null,(circleMembers: CircleMember[]) => {
 			var circleMembersStr = circleMembers.join(',');
 			var q: string, p: any;
 			if ((sinceId === null) && (maxId === null)) {
@@ -101,14 +101,20 @@ class Post {
 				q = "select * from posts where user_id in (" + circleMembersStr + ") and id < ? order by id desc limit ?";
 				p = [maxId, limit];
 			}
-			db.query(q, p, (err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
+			db.query(q, p,(err: any, posts: any[]) => callback(posts.length != 0 ? posts.map((post) => new Post(post)) : null));
 		});
 	}
 
 	public static getMentions(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
 		PostMention.findByUserId(userId, limit, sinceId, maxId,(postMentions: PostMention[]) => {
 			if (postMentions != null) {
-				callback(postMentions.map((mention) => new Post(mention.postId)));
+				async.map(postMentions,(mention: PostMention, next: any) => {
+					Post.find(mention.postId,(post: Post) => {
+						next(null, post);
+					});
+				},(err: any, results: Post[]) => {
+						callback(results);
+					});
 			} else {
 				callback(null);
 			}
