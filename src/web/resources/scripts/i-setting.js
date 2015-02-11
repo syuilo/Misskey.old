@@ -12,7 +12,7 @@ $(function() {
 			data: fd,
 			processData: false,
 			contentType: false,
-			timeout: 10000,
+			timeout: 20000,
 			dataType: 'json',
 			xhrFields: {
 				withCredentials: true
