@@ -14,7 +14,7 @@ SYUILOUI.Tab = function($tabList) {
 			$tabList.find('li').removeClass('active');
 			$(this).addClass('active');
 
-			$.each(tabContents, function() {
+			$.each($tabContents, function() {
 				$(this).css("display", "none");
 			});
 
