@@ -13,3 +13,191 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+
+/* UI
+ * ---------------------------------------------------------------- */
+
+.ui-input_text,
+.ui-input_email,
+.ui-input_password,
+.ui-textarea,
+.ui-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0;
+	padding: 8px 10px;
+	font-size: 1.3em;
+	line-height: 24px;
+	outline: none;
+	border: solid 1px #ddd;
+	border-radius: 0;
+	box-shadow: none;
+	transition: border 0.5s ease, box-shadow 0.1s ease;
+}
+.ui-radio,
+.ui-checkbox {
+}
+.ui-radio_label,
+.ui-checkbox_label {
+	transition: all 0.2s ease;
+}
+.ui-radio_label:hover,
+.ui-checkbox_label:hover {
+	color: @themeColor;
+}
+.ui-input_text:hover,
+.ui-input_email:hover,
+.ui-input_password:hover,
+.ui-textarea:hover {
+	border: solid 1px @themeColor;
+	transition: border 0.2s ease, box-shadow 0.1s ease;
+}
+.ui-input_text:focus,
+.ui-input_email:focus,
+.ui-input_password:focus,
+.ui-textarea:focus {
+	border: solid 1px @themeColor;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
+	transition: border 0.5s ease, box-shadow 0.05s ease;
+}
+
+.ui-input_submit,
+.ui-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 6px 0;
+	padding: 8px 16px;
+	min-width: 5em;
+	cursor: pointer;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #444;
+	background: #f9f9f9;
+	outline: none;
+	border: solid 1px #CCC;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+	transition: border 0.5s ease;
+}
+.ui-input_submit:hover,
+.ui-button:hover {
+	background: #fff;
+	/*color: $main_color;*/
+	/*border: solid 1px @themeColor;*/
+	transition: border 0s ease;
+}
+.ui-input_submit:focus,
+.ui-button:focus {
+	border: solid 1px @themeColor;
+	transition: border 0s ease;
+}
+.ui-input_submit:active,
+.ui-button:active {
+	padding: 9px 16px 7px 16px;
+	background: #eee;
+	border: solid 1px @themeColor;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+	transition: border 0s ease;
+}
+
+.ui-textarea {
+	height: 6em;
+	max-width: 100%;
+}
+
+.ui-attachImage {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	margin: 6px 8px;
+	padding: 4px 16px;
+	vertical-align: bottom;
+	border-radius: 3px;
+	border: dashed 2px #ccc;
+	color: #777;
+	font-size: 1em;
+}
+.ui-attachImage:hover {
+	border: dashed 2px #777;
+}
+	.ui-attachImage input[type=file] {
+		display: inline;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
+	.ui-attachImage img {
+		max-width: 100%;
+		max-height: 128px;
+	}
+
+.ui-dialog {
+	display: block;
+	position: fixed;
+	z-index: 1024;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 512px;
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.8);
+	transition: top 1s ease;
+}
+	.ui-dialog p {
+		margin: 0;
+		text-align: center;
+	}
+
+.ui-user_icon {
+	display: inline-block;
+	position: relative;
+}
+	.ui-user_icon .icon {
+		min-width: 32px;
+		max-width: 32px;
+		min-height: 32px;
+		max-height: 32px;
+		vertical-align: bottom;
+	}
+	.ui-user_icon .balloon {
+		display: inline-block;
+		pointer-events: none;
+		position: absolute;
+		top: -2.5em;
+		left: 0;
+		z-index: 1;
+		margin: 0;
+		padding: 6px 12px;
+		line-height: 1em;
+		white-space: nowrap;
+		font-size: 0.9em;
+		color: #fff;
+		background: rgba(0, 0, 0, 0.7);
+		border-radius: 4px;
+		opacity: 0;
+		transition: opacity 0.1s linear;
+	}
+	.ui-user_icon:hover .balloon {
+		opacity: 1;
+	}
+	.ui-user_icon .balloon:before {
+		content: "";
+		position: absolute;
+		bottom: -8px;
+		left: ~"calc(50% - 4px)";
+		border-top: solid 4px rgba(0, 0, 0, 0.7);
+		border-right: solid 4px transparent;
+		border-bottom: solid 4px transparent;
+		border-left: solid 4px transparent;
+	}
