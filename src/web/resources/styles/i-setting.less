@@ -18,25 +18,6 @@ main {
 	margin: 0 auto;
 	padding: 0;
 
-	header {
-		border-bottom: solid 1px #eee;
-
-		h1 {
-			display: block;
-			position: relative;
-			margin: 0 0 0 64px;
-			padding: 0;
-			line-height: 64px;
-			font-size: 2em;
-			font-weight: normal;
-			color: #555;
-
-			i {
-				margin-right: 8px;
-			}
-		}
-	}
-
 	footer {
 		clear: both;
 	}
@@ -64,7 +45,7 @@ fieldset {
 
 #nav {
 	display: block;
-	float: left;
+	position: fixed;
 	margin: 0;
 	padding: 0;
 	width: 200px;
@@ -118,13 +99,38 @@ fieldset {
 	box-sizing: border-box;
 	width: ~"calc(100% - 200px)";
 	min-height: 100%;
-	padding: 16px;
+	margin-top: 80px;
+	padding: 0;
 	background: #fff;
 
 	&:after {
 		content: "";
 		display: block;
 		clear: both;
+	}
+
+	header {
+		position: fixed;
+		box-sizing: border-box;
+		width: ~"calc(100% - 200px)";
+		padding: 16px 16px 0 16px;
+		background: rgba(255, 255, 255, 0.8);
+		border-bottom: solid 1px #eee;
+
+		h1 {
+			display: block;
+			position: relative;
+			margin: 0 0 0 64px;
+			padding: 0;
+			line-height: 64px;
+			font-size: 2em;
+			font-weight: normal;
+			color: #555;
+
+			i {
+				margin-right: 8px;
+			}
+		}
 	}
 }
 
