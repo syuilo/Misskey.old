@@ -87,6 +87,10 @@ fieldset {
 			&:hover {
 				color: @themeColor;
 			}
+
+			i {
+				margin-right: 4px;
+			}
 		}
 	}
 
@@ -105,7 +109,7 @@ fieldset {
 	display: block;
 	float: right;
 	box-sizing: border-box;
-	width: calc(100% - 200px);
+	width: ~"calc(100% - 200px)";
 	min-height: 100%;
 	padding: 16px;
 	background: #fff;
@@ -159,7 +163,7 @@ fieldset {
 
 	textarea {
 		box-sizing: border-box;
-		width: calc(100% - 140px);
+		width: ~"calc(100% - 140px)";
 	}
 }
 
