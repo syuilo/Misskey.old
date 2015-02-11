@@ -105,6 +105,7 @@ TIMELINE.generatePostElement = function(post) {
 		text = escapeHtml(text);
 		text = parseURL(text);
 		text = parseReply(text);
+		text = parseBold(text);
 		text = parseNewLine(text);
 		return text;
 
@@ -117,6 +118,12 @@ TIMELINE.generatePostElement = function(post) {
 		function parseReply(text) {
 			return text.replace(/@([a-zA-Z0-9_]+)/g, function(_, screenName) {
 				return '<a href="' + conf.url + '/' + screenName + '" target="_blank" class="screenName">@' + screenName + '</a>';
+			});
+		}
+
+		function parseBold(text) {
+			return text.replace(/\*\*(.+?)\*\*/g, function(_, word) {
+				return '<b>' + word + '</b>';
 			});
 		}
 

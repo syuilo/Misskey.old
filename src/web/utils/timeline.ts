@@ -52,6 +52,7 @@ class Timeline {
 		text = escapeHtml(text);
 		text = parseURL(text);
 		text = parseReply(text);
+		text = parseBold(text);
 		text = parseNewLine(text);
 		return text;
 
@@ -72,6 +73,12 @@ class Timeline {
 		function parseReply(text: string): string {
 			return text.replace(/@([a-zA-Z0-9_]+)/g,(_: string, screenName: string) => {
 				return `<a href="${conf.publicConfig.url}/${screenName}" target="_blank" class="screenName">@${screenName}</a>`;
+			});
+		}
+
+		function parseBold(text: string): string {
+			return text.replace(/\*\*(.+?)\*\*/g,(word: string) => {
+				return `<b>${word}</b>`;
 			});
 		}
 
