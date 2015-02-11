@@ -191,7 +191,8 @@ fieldset {
 	input[type=text],
 	input[type=url] {
 		box-sizing: border-box;
-		width: 20em;
+		max-width: 20em;
+		width: ~"calc(100% - 140px)";
 	}
 
 	textarea {
