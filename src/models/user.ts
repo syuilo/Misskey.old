@@ -84,7 +84,7 @@ class User {
 	}
 
 	public filt(): any {
-		var obj: any;
+		var obj: any = {};
 		obj.badge = this.badge;
 		obj.bio = this.bio;
 		obj.color = this.color;
