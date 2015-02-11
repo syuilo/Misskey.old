@@ -9,7 +9,6 @@ html {
 }
 
 body {
-
 }
 
 main {
@@ -18,11 +17,9 @@ main {
 	height: 100%;
 	margin: 0 auto;
 	padding: 0;
-}
-	main header {
 
-	}
-		main header h1 {
+	header {
+		h1 {
 			display: block;
 			position: relative;
 			margin: 0 0 0 64px;
@@ -31,19 +28,17 @@ main {
 			font-size: 2em;
 			color: #555;
 		}
-	main footer {
+	}
+
+	footer {
 		clear: both;
 	}
+}
 
 .caption {
 	color: #999;
 	font-size: 0.8em;
 	font-weight: normal;
-}
-.caption:before {
-	content: url("https://misskey.xyz/assets/img/icon/i.png");
-	display: inline;
-	vertical-align: middle;
 }
 
 input[type=color] {
@@ -67,44 +62,44 @@ fieldset {
 	padding: 0;
 	width: 200px;
 	min-height: 100%;
-	
 	list-style: none;
 	background: rgba(255, 255, 255, 0.7);
-}
-	#nav li {
+
+	li {
 		display: block;
 		margin: 0;
 		padding: 0;
 		outline: none;
 		border-bottom: solid 1px rgba(0, 0, 0, 0.05);
-
 		transition: all 0.2s ease;
-	}
-		#nav .ui-state-default a {
 
-		}
-		#nav .ui-tabs-active a {
-			padding-left: 32px;
-			color: @themeColor;
-			border-left: solid 3px @themeColor;
-			background: #fff;
-		}
-		#nav li a {
+		a {
 			display: inline-block;
 			box-sizing: border-box;
 			margin: 0;
 			padding: 8px 16px;
 			width: 100%;
-
 			text-decoration: none;
 			color: #777;
 			outline: none;
-
 			transition: padding-left 0.2s ease;
+
+			&:hover {
+				color: @themeColor;
+			}
 		}
-		#nav li a:hover {
-			color: @themeColor;
-		}
+	}
+
+	.ui-state-default a {
+	}
+
+	.ui-tabs-active a {
+		padding-left: 32px;
+		color: @themeColor;
+		border-left: solid 3px @themeColor;
+		background: #fff;
+	}
+}
 
 #content {
 	display: block;
@@ -113,29 +108,21 @@ fieldset {
 	width: calc(100% - 200px);
 	min-height: 100%;
 	padding: 16px;
-	
 	background: #fff;
-}
-#content:after {
-	content: url(https://misskey.xyz/assets/img/misskey_dark_icon_32.png);
-	display: block;
-	width: 32px;
-	margin: 16px auto;
 }
 
 #profile {
 	box-sizing: border-box;
 	padding: 8px;
-}
-	#profile label {
+
+	label {
 		display: block;
 		clear: both;
 		margin: 0;
 		padding: 16px 8px;
-
 		border-bottom: solid 1px #eee;
-	}
-		#profile label .title {
+
+		.title {
 			display: block;
 			float: left;
 			box-sizing: border-box;
@@ -144,30 +131,37 @@ fieldset {
 			padding: 0 8px;
 			/*text-align: right;*/
 			font-size: 1em;
-		}
-			#profile label .title .caption {
+
+			.caption {
 				color: #999;
 				font-size: 0.8em;
 				font-weight: normal;
+
+				&:before {
+					content: "";
+					display: none;
+				}
 			}
-			#profile label .title .caption:before {
-				content: "";
-				display: none;
-			}
-		#profile label .content:after {
+		}
+
+		.content:after {
 			content: "";
 			display: block;
 			clear: both;
 		}
-	#profile input[type=text],
-	#profile input[type=url] {
+	}
+
+	 input[type=text],
+	 input[type=url] {
 		box-sizing: border-box;
 		width: 20em;
 	}
-	#profile textarea {
+
+	textarea {
 		box-sizing: border-box;
 		width: calc(100% - 140px);
 	}
+}
 
 #iconEditForm .icon,
 #wallpaperEditForm .wallpaper,
@@ -176,24 +170,26 @@ fieldset {
 	position: relative;
 	margin: 16px auto;
 	padding: 0;
-
 	text-align: center;
-
 	background: rgba(0, 0, 0, 0.4);
 	color: #fff;
 	font-size: small;
 }
+
 #iconEditForm .icon {
 	width: 256px;
 	height: 256px;
 }
+
 #wallpaperEditForm .wallpaper {
 }
+
 	#iconEditForm .icon:hover,
 	#wallpaperEditForm .wallpaper:hover,
 	#headerEditForm .header:hover {
 		outline: dashed 8px @themeColor;
 	}
+
 	#iconEditForm .icon p,
 	#wallpaperEditForm .wallpaper p,
 	#headerEditForm .header p {
@@ -204,10 +200,10 @@ fieldset {
 		width: 100%;
 		margin: 0;
 		padding: 8px;
-		
 		color: #FFF;
 		background-color: rgba(0, 0, 0, 0.8);
 	}
+
 	#iconEditForm .icon .image,
 	#wallpaperEditForm .wallpaper .image,
 	#headerEditForm .header .image {
@@ -216,6 +212,7 @@ fieldset {
 		height: 100%;
 		padding: 16px;
 	}
+
 	#iconEditForm .icon input[type=file],
 	#wallpaperEditForm .wallpaper input[type=file],
 	#headerEditForm .header input[type=file] {
@@ -236,23 +233,26 @@ fieldset {
 	background-repeat: repeat;
 	/*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) inset;*/
 }
+
 	#apps h1 {
 		margin: 8px 0 0 8px;
 		padding: 0;
 		color: #999;
 		font-size: 1.5em;
 	}
-	
+
 	#apps ul {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
-	#apps ul:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
+
+		#apps ul:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
 		#apps ul li {
 			float: left;
 			display: block;
@@ -273,6 +273,7 @@ fieldset {
 		max-height: 128px;
 		overflow: hidden;
 	}
+
 		#apps .app .icon {
 			display: block;
 			margin: 8px auto 0 auto;
@@ -285,9 +286,11 @@ fieldset {
 			box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 -1px 0 rgba(0, 0, 0, 0.3) inset, 0px 1px 0px rgba(0, 0, 0, 0.2);
 			transition: all 0.1s ease;
 		}
-		#apps .app .icon:hover {
-			transform: scale(1.1);
-		}
+
+			#apps .app .icon:hover {
+				transform: scale(1.1);
+			}
+
 			#apps .app .icon img {
 				position: relative;
 				z-index: -1;
@@ -296,18 +299,21 @@ fieldset {
 				max-width: 64px;
 				max-height: 64px;
 			}
+
 		#apps .app .name {
 			margin: 4px 0 0 0;
 			text-align: center;
 			font-size: 0.9em;
 			word-break: normal;
 		}
+
 		#apps .app form {
 			display: none;
 			position: absolute;
 			top: 0;
 			right: 24px;
 		}
+
 		#apps .app:hover form {
 			display: block;
 		}
@@ -315,6 +321,7 @@ fieldset {
 #mail {
 	padding: 16px;
 }
+
 	#mail input[type=email] {
 		box-sizing: border-box;
 		width: 100%;
@@ -323,10 +330,12 @@ fieldset {
 #password {
 	padding: 16px;
 }
+
 	#password label {
 		display: block;
 		margin: 8px;
 	}
+
 	#password input[type=password] {
 		box-sizing: border-box;
 		width: 20em;
@@ -334,72 +343,82 @@ fieldset {
 
 
 #webtheme {
-
 }
-	.themes {
+
+.themes {
+	display: block;
+	padding: 16px;
+	list-style: none;
+}
+
+	.themes .theme {
+		position: relative;
 		display: block;
-		padding: 16px;
-		list-style: none;
+		z-index: 0;
+		float: left;
+		margin: 8px;
+		padding: 0;
+		width: 256px;
+		height: 192px;
+		border: solid 1px rgba(0, 0, 0, 0.1);
+		/*transition: all 0.2s ease;*/
 	}
-		.themes .theme {
-			position: relative;
-			display: block;
-			z-index: 0;
-			float: left;
-			margin: 8px;
-			padding: 0;
-			width: 256px;
-			height: 192px;
-			border: solid 1px rgba(0, 0, 0, 0.1);
-			/*transition: all 0.2s ease;*/
-		}
+
 		.themes .theme:hover {
 			/*transform: scale(1.05);*/
 		}
+
 		.themes .theme.active {
 			outline: dashed 2px #0af;
 		}
-			.themes .theme .content {
+
+		.themes .theme .content {
+			display: block;
+			position: relative;
+			width: 256px;
+			height: 192px;
+			overflow: hidden;
+		}
+
+			.themes .theme .content .thumbnail {
 				display: block;
-				position: relative;
 				width: 256px;
 				height: 192px;
-				overflow: hidden;
+				margin-top: 0px;
+				transition: margin-top 0.3s ease;
 			}
-				.themes .theme .content .thumbnail {
-					display: block;
-					width: 256px;
-					height: 192px;
-					margin-top: 0px;
-					transition: margin-top 0.3s ease;
+
+			.themes .theme .content .form {
+				display: block;
+				position: relative;
+				box-sizing: border-box;
+				width: 256px;
+				height: 192px;
+				padding: 16px;
+				overflow: hidden;
+				background: #eee;
+			}
+
+				.themes .theme .content .form .title {
+					display: inline-block;
+					margin: 4px 0 8px 0;
+					font-size: 1em;
+					font-weight: bold;
+					color: #555;
 				}
-				.themes .theme .content .form {
-					display: block;
-					position: relative;
-					box-sizing: border-box;
-					width: 256px;
-					height: 192px;
-					padding: 16px;
-					overflow: hidden;
-					background: #eee;
+
+				.themes .theme .content .form .description {
+					margin: 0;
+					font-size: 0.8em;
+					color: #555;
 				}
-					.themes .theme .content .form .title {
-						display: inline-block;
-						margin: 4px 0 8px 0;
-						font-size: 1em;
-						font-weight: bold;
-						color: #555;
-					}
-					.themes .theme .content .form .description {
-						margin: 0;
-						font-size: 0.8em;
-						color: #555;
-					}
-					.themes .theme .content .form .author {
-						position: absolute;
-						top: 4px;
-						right: 4px;
-					}
+
+				.themes .theme .content .form .author {
+					position: absolute;
+					top: 4px;
+					right: 4px;
+				}
+
 					.themes .theme .content .form .author:before {
 						content: "ì¬ŽÒ:";
 						display: block;
@@ -409,51 +428,57 @@ fieldset {
 						font-size: 0.5em;
 						color: #aaa;
 					}
-						.themes .theme .content .form .author .name {
-							display: inline-block;
-							margin: 4px 8px;
-							min-width: 8em;
-							text-align: right;
-							font-size: 0.8em;
-							color: #aaa;
-						}
-						.themes .theme .content .form .author .icon {
-							min-width: 32px;
-							min-height: 32px;
-							max-width: 32px;
-							max-height: 32px;
-							vertical-align: text-bottom;
-						}
-					.themes .theme .content .form form {
-						position: absolute;
-						top: 0;
-						left: 0;
-						box-sizing: border-box;
-						width: 256px;
-						height: 192px;
+
+					.themes .theme .content .form .author .name {
+						display: inline-block;
+						margin: 4px 8px;
+						min-width: 8em;
+						text-align: right;
+						font-size: 0.8em;
+						color: #aaa;
 					}
-						.themes .theme .content .form form input {
-							display: block;
-							position: absolute;
-							bottom: 8px;
-							right: 8px;
-							margin: 0;
-						}
-			.themes .theme > .title {
-				display: block;
-				position: absolute;
-				bottom: 8px;
-				left: -8px;
-				min-width: 5em;
-				padding: 4px 8px;
-				text-align: center;
-				font-weight: normal;
-				font-size: 1em;
-				color: #fff;
-				background: #04F;
-				box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
-				border-top: solid 1px rgba(255, 255, 255, 0.1);
-			}
+
+					.themes .theme .content .form .author .icon {
+						min-width: 32px;
+						min-height: 32px;
+						max-width: 32px;
+						max-height: 32px;
+						vertical-align: text-bottom;
+					}
+
+				.themes .theme .content .form form {
+					position: absolute;
+					top: 0;
+					left: 0;
+					box-sizing: border-box;
+					width: 256px;
+					height: 192px;
+				}
+
+					.themes .theme .content .form form input {
+						display: block;
+						position: absolute;
+						bottom: 8px;
+						right: 8px;
+						margin: 0;
+					}
+
+		.themes .theme > .title {
+			display: block;
+			position: absolute;
+			bottom: 8px;
+			left: -8px;
+			min-width: 5em;
+			padding: 4px 8px;
+			text-align: center;
+			font-weight: normal;
+			font-size: 1em;
+			color: #fff;
+			background: #04F;
+			box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+			border-top: solid 1px rgba(255, 255, 255, 0.1);
+		}
+
 			.themes .theme > .title:before {
 				content: "";
 				display: block;
