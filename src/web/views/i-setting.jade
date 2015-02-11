@@ -6,7 +6,7 @@ html(lang='ja', dir='ltr')
 		meta(name='keywords', content='Misskey')
 		meta(name='application-name', content='Misskey')
 		meta(name='theme-color', content='#831c86')
-		title İ’è
+		title è¨­å®š
 		link(rel='shortcut icon', href='/favicon.icon')
 		link(rel='stylesheet', href='/resources/styles/ui.css')
 		link(rel='stylesheet', href='/resources/styles/i-setting.css')
@@ -21,98 +21,98 @@ html(lang='ja', dir='ltr')
 			ul#nav
 				li: a(href='#profile')
 					i(class='fa fa-user')
-					| ƒvƒƒtƒB[ƒ‹
+					| ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 				li: a(href='#desgin')
 					i(class='fa fa-paint-brush')
-					| ƒfƒUƒCƒ“
+					| ãƒ‡ã‚¶ã‚¤ãƒ³
 				li: a(href='#webtheme')
 					i(class='fa fa-desktop')
-					| ƒe[ƒ}
+					| ãƒ†ãƒ¼ãƒ
 				li: a(href='#application')
 					i(class='fa fa-puzzle-piece')
-					| ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+					| ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 				li: a(href='#mail')
 					i(class='fa fa-envelope-o')
-					| ƒ[ƒ‹ƒAƒhƒŒƒX
+					| ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
 			div#content
 				header
 					h1: i(class='fa fa-cogs')
-						| İ’è
+						| è¨­å®š
 				div#profile
 					form#iconEditForm
 						label
-							h2 ƒAƒCƒRƒ“
+							h2 ã‚¢ã‚¤ã‚³ãƒ³
 							div.icon
-								p ‰æ‘œ‚ğƒhƒƒbƒv‚Ü‚½‚Í‘I‘ğ
+								p ç”»åƒã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã¾ãŸã¯é¸æŠ
 								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
 								input(name='image', type='file')
-						input.ui-inputSubmit(type='submit', value='ƒAƒbƒvƒf[ƒg')
+						input.ui-inputSubmit(type='submit', value='ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ')
 					form#profileEditForm
 						label
-							h2.title –¼‘O
+							h2.title åå‰
 								p.caption
-									| ‚ ‚È‚½‚ÌƒjƒbƒNƒl[ƒ€B
+									| ã‚ãªãŸã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€‚
 							div.content
 								input.ui-inputText(name='name', type='text', value=me.name)
 						label
-							h2.title ‚Ğ‚Æ‚±‚ÆƒRƒƒ“ƒg
+							h2.title ã²ã¨ã“ã¨ã‚³ãƒ¡ãƒ³ãƒˆ
 								p.caption
-									| ˆ¥A“I‚È‚à‚ÌB
+									| æŒ¨æ‹¶çš„ãªã‚‚ã®ã€‚
 							div.content
 								input.ui-inputText(name='comment', type='text', value=me.comment)
 						if me.isPremium
 							label
-								h2.title ƒoƒbƒW
+								h2.title ãƒãƒƒã‚¸
 									p.caption
-										| ƒ^ƒCƒ€ƒ‰ƒCƒ“‚È‚Ç‚Å–¼‘O‚Ì‰¡‚É•\¦‚³‚ê‚éƒeƒLƒXƒgB
+										| ã‚¿ã‚¤ãƒ ãƒ©ã‚¤ãƒ³ãªã©ã§åå‰ã®æ¨ªã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆã€‚
 								div.content
 									input.ui-inputText(name='badge', type='text', value=me.badge)
 						label
-							h2.title WebƒTƒCƒgURL
+							h2.title Webã‚µã‚¤ãƒˆURL
 								p.caption
-									| (‚ ‚ê‚Î)‚ ‚È‚½‚ÉŠÖ˜A‚Ì‚ ‚éWebƒy[ƒW‚ÌƒAƒhƒŒƒXB
+									| (ã‚ã‚Œã°)ã‚ãªãŸã«é–¢é€£ã®ã‚ã‚‹Webãƒšãƒ¼ã‚¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
 							div.content
 								input.ui-inputText(name='url', type='url', value=me.url)
 						label
-							h2.title Œ»İ’n
+							h2.title ç¾åœ¨åœ°
 								p.caption
-									| ˆÊ’uî•ñB(—á: ìès)
+									| ä½ç½®æƒ…å ±ã€‚(ä¾‹: å·å´å¸‚)
 							div.content
 								input.ui-inputText(name='location', type='text', value=me.location)
 						label
 							h2.title BIO
 								p.caption
-									| ©ŒÈĞ‰îB
+									| è‡ªå·±ç´¹ä»‹ã€‚
 							div.content
 								textarea.ui-textarea(name='bio')= me.bio
 						label
-							h2.title ƒ^ƒO
+							h2.title ã‚¿ã‚°
 								p.caption
-									| ‚ ‚È‚½‚ÉŠÖ˜A‚Ì‚ ‚éƒL[ƒ[ƒhB, ‚Å‹æØ‚Á‚Ä•¡”w’è‚Å‚«‚Ü‚·B
+									| ã‚ãªãŸã«é–¢é€£ã®ã‚ã‚‹ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã€‚, ã§åŒºåˆ‡ã£ã¦è¤‡æ•°æŒ‡å®šã§ãã¾ã™ã€‚
 							div.content
 								input.ui-inputText(name='tag', type='text', value=me.tag)
 						label
-							h2.title ƒ†[ƒU[ƒJƒ‰[
+							h2.title ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚«ãƒ©ãƒ¼
 								p.caption
-									| ‚ ‚È‚½‚ÌƒCƒ[ƒWƒJƒ‰[B
+									| ã‚ãªãŸã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ã€‚
 							div.content
 								input.ui-inputColor(name='color', type='color', value=me.color)
-						input.ui-inputSubmit(type='submit', value='ƒAƒbƒvƒf[ƒg')
+						input.ui-inputSubmit(type='submit', value='ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ')
 				
 				div#design
 					form#headerEditForm
 						label
-							h2 ƒwƒbƒ_[
+							h2 ãƒ˜ãƒƒãƒ€ãƒ¼
 							div.icon
-								p ‰æ‘œ‚ğƒhƒƒbƒv‚Ü‚½‚Í‘I‘ğ
+								p ç”»åƒã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã¾ãŸã¯é¸æŠ
 								img.image(src=url + '/img/header/' + me.screenName, alt='header')
 								input(name='image', type='file')
-						input.ui-inputSubmit(type='submit', value='ƒAƒbƒvƒf[ƒg')
+						input.ui-inputSubmit(type='submit', value='ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ')
 					form#wallpaperEditForm
 						label
-							h2 •Ç†
+							h2 å£ç´™
 							div.icon
-								p ‰æ‘œ‚ğƒhƒƒbƒv‚Ü‚½‚Í‘I‘ğ
+								p ç”»åƒã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã¾ãŸã¯é¸æŠ
 								img.image(src=url + '/img/wallpaper/' + me.screenName, alt='wallpaper')
 								input(name='image', type='file')
-						input.ui-inputSubmit(type='submit', value='ƒAƒbƒvƒf[ƒg')
+						input.ui-inputSubmit(type='submit', value='ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ')
