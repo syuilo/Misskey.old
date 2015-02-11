@@ -83,6 +83,26 @@ class User {
 			(err: any, users: any[]) => callback(users.map((user) => new User(user))));
 	}
 
+	public filt(): any {
+		var obj: any;
+		obj.badge = this.badge;
+		obj.bio = this.bio;
+		obj.color = this.color;
+		obj.comment = this.comment;
+		obj.createdAt = this.createdAt;
+		obj.credit = this.credit;
+		obj.exp = this.exp;
+		obj.id = this.id;
+		obj.lang = this.lang;
+		obj.location = this.location;
+		obj.lv = this.lv;
+		obj.name = this.name;
+		obj.screenName = this.screenName;
+		obj.tag = this.tag;
+		obj.url = this.url;
+		return obj;
+	}
+
     public update(callback?: () => void): void {
 		db.query('update users set screen_name =?, password =?, mail_address =?, credit =?, tutorial =?, is_suspended =?, name =?, comment =?, lang =?, badge =?, icon =?, color =?, header =?, wallpaper =?, web_theme_id =?, bio =?, url =?, location =?, tag =?, exp =?, lv =?, twitter_access_token =?, twitter_access_token_secret =? where id =?',
 			[this.screenName, this.password, this.mailAddress, this.credit, this.tutorial, this.isSuspended, this.name, this.comment, this.lang, this.badge, this.icon, this.color, this.header, this.wallpaper, this.webThemeId, this.bio, this.url, this.location, this.tag, this.exp, this.lv, this.twitterAccessToken, this.twitterAccessTokenSecret, this.id],
