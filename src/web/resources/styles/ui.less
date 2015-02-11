@@ -29,11 +29,12 @@ html, body {
 	padding: 8px 10px;
 	font-size: 1.3em;
 	line-height: 24px;
+	color: #000;
 	outline: none;
 	border: solid 1px #ddd;
 	border-radius: 0;
 	box-shadow: none;
-	transition: border 0.5s ease, box-shadow 0.1s ease;
+	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.1s ease;
 }
 .ui-radio,
 .ui-checkbox {
@@ -57,9 +58,10 @@ html, body {
 .ui-inputEmail:focus,
 .ui-inputPassword:focus,
 .ui-textarea:focus {
+	color: @themeColor;
 	border: solid 1px @themeColor;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
-	transition: border 0.5s ease, box-shadow 0.05s ease;
+	transition: color 0.5s ease,border 0.5s ease, box-shadow 0.05s ease;
 }
 
 .ui-inputSubmit,
