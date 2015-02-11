@@ -24,9 +24,8 @@ SYUILOUI.Tab = function($tabList) {
 		});
 	});
 
-	$tabContents.each(function(i, elem) {
-		var $tabContent = $(elem);
-		$tabContent.css("display", "none");
+	$.each($tabContents, function() {
+		$(this).css("display", "none");
 	});
 
 	$tabList.find('li:eq(0)').removeClass('unactive').addClass('active');
