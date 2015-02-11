@@ -25,18 +25,7 @@ $(function() {
 		});
 	}
 
-	$('main > nav').tabs({
-		show: {
-			effect: "fadeIn",
-			duration: 100,
-			delay: 0
-		},
-		hide: {
-			effect: "fadeOut",
-			duration: 100,
-			delay: 0
-		}
-	});
+	SYUILOUI.Tab($('main > nav > ul'));
 
 	$("#profileEditForm").submit(function(event) {
 		event.preventDefault();
