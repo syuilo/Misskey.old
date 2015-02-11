@@ -7,8 +7,7 @@ $(function() {
 		$submitButton.attr("disabled", true);
 		$submitButton.attr("value", "アップロード中...");
 		
-		$.ajax({
-			url: url,
+		$.ajax(url, {
 			type: 'post',
 			data: fd,
 			processData: false,
@@ -47,8 +46,7 @@ $(function() {
 		$submitButton.attr("disabled", true);
 		$submitButton.attr("value", "保存中...");
 		
-		$.ajax({
-			url: 'https://api.misskey.xyz/account/update',
+		$.ajax('https://api.misskey.xyz/account/update', {
 			type: 'post',
 			processData: false,
 			contentType: false,
