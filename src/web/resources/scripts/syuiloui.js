@@ -3,7 +3,7 @@ var SYUILOUI = {};
 SYUILOUI.Tab = function($tabList) {
 	var $tabContents = [];
 
-	$tabList.each(function(i, elem) {
+	$tabList.find('li').each(function(i, elem) {
 		var $tabListItem = $(elem);
 		var id = $tabListItem.find('a').attr('href');
 		$tabContents.push($(id));
@@ -14,7 +14,7 @@ SYUILOUI.Tab = function($tabList) {
 			$tabList.find('li').removeClass('active');
 			$(this).addClass('active');
 
-			$tabContents.each(function() {
+			$.each(tabContents, function() {
 				$(this).css("display", "none");
 			});
 
