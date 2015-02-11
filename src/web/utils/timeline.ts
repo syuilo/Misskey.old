@@ -77,7 +77,7 @@ class Timeline {
 		}
 
 		function parseBold(text: string): string {
-			return text.replace(/\*\*(.+?)\*\*/g,(word: string) => {
+			return text.replace(/\*\*(.+?)\*\*/g,(_: string, word: string) => {
 				return `<b>${word}</b>`;
 			});
 		}
