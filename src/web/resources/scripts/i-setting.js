@@ -25,7 +25,7 @@ $(function() {
 		});
 	}
 
-	$('main').tabs({
+	$('main > nav').tabs({
 		show: {
 			effect: "fadeIn",
 			duration: 100,

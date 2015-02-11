@@ -18,22 +18,26 @@ html(lang='ja', dir='ltr')
 	
 	body
 		main(role='main')
-			ul#nav
-				li: a(href='#profile')
-					i(class='fa fa-user')
-					| プロフィール
-				li: a(href='#design')
-					i(class='fa fa-paint-brush')
-					| デザイン
-				li: a(href='#webtheme')
-					i(class='fa fa-desktop')
-					| テーマ
-				li: a(href='#application')
-					i(class='fa fa-puzzle-piece')
-					| アプリケーション
-				li: a(href='#mail')
-					i(class='fa fa-envelope-o')
-					| メールアドレス
+			nav
+				a(href='/')
+					i(class='fa fa-chevron-left')
+					| ホームに戻る
+				ul
+					li: a(href='#profile')
+						i(class='fa fa-user')
+						| プロフィール
+					li: a(href='#design')
+						i(class='fa fa-paint-brush')
+						| デザイン
+					li: a(href='#webtheme')
+						i(class='fa fa-desktop')
+						| テーマ
+					li: a(href='#application')
+						i(class='fa fa-puzzle-piece')
+						| アプリケーション
+					li: a(href='#mail')
+						i(class='fa fa-envelope-o')
+						| メールアドレス
 			div#content
 				header
 					h1
