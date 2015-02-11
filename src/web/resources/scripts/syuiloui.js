@@ -29,5 +29,5 @@ SYUILOUI.Tab = function($tabList) {
 	});
 
 	$tabList.find('li:eq(0)').removeClass('unactive').addClass('active');
-	$tabContent[0].css("display", "block");
+	$tabContents[0].css("display", "block");
 }
