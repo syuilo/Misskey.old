@@ -124,7 +124,17 @@ var router = (app: express.Express): void => {
 	});
 
 	app.get('/i/mention',(req: any, res: any, next: () => void) => {
-		require('../controllers/i/mention')(req, res);
+		require('../controllers/i-mention')(req, res);
+	});
+	app.get('/i/mentions',(req: any, res: any, next: () => void) => {
+		require('../controllers/i-mention')(req, res);
+	});
+
+	app.get('/i/setting',(req: any, res: any, next: () => void) => {
+		require('../controllers/i-setting')(req, res);
+	});
+	app.get('/i/settings',(req: any, res: any, next: () => void) => {
+		require('../controllers/i-setting')(req, res);
 	});
 
 	app.get('/config',(req: any, res: any, next: () => void) => {
