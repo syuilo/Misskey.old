@@ -5,5 +5,5 @@ export = APIResponse;
 
 interface APIResponse extends express.Response {
 	apiRender: (data: any) => void;
-	apiError: (message: string) => void;
+	apiError: (code: number, message: string) => void;
 };

@@ -23,7 +23,7 @@ var authorize = (req: any, res: APIResponse, success: (user: User, app: Applicat
 	}
 	
 	var fail = (message: string): void => {
-		res.apiRender({ error: message });
+		res.apiError(400, message);
 		return;
 	};
 

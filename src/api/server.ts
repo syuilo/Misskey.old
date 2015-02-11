@@ -46,7 +46,8 @@ apiServer.use((req: any, res: APIResponse, next: any) => {
 	res.apiRender = (data: any) => {
 		res.json(data);
 	};
-	res.apiError = (message: string) => {
+	res.apiError = (code: number, message: string) => {
+		res.status(code);
 		res.json({
 			error: {
 				message: message
