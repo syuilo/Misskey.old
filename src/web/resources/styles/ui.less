@@ -17,9 +17,9 @@ html, body {
 /* UI
  * ---------------------------------------------------------------- */
 
-.ui-input_text,
-.ui-input_email,
-.ui-input_password,
+.ui-inputText,
+.ui-inputEmail,
+.ui-inputPassword,
 .ui-textarea,
 .ui-select {
 	-webkit-appearance: none;
@@ -38,31 +38,31 @@ html, body {
 .ui-radio,
 .ui-checkbox {
 }
-.ui-radio_label,
-.ui-checkbox_label {
+.ui-radioLabel,
+.ui-checkboxLabel {
 	transition: all 0.2s ease;
 }
-.ui-radio_label:hover,
-.ui-checkbox_label:hover {
+.ui-radioLabel:hover,
+.ui-checkboxLabel:hover {
 	color: @themeColor;
 }
-.ui-input_text:hover,
-.ui-input_email:hover,
-.ui-input_password:hover,
+.ui-inputText:hover,
+.ui-inputEmail:hover,
+.ui-inputPassword:hover,
 .ui-textarea:hover {
 	border: solid 1px @themeColor;
 	transition: border 0.2s ease, box-shadow 0.1s ease;
 }
-.ui-input_text:focus,
-.ui-input_email:focus,
-.ui-input_password:focus,
+.ui-inputText:focus,
+.ui-inputEmail:focus,
+.ui-inputPassword:focus,
 .ui-textarea:focus {
 	border: solid 1px @themeColor;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
 	transition: border 0.5s ease, box-shadow 0.05s ease;
 }
 
-.ui-input_submit,
+.ui-inputSubmit,
 .ui-button {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -84,19 +84,19 @@ html, body {
 	box-shadow: 0 0 0 1px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
 	transition: border 0.5s ease;
 }
-.ui-input_submit:hover,
+.ui-inputSubmit:hover,
 .ui-button:hover {
 	background: #fff;
 	/*color: $main_color;*/
 	/*border: solid 1px @themeColor;*/
 	transition: border 0s ease;
 }
-.ui-input_submit:focus,
+.ui-inputSubmit:focus,
 .ui-button:focus {
 	border: solid 1px @themeColor;
 	transition: border 0s ease;
 }
-.ui-input_submit:active,
+.ui-inputSubmit:active,
 .ui-button:active {
 	padding: 9px 16px 7px 16px;
 	background: #eee;
@@ -159,18 +159,18 @@ html, body {
 		text-align: center;
 	}
 
-.ui-user_icon {
+.ui-userIcon {
 	display: inline-block;
 	position: relative;
 }
-	.ui-user_icon .icon {
+	.ui-userIcon .icon {
 		min-width: 32px;
 		max-width: 32px;
 		min-height: 32px;
 		max-height: 32px;
 		vertical-align: bottom;
 	}
-	.ui-user_icon .balloon {
+	.ui-userIcon .balloon {
 		display: inline-block;
 		pointer-events: none;
 		position: absolute;
@@ -188,10 +188,10 @@ html, body {
 		opacity: 0;
 		transition: opacity 0.1s linear;
 	}
-	.ui-user_icon:hover .balloon {
+	.ui-userIcon:hover .balloon {
 		opacity: 1;
 	}
-	.ui-user_icon .balloon:before {
+	.ui-userIcon .balloon:before {
 		content: "";
 		position: absolute;
 		bottom: -8px;
