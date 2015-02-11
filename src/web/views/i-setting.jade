@@ -22,7 +22,7 @@ html(lang='ja', dir='ltr')
 				li: a(href='#profile')
 					i(class='fa fa-user')
 					| プロフィール
-				li: a(href='#desgin')
+				li: a(href='#design')
 					i(class='fa fa-paint-brush')
 					| デザイン
 				li: a(href='#webtheme')
@@ -103,7 +103,7 @@ html(lang='ja', dir='ltr')
 					form#headerEditForm
 						label
 							h2 ヘッダー
-							div.icon
+							div.header
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/header/' + me.screenName, alt='header')
 								input(name='image', type='file')
@@ -111,14 +111,17 @@ html(lang='ja', dir='ltr')
 					form#wallpaperEditForm
 						label
 							h2 壁紙
-							div.icon
+							div.wallpaper
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/wallpaper/' + me.screenName, alt='wallpaper')
 								input(name='image', type='file')
 						input.ui-inputSubmit(type='submit', value='アップデート')
 
 				div#webtheme
+					p comming soon....
 
 				div#application
+					p comming soon....
 
 				div#mail
+					p comming soon....
