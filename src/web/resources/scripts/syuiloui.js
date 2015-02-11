@@ -12,7 +12,7 @@ SYUILOUI.Tab = function($tabList) {
 		$tabListItem.click(function() {
 			var num = $tabList.find('li').index(this);
 			$tabList.find('li').removeClass('active');
-			$(this).addClass('active');
+			$(this).removeClass('unactive').addClass('active');
 
 			$.each($tabContents, function() {
 				$(this).css("display", "none");
@@ -29,6 +29,6 @@ SYUILOUI.Tab = function($tabList) {
 		$tabContent.css("display", "none");
 	});
 
-	$tabList[0].attr('class', 'active');
+	$tabList.find('li')[0].removeClass('unactive').addClass('active');
 	$tabContent[0].css("display", "block");
 }
