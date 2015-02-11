@@ -19,6 +19,8 @@ SYUILOUI.Tab = function($tabList) {
 			});
 
 			$tabContents[num].css("display", "block");
+
+			return false;
 		});
 	});
 
