@@ -7,7 +7,7 @@ import less = require('less');
 import AccessToken = require('../../models/access-token');
 import User = require('../../models/user');
 import Post = require('../../models/post');
-import doLogin = require('../controllers/login');
+import doLogin = require('../utils/login');
 import config = require('../../config');
 
 export = router;
