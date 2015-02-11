@@ -103,12 +103,12 @@ $(function() {
 	});
 	
 	$("#iconEditForm").submit(function(event) {
-		imageUpload(event, $(this));
+		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_icon');
 	});
 	$("#wallpaperEditForm").submit(function(event) {
-		imageUpload(event, $(this));
+		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_wallpaper');
 	});
 	$("#headerEditForm").submit(function(event) {
-		imageUpload(event, $(this));
+		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_header');
 	});
 });
