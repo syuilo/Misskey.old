@@ -4,6 +4,7 @@ import express = require('express');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
 import session = require('express-session');
+import compress = require('compression');
 import less = require('less');
 
 import db = require('../db');
@@ -16,6 +17,7 @@ var webServer = express();
 webServer.set('view engine', 'jade');
 webServer.set('views', __dirname + '/views');
 //webServer.locals.pretty = '  ';
+webServer.use(compress());
 webServer.use(bodyParser.urlencoded({ extended: true }));
 webServer.use(cookieParser(config.cookie_pass));
 
