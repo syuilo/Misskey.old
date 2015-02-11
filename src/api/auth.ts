@@ -28,21 +28,27 @@ var authorize = (req: any, res: APIResponse, success: (user: User, app: Applicat
 	};
 
 	if (consumerKey == null || accessToken == null) {
-		if (req.header('Referer') === config.publicConfig.url || req.header('Referer') === config.publicConfig.url + '/') {
-			if (isLogged) {
-				if (req.session.consumerKey != null && req.session.accessToken != null) {
-					consumerKey = req.session.consumerKey;
-					accessToken = req.session.accessToken;
+		if (req.header('Referer') != null) {
+			var referer = req.header('Referer');
+			if (referer.match(new RegExp('^' + config.publicConfig.url))) {
+				if (isLogged) {
+					if (req.session.consumerKey != null && req.session.accessToken != null) {
+						consumerKey = req.session.consumerKey;
+						accessToken = req.session.accessToken;
+					} else {
+						fail('You are logged in, but, CK or CS has not been set.');
+						return;
+					}
 				} else {
-					fail('You are logged in, but, CK or CS has not been set.');
+					fail('not logged');
 					return;
 				}
 			} else {
-				fail('not logged');
+				fail('CK or CS is null and invalid Referer');
 				return;
 			}
 		} else {
-			fail('CK or CS is null and empty Referer');
+			fail('CK or CS is null and Empty Referer');
 			return;
 		}
 	}
