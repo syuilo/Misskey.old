@@ -14,6 +14,16 @@ html, body {
 	padding: 0;
 }
 
+a {
+	text-decoration: none;
+	color: @themeColor;
+	transition: color 0.1s ease;
+
+	&:hover {
+		color: darken(@themeColor, 10%);
+	}
+}
+
 /* UI
  * ---------------------------------------------------------------- */
 
