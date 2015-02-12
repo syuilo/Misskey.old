@@ -5,6 +5,10 @@ import express = require('express');
 export = router;
 
 function router(app: express.Express): void {
+	/*app.all('*',(req: any, res: any) => {
+		req.url.match(".+/(.+?)([\?#;].*)?$")[1]
+	});*/
+
 	app.get('/authorize', require('./authorize-get'));
 	app.post('/authorize',(req: any, res: any) => {
 		require('./authorize-post')(req, res, app);

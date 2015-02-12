@@ -7,6 +7,7 @@ import cookie = require('cookie');
 import multer = require('multer');
 import session = require('express-session');
 import redis = require('redis');
+import yaml = require('js-yaml');
 
 import config = require('../config');
 
@@ -44,7 +45,15 @@ apiServer.use(session({
 
 apiServer.use((req: any, res: APIResponse, next: any) => {
 	res.apiRender = (data: any) => {
-		res.json(data);
+		if (req.format == null) {
+			res.json(data);
+		} else {
+			switch (req.format) {
+				case 'yaml':
+					res.send(yaml.safeDump(data));
+					break;
+			}
+		}
 	};
 	res.apiError = (code: number, message: string) => {
 		res.status(code);
