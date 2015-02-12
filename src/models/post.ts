@@ -30,7 +30,7 @@ class Post {
 		this.userId = post.user_id;
 	}
 
-	public static create(appId: number, inReplyToPostId: number, image: string, isImageAttached: Boolean, text: string, userId: number, callback: (post: Post) => void): void {
+	public static create(appId: number, inReplyToPostId: number, image: Buffer, isImageAttached: Boolean, text: string, userId: number, callback: (post: Post) => void): void {
 		db.query('insert into posts (app_id, in_reply_to_post_id, image, is_image_attached, text, user_id) values (?, ?, ?, ?, ?, ?)',
 			[appId, inReplyToPostId, image, isImageAttached, text, userId],
 			(err: any, info: any) => {

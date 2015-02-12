@@ -27,7 +27,7 @@ var postCreate = (req: any, res: APIResponse) => {
 				.quality(70)
 				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 				if (error) throw error;
-				image = buffer.toString('utf8');
+				image = buffer;
 				fs.unlink(path);
 				create();
 			});
