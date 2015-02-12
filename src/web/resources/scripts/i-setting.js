@@ -8,7 +8,7 @@ $(function() {
 		$submitButton.attr("value", "アップロード中...");
 		
 		$.ajax(url, {
-			type: 'post',
+			type: 'put',
 			data: fd,
 			processData: false,
 			contentType: false,
