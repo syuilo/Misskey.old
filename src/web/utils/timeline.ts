@@ -53,6 +53,7 @@ class Timeline {
 		text = parseURL(text);
 		text = parseReply(text);
 		text = parseBold(text);
+		text = parseSmall(text);
 		text = parseNewLine(text);
 		return text;
 
@@ -79,6 +80,12 @@ class Timeline {
 		function parseBold(text: string): string {
 			return text.replace(/\*\*(.+?)\*\*/g,(_: string, word: string) => {
 				return `<b>${word}</b>`;
+			});
+		}
+
+		function parseSmall(text: string): string {
+			return text.replace(/\(\((.+?)\)\)/g,(_: string, word: string) => {
+				return `<small>${word}</small>`;
 			});
 		}
 

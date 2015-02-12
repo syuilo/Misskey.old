@@ -106,6 +106,7 @@ TIMELINE.generatePostElement = function(post) {
 		text = parseURL(text);
 		text = parseReply(text);
 		text = parseBold(text);
+		text = parseSmall(text);
 		text = parseNewLine(text);
 		return text;
 
@@ -124,6 +125,12 @@ TIMELINE.generatePostElement = function(post) {
 		function parseBold(text) {
 			return text.replace(/\*\*(.+?)\*\*/g, function(_, word) {
 				return '<b>' + word + '</b>';
+			});
+		}
+
+		function parseSmall(text) {
+			return text.replace(/\(\((.+?)\)\)/g, function(_, word) {
+				return '<small>' + word + '</small>';
 			});
 		}
 
