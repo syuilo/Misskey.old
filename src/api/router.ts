@@ -5,6 +5,7 @@ import express = require('express');
 export = router;
 
 function router(app: express.Express): void {
+	app.get('/account/show', require('./rest/account/show'));
 	app.put('/account/update', require('./rest/account/update'));
 	app.put('/account/update_icon', require('./rest/account/update_icon'));
 	app.put('/account/update_header', require('./rest/account/update_header'));
