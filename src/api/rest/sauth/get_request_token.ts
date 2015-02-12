@@ -2,14 +2,13 @@
 
 import fs = require('fs');
 import APIResponse = require('../../api-response');
-import Streamer = require('../../../utils/streaming');
 import AccessToken = require('../../../models/access-token');
 import SauthRequestToken = require('../../../models/sauth-request-token');
 import Application = require('../../../models/application');
 
 var SauthGetRequestToken = (req: any, res: APIResponse) => {
-	if (req.body.consumer_key != null) {
-		var consumerKey = req.body.consumer_key;
+	if (req.query.consumer_key != null) {
+		var consumerKey = req.query.consumer_key;
 		Application.findByConsumerKey(consumerKey,(app: Application) => {
 			if (app != null) {
 				SauthRequestToken.create(app.id,(requestToken: SauthRequestToken) => {

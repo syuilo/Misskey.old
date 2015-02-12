@@ -203,11 +203,8 @@ var router = (app: express.Express): void => {
 	});
 
 	app.post('/login',(req: any, res: any) => {
-		doLogin(app, req.body.screen_name, req.body.password,(user: User, webAccessToken: AccessToken) => {
-			req.session.userId = user.id;
-			req.session.consumerKey = config.webClientConsumerKey;
-			req.session.accessToken = webAccessToken.token;
-			req.session.save(() => res.sendStatus(200));
+		doLogin(app, req, req.body.screen_name, req.body.password,(user: User, webAccessToken: AccessToken) => {
+			res.sendStatus(200);
 		},() => res.sendStatus(400));
 	});
 

@@ -10,7 +10,7 @@ import config = require('../../config');
 
 export = login;
 
-function login(app: express.Express, screenName: string, password: string, done: (user: User, webAccessToken: AccessToken) => void, fail: () => void): void {
+function login(app: express.Express, req: any, screenName: string, password: string, done: (user: User, webAccessToken: AccessToken) => void, fail: () => void): void {
 	var subscriber = redis.createClient(config.port.redis, 'localhost');
 	if (screenName == '' || password == '') {
 		fail();
@@ -28,7 +28,11 @@ function login(app: express.Express, screenName: string, password: string, done:
 								noticeData['data'] = notice;
 								noticeData['type'] = 'notice';
 								subscriber.publish('misskey:userstream', JSON.stringify(noticeData));
-								done(user, webAccessToken);
+
+								req.session.userId = user.id;
+								req.session.consumerKey = config.webClientConsumerKey;
+								req.session.accessToken = webAccessToken.token;
+								req.session.save(() => done(user, webAccessToken));
 							});
 						});
 					} else {
