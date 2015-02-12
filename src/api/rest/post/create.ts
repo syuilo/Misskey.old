@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/bundle.d.ts" />
 
 import fs = require('fs');
-import jpeg = require('jpeg-js');
+import gm = require('gm');
 import APIResponse = require('../../api-response');
 import Streamer = require('../../../utils/streaming');
 import AccessToken = require('../../../models/access-token');
@@ -22,8 +22,10 @@ var postCreate = (req: any, res: APIResponse) => {
 		if (Object.keys(req.files).length === 1) {
 			isImageAttached = true;
 			var path = req.files.image.path;
-			image = jpeg.encode(jpeg.decode(fs.readFileSync(path)), 50).data;
-			fs.unlink(path);
+			gm(path).quality(70).write(path,(data) => {
+				image = fs.readFileSync(path).toString();
+				fs.unlink(path);
+			});
 		}
 
 		Post.create(app.id, irtpi, image, isImageAttached, text, user.id,(post: Post) => {
