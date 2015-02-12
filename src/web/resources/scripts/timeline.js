@@ -96,7 +96,7 @@ TIMELINE.generatePostElement = function(post) {
 			function generateImageAttacher() {
 				return $('<div class="imageAttacher">')
 				.append($('<p><i class="fa fa-picture-o"></i></p>'))
-				.append($('<input name="image" type="file">'));
+				.append($('<input name="image" type="file" accept="image/*">'));
 			}
 		}
 	}

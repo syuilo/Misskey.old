@@ -43,7 +43,7 @@ html(lang='ja', dir='ltr')
 							div.icon
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
-								input(name='image', type='file')
+								input(name='image', type='file', accept='image/*')
 						input.ui-inputSubmit(type='submit', value='アップデート')
 					form#profileEditForm
 						label
@@ -104,7 +104,7 @@ html(lang='ja', dir='ltr')
 							div.header
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/header/' + me.screenName, alt='header')
-								input(name='image', type='file')
+								input(name='image', type='file', accept='image/*')
 						input.ui-inputSubmit(type='submit', value='アップデート')
 					form#wallpaperEditForm
 						label
@@ -112,7 +112,7 @@ html(lang='ja', dir='ltr')
 							div.wallpaper
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/wallpaper/' + me.screenName, alt='wallpaper')
-								input(name='image', type='file')
+								input(name='image', type='file', accept='image/*')
 						input.ui-inputSubmit(type='submit', value='アップデート')
 
 				div#webtheme
