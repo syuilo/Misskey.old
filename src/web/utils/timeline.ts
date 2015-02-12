@@ -85,7 +85,7 @@ class Timeline {
 
 		function parseSmall(text: string): string {
 			return text.replace(/\(\((.+?)\)\)/g,(_: string, word: string) => {
-				return `<small>${word}</small>`;
+				return `<small>(${word})</small>`;
 			});
 		}
 

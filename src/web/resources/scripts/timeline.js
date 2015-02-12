@@ -130,7 +130,7 @@ TIMELINE.generatePostElement = function(post) {
 
 		function parseSmall(text) {
 			return text.replace(/\(\((.+?)\)\)/g, function(_, word) {
-				return '<small>' + word + '</small>';
+				return '<small>(' + word + ')</small>';
 			});
 		}
 
