@@ -27,7 +27,7 @@ var usersFollow = (req: any, res: APIResponse) => {
 								res.apiRender(targetUser.filt());
 							});
 						} else {
-							res.apiError(400, 'User not found...');
+							res.apiError(404, 'User not found...');
 						}
 					});
 				} else {
