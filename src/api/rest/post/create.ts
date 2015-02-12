@@ -22,7 +22,7 @@ var postCreate = (req: any, res: APIResponse) => {
 		if (Object.keys(req.files).length === 1) {
 			isImageAttached = true;
 			var path = req.files.image.path;
-			gm(path).quality(70).write(path,() => {
+			gm(path).compress('JPEG').quality(70).write(path,() => {
 				image = fs.readFileSync(path).toString();
 				fs.unlink(path);
 				create();
