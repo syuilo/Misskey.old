@@ -219,7 +219,7 @@ fieldset {
 
 #iconEditForm {
 	float: left;
-	width: 300px;
+	width: 220px;
 
 	&:hover {
 		h2 {
@@ -235,6 +235,11 @@ fieldset {
 		color: #333;
 		transition: color 0.1s ease;
 	}
+
+	.icon {
+		width: 200px;
+		height: 200px;
+	}
 }
 
 #profileEditForm {
@@ -249,24 +254,17 @@ fieldset {
 	position: relative;
 	margin: 16px auto;
 	padding: 0;
+	max-width: 500px;
 	text-align: center;
 	background: rgba(0, 0, 0, 0.4);
 	color: #fff;
 	font-size: small;
 }
 
-#iconEditForm .icon {
-	width: 256px;
-	height: 256px;
-}
-
-#wallpaperEditForm .wallpaper {
-}
-
 	#iconEditForm .icon:hover,
 	#wallpaperEditForm .wallpaper:hover,
 	#headerEditForm .header:hover {
-		outline: dashed 8px @themeColor;
+		outline: dashed 4px @themeColor;
 	}
 
 	#iconEditForm .icon p,
