@@ -156,6 +156,18 @@ var router = (app: express.Express): void => {
 		});
 	});
 
+	app.get('/img/header/:sn',(req: any, res: any) => {
+		User.findByScreenName(req.params.sn,(user: User) => {
+			if (user != null) {
+				var img = user.header;
+				res.set('Content-Type', 'image/jpeg');
+				res.send(img);
+			} else {
+				res.status(404).send('User not found.');
+			}
+		});
+	});
+
 	app.get('/img/wallpaper/:sn',(req: any, res: any) => {
 		User.findByScreenName(req.params.sn,(user: User) => {
 			if (user != null) {
