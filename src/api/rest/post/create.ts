@@ -22,53 +22,58 @@ var postCreate = (req: any, res: APIResponse) => {
 		if (Object.keys(req.files).length === 1) {
 			isImageAttached = true;
 			var path = req.files.image.path;
-			gm(path).quality(70).write(path,(data) => {
+			gm(path).quality(70).write(path,() => {
 				image = fs.readFileSync(path).toString();
 				fs.unlink(path);
+				create();
 			});
+		} else {
+			create();
 		}
 
-		Post.create(app.id, irtpi, image, isImageAttached, text, user.id,(post: Post) => {
-			generateStreamingObject(post,(obj: any) => {
-				/* Publish post event */
-				var streamObj: any = {};
-				streamObj.type = 'post';
-				streamObj.value = obj;
+		var create = () => {
+			Post.create(app.id, irtpi, image, isImageAttached, text, user.id,(post: Post) => {
+				generateStreamingObject(post,(obj: any) => {
+					/* Publish post event */
+					var streamObj: any = {};
+					streamObj.type = 'post';
+					streamObj.value = obj;
 
-				// Me
-				Streamer.publish('userStream:' + user.id, JSON.stringify(streamObj));
+					// Me
+					Streamer.publish('userStream:' + user.id, JSON.stringify(streamObj));
 
-				// Followers
-				UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
-					if (userFollowings != null) {
-						userFollowings.forEach((userFollowing: UserFollowing) => {
-							Streamer.publish('userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+					// Followers
+					UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
+						if (userFollowings != null) {
+							userFollowings.forEach((userFollowing: UserFollowing) => {
+								Streamer.publish('userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+							});
+						}
+					});
+
+					// Mentions
+					var mentions = post.text.match(/@[a-zA-Z0-9_]+/g);
+					if (mentions != null) {
+						mentions.forEach((mentionSn: string) => {
+							mentionSn = mentionSn.replace('@', '');
+							User.findByScreenName(mentionSn,(replyUser: User) => {
+								if (replyUser != null) {
+									PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
+										var streamMentionObj: any = {};
+										streamMentionObj.type = 'reply';
+										streamMentionObj.value = obj;
+										Streamer.publish('userStream:' + replyUser.id, JSON.stringify(streamMentionObj));
+									});
+								}
+							});
 						});
 					}
+
+					// Sent response
+					res.apiRender(obj);
 				});
-
-				// Mentions
-				var mentions = post.text.match(/@[a-zA-Z0-9_]+/g);
-				if (mentions != null) {
-					mentions.forEach((mentionSn: string) => {
-						mentionSn = mentionSn.replace('@', '');
-						User.findByScreenName(mentionSn,(replyUser: User) => {
-							if (replyUser != null) {
-								PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
-									var streamMentionObj: any = {};
-									streamMentionObj.type = 'reply';
-									streamMentionObj.value = obj;
-									Streamer.publish('userStream:' + replyUser.id, JSON.stringify(streamMentionObj));
-								});
-							}
-						});
-					});
-				}
-
-				// Sent response
-				res.apiRender(obj);
 			});
-		});
+		};
 	});
 }
 
