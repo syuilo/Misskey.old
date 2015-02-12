@@ -2,10 +2,9 @@ doctype html
 
 html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 	head(prefix='og: http://ogp.me/ns#')
-		meta(charset='utf-8')
+		include templates/head
 		meta(name='description', content='思い出した時に来るくらいが丁度いい、ゆるいSNS「Misskey」！')
 		meta(name='keywords', content='Misskey')
-		meta(name='theme-color', content='#831c86')
 		meta(property='og:title', content='Misskey')
 		meta(property='og:type', content='website')
 		meta(property='og:description', content='Misskeyは開発中のゆるいSNSです。')
@@ -13,10 +12,9 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 		meta(property='og:image', content='')
 		meta(property='og:site_name', content='Misskey')
 		title Misskey
-		link(rel='shortcut icon', href='/favicon.icon')
 		link(rel='stylesheet', href='/resources/styles/entrance.css')
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 		script(src='/resources/scripts/entrance.js')
+	
 	body
 		div.github-forkMe.
 			<a href="https://github.com/Misskeyz/Misskey"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
