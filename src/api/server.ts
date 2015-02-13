@@ -17,6 +17,7 @@ import router = require('./router');
 var RedisStore: any = require('connect-redis')(session);
 
 var apiServer = express();
+apiServer.disable('x-powered-by');
 var server = require('http').Server(apiServer);
 
 server.listen(config.port.api);

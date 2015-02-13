@@ -14,6 +14,7 @@ import config = require('../config');
 var RedisStore: any = require('connect-redis')(session);
 
 var webServer = express();
+webServer.disable('x-powered-by');
 webServer.set('view engine', 'jade');
 webServer.set('views', __dirname + '/views');
 //webServer.locals.pretty = '  ';
