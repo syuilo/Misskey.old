@@ -38,7 +38,10 @@ var postCreate = (req: any, res: APIResponse) => {
 
 var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
 	Post.create(appId, irtpi, image, isImageAttached, text, userId,(post: Post) => {
-		generateStreamingObject(post,(obj: any) => {
+		buildResponseObject(post,(obj: any) => {
+			// Sent response
+			res.apiRender(obj);
+
 			/* Publish post event */
 			var streamObj: any = {};
 			streamObj.type = 'post';
@@ -73,14 +76,11 @@ var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: B
 					});
 				});
 			}
-
-			// Sent response
-			res.apiRender(obj);
 		});
 	});
 };
 
-var generateStreamingObject = (post: Post, callback: (obj: any) => void): void => {
+var buildResponseObject = (post: Post, callback: (obj: any) => void): void => {
 	delete post.image;
 	var obj: any = post;
 	obj.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
