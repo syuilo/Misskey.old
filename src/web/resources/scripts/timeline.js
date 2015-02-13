@@ -63,7 +63,7 @@ TIMELINE.generatePostElement = function(post) {
 		}
 
 		function generateImage() {
-			return $('<img alt="image">')
+			return $('<img alt="image" class="image">')
 			.attr('src', conf.url + '/img/post/' + post.id);
 		}
 	}

@@ -28,7 +28,7 @@
     "less": "^2.4.0",
     "multer": "^0.1.7",
     "mysql": "^2.5.4",
-    "redis": "^0.12.1"
+    "redis": "^0.12.1",
   },
   "repository": {
     "type": "git",
