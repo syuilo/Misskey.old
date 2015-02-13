@@ -70,7 +70,7 @@ $(function() {
 		}).done(function(data) {
 			$form[0].reset();
 			$form.find('.imageAttacher img').remove();
-			$input.parent('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
+			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
 		}).fail(function(data) {
