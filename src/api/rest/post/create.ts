@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/bundle.d.ts" />
 
 import fs = require('fs');
-var gm = require('gm');
+import gm = require('gm');
 import APIResponse = require('../../api-response');
 import Streamer = require('../../../utils/streaming');
 import AccessToken = require('../../../models/access-token');
