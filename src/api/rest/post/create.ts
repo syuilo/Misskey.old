@@ -26,15 +26,15 @@ var postCreate = (req: any, res: APIResponse) => {
 				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 				if (error) throw error;
 				fs.unlink(path);
-				create(app.id, irtpi, buffer, true, text, user.id);
+				create(req, res, app.id, irtpi, buffer, true, text, user.id);
 			});
 		} else {
-			create(app.id, irtpi, null, false, text, user.id);
+			create(req, res, app.id, irtpi, null, false, text, user.id);
 		}
 	});
 }
 
-var create = (appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
+var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
 	Post.create(appId, irtpi, image, isImageAttached, text, userId,(post: Post) => {
 		generateStreamingObject(post,(obj: any) => {
 			/* Publish post event */
