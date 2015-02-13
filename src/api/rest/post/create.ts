@@ -4,7 +4,6 @@ import fs = require('fs');
 import gm = require('gm');
 import APIResponse = require('../../api-response');
 import Streamer = require('../../../utils/streaming');
-import AccessToken = require('../../../models/access-token');
 import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
