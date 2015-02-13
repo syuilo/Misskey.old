@@ -17,69 +17,66 @@ var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
 		var text = req.body.text != null ? req.body.text : '';
 		var irtpi = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
-		var image: Buffer = null;
-		var isImageAttached = false;
+
 		if (Object.keys(req.files).length === 1) {
-			isImageAttached = true;
 			var path = req.files.image.path;
 			gm(path)
 				.compress('jpeg')
 				.quality(70)
 				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 				if (error) throw error;
-				image = buffer;
 				fs.unlink(path);
-				create();
+				create(app.id, irtpi, buffer, true, text, user.id);
 			});
 		} else {
-			create();
+			create(app.id, irtpi, null, false, text, user.id);
 		}
+	});
+}
 
-		var create = () => {
-			Post.create(app.id, irtpi, image, isImageAttached, text, user.id,(post: Post) => {
-				generateStreamingObject(post,(obj: any) => {
-					/* Publish post event */
-					var streamObj: any = {};
-					streamObj.type = 'post';
-					streamObj.value = obj;
+var create = (appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
+	Post.create(appId, irtpi, image, isImageAttached, text, userId,(post: Post) => {
+		generateStreamingObject(post,(obj: any) => {
+			/* Publish post event */
+			var streamObj: any = {};
+			streamObj.type = 'post';
+			streamObj.value = obj;
 
-					// Me
-					Streamer.publish('userStream:' + user.id, JSON.stringify(streamObj));
+			// Me
+			Streamer.publish('userStream:' + userId, JSON.stringify(streamObj));
 
-					// Followers
-					UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
-						if (userFollowings != null) {
-							userFollowings.forEach((userFollowing: UserFollowing) => {
-								Streamer.publish('userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+			// Followers
+			UserFollowing.findByFolloweeId(userId,(userFollowings: UserFollowing[]) => {
+				if (userFollowings != null) {
+					userFollowings.forEach((userFollowing: UserFollowing) => {
+						Streamer.publish('userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+					});
+				}
+			});
+
+			// Mentions
+			var mentions = post.text.match(/@[a-zA-Z0-9_]+/g);
+			if (mentions != null) {
+				mentions.forEach((mentionSn: string) => {
+					mentionSn = mentionSn.replace('@', '');
+					User.findByScreenName(mentionSn,(replyUser: User) => {
+						if (replyUser != null) {
+							PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
+								var streamMentionObj: any = {};
+								streamMentionObj.type = 'reply';
+								streamMentionObj.value = obj;
+								Streamer.publish('userStream:' + replyUser.id, JSON.stringify(streamMentionObj));
 							});
 						}
 					});
-
-					// Mentions
-					var mentions = post.text.match(/@[a-zA-Z0-9_]+/g);
-					if (mentions != null) {
-						mentions.forEach((mentionSn: string) => {
-							mentionSn = mentionSn.replace('@', '');
-							User.findByScreenName(mentionSn,(replyUser: User) => {
-								if (replyUser != null) {
-									PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
-										var streamMentionObj: any = {};
-										streamMentionObj.type = 'reply';
-										streamMentionObj.value = obj;
-										Streamer.publish('userStream:' + replyUser.id, JSON.stringify(streamMentionObj));
-									});
-								}
-							});
-						});
-					}
-
-					// Sent response
-					res.apiRender(obj);
 				});
-			});
-		};
+			}
+
+			// Sent response
+			res.apiRender(obj);
+		});
 	});
-}
+};
 
 var generateStreamingObject = (post: Post, callback: (obj: any) => void): void => {
 	delete post.image;
