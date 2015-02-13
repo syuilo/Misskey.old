@@ -1,6 +1,5 @@
 /// <reference path="../../../../typings/bundle.d.ts" />
 
-import fs = require('fs');
 import APIResponse = require('../../api-response');
 import Streamer = require('../../../utils/streaming');
 import Application = require('../../../models/application');
