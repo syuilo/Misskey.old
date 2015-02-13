@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/bundle.d.ts" />
 
 import fs = require('fs');
-import gm = require('gm');
+var gm = require('gm');
 import APIResponse = require('../../api-response');
 import Streamer = require('../../../utils/streaming');
 import AccessToken = require('../../../models/access-token');
@@ -17,7 +17,7 @@ var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
 		var text = req.body.text != null ? req.body.text : '';
 		var irtpi = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
-		var image: string = null;
+		var image: Buffer = null;
 		var isImageAttached = false;
 		if (Object.keys(req.files).length === 1) {
 			isImageAttached = true;
