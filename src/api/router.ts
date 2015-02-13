@@ -5,9 +5,15 @@ import express = require('express');
 export = router;
 
 function router(app: express.Express): void {
-	/*app.all('*',(req: any, res: any) => {
-		req.url.match(".+/(.+?)([\?#;].*)?$")[1]
-	});*/
+	app.all('*',(req: any, res: any) => {
+		var filename = req.url.match(/.+\/(.+?)([\?#;].*)?$/)
+		if (filename != false) {
+			var ex = filename[1].match(/\.(.+)$/);
+			if (ex != false) {
+				req.format = ex[0];
+			}
+		}
+	});
 
 	app.get('/authorize', require('./authorize-get'));
 	app.post('/authorize',(req: any, res: any) => {

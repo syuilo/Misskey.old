@@ -50,8 +50,14 @@ apiServer.use((req: any, res: APIResponse, next: any) => {
 			res.json(data);
 		} else {
 			switch (req.format) {
+				case 'json':
+					res.json(data);
+					break;
 				case 'yaml':
 					res.send(yaml.safeDump(data));
+					break;
+				default:
+					res.json(data);
 					break;
 			}
 		}
