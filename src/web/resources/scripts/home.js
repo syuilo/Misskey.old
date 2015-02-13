@@ -37,6 +37,19 @@ $(function() {
 		};
 	});
 
+	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
+		var $input = $(this);
+		var file = $(this).prop('files')[0];
+		if (!file.type.match('image.*')) return;
+		var reader = new FileReader();
+		reader.onload = function() {
+			var $img = $('<img>').attr('src', reader.result);
+			$input.parent('.imageAttacher').find('p, img').remove();
+			$input.parent('.imageAttacher').append($img);
+		};
+		reader.readAsDataURL(file);
+	});
+
 	$('#postForm').submit(function(event) {
 		event.preventDefault();
 		var $form = $(this);
@@ -56,6 +69,8 @@ $(function() {
 			}
 		}).done(function(data) {
 			$form[0].reset();
+			$form.find('.imageAttacher img').remove();
+			$input.parent('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
 		}).fail(function(data) {

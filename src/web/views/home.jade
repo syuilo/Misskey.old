@@ -50,7 +50,7 @@ html(lang='ja', dir='ltr')
 					form#postForm(action=apiUrl + '/post/create', method='post', enctype='multipart/form-data')
 						textarea(name='text', placeholder='What\'s up?')
 						input(type='submit', value='Update')
-						div.image
+						div.imageAttacher
 							p
 								i(class='fa fa-picture-o')
 							input(name='image', type='file', accept='image/*')
