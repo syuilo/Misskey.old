@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/bundle.d.ts" />
 
 import fs = require('fs');
-import jpeg = require('jpeg-js');
+import gm = require('gm');
 import APIResponse = require('../../api-response');
 import AccessToken = require('../../../models/access-token');
 import Application = require('../../../models/application');
@@ -13,12 +13,16 @@ var accountUpdateWallpaper = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
 		if (Object.keys(req.files).length === 1) {
 			var path = req.files.image.path;
-			var image = jpeg.encode(jpeg.decode(fs.readFileSync(path)), 70).data;
-			fs.unlink(path);
-
-			user.wallpaper = image;
-			user.update(() => {
-				res.apiRender(user.filt());
+			gm(path)
+				.compress('jpeg')
+				.quality(70)
+				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
+				if (error) throw error;
+				fs.unlink(path);
+				user.wallpaper = buffer;
+				user.update(() => {
+					res.apiRender(user.filt());
+				});
 			});
 		}
 	});
