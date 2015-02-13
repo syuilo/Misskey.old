@@ -44,19 +44,8 @@ apiServer.use(session({
 	store: sessionStore
 }));
 
-apiServer.all('*',(req: any, res: any, next: any) => {
-	var filename = req.url.match(/.+\/(.+?)([\?#;].*)?$/)
-	if (filename != null) {
-		var ex = filename[1].match(/\.(.+)$/);
-		if (ex != null) {
-			req.format = ex[1];
-		}
-	}
-	next();
-});
-
 apiServer.use((req: any, res: APIResponse, next: any) => {
-	res.apiRender = (data: any) => {
+	var sent = (data: any) => {
 		if (req.format == null) {
 			res.json(data);
 		} else {
@@ -73,15 +62,22 @@ apiServer.use((req: any, res: APIResponse, next: any) => {
 					break;
 			}
 		}
+	}
+
+	res.apiRender = (data: any) => {
+		sent(data);
 	};
+
 	res.apiError = (code: number, message: string) => {
-		res.status(code);
-		res.json({
+		var data = {
 			error: {
 				message: message
 			}
-		});
+		};
+		res.status(code);
+		sent(data);
 	};
+
 	next();
 });
 
