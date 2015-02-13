@@ -11,8 +11,8 @@ class User {
 	createdAt: string;
 	credit: number;
 	exp: number;
-	header: string;
-	icon: string;
+	header: Buffer;
+	icon: Buffer;
 	id: number;
 	isPremium: boolean;
 	isSuspended: boolean;
@@ -28,7 +28,7 @@ class User {
 	twitterAccessToken: string;
 	twitterAccessTokenSecret: string;
 	url: string;
-	wallpaper: string;
+	wallpaper: Buffer;
 	webThemeId: number;
 
 	public constructor(user: any) {
