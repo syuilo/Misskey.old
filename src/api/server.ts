@@ -86,4 +86,8 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 
 router(apiServer);
 
+apiServer.use((req: any, res: APIResponse, next: any) {
+	res.apiError(404, 'API not found.');
+});
+
 require('./streaming-server');
