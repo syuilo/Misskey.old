@@ -44,6 +44,17 @@ apiServer.use(session({
 	store: sessionStore
 }));
 
+apiServer.all('*',(req: any, res: any, next: any) => {
+	var filename = req.url.match(/.+\/(.+?)([\?#;].*)?$/)
+	if (filename != null) {
+		var ex = filename[1].match(/\.(.+)$/);
+		if (ex != null) {
+			req.format = ex[1];
+		}
+	}
+	next();
+});
+
 apiServer.use((req: any, res: APIResponse, next: any) => {
 	res.apiRender = (data: any) => {
 		if (req.format == null) {
@@ -54,6 +65,7 @@ apiServer.use((req: any, res: APIResponse, next: any) => {
 					res.json(data);
 					break;
 				case 'yaml':
+					res.header("Content-Type", "text/x-yaml")
 					res.send(yaml.safeDump(data));
 					break;
 				default:

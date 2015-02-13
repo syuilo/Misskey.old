@@ -5,17 +5,6 @@ import express = require('express');
 export = router;
 
 function router(app: express.Express): void {
-	app.all('*',(req: any, res: any, next: any) => {
-		var filename = req.url.match(/.+\/(.+?)([\?#;].*)?$/)
-		if (filename != null) {
-			var ex = filename[1].match(/\.(.+)$/);
-			if (ex != null) {
-				req.format = ex[1];
-			}
-		}
-		next();
-	});
-
 	app.get('/authorize', require('./authorize-get'));
 	app.post('/authorize',(req: any, res: any) => {
 		require('./authorize-post')(req, res, app);
