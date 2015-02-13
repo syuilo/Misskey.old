@@ -7,9 +7,9 @@ export = router;
 function router(app: express.Express): void {
 	app.all('*',(req: any, res: any) => {
 		var filename = req.url.match(/.+\/(.+?)([\?#;].*)?$/)
-		if (filename != false) {
+		if (filename != null) {
 			var ex = filename[1].match(/\.(.+)$/);
-			if (ex != false) {
+			if (ex != null) {
 				req.format = ex[0];
 			}
 		}
