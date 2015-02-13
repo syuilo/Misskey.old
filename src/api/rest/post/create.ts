@@ -16,7 +16,7 @@ var authorize = require('../../auth');
 var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
 		var text = req.body.text != null ? req.body.text : '';
-		var irtpi = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
+		var inReplyToPostId = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
 
 		if (Object.keys(req.files).length === 1) {
 			var path = req.files.image.path;
@@ -28,10 +28,10 @@ var postCreate = (req: any, res: APIResponse) => {
 				if (error) throw error;
 				fs.unlink(path);
 
-				create(req, res, app.id, irtpi, buffer, true, text, user.id);
+				create(req, res, app.id, inReplyToPostId, buffer, true, text, user.id);
 			});
 		} else {
-			create(req, res, app.id, irtpi, null, false, text, user.id);
+			create(req, res, app.id, inReplyToPostId, null, false, text, user.id);
 		}
 	});
 }
