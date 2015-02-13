@@ -20,12 +20,14 @@ var postCreate = (req: any, res: APIResponse) => {
 
 		if (Object.keys(req.files).length === 1) {
 			var path = req.files.image.path;
+			var imageQuality = user.isPremium ? 100 : 70;
 			gm(path)
 				.compress('jpeg')
-				.quality(70)
+				.quality(imageQuality)
 				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 				if (error) throw error;
 				fs.unlink(path);
+
 				create(req, res, app.id, irtpi, buffer, true, text, user.id);
 			});
 		} else {
