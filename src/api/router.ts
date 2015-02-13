@@ -10,7 +10,7 @@ function router(app: express.Express): void {
 		if (filename != null) {
 			var ex = filename[1].match(/\.(.+)$/);
 			if (ex != null) {
-				req.format = ex[0];
+				req.format = ex[1];
 			}
 		}
 		next();
