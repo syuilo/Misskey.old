@@ -78,6 +78,8 @@ $(function() {
 		});
 	});
 
+	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+
 	setInterval(function() {
 		var now = new Date();
 		$('time').each(function() {
