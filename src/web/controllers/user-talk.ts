@@ -12,6 +12,8 @@ export = render;
 var render = (req: any, res: any): void => {
 	TalkMessage.findByUserIdAndOtherpartyId(req.me.id, req.rootUser.id, 16, null, null,(meMessages: TalkMessage[]) => {
 		TalkMessage.findByUserIdAndOtherpartyId(req.rootUser.id, req.me.id, 16, null, null,(otherpartyMessages: TalkMessage[]) => {
+			if (meMessages == null) meMessages = [];
+			if (otherpartyMessages == null) otherpartyMessages = [];
 			var messages = meMessages.concat(otherpartyMessages).sort((a, b) => {
 				return (a.id > b.id) ? -1 : 1;
 			});
