@@ -97,16 +97,17 @@ var talk = io.of('/streaming/talk').on('connection',(socket: any) => {
 				var otherpartyId = String(req.otherparty_id);
 				socket.otherpartyId = otherpartyId;
 
-				var pubsub = redis.createClient();
-				pubsub.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
-				redis.createClient().publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
+				var subscriber = redis.createClient();
+				var publisher = redis.createClient();
+				subscriber.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
+				publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
-				pubsub.on('message',(channel: any, content: any) => {
+				subscriber.on('message',(channel: any, content: any) => {
 					socket.emit(content.type, content.value);
 				});
 
 				socket.on('disconnect',() => {
-					pubsub.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyLeftTheTalk');
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyLeftTheTalk');
 				});
 			});
 		}
