@@ -13,6 +13,7 @@
 			background-color: transparent;
 
 			> article {
+				display: block;
 				position: relative;
 				padding: 20px 12px;
 
@@ -23,7 +24,6 @@
 				}
 
 				a > .icon {
-					float: left;
 					min-width: 54px;
 					min-height: 54px;
 					max-width: 54px;
@@ -34,6 +34,18 @@
 				}
 
 				> .content {
+					display: block;
+					padding: 8px 16px;
+					border-radius: 16px;
+
+					&:before {
+						content: "";
+						pointer-events: none;
+						display: block;
+						position: absolute;
+						right: 0;
+						top: 8px;
+					}
 
 					> .text {
 						display: block;
@@ -95,16 +107,40 @@
 
 			> .message.me {
 				> article {
+					a > .icon {
+						float: right;
+					}
+
 					> .content {
-						background: #00ff3f;
+						float: right;
+						background: #33B623;
+
+						&:before {
+							border-top: solid 8px transparent;
+							border-right: solid 8px transparent;
+							border-bottom: solid 8px transparent;
+							border-left: solid 8px #33B623;
+						}
 					}
 				}
 			}
 
 			> .message.otherparty {
 				> article {
+					a > .icon {
+						float: left;
+					}
+
 					> .content {
+						float: left;
 						background: #fff;
+
+						&:before {
+							border-top: solid 8px transparent;
+							border-right: solid 8px #fff;
+							border-bottom: solid 8px transparent;
+							border-left: solid 8px transparent;
+						}
 					}
 				}
 			}
