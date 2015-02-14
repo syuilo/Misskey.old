@@ -35,6 +35,8 @@
 
 				> .content {
 					display: block;
+					position: relative;
+					margin: 0 8px;
 					padding: 8px 16px;
 					border-radius: 16px;
 
@@ -43,7 +45,6 @@
 						pointer-events: none;
 						display: block;
 						position: absolute;
-						right: 0;
 						top: 8px;
 					}
 
@@ -116,10 +117,15 @@
 						background: #33B623;
 
 						&:before {
+							right: -14px;
 							border-top: solid 8px transparent;
 							border-right: solid 8px transparent;
 							border-bottom: solid 8px transparent;
 							border-left: solid 8px #33B623;
+						}
+
+						> .text {
+							color: #fff;
 						}
 					}
 				}
@@ -136,10 +142,14 @@
 						background: #fff;
 
 						&:before {
+							left: -14px;
 							border-top: solid 8px transparent;
 							border-right: solid 8px #fff;
 							border-bottom: solid 8px transparent;
 							border-left: solid 8px transparent;
+						}
+
+						> .text {
 						}
 					}
 				}
