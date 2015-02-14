@@ -83,7 +83,7 @@ var buildResponseObject = (talkMessage: TalkMessage, callback: (obj: any) => voi
 		obj.app = app;
 		User.find(talkMessage.userId,(user: User) => {
 			obj.user = user.filt();
-			User.find(obj.toUserId,(otherparty: User) => {
+			User.find(obj.otherpartyId,(otherparty: User) => {
 				obj.otherparty = otherparty.filt();
 				callback(obj);
 			});
