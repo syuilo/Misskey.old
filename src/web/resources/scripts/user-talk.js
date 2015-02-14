@@ -12,6 +12,14 @@ $(function() {
 		console.log('Disconnected');
 	});
 
+	socket.on('otherpartyEnterTheTalk', function(client) {
+		console.log('相手が入室しました');
+	});
+
+	socket.on('otherpartyLeftTheTalk', function(client) {
+		console.log('相手が退室しました');
+	});
+
 	socket.on('otherpartyMessage', function(message) {
 		console.log('otherpartyMessage', message);
 		$message.prependTo($('#stream > .messages')).show(200);
