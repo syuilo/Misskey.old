@@ -103,7 +103,11 @@ var talk = io.of('/streaming/talk').on('connection',(socket: any) => {
 				publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
 				subscriber.on('message',(channel: any, content: any) => {
-					socket.emit(content.type, content.value);
+					if (content.type != null && content.value != null) {
+						socket.emit(content.type, content.value);
+					} else {
+						socket.emit(content);
+					}
 				});
 
 				socket.on('disconnect',() => {
