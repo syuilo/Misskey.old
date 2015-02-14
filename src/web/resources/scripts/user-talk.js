@@ -109,9 +109,9 @@ function generateMessageElement(message) {
 		'data-userComment': message.user.comment,
 		'data-userColor': message.user.color
 	})
-	.append(generateArticle(message));
+	.append(generateArticle());
 
-	function generateArticle(message) {
+	function generateArticle() {
 		return $('<article>')
 		.append(generateIcon())
 		.append(generateContent());
@@ -125,7 +125,7 @@ function generateMessageElement(message) {
 			);
 		}
 
-		function generateContent(message) {
+		function generateContent() {
 			return $('<div class="content">')
 			.append($('<p class="text">').html(parseText(message.text)))
 			.append(message.isImageAttached ? generateImage() : null)
