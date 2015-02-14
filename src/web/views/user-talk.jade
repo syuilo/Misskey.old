@@ -20,7 +20,7 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 						div.talkStream#stream
 							ol.messages
 								each message in messages
-									li(class= 'message ' + (message.userId == me.id ? 'otherparty' : 'me')
+									li(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 											title!= '#{message.createdAt}&#x0A;via #{message.app.name}'
 											data-id= message.id
 											data-userId= message.user.id
