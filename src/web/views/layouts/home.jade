@@ -1,0 +1,48 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include templates/head
+		meta(name='description', content='ママに咲いたカーネーション')
+		meta(name='keywords', content='Misskey')
+		block title
+		link(rel='stylesheet', href='/resources/styles/home.css')
+		block assets
+		
+	body
+		nav
+			div#me
+				img#meIcon(src=url + '/img/icon/' + me.screenName, alt='icon')
+				span#meName(contenteditable)= me.name
+				span#meScreenName= me.screenName
+				p#meComment(contenteditable)= me.comment
+			table#me-status
+				tr
+					th 投稿
+					td: a#me-postsCount(href=url + '/' + me.screenName)= postsCount
+				tr
+					th フォロー
+					td: a#me-followingsCount(href=url + '/' + me.screenName + '/following')= followingsCount
+				tr
+					th フォロワー
+					td: a#me-followersCount(href=url + '/' + me.screenName + '/followers')= followersCount
+			ul
+				li: a(href=url)
+					i.fa.fa-home
+					| ホーム
+				li: a(href=url + '/i/mention')
+					i.fa.fa-at
+					| メンション
+				li: a(href=url + '/i/talks')
+					i.fa.fa-comments
+					| トーク
+			ul
+				li: a(href=url + '/i')
+					i.fa.fa-user
+					| マイ メニュー
+				li: a(href=url + '/i/setting')
+					i.fa.fa-cog
+					| 設定
+		
+		main
+			block content

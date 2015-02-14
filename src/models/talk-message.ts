@@ -69,6 +69,12 @@ class TalkMessage {
 		db.query(q, p,(err: any, messages: any[]) => callback(messages.length != 0 ? messages.map((message) => new TalkMessage(message)) : null));
 	}
 
+	public static getRecentMessagesInRecentTalks(userId: number, limit: number, callback: (messages: TalkMessage[]) => void): void {
+		db.query("select * from (select * from talk_messages where otherparty_id = ? order by created_at desc) a group by user_id order by created_at desc limit ?",
+			[userId, limit],
+			(err: any, messages: any[]) => callback(messages.length != 0 ? messages.map((message) => new TalkMessage(message)) : null));
+	}
+
 	public update(callback: () => void = () => { }): void {
 		db.query('update talk_messages set text = ? where id =?',
 			[this.text, this.id],

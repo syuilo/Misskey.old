@@ -131,6 +131,13 @@ var router = (app: express.Express): void => {
 		require('../controllers/i-mention')(req, res);
 	});
 
+	app.get('/i/talk',(req: any, res: any, next: () => void) => {
+		require('../controllers/i-talks')(req, res);
+	});
+	app.get('/i/talks',(req: any, res: any, next: () => void) => {
+		require('../controllers/i-talks')(req, res);
+	});
+
 	app.get('/i/setting',(req: any, res: any, next: () => void) => {
 		require('../controllers/i-setting')(req, res);
 	});
