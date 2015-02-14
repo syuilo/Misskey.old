@@ -27,14 +27,24 @@ $(function() {
 		console.log('otherpartyMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
 		$message.appendTo($('#stream > .messages')).show(200);
-		setTimeout(scroll(0, $('html').outerHeight()), 200);
+		var animateTimer = setInterval(function() {
+			scroll(0, $('html').outerHeight());
+		}, 1);
+		setTimeout(function() {
+			clearInterval(animateTimer);
+		}, 201);
 	});
 
 	socket.on('meMessage', function(message) {
 		console.log('meMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
 		$message.appendTo($('#stream > .messages')).show(200);
-		setTimeout(scroll(0, $('html').outerHeight()), 200);
+		var animateTimer = setInterval(function() {
+			scroll(0, $('html').outerHeight());
+		}, 1);
+		setTimeout(function() {
+			clearInterval(animateTimer);
+		}, 201);
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
