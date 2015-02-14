@@ -146,7 +146,7 @@ TIMELINE.generatePostElement = function(post) {
 
 TIMELINE.setEventPost = function($post) {
 	$post.find('article > a').click(function() {
-		var $content = $("<iframe>").attr('src', $post.find('article > a').attr('href'));
+		var $content = $("<iframe>").attr({ src: $post.find('article > a').attr('href'), seamless: true });
 		openWindow($content, "トーク: " + $post.find('article > header > h2 > a').text(), 300, 450);
 		return false;
 	});
