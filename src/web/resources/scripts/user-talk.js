@@ -24,12 +24,14 @@ $(function() {
 		console.log('otherpartyMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
 		$message.appendTo($('#stream > .messages')).show(200);
+		scroll(0, $('html').outerHeight())
 	});
 
 	socket.on('meMessage', function(message) {
 		console.log('meMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
 		$message.appendTo($('#stream > .messages')).show(200);
+		scroll(0, $('html').outerHeight())
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
@@ -79,6 +81,7 @@ $(function() {
 	});
 
 	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+	scroll(0, $('html').outerHeight())
 
 	setInterval(function() {
 		var now = new Date();
