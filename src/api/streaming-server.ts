@@ -54,9 +54,9 @@ io.use((socket: any, next: any) => {
 });
 
 /* Home stream */
-var home = require('./socketio/home');
+import home = require('./socketio/home');
 home(io, sessionStore);
 
 /* Talk stream */
-var talk = require('./socketio/talk');
+import talk = require('./socketio/talk');
 talk(io, sessionStore);
