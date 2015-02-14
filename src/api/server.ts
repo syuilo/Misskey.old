@@ -87,7 +87,7 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
 		'Access-Control-Allow-Credentials': true,
-		'X-Frame-Options': 'DENY'
+		'X-Frame-Options': 'SAMEORIGIN'
 	});
 	next();
 });
