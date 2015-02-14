@@ -23,13 +23,13 @@ $(function() {
 	socket.on('otherpartyMessage', function(message) {
 		console.log('otherpartyMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
-		$message.prependTo($('#stream > .messages')).show(200);
+		$message.appendTo($('#stream > .messages')).show(200);
 	});
 
 	socket.on('meMessage', function(message) {
 		console.log('meMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
-		$message.prependTo($('#stream > .messages')).show(200);
+		$message.appendTo($('#stream > .messages')).show(200);
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {

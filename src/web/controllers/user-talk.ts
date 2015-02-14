@@ -15,7 +15,7 @@ var render = (req: any, res: any): void => {
 			if (meMessages == null) meMessages = [];
 			if (otherpartyMessages == null) otherpartyMessages = [];
 			var messages = meMessages.concat(otherpartyMessages).sort((a, b) => {
-				return (a.id > b.id) ? -1 : 1;
+				return (a.id < b.id) ? -1 : 1;
 			});
 
 			selialyzeTimelineOnject(messages,(serializedMessages: any[]) => {
