@@ -28,7 +28,7 @@ TIMELINE.generatePostElement = function(post) {
 
 		function generateIcon() {
 			return $('<a>')
-			.attr('href', conf.url + '/' + post.user.screenName)
+			.attr('href', conf.url + '/' + post.user.screenName + '/talk')
 			.append(
 			$('<img class="icon" alt="icon">')
 			.attr('src', conf.url + '/img/icon/' + post.user.screenName)
@@ -145,6 +145,12 @@ TIMELINE.generatePostElement = function(post) {
 }
 
 TIMELINE.setEventPost = function($post) {
+	$post.find('article > a').click(function() {
+		var $content = $("<iframe>").attr('src', $post.find('article > a').attr('href'));
+		openWindow($content, "トーク: " + $post.find('article > header > h2 > a').text(), 300, 450);
+		return false;
+	});
+
 	$post.find('.replyForm').submit(function(event) {
 		event.preventDefault();
 		var $form = $(this);
