@@ -17,7 +17,7 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 			div#timeline
 				div.timelineContainer
 					div.timelineMain
-						div.stream#stream
+						div.talkStream#stream
 							ol.messages
 								each message in messages
 									li(class= 'message ' + message.userId == me.id ? 'otherparty' : 'me'
