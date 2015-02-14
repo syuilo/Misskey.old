@@ -24,8 +24,11 @@ var sarver = (io: any, sessionStore: any): void => {
 				var pubsub = redis.createClient();
 				pubsub.subscribe('misskey:userStream:' + uid);
 				pubsub.on('message',(channel: any, content: any) => {
-					// Sent event
-					socket.emit(JSON.parse(content).type, content.value);
+					if (content.type != null && content.value != null) {
+						socket.emit(content.type, content.value);
+					} else {
+						socket.emit(content);
+					}
 				});
 
 				socket.on('disconnect',() => {
