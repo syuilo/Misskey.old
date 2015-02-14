@@ -54,12 +54,12 @@ io.use((socket: any, next: any) => {
 });
 
 /* Home stream */
-var home = io.of('/streaming/home').on('connection', (socket: any) => {
+var home = io.of('/streaming/home').on('connection',(socket: any) => {
 	var cookies: any = cookie.parse(socket.handshake.headers.cookie);
 	var sid = cookies[config.sessionKey];
 
 	// Get session
-	sessionStore.get(sid.match(/s:(.+?)\./)[1], (err: any, session: any) => {
+	sessionStore.get(sid.match(/s:(.+?)\./)[1],(err: any, session: any) => {
 		if (err) {
 			console.log(err.message);
 		} else {
@@ -68,12 +68,46 @@ var home = io.of('/streaming/home').on('connection', (socket: any) => {
 			// Subscribe stream
 			var pubsub = redis.createClient();
 			pubsub.subscribe('misskey:userStream:' + uid);
-			pubsub.on('message', (channel: any, content: any) => {
+			pubsub.on('message',(channel: any, content: any) => {
 				// Sent event
 				socket.emit(JSON.parse(content).type, JSON.parse(content).value);
 			});
 
-			socket.on('disconnect', () => {
+			socket.on('disconnect',() => {
+			});
+		}
+	});
+});
+
+/* Talk stream */
+var home = io.of('/streaming/talk').on('connection',(socket: any) => {
+	var cookies: any = cookie.parse(socket.handshake.headers.cookie);
+	var sid = cookies[config.sessionKey];
+
+	// Get session
+	sessionStore.get(sid.match(/s:(.+?)\./)[1],(err: any, session: any) => {
+		if (err) {
+			console.log(err.message);
+		} else {
+			var uid = socket.userId = session.userId;
+
+			socket.emit('connected');
+
+			socket.on('init',(req: any) => {
+				var otherpartyId = String(req.otherparty_id);
+				socket.otherpartyId = otherpartyId;
+
+				var pubsub = redis.createClient();
+				pubsub.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
+				pubsub.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
+
+				pubsub.on('message',(channel: any, content: any) => {
+					socket.emit(JSON.parse(content).type, JSON.parse(content).value);
+				});
+
+				socket.on('disconnect',() => {
+					pubsub.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyLeftTheTalk');
+				});
 			});
 		}
 	});
