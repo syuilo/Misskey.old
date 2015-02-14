@@ -71,12 +71,15 @@ class Post {
 	public static getTimeline(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
 		UserFollowing.findByFollowerId(userId,(userFollowings: UserFollowing[]) => {
 			var followingsStr: string = null;
-			if (userFollowings.length !== 0) {
+			if (userFollowings != null && userFollowings.length !== 0) {
 				var followingsStrs: string[] = [];
 				userFollowings.forEach((userFollowing: UserFollowing) => {
 					followingsStrs.push(userFollowing.followeeId.toString());
 				});
 				followingsStr = followingsStrs.join(',');
+			} else {
+				callback(null);
+				return;
 			}
 			var q: string, p: any;
 			if ((sinceId === null) && (maxId === null)) {
