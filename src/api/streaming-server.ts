@@ -99,7 +99,7 @@ var talk = io.of('/streaming/talk').on('connection',(socket: any) => {
 
 				var pubsub = redis.createClient();
 				pubsub.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
-				pubsub.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
+				redis.createClient().publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
 				pubsub.on('message',(channel: any, content: any) => {
 					socket.emit(JSON.parse(content).type, JSON.parse(content).value);
