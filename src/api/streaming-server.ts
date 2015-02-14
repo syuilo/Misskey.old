@@ -80,7 +80,7 @@ var home = io.of('/streaming/home').on('connection',(socket: any) => {
 });
 
 /* Talk stream */
-var home = io.of('/streaming/talk').on('connection',(socket: any) => {
+var talk = io.of('/streaming/talk').on('connection',(socket: any) => {
 	var cookies: any = cookie.parse(socket.handshake.headers.cookie);
 	var sid = cookies[config.sessionKey];
 
