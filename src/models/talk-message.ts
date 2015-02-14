@@ -10,7 +10,7 @@ class TalkMessage {
 	image: string;
 	isImageAttached: boolean;
 	text: string;
-	toUserId: number;
+	otherpartyId: number;
 	userId: number;
 
 	public constructor(message: any) {
@@ -20,20 +20,20 @@ class TalkMessage {
 		this.image = message.image;
 		this.isImageAttached = Boolean(message.is_image_attached);
 		this.text = message.text;
-		this.toUserId = message.to_user_id;
+		this.otherpartyId = message.otherparty_id;
 		this.userId = message.user_id;
 	}
 
 	public static create(
 		appId: number,
 		userId: number,
-		toUserId: number,
+		otherpartyId: number,
 		text: string,
 		isImageAttached: Boolean,
 		image: Buffer,
 		callback: (talkMessage: TalkMessage) => void): void {
-		db.query('insert into talk_messages (app_id, user_id, to_user_id, text, is_image_attached, image) values (?, ?, ?, ?, ?, ?)',
-			[appId, userId, toUserId, text, isImageAttached, image],
+		db.query('insert into talk_messages (app_id, user_id, otherparty_id, text, is_image_attached, image) values (?, ?, ?, ?, ?, ?)',
+			[appId, userId, otherpartyId, text, isImageAttached, image],
 			(err: any, info: any) => {
 				if (err) console.log(err);
 				TalkMessage.find(info.insertId,(talkMessage: TalkMessage) => {
@@ -48,23 +48,23 @@ class TalkMessage {
 			(err: any, messages: any[]) => callback(messages[0] != null ? new TalkMessage(messages[0]) : null));
 	}
 
-	public static findByUserIdAndToUserId(
+	public static findByUserIdAndOtherpartyId(
 		userId: number,
-		toUserId: number,
+		otherpartyId: number,
 		limit: number,
 		sinceId: number,
 		maxId: number,
 		callback: (messages: TalkMessage[]) => void): void {
 		var q: string, p: any;
 		if ((sinceId === null) && (maxId === null)) {
-			q = "select * from talk_messages where user_id = ? and to_user_id = ? order by id desc limit ?";
-			p = [userId, toUserId, limit];
+			q = "select * from talk_messages where user_id = ? and otherparty_id = ? order by id desc limit ?";
+			p = [userId, otherpartyId, limit];
 		} else if (sinceId !== null) {
-			q = "select * from talk_messages where user_id = ? and to_user_id = ? and id > ? order by id desc limit ?";
-			p = [userId, toUserId, sinceId, limit];
+			q = "select * from talk_messages where user_id = ? and otherparty_id = ? and id > ? order by id desc limit ?";
+			p = [userId, otherpartyId, sinceId, limit];
 		} else if (maxId !== null) {
-			q = "select * from talk_messages where user_id = ? and to_user_id = ? and id < ? order by id desc limit ?";
-			p = [userId, toUserId, maxId, limit];
+			q = "select * from talk_messages where user_id = ? and otherparty_id = ? and id < ? order by id desc limit ?";
+			p = [userId, otherpartyId, maxId, limit];
 		}
 		db.query(q, p,(err: any, messages: any[]) => callback(messages.length != 0 ? messages.map((message) => new TalkMessage(message)) : null));
 	}

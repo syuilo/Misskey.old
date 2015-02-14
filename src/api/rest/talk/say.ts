@@ -15,13 +15,13 @@ var talkSay = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
 		var text = req.body.text != null ? req.body.text : '';
 
-		if (req.body.to_user_id == null) {
-			res.apiError(400, 'to_user_id parameter is required :(');
+		if (req.body.otherparty_id == null) {
+			res.apiError(400, 'otherparty_id parameter is required :(');
 			return;
 		}
-		var toUserId = req.body.to_user_id;
+		var otherpartyId = req.body.otherparty_id;
 
-		UserFollowing.isFollowing(toUserId, user.id,(isFollowing: boolean) => {
+		UserFollowing.isFollowing(otherpartyId, user.id,(isFollowing: boolean) => {
 			if (!isFollowing) {
 				res.apiError(400, 'You are not follow from this user. To send a message, you need to have been followed from the other party.');
 				return;
@@ -37,35 +37,35 @@ var talkSay = (req: any, res: APIResponse) => {
 					if (error) throw error;
 					fs.unlink(path);
 
-					create(req, res, app.id, toUserId, buffer, true, text, user.id);
+					create(req, res, app.id, otherpartyId, buffer, true, text, user.id);
 				});
 			} else {
-				create(req, res, app.id, toUserId, null, false, text, user.id);
+				create(req, res, app.id, otherpartyId, null, false, text, user.id);
 			}
 		});
 	});
 }
 
-var create = (req: any, res: APIResponse, appId: number, toUserId: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
-	TalkMessage.create(appId, userId, toUserId, text, isImageAttached, image,(talkMessage: TalkMessage) => {
+var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
+	TalkMessage.create(appId, userId, otherpartyId, text, isImageAttached, image,(talkMessage: TalkMessage) => {
 		buildResponseObject(talkMessage,(obj: any) => {
 			// Sent response
 			res.apiRender(obj);
 
 			// Other party (home)
-			Streamer.publish('userStream:' + toUserId, JSON.stringify({
+			Streamer.publish('userStream:' + otherpartyId, JSON.stringify({
 				type: 'talkMessage',
 				value: obj
 			}));
 
 			// Other party
-			Streamer.publish('talkStream:' + toUserId + '-' + userId, JSON.stringify({
+			Streamer.publish('talkStream:' + otherpartyId + '-' + userId, JSON.stringify({
 				type: 'otherPartyPost',
 				value: obj
 			}));
 
 			// Me
-			Streamer.publish('talkStream:' + userId + '-' + toUserId, JSON.stringify({
+			Streamer.publish('talkStream:' + userId + '-' + otherpartyId, JSON.stringify({
 				type: 'mePost',
 				value: obj
 			}));
@@ -83,8 +83,8 @@ var buildResponseObject = (talkMessage: TalkMessage, callback: (obj: any) => voi
 		obj.app = app;
 		User.find(talkMessage.userId,(user: User) => {
 			obj.user = user.filt();
-			User.find(obj.toUserId,(otherParty: User) => {
-				obj.otherParty = otherParty.filt();
+			User.find(obj.toUserId,(otherparty: User) => {
+				obj.otherparty = otherparty.filt();
 				callback(obj);
 			});
 		});
