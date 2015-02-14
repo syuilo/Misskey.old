@@ -15,11 +15,9 @@ block content
 			li.talk
 				a(href= url + '/' + recentMessage.user.screenName + '/talk')
 					article
-						a(href=url + '/' + recentMessage.user.screenName)
-							img.icon(src=url + '/img/icon/' + recentMessage.user.screenName, alt='icon')
+						img.icon(src=url + '/img/icon/' + recentMessage.user.screenName, alt='icon')
 						header
-							h2
-								a(href=url + '/' + recentMessage.user.screenName)= recentMessage.user.name
+							h2= recentMessage.user.name
 							span.screenName= '@' + recentMessage.user.screenName
 							time(datetime=recentMessage.createdAt)= recentMessage.createdAt
 						p.text= recentMessage.text

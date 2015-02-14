@@ -30,11 +30,11 @@ h1 {
 			background-color: rgba(0, 0, 0, 0.02);
 			transition: background-color 0s ease;
 
-			> article > header > h2 a {
+			> a > article > header > h2 {
 				color: @themeColor;
 			}
 
-			> article > a > .icon {
+			> a > article > .icon {
 				filter: saturate(200%);
 				-webkit-filter: saturate(200%);
 				-moz-filter: saturate(200%);
@@ -43,7 +43,7 @@ h1 {
 			}
 		}
 
-		> article {
+		> a > article {
 			position: relative;
 			padding: 20px 12px;
 
@@ -63,15 +63,10 @@ h1 {
 					display: inline;
 					margin: 0;
 					padding: 0;
-					font-weight: normal;
 					font-size: 1em;
-
-					> a {
-						color: rgba(0, 0, 0, 0.9);
-						font-weight: bold;
-						text-decoration: none;
-						transition: all 0.1s ease;
-					}
+					color: rgba(0, 0, 0, 0.9);
+					font-weight: bold;
+					transition: all 0.1s ease;
 				}
 
 				> time {
@@ -104,7 +99,7 @@ h1 {
 				}
 			}
 
-			a > .icon {
+			> .icon {
 				float: left;
 				min-width: 54px;
 				min-height: 54px;
@@ -123,50 +118,6 @@ h1 {
 				word-wrap: break-word;
 				font-size: 1.1em;
 				color: rgba(0, 0, 0, 0.8);
-
-				.reply {
-					margin: 0 8px 0 0;
-					color: rgba(0, 0, 0, 0.8);
-				}
-
-				.url {
-					color: #1bb3b3;
-					text-decoration: none;
-
-					&:hover {
-						text-decoration: underline;
-					}
-
-					&:after {
-						content: "\f14c";
-						display: inline-block;
-						padding-left: 2px;
-						font-family: FontAwesome;
-						font-size: 0.9em;
-						font-weight: normal;
-						font-style: normal;
-					}
-				}
-
-				.screenName {
-					color: @themeColor;
-					text-decoration: none;
-					transition: text-shadow 0.2s ease;
-
-					&:hover {
-						text-shadow: 0 0 4px fade(@themeColor, 30%);
-					}
-				}
-
-				b {
-					font-weight: bold;
-				}
-
-				small {
-					margin: 0 4px;
-					font-size: 0.8em;
-					color: rgba(0, 0, 0, 0.6);
-				}
 			}
 
 			> .image {
