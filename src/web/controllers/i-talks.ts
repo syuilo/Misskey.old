@@ -11,8 +11,18 @@ export = render;
 
 var render = (req: any, res: any): void => {
 	TalkMessage.getRecentMessagesInRecentTalks(req.me.id, 10,(messages: TalkMessage[]) => {
-		res.display(req, res, 'i-talks', {
-			recentMessages: messages
-		});
+		async.map(messages,(message: any, next: any) => {
+			User.find(message.userId,(user: User) => {
+				message.user = user;
+				User.find(message.otherpartyId,(user: User) => {
+					message.otherparty = user;
+					next(null, message);
+				});
+			});
+		},(err: any, results: any[]) => {
+				res.display(req, res, 'i-talks', {
+					recentMessages: results
+				});
+			});
 	});
 };
