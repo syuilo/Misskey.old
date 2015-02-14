@@ -102,7 +102,7 @@ var talk = io.of('/streaming/talk').on('connection',(socket: any) => {
 				redis.createClient().publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
 				pubsub.on('message',(channel: any, content: any) => {
-					socket.emit(JSON.parse(content).type, content.value);
+					socket.emit(content.type, content.value);
 				});
 
 				socket.on('disconnect',() => {
