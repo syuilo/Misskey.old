@@ -21,7 +21,8 @@ var render = (req: any, res: any): void => {
 			selialyzeTimelineOnject(messages,(serializedMessages: any[]) => {
 				res.display(req, res, 'user-talk', {
 					otherparty: req.rootUser,
-					messages: serializedMessages
+					messages: serializedMessages,
+					parseText: Timeline.parseText
 				});
 			});
 		});
