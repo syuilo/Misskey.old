@@ -9,6 +9,7 @@ import User = require('../../models/user');
 import Post = require('../../models/post');
 import doLogin = require('../utils/login');
 import config = require('../../config');
+import imageRouter = require('./image');
 
 export = router;
 
@@ -150,59 +151,8 @@ var router = (app: express.Express): void => {
 		res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
 	});
 
-	/* Images */
-
-	app.get('/img/icon/:sn',(req: any, res: any) => {
-		User.findByScreenName(req.params.sn,(user: User) => {
-			if (user != null) {
-				var img = user.icon;
-				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
-			} else {
-				res.status(404).send('User not found.');
-			}
-		});
-	});
-
-	app.get('/img/header/:sn',(req: any, res: any) => {
-		User.findByScreenName(req.params.sn,(user: User) => {
-			if (user != null) {
-				var img = user.header;
-				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
-			} else {
-				res.status(404).send('User not found.');
-			}
-		});
-	});
-
-	app.get('/img/wallpaper/:sn',(req: any, res: any) => {
-		User.findByScreenName(req.params.sn,(user: User) => {
-			if (user != null) {
-				var img = user.wallpaper;
-				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
-			} else {
-				res.status(404).send('User not found.');
-			}
-		});
-	});
-
-	app.get('/img/post/:id',(req: any, res: any) => {
-		Post.find(req.params.id,(post: Post) => {
-			if (post != null) {
-				if (post.isImageAttached) {
-					var img = post.image;
-					res.set('Content-Type', 'image/jpeg');
-					res.send(img);
-				} else {
-					res.status(404).send('Image not found.');
-				}
-			} else {
-				res.status(404).send('Post not found.');
-			}
-		});
-	});
+	/* Image */
+	imageRouter(app);
 
 	/* Actions */
 
