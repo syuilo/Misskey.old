@@ -46,17 +46,21 @@ a {
 	box-shadow: none;
 	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.1s ease;
 }
+
 .ui-radio,
 .ui-checkbox {
 }
+
 .ui-radioLabel,
 .ui-checkboxLabel {
 	transition: all 0.2s ease;
 }
-.ui-radioLabel:hover,
-.ui-checkboxLabel:hover {
-	color: @themeColor;
-}
+
+	.ui-radioLabel:hover,
+	.ui-checkboxLabel:hover {
+		color: @themeColor;
+	}
+
 .ui-inputText:hover,
 .ui-inputEmail:hover,
 .ui-inputPassword:hover,
@@ -64,6 +68,7 @@ a {
 	border: solid 1px @themeColor;
 	transition: border 0.2s ease, box-shadow 0.1s ease;
 }
+
 .ui-inputText:focus,
 .ui-inputEmail:focus,
 .ui-inputPassword:focus,
@@ -96,26 +101,29 @@ a {
 	box-shadow: 0 0 0 1px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
 	transition: border 0.5s ease;
 }
-.ui-inputSubmit:hover,
-.ui-button:hover {
-	background: #fff;
-	/*color: $main_color;*/
-	/*border: solid 1px @themeColor;*/
-	transition: border 0s ease;
-}
-.ui-inputSubmit:focus,
-.ui-button:focus {
-	border: solid 1px @themeColor;
-	transition: border 0s ease;
-}
-.ui-inputSubmit:active,
-.ui-button:active {
-	padding: 9px 16px 7px 16px;
-	background: #eee;
-	border: solid 1px @themeColor;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
-	transition: border 0s ease;
-}
+
+	.ui-inputSubmit:hover,
+	.ui-button:hover {
+		background: #fff;
+		/*color: $main_color;*/
+		/*border: solid 1px @themeColor;*/
+		transition: border 0s ease;
+	}
+
+	.ui-inputSubmit:focus,
+	.ui-button:focus {
+		border: solid 1px @themeColor;
+		transition: border 0s ease;
+	}
+
+	.ui-inputSubmit:active,
+	.ui-button:active {
+		padding: 9px 16px 7px 16px;
+		background: #eee;
+		border: solid 1px @themeColor;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+		transition: border 0s ease;
+	}
 
 .ui-textarea {
 	height: 6em;
@@ -134,9 +142,11 @@ a {
 	color: #777;
 	font-size: 1em;
 }
-.ui-attachImage:hover {
-	border: dashed 2px #777;
-}
+
+	.ui-attachImage:hover {
+		border: dashed 2px #777;
+	}
+
 	.ui-attachImage input[type=file] {
 		display: inline;
 		position: absolute;
@@ -146,6 +156,7 @@ a {
 		height: 100%;
 		opacity: 0;
 	}
+
 	.ui-attachImage img {
 		max-width: 100%;
 		max-height: 128px;
@@ -166,6 +177,7 @@ a {
 	background: rgba(0, 0, 0, 0.8);
 	transition: top 1s ease;
 }
+
 	.ui-dialog p {
 		margin: 0;
 		text-align: center;
@@ -175,6 +187,7 @@ a {
 	display: inline-block;
 	position: relative;
 }
+
 	.ui-userIcon .icon {
 		min-width: 32px;
 		max-width: 32px;
@@ -182,6 +195,7 @@ a {
 		max-height: 32px;
 		vertical-align: bottom;
 	}
+
 	.ui-userIcon .balloon {
 		display: inline-block;
 		pointer-events: none;
@@ -200,9 +214,11 @@ a {
 		opacity: 0;
 		transition: opacity 0.1s linear;
 	}
+
 	.ui-userIcon:hover .balloon {
 		opacity: 1;
 	}
+
 	.ui-userIcon .balloon:before {
 		content: "";
 		position: absolute;
@@ -213,3 +229,42 @@ a {
 		border-bottom: solid 4px transparent;
 		border-left: solid 4px transparent;
 	}
+
+.imageAttacher {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	margin: 2px 8px;
+	padding: 8px 16px;
+	vertical-align: top;
+	line-height: 1.2em;
+	outline: dashed 2px #ccc;
+
+	&:hover {
+		outline: dashed 2px #777;
+	}
+
+	input[type=file] {
+		display: inline;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		opacity: 0;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+		color: #777;
+		line-height: 1.2em;
+		font-size: 1em;
+	}
+
+	img {
+		max-width: 100%;
+		max-height: 128px;
+	}
+}

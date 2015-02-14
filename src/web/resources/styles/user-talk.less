@@ -1,3 +1,6 @@
+@themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+
 html {
 	background: #eee;
 }
@@ -13,4 +16,60 @@ html {
 	bottom: 0;
 	width: 100%;
 	background: #55788E;
+
+	form {
+		width: 600px;
+		max-width: 100%;
+		margin: 0 auto;
+
+		textarea {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			box-sizing: border-box;
+			width: 100%;
+			min-width: 100%;
+			max-width: 100%;
+			margin: 0;
+			padding: 8px;
+			font-size: 1.3em;
+			color: #000;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			transition: all .2s ease;
+		}
+
+		input[type=submit] {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					display: inline-block;
+					box-sizing: border-box;
+					margin: 0;
+					padding: 8px 16px;
+					min-width: 5em;
+					cursor: pointer;
+					line-height: 1.3em;
+					font-size: 1.3em;
+					font-weight: normal;
+					text-decoration: none;
+					color: #fff;
+					background: @themeColor;
+					outline: none;
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+					transition: background 0.1s ease;
+
+					&:hover {
+						background: lighten(@themeColor, 10%);
+					}
+
+					&:active {
+						background: darken(@themeColor, 10%);
+					}
+				}
+	}
 }
