@@ -12,7 +12,7 @@ export = render;
 var render = (req: any, res: any): void => {
 	TalkMessage.getRecentMessagesInRecentTalks(req.me.id, 10,(messages: TalkMessage[]) => {
 		res.display(req, res, 'i-talks', {
-			messages: messages
+			recentMessages: messages
 		});
 	});
 };
