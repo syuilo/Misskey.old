@@ -18,10 +18,29 @@ var render = (req: any, res: any): void => {
 				return (a.id > b.id) ? -1 : 1;
 			});
 
-			res.display(req, res, 'user-talk', {
-				otherparty: req.rootUser,
-				messages: messages
+			selialyzeTimelineOnject(messages,(serializedMessages: any[]) => {
+				res.display(req, res, 'user-talk', {
+					otherparty: req.rootUser,
+					messages: serializedMessages
+				});
 			});
 		});
 	});
 };
+
+function selialyzeTimelineOnject(talkMessages: TalkMessage[], callback: (talkMessages: any[]) => void): void {
+	async.map(talkMessages,(message: any, next: any) => {
+		User.find(message.userId,(user: User) => {
+			message.user = user;
+			Application.find(message.appId,(app: Application) => {
+				message.app = app;
+				User.find(message.otherpartyId,(otherparty: User) => {
+					message.otherparty = otherparty;
+					next(null, message);
+				});
+			});
+		});
+	},(err: any, results: any[]) => {
+			callback(results);
+		});
+}
