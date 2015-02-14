@@ -17,7 +17,7 @@ $(function() {
 	socket.on('post', function(post) {
 		console.log('post', post);
 		new Audio('/resources/sounds/pop.mp3').play();
-		var $post = TIMELINE.generatePostElement(post, conf).hide()
+		var $post = TIMELINE.generatePostElement(post, conf).hide();
 		TIMELINE.setEventPost($post);
 		$post.prependTo($('#timeline .timeline > .posts')).show(200);
 	});

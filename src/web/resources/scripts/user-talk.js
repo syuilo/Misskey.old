@@ -22,6 +22,13 @@ $(function() {
 
 	socket.on('otherpartyMessage', function(message) {
 		console.log('otherpartyMessage', message);
+		var $message = generateMessageElement(message, conf).hide();
+		$message.prependTo($('#stream > .messages')).show(200);
+	});
+
+	socket.on('meMessage', function(message) {
+		console.log('meMessage', message);
+		var $message = generateMessageElement(message, conf).hide();
 		$message.prependTo($('#stream > .messages')).show(200);
 	});
 
@@ -91,3 +98,84 @@ $(function() {
 	}, 1000);
 });
 
+
+function generateMessageElement(message) {
+	return $('<li>')
+	.attr({
+		class: 'message ' + (message.userId == $("html").attr("data-meId") ? 'me' : 'otherparty'),
+		title: message.createdAt + '&#x0A;via ' + message.app.name,
+		'data-id': message.id,
+		'data-userId': message.userId,
+		'data-userComment': message.user.comment,
+		'data-userColor': message.user.color
+	})
+	.append(generateArticle(message));
+
+	function generateArticle(message) {
+		return $('<article>')
+		.append(generateIcon())
+		.append(generateContent());
+
+		function generateIcon() {
+			return $('<a>')
+			.attr('href', conf.url + '/' + message.user.screenName)
+			.append(
+			$('<img class="icon" alt="icon">')
+			.attr('src', conf.url + '/img/icon/' + message.user.screenName)
+			);
+		}
+
+		function generateContent(message) {
+			return $('<div class="content">')
+			.append($('<p class="text">').html(parseText(message.text)))
+			.append(message.isImageAttached ? generateImage() : null)
+
+			function generateImage() {
+				return $('<img alt="image" class="image">')
+				.attr('src', conf.url + '/img/post/' + message.id);
+			}
+		}
+	}
+
+	function parseText(text) {
+		text = escapeHtml(text);
+		text = parseURL(text);
+		text = parseReply(text);
+		text = parseBold(text);
+		text = parseSmall(text);
+		text = parseNewLine(text);
+		return text;
+
+		function parseURL(text) {
+			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
+				return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
+			});
+		}
+
+		function parseReply(text) {
+			return text.replace(/@([a-zA-Z0-9_]+)/g, function(_, screenName) {
+				return '<a href="' + conf.url + '/' + screenName + '" target="_blank" class="screenName">@' + screenName + '</a>';
+			});
+		}
+
+		function parseBold(text) {
+			return text.replace(/\*\*(.+?)\*\*/g, function(_, word) {
+				return '<b>' + word + '</b>';
+			});
+		}
+
+		function parseSmall(text) {
+			return text.replace(/\(\((.+?)\)\)/g, function(_, word) {
+				return '<small>(' + word + ')</small>';
+			});
+		}
+
+		function parseNewLine(text) {
+			return text.replace(/(\r\n|\r|\n)/g, '<br>');
+		}
+	}
+
+	function escapeHtml(text) {
+		return $('<div>').text(text).html();
+	}
+}
