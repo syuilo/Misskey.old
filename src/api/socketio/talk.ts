@@ -29,9 +29,10 @@ var sarver = (io: any, sessionStore: any): void => {
 					var subscriber = redis.createClient();
 					var publisher = redis.createClient();
 					subscriber.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
-					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyEnterTheTalk'));
 
 					subscriber.on('message',(channel: any, content: any) => {
+						content = JSON.parse(content);
 						if (content.type != null && content.value != null) {
 							socket.emit(content.type, content.value);
 						} else {
@@ -40,7 +41,7 @@ var sarver = (io: any, sessionStore: any): void => {
 					});
 
 					socket.on('disconnect',() => {
-						publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyLeftTheTalk');
+						publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyLeftTheTalk'));
 					});
 				});
 			}

@@ -53,22 +53,22 @@ var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, i
 			res.apiRender(obj);
 
 			// Other party (home)
-			Streamer.publish('userStream:' + otherpartyId, {
+			Streamer.publish('userStream:' + otherpartyId, JSON.stringify({
 				type: 'talkMessage',
 				value: obj
-			});
+			}));
 
 			// Other party
-			Streamer.publish('talkStream:' + otherpartyId + '-' + userId, {
+			Streamer.publish('talkStream:' + otherpartyId + '-' + userId, JSON.stringify({
 				type: 'otherpartyMessage',
 				value: obj
-			});
+			}));
 
 			// Me
-			Streamer.publish('talkStream:' + userId + '-' + otherpartyId, {
+			Streamer.publish('talkStream:' + userId + '-' + otherpartyId, JSON.stringify({
 				type: 'meMessage',
 				value: obj
-			});
+			}));
 		});
 	});
 };

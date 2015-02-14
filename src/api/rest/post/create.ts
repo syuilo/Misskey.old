@@ -42,10 +42,11 @@ var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: B
 			res.apiRender(obj);
 
 			/* Publish post event */
-			var streamObj: any = {};
-			streamObj.type = 'post';
-			streamObj.value = obj;
-
+			var streamObj = JSON.stringify({
+				type: 'post',
+				value: obj
+			});
+			
 			// Me
 			Streamer.publish('userStream:' + userId, streamObj);
 
@@ -66,9 +67,10 @@ var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: B
 					User.findByScreenName(mentionSn,(replyUser: User) => {
 						if (replyUser != null) {
 							PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
-								var streamMentionObj: any = {};
-								streamMentionObj.type = 'reply';
-								streamMentionObj.value = obj;
+								var streamMentionObj = JSON.stringify({
+									type: 'reply',
+									value: obj
+								});
 								Streamer.publish('userStream:' + replyUser.id, streamMentionObj);
 							});
 						}
