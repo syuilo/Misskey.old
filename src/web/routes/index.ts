@@ -41,8 +41,7 @@ var router = (app: express.Express): void => {
 			'Access-Control-Allow-Origin': config.publicConfig.url,
 			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-			'Access-Control-Allow-Credentials': true,
-			'X-Frame-Options': 'DENY'
+			'Access-Control-Allow-Credentials': true
 		});
 
 		/* Is logged */
