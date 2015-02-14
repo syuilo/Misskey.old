@@ -31,5 +31,6 @@ function router(app: express.Express): void {
 	app.post(/\/users\/follow(\..+)?$/, require('./rest/users/follow'));
 	app.delete(/\/users\/unfollow(\..+)?$/, require('./rest/users/unfollow'));
 	app.post(/\/post\/create(\..+)?$/, require('./rest/post/create'));
+	app.post(/\/talk\/say(\..+)?$/, require('./rest/talk/say'));
 	app.all(/\/teapot\/coffee(\..+)?$/, require('./rest/teapot/coffee'));
 };

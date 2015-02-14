@@ -60,7 +60,7 @@ var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, i
 
 			// Other party
 			Streamer.publish('talkStream:' + otherpartyId + '-' + userId, JSON.stringify({
-				type: 'otherPartyPost',
+				type: 'otherpartyPost',
 				value: obj
 			}));
 
