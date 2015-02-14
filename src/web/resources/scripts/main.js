@@ -38,8 +38,12 @@ function openWindow($content, title, width, height) {
 	$window.ready(function() {
 		top();
 
-		$window.css({
+		/*$window.css({
 			"top": ($(window).scrollTop() + (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64))) + "px",
+			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
+		});*/
+		$window.css({
+			"top": (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64)) + "px",
 			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
 		});
 		$window.animate({
