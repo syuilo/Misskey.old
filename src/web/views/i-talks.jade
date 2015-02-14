@@ -7,5 +7,21 @@ block assets
 	link(rel='stylesheet', href='/resources/styles/i-talks.css')
 
 block content
-	each recentMessage in recentMessages
-		p= recentMessage.user.name + ' : ' + recentMessage.text
+	h1
+		i.fa.fa-comments
+		| Talks
+	ol.#talks
+		each recentMessage in recentMessages
+			li.talk
+				a(href= url + '/' + recentMessage.user.screenName + '/talk')
+					article
+						a(href=url + '/' + recentMessage.user.screenName)
+							img.icon(src=url + '/img/icon/' + recentMessage.user.screenName, alt='icon')
+						header
+							h2
+								a(href=url + '/' + recentMessage.user.screenName)= recentMessage.user.name
+							span.screenName= '@' + recentMessage.user.screenName
+							time(datetime=recentMessage.createdAt)= recentMessage.createdAt
+						p.text= recentMessage.text
+						if recentMessage.isImageAttached
+							img.image(src=url + '/img/talk-message/' + recentMessage.id, alt='image')
