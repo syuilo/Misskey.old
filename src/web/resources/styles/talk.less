@@ -22,76 +22,83 @@
 					clear: both;
 				}
 
-				a > .icon {
-					float: left;
-					min-width: 54px;
-					min-height: 54px;
-					max-width: 54px;
-					max-height: 54px;
-					margin: 0 12px 4px 0;
-					border-radius: 8px;
-					transition: all 0.1s ease;
-				}
+				> .content {
 
-				> .text {
-					display: block;
-					margin: 0 0 0 0;
-					padding: 0;
-					overflow: hidden;
-					word-wrap: break-word;
-					font-size: 1.1em;
-					color: rgba(0, 0, 0, 0.8);
+					a > .icon {
+						float: left;
+						min-width: 54px;
+						min-height: 54px;
+						max-width: 54px;
+						max-height: 54px;
+						margin: 0 12px 4px 0;
+						border-radius: 8px;
+						transition: all 0.1s ease;
+					}
 
-					.url {
-						color: #1bb3b3;
-						text-decoration: none;
+					> .text {
+						display: block;
+						margin: 0 0 0 0;
+						padding: 0;
+						overflow: hidden;
+						word-wrap: break-word;
+						font-size: 1.1em;
+						color: rgba(0, 0, 0, 0.8);
 
-						&:hover {
-							text-decoration: underline;
+						.url {
+							color: #1bb3b3;
+							text-decoration: none;
+
+							&:hover {
+								text-decoration: underline;
+							}
+
+							&:after {
+								content: "\f14c";
+								display: inline-block;
+								padding-left: 2px;
+								font-family: FontAwesome;
+								font-size: 0.9em;
+								font-weight: normal;
+								font-style: normal;
+							}
 						}
 
-						&:after {
-							content: "\f14c";
-							display: inline-block;
-							padding-left: 2px;
-							font-family: FontAwesome;
-							font-size: 0.9em;
-							font-weight: normal;
-							font-style: normal;
+						.screenName {
+							color: @themeColor;
+							text-decoration: none;
+							transition: text-shadow 0.2s ease;
+
+							&:hover {
+								text-shadow: 0 0 4px fade(@themeColor, 30%);
+							}
+						}
+
+						b {
+							font-weight: bold;
+						}
+
+						small {
+							margin: 0 4px;
+							font-size: 0.8em;
+							color: rgba(0, 0, 0, 0.6);
 						}
 					}
 
-					.screenName {
-						color: @themeColor;
-						text-decoration: none;
-						transition: text-shadow 0.2s ease;
-
-						&:hover {
-							text-shadow: 0 0 4px fade(@themeColor, 30%);
-						}
+					> .image {
+						display: block;
+						max-width: 100%;
+						max-height: 512px;
 					}
-
-					b {
-						font-weight: bold;
-					}
-
-					small {
-						margin: 0 4px;
-						font-size: 0.8em;
-						color: rgba(0, 0, 0, 0.6);
-					}
-				}
-
-				> .image {
-					display: block;
-					max-width: 100%;
-					max-height: 512px;
 				}
 			}
 		}
 
-		> .message.me {
-			background: #00ff3f;
-		}
+			> .message.me {
+				> article {
+					> .content {
+						background: #00ff3f;
+					}
+				}
+			}
 	}
 }
