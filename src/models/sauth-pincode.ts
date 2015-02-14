@@ -31,7 +31,7 @@ class SAuthPincode {
 			(err, sauthPincodes) => callback(new SAuthPincode(sauthPincodes[0])));
 	}
 
-    public destroy(callback?: () => void): void {
+    public destroy(callback: () => void = () => { }): void {
 		db.query('delete from sauth_request_tokens where code = ?',
 			[this.code],
 			callback);

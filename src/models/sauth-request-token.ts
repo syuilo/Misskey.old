@@ -43,16 +43,15 @@ class SAuthRequestToken {
 			(err, sauthRequestTokens) => callback(new SAuthRequestToken(sauthRequestTokens[0])));
 	}
 
-    public update(callback?: () => void): void {
+    public update(callback: () => void = () => { }): void {
 		db.query('update sauth_request_tokens set invalid = ? where token = ?',
 			[this.isInvalid, this.token],
 			callback);
     }
 
-    public destroy(callback?: () => void): void {
-        db.query("delete from sauth_request_tokens where token=?",
-            [this.token],
-            callback);
-    }
-    
+	public destroy(callback: () => void = () => { }): void {
+		db.query("delete from sauth_request_tokens where token=?",
+			[this.token],
+			callback);
+	}
 }

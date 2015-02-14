@@ -44,7 +44,7 @@ class Post {
 	public static find(id: number, callback: (post: Post) => void): void {
 		db.query("select * from posts where id = ?",
 			[id],
-			(err: any, posts: any[]) => callback(new Post(posts[0])));
+			(err: any, posts: any[]) => callback(posts[0] != null ? new Post(posts[0]) : null));
 	}
 
 	public static getUserPostsCount(userId: number, callback: (postsCount: number) => void): void {
