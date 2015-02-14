@@ -35,7 +35,7 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 													img.image(src=url + '/img/talk-message/' + message.id, alt='image')
 				div#postFormContainer
 					form#postForm(enctype='multipart/form-data')
-						textarea(name='text', placeholder='What\'s up?')
+						textarea(name='text', placeholder='Message...')
 						input(name='otherparty_id', type='hidden', value=otherparty.id)
 						input(type='submit', value='Sent')
 						div.imageAttacher

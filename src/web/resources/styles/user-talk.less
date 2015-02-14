@@ -42,34 +42,44 @@ html {
 		}
 
 		input[type=submit] {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					display: inline-block;
-					box-sizing: border-box;
-					margin: 0;
-					padding: 8px 16px;
-					min-width: 5em;
-					cursor: pointer;
-					line-height: 1.3em;
-					font-size: 1.3em;
-					font-weight: normal;
-					text-decoration: none;
-					color: #fff;
-					background: @themeColor;
-					outline: none;
-					border: none;
-					border-radius: 0;
-					box-shadow: none;
-					transition: background 0.1s ease;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			float: right;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 8px 16px;
+			min-width: 5em;
+			cursor: pointer;
+			line-height: 1.3em;
+			font-size: 1.3em;
+			font-weight: normal;
+			text-decoration: none;
+			color: #fff;
+			background: @themeColor;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			transition: background 0.1s ease;
 
-					&:hover {
-						background: lighten(@themeColor, 10%);
-					}
+			&:hover {
+				background: lighten(@themeColor, 10%);
+			}
 
-					&:active {
-						background: darken(@themeColor, 10%);
-					}
-				}
+			&:active {
+				background: darken(@themeColor, 10%);
+			}
+		}
+
+		.imageAttacher {
+			float: right;
+			outline: dashed 2px rgba(255, 255, 255, 0.7);
+
+			p i {
+				color: #fff;
+			}
+		}
 	}
 }
