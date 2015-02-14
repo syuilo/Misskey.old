@@ -1,4 +1,7 @@
 $(function() {
+	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+	scroll(0, $('html').outerHeight())
+
 	socket = io.connect('https://api.misskey.xyz:1207/streaming/talk', { port: 1207 });
 
 	socket.on('connected', function() {
@@ -24,14 +27,14 @@ $(function() {
 		console.log('otherpartyMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
 		$message.appendTo($('#stream > .messages')).show(200);
-		scroll(0, $('html').outerHeight())
+		setTimeout(scroll(0, $('html').outerHeight()), 200);
 	});
 
 	socket.on('meMessage', function(message) {
 		console.log('meMessage', message);
 		var $message = generateMessageElement(message, conf).hide();
 		$message.appendTo($('#stream > .messages')).show(200);
-		scroll(0, $('html').outerHeight())
+		setTimeout(scroll(0, $('html').outerHeight()), 200);
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
@@ -79,9 +82,6 @@ $(function() {
 			$submitButton.text('Update');
 		});
 	});
-
-	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
-	scroll(0, $('html').outerHeight())
 
 	setInterval(function() {
 		var now = new Date();
@@ -184,3 +184,8 @@ function generateMessageElement(message) {
 		return $('<div>').text(text).html();
 	}
 }
+
+$(window).load(function() {
+	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+	scroll(0, $('html').outerHeight())
+});
