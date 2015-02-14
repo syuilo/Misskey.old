@@ -39,7 +39,7 @@ function openWindow($content, title, width, height) {
 		top();
 
 		$window.css({
-			"top": (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64)) + "px",
+			"top": (document.documentElement.scrollTop + ($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64)) + "px",
 			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
 		});
 		$window.animate({
