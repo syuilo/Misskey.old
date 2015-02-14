@@ -59,8 +59,8 @@ $(function() {
 		$submitButton.attr('disabled', true);
 		$submitButton.text('Updating...');
 
-		$.ajax($form.attr('action'), {
-			type: $form.attr('method'),
+		$.ajax('https://api.misskey.xyz/post/create', {
+			type: 'post',
 			processData: false,
 			contentType: false,
 			data: new FormData($form[0]),
@@ -70,12 +70,14 @@ $(function() {
 			}
 		}).done(function(data) {
 			$form[0].reset();
+			$form.find('textarea').focus();
 			$form.find('.imageAttacher').find('p, img').remove();
 			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
 		}).fail(function(data) {
 			$form[0].reset();
+			$form.find('textarea').focus();
 			/*alert('error');*/
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');

@@ -47,7 +47,7 @@ html(lang='ja', dir='ltr')
 		main
 			div#timeline
 				div#postFormContainer
-					form#postForm(action=apiUrl + '/post/create', method='post', enctype='multipart/form-data')
+					form#postForm(enctype='multipart/form-data')
 						textarea(name='text', placeholder='What\'s up?')
 						input(type='submit', value='Update')
 						div.imageAttacher
