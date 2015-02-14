@@ -1,0 +1,43 @@
+doctype html
+
+html(lang='ja', dir='ltr', data-otherpartyId= otherparty.id)
+	head
+		include templates/head
+		meta(name='description', content='ママに咲いたカーネーション')
+		meta(name='keywords', content='Misskey')
+		title= 'トーク: ' + otherparty.name
+		link(rel='stylesheet', href='/resources/styles/user-talk.css')
+		link(rel='stylesheet', href='/resources/styles/talk.css')
+		script(src=apiUrl + ':1207/socket.io/socket.io.js')
+		script(src='/resources/scripts/talk.js')
+		script(src='/resources/scripts/user-talk.js')
+		
+	body
+		main
+			div#timeline
+				div.timelineContainer
+					div.timelineMain
+						div.stream#stream
+							ol.messages
+								each message in messages
+									li(class= 'message ' + message.userId == me.id ? 'otherparty' : 'me'
+											title!= '#{message.createdAt}&#x0A;via #{message.app.name}'
+											data-id= message.id
+											data-userId= message.user.id
+											data-userComment= message.user.comment
+											data-userColor= message.user.color)
+										article
+											a(href=url + '/' + message.user.screenName)
+												img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
+											div.content
+												p.text!= parseText(message.text)
+												if message.isImageAttached
+													img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+				div#postFormContainer
+					form#postForm(enctype='multipart/form-data')
+						textarea(name='text', placeholder='What\'s up?')
+						input(type='submit', value='Sent')
+						div.imageAttacher
+							p
+								i(class='fa fa-picture-o')
+							input(name='image', type='file', accept='image/*')

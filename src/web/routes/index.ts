@@ -216,6 +216,7 @@ var router = (app: express.Express): void => {
 	});
 
 	app.get('/:userSn', require('../controllers/user'));
+	app.get('/:userSn/talk', require('../controllers/user-talk'));
 
 	var display = (req: any, res: any, name: string, renderData: any) => {
 		res.render(name, extend(req.data, renderData));

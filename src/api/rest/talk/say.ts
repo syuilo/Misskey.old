@@ -60,13 +60,13 @@ var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, i
 
 			// Other party
 			Streamer.publish('talkStream:' + otherpartyId + '-' + userId, JSON.stringify({
-				type: 'otherpartyPost',
+				type: 'otherpartyMessage',
 				value: obj
 			}));
 
 			// Me
 			Streamer.publish('talkStream:' + userId + '-' + otherpartyId, JSON.stringify({
-				type: 'mePost',
+				type: 'meMessage',
 				value: obj
 			}));
 		});
