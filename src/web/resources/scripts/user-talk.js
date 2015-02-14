@@ -9,6 +9,7 @@ $(function() {
 	});
 
 	socket.on('disconnect', function(client) {
+		console.log('Disconnected');
 	});
 
 	socket.on('otherpartyMessage', function(message) {
