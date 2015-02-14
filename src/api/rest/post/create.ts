@@ -47,13 +47,13 @@ var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: B
 			streamObj.value = obj;
 
 			// Me
-			Streamer.publish('userStream:' + userId, JSON.stringify(streamObj));
+			Streamer.publish('userStream:' + userId, streamObj);
 
 			// Followers
 			UserFollowing.findByFolloweeId(userId,(userFollowings: UserFollowing[]) => {
 				if (userFollowings != null) {
 					userFollowings.forEach((userFollowing: UserFollowing) => {
-						Streamer.publish('userStream:' + userFollowing.followerId, JSON.stringify(streamObj));
+						Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
 					});
 				}
 			});
@@ -69,7 +69,7 @@ var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: B
 								var streamMentionObj: any = {};
 								streamMentionObj.type = 'reply';
 								streamMentionObj.value = obj;
-								Streamer.publish('userStream:' + replyUser.id, JSON.stringify(streamMentionObj));
+								Streamer.publish('userStream:' + replyUser.id, streamMentionObj);
 							});
 						}
 					});

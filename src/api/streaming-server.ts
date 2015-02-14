@@ -70,7 +70,7 @@ var home = io.of('/streaming/home').on('connection',(socket: any) => {
 			pubsub.subscribe('misskey:userStream:' + uid);
 			pubsub.on('message',(channel: any, content: any) => {
 				// Sent event
-				socket.emit(JSON.parse(content).type, JSON.parse(content).value);
+				socket.emit(JSON.parse(content).type, content.value);
 			});
 
 			socket.on('disconnect',() => {
