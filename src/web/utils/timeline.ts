@@ -11,15 +11,25 @@ export = Timeline;
 
 class Timeline {
 	public static generateHtml(posts: Post[], callback: (timelineHtml: string) => void) {
-		Timeline.selialyzeTimelineOnject(posts,(timeline: any[]) => {
+		if (posts != null) {
+			Timeline.selialyzeTimelineOnject(posts,(timeline: any[]) => {
+				var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {});
+				var html = compiler({
+					posts: timeline,
+					url: conf.publicConfig.url,
+					parseText: Timeline.parseText
+				})
+				callback(html);
+			});
+		} else {
 			var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {});
 			var html = compiler({
-				posts: timeline,
+				posts: null,
 				url: conf.publicConfig.url,
 				parseText: Timeline.parseText
 			})
 			callback(html);
-		});
+		}
 	}
 
 	public static selialyzeTimelineOnject(posts: Post[], callback: (posts: any[]) => void): void {
