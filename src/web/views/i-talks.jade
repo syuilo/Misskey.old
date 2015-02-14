@@ -10,7 +10,7 @@ block content
 	h1
 		i.fa.fa-comments
 		| Talks
-	ol.#talks
+	ol#talks
 		each recentMessage in recentMessages
 			li.talk
 				a(href= url + '/' + recentMessage.user.screenName + '/talk')
