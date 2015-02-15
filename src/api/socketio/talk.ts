@@ -19,6 +19,7 @@ var sarver = (io: any, sessionStore: any): void => {
 				console.log(err.message);
 			} else {
 				var uid = socket.userId = session.userId;
+				var publisher = redis.createClient();
 
 				socket.emit('connected');
 
@@ -27,7 +28,6 @@ var sarver = (io: any, sessionStore: any): void => {
 					socket.otherpartyId = otherpartyId;
 
 					var subscriber = redis.createClient();
-					var publisher = redis.createClient();
 					subscriber.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyEnterTheTalk'));
 
@@ -39,14 +39,14 @@ var sarver = (io: any, sessionStore: any): void => {
 							socket.emit(content);
 						}
 					});
+				});
 
-					socket.on('type', (req: any) => {
-						publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify(req.text));
-					});
+				socket.on('type',(req: any) => {
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify(req.text));
+				});
 
-					socket.on('disconnect',() => {
-						publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyLeftTheTalk'));
-					});
+				socket.on('disconnect',() => {
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyLeftTheTalk'));
 				});
 			}
 		});
