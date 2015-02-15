@@ -115,8 +115,30 @@ function generateMessageElement(message) {
 	function generateArticle() {
 		return $('<article>')
 		.append(generateIcon())
-		.append(generateContent())
-		.append(generateTime());
+		.append(generateContentContainer());
+
+		function generateContentContainer() {
+			return $('<div class="contentContainer">')
+			.append(generateContent())
+			.append(generateTime());
+
+			function generateContent() {
+				return $('<div class="content">')
+				.append($('<p class="text">').html(parseText(message.text)))
+				.append(message.isImageAttached ? generateImage() : null)
+
+				function generateImage() {
+					return $('<img alt="image" class="image">')
+					.attr('src', conf.url + '/img/talk-message/' + message.id);
+				}
+			}
+
+			function generateTime() {
+				return $('<time>')
+				.attr('datetime', message.createdAt)
+				.html(message.createdAt);
+			}
+		}
 
 		function generateIcon() {
 			return $('<a>')
@@ -125,23 +147,6 @@ function generateMessageElement(message) {
 			$('<img class="icon" alt="icon">')
 			.attr('src', conf.url + '/img/icon/' + message.user.screenName)
 			);
-		}
-
-		function generateContent() {
-			return $('<div class="content">')
-			.append($('<p class="text">').html(parseText(message.text)))
-			.append(message.isImageAttached ? generateImage() : null)
-
-			function generateImage() {
-				return $('<img alt="image" class="image">')
-				.attr('src', conf.url + '/img/talk-message/' + message.id);
-			}
-		}
-
-		function generateTime() {
-			return $('<time>')
-			.attr('datetime', message.createdAt)
-			.html(message.createdAt);
 		}
 	}
 
