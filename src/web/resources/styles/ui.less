@@ -326,10 +326,15 @@ a {
 	transform-origin: 50% 100%;
 
 	> header {
+		user-select: none;
 		width: 100%;
 		height: 32px;
 		cursor: move;
 		background: #fff;
+
+		* {
+			user-select: none;
+		}
 
 		> h1 {
 			display: inline-block;

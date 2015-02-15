@@ -122,12 +122,12 @@ function openWindow($content, title, width, height) {
 		var windowWidth = $window.width();
 		var windowHeight = $window.height();
 
-		if (position.left + windowWidth > browserWidth) {
+		if (position.left < 0) {
 			$window.css({
 				"right": (browserWidth - windowWidth) + "px"
 			});
 		}
-		if (position.top + windowHeight > browserHeight) {
+		if (position.top < 0) {
 			$window.css({
 				"bottom": (browserHeight - windowHeight) + "px"
 			});
