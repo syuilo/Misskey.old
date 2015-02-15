@@ -115,7 +115,8 @@ function generateMessageElement(message) {
 	function generateArticle() {
 		return $('<article>')
 		.append(generateIcon())
-		.append(generateContent());
+		.append(generateContent())
+		.append(generateTime());
 
 		function generateIcon() {
 			return $('<a>')
@@ -135,6 +136,12 @@ function generateMessageElement(message) {
 				return $('<img alt="image" class="image">')
 				.attr('src', conf.url + '/img/talk-message/' + message.id);
 			}
+		}
+
+		function generateTime() {
+			return $('<time>')
+			.attr('datetime', message.createdAt)
+			.html(message.createdAt);
 		}
 	}
 

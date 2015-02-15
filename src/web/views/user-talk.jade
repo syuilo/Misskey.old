@@ -33,6 +33,7 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 												p.text!= parseText(message.text)
 												if message.isImageAttached
 													img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+											time(datetime=message.createdAt)= message.createdAt
 				div#postFormContainer
 					form#postForm(enctype='multipart/form-data')
 						textarea(name='text', placeholder='Message...')
