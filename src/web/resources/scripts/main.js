@@ -132,5 +132,15 @@ function openWindow($content, title, width, height) {
 				"bottom": (browserHeight - windowHeight) + "px"
 			});
 		}
+		if (position.left + windowWidth > browserWidth) {
+			$window.css({
+				"right": "0px"
+			});
+		}
+		if (position.top + windowHeight > browserHeight) {
+			$window.css({
+				"bottom": "0px"
+			});
+		}
 	});
 }
