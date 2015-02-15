@@ -43,8 +43,8 @@ function openWindow($content, title, width, height) {
 			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
 		});*/
 		$window.css({
-			"top": (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64)) + "px",
-			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
+			"bottom": (($(window).height() / 2) + ($window.outerHeight() / 2) + ((Math.random() * 128) - 64)) + "px",
+			"right": (($(window).width() / 2) + ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
 		});
 		$window.animate({
 			"opacity": "1",
