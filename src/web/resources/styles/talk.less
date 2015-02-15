@@ -34,15 +34,22 @@
 				}
 
 				> .contentContainer {
+					display: block;
+					box-sizing: border-box;
+					position: relative;
+					margin: 0 12px;
+					padding: 0;
+					max-width: ~"calc(100% - 78px)";
+
 					> .content {
 						display: block;
 						box-sizing: border-box;
 						position: relative;
-						margin: 0 12px;
+						margin: 0;
 						padding: 8px 16px;
 						line-height: 1.3em;
 						border-radius: 16px;
-						max-width: ~"calc(100% - 78px)";
+						width: 100%;
 
 						&:before {
 							content: "";

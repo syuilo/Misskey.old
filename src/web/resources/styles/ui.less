@@ -9,6 +9,37 @@
 	font-family: 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
 }
 
+	*::-webkit-scrollbar {
+		width: 5px;
+		background: #eee;
+
+		&:horizontal {
+			height: 5px;
+		}
+	}
+
+	*::-webkit-scrollbar-button {
+		width: 5px;
+		height: 5px;
+		background: #666;
+	}
+
+	*::-webkit-scrollbar-piece {
+		background: #eee;
+
+		&:start {
+			background: #eee;
+		}
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background: @themeColor;
+	}
+
+	*::-webkit-scrollbar-corner {
+		background: transparent;
+	}
+
 html, body {
 	margin: 0;
 	padding: 0;
