@@ -39,7 +39,7 @@ $(function() {
 
 	$('#postForm textarea').keyup(function() {
 		socket.json.emit('type', {
-			'text': $('#postForm textarea').value()
+			'text': $('#postForm textarea').val()
 		});
 	});
 
