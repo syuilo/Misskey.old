@@ -74,8 +74,8 @@ function openWindow($content, title, width, height) {
 		var moveBaseY = clickY - position.top;
 		var browserWidth = $(window).width();
 		var browserHeight = $(window).height();
-		var windowWidth = $window.width();
-		var windowHeight = $window.height();
+		var windowWidth = $window.outerWidth();
+		var windowHeight = $window.outerHeight();
 
 		$("html").mousemove(function(me) {
 			var moveRight = browserWidth - ((windowWidth + me.clientX) - moveBaseX);
@@ -119,8 +119,8 @@ function openWindow($content, title, width, height) {
 		var position = $window.position();
 		var browserWidth = $(window).width();
 		var browserHeight = $(window).height();
-		var windowWidth = $window.width();
-		var windowHeight = $window.height();
+		var windowWidth = $window.outerWidth();
+		var windowHeight = $window.outerHeight();
 
 		if (position.left < 0) {
 			$window.css({
