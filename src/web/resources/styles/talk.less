@@ -39,6 +39,7 @@
 					position: relative;
 					margin: 0 12px;
 					padding: 0;
+					max-width: ~"calc(100% - 78px)";
 
 					> .content {
 						display: block;
@@ -48,7 +49,6 @@
 						padding: 8px 16px;
 						line-height: 1.3em;
 						border-radius: 16px;
-						max-width: ~"calc(100% - 78px)";
 
 						&:before {
 							content: "";
@@ -115,6 +115,7 @@
 					}
 
 					> time {
+						display: block;
 						margin: 2px;
 						font-size: 0.65em;
 						color: rgba(0, 0, 0, 0.4);
@@ -154,7 +155,7 @@
 						}
 
 						> time {
-							float: right;
+							text-align: right;
 						}
 					}
 				}
@@ -186,7 +187,7 @@
 						}
 
 						> time {
-							float: left;
+							text-align: left;
 						}
 					}
 				}
