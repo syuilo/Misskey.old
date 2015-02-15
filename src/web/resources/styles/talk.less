@@ -35,11 +35,13 @@
 
 				> .content {
 					display: block;
+					box-sizing: border-box;
 					position: relative;
 					margin: 0 12px;
 					padding: 8px 16px;
 					line-height: 1.3em;
 					border-radius: 16px;
+					max-width: ~"calc(100% - 78px)";
 
 					&:before {
 						content: "";
