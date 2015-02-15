@@ -80,5 +80,11 @@ function openWindow($content, title, width, height) {
 		$("html").mouseup(function() {
 			$(this).unbind("mouseup mousemove mouseleave");
 		});
+		$("html").bind("dragstart", function(e) {
+			$(this).unbind("mouseup mousemove mouseleave");
+		});
+		$("html").bind("dragend", function(e) {
+			$(this).unbind("mouseup mousemove mouseleave");
+		});
 	});
 }
