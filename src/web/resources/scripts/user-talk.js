@@ -33,6 +33,16 @@ $(function() {
 		appendMessage(message);
 	});
 
+	socket.on('type', function(text) {
+		console.log('type', text);
+	});
+
+	$('#postForm textarea').keyup(function() {
+		socket.json.emit('type', {
+			'text': $('#postForm textarea').value()
+		});
+	});
+
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
 		var $input = $(this);
 		var file = $(this).prop('files')[0];
