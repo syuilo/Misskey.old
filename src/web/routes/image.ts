@@ -9,8 +9,18 @@ import config = require('../../config');
 export = router;
 
 var router = (app: express.Express): void => {
-	app.get('/img/icon/:sn',(req: any, res: any) => {
-		User.findByScreenName(req.params.sn,(user: User) => {
+	app.get('/img/icon/:idOrSn',(req: any, res: any) => {
+		if (req.params.idOrSn.match(/^[0-9]+$/)) {
+			User.find(Number(req.params.idOrSn),(user: User) => {
+				display(user);
+			});
+		} else {
+			User.findByScreenName(req.params.idOrSn,(user: User) => {
+				display(user);
+			});
+		}
+
+		var display = (user: User) => {
 			if (user != null) {
 				var img = user.icon;
 				res.set('Content-Type', 'image/jpeg');
@@ -18,11 +28,21 @@ var router = (app: express.Express): void => {
 			} else {
 				res.status(404).send('User not found.');
 			}
-		});
+		};
 	});
 
-	app.get('/img/header/:sn',(req: any, res: any) => {
-		User.findByScreenName(req.params.sn,(user: User) => {
+	app.get('/img/header/:idOrSn',(req: any, res: any) => {
+		if (req.params.idOrSn.match(/^[0-9]+$/)) {
+			User.find(Number(req.params.idOrSn),(user: User) => {
+				display(user);
+			});
+		} else {
+			User.findByScreenName(req.params.idOrSn,(user: User) => {
+				display(user);
+			});
+		}
+
+		var display = (user: User) => {
 			if (user != null) {
 				var img = user.header;
 				res.set('Content-Type', 'image/jpeg');
@@ -30,11 +50,21 @@ var router = (app: express.Express): void => {
 			} else {
 				res.status(404).send('User not found.');
 			}
-		});
+		};
 	});
 
-	app.get('/img/wallpaper/:sn',(req: any, res: any) => {
-		User.findByScreenName(req.params.sn,(user: User) => {
+	app.get('/img/wallpaper/:idOrSn',(req: any, res: any) => {
+		if (req.params.idOrSn.match(/^[0-9]+$/)) {
+			User.find(Number(req.params.idOrSn),(user: User) => {
+				display(user);
+			});
+		} else {
+			User.findByScreenName(req.params.idOrSn,(user: User) => {
+				display(user);
+			});
+		}
+
+		var display = (user: User) => {
 			if (user != null) {
 				var img = user.wallpaper;
 				res.set('Content-Type', 'image/jpeg');
@@ -42,7 +72,7 @@ var router = (app: express.Express): void => {
 			} else {
 				res.status(404).send('User not found.');
 			}
-		});
+		};
 	});
 
 	app.get('/img/post/:id',(req: any, res: any) => {

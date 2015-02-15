@@ -33,8 +33,19 @@ $(function() {
 		appendMessage(message);
 	});
 
-	socket.on('type', function(text) {
-		console.log('type', text);
+	socket.on('type', function(type) {
+		console.log('type', type.text);
+		if ($('#stream #otherpartyTyping')[0]) {
+			$('#stream #otherpartyTyping').remove();
+		}
+
+		$('<div id="otherpartyTyping"><img src="/img/icon/' + type.userId + '" alt="icon"><p>' + type.text + '</p></div>').appendTo($('#stream')).animate({
+			opacity: 0
+		}, 5000);
+		scroll(0, $('html').outerHeight());
+		setTimeout(function() {
+			$('#stream #otherpartyTyping').remove();
+		}, 5000);
 	});
 
 	$('#postForm textarea').keyup(function() {
