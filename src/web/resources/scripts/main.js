@@ -70,8 +70,8 @@ function openWindow($content, title, width, height) {
 
 		$("html").mousemove(function(me) {
 			$window.css({
-				"bottom": (me.clientY - moveBaseY) + "px",
-				"right": (me.clientX - moveBaseX) + "px",
+				"bottom": (me.clientY + moveBaseY) + "px",
+				"right": (me.clientX + moveBaseX) + "px",
 			});
 		});
 		$("html").mouseleave(function() {
