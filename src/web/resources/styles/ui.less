@@ -294,9 +294,11 @@ a {
 		border-bottom: solid 1px #eee;
 
 		> h1 {
-			display: inline;
+			display: inline-block;
+			overflow: hidden;
 			margin: 0 0 0 16px;
 			line-height: 32px;
+			max-width: calc(100% - 48px);
 			font-size: 1em;
 			font-weight: bold;
 			color: #777;
