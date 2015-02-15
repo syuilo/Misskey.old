@@ -133,7 +133,7 @@ function generateMessageElement(message) {
 
 			function generateImage() {
 				return $('<img alt="image" class="image">')
-				.attr('src', conf.url + '/img/post/' + message.id);
+				.attr('src', conf.url + '/img/talk-message/' + message.id);
 			}
 		}
 	}
