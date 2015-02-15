@@ -43,8 +43,8 @@ function openWindow($content, title, width, height) {
 			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
 		});*/
 		$window.css({
-			"bottom": (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64)) + "px",
-			"right": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
+			"bottom": (($(window).height() / 2) - ($window.height() / 2) + ((Math.random() * 128) - 64)) + "px",
+			"right": (($(window).width() / 2) - ($window.width() / 2) + ((Math.random() * 128) - 64)) + "px",
 		});
 		$window.animate({
 			"opacity": "1",
@@ -61,30 +61,76 @@ function openWindow($content, title, width, height) {
 	});
 
 	$window.find("header").mousedown(function(e) {
+		$window.find(".content").css({
+			'pointer-events': 'none',
+			'user-select': 'none'
+		});
+
 		var position = $window.position();
 
 		var clickX = e.clientX;
 		var clickY = e.clientY;
 		var moveBaseX = clickX - position.left;
 		var moveBaseY = clickY - position.top;
+		var browserWidth = $(window).width();
+		var browserHeight = $(window).height();
+		var windowWidth = $window.width();
+		var windowHeight = $window.height();
 
 		$("html").mousemove(function(me) {
+			var moveRight = browserWidth - ((windowWidth + me.clientX) - moveBaseX);
+			var moveBottom = browserHeight - ((windowHeight + me.clientY) - moveBaseY);
+			if (moveRight < 0) moveRight = 0;
+			if (moveBottom < 0) moveBottom = 0;
+			if (moveRight + windowWidth > browserWidth) moveRight = browserWidth - windowWidth;
+			if (moveBottom + windowHeight > browserHeight) moveBottom = browserHeight - windowHeight;
+
 			$window.css({
-				"bottom": ($(window).height() - (($window.height() + me.clientY) - moveBaseY)) + "px",
-				"right": ($(window).width() - (($window.width() + me.clientX) - moveBaseX)) + "px",
+				"right": moveRight + "px",
+				"bottom": moveBottom + "px",
 			});
 		});
 		$("html").mouseleave(function() {
 			$(this).unbind("mouseup mousemove mouseleave");
+			endMove();
 		});
 		$("html").mouseup(function() {
 			$(this).unbind("mouseup mousemove mouseleave");
+			endMove();
 		});
 		$("html").bind("dragstart", function(e) {
 			$(this).unbind("mouseup mousemove mouseleave");
+			endMove();
 		});
 		$("html").bind("dragend", function(e) {
 			$(this).unbind("mouseup mousemove mouseleave");
+			endMove();
 		});
+
+		function endMove() {
+			$window.find(".content").css({
+				'pointer-events': 'auto',
+				'user-select': 'auto'
+			});
+		}
+	});
+
+	$(window).resize(function() {
+		var position = $window.position();
+		var browserWidth = $(window).width();
+		var browserHeight = $(window).height();
+		var windowWidth = $window.width();
+		var windowHeight = $window.height();
+
+		if (position.left + windowWidth > browserWidth) {
+			$window.css({
+				"right": (browserWidth - windowWidth) + "px"
+			});
+		}
+		if (position.top + windowHeight > browserHeight) {
+			$window.css({
+				"bottom": (browserHeight - windowHeight) + "px"
+			});
+		}
 	});
 }
