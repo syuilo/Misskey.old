@@ -39,7 +39,6 @@
 					position: relative;
 					margin: 0 12px;
 					padding: 0;
-					max-width: ~"calc(100% - 78px)";
 
 					> .content {
 						display: block;
@@ -49,7 +48,7 @@
 						padding: 8px 16px;
 						line-height: 1.3em;
 						border-radius: 16px;
-						width: 100%;
+						max-width: ~"calc(100% - 78px)";
 
 						&:before {
 							content: "";
@@ -134,6 +133,7 @@
 						float: right;
 
 						> .content {
+							float: right;
 							background: #33B623;
 
 							&:before {
@@ -170,6 +170,7 @@
 						float: left;
 
 						> .content {
+							float: left;
 							background: #fff;
 
 							&:before {
