@@ -39,12 +39,13 @@ $(function() {
 			$('#stream #otherpartyTyping').remove();
 		}
 
-		$('<div id="otherpartyTyping"><img src="/img/icon/' + type.userId + '" alt="icon"><p>' + type.text + '</p></div>').appendTo($('#stream')).animate({
+		var $typing = $('<div id="otherpartyTyping"><img src="/img/icon/' + type.userId + '" alt="icon"><p>' + type.text + '</p></div>');
+		$typing.appendTo($('#stream')).animate({
 			opacity: 0
 		}, 5000);
 		scroll(0, $('html').outerHeight());
 		setTimeout(function() {
-			$('#stream #otherpartyTyping').remove();
+			$typing.remove();
 		}, 5000);
 	});
 
