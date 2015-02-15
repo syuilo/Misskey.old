@@ -37,8 +37,8 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 					form#postForm(enctype='multipart/form-data')
 						textarea(name='text', placeholder='Message...')
 						input(name='otherparty_id', type='hidden', value=otherparty.id)
-						input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;')
-						div.imageAttacher
+						input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
+						div.imageAttacher(title='メッセージに画像を添付')
 							p
 								i(class='fa fa-picture-o')
 							input(name='image', type='file', accept='image/*')
