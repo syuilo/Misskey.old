@@ -6,7 +6,7 @@ $(function() {
 		if ($('html').attr('data-isFollowing') == true) {
 			$.ajax('https://api.misskey.xyz/users/unfollow', {
 				type: 'delete',
-				data: { user_id: $('html').attr('data-userId') },
+				data: { 'user_id': $('html').attr('data-userId') },
 				processData: false,
 				contentType: false,
 				dataType: 'json',
@@ -24,7 +24,7 @@ $(function() {
 		} else {
 			$.ajax('https://api.misskey.xyz/users/follow', {
 				type: 'post',
-				data: { user_id: $('html').attr('data-userId') },
+				data: { 'user_id': $('html').attr('data-userId') },
 				processData: false,
 				contentType: false,
 				dataType: 'json',
