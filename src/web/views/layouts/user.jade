@@ -32,7 +32,7 @@ html(
 	
 	body
 		main(role='main')
-			header
+			header(role='banner')
 				div#headerMain
 					div#headerUserArea
 						div#headerUserAreaBackground
@@ -43,7 +43,7 @@ html(
 								span#name(itemprop='name')= user.name
 								span#(itemprop='alternateName')screenName= '@' + user.screenName
 							p#comment(itemprop='description')= user.comment
-				nav#headerNav
+				nav#headerNav(role='navigation')
 					table
 						tr
 							th 投稿
