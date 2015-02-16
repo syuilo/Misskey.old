@@ -46,7 +46,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 									next(null, user);
 								});
 							},(err: any, results: User[]) => {
-									callback(results);
+									callback(null, results);
 								});
 						} else {
 							callback(null, null);
@@ -61,7 +61,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 									next(null, user);
 								});
 							},(err: any, results: User[]) => {
-									callback(results);
+									callback(null, results);
 								});
 						} else {
 							callback(null, null);
