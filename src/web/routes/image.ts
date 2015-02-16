@@ -52,6 +52,8 @@ var router = (app: express.Express): void => {
 				} else {
 					gm(user.header)
 						.blur(req.query.blur)
+						.compress('jpeg')
+						.quality(80)
 						.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 						if (error) throw error;
 						res.set('Content-Type', 'image/jpeg');

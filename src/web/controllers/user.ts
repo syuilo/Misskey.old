@@ -36,10 +36,13 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 		(callback: any) => {
 			switch (content) {
 				case 'home':
+					callback(null, null);
 					break;
 				case 'followings':
+					callback(null, null);
 					break;
 				case 'followers':
+					callback(null, null);
 					break;
 			}
 		}],
