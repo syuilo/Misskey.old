@@ -98,7 +98,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 				isFollowMe: results[5],
 				content: results[6],
 				user: req.rootUser,
-				tags: req.rootUser.tag.split(','),
+				tags: req.rootUser.tag != null ? req.rootUser.tag.split(',') : null,
 				url: conf.publicConfig.url,
 				page: content
 			});
