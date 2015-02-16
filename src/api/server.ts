@@ -93,6 +93,9 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 });
 
 apiServer.options('*',(req: any, res: any, next: () => void) => {
+	res.set({
+		'Access-Control-Allow-Headers': 'Origin, X-HTTP-Method-Override, X-Requested-With, Content-Type, Accept'
+	});
 	res.status(200);
 	res.send();
 });
