@@ -53,6 +53,8 @@ html(
 							td: a(href='/' + user.screenName + '/followers')= followersCount
 					if login
 						if me.id != user.id
+							if isFollowMe
+								p#friendStatus フォローされています
 							if isFollowing
 								button#followButton.ui-followButton.following フォロー中
 							else
