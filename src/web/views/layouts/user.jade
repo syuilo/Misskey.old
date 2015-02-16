@@ -6,7 +6,7 @@ html(
 	itemscope
 	itemtype='http://schema.org/Person'
 	data-user-id= user.id
-	data-is-following= login ? isFollowing : null)
+	data-is-following!= login ? isFollowing.toString() : null)
 	head(prefix='og: http://ogp.me/ns#')
 		include ../templates/head
 		meta(name='robots', content='all')
