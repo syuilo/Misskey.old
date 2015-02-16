@@ -75,7 +75,7 @@ class UserFollowing {
 	}
 
     public destroy(callback: () => void): void {
-		db.query('delete from user_followings where followee_id = ? and follower_id = ?"',
+		db.query("delete from user_followings where followee_id = ? and follower_id = ?",
 			[this.followeeId, this.followerId],
 			(err: any) => {
 				if (err) throw err;
