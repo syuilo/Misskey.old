@@ -4,14 +4,14 @@ html(
 	lang='ja'
 	dir='ltr'
 	itemscope
-	itemtype='http://schema.org/Person'
+	itemtype='http://schema.org/ProfilePage'
 	data-user-id= user.id
 	data-is-following!= login ? isFollowing.toString() : null)
 	head(prefix='og: http://ogp.me/ns#')
 		include ../templates/head
 		meta(name='robots', content='all')
 		meta(name='description', content=user.comment)
-		meta(name='keywords', content='Misskey')
+		meta(name='keywords', content='Misskey,' + user.screenName)
 		meta(property='og:title', content=user.name)
 		meta(property='og:type', content='article')
 		meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
@@ -38,11 +38,11 @@ html(
 						div#headerUserAreaBackground
 						div#headerUserAreaMain
 							a#iconAnchor
-								img#icon(src='/img/icon/' + user.screenName, alt='icon')
+								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
 							h1
-								span#name= user.name
-								span#screenName= '@' + user.screenName
-							p#comment= user.comment
+								span#name(itemprop='name')= user.name
+								span#(itemprop='alternateName')screenName= '@' + user.screenName
+							p#comment(itemprop='description')= user.comment
 				nav#headerNav
 					table
 						tr
