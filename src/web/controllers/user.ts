@@ -47,7 +47,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 			}
 		}],
 		(err: any, results: any) => {
-			res.display(req, res, 'home', {
+			res.display(req, res, 'user', {
 				postsCount: results[0],
 				followingsCount: results[1],
 				followersCount: results[2],
