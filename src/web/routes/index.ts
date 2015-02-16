@@ -22,13 +22,13 @@ var extend = (destination: any, source: any): Object => {
 	return destination;
 };
 
-function sentLess(req: any, res: any, resourcePath: string) {
+function sentLess(req: any, res: any, resourcePath: string, styleUser: User) {
 	fs.readFile(resourcePath, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 		if (err) throw err;
-		lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
-		lessCss = lessCss.replace(/<%wallpaperUrl%>/g, req.login ? `"${config.publicConfig.url}/img/wallpaper/${req.me.screenName}"` : '');
-		lessCss = lessCss.replace(/<%headerImageUrl%>/g, req.login ? `"${config.publicConfig.url}/img/header/${req.me.screenName}"` : '');
-		lessCss = lessCss.replace(/<%headerBlurImageUrl%>/g, req.login ? `"${config.publicConfig.url}/img/header/${req.me.screenName}?blur=64"` : '');
+		lessCss = lessCss.replace(/<%themeColor%>/g, styleUser != null ? styleUser.color : '#831c86');
+		lessCss = lessCss.replace(/<%wallpaperUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/wallpaper/${styleUser.screenName}"` : '');
+		lessCss = lessCss.replace(/<%headerImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}"` : '');
+		lessCss = lessCss.replace(/<%headerBlurImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}?blur=64"` : '');
 		less.render(lessCss, { compress: true },(err: any, output: any) => {
 			if (err) throw err;
 			res.header("Content-type", "text/css");
@@ -80,7 +80,21 @@ var router = (app: express.Express): void => {
 				var resourcePath = path.resolve(__dirname + '/..' + req.url.replace(/\.css$/, '.less'));
 				if (fs.existsSync(resourcePath)) {
 					initSession(req, res,() => {
-						sentLess(req, res, resourcePath);
+						if (req.login) {
+							if (req.query.user == null) {
+								sentLess(req, res, resourcePath, req.me);
+							} else {
+								User.findByScreenName(req.query.user,(styleUser: User) => {
+									if (styleUser != null) {
+										sentLess(req, res, resourcePath, styleUser);
+									} else {
+										sentLess(req, res, resourcePath, null);
+									}
+								});
+							}
+						} else {
+							sentLess(req, res, resourcePath, null);
+						}
 					});
 					return;
 				}
@@ -110,13 +124,6 @@ var router = (app: express.Express): void => {
 				});
 			}
 		});
-	});
-
-	app.get('*.less',(req: any, res: any) => {
-		if (req.url.indexOf('..') === -1) {
-			var resourcePath = path.resolve(__dirname + '/..' + req.url);
-			sentLess(req, res, resourcePath);
-		}
 	});
 
 	app.get('/',(req: any, res: any, next: () => void) => {

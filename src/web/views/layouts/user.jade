@@ -19,8 +19,8 @@ html(lang='ja', dir='ltr', itemscope, itemtype='http://schema.org/Person')
 		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
 		block title
-		link(rel='stylesheet', href='/resources/styles/user.css')
-		link(rel='stylesheet', href='/resources/styles/timeline.css')
+		link(rel='stylesheet', href='/resources/styles/user.css?user=' + user.screenName)
+		link(rel='stylesheet', href='/resources/styles/timeline.css?user=' + user.screenName)
 		script(src='/resources/scripts/timeline.js')
 		script(src='/resources/scripts/user.js')
 	
