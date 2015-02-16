@@ -5,7 +5,7 @@ block title
 
 block content
 	if page == 'home'
-		div#bio= user.bio
+		div#bio!= content
 	if page == 'followings' || page == 'followers'
 		div.usersList
 			ol
