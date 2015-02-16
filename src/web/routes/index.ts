@@ -119,6 +119,7 @@ var router = (app: express.Express): void => {
 		User.findByScreenName(sn,(user: User) => {
 			if (user != null) {
 				req.rootUser = user;
+				req.data.rootUser = user;
 				next();
 			} else {
 				res.display(req, res, 'user-notFound', {
