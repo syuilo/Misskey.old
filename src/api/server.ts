@@ -93,9 +93,6 @@ apiServer.all('*', (req: express.Request, res: express.Response, next: any) => {
 });
 
 apiServer.options('*',(req: any, res: any, next: () => void) => {
-	res.set({
-		'Access-Control-Allow-Origin': '*',
-	});
 	res.status(200);
 	res.send();
 });
