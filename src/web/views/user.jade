@@ -4,4 +4,17 @@ block title
 	title= user.name
 
 block content
-	div#bio= user.bio
+	if page == 'home'
+		div#bio= user.bio
+	if page == 'followings'
+		div#followings
+			ol
+				each user in content
+					li
+						p= user.name
+	if page == 'followers'
+		div#followers
+			ol
+				each user in content
+					li
+						p= user.name

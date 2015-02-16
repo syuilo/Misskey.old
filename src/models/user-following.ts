@@ -35,13 +35,25 @@ class UserFollowing {
 	public static findByFolloweeId(followeeId: number, callback: (userFollowings: UserFollowing[]) => void): void {
 		db.query("select * from user_followings where followee_id = ? order by created_at desc",
 			[followeeId],
-			(err: any, userFollowings: any[]) => callback(userFollowings.map((userFollowing) => new UserFollowing(userFollowing))));
+			(err: any, userFollowings: any[]) => callback(userFollowings.length != 0 ? userFollowings.map((userFollowing) => new UserFollowing(userFollowing)) : null));
 	}
 
 	public static findByFollowerId(followerId: number, callback: (userFollowings: UserFollowing[]) => void): void {
 		db.query("select * from user_followings where follower_id = ? order by created_at desc",
 			[followerId],
-			(err: any, userFollowings: any[]) => callback(userFollowings.map((userFollowing) => new UserFollowing(userFollowing))));
+			(err: any, userFollowings: any[]) => callback(userFollowings.length != 0 ? userFollowings.map((userFollowing) => new UserFollowing(userFollowing)) : null));
+	}
+
+	public static getFollowers(userId: number, limit: number, callback: (userFollowings: UserFollowing[]) => void): void {
+		db.query("select * from user_followings where followee_id = ? order by created_at desc limit ?",
+			[userId, limit],
+			(err: any, userFollowings: any[]) => callback(userFollowings.length != 0 ? userFollowings.map((userFollowing) => new UserFollowing(userFollowing)) : null));
+	}
+
+	public static getFollowings(userId: number, limit: number, callback: (userFollowings: UserFollowing[]) => void): void {
+		db.query("select * from user_followings where follower_id = ? order by created_at desc limit ?",
+			[userId, limit],
+			(err: any, userFollowings: any[]) => callback(userFollowings.length != 0 ? userFollowings.map((userFollowing) => new UserFollowing(userFollowing)) : null));
 	}
 
 	public static getFollowersCount(meId: number, callback: (followersCount: number) => void): void {

@@ -39,10 +39,34 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 					callback(null, null);
 					break;
 				case 'followings':
-					callback(null, null);
+					UserFollowing.getFollowings(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
+						if (userFollowings != null) {
+							async.map(userFollowings,(userFollowing: UserFollowing, next: any) => {
+								User.find(userFollowing.followeeId,(user: User) => {
+									next(null, user);
+								});
+							},(err: any, results: User[]) => {
+									callback(results);
+								});
+						} else {
+							callback(null, null);
+						}
+					});
 					break;
 				case 'followers':
-					callback(null, null);
+					UserFollowing.getFollowers(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
+						if (userFollowings != null) {
+							async.map(userFollowings,(userFollowing: UserFollowing, next: any) => {
+								User.find(userFollowing.followerId,(user: User) => {
+									next(null, user);
+								});
+							},(err: any, results: User[]) => {
+									callback(results);
+								});
+						} else {
+							callback(null, null);
+						}
+					});
 					break;
 			}
 		}],
@@ -52,9 +76,11 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 				followingsCount: results[1],
 				followersCount: results[2],
 				timelineHtml: results[3],
+				content: results[4],
 				user: req.rootUser,
 				tags: req.rootUser.tag.split(','),
 				url: conf.publicConfig.url,
+				page: content
 			});
 		});
 };
