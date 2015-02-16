@@ -3,10 +3,10 @@ $(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
-		if ($('html').data('is-following') == 'true') {
+		if ($('html').data('is-following') == true) {
 			$.ajax('https://api.misskey.xyz/users/unfollow', {
 				type: 'delete',
-				data: JSON.stringify({ 'user_id': $('html').data('user-id') }),
+				data: { 'user_id': $('html').data('user-id') },
 				processData: false,
 				contentType: false,
 				dataType: 'json',
@@ -24,7 +24,7 @@ $(function() {
 		} else {
 			$.ajax('https://api.misskey.xyz/users/follow', {
 				type: 'post',
-				data: JSON.stringify({ 'user_id': $('html').data('user-id') }),
+				data: { 'user_id': $('html').data('user-id') },
 				processData: false,
 				contentType: false,
 				dataType: 'json',
