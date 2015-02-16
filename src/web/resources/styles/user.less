@@ -36,7 +36,6 @@ main {
 		padding: 0;
 		// Background Image
 		background-image: url(@headerImageUrl);
-		/*background-attachment: fixed;*/
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
@@ -52,58 +51,68 @@ main {
 				position: relative;
 				width: 300px;
 				height: 100%;
+				overflow: hidden;
 				margin: 0;
 				padding: 8px;
 				text-align: center;
 				color: #fff;
 				text-shadow: 0 0 16px rgba(0,0,0,0.7);
-				// Background Image
-				background-image: url(@headerBlurImageUrl);
-				/*background-attachment: fixed;*/
-				background-repeat: no-repeat;
-				background-position: center center;
-				background-size: cover;
 
-				#icon {
-					display: block;
-					width: 160px;
-					height: 160px;
-					max-width: 160px;
-					max-height: 160px;
-					margin: 0 auto;
-					padding: 0;
-					border-radius: 80px;
-					transition: all .2s ease;
 
-					&:hover {
-						border-radius: 0;
-						filter: saturate(200%);
-						-webkit-filter: saturate(200%);
-						-moz-filter: saturate(200%);
-						-o-filter: saturate(200%);
-						-ms-filter: saturate(200%);
-					}
+				> #headerUserAreaBackground {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 400px;
+					background-image: url(@headerBlurImageUrl);
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: cover;
 				}
 
-				h1 {
-					margin: 8px 0;
-					padding: 0;
-					font-size: 1em;
-					font-weight: normal;
-					color: #fff;
-					text-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
-
-					#name {
+				> #headerUserAreaMain {
+					#icon {
 						display: block;
-						font-size: 2em;
-						color: #fff;
+						width: 160px;
+						height: 160px;
+						max-width: 160px;
+						max-height: 160px;
+						margin: 0 auto;
+						padding: 0;
+						border-radius: 80px;
+						transition: all .2s ease;
+
+						&:hover {
+							border-radius: 0;
+							filter: saturate(200%);
+							-webkit-filter: saturate(200%);
+							-moz-filter: saturate(200%);
+							-o-filter: saturate(200%);
+							-ms-filter: saturate(200%);
+						}
 					}
 
-					#screenName {
-						display: block;
-						margin: 0 4px;
-						font-size: 0.8em;
-						color: rgba(255, 255, 255, 0.7);
+					h1 {
+						margin: 8px 0;
+						padding: 0;
+						font-size: 1em;
+						font-weight: normal;
+						color: #fff;
+						text-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+
+						#name {
+							display: block;
+							font-size: 2em;
+							color: #fff;
+						}
+
+						#screenName {
+							display: block;
+							margin: 0 4px;
+							font-size: 0.8em;
+							color: rgba(255, 255, 255, 0.7);
+						}
 					}
 				}
 			}

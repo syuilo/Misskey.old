@@ -35,12 +35,14 @@ html(
 			header
 				div#headerMain
 					div#headerUserArea
-						a#iconAnchor
-							img#icon(src='/img/icon/' + user.screenName, alt='icon')
-						h1
-							span#name= user.name
-							span#screenName= '@' + user.screenName
-						p#comment= user.comment
+						div#headerUserAreaBackground
+						div#headerUserAreaMain
+							a#iconAnchor
+								img#icon(src='/img/icon/' + user.screenName, alt='icon')
+							h1
+								span#name= user.name
+								span#screenName= '@' + user.screenName
+							p#comment= user.comment
 				nav#headerNav
 					table
 						tr
