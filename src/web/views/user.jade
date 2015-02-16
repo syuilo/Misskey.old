@@ -6,15 +6,14 @@ block title
 block content
 	if page == 'home'
 		div#bio= user.bio
-	if page == 'followings'
-		div#followings
+	if page == 'followings' || 'followers'
+		div.usersList
 			ol
 				each user in content
 					li
-						p= user.name
-	if page == 'followers'
-		div#followers
-			ol
-				each user in content
-					li
-						p= user.name
+						a(href= '/' + user.screenName)
+							img.icon(src='/img/icon/' + user.screenName, alt='icon')
+						h2
+							a(href='/' + user.screenName)= user.name
+							span.screenName= '@' + user.screenName
+						p.comment= user.comment
