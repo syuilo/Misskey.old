@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import async = require('async');
-var markdown = require('markdown').markdown;
+import marked = require('marked');
 import User = require('../../models/user');
 import UserFollowing = require('../../models/user-following');
 import Post = require('../../models/post');
@@ -55,7 +55,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 		(callback: any) => {
 			switch (content) {
 				case 'home':
-					callback(null, markdown.toHTML(req.rootUser.bio));
+					callback(null, marked(req.rootUser.bio));
 					break;
 				case 'followings':
 					UserFollowing.getFollowings(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
