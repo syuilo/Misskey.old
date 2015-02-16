@@ -54,6 +54,7 @@ main {
 				margin: 0;
 				padding: 8px;
 				text-align: center;
+				color: #fff;
 				// Background Image
 				background-image: url(@headerBlurImageUrl);
 				background-attachment: fixed;
@@ -87,6 +88,8 @@ main {
 					padding: 0;
 					font-size: 2em;
 					font-weight: normal;
+					color: #fff;
+					text-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
 				}
 			}
 		}
@@ -98,14 +101,14 @@ main {
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			height: 100%;
 			margin: 0;
 			padding: 8px;
+			background: #fff;
 
 			table {
 				tr {
 					th, td {
-						min-width: 8em;
+						min-width: 4em;
 					}
 
 					th {
@@ -121,5 +124,23 @@ main {
 				}
 			}
 		}
+	}
+}
+
+#contents {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	#contentsLeft {
+		float: left;
+		width: 70%;
+	}
+
+	#contentsRight {
+		float: left;
+		width: 30%;
 	}
 }
