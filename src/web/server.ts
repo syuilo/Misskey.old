@@ -137,7 +137,7 @@ webServer.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
 			}
 		}
 		if (req.url.indexOf('.less') === -1) {
-			var resourcePath = path.resolve(__dirname + '/..' + req.url);
+			var resourcePath = path.resolve(__dirname + '/' + req.url);
 			res.sendFile(resourcePath);
 		} else {
 			next();
