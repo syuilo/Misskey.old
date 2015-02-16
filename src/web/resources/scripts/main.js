@@ -3,7 +3,7 @@ function openWindow($content, title, width, height) {
 		<div class=\"ui window\">\
 			<header>\
 				<h1>"+ title + "</h1>\
-				<a href=\"#\" class=\"close\"><img src=\"https://misskey.xyz/resources/images/window-close.png\" alt=\"close\"/></a>\
+				<button class=\"close\"><img src=\"https://misskey.xyz/resources/images/window-close.png\" alt=\"close\"/></button>\
 			</header>\
 			<div class=\"content\"></div>\
 		</div>\
@@ -24,7 +24,6 @@ function openWindow($content, title, width, height) {
 	}
 
 	function close() {
-		event.preventDefault();
 		$window.css({
 			"transform": "perspective(512px) rotateX(22.5deg) scale(0.9)",
 			"opacity": "0",
@@ -52,7 +51,7 @@ function openWindow($content, title, width, height) {
 		}, 200);
 	});
 
-	$window.find("header > .close").click(function(event) {
+	$window.find("header > .close").click(function() {
 		close();
 	});
 
