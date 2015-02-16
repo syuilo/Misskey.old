@@ -3,10 +3,10 @@ $(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
-		if ($('html').attr('data-isFollowing') == true) {
+		if ($('html').prop('data-isFollowing') == true) {
 			$.ajax('https://api.misskey.xyz/users/unfollow', {
 				type: 'delete',
-				data: { 'user_id': $('html').attr('data-userId') },
+				data: JSON.stringify({ 'user_id': $('html').prop('data-userId') }),
 				processData: false,
 				contentType: false,
 				dataType: 'json',
@@ -17,14 +17,14 @@ $(function() {
 				$button.attr('disabled', false);
 				$button.removeClass('following');
 				$button.addClass('notFollowing');
-				$('html').attr('data-isFollowing', false)
+				$('html').prop('data-isFollowing', false)
 			}).fail(function() {
 				$button.attr('disabled', false);
 			});
 		} else {
 			$.ajax('https://api.misskey.xyz/users/follow', {
 				type: 'post',
-				data: { 'user_id': $('html').attr('data-userId') },
+				data: JSON.stringify({ 'user_id': $('html').prop('data-userId') }),
 				processData: false,
 				contentType: false,
 				dataType: 'json',
@@ -35,7 +35,7 @@ $(function() {
 				$button.attr('disabled', false);
 				$button.removeClass('notFollowing');
 				$button.addClass('following');
-				$('html').attr('data-isFollowing', true)
+				$('html').prop('data-isFollowing', true)
 			}).fail(function() {
 				$button.attr('disabled', false);
 			});
