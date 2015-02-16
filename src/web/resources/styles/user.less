@@ -107,7 +107,7 @@ main {
 			border-bottom: solid 1px #eee;
 
 			table {
-				padding: 0 16px;
+				padding: 0 32px;
 
 				tr {
 					th, td {
@@ -142,12 +142,17 @@ main {
 		width: 60%;
 
 		#mainContent {
-			padding: 16px;
+			padding: 32px;
 		}
 	}
 
 	#contentsRight {
 		float: left;
 		width: 40%;
+
+		#timeline {
+			max-height: 500px;
+			overflow: scroll;
+		}
 	}
 }
