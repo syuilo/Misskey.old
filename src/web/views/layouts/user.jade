@@ -41,7 +41,7 @@ html(
 								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
 							h1
 								span#name(itemprop='name')= user.name
-								span#(itemprop='alternateName')screenName= '@' + user.screenName
+								span#screenName(itemprop='alternateName')= '@' + user.screenName
 							p#comment(itemprop='description')= user.comment
 				nav#headerNav(role='navigation')
 					table
