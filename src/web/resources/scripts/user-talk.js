@@ -25,11 +25,13 @@ $(function() {
 
 	socket.on('otherpartyMessage', function(message) {
 		console.log('otherpartyMessage', message);
+		new Audio('/resources/sounds/talk-message.mp3').play();
 		appendMessage(message);
 	});
 
 	socket.on('meMessage', function(message) {
 		console.log('meMessage', message);
+		new Audio('/resources/sounds/talk-message.mp3').play();
 		appendMessage(message);
 	});
 

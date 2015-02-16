@@ -38,6 +38,10 @@ $(function() {
 		};
 	});
 
+	socket.on('talkMessage', function(message) {
+		console.log('talkMessage', message);
+	});
+
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
 		var $input = $(this);
 		var file = $(this).prop('files')[0];
