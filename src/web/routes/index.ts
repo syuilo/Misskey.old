@@ -27,6 +27,8 @@ function sentLess(req: any, res: any, resourcePath: string) {
 		if (err) throw err;
 		lessCss = lessCss.replace(/<%themeColor%>/g, req.login ? req.me.color : '#831c86');
 		lessCss = lessCss.replace(/<%wallpaperUrl%>/g, req.login ? `"${config.publicConfig.url}/img/wallpaper/${req.me.screenName}"` : '');
+		lessCss = lessCss.replace(/<%headerImageUrl%>/g, req.login ? `"${config.publicConfig.url}/img/header/${req.me.screenName}"` : '');
+		lessCss = lessCss.replace(/<%headerBlurImageUrl%>/g, req.login ? `"${config.publicConfig.url}/img/header/${req.me.screenName}?blur=64"` : '');
 		less.render(lessCss, { compress: true },(err: any, output: any) => {
 			if (err) throw err;
 			res.header("Content-type", "text/css");

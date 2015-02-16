@@ -1,64 +1,7 @@
-doctype html
+extends ./layouts/user
 
-html(lang='ja', dir='ltr', itemscope, itemtype='http://schema.org/Person')
-	head(prefix='og: http://ogp.me/ns#')
-		include templates/head
-		meta(name='robots', content='all')
-		meta(name='description', content=user.comment)
-		meta(name='keywords', content='Misskey')
-		meta(property='og:title', content=user.name)
-		meta(property='og:type', content='article')
-		meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
-		meta(property='og:url', content=url + '/' + user.screenName)
-		meta(property='og:image', content=url + '/img/icon/' + user.screenName)
-		meta(property='og:site_name', content='Misskey')
-		meta(property='twitter:card', content='summary')
-		meta(property='twitter:site', content='@syuilo')
-		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
-		meta(property='twitter:description', content=user.comment)
-		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
-		meta(property='twitter:url', content=url + '/' + user.screenName)
-		title= user.name
-		link(rel='stylesheet', href='/resources/styles/user.css')
-		link(rel='stylesheet', href='/resources/styles/timeline.css')
-		script(src='/resources/scripts/timeline.js')
-		script(src='/resources/scripts/user.js')
-	
-	body
-		main(role='main')
-			header
-				a(href=url + '/img/icon/' + user.screenName)
-					img#user-icon(src=url + '/img/icon/' + user.screenName, alt='icon', itemprop='image')
-				div.name
-					h1(itemprop='name')#user-name= user.name
-					p#user-sn= user.screenName
-				if user.comment != null
-					div(itemprop='description')#user-comment= user.comment
-				span.locationAndUrl
-					if user.location != null
-						span(itemprop='address')#user-location
-							i(class='fa fa-map-marker')
-							| #{user.location}
-					if user.location != null && user.url != null
-						| ・
-					if user.url != null
-						a#user-url(href=user.url, target='_blank', itemprop='url')= user.url.replace(/^https?:\/\//, '')
-			
-			div#contents
-				div#user-profile
-					if user.bio != null
-						div#user-bio!= user.bio
-					else
-						p.profileNotSet プロフィールは設定されていません
-					
-				if tags.length != 0
-					section#user-tag.tags
-						h2
-							i(class='fa fa-tags')
-							| ユーザータグ
-						ul
-							each tag in tags
-								if tag
-									li: a(href='#{url}/search?tag=#{tag}')= tag
+block title
+	title user.name
 
-				div#timeline!= timelineHtml
+block content
+	div#bio= user.bio

@@ -1,6 +1,7 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import express = require('express');
+import gm = require('gm');
 import User = require('../../models/user');
 import Post = require('../../models/post');
 import TalkMessage = require('../../models/talk-message');
@@ -44,9 +45,19 @@ var router = (app: express.Express): void => {
 
 		var display = (user: User) => {
 			if (user != null) {
-				var img = user.header;
-				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
+				if (req.query.blur == null) {
+					var img = user.header;
+					res.set('Content-Type', 'image/jpeg');
+					res.send(img);
+				} else {
+					gm(user.header)
+						.blur(req.query.blur)
+						.toBuffer('jpeg',(error: any, buffer: Buffer) => {
+						if (error) throw error;
+						res.set('Content-Type', 'image/jpeg');
+						res.send(buffer);
+					});
+				}
 			} else {
 				res.status(404).send('User not found.');
 			}

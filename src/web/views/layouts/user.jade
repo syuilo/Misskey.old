@@ -1,0 +1,52 @@
+doctype html
+
+html(lang='ja', dir='ltr', itemscope, itemtype='http://schema.org/Person')
+	head(prefix='og: http://ogp.me/ns#')
+		include templates/head
+		meta(name='robots', content='all')
+		meta(name='description', content=user.comment)
+		meta(name='keywords', content='Misskey')
+		meta(property='og:title', content=user.name)
+		meta(property='og:type', content='article')
+		meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
+		meta(property='og:url', content=url + '/' + user.screenName)
+		meta(property='og:image', content=url + '/img/icon/' + user.screenName)
+		meta(property='og:site_name', content='Misskey')
+		meta(property='twitter:card', content='summary')
+		meta(property='twitter:site', content='@syuilo')
+		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
+		meta(property='twitter:description', content=user.comment)
+		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
+		meta(property='twitter:url', content=url + '/' + user.screenName)
+		block title
+		link(rel='stylesheet', href='/resources/styles/user.css')
+		link(rel='stylesheet', href='/resources/styles/timeline.css')
+		script(src='/resources/scripts/timeline.js')
+		script(src='/resources/scripts/user.js')
+	
+	body
+		main(role='main')
+			header
+				div#headerMain
+					div#headerUserArea
+						a#iconAnchor
+							img#icon(src='/img/icon/' + user.screenName, alt='icon')
+						h1#name= user.name
+						p#comment= user.comment
+				nav#headerNav
+					table
+						tr
+							th 投稿
+							th フォロー
+							th フォロワー
+						tr
+							td: a(href='/')= postsCount
+							td: a(href='/followings')= followingsCount
+							td: a(href='/followers')= followersCount
+			div#contents
+				div#contentsLeft
+					div#mainContent
+						block content
+				div#contentsRight
+					div#timelineContent
+						div#timeline!= timelineHtml

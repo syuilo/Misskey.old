@@ -1,0 +1,88 @@
+@themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@headerImageUrl: <%headerImageUrl%>;
+@headerBlurImageUrl: <%headerBlurImageUrl%>;
+
+html, body {
+	height: 100%;
+}
+
+html {
+	color: #000;
+	background-color: #fff;
+	background-image: url(@wallpaperUrl);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+main {
+	display: block;
+	position: relative;
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0;
+	background: #fff;
+
+	> header {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 400px;
+		margin: 0;
+		padding: 0;
+		// Background Image
+		background-image: url(@headerImageUrl);
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+
+		> #headerMain {
+			> #headerUserArea {
+				display: block;
+				position: relative;
+				width: 300px;
+				height: 100%;
+				margin: 0;
+				padding: 8px;
+				text-align: center;
+				// Background Image
+				background-image: url(@headerBlurImageUrl);
+				background-attachment: fixed;
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: cover;
+
+				#icon {
+					display: block;
+					width: 128px;
+					height: 128px;
+					max-width: 128px;
+					max-height: 128px;
+					margin: 0 auto;
+					padding: 0;
+					border-radius: 64px;
+					transition: all .2s ease;
+
+					&:hover {
+						filter: saturate(200%);
+						-webkit-filter: saturate(200%);
+						-moz-filter: saturate(200%);
+						-o-filter: saturate(200%);
+						-ms-filter: saturate(200%);
+					}
+				}
+
+				h1 {
+					margin: 8px 0;
+					padding: 0;
+					font-size: 2em;
+					font-weight: normal;
+				}
+			}
+		}
+	}
+}
