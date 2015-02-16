@@ -17,7 +17,12 @@ class UserFollowing {
 	public static create(followeeId: number, followerId: number, callback: (userFollowing: UserFollowing) => void): void {
 		db.query('insert into user_followings (followee_id, follower_id) values (?, ?)',
 			[followeeId, followerId],
-			(err: any, userFollowings: any[]) => callback(new UserFollowing(userFollowings[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				UserFollowing.find(followeeId, followerId,(userFollowing: UserFollowing) => {
+					callback(userFollowing);
+				});
+			});
 	}
 
 	public static find(followeeId: number, followerId: number, callback: (userFollowing: UserFollowing) => void): void {
