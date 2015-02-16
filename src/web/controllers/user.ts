@@ -8,6 +8,12 @@ import Post = require('../../models/post');
 import Timeline = require('../utils/timeline');
 import conf = require('../../config');
 
+marked.setOptions({
+	gfm: true,
+	breaks: true,
+	sanitize: true
+});
+
 export = render;
 
 var render = (req: any, res: any, content: string = 'home'): void => {
