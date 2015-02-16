@@ -102,10 +102,13 @@ main {
 			left: 0;
 			width: 100%;
 			margin: 0;
-			padding: 8px;
+			padding: 0;
 			background: #fff;
+			border-bottom: solid 1px #eee;
 
 			table {
+				padding: 0 16px;
+
 				tr {
 					th, td {
 						min-width: 4em;
@@ -113,13 +116,13 @@ main {
 
 					th {
 						text-align: left;
-						font-size: 1em;
+						font-size: 0.8em;
 						font-weight: normal;
 						color: rgba(0, 0, 0, 0.5);
 					}
 
 					td {
-						font-size: 2em;
+						font-size: 1.5em;
 					}
 				}
 			}
@@ -136,11 +139,15 @@ main {
 
 	#contentsLeft {
 		float: left;
-		width: 70%;
+		width: 60%;
+
+		#mainContent {
+			padding: 16px;
+		}
 	}
 
 	#contentsRight {
 		float: left;
-		width: 30%;
+		width: 40%;
 	}
 }
