@@ -8,12 +8,15 @@ $(function() {
 		$submitButton.attr("value", "アップロード中...");
 		
 		$.ajax(url, {
-			type: 'put',
+			type: 'PUT',
 			data: fd,
 			processData: false,
 			contentType: false,
 			timeout: 20000,
 			dataType: 'json',
+			headers: {
+				'X-HTTP-Method-Override': 'PUT'
+			},
 			xhrFields: {
 				withCredentials: true
 			}
@@ -36,11 +39,14 @@ $(function() {
 		$submitButton.attr("value", "保存中...");
 		
 		$.ajax('https://api.misskey.xyz/account/update', {
-			type: 'post',
+			type: 'PUT',
 			processData: false,
 			contentType: false,
 			data: new FormData($form[0]),
 			dataType: "json",
+			headers: {
+				'X-HTTP-Method-Override': 'PUT'
+			},
 			xhrFields: {
 				withCredentials: true
 			}
