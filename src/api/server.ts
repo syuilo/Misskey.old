@@ -96,7 +96,8 @@ apiServer.options('*',(req: any, res: any, next: () => void) => {
 	res.set({
 		'Access-Control-Allow-Origin': '*',
 	});
-	next();
+	res.status(200);
+	res.send();
 });
 
 router(apiServer);
