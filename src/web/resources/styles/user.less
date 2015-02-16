@@ -41,8 +41,13 @@ main {
 		background-size: cover;
 
 		> #headerMain {
+			position: relative;
+			width: 100%;
+			height: 100%;
+
 			> #headerUserArea {
 				display: block;
+				box-sizing: border-box;
 				position: relative;
 				width: 300px;
 				height: 100%;
@@ -81,6 +86,28 @@ main {
 					padding: 0;
 					font-size: 2em;
 					font-weight: normal;
+				}
+			}
+		}
+
+		> nav {
+			display: block;
+			box-sizing: border-box;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 8px;
+
+			table {
+				tr {
+					th {
+
+					}
+
+					td {
+						font-size: 2em;
+					}
 				}
 			}
 		}
