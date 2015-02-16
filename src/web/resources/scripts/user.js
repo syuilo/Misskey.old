@@ -1,4 +1,12 @@
 $(function() {
+	$(window).resize(function() {
+		if ($(window).width() < $('main').css('max-width')) {
+			$('#headerUserAreaBackground').css('width', $(window).width() + 'px')
+		} else {
+			$('#headerUserAreaBackground').css('width', $('main').css('max-width') + 'px')
+		}
+	});
+
 	$('#followButton').click(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
