@@ -3,10 +3,10 @@ $(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
-		if ($('html').data('is-following') == true) {
+		if ($('html').attr('data-is-following') == 'true') {
 			$.ajax('https://api.misskey.xyz/users/unfollow', {
 				type: 'delete',
-				data: { 'user_id': $('html').data('user-id') },
+				data: { 'user_id': $('html').attr('data-user-id') },
 				dataType: 'json',
 				xhrFields: {
 					withCredentials: true
@@ -16,14 +16,14 @@ $(function() {
 				$button.removeClass('following');
 				$button.addClass('notFollowing');
 				$button.text('フォロー');
-				$('html').data('is-following', 'false')
+				$('html').attr('data-is-following', 'false')
 			}).fail(function() {
 				$button.attr('disabled', false);
 			});
 		} else {
 			$.ajax('https://api.misskey.xyz/users/follow', {
 				type: 'post',
-				data: { 'user_id': $('html').data('user-id') },
+				data: { 'user_id': $('html').attr('data-user-id') },
 				dataType: 'json',
 				xhrFields: {
 					withCredentials: true
@@ -33,7 +33,7 @@ $(function() {
 				$button.removeClass('notFollowing');
 				$button.addClass('following');
 				$button.text('フォロー中');
-				$('html').data('is-following', 'true')
+				$('html').attr('data-is-following', 'true')
 			}).fail(function() {
 				$button.attr('disabled', false);
 			});
