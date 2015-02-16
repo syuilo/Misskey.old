@@ -16,7 +16,7 @@ $(function() {
 				$button.removeClass('following');
 				$button.addClass('notFollowing');
 				$button.text('フォロー');
-				$('html').data('data-is-following', 'false')
+				$('html').data('is-following', 'false')
 			}).fail(function() {
 				$button.attr('disabled', false);
 			});
@@ -33,7 +33,7 @@ $(function() {
 				$button.removeClass('notFollowing');
 				$button.addClass('following');
 				$button.text('フォロー中');
-				$('html').data('data-is-following', 'true')
+				$('html').data('is-following', 'true')
 			}).fail(function() {
 				$button.attr('disabled', false);
 			});
