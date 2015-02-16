@@ -114,7 +114,7 @@ webServer.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
 	req.url = req.url.replace(/\?.*/, '');
 	if (req.url.indexOf('..') === -1) {
 		if (req.url.match(/\.css$/)) {
-			var resourcePath = path.resolve(__dirname + '/..' + req.url.replace(/\.css$/, '.less'));
+			var resourcePath = path.resolve(__dirname + '/' + req.url.replace(/\.css$/, '.less'));
 			if (fs.existsSync(resourcePath)) {
 				initSession(req, res,() => {
 					if (req.login) {
