@@ -1,5 +1,7 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
+import fs = require('fs');
+import path = require('path');
 import express = require('express');
 import gm = require('gm');
 import User = require('../../models/user');
@@ -45,12 +47,12 @@ var router = (app: express.Express): void => {
 
 		var display = (user: User) => {
 			if (user != null) {
+				var imageBuffer = user.header != null ? user.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
 				if (req.query.blur == null) {
-					var img = user.header;
 					res.set('Content-Type', 'image/jpeg');
-					res.send(img);
+					res.send(imageBuffer);
 				} else {
-					gm(user.header)
+					gm(imageBuffer)
 						.blur(req.query.blur, 20)
 						.compress('jpeg')
 						.quality(80)
@@ -79,9 +81,9 @@ var router = (app: express.Express): void => {
 
 		var display = (user: User) => {
 			if (user != null) {
-				var img = user.wallpaper;
+				var imageBuffer = user.wallpaper != null ? user.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
 				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
+				res.send(imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
 			}
