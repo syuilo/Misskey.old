@@ -7,8 +7,6 @@ $(function() {
 			$.ajax('https://api.misskey.xyz/users/unfollow', {
 				type: 'delete',
 				data: { 'user_id': $('html').data('user-id') },
-				processData: false,
-				contentType: false,
 				dataType: 'json',
 				xhrFields: {
 					withCredentials: true
@@ -25,8 +23,6 @@ $(function() {
 			$.ajax('https://api.misskey.xyz/users/follow', {
 				type: 'post',
 				data: { 'user_id': $('html').data('user-id') },
-				processData: false,
-				contentType: false,
 				dataType: 'json',
 				xhrFields: {
 					withCredentials: true
