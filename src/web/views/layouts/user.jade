@@ -41,12 +41,6 @@ html(
 							span#name= user.name
 							span#screenName= '@' + user.screenName
 						p#comment= user.comment
-					if login
-						if me.id != user.id
-							if isFollowing
-								button#followButton.ui-followButton.following フォロー中
-							else
-								button#followButton.ui-followButton.notFollowing フォロー
 				nav#headerNav
 					table
 						tr
@@ -57,6 +51,12 @@ html(
 							td: a(href='/' + user.screenName)= postsCount
 							td: a(href='/' + user.screenName + '/followings')= followingsCount
 							td: a(href='/' + user.screenName + '/followers')= followersCount
+					if login
+						if me.id != user.id
+							if isFollowing
+								button#followButton.ui-followButton.following フォロー中
+							else
+								button#followButton.ui-followButton.notFollowing フォロー
 			div#contents
 				div#contentsLeft
 					div#mainContent
