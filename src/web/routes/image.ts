@@ -51,7 +51,7 @@ var router = (app: express.Express): void => {
 					res.send(img);
 				} else {
 					gm(user.header)
-						.blur(req.query.blur)
+						.blur(req.query.blur, 20)
 						.compress('jpeg')
 						.quality(80)
 						.toBuffer('jpeg',(error: any, buffer: Buffer) => {

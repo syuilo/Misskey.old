@@ -12,17 +12,17 @@ export = render;
 var render = (req: any, res: any, content: string = 'home'): void => {
 	async.series([
 		(callback: any) => {
-			Post.getUserPostsCount(req.me.id,(count: number) => {
+			Post.getUserPostsCount(req.rootUser.id,(count: number) => {
 				callback(null, count);
 			});
 		},
 		(callback: any) => {
-			UserFollowing.getFollowingsCount(req.me.id,(count: number) => {
+			UserFollowing.getFollowingsCount(req.rootUser.id,(count: number) => {
 				callback(null, count);
 			});
 		},
 		(callback: any) => {
-			UserFollowing.getFollowersCount(req.me.id,(count: number) => {
+			UserFollowing.getFollowersCount(req.rootUser.id,(count: number) => {
 				callback(null, count);
 			});
 		},
