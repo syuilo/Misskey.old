@@ -153,11 +153,7 @@ var router = (app: express.Express): void => {
 		res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
 	});
 
-	/* Image */
-	imageRouter(app);
-
 	/* Actions */
-
 	app.get('/login',(req: any, res: any) => {
 		res.display(req, res, 'login', {});
 	});
@@ -174,8 +170,19 @@ var router = (app: express.Express): void => {
 		});
 	});
 
-	app.get('/:userSn', require('../controllers/user'));
+	app.get('/:userSn',(req: any, res: any, next: () => void) => {
+		require('../controllers/user')(req, res, 'home');
+	});
+	app.get('/:userSn/followings',(req: any, res: any, next: () => void) => {
+		require('../controllers/user')(req, res, 'followings');
+	});
+	app.get('/:userSn/followers',(req: any, res: any, next: () => void) => {
+		require('../controllers/user')(req, res, 'followers');
+	});
 	app.get('/:userSn/talk', require('../controllers/user-talk'));
+
+	/* Image */
+	imageRouter(app);
 
 	var display = (req: any, res: any, name: string, renderData: any) => {
 		res.render(name, extend(req.data, renderData));

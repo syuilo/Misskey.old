@@ -9,7 +9,7 @@ import conf = require('../../config');
 
 export = render;
 
-var render = (req: any, res: any, next: any, content: string = 'home'): void => {
+var render = (req: any, res: any, content: string = 'home'): void => {
 	async.series([
 		(callback: any) => {
 			Post.getUserPostsCount(req.rootUser.id,(count: number) => {
