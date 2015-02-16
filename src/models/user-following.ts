@@ -74,9 +74,12 @@ class UserFollowing {
 			(err: any, userFollowings: any[]) => callback(userFollowings.map((userFollowing) => new UserFollowing(userFollowing))));
 	}
 
-    public destroy(callback?: () => void): void {
+    public destroy(callback: () => void): void {
 		db.query('delete from user_followings where followee_id = ? and follower_id = ?"',
 			[this.followeeId, this.followerId],
-			callback);
+			(err: any) => {
+				if (err) throw err;
+				callback();
+			});
 	}
 }
