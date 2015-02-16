@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import async = require('async');
-import markdown = require('markdown');
+var markdown = require('markdown').markdown;
 import User = require('../../models/user');
 import UserFollowing = require('../../models/user-following');
 import Post = require('../../models/post');
