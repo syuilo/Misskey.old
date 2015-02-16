@@ -34,6 +34,15 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 			});
 		},
 		(callback: any) => {
+			if (req.login) {
+				UserFollowing.isFollowing(req.me.id, req.rootUser.id,(isFollowing: boolean) => {
+					callback(null, isFollowing);
+				});
+			} else {
+				callback(null, null);
+			}
+		},
+		(callback: any) => {
 			switch (content) {
 				case 'home':
 					callback(null, null);
@@ -76,7 +85,8 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 				followingsCount: results[1],
 				followersCount: results[2],
 				timelineHtml: results[3],
-				content: results[4],
+				isFollowing: results[4],
+				content: results[5],
 				user: req.rootUser,
 				tags: req.rootUser.tag.split(','),
 				url: conf.publicConfig.url,
