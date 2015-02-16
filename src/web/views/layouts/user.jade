@@ -31,7 +31,9 @@ html(lang='ja', dir='ltr', itemscope, itemtype='http://schema.org/Person')
 					div#headerUserArea
 						a#iconAnchor
 							img#icon(src='/img/icon/' + user.screenName, alt='icon')
-						h1#name= user.name
+						h1
+							span#name= user.name
+							span#screenName= user.screenName
 						p#comment= user.comment
 				nav#headerNav
 					table
