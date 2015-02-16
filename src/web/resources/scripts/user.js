@@ -1,9 +1,11 @@
 $(function() {
 	$(window).resize(function() {
-		if ($(window).width() < $('main').css('max-width')) {
-			$('#headerUserAreaBackground').css('width', $(window).width() + 'px')
+		var windowWidth = $(window).width();
+		var maxWidth = parseInt($('main').css('max-width'));
+		if (windowWidth < maxWidth) {
+			$('#headerUserAreaBackground').css('width', windowWidth + 'px')
 		} else {
-			$('#headerUserAreaBackground').css('width', $('main').css('max-width') + 'px')
+			$('#headerUserAreaBackground').css('width', maxWidth + 'px')
 		}
 	});
 
