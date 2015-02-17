@@ -12,7 +12,7 @@ html(lang='ja', dir='ltr')
 	body
 		nav
 			div#me
-				a(href=url + '/' + me.screenName)
+				a#meIconAnchor(href=url + '/' + me.screenName)
 					img#meIcon(src=url + '/img/icon/' + me.screenName, alt='icon')
 				span#meName(contenteditable)= me.name
 				span#meScreenName= me.screenName
