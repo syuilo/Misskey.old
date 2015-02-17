@@ -138,7 +138,7 @@ main {
 				left: 0;
 				width: 1000px;
 				height: 400px;
-				background-image: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, .2)), url(@headerBlurImageUrl);
+				background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(@headerBlurImageUrl);
 				background-repeat: no-repeat;
 				background-position: center center;
 				background-size: cover;
@@ -190,6 +190,8 @@ main {
 }
 
 #contents {
+	border-top: solid 3px @themeColor;
+
 	&:after {
 		content: "";
 		display: block;
