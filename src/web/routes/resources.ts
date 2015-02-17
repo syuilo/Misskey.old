@@ -23,7 +23,7 @@ function compileLess(lessCss: string, styleUser: User, callback: (css: string) =
 	});
 }
 
-function sentLess(req: any, res: any, resourcePath: string, styleUser: User) {
+function readFileSendLess(req: any, res: any, resourcePath: string, styleUser: User) {
 	fs.readFile(resourcePath, 'utf8',(err: NodeJS.ErrnoException, lessCss: string) => {
 		if (err) throw err;
 		compileLess(lessCss, styleUser,(css: string) => {
@@ -93,18 +93,18 @@ var router = (app: any): void => {
 					app.initSession(req, res,() => {
 						if (req.login) {
 							if (req.query.user == null) {
-								sentLess(req, res, resourcePath, req.me);
+								readFileSendLess(req, res, resourcePath, req.me);
 							} else {
 								User.findByScreenName(req.query.user,(styleUser: User) => {
 									if (styleUser != null) {
-										sentLess(req, res, resourcePath, styleUser);
+										readFileSendLess(req, res, resourcePath, styleUser);
 									} else {
-										sentLess(req, res, resourcePath, null);
+										readFileSendLess(req, res, resourcePath, null);
 									}
 								});
 							}
 						} else {
-							sentLess(req, res, resourcePath, null);
+							readFileSendLess(req, res, resourcePath, null);
 						}
 					});
 					return;
