@@ -1,7 +1,6 @@
 doctype html
 
-html(
-	lang='ja'
+html(lang='ja'
 	dir='ltr'
 	itemscope
 	itemtype='http://schema.org/ProfilePage'
@@ -36,6 +35,10 @@ html(
 		main(role='main')
 			header(role='banner')
 				div#headerMain
+					div#headerUserMenu
+						ul
+							li: a(href='/' + user.screenName + '/talk', title='このユーザーとトーク'): i.fa.fa-comment
+							li: button#sendNewReplyButton(title='このユーザーになんか言う'): i.fa.fa-pencil-square-o
 					div#headerUserArea
 						div#headerUserAreaBackground
 						div#headerUserAreaMain

@@ -44,6 +44,49 @@ main {
 			background-position: center center;
 			background-size: cover;
 
+			> #headerUserMenu {
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 16px;
+
+				> ul {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					li {
+						display: inline-block;
+						color: #fff;
+						font-size: 2em;
+						text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+						a {
+							display: inline-block;
+							padding: 8px;
+							color: #fff;
+						}
+
+						button {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							display: inline-block;
+							padding: 8px;
+							background: transparent;
+							border: none;
+							outline: none;
+							cursor: pointer;
+							color: #fff;
+						}
+
+						i {
+							color: #fff;
+						}
+					}
+				}
+			}
+
 			> #headerUserArea {
 				display: block;
 				box-sizing: border-box;
