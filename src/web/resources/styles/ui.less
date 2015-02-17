@@ -156,6 +156,12 @@ textarea {
 						> .screenNameAnchor {
 							display: inline-block;
 
+							&:hover {
+								> .screenName {
+									color: @themeColor;
+								}
+							}
+
 							> .screenName {
 								display: inline-block;
 								margin: 0 16px;
@@ -163,6 +169,7 @@ textarea {
 								font-weight: bold;
 								text-decoration: none;
 								color: rgba(0, 0, 0, 0.5);
+								transition: all 0.2s ease;
 							}
 						}
 
@@ -207,7 +214,7 @@ textarea {
 								margin: 0;
 								padding: 0;
 								background: #fff;
-								box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+								box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 								transform: scale(0.9);
 								transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
 
@@ -238,7 +245,8 @@ textarea {
 											}
 
 											> i {
-												margin-right: 8px;
+												width: 2em;
+												text-align: center;
 											}
 										}
 									}
