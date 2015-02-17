@@ -7,6 +7,11 @@
 
 * {
 	font-family: 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
 }
 
 	*::-webkit-scrollbar {
@@ -57,6 +62,7 @@ a {
 	text-decoration: none;
 	color: @themeColor;
 	transition: color 0.1s ease;
+	cursor: pointer;
 
 	&:hover {
 		color: darken(@themeColor, 10%);
@@ -340,6 +346,7 @@ a {
 			-moz-user-select: none;
 			-webkit-user-select: none;
 			-ms-user-select: none;
+			cursor: move;
 		}
 
 		> h1 {
