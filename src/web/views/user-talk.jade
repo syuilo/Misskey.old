@@ -13,6 +13,8 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 		script(src='/resources/scripts/user-talk.js')
 		
 	body
+		if !noHeader
+			include templates/header
 		main
 			div#timeline
 				div.timelineContainer

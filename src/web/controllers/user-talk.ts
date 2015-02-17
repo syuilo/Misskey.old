@@ -22,7 +22,8 @@ var render = (req: any, res: any): void => {
 				res.display(req, res, 'user-talk', {
 					otherparty: req.rootUser,
 					messages: serializedMessages,
-					parseText: Timeline.parseText
+					parseText: Timeline.parseText,
+					noHeader: req.query.noheader == true
 				});
 			});
 		});

@@ -28,7 +28,7 @@ TIMELINE.generatePostElement = function(post) {
 
 		function generateIcon() {
 			return $('<a>')
-			.attr('href', conf.url + '/' + post.user.screenName + '/talk')
+			.attr('href', conf.url + '/' + post.user.screenName + '/talk?noheader=true')
 			.append(
 			$('<img class="icon" alt="icon">')
 			.attr('src', conf.url + '/img/icon/' + post.user.screenName)

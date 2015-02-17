@@ -10,7 +10,7 @@ div.timeline
 				if post.isReply
 					div.replyTo
 						article
-							a(href=url + '/' + post.reply.user.screenName + '/talk')
+							a(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true')
 								img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
 							header
 								h2
@@ -21,7 +21,7 @@ div.timeline
 							if post.reply.isImageAttached
 								img.image(src=url + '/img/post/' + post.reply.id, alt='image')
 				article
-					a(href=url + '/' + post.user.screenName + '/talk')
+					a(href=url + '/' + post.user.screenName + '/talk?noheader=true')
 						img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
 					header
 						h2
