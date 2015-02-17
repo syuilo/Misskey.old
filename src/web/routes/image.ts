@@ -7,6 +7,7 @@ import gm = require('gm');
 import User = require('../../models/user');
 import Post = require('../../models/post');
 import TalkMessage = require('../../models/talk-message');
+import WebTheme = require('../../models/webtheme');
 import config = require('../../config');
 
 export = router;
@@ -123,6 +124,19 @@ var router = (app: express.Express): void => {
 				}
 			} else {
 				res.status(404).send('Message not found.');
+			}
+		});
+	});
+
+	/* Webtheme thumbnail */
+	app.get('/img/webtheme_thumbnail/:id',(req: any, res: any) => {
+		WebTheme.find(req.params.id,(webtheme: WebTheme) => {
+			if (webtheme != null) {
+				var img = webtheme.thumbnail;
+				res.set('Content-Type', 'image/jpeg');
+				res.send(img);
+			} else {
+				res.status(404).send('WebTheme not found.');
 			}
 		});
 	});
