@@ -35,7 +35,7 @@ function readFileSendLess(req: any, res: any, resourcePath: string, styleUser: U
 
 var router = (app: any): void => {
 	/* Theme */
-	app.get(/^\/resources\/theme\/([a-zA-Z0-9_-]+).*/,(req: any, res: any, next: () => void) => {
+	app.get(/^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/,(req: any, res: any, next: () => void) => {
 		if (req.query.user == null) {
 			app.initSession(req, res,() => {
 				if (req.login) {
