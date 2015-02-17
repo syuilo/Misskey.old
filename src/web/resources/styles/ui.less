@@ -434,10 +434,38 @@ a {
 	&.following {
 		color: #fff;
 		background: @themeColor;
+
+		&:before {
+			content: "\f007";
+			font-family: FontAwesome;
+		}
+
+		&:hover {
+			background: #f20;
+
+			&:before {
+				content: "\f235";
+				font-family: FontAwesome;
+			}
+		}
 	}
 
 	&.notFollowing {
 		color: #000;
 		background: #eee;
+
+		&:before {
+			content: "\f007";
+			font-family: FontAwesome;
+		}
+
+		&:hover {
+			background: @themeColor;
+
+			&:before {
+				content: "\f234";
+				font-family: FontAwesome;
+			}
+		}
 	}
 }
