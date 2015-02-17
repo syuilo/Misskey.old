@@ -139,6 +139,10 @@ textarea {
 										color: @themeColor;
 									}
 
+									&:active {
+										color: darken(@themeColor, 10%);
+									}
+
 									> i {
 										margin-right: 8px;
 									}
@@ -223,7 +227,6 @@ textarea {
 									padding: 0;
 									list-style: none;
 									font-size: 1.2em;
-									border-top: solid 1px #E2E2E3;
 
 									> li {
 										display: inline-block;
@@ -242,6 +245,11 @@ textarea {
 											&:hover {
 												color: #fff;
 												background: @themeColor;
+											}
+
+											&:active {
+												color: #fff;
+												background: darken(@themeColor, 10%);
 											}
 
 											> i {
