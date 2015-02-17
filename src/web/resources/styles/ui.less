@@ -104,6 +104,7 @@ textarea {
 		> .mainContentsContainer {
 			width: 100%;
 			max-width: 1024px;
+			margin: 0 auto;
 
 			> nav {
 				> .left {
@@ -129,6 +130,7 @@ textarea {
 									display: inline-block;
 									height: 100%;
 									padding: 0 16px;
+									font-size: 1.2em;
 									color: rgba(0, 0, 0, 0.5);
 									transition: all 0.2s ease;
 
@@ -197,7 +199,7 @@ textarea {
 								opacity: 0;
 								display: block;
 								position: absolute;
-								top: 0;
+								top: auto;
 								right: 0;
 								z-index: 3;
 								width: 256px;
@@ -228,10 +230,15 @@ textarea {
 											text-decoration: none;
 											color: #555;
 											background: #fff;
+											transition: none;
 
 											&:hover {
 												color: #fff;
 												background: @themeColor;
+											}
+
+											> i {
+												margin-right: 8px;
 											}
 										}
 									}
