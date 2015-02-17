@@ -420,8 +420,8 @@ a {
 	display: inline-block;
 	box-sizing: border-box;
 	margin: 0;
-	padding: 8px 16px;
-	min-width: 5em;
+	padding: 10px 16px;
+	min-width: 8em;
 	cursor: pointer;
 	font-size: 1.2em;
 	font-weight: bold;
@@ -443,6 +443,7 @@ a {
 		}
 
 		&:hover {
+			content: "フォロー解除";
 			background: #f20;
 
 			&:before {
@@ -450,6 +451,11 @@ a {
 				font-family: FontAwesome;
 				margin-right: 8px;
 			}
+		}
+
+		&:active {
+			content: "フォロー解除";
+			background: #700;
 		}
 	}
 
