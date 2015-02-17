@@ -27,6 +27,7 @@ webServer.use(cookieParser(config.cookie_pass));
 
 var year = ((60 * 60 * 24 * 365) * 1000);
 
+/* Session settings */
 webServer.use(session({
 	key: config.sessionKey,
 	secret: config.sessionSecret,
@@ -93,12 +94,15 @@ webServer.initSession = (req: any, res: any, callback: () => void) => {
 	}
 };
 
+/* Resources rooting */
+resourcesRouter(webServer);
+
+/* General rooting */
 webServer.all('*',(req: any, res: any, next: () => void) => {
 	webServer.initSession(req, res,() => {
 		next();
 	});
 });
-
-resourcesRouter(webServer);
 indexRouter(webServer);
+
 webServer.listen(config.port.web);
