@@ -127,6 +127,10 @@ $(function() {
 		$.ajax('https://api.misskey.xyz/account/update_webtheme', {
 			type: 'put',
 			data: $form.serialize(),
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
 		}).done(function(data) {
 			location.reload();
 		}).fail(function(data) {
