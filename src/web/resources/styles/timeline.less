@@ -128,7 +128,7 @@
 					-moz-user-select: text;
 					-webkit-user-select: text;
 					-ms-user-select: text;
-					cursor:  default;
+					cursor: default;
 					display: block;
 					margin: 0 0 0 0;
 					padding: 0;
@@ -136,6 +136,13 @@
 					word-wrap: break-word;
 					font-size: 1.1em;
 					color: rgba(0, 0, 0, 0.8);
+
+					* {
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+					}
 
 					.reply {
 						margin: 0 8px 0 0;
@@ -297,6 +304,13 @@
 						word-wrap: break-word;
 						font-size: 0.9em;
 						color: rgba(0, 0, 0, 0.5);
+
+						* {
+							user-select: text;
+							-moz-user-select: text;
+							-webkit-user-select: text;
+							-ms-user-select: text;
+						}
 
 						.reply {
 							margin: 0 8px 0 0;
