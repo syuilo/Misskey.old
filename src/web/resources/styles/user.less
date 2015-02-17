@@ -130,9 +130,24 @@ main {
 			margin: 0;
 			padding: 0;
 			background: #fff;
-			box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+			/*box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);*/
+
+			> #headerNavBackground {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 1000px;
+				height: 400px;
+				background-image: linear-gradient(rgba(255, 255, 255, .2), rgba(255, 255, 255, .2)), url(@headerBlurImageUrl);
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: cover;
+				clip: rect(400px, 1000px, 1000px, 0px);
+			}
 
 			> #headerNavMain {
+				position: relative;
+
 				table {
 					padding: 0 64px;
 
