@@ -15,7 +15,7 @@ var accountUpdateWallpaper = (req: any, res: APIResponse) => {
 			var path = req.files.image.path;
 			gm(path)
 				.compress('jpeg')
-				.quality(70)
+				.quality(80)
 				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 				if (error) throw error;
 				fs.unlink(path);

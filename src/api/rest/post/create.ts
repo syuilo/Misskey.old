@@ -19,7 +19,7 @@ var postCreate = (req: any, res: APIResponse) => {
 
 		if (Object.keys(req.files).length === 1) {
 			var path = req.files.image.path;
-			var imageQuality = user.isPremium ? 100 : 70;
+			var imageQuality = user.isPremium ? 90 : 70;
 			gm(path)
 				.compress('jpeg')
 				.quality(imageQuality)
