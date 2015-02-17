@@ -34,7 +34,7 @@ var router = (app: any): void => {
 
 	/* General */
 	app.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
-		if (req.url.indexOf('..') === -1) {
+		if (req.path.indexOf('..') === -1) {
 			if (req.path.match(/\.css$/)) {
 				var resourcePath = path.resolve(__dirname + '/..' + req.path.replace(/\.css$/, '.less'));
 				if (fs.existsSync(resourcePath)) {
