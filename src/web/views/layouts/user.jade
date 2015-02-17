@@ -44,23 +44,25 @@ html(
 								span#screenName(itemprop='alternateName')= '@' + user.screenName
 							p#comment(itemprop='description')= user.comment
 				nav#headerNav(role='navigation')
-					table
-						tr
-							th 投稿
-							th フォロー
-							th フォロワー
-						tr
-							td: a(href='/' + user.screenName)= postsCount
-							td: a(href='/' + user.screenName + '/followings')= followingsCount
-							td: a(href='/' + user.screenName + '/followers')= followersCount
-					if login
-						if me.id != user.id
-							if isFollowMe
-								p#friendStatus フォローされています
-							if isFollowing
-								button#followButton.ui-followButton.following フォロー中
-							else
-								button#followButton.ui-followButton.notFollowing フォロー
+					div#headerNavBackground
+					div#headerNavMain
+						table
+							tr
+								th 投稿
+								th フォロー
+								th フォロワー
+							tr
+								td: a(href='/' + user.screenName)= postsCount
+								td: a(href='/' + user.screenName + '/followings')= followingsCount
+								td: a(href='/' + user.screenName + '/followers')= followersCount
+						if login
+							if me.id != user.id
+								if isFollowMe
+									p#friendStatus フォローされています
+								if isFollowing
+									button#followButton.ui-followButton.following フォロー中
+								else
+									button#followButton.ui-followButton.notFollowing フォロー
 			div#contents
 				div#contentsLeft
 					div#mainContent
