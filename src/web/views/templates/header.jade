@@ -8,37 +8,38 @@ header#misskey-main-header
 		});
 
 	div.main
-		nav
-			div.left
-				div.mainNav
-					ul
-						li: a(href='/')
-							i.fa.fa-home
-							| ホーム
-						li: a(href='/i/mention')
-							i.fa.fa-at
-							| メンション
-						li: a(href='/i/talks')
-							i.fa.fa-comments
-							| トーク
-			div.right
-				div.account
-					a.screenNameAnchor(href= url + '/' + me.screenName)
-						span.screenName= '@' + me.screenName
-					div.dropdown
-						a.iconAnchor(href= url + '/' + me.screenName)
-							img.icon(src= url + '/img/icon/' + me.screenName, alt='icon')
-						div.dropdownContent
-							ul
-								li: a(href= url + '/' + me.screenName)
-									i.fa.fa-laptop
-									| マイページ
-								li: a(href='/i')
-									i.fa.fa-user
-									| マイ メニュー
-								li: a(href='/i/setting')
-									i.fa.fa-cog
-									| 設定
-								li: a(href='/logout')
-									i(class='fa fa-power-off')
-									| ログアウト
+		div.mainContentsContainer
+			nav
+				div.left
+					div.mainNav
+						ul
+							li: a(href='/')
+								i.fa.fa-home
+								| ホーム
+							li: a(href='/i/mention')
+								i.fa.fa-at
+								| メンション
+							li: a(href='/i/talks')
+								i.fa.fa-comments
+								| トーク
+				div.right
+					div.account
+						a.screenNameAnchor(href= url + '/' + me.screenName)
+							span.screenName= '@' + me.screenName
+						div.dropdown
+							a.iconAnchor(href= url + '/' + me.screenName)
+								img.icon(src= url + '/img/icon/' + me.screenName, alt='icon')
+							div.dropdownContent
+								ul
+									li: a(href= url + '/' + me.screenName)
+										i.fa.fa-laptop
+										| マイページ
+									li: a(href='/i')
+										i.fa.fa-user
+										| マイ メニュー
+									li: a(href='/i/setting')
+										i.fa.fa-cog
+										| 設定
+									li: a(href='/logout')
+										i(class='fa fa-power-off')
+										| ログアウト

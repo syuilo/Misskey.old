@@ -95,132 +95,144 @@ textarea {
 		padding: 0;
 		background: #fff;
 
-		> nav {
-			> .left {
-				float: left;
-				height: 3em;
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
 
-				> .mainNav {
-					display: inline-block;
-					margin: 0 8px;
-					padding: 0;
-					line-height: 3em;
-					vertical-align: top;
+		> .mainContentsContainer {
+			width: 100%;
+			max-width: 1024px;
 
-					> ul {
-						margin: 0;
+			> nav {
+				> .left {
+					float: left;
+					height: 3em;
+
+					> .mainNav {
+						display: inline-block;
+						margin: 0 8px;
 						padding: 0;
-						list-style: none;
+						line-height: 3em;
+						vertical-align: top;
 
-						> li {
-							display: inline-block;
+						> ul {
+							margin: 0;
+							padding: 0;
+							list-style: none;
 
-							> a {
+							> li {
 								display: inline-block;
-								height: 100%;
-								padding: 0 16px;
-								color: rgba(0, 0, 0, 0.5);
-								transition: all 0.2s ease;
 
-								&:hover {
-									color: @themeColor;
-								}
+								> a {
+									display: inline-block;
+									height: 100%;
+									padding: 0 16px;
+									color: rgba(0, 0, 0, 0.5);
+									transition: all 0.2s ease;
 
-								> i {
-									margin-right: 8px;
+									&:hover {
+										color: @themeColor;
+									}
+
+									> i {
+										margin-right: 8px;
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 
-			> .right {
-				float: right;
-				height: 3em;
+				> .right {
+					float: right;
+					height: 3em;
 
-				> .account {
-					> .screenNameAnchor {
-						display: inline-block;
-
-						> .screenName {
+					> .account {
+						> .screenNameAnchor {
 							display: inline-block;
-							margin: 0 16px;
-							line-height: 3em;
-							font-weight: bold;
-							text-decoration: none;
-							color: rgba(0, 0, 0, 0.5);
-						}
-					}
 
-					> .dropdown {
-						display: inline-block;
-						position: relative;
-						overflow: visible;
-						clear: both;
-						float: right;
-
-						&:hover {
-							> .dropdownContent {
-								visibility: visible;
-								opacity: 1;
-								transform: scale(1);
-								transition: opacity 0.1s linear;
+							> .screenName {
+								display: inline-block;
+								margin: 0 16px;
+								line-height: 3em;
+								font-weight: bold;
+								text-decoration: none;
+								color: rgba(0, 0, 0, 0.5);
 							}
 						}
 
-						> .iconAnchor {
-							display: block;
+						> .dropdown {
+							display: inline-block;
+							position: relative;
+							overflow: visible;
+							clear: both;
+							float: right;
 
-							> .icon {
+							&:hover {
+								> .dropdownContent {
+									visibility: visible;
+									opacity: 1;
+									transform: scale(1);
+									transition: opacity 0.1s linear;
+								}
+							}
+
+							> .iconAnchor {
 								display: block;
-								box-sizing: border-box;
-								min-width: 3em;
-								max-width: 3em;
-								min-height: 3em;
-								max-height: 3em;
+
+								> .icon {
+									display: block;
+									box-sizing: border-box;
+									min-width: 3em;
+									max-width: 3em;
+									min-height: 3em;
+									max-height: 3em;
+								}
 							}
-						}
 
-						> .dropdownContent {
-							visibility: hidden;
-							opacity: 0;
-							display: block;
-							position: absolute;
-							left: 0;
-							z-index: 3;
-							width: 256px;
-							margin: 8px 0 0 0;
-							padding: 0;
-							background: #fff;
-							box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
-							border: solid 1px #E2E2E3;
-							transform: scale(0.9);
-							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
-
-							> ul {
-								margin: 0;
+							> .dropdownContent {
+								visibility: hidden;
+								opacity: 0;
+								display: block;
+								position: absolute;
+								top: 0;
+								right: 0;
+								z-index: 3;
+								width: 256px;
+								margin: 8px 0 0 0;
 								padding: 0;
-								list-style: none;
-								font-size: 1.2em;
-								border-top: solid 1px #E2E2E3;
+								background: #fff;
+								box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+								border: solid 1px #E2E2E3;
+								transform: scale(0.9);
+								transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
 
-								> li {
-									display: inline-block;
-									width: 100%;
+								> ul {
+									margin: 0;
+									padding: 0;
+									list-style: none;
+									font-size: 1.2em;
+									border-top: solid 1px #E2E2E3;
 
-									> a {
+									> li {
 										display: inline-block;
-										box-sizing: border-box;
 										width: 100%;
-										padding: 8px 16px;
-										text-decoration: none;
-										color: #555;
-										background: #fff;
 
-										&:hover {
-											color: #fff;
-											background: @themeColor;
+										> a {
+											display: inline-block;
+											box-sizing: border-box;
+											width: 100%;
+											padding: 8px 16px;
+											text-decoration: none;
+											color: #555;
+											background: #fff;
+
+											&:hover {
+												color: #fff;
+												background: @themeColor;
+											}
 										}
 									}
 								}
