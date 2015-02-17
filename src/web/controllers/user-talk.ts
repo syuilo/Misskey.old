@@ -23,7 +23,7 @@ var render = (req: any, res: any): void => {
 					otherparty: req.rootUser,
 					messages: serializedMessages,
 					parseText: Timeline.parseText,
-					noHeader: req.query.noheader == true
+					noHeader: req.query.noheader === 'true'
 				});
 			});
 		});
