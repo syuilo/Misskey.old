@@ -67,6 +67,18 @@ a {
 	&:hover {
 		color: darken(@themeColor, 10%);
 	}
+
+	* {
+		cursor: pointer;
+	}
+}
+
+textarea {
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	cursor: auto;
 }
 
 /* UI
@@ -80,6 +92,11 @@ a {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	cursor: auto;
 	margin: 0;
 	padding: 8px 10px;
 	font-size: 1.3em;
@@ -341,7 +358,7 @@ a {
 		cursor: move;
 		background: #fff;
 
-		* {
+		h1, i {
 			user-select: none;
 			-moz-user-select: none;
 			-webkit-user-select: none;
