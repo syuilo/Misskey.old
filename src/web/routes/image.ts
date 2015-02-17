@@ -12,6 +12,7 @@ import config = require('../../config');
 export = router;
 
 var router = (app: express.Express): void => {
+	/* User icon */
 	app.get('/img/icon/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
 			User.find(Number(req.params.idOrSn),(user: User) => {
@@ -25,15 +26,16 @@ var router = (app: express.Express): void => {
 
 		var display = (user: User) => {
 			if (user != null) {
-				var img = user.icon;
+				var imageBuffer = user.icon != null ? user.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
 				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
+				res.send(imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
 			}
 		};
 	});
 
+	/* User header */
 	app.get('/img/header/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
 			User.find(Number(req.params.idOrSn),(user: User) => {
@@ -68,6 +70,7 @@ var router = (app: express.Express): void => {
 		};
 	});
 
+	/* User wallpaper */
 	app.get('/img/wallpaper/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
 			User.find(Number(req.params.idOrSn),(user: User) => {
@@ -90,6 +93,7 @@ var router = (app: express.Express): void => {
 		};
 	});
 
+	/* Post */
 	app.get('/img/post/:id',(req: any, res: any) => {
 		Post.find(req.params.id,(post: Post) => {
 			if (post != null) {
@@ -106,6 +110,7 @@ var router = (app: express.Express): void => {
 		});
 	});
 
+	/* Talk message */
 	app.get('/img/talk-message/:id',(req: any, res: any) => {
 		TalkMessage.find(req.params.id,(talkMessage: TalkMessage) => {
 			if (talkMessage != null) {
