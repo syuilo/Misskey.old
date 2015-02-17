@@ -44,6 +44,12 @@ class WebTheme {
 			(err: any, themes: any[]) => callback(themes[0] != null ? new WebTheme(themes[0]) : null));
 	}
 
+	public static getThemes(callback: (themes: WebTheme[]) => void): void {
+		db.query("select * from web_themes limit 32",
+			[],
+			(err: any, themes: any[]) => callback(themes.length != 0 ? themes.map((theme) => new WebTheme(theme)) : null));
+	}
+
 	public static findByUserId(userId: number, callback: (themes: WebTheme[]) => void): void {
 		db.query("select * from web_themes where user_id = ?",
 			[userId],

@@ -121,7 +121,22 @@ html(lang='ja', dir='ltr')
 						input.ui-inputSubmit(type='submit', value='アップデート')
 
 				div#webtheme
-					p comming soon....
+					button#webthemeResetButton デフォルトのテーマに戻す
+					ul#webthemes
+						each theme in webthemes
+							li.theme
+								div.content
+									div.thumbnail(style='background-image: url("https://misskey.xyz/img/webtheme_thumbnail/#{theme.id}")')
+									div.form
+										cite.title= theme.name
+										p.description= theme.description
+										div.author
+											span.name= theme.user.screenName
+											img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
+										form
+											input(name='theme_id', value=theme.id, type='hidden')
+											input.ui-inputSubmit(type='submit', value='インストール')
+								h2.title= theme.name
 
 				div#application
 					p comming soon....

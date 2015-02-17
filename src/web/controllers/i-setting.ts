@@ -1,13 +1,24 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
-import Post = require('../../models/post');
-import Timeline = require('../utils/timeline');
+import async = require('async');
+import User = require('../../models/user');
+import WebTheme = require('../../models/webtheme');
 import conf = require('../../config');
 
 export = render;
 
 var render = (req: any, res: any): void => {
-	res.display(req, res, 'i-setting', {
-		me: req.me
+	WebTheme.getThemes((themes: WebTheme[]) => {
+		async.map(themes,(themes: any, next: any) => {
+			User.find(themes.userId,(user: User) => {
+				themes.user = user;
+				next(null, themes);
+			});
+		},(err: any, results: any[]) => {
+				res.display(req, res, 'i-setting', {
+					me: req.me,
+					webthemes: results
+				});
+			});
 	});
 };
