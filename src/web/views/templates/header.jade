@@ -1,12 +1,7 @@
 header#misskey-main-header
 	script.
-		$(function() {
-			$("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px");
-		});
-		$(window).load(function() {
-			$("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px");
-		});
-
+		$(function() { $("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px"); });
+		$(window).load(function() { $("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px"); });
 	div.main
 		div.mainContentsContainer
 			nav
