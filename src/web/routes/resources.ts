@@ -31,7 +31,7 @@ var router = (app: any): void => {
 		req.url = req.url.replace(/\?.*/, '');
 		if (req.url.indexOf('..') === -1) {
 			if (req.url.match(/\.css$/)) {
-				var resourcePath = path.resolve(__dirname + '/' + req.url.replace(/\.css$/, '.less'));
+				var resourcePath = path.resolve(__dirname + '/..' + req.url.replace(/\.css$/, '.less'));
 				if (fs.existsSync(resourcePath)) {
 					app.initSession(req, res,() => {
 						if (req.login) {
@@ -54,7 +54,7 @@ var router = (app: any): void => {
 				}
 			}
 			if (req.url.indexOf('.less') === -1) {
-				var resourcePath = path.resolve(__dirname + '/' + req.url);
+				var resourcePath = path.resolve(__dirname + '/..' + req.url);
 				res.sendFile(resourcePath);
 			} else {
 				next();
