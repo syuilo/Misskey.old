@@ -4,9 +4,9 @@ div.timeline
 			li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
 					style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 					data-id= post.id
-					data-userId= post.user.id
-					data-userComment= post.user.comment
-					data-userColor= post.user.color)
+					data-user-id= post.user.id
+					data-user-comment= post.user.comment
+					data-user-color= post.user.color)
 				if post.isReply
 					div.replyTo
 						article

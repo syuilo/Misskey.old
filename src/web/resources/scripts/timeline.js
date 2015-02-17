@@ -5,9 +5,9 @@ TIMELINE.generatePostElement = function(post) {
 	.attr({
 		title: post.createdAt + '&#x0A;via ' + post.app.name,
 		'data-id': post.id,
-		'data-userId': post.userId,
-		'data-userComment': post.user.comment,
-		'data-userColor': post.user.color,
+		'data-user-id': post.userId,
+		'data-user-comment': post.user.comment,
+		'data-user-color': post.user.color,
 		style: post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 	})
 	.append(post.isReply ? generateReplyTo() : null)
