@@ -5,8 +5,10 @@ link(rel='shortcut icon', href='/favicon.ico')
 link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 if rootUser != null
 	link(rel='stylesheet', href='/resources/styles/ui.css?user=' + rootUser.screenName)
+	link(rel='stylesheet', href='/resources/styles/theme/ui.css?user=' + rootUser.screenName)
 else
 	link(rel='stylesheet', href='/resources/styles/ui.css')
+	link(rel='stylesheet', href='/resources/styles/theme/ui.css')
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 script(src='/config')
 script(src='/resources/scripts/main.js')
