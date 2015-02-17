@@ -6,16 +6,16 @@ $(function() {
 	function headerSetBlurImage() {
 		var windowWidth = $(window).width();
 		var maxWidth = parseInt($('main').css('max-width'));
-		var headerHeight = $('main > header').outerHeight();
+		//var headerHeight = $('main > header').outerHeight();
 		var headerNavHeight = $('#headerNav').outerHeight();
 		if (windowWidth < maxWidth) {
 			$('#headerUserAreaBackground').css('width', windowWidth + 'px');
-			$('#headerNavBackground').css('width', windowWidth + 'px');
+			//$('#headerNavBackground').css('width', windowWidth + 'px');
 		} else {
 			$('#headerUserAreaBackground').css('width', maxWidth + 'px');
-			$('#headerNavBackground').css('width', maxWidth + 'px');
+			//$('#headerNavBackground').css('width', maxWidth + 'px');
 		}
-		$('#headerNavBackground').css('clip', 'rect(' + (headerHeight - headerNavHeight) + 'px, 1000px, 1000px, 0px)');
+		//$('#headerNavBackground').css('clip', 'rect(' + (headerHeight - headerNavHeight) + 'px, 1000px, 1000px, 0px)');
 	}
 
 	headerSetBlurImage();
