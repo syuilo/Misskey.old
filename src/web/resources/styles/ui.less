@@ -107,11 +107,11 @@ textarea {
 			max-width: 1024px;
 			margin: 0 auto;
 
-			> nav {
-				> .left {
-					float: left;
-					height: 3em;
+			> .left {
+				float: left;
+				height: 3em;
 
+				> nav {
 					> .mainNav {
 						display: inline-block;
 						margin: 0 8px;
@@ -151,111 +151,111 @@ textarea {
 						}
 					}
 				}
+			}
 
-				> .right {
-					float: right;
-					height: 3em;
+			> .right {
+				float: right;
+				height: 3em;
 
-					> .account {
-						> .screenNameAnchor {
-							display: inline-block;
+				> .account {
+					> .screenNameAnchor {
+						display: inline-block;
 
-							&:hover {
-								> .screenName {
-									color: @themeColor;
-								}
-							}
-
+						&:hover {
 							> .screenName {
-								display: inline-block;
-								margin: 0 16px;
-								line-height: 3em;
-								font-weight: bold;
-								text-decoration: none;
-								color: rgba(0, 0, 0, 0.5);
-								transition: all 0.2s ease;
+								color: @themeColor;
 							}
 						}
 
-						> .dropdown {
+						> .screenName {
 							display: inline-block;
-							position: relative;
-							overflow: visible;
-							clear: both;
-							float: right;
+							margin: 0 16px;
+							line-height: 3em;
+							font-weight: bold;
+							text-decoration: none;
+							color: rgba(0, 0, 0, 0.5);
+							transition: all 0.2s ease;
+						}
+					}
 
-							&:hover {
-								> .dropdownContent {
-									visibility: visible;
-									opacity: 1;
-									transform: scale(1);
-									transition: opacity 0.1s linear;
-								}
-							}
+					> .dropdown {
+						display: inline-block;
+						position: relative;
+						overflow: visible;
+						clear: both;
+						float: right;
 
-							> .iconAnchor {
-								display: block;
-
-								> .icon {
-									display: block;
-									box-sizing: border-box;
-									min-width: 3em;
-									max-width: 3em;
-									min-height: 3em;
-									max-height: 3em;
-								}
-							}
-
+						&:hover {
 							> .dropdownContent {
-								visibility: hidden;
-								opacity: 0;
+								visibility: visible;
+								opacity: 1;
+								transform: scale(1);
+								transition: opacity 0.1s linear;
+							}
+						}
+
+						> .iconAnchor {
+							display: block;
+
+							> .icon {
 								display: block;
-								position: absolute;
-								top: auto;
-								right: 0;
-								z-index: 3;
-								width: 256px;
+								box-sizing: border-box;
+								min-width: 3em;
+								max-width: 3em;
+								min-height: 3em;
+								max-height: 3em;
+							}
+						}
+
+						> .dropdownContent {
+							visibility: hidden;
+							opacity: 0;
+							display: block;
+							position: absolute;
+							top: auto;
+							right: 0;
+							z-index: 3;
+							width: 256px;
+							margin: 0;
+							padding: 0;
+							background: #fff;
+							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+							transform: scale(0.9);
+							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+
+							> ul {
 								margin: 0;
 								padding: 0;
-								background: #fff;
-								box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-								transform: scale(0.9);
-								transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+								list-style: none;
+								font-size: 1.2em;
 
-								> ul {
-									margin: 0;
-									padding: 0;
-									list-style: none;
-									font-size: 1.2em;
+								> li {
+									display: inline-block;
+									width: 100%;
 
-									> li {
+									> a {
 										display: inline-block;
+										box-sizing: border-box;
 										width: 100%;
+										padding: 8px 16px;
+										text-decoration: none;
+										color: #555;
+										background: #fff;
+										transition: none;
 
-										> a {
-											display: inline-block;
-											box-sizing: border-box;
-											width: 100%;
-											padding: 8px 16px;
-											text-decoration: none;
-											color: #555;
-											background: #fff;
-											transition: none;
+										&:hover {
+											color: #fff;
+											background: @themeColor;
+										}
 
-											&:hover {
-												color: #fff;
-												background: @themeColor;
-											}
+										&:active {
+											color: #fff;
+											background: darken(@themeColor, 10%);
+										}
 
-											&:active {
-												color: #fff;
-												background: darken(@themeColor, 10%);
-											}
-
-											> i {
-												width: 2em;
-												text-align: center;
-											}
+										> i {
+											width: 2em;
+											text-align: center;
 										}
 									}
 								}
