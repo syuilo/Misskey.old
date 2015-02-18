@@ -138,4 +138,22 @@ $(function() {
 			$submitButton.attr("value", "失敗したかも");
 		});
 	});
+
+	$("#webthemeResetButton").click(function() {
+		var $button = $(this);
+
+		$button.attr("disabled", true);
+
+		$.ajax('https://api.misskey.xyz/account/reset_webtheme', {
+			type: 'delete',
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		}).done(function(data) {
+			location.reload();
+		}).fail(function(data) {
+			$submitButton.attr("disabled", false);
+		});
+	});
 });
