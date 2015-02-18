@@ -20,7 +20,7 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 				div.timelineContainer
 					div.timelineMain
 						div.talkStream#stream
-							if messages == null
+							if messages == null || messages.length == 0
 								p#emptyStream
 									i.fa.fa-info-circle
 									| このユーザーとまだ会話したことはありませんっ

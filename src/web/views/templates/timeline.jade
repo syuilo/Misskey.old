@@ -1,42 +1,43 @@
 div.timeline
-	ol.posts
-		each post in posts
-			li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
-					style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
-					data-id= post.id
-					data-user-id= post.user.id
-					data-user-comment= post.user.comment
-					data-user-color= post.user.color)
-				if post.isReply
-					div.replyTo
-						article
-							a(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true')
-								img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
-							header
-								h2
-									a(href=url + '/' + post.reply.user.screenName)= post.reply.user.name
-								span.screenName= '@' + post.reply.user.screenName
-								time(datetime=post.reply.createdAt)= post.reply.createdAt
-							p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
-							if post.reply.isImageAttached
-								img.image(src=url + '/img/post/' + post.reply.id, alt='image')
-				article
-					a(href=url + '/' + post.user.screenName + '/talk?noheader=true')
-						img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
-					header
-						h2
-							a(href=url + '/' + post.user.screenName)= post.user.name
-						span.screenName= '@' + post.user.screenName
-						time(datetime=post.createdAt)= post.createdAt
-					p.text!= (post.isReply ? '<a href="' + url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.text)
-					if post.isImageAttached
-						img.image(src=url + '/img/post/' + post.id, alt='image')
-				footer
-					form.replyForm
-						textarea(name='text')= '@' + post.user.screenName + ' '
-						input(name='in_reply_to_post_id', type='hidden', value=post.id)
-						input(type='submit', value='Reply')
-						div.imageAttacher
-							p
-								i(class='fa fa-picture-o')
-							input(name='image', type='file', accept='image/*')
+	if posts != null && posts.length > 0
+		ol.posts
+			each post in posts
+				li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
+						style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
+						data-id= post.id
+						data-user-id= post.user.id
+						data-user-comment= post.user.comment
+						data-user-color= post.user.color)
+					if post.isReply
+						div.replyTo
+							article
+								a(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true')
+									img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
+								header
+									h2
+										a(href=url + '/' + post.reply.user.screenName)= post.reply.user.name
+									span.screenName= '@' + post.reply.user.screenName
+									time(datetime=post.reply.createdAt)= post.reply.createdAt
+								p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
+								if post.reply.isImageAttached
+									img.image(src=url + '/img/post/' + post.reply.id, alt='image')
+					article
+						a(href=url + '/' + post.user.screenName + '/talk?noheader=true')
+							img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
+						header
+							h2
+								a(href=url + '/' + post.user.screenName)= post.user.name
+							span.screenName= '@' + post.user.screenName
+							time(datetime=post.createdAt)= post.createdAt
+						p.text!= (post.isReply ? '<a href="' + url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.text)
+						if post.isImageAttached
+							img.image(src=url + '/img/post/' + post.id, alt='image')
+					footer
+						form.replyForm
+							textarea(name='text')= '@' + post.user.screenName + ' '
+							input(name='in_reply_to_post_id', type='hidden', value=post.id)
+							input(type='submit', value='Reply')
+							div.imageAttacher
+								p
+									i(class='fa fa-picture-o')
+								input(name='image', type='file', accept='image/*')
