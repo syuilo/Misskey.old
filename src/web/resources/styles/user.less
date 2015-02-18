@@ -172,9 +172,10 @@ main {
 			position: relative;
 			width: 100%;
 			margin: 0;
-			padding: 0;
+			padding: 4px 0;
 			background: #fff;
-			/*box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);*/
+			box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+
 			> #headerNavBackground {
 				/*
 				position: absolute;
@@ -199,6 +200,8 @@ main {
 					tr {
 						th, td {
 							min-width: 4em;
+							padding: 0;
+							margin: 0;
 						}
 
 						th {
@@ -235,8 +238,7 @@ main {
 }
 
 #contents {
-	border-top: solid 3px @themeColor;
-
+	/*border-top: solid 3px @themeColor;*/
 	&:after {
 		content: "";
 		display: block;
