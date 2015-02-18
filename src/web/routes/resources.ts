@@ -91,20 +91,20 @@ var router = (app: any): void => {
 				var resourcePath = path.resolve(__dirname + '/..' + req.path.replace(/\.css$/, '.less'));
 				if (fs.existsSync(resourcePath)) {
 					app.initSession(req, res,() => {
-						if (req.login) {
-							if (req.query.user == null) {
+						if (req.query.user == null) {
+							if (req.login) {
 								readFileSendLess(req, res, resourcePath, req.me);
 							} else {
-								User.findByScreenName(req.query.user,(styleUser: User) => {
-									if (styleUser != null) {
-										readFileSendLess(req, res, resourcePath, styleUser);
-									} else {
-										readFileSendLess(req, res, resourcePath, null);
-									}
-								});
+								readFileSendLess(req, res, resourcePath, null);
 							}
 						} else {
-							readFileSendLess(req, res, resourcePath, null);
+							User.findByScreenName(req.query.user,(styleUser: User) => {
+								if (styleUser != null) {
+									readFileSendLess(req, res, resourcePath, styleUser);
+								} else {
+									readFileSendLess(req, res, resourcePath, null);
+								}
+							});
 						}
 					});
 					return;
