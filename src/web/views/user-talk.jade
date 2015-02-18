@@ -23,7 +23,7 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 							if messages == null || messages.length == 0
 								p#emptyStream
 									i.fa.fa-info-circle
-									| このユーザーとまだ会話したことはありませんっ
+									| このユーザーとまだ会話したことがありませんっ
 							ol.messages
 								each message in messages
 									li(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
