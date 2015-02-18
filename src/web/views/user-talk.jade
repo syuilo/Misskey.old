@@ -20,6 +20,10 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 				div.timelineContainer
 					div.timelineMain
 						div.talkStream#stream
+							if messages == null
+								p#emptyStream
+									i.fa.fa-info-circle
+									| このユーザーとまだ会話したことはありませんっ
 							ol.messages
 								each message in messages
 									li(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
@@ -37,6 +41,10 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 													if message.isImageAttached
 														img.image(src=url + '/img/talk-message/' + message.id, alt='image')
 												time(datetime=message.createdAt)= message.createdAt
+							if !followingMe
+								p#noFollowingMe
+									i.fa.fa-exclamation-circle
+									| このユーザーからフォローされていないためメッセージを送れませんっ！
 				div#postFormContainer
 					form#postForm(enctype='multipart/form-data')
 						textarea(name='text', placeholder='Message...')

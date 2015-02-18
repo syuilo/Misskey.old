@@ -10,18 +10,33 @@ html {
 	max-width: 100%;
 	margin: 0 auto;
 
+	#emptyStream, #noFollowingMe {
+		box-sizing: border-box;
+		width: 100%;
+		margin: 0;
+		padding: 8px;
+		text-align: center;
+		font-size: 0.8em;
+		color: rgba(0, 0, 0, 0.4);
+
+		i {
+			margin-right: 4px;
+		}
+	}
+
 	#otherpartyTyping {
 		text-align: center;
 
 		img {
-			display: inline-block;
+			display: inline;
+			vertical-align: middle;
 			max-width: 32px;
 			max-height: 32px;
-			border-radius: 2px;
+			border-radius: 4px;
 		}
 
 		p {
-			display: inline-block;
+			display: inline;
 			margin: 0 4px;
 		}
 	}
