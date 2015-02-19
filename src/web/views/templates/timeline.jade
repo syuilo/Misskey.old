@@ -37,15 +37,16 @@ div.timeline
 							if post.isImageAttached
 								img.image(src=url + '/img/post/' + post.id, alt='image')
 						footer
-							div.actions
-								div.repost
-									button.repostButton
-										i.fa.fa-retweet
-										span.count= post.repostsCount
-								div.favorite
-									button.favoriteButton
-										i.fa.fa-star
-										span.count= post.favoritesCount
+							if login
+								div.actions
+									div.repost
+										button.repostButton(title= post.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+											i.fa.fa-retweet
+											span.count= post.repostsCount
+									div.favorite
+										button.favoriteButton(title= post.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+											i.fa.fa-star
+											span.count= post.favoritesCount
 					footer
 						form.replyForm
 							textarea(name='text')= '@' + post.user.screenName + ' '
