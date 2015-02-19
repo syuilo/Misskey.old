@@ -43,6 +43,8 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 
 		User.find(targetPost.userId,(targetPostUser: User) => {
 			Post.create(app.id, null, null, null, 'RP @' + targetPostUser.screenName + ' ' + targetPost.text, user.id, targetPost.id,(post: Post) => {
+				targetPost.repostsCount++;
+				targetPost.update(() => { });
 				Post.buildResponseObject(targetPost,(targetPostObj: any) => {
 					targetPostObj.isRepostToPost = true;
 					targetPostObj.repostedByUser = user.filt();

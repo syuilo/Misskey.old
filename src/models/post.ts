@@ -12,10 +12,12 @@ export = Post;
 class Post {
 	appId: number;
 	createdAt: string;
+	favoritesCount: number;
 	id: number;
 	inReplyToPostId: number;
 	image: Buffer;
 	isImageAttached: boolean;
+	repostsCount: number;
 	repostFromPostId: number;
 	text: string;
 	userId: number;
@@ -23,10 +25,12 @@ class Post {
 	public constructor(post: any) {
 		this.appId = post.app_id;
 		this.createdAt = post.created_at;
+		this.favoritesCount = post.favorites_count;
 		this.id = post.id;
 		this.inReplyToPostId = post.in_reply_to_post_id;
 		this.image = post.image;
 		this.isImageAttached = Boolean(post.is_image_attached);
+		this.repostsCount = post.reposts_count;
 		this.repostFromPostId = post.repost_from_post_id;
 		this.text = post.text;
 		this.userId = post.user_id;
@@ -142,6 +146,12 @@ class Post {
 				callback(null);
 			}
 		});
+	}
+
+	public update(callback: () => void): void {
+		db.query('update posts set favorites_count=?, reposts_count=? where id =?',
+			[this.favoritesCount, this.repostsCount, this.id],
+			callback);
 	}
 
 	public static buildResponseObject(post: Post, callback: (obj: any) => void): void {

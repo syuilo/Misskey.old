@@ -1,6 +1,7 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import Post = require('./post');
 export = PostFavorite;
 
 class PostFavorite {

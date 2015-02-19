@@ -30,6 +30,8 @@ var postFavorite = (req: any, res: APIResponse) => {
 				}
 
 				PostFavorite.create(postId, user.id,(favorite: PostFavorite) => {
+					targetPost.favoritesCount++;
+					targetPost.update(() => { });
 					Post.buildResponseObject(targetPost,(obj: any) => {
 						res.apiRender(obj);
 					});
