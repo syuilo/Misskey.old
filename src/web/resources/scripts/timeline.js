@@ -23,8 +23,8 @@ TIMELINE.generatePostElement = function(post) {
 		return $('<article>')
 		.append(generateIcon())
 		.append(generateHeader())
-		.append($('<p class="text">').html((post.isReply ? '<a href="' + conf.url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply" > </i></a>' : '') + parseText(post.text)))
-		.append(post.isImageAttached ? generateImage() : null);
+		.append(generateMain())
+		.append(generateFooter());
 
 		function generateIcon() {
 			return $('<a>')
@@ -45,7 +45,7 @@ TIMELINE.generatePostElement = function(post) {
 			}
 
 			function generateName() {
-				return $('<a>')
+				return $('<a target="_blank">')
 				.attr('href', conf.url + '/' + post.user.screenName)
 				.text(escapeHtml(post.user.name));
 			}
@@ -56,15 +56,47 @@ TIMELINE.generatePostElement = function(post) {
 			}
 
 			function generateTime() {
-				return $('<time>')
-				.attr('datetime', post.createdAt)
-				.text(post.createdAt);
+				return $('<a>')
+				.attr('href', conf.url + '/' + post.user.screenName + '/' + post.id)
+				.append(
+					$('<time>')
+					.attr('datetime', post.createdAt)
+					.text(post.createdAt));
 			}
 		}
 
-		function generateImage() {
-			return $('<img alt="image" class="image">')
-			.attr('src', conf.url + '/img/post/' + post.id);
+		function generateMain() {
+			return $('<div class="main">')
+			.append($('<p class="text">').html((post.isReply ? '<a href="' + conf.url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"> </i></a>' : '') + parseText(post.text)))
+			.append(post.isImageAttached ? generateImage() : null);
+
+			function generateImage() {
+				return $('<img alt="image" class="image">')
+				.attr('src', conf.url + '/img/post/' + post.id);
+			}
+		}
+
+		function generateFooter() {
+			return $('<footer>')
+			.append(generateActions());
+
+			function generateActions() {
+				return $('<div class="actions">')
+				.append(generateRepostButton())
+				.append(generateFavoriteButton());
+
+				function generateRepostButton() {
+					return $('<button class="repostButton" title="Repost" role="button">')
+					.append($('<i class="fa fa-retweet">'))
+					.append($('<span class="count">'));
+				}
+
+				function generateFavoriteButton() {
+					return $('<button class="favoriteButton" title="お気に入り" role="button">')
+					.append($('<i class="fa fa-star">'))
+					.append($('<span class="count">'));
+				}
+			}
 		}
 	}
 
