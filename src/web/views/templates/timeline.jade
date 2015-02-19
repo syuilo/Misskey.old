@@ -19,10 +19,11 @@ div.timeline
 									h2
 										a(href=url + '/' + post.reply.user.screenName, target='_blank')= post.reply.user.name
 									span.screenName= '@' + post.reply.user.screenName
-									time(datetime=post.reply.createdAt)= post.reply.createdAt
-								p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
-								if post.reply.isImageAttached
-									img.image(src=url + '/img/post/' + post.reply.id, alt='image')
+									a(href=url + '/' + post.reply.user.screenName + '/post/' + post.reply.id): time(datetime=post.reply.createdAt)= post.reply.createdAt
+								div.main
+									p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
+									if post.reply.isImageAttached
+										img.image(src=url + '/img/post/' + post.reply.id, alt='image')
 					article
 						a(href=url + '/' + post.user.screenName + '/talk?noheader=true')
 							img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
