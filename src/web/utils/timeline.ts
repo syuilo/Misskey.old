@@ -70,7 +70,7 @@ class Timeline {
 							seriesNext(null, null);
 						});
 					});
-				},
+				}],
 				(err: any, results: any) => {
 					post.app = results[0];
 					post.user = results[1];
