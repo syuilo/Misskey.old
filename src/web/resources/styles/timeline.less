@@ -528,6 +528,22 @@
 				}
 			}
 		}
+
+			> .post[data-is-favorited='true'] > article > footer > .actions > .favorite > button {
+				color: @themeColor;
+
+				&:hover {
+					color: darken(@themeColor, 10%);
+				}
+			}
+
+			> .post[data-is-reposted='true'] > article > footer > .actions > .favorite > button {
+				color: @themeColor;
+
+				&:hover {
+					color: darken(@themeColor, 10%);
+				}
+			}
 	}
 
 	> .loadMore {
