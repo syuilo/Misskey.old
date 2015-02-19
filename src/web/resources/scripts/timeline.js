@@ -115,7 +115,7 @@ TIMELINE.generatePostElement = function(post) {
 				}
 
 				function generateFavorite() {
-					return $('<div class="repost">')
+					return $('<div class="favorite">')
 					.append(generateFavoriteButton())
 					.append($('<a class="count">').attr('href', conf.url + '/' + post.user.screenName + '/' + post.id + '/favorites'));
 
