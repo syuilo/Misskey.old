@@ -310,9 +310,12 @@ TIMELINE.setEventPost = function($post) {
 	});
 
 	$post.click(function(event) {
-		if ($(event.target).is('button') || $(event.target).is('a')) return;
+		if ($(event.target).is('input') || 
+		$(event.target).is('textarea') || 
+		$(event.target).is('button') ||
+		$(event.target).is('i') ||
+		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
-			if ($(event.target).is('input') || $(event.target).is('textarea')) return;
 			if ($(this).children('footer').css('display') === 'none') {
 				$('.timeline > .posts > .post > footer').each(function() {
 					$(this).hide(200);

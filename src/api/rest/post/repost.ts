@@ -43,15 +43,15 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 
 		User.find(targetPost.userId,(targetPostUser: User) => {
 			Post.create(app.id, null, null, null, 'RT @' + targetPostUser.screenName + ' ' + targetPost.text, user.id, targetPost.id,(post: Post) => {
-				Post.buildResponseObject(post,(obj: any) => {
-					obj.repostedByUser = user;
+				Post.buildResponseObject(targetPost,(targetPostObj: any) => {
+					targetPostObj.repostedByUser = user;
 					// Sent response
-					res.apiRender(obj);
+					res.apiRender(targetPostObj);
 
 					/* Publish post event */
 					var streamObj = JSON.stringify({
 						type: 'repost',
-						value: obj
+						value: targetPostObj
 					});
 			
 					// Me
