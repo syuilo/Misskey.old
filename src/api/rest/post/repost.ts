@@ -23,36 +23,46 @@ var postRepost = (req: any, res: APIResponse) => {
 				return;
 			}
 
-			Post.isReposted(postId, user.id,(isReposted: boolean) => {
-				if (isReposted) {
-					res.apiError(400, 'This post is already reposted :)');
-					return;
-				}
+			if (targetPost.RepostFromPostId != null) {
+				Post.find(targetPost.RepostFromPostId,(trueTargetPost: Post) => {
+					repostStep(req, res, app, user, trueTargetPost);
+				});
+			} else {
+				repostStep(req, res, app, user, targetPost);
+			}
+		});
+	});
+}
 
-				User.find(targetPost.userId,(targetPostUser: User) => {
-					Post.create(app.id, null, null, null, 'RT @' + targetPostUser.screenName + ' ' + targetPost.text, user.id, postId,(post: Post) => {
-						Post.buildResponseObject(post,(obj: any) => {
-							// Sent response
-							res.apiRender(obj);
+function repostStep(req: any, res: APIResponse, app: Application, user: User, targetPost: Post) {
+	Post.isReposted(targetPost.id, user.id,(isReposted: boolean) => {
+		if (isReposted) {
+			res.apiError(400, 'This post is already reposted :)');
+			return;
+		}
 
-							/* Publish post event */
-							var streamObj = JSON.stringify({
-								type: 'repost',
-								value: obj
-							});
+		User.find(targetPost.userId,(targetPostUser: User) => {
+			Post.create(app.id, null, null, null, 'RT @' + targetPostUser.screenName + ' ' + targetPost.text, user.id, targetPost.id,(post: Post) => {
+				Post.buildResponseObject(post,(obj: any) => {
+					// Sent response
+					res.apiRender(obj);
+
+					/* Publish post event */
+					var streamObj = JSON.stringify({
+						type: 'repost',
+						value: obj
+					});
 			
-							// Me
-							Streamer.publish('userStream:' + user.id, streamObj);
+					// Me
+					Streamer.publish('userStream:' + user.id, streamObj);
 
-							// Followers
-							UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
-								if (userFollowings != null) {
-									userFollowings.forEach((userFollowing: UserFollowing) => {
-										Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
-									});
-								}
+					// Followers
+					UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
+						if (userFollowings != null) {
+							userFollowings.forEach((userFollowing: UserFollowing) => {
+								Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
 							});
-						});
+						}
 					});
 				});
 			});
