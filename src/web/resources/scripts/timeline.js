@@ -82,19 +82,29 @@ TIMELINE.generatePostElement = function(post) {
 
 			function generateActions() {
 				return $('<div class="actions">')
-				.append(generateRepostButton())
-				.append(generateFavoriteButton());
+				.append(generateRepost())
+				.append(generateFavorite());
 
-				function generateRepostButton() {
-					return $('<button class="repostButton" title="Repost" role="button">')
-					.append($('<i class="fa fa-retweet">'))
-					.append($('<span class="count">'));
+				function generateRepost() {
+					return $('<div class="repost">')
+					.append(generateRepostButton())
+					.append($('<a class="count">').attr('href', conf.url + '/' + post.user.screenName + '/' + post.id + '/reposts'));
+
+					function generateRepostButton() {
+						return $('<button class="repostButton" title="Repost" role="button">')
+						.append($('<i class="fa fa-retweet">'));
+					}
 				}
 
-				function generateFavoriteButton() {
-					return $('<button class="favoriteButton" title="お気に入り" role="button">')
-					.append($('<i class="fa fa-star">'))
-					.append($('<span class="count">'));
+				function generateFavorite() {
+					return $('<div class="repost">')
+					.append(generateFavoriteButton())
+					.append($('<a class="count">').attr('href', conf.url + '/' + post.user.screenName + '/' + post.id + '/favorites'));
+
+					function generateFavoriteButton() {
+						return $('<button class="favoriteButton" title="お気に入り" role="button">')
+						.append($('<i class="fa fa-star">'));
+					}
 				}
 			}
 		}

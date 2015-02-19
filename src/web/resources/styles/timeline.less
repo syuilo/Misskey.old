@@ -205,35 +205,44 @@
 						bottom: 0;
 						right: 0;
 
-						> button {
-							-webkit-appearance: none;
-							-moz-appearance: none;
-							appearance: none;
-							display: inline-block;
-							box-sizing: border-box;
-							margin: 0;
-							padding: 8px 16px;
-							cursor: pointer;
-							font-size: 1em;
-							font-weight: normal;
-							text-decoration: none;
-							color: rgba(0, 0, 0, 0.5);
-							outline: none;
-							border: none;
-							border-radius: 0;
-							box-shadow: none;
-							background: transparent;
+						> repost, > favorite {
+							padding: 0 16px;
 
-							&:hover {
-								color: rgba(0, 0, 0, 0.7);
-							}
-
-							> * {
+							> button {
+								-webkit-appearance: none;
+								-moz-appearance: none;
+								appearance: none;
+								display: inline-block;
+								box-sizing: border-box;
+								margin: 0 4px 0 0;
+								padding: 8px;
 								cursor: pointer;
+								font-size: 1em;
+								font-weight: normal;
+								text-decoration: none;
+								color: rgba(0, 0, 0, 0.5);
+								outline: none;
+								border: none;
+								border-radius: 0;
+								box-shadow: none;
+								background: transparent;
+
+								&:hover {
+									color: rgba(0, 0, 0, 0.7);
+								}
+
+								> i {
+									cursor: pointer;
+								}
 							}
 
-							> i {
-								margin-right: 4px;
+							> a {
+								color: rgba(0, 0, 0, 0.5);
+								text-decoration: none;
+
+								&:hover {
+									text-decoration: underline;
+								}
 							}
 						}
 					}
@@ -519,19 +528,23 @@
 			}
 		}
 
-			> .post[data-is-favorited='true'] > article > footer > .actions > .favoriteButton {
-				color: @themeColor;
+			> .post[data-is-favorited='true'] > article > footer > .actions > .favorite {
+				> button {
+					color: @themeColor;
 
-				&:hover {
-					color: darken(@themeColor, 10%);
+					&:hover {
+						color: darken(@themeColor, 10%);
+					}
 				}
 			}
 
-			> .post[data-is-reposted='true'] > article > footer > .actions > .repostButton {
-				color: @themeColor;
+			> .post[data-is-reposted='true'] > article > footer > .actions > .repost {
+				> button {
+					color: @themeColor;
 
-				&:hover {
-					color: darken(@themeColor, 10%);
+					&:hover {
+						color: darken(@themeColor, 10%);
+					}
 				}
 			}
 	}
