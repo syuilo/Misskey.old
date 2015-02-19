@@ -11,12 +11,13 @@ import conf = require('../../config');
 export = Timeline;
 
 class Timeline {
-	public static generateHtml(posts: Post[], callback: (timelineHtml: string) => void) {
+	public static generateHtml(posts: Post[], isLogin: boolean, callback: (timelineHtml: string) => void) {
 		if (posts != null) {
 			Timeline.selialyzeTimelineOnject(posts,(timeline: any[]) => {
 				var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {});
 				var html = compiler({
 					posts: timeline,
+					login: isLogin,
 					url: conf.publicConfig.url,
 					parseText: Timeline.parseText
 				})
@@ -27,6 +28,7 @@ class Timeline {
 			var html = compiler({
 				posts: null,
 				url: conf.publicConfig.url,
+				login: isLogin,
 				parseText: Timeline.parseText
 			})
 			callback(html);
