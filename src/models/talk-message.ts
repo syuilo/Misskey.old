@@ -7,7 +7,7 @@ class TalkMessage {
 	appId: number;
 	createdAt: string;
 	id: number;
-	image: string;
+	image: Buffer;
 	isImageAttached: boolean;
 	text: string;
 	otherpartyId: number;

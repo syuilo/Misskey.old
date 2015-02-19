@@ -28,8 +28,7 @@ var router = (app: express.Express): void => {
 		var display = (user: User) => {
 			if (user != null) {
 				var imageBuffer = user.icon != null ? user.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
-				res.set('Content-Type', 'image/jpeg');
-				res.send(imageBuffer);
+				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
 			}
@@ -51,20 +50,7 @@ var router = (app: express.Express): void => {
 		var display = (user: User) => {
 			if (user != null) {
 				var imageBuffer = user.header != null ? user.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
-				if (req.query.blur == null) {
-					res.set('Content-Type', 'image/jpeg');
-					res.send(imageBuffer);
-				} else {
-					gm(imageBuffer)
-						.blur(req.query.blur, 20)
-						.compress('jpeg')
-						.quality(80)
-						.toBuffer('jpeg',(error: any, buffer: Buffer) => {
-						if (error) throw error;
-						res.set('Content-Type', 'image/jpeg');
-						res.send(buffer);
-					});
-				}
+				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
 			}
@@ -86,8 +72,7 @@ var router = (app: express.Express): void => {
 		var display = (user: User) => {
 			if (user != null) {
 				var imageBuffer = user.wallpaper != null ? user.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
-				res.set('Content-Type', 'image/jpeg');
-				res.send(imageBuffer);
+				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
 			}
@@ -99,9 +84,8 @@ var router = (app: express.Express): void => {
 		Post.find(req.params.id,(post: Post) => {
 			if (post != null) {
 				if (post.isImageAttached) {
-					var img = post.image;
-					res.set('Content-Type', 'image/jpeg');
-					res.send(img);
+					var imageBuffer = post.image;
+					sendImage(req, res, imageBuffer);
 				} else {
 					res.status(404).send('Image not found.');
 				}
@@ -116,9 +100,8 @@ var router = (app: express.Express): void => {
 		TalkMessage.find(req.params.id,(talkMessage: TalkMessage) => {
 			if (talkMessage != null) {
 				if (talkMessage.isImageAttached) {
-					var img = talkMessage.image;
-					res.set('Content-Type', 'image/jpeg');
-					res.send(img);
+					var imageBuffer = talkMessage.image;
+					sendImage(req, res, imageBuffer);
 				} else {
 					res.status(404).send('Image not found.');
 				}
@@ -132,12 +115,33 @@ var router = (app: express.Express): void => {
 	app.get('/img/webtheme_thumbnail/:id',(req: any, res: any) => {
 		WebTheme.find(req.params.id,(webtheme: WebTheme) => {
 			if (webtheme != null) {
-				var img = webtheme.thumbnail;
-				res.set('Content-Type', 'image/jpeg');
-				res.send(img);
+				var imageBuffer = webtheme.thumbnail;
+				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('WebTheme not found.');
 			}
 		});
 	});
 };
+
+function sendImage(req: any, res: any, image: Buffer) {
+	if (req.query.blur != null) {
+		try {
+			var opsitons = JSON.parse(req.query.blur);
+			gm(image)
+				.blur(opsitons.radius, opsitons.sigma)
+				.compress('jpeg')
+				.quality(80)
+				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
+				if (error) throw error;
+				res.set('Content-Type', 'image/jpeg');
+				res.send(buffer);
+			});
+		} catch (e) {
+			res.status(400).send(e);
+		}
+	} else {
+		res.set('Content-Type', 'image/jpeg');
+		res.send(image);
+	}
+}

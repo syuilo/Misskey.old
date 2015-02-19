@@ -14,7 +14,7 @@ class Post {
 	createdAt: string;
 	id: number;
 	inReplyToPostId: number;
-	image: string;
+	image: Buffer;
 	isImageAttached: boolean;
 	text: string;
 	userId: number;

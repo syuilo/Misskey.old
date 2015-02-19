@@ -16,7 +16,7 @@ function compileLess(lessCss: string, styleUser: User, callback: (css: string) =
 	lessCss = lessCss.replace(/<%themeColor%>/g, styleUser != null ? styleUser.color : '#831c86');
 	lessCss = lessCss.replace(/<%wallpaperUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/wallpaper/${styleUser.screenName}"` : '');
 	lessCss = lessCss.replace(/<%headerImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}"` : '');
-	lessCss = lessCss.replace(/<%headerBlurImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}?blur=64"` : '');
+	lessCss = lessCss.replace(/<%headerBlurImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}?blur={\"radius\": 64, \"sigma\": 20}"` : '');
 	less.render(lessCss, { compress: true },(err: any, output: any) => {
 		if (err) throw err;
 		callback(output.css);
