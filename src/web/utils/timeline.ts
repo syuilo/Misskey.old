@@ -76,7 +76,7 @@ class Timeline {
 					post.app = results[0];
 					post.user = results[1];
 					post.favoritesCount = results[2];
-					post.repostCount = results[3];
+					post.repostsCount = results[3];
 					mapNext(null, post);
 				});
 		},(err: any, results: Post[]) => {

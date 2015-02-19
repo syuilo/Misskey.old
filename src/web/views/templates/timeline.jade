@@ -40,11 +40,11 @@ div.timeline
 								div.repost
 									button.repostButton
 										i.fa.fa-retweet
-										span.count= post.repostCount
+										span.count= post.repostsCount
 								div.favorite
 									button.favoriteButton
 										i.fa.fa-star
-										span.count= post.favoriteCount
+										span.count= post.favoritesCount
 					footer
 						form.replyForm
 							textarea(name='text')= '@' + post.user.screenName + ' '
