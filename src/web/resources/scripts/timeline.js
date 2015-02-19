@@ -247,7 +247,7 @@ TIMELINE.setEventPost = function($post) {
 		reader.readAsDataURL(file);
 	});
 
-	$post.find('article > footer > .actions > .favorite > button').click(function() {
+	$post.find('article > footer > .actions > .favorite > .favoriteButton').click(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
@@ -256,7 +256,7 @@ TIMELINE.setEventPost = function($post) {
 				type: 'delete',
 				data: { 'post_id': $post.attr('data-id') },
 				dataType: 'json',
-				xhrFields: {withCredentials: true}
+				xhrFields: { withCredentials: true }
 			}).done(function() {
 				$button.attr('disabled', false);
 				$post.attr('data-is-favorited', 'false')
@@ -278,7 +278,7 @@ TIMELINE.setEventPost = function($post) {
 		}
 	});
 
-	$post.find('article > footer > .actions > .repost > button').click(function() {
+	$post.find('article > footer > .actions > .repost > .repostButton').click(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
@@ -310,6 +310,7 @@ TIMELINE.setEventPost = function($post) {
 	});
 
 	$post.click(function(event) {
+		if ($(event.target).is('button') || $(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
 			if ($(event.target).is('input') || $(event.target).is('textarea')) return;
 			if ($(this).children('footer').css('display') === 'none') {
