@@ -220,7 +220,7 @@ TIMELINE.setEventPost = function($post) {
 		if (document.getSelection().toString() == '') {
 			if ($(event.target).is('input') || $(event.target).is('textarea')) return;
 			if ($(this).children('footer').css('display') === 'none') {
-				$('.timeline > .posts > .post footer').each(function() {
+				$('.timeline > .posts > .post > footer').each(function() {
 					$(this).hide(200);
 				});
 				$(this).children('footer').show(200);
