@@ -45,7 +45,7 @@ TIMELINE.generatePostElement = function(post) {
 		.append(generateFooter());
 
 		function generateIcon() {
-			return $('<a class="iconAnchor">>')
+			return $('<a class="iconAnchor">')
 			.attr('href', conf.url + '/' + post.user.screenName + '/talk?noheader=true')
 			.append(
 			$('<img class="icon" alt="icon">')
