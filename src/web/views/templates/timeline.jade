@@ -9,11 +9,21 @@ div.timeline
 						data-user-comment= post.user.comment
 						data-user-color= post.user.color
 						data-is-favorited!= login ? post.isFavorited.toString() : null,
-						data-is-reposted!= login ? post.isReposted.toString() : null)
+						data-is-reposted!= login ? post.isReposted.toString() : null,
+						data-is-repostpost!= post.isRepostToPost.toString(),
+						data-repost-by-user-id!= post.isRepostToPost ? post.repostedByUser.id : null)
+					if post.isRepostToPost
+						div.repostInformation
+							p.info
+								a.iconAnchor(href=url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
+									img.icon(src=url + '/img/icon/' + post.repostedByUser.screenName, alt='icon')
+								i.fa.fa-retweet
+								a.name(href=url + '/' + post.repostedByUser.screenName, target='_blank')= post.repostedByUser.name
+								| によってRepost
 					if post.isReply
 						div.replyTo
 							article
-								a(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true')
+								a.iconAnchor(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true')
 									img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
 								header
 									h2
@@ -25,7 +35,7 @@ div.timeline
 									if post.reply.isImageAttached
 										img.image(src=url + '/img/post/' + post.reply.id, alt='image')
 					article
-						a(href=url + '/' + post.user.screenName + '/talk?noheader=true')
+						a.iconAnchor(href=url + '/' + post.user.screenName + '/talk?noheader=true')
 							img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
 						header
 							h2

@@ -47,6 +47,7 @@ class Timeline {
 					});
 				});
 			} else {
+				post.isRepostToPost = false;
 				mapNext(null, post);
 			}
 		},(err: any, timelinePosts: any[]) => {

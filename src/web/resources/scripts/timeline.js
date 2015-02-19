@@ -8,11 +8,29 @@ TIMELINE.generatePostElement = function(post) {
 		'data-user-id': post.userId,
 		'data-user-comment': post.user.comment,
 		'data-user-color': post.user.color,
+		'data-is-favorited': 'false',
+		'data-is-reposted': 'false',
 		style: post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 	})
+	.append(post.repostFromPostId ? generateRepostInformation() : null)
 	.append(post.isReply ? generateReplyTo() : null)
 	.append(generateArticle(post))
 	.append(generateFooter());
+
+	function generateRepostInformation() {
+		return $('<div class="repostInformation">')
+		.append(generateInfo());
+
+		function generateInfo() {
+			return $('<p class="info">')
+			.append($('<a class="iconAnchor">').attr('href', conf.url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
+				.append(
+					$('<img class="icon" alt="icon">').attr('src', conf.url + '/img/icon/' + post.repostedByUser.screenName)))
+			.append($('<i class="fa fa-retweet">'))
+			.append($('<a class="name" target="_blank">').attr('href', conf.url + '/' + post.repostedByUser.screenName).text(post.repostedByUser.name))
+			.append('によってRepost');
+		}
+	}
 
 	function generateReplyTo() {
 		return $('<div class="replyTo">')
@@ -27,7 +45,7 @@ TIMELINE.generatePostElement = function(post) {
 		.append(generateFooter());
 
 		function generateIcon() {
-			return $('<a>')
+			return $('<a class="iconAnchor">>')
 			.attr('href', conf.url + '/' + post.user.screenName + '/talk?noheader=true')
 			.append(
 			$('<img class="icon" alt="icon">')
@@ -216,35 +234,6 @@ TIMELINE.setEventPost = function($post) {
 		});
 	});
 
-	/*
-	$post.find('.fr').submit(function (event) {
-	event.preventDefault();
-	var $form = $(this);
-	var $submitButton = $form.find('[type=image]');
-	$submitButton.attr('disabled', true);
-	$.ajax({
-	url: $form.attr('action'),
-	type: $form.attr('method'),
-	data: new FormData($form[0]),
-	processData: false,
-	contentType: false,
-	}).done(function () {
-	$submitButton.attr('disabled', false);
-	if ($post.attr('data-is_favorite')) {
-	$post.attr('data-is_favorite', false);
-	$submitButton.attr('src', 'https://misskey.xyz/img/misskey/unfavorite.svg');
-	$form.attr('action', 'https://misskey.xyz/api/post/favorite/create');
-	} else {
-	$post.attr('data-is_favorite', true);
-	$submitButton.attr('src', 'https://misskey.xyz/img/misskey/favorite.svg');
-	$form.attr('action', 'https://misskey.xyz/api/post/favorite/delete');
-	}
-	}).fail(function () {
-	$submitButton.attr('disabled', false);
-	});
-	});
-	*/
-
 	$post.find('.imageAttacher input[name=image]').change(function() {
 		var $input = $(this);
 		var file = $(this).prop('files')[0];
@@ -256,6 +245,68 @@ TIMELINE.setEventPost = function($post) {
 			$input.parent('.imageAttacher').append($img);
 		};
 		reader.readAsDataURL(file);
+	});
+
+	$post.find('article > footer > .actions > .favorite > button').click(function() {
+		var $button = $(this);
+		$button.attr('disabled', true);
+
+		if ($post.attr('data-is-favorited') == 'true') {
+			$.ajax('https://api.misskey.xyz/post/unfavorite', {
+				type: 'delete',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: {withCredentials: true}
+			}).done(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-favorited', 'false')
+			}).fail(function() {
+				$button.attr('disabled', false);
+			});
+		} else {
+			$.ajax('https://api.misskey.xyz/post/favorite', {
+				type: 'post',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-favorited', 'true')
+			}).fail(function() {
+				$button.attr('disabled', false);
+			});
+		}
+	});
+
+	$post.find('article > footer > .actions > .repost > button').click(function() {
+		var $button = $(this);
+		$button.attr('disabled', true);
+
+		if ($post.attr('data-is-reposted') == 'true') {
+			$.ajax('https://api.misskey.xyz/post/unrepost', {
+				type: 'delete',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-reposted', 'false')
+			}).fail(function() {
+				$button.attr('disabled', false);
+			});
+		} else {
+			$.ajax('https://api.misskey.xyz/post/repost', {
+				type: 'post',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-reposted', 'true')
+			}).fail(function() {
+				$button.attr('disabled', false);
+			});
+		}
 	});
 
 	$post.click(function(event) {

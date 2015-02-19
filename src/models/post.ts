@@ -16,7 +16,7 @@ class Post {
 	inReplyToPostId: number;
 	image: Buffer;
 	isImageAttached: boolean;
-	RepostFromPostId: number;
+	repostFromPostId: number;
 	text: string;
 	userId: number;
 
@@ -27,7 +27,7 @@ class Post {
 		this.inReplyToPostId = post.in_reply_to_post_id;
 		this.image = post.image;
 		this.isImageAttached = Boolean(post.is_image_attached);
-		this.RepostFromPostId = post.repost_from_post_id;
+		this.repostFromPostId = post.repost_from_post_id;
 		this.text = post.text;
 		this.userId = post.user_id;
 	}

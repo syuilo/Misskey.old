@@ -23,8 +23,8 @@ var postRepost = (req: any, res: APIResponse) => {
 				return;
 			}
 
-			if (targetPost.RepostFromPostId != null) {
-				Post.find(targetPost.RepostFromPostId,(trueTargetPost: Post) => {
+			if (targetPost.repostFromPostId != null) {
+				Post.find(targetPost.repostFromPostId,(trueTargetPost: Post) => {
 					repostStep(req, res, app, user, trueTargetPost);
 				});
 			} else {
@@ -44,6 +44,7 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 		User.find(targetPost.userId,(targetPostUser: User) => {
 			Post.create(app.id, null, null, null, 'RT @' + targetPostUser.screenName + ' ' + targetPost.text, user.id, targetPost.id,(post: Post) => {
 				Post.buildResponseObject(post,(obj: any) => {
+					obj.repostedByUser = user;
 					// Sent response
 					res.apiRender(obj);
 

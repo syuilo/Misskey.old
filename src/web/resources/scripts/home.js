@@ -22,6 +22,14 @@ $(function() {
 		$post.prependTo($('#timeline .timeline > .posts')).show(200);
 	});
 
+	socket.on('repost', function(post) {
+		console.log('repost', post);
+		new Audio('/resources/sounds/pop.mp3').play();
+		var $post = TIMELINE.generatePostElement(post, conf).hide();
+		TIMELINE.setEventPost($post);
+		$post.prependTo($('#timeline .timeline > .posts')).show(200);
+	});
+
 	socket.on('reply', function(post) {
 		console.log('reply', post);
 		var n = new Notification(post.user.name, {
