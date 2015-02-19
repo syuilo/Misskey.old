@@ -35,7 +35,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 		},
 		(callback: any) => {
 			Post.findByUserId(req.rootUser.id, 30, null, null,(posts: Post[]) => {
-				Timeline.generateHtml(posts, req.login,(timelineHtml: string) => {
+				Timeline.generateHtml(posts, req,(timelineHtml: string) => {
 					callback(null, timelineHtml);
 				});
 			});

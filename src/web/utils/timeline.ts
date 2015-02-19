@@ -11,13 +11,13 @@ import conf = require('../../config');
 export = Timeline;
 
 class Timeline {
-	public static generateHtml(posts: Post[], isLogin: boolean, callback: (timelineHtml: string) => void) {
+	public static generateHtml(posts: Post[], req: any, callback: (timelineHtml: string) => void) {
 		if (posts != null) {
-			Timeline.selialyzeTimelineOnject(posts,(timeline: any[]) => {
+			Timeline.selialyzeTimelineOnject(posts, req,(timeline: any[]) => {
 				var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {});
 				var html = compiler({
 					posts: timeline,
-					login: isLogin,
+					login: req.login,
 					url: conf.publicConfig.url,
 					parseText: Timeline.parseText
 				})
@@ -28,14 +28,14 @@ class Timeline {
 			var html = compiler({
 				posts: null,
 				url: conf.publicConfig.url,
-				login: isLogin,
+				login: req.login,
 				parseText: Timeline.parseText
 			})
 			callback(html);
 		}
 	}
 
-	public static selialyzeTimelineOnject(posts: Post[], callback: (posts: any[]) => void): void {
+	public static selialyzeTimelineOnject(posts: Post[], req: any, callback: (posts: any[]) => void): void {
 		async.map(posts,(post: any, mapNext: any) => {
 			post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
 
@@ -61,6 +61,24 @@ class Timeline {
 					});
 				},
 				(seriesNext: any) => {
+					if (req.login) {
+						PostFavorite.isFavorited(post.id, req.me.id,(isFavorited: boolean) => {
+							seriesNext(null, isFavorited);
+						});
+					} else {
+						seriesNext(null, null);
+					}
+				},
+				(seriesNext: any) => {
+					if (req.login) {
+						Post.isReposted(post.id, req.me.id,(isReposted: boolean) => {
+							seriesNext(null, isReposted);
+						});
+					} else {
+						seriesNext(null, null);
+					}
+				},
+				(seriesNext: any) => {
 					if (!post.isReply) {
 						seriesNext(null, null);
 						return;
@@ -79,6 +97,8 @@ class Timeline {
 					post.user = results[1];
 					post.favoritesCount = results[2];
 					post.repostsCount = results[3];
+					post.isFavorited = results[4];
+					post.isReposted = results[5];
 					mapNext(null, post);
 				});
 		},(err: any, results: Post[]) => {

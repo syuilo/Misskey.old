@@ -61,6 +61,12 @@ class Post {
 			(err: any, count: any[]) => callback(count[0].count));
 	}
 
+	public static isReposted(postId: number, userId: number, callback: (favorite: boolean) => void): void {
+		db.query("select * from posts where repost_from_post_id = ? and user_id = ?",
+			[postId, userId],
+			(err: any, postReposts: any[]) => callback(postReposts.length !== 0));
+	}
+
 	public static findByUserId(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
 		var q: string, p: any;
 		if ((sinceId === null) && (maxId === null)) {

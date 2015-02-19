@@ -31,14 +31,14 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 			switch (content) {
 				case 'home':
 					Post.getTimeline(req.me.id, 30, null, null,(posts: Post[]) => {
-						Timeline.generateHtml(posts, req.login,(timelineHtml: string) => {
+						Timeline.generateHtml(posts, req,(timelineHtml: string) => {
 							callback(null, timelineHtml);
 						});
 					});
 					break;
 				case 'mention':
 					Post.getMentions(req.me.id, 30, null, null,(posts: Post[]) => {
-						Timeline.generateHtml(posts, req.login,(timelineHtml: string) => {
+						Timeline.generateHtml(posts, req,(timelineHtml: string) => {
 							callback(null, timelineHtml);
 						});
 					});
