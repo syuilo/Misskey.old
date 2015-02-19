@@ -219,16 +219,16 @@ TIMELINE.setEventPost = function($post) {
 	$post.click(function(event) {
 		if (document.getSelection().toString() == '') {
 			if ($(event.target).is('input') || $(event.target).is('textarea')) return;
-			if ($(this).find('footer').css('display') === 'none') {
+			if ($(this).children('footer').css('display') === 'none') {
 				$('.timeline > .posts > .post footer').each(function() {
 					$(this).hide(200);
 				});
-				$(this).find('footer').show(200);
+				$(this).children('footer').show(200);
 				var text = $(this).find('footer .replyForm textarea').val();
 				$(this).find('footer .replyForm textarea').val('');
 				$(this).find('footer .replyForm textarea').focus().val(text);
 			} else {
-				$(this).find('footer').hide(200);
+				$(this).children('footer').hide(200);
 			}
 		}
 	});
