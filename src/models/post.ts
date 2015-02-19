@@ -32,9 +32,9 @@ class Post {
 		this.userId = post.user_id;
 	}
 
-	public static create(appId: number, inReplyToPostId: number, image: Buffer, isImageAttached: Boolean, text: string, userId: number, callback: (post: Post) => void): void {
-		db.query('insert into posts (app_id, in_reply_to_post_id, image, is_image_attached, text, user_id) values (?, ?, ?, ?, ?, ?)',
-			[appId, inReplyToPostId, image, isImageAttached, text, userId],
+	public static create(appId: number, inReplyToPostId: number, image: Buffer, isImageAttached: Boolean, text: string, userId: number, RepostFromPostId: number, callback: (post: Post) => void): void {
+		db.query('insert into posts (app_id, in_reply_to_post_id, image, is_image_attached, text, user_id, repost_from_post_id) values (?, ?, ?, ?, ?, ?, ?)',
+			[appId, inReplyToPostId, image, isImageAttached, text, userId, RepostFromPostId],
 			(err: any, info: any) => {
 				if (err) console.log(err);
 				Post.find(info.insertId,(post: Post) => {
@@ -143,4 +143,33 @@ class Post {
 			}
 		});
 	}
+
+	public static buildResponseObject(post: Post, callback: (obj: any) => void): void {
+		delete post.image;
+		var obj: any = post;
+		obj.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
+		Application.find(post.appId,(app: Application) => {
+			delete app.callbackUrl;
+			delete app.consumerKey;
+			delete app.icon;
+			obj.app = app;
+			User.find(post.userId,(user: User) => {
+				obj.user = user.filt();
+				if (obj.isReply) {
+					Post.find(post.inReplyToPostId,(replyPost: Post) => {
+						delete replyPost.image;
+						var replyObj: any = replyPost;
+						replyObj.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
+						obj.reply = replyObj;
+						User.find(obj.reply.userId,(replyUser: User) => {
+							obj.reply.user = replyUser.filt();
+							callback(obj);
+						});
+					});
+				} else {
+					callback(obj);
+				}
+			});
+		});
+	};
 }

@@ -36,8 +36,8 @@ var postCreate = (req: any, res: APIResponse) => {
 }
 
 var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
-	Post.create(appId, irtpi, image, isImageAttached, text, userId,(post: Post) => {
-		buildResponseObject(post,(obj: any) => {
+	Post.create(appId, irtpi, image, isImageAttached, text, userId,null, (post: Post) => {
+		Post.buildResponseObject(post,(obj: any) => {
 			// Sent response
 			res.apiRender(obj);
 
@@ -76,35 +76,6 @@ var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: B
 						}
 					});
 				});
-			}
-		});
-	});
-};
-
-var buildResponseObject = (post: Post, callback: (obj: any) => void): void => {
-	delete post.image;
-	var obj: any = post;
-	obj.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
-	Application.find(post.appId,(app: Application) => {
-		delete app.callbackUrl;
-		delete app.consumerKey;
-		delete app.icon;
-		obj.app = app;
-		User.find(post.userId,(user: User) => {
-			obj.user = user.filt();
-			if (obj.isReply) {
-				Post.find(post.inReplyToPostId,(replyPost: Post) => {
-					delete replyPost.image;
-					var replyObj: any = replyPost;
-					replyObj.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
-					obj.reply = replyObj;
-					User.find(obj.reply.userId,(replyUser: User) => {
-						obj.reply.user = replyUser.filt();
-						callback(obj);
-					});
-				});
-			} else {
-				callback(obj);
 			}
 		});
 	});
