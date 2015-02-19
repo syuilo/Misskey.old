@@ -61,6 +61,7 @@ class Timeline {
 				(seriesNext: any) => {
 					if (!post.isReply) {
 						seriesNext(null, null);
+						return;
 					}
 					Post.find(post.inReplyToPostId,(replyPost: any) => {
 						replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
