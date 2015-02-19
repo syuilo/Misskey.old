@@ -7,7 +7,9 @@ div.timeline
 						data-id= post.id
 						data-user-id= post.user.id
 						data-user-comment= post.user.comment
-						data-user-color= post.user.color)
+						data-user-color= post.user.color
+						data-is-favorited= login ? post.isFavorited : null,
+						data-is-reposted= login ? post.isReposted : null)
 					if post.isReply
 						div.replyTo
 							article
@@ -15,7 +17,7 @@ div.timeline
 									img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
 								header
 									h2
-										a(href=url + '/' + post.reply.user.screenName)= post.reply.user.name
+										a(href=url + '/' + post.reply.user.screenName, target='_blank')= post.reply.user.name
 									span.screenName= '@' + post.reply.user.screenName
 									time(datetime=post.reply.createdAt)= post.reply.createdAt
 								p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
@@ -28,10 +30,21 @@ div.timeline
 							h2
 								a(href=url + '/' + post.user.screenName)= post.user.name
 							span.screenName= '@' + post.user.screenName
-							time(datetime=post.createdAt)= post.createdAt
-						p.text!= (post.isReply ? '<a href="' + url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.text)
-						if post.isImageAttached
-							img.image(src=url + '/img/post/' + post.id, alt='image')
+							a(href=url + '/' + post.user.screenName + '/post/' + post.id): time(datetime=post.createdAt)= post.createdAt
+						div.main
+							p.text!= (post.isReply ? '<a href="' + url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.text)
+							if post.isImageAttached
+								img.image(src=url + '/img/post/' + post.id, alt='image')
+						footer
+							div.actions
+								div.repost
+									button.repostButton
+										i.fa.fa-retweet
+										span.count= post.repostCount
+								div.favorite
+									button.favoriteButton
+										i.fa.fa-star
+										span.count= post.favoriteCount
 					footer
 						form.replyForm
 							textarea(name='text')= '@' + post.user.screenName + ' '
@@ -39,5 +52,5 @@ div.timeline
 							input(type='submit', value='Reply')
 							div.imageAttacher
 								p
-									i(class='fa fa-picture-o')
+									i.fa.fa-picture-o
 								input(name='image', type='file', accept='image/*')

@@ -16,6 +16,7 @@ class Post {
 	inReplyToPostId: number;
 	image: Buffer;
 	isImageAttached: boolean;
+	RepostFromPostId: number;
 	text: string;
 	userId: number;
 
@@ -26,6 +27,7 @@ class Post {
 		this.inReplyToPostId = post.in_reply_to_post_id;
 		this.image = post.image;
 		this.isImageAttached = Boolean(post.is_image_attached);
+		this.RepostFromPostId = post.repost_from_post_id;
 		this.text = post.text;
 		this.userId = post.user_id;
 	}
@@ -50,6 +52,12 @@ class Post {
 	public static getUserPostsCount(userId: number, callback: (postsCount: number) => void): void {
 		db.query("select count(*) as count from posts where user_id = ?",
 			[userId],
+			(err: any, count: any[]) => callback(count[0].count));
+	}
+
+	public static getRepostCount(postId: number, callback: (repostCount: number) => void): void {
+		db.query("select count(*) as count from posts where repost_from_post_id = ?",
+			[postId],
 			(err: any, count: any[]) => callback(count[0].count));
 	}
 

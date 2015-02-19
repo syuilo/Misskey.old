@@ -5,6 +5,7 @@ import async = require('async');
 import Application = require('../../models/application');
 import User = require('../../models/user');
 import Post = require('../../models/post');
+import PostFavorite = require('../../models/post-favorite');
 import conf = require('../../config');
 
 export = Timeline;
@@ -33,26 +34,50 @@ class Timeline {
 	}
 
 	public static selialyzeTimelineOnject(posts: Post[], callback: (posts: any[]) => void): void {
-		async.map(posts,(post: any, next: any) => {
+		async.map(posts,(post: any, mapNext: any) => {
 			post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
-			User.find(post.userId,(user: User) => {
-				post.user = user;
-				Application.find(post.appId,(app: Application) => {
-					post.app = app;
-					if (post.isReply) {
-						Post.find(post.inReplyToPostId,(replyPost: any) => {
-							replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
-							post.reply = replyPost;
-							User.find(post.reply.userId,(replyUser: User) => {
-								post.reply.user = replyUser;
-								next(null, post);
-							});
-						});
-					} else {
-						next(null, post);
+
+			async.series([
+				(seriesNext: any) => {
+					Application.find(post.appId,(app: Application) => {
+						seriesNext(null, app);
+					});
+				},
+				(seriesNext: any) => {
+					User.find(post.userId,(user: User) => {
+						seriesNext(null, user);
+					});
+				},
+				(seriesNext: any) => {
+					PostFavorite.getPostFavoritesCount(post.id,(favoritesCount: number) => {
+						seriesNext(null, favoritesCount);
+					});
+				},
+				(seriesNext: any) => {
+					Post.getRepostCount(post.id,(repostsCount: number) => {
+						seriesNext(null, repostsCount);
+					});
+				},
+				(seriesNext: any) => {
+					if (!post.isReply) {
+						seriesNext(null, null);
 					}
+					Post.find(post.inReplyToPostId,(replyPost: any) => {
+						replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
+						post.reply = replyPost;
+						User.find(post.reply.userId,(replyUser: User) => {
+							post.reply.user = replyUser;
+							seriesNext(null, null);
+						});
+					});
+				},
+				(err: any, results: any) => {
+					post.app = results[0];
+					post.user = results[1];
+					post.favoritesCount = results[2];
+					post.repostCount = results[3];
+					mapNext(null, post);
 				});
-			});
 		},(err: any, results: Post[]) => {
 				callback(results);
 			});

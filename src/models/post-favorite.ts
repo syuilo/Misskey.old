@@ -28,7 +28,19 @@ class PostFavorite {
 			(err: any, postFavorites: any[]) => callback(postFavorites.length !== 0));
 	}
 
-	public static findByPostId(postId: number, limit: number, offset: number, callback: (postFavorites: PostFavorite[]) => void): void {
+	public static findByPostId(postId: number, callback: (postFavorites: PostFavorite[]) => void): void {
+		db.query("select * from post_favorites where post_id = ?",
+			[postId],
+			(err: any, postFavorites: any[]) => callback(postFavorites.length != 0 ? postFavorites.map((postFavorite) => new PostFavorite(postFavorite)) : null));
+	}
+
+	public static findByUserId(userId: number, callback: (postFavorites: PostFavorite[]) => void): void {
+		db.query("select * from post_favorites where user_id = ?",
+			[userId],
+			(err: any, postFavorites: any[]) => callback(postFavorites.length != 0 ? postFavorites.map((postFavorite) => new PostFavorite(postFavorite)) : null));
+	}
+
+	public static getPostFavorites(postId: number, limit: number, offset: number, callback: (postFavorites: PostFavorite[]) => void): void {
 		var q: string, p: any;
 		if (limit === null) {
 			q = "select * from post_favorites where post_id = ? order by id desc";
@@ -40,7 +52,7 @@ class PostFavorite {
 		db.query(q, p, (err: any, postFavorites: any[]) => callback(postFavorites.map((postFavorite) => new PostFavorite(postFavorite))));
 	}
 
-	public static findByUserId(userId: number, limit: number, offset: number, callback: (postFavorites: PostFavorite[]) => void): void {
+	public static getMyFavorites(userId: number, limit: number, offset: number, callback: (postFavorites: PostFavorite[]) => void): void {
 		var q: string, p: any;
 		if (limit === null) {
 			q = "select * from post_favorites where user_id = ? order by id desc";
@@ -50,6 +62,12 @@ class PostFavorite {
 			p = [userId, offset, limit];
 		}
 		db.query(q, p, (err: any, postFavorites: any[]) => callback(postFavorites.map((postFavorite) => new PostFavorite(postFavorite))));
+	}
+
+	public static getPostFavoritesCount(postId: number, callback: (favoritesCount: number) => void): void {
+		db.query("select count(*) as count from post_favorites where post_id = ?",
+			[postId],
+			(err: any, postFavorites: any[]) => callback(postFavorites[0].count));
 	}
 
     public destroy(callback?: () => void): void {
