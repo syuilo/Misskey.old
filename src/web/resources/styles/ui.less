@@ -1,5 +1,7 @@
 @themeColor: <%themeColor%>;
 
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+
 ::selection {
 	background: @themeColor;
 	color: #fff;
@@ -118,6 +120,20 @@ textarea {
 						padding: 0;
 						line-height: 3em;
 						vertical-align: top;
+
+						> .misskey {
+							font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+							margin: 0 8px;
+							padding: 0;
+							line-height: 3em;
+							font-size: 1.8em;
+							color: rgba(0, 0, 0, 0.5);
+							transition: all 0.2s ease;
+
+							&:hover {
+								color: @themeColor;
+							}
+						}
 
 						> ul {
 							margin: 0;
