@@ -8,8 +8,8 @@ div.timeline
 						data-user-id= post.user.id
 						data-user-comment= post.user.comment
 						data-user-color= post.user.color
-						data-is-favorited= login ? post.isFavorited : null,
-						data-is-reposted= login ? post.isReposted : null)
+						data-is-favorited!= login ? post.isFavorited.toString() : null,
+						data-is-reposted!= login ? post.isReposted.toString() : null)
 					if post.isReply
 						div.replyTo
 							article
