@@ -66,7 +66,7 @@ class Post {
 	}
 
 	public static isReposted(postId: number, userId: number, callback: (favorite: boolean) => void): void {
-		db.query("select * from posts where repost_from_post_id = ? and user_id = ?",
+		db.query("select id from posts where repost_from_post_id = ? and user_id = ?",
 			[postId, userId],
 			(err: any, postReposts: any[]) => callback(postReposts.length !== 0));
 	}
