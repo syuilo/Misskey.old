@@ -127,9 +127,9 @@ var router = (app: express.Express): void => {
 function sendImage(req: any, res: any, image: Buffer) {
 	if (req.query.blur != null) {
 		try {
-			var opsitons = JSON.parse(req.query.blur.replace(/([a-zA-Z]+)\s?:\s?([^,}"])+/g, '"$1":$2'));
+			var options = JSON.parse(req.query.blur.replace(/([a-zA-Z]+)\s?:\s?([^,}"]+)/g, '"$1":$2'));
 			gm(image)
-				.blur(opsitons.radius, opsitons.sigma)
+				.blur(options.radius, options.sigma)
 				.compress('jpeg')
 				.quality(80)
 				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
