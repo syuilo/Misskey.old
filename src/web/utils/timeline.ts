@@ -65,6 +65,7 @@ class Timeline {
 								seriesNext(null, user);
 							});
 						},
+						/*
 						(seriesNext: any) => {
 							PostFavorite.getPostFavoritesCount(post.id,(favoritesCount: number) => {
 								seriesNext(null, favoritesCount);
@@ -75,6 +76,7 @@ class Timeline {
 								seriesNext(null, repostsCount);
 							});
 						},
+						*/
 						(seriesNext: any) => {
 							if (req.login) {
 								PostFavorite.isFavorited(post.id, req.me.id,(isFavorited: boolean) => {
@@ -110,10 +112,8 @@ class Timeline {
 						(err: any, results: any) => {
 							post.app = results[0];
 							post.user = results[1];
-							post.favoritesCount = results[2];
-							post.repostsCount = results[3];
-							post.isFavorited = results[4];
-							post.isReposted = results[5];
+							post.isFavorited = results[2];
+							post.isReposted = results[3];
 							mapNext(null, post);
 						});
 				},(err: any, results: Post[]) => {
