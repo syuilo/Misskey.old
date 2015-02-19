@@ -12,7 +12,7 @@ TIMELINE.generatePostElement = function(post) {
 		'data-is-reposted': 'false',
 		style: post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 	})
-	.append(post.repostFromPostId ? generateRepostInformation() : null)
+	.append(post.isRepostToPost ? generateRepostInformation() : null)
 	.append(post.isReply ? generateReplyTo() : null)
 	.append(generateArticle(post))
 	.append(generateFooter());
