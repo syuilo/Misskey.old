@@ -66,9 +66,9 @@ class Post {
 	}
 
 	public static isReposted(postId: number, userId: number, callback: (favorite: boolean) => void): void {
-		db.query("select exists (select * from posts where repost_from_post_id = ? and user_id = ?)",
+		db.query("select exists as exist (select * from posts where repost_from_post_id = ? and user_id = ?)",
 			[postId, userId],
-			(err: any, postReposts: any[]) => callback(postReposts.length > 0));
+			(err: any, postReposts: any[]) => callback(postReposts[0].exist == 1 ? true : false));
 	}
 
 	public static findByUserId(userId: number, limit: number, sinceId: number, maxId: number, callback: (posts: Post[]) => void): void {
