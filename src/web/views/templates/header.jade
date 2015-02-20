@@ -1,7 +1,23 @@
 header#misskey-main-header
 	script.
-		$(function() { $("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px"); });
+		var musicCenterOpen = false;
+		
+		/*$(window).resize(function() { $("#misskey-musicCenter") });*/
+		$(function() {
+			$("#misskey-main-header > .main > .mainContentsContainer nav .misskey").click(function() {
+				if (musicCenterOpen) {
+					$("#misskey-musicCenter").css('top', '-100%');
+				} else {
+					$("#misskey-musicCenter").css('top', '0');
+				}
+				musicCenterOpen = !musicCenterOpen;
+			});
+			$("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px");
+		});
 		$(window).load(function() { $("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px"); });
+	if login
+		div#misskey-musicCenter.musicCenter
+			p.comment= me.comment
 	div.main
 		div.mainContentsContainer
 			if login
