@@ -52,8 +52,174 @@
 			}
 
 			> .moreTalk {
+				text-align: center;
+
+				> i {
+					color: rgba(0, 0, 0, 0.5);
+				}
+
 				> .talk {
 					display: none;
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					> .post {
+						position: relative;
+
+						> article {
+							position: relative;
+							padding: 0;
+
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
+
+							> header {
+								margin-bottom: 2px;
+								white-space: nowrap;
+								overflow: hidden;
+
+								> h2 {
+									text-align: left;
+									display: inline;
+									margin: 0;
+									padding: 0;
+									font-weight: normal;
+									font-size: 1em;
+
+									> a {
+										color: rgba(0, 0, 0, 0.7);
+										font-weight: normal;
+										text-decoration: none;
+										transition: all 0.1s ease;
+									}
+								}
+
+								> a {
+									> time {
+										position: absolute;
+										top: 8px;
+										right: 8px;
+										display: inline;
+										vertical-align: top;
+										color: rgba(0, 0, 0, 0.4);
+										font-size: small;
+									}
+								}
+
+								> .badge {
+									text-align: left;
+									display: inline;
+									font-size: .7em;
+									margin-right: 4px;
+									padding: 2px 6px;
+									vertical-align: middle;
+									background-color: #1bb3b3;
+									border-radius: 2px;
+									color: #fff;
+									font-weight: bold;
+								}
+
+								> .screenName {
+									text-align: left;
+									margin: 0 0 0 8px;
+									color: rgba(0, 0, 0, 0.5);
+								}
+							}
+
+							> a > .icon {
+								float: left;
+								min-width: 32px;
+								min-height: 32px;
+								max-width: 32px;
+								max-height: 32px;
+								margin: 0 12px 4px 0;
+								border-radius: 6px;
+								transition: all 0.1s ease;
+							}
+
+							> .main {
+								> .text {
+									user-select: text;
+									-moz-user-select: text;
+									-webkit-user-select: text;
+									-ms-user-select: text;
+									cursor: auto;
+									display: block;
+									margin: 0 0 0 0;
+									padding: 0;
+									overflow: hidden;
+									word-wrap: break-word;
+									font-size: 0.9em;
+									color: rgba(0, 0, 0, 0.5);
+
+									* {
+										user-select: text;
+										-moz-user-select: text;
+										-webkit-user-select: text;
+										-ms-user-select: text;
+									}
+
+									.reply {
+										margin: 0 8px 0 0;
+										color: rgba(0, 0, 0, 0.5);
+									}
+
+									.url {
+										color: #1bb3b3;
+										text-decoration: none;
+
+										&:after {
+											content: "\f14c";
+											font-family: FontAwesome;
+											font-size: 0.9em;
+											font-weight: normal;
+											font-style: normal;
+											display: inline-block;
+											padding-left: 2px;
+										}
+
+										&:hover {
+											text-decoration: underline;
+										}
+									}
+
+									.screenName {
+										color: @themeColor;
+										text-decoration: none;
+										transition: text-shadow 0.2s ease;
+
+										&:hover {
+											text-shadow: 0 0 4px fade(@themeColor, 30%);
+										}
+									}
+
+									b {
+										font-weight: bold;
+									}
+
+									small {
+										margin: 0 4px;
+										font-size: 0.8em;
+										color: rgba(0, 0, 0, 0.3);
+									}
+								}
+
+								> .image {
+									display: block;
+									max-width: 100%;
+									max-height: 256px;
+								}
+							}
+						}
+					}
+				}
+
+				& + .replyTo {
+					padding: 0 8px 0 8px;
 				}
 			}
 
@@ -563,7 +729,7 @@
 				}
 			}
 		}
-			
+
 			> .post[data-is-repostpost='true'] {
 				background: rgba(128, 255, 0, 0.1);
 			}
