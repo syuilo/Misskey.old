@@ -13,7 +13,7 @@ var postTimeline = (req: any, res: APIResponse) => {
 		var sinceId = req.query.since_id != null ? req.query.since_id: null;
 		var maxId = req.query.max_id != null ? req.query.max_id : null;
 		Post.getTimeline(req.me.id, 30, sinceId, maxId,(posts: Post[]) => {
-				Timeline.selialyzeTimelineOnject(posts, req,(filtedPosts: Post[]) => {
+				Timeline.selialyzeTimelineObject(posts, req,(filtedPosts: Post[]) => {
 					res.apiRender(filtedPosts);
 				});
 		});

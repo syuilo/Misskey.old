@@ -13,7 +13,7 @@ export = Timeline;
 class Timeline {
 	public static generateHtml(posts: Post[], req: any, callback: (timelineHtml: string) => void) {
 		if (posts != null) {
-			Timeline.selialyzeTimelineOnject(posts, req,(timeline: any[]) => {
+			Timeline.selialyzeTimelineObject(posts, req,(timeline: any[]) => {
 				var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {});
 				var html = compiler({
 					posts: timeline,
@@ -35,7 +35,7 @@ class Timeline {
 		}
 	}
 
-	public static selialyzeTimelineOnject(posts: Post[], req: any, callback: (posts: any[]) => void): void {
+	public static selialyzeTimelineObject(posts: Post[], req: any, callback: (posts: any[]) => void): void {
 		async.map(posts,(post: any, mapNext: any) => {
 			if (post.repostFromPostId != null && post.repostFromPostId != 0) {
 				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
