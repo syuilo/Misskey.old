@@ -23,7 +23,6 @@ class Application {
 	description: string;
 	developerName: string;
 	developerWebsite: string;
-	icon: string;
 	isSuspended: boolean
 	
 	public constructor(app: any) {
@@ -36,7 +35,6 @@ class Application {
 			this.callbackUrl = app.callback_url;
 			this.description = app.description;
 			this.developerName = app.developerName;
-			this.icon = app.icon;
 			this.isSuspended = Boolean(app.isSuspended);
 		}
 	}
