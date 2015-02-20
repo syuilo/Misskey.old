@@ -10,6 +10,7 @@ TIMELINE.generatePostElement = function(post) {
 		'data-user-color': post.user.color,
 		'data-is-favorited': 'false',
 		'data-is-reposted': 'false',
+		'data-is-repostpost': post.isRepostToPost.toString(),
 		style: post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 	})
 	.append(post.isRepostToPost ? generateRepostInformation() : null)
