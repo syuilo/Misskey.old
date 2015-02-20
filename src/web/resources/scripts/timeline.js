@@ -9,15 +9,31 @@ TIMELINE.generatePostElement = function(post) {
 		'data-user-comment': post.user.comment,
 		'data-user-color': post.user.color,
 		'data-is-reply': post.isReply.toString(),
+		'data-is-talk': (post.moreTalk != null).toString(),
 		'data-is-favorited': 'false',
 		'data-is-reposted': 'false',
 		'data-is-repostpost': post.isRepostToPost ? 'true' : 'false',
 		style: post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 	})
+	.append(post.moreTalk != null ? generateTalk() : null)
 	.append(post.isRepostToPost ? generateRepostInformation() : null)
 	.append(post.isReply ? generateReplyTo() : null)
 	.append(generateArticle(post, false))
 	.append(generateFooter());
+
+	function generateTalk() {
+		return $('<div class="moreTalk">')
+		.append($('<i class="fa fa-ellipsis-v">'))
+		.append(generateTalkPostsList());
+
+		function generateTalkPostsList() {
+			var ol = $('<ol class="talk">');
+			post.moreTalk.forEach(function(talkPost) {
+				ol.append($('<li class="post">').append(generateArticle(talkPost, false)));
+			});
+			return ol;
+		}
+	}
 
 	function generateRepostInformation() {
 		return $('<div class="repostInformation">')
