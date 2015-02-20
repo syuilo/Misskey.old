@@ -14,7 +14,7 @@ TIMELINE.generatePostElement = function(post) {
 	})
 	.append(post.isRepostToPost ? generateRepostInformation() : null)
 	.append(post.isReply ? generateReplyTo() : null)
-	.append(generateArticle(post))
+	.append(generateArticle(post, false))
 	.append(generateFooter());
 
 	function generateRepostInformation() {
@@ -34,15 +34,15 @@ TIMELINE.generatePostElement = function(post) {
 
 	function generateReplyTo() {
 		return $('<div class="replyTo">')
-		.append(generateArticle(post.reply));
+		.append(generateArticle(post.reply, true));
 	}
 
-	function generateArticle(post) {
+	function generateArticle(post, isReplyToNode) {
 		return $('<article>')
 		.append(generateIcon())
 		.append(generateHeader())
 		.append(generateMain())
-		.append(generateFooter());
+		.append(!isReplyToNode ? generateFooter() : null);
 
 		function generateIcon() {
 			return $('<a class="iconAnchor">')
@@ -310,8 +310,8 @@ TIMELINE.setEventPost = function($post) {
 	});
 
 	$post.click(function(event) {
-		if ($(event.target).is('input') || 
-		$(event.target).is('textarea') || 
+		if ($(event.target).is('input') ||
+		$(event.target).is('textarea') ||
 		$(event.target).is('button') ||
 		$(event.target).is('i') ||
 		$(event.target).is('a')) return;
