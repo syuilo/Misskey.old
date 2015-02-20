@@ -9,6 +9,7 @@ div.timeline
 						data-user-comment= post.user.comment
 						data-user-color= post.user.color
 						data-is-reply!= post.isReply.toString(),
+						data-is-talk!= (post.moreTalk != null).toString(),
 						data-is-favorited!= login ? post.isFavorited.toString() : null,
 						data-is-reposted!= login ? post.isReposted.toString() : null,
 						data-is-repostpost!= post.isRepostToPost.toString(),
