@@ -318,18 +318,23 @@ TIMELINE.setEventPost = function($post) {
 		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
 			if ($(this).children('footer').css('display') === 'none') {
+				$('.timeline > .posts > .post > .moreTalk > i').each(function() {
+					$(this).show(200);
+				});
 				$('.timeline > .posts > .post > .moreTalk > .talk').each(function() {
 					$(this).hide(200);
 				});
 				$('.timeline > .posts > .post > footer').each(function() {
 					$(this).hide(200);
 				});
+				$(this).children('.moreTalk').children('i').hide(200);
 				$(this).children('.moreTalk').children('.talk').show(200);
 				$(this).children('footer').show(200);
 				var text = $(this).find('footer .replyForm textarea').val();
 				$(this).find('footer .replyForm textarea').val('');
 				$(this).find('footer .replyForm textarea').focus().val(text);
 			} else {
+				$(this).children('.moreTalk').children('i').show(200);
 				$(this).children('.moreTalk').children('.talk').hide(200);
 				$(this).children('footer').hide(200);
 			}
