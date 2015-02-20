@@ -83,6 +83,7 @@ class User {
 	}
 
 	public static searchByScreenName(screenName: string, limit: number, callback: (users: User[]) => void): void {
+		screenName = screenName.replace(/_/g, '\\_');
 		db.query("select * from users where screen_name like ? order by id limit ?",
 			['%' + screenName + '%', limit],
 			(err: any, users: any[]) => callback(users.length != 0 ? users.map((user) => new User(user)) : null));

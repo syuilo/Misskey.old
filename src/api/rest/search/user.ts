@@ -13,7 +13,12 @@ var searchUser = (req: any, res: APIResponse) => {
 		res.apiError(400, 'query parameter is required :(');
 		return;
 	}
+	if (req.query.query == '') {
+		res.apiError(400, 'Empty query');
+		return;
+	}
 	var query = req.query.query;
+	query = query.replace(/^@/, '');
 
 	User.searchByScreenName(query, 5,(users: User[]) => {
 		async.map(users,(user: User, mapNext: any) => {
