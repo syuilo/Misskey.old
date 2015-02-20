@@ -13,7 +13,7 @@ class PostImage {
 	}
 
 	public static create(postId: number, image: Buffer, callback: (postImage: PostImage) => void): void {
-		db.query('insert into post_images (user_id, image) values (?, ?)',
+		db.query('insert into post_images (post_id, image) values (?, ?)',
 			[postId, image],
 			(err: any, info: any) => {
 				if (err) console.log(err);
