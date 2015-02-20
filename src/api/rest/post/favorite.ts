@@ -23,19 +23,29 @@ var postFavorite = (req: any, res: APIResponse) => {
 				return;
 			}
 
-			PostFavorite.isFavorited(postId, user.id,(isFavorited: boolean) => {
-				if (isFavorited) {
-					res.apiError(400, 'This post is already favorited :)');
-					return;
-				}
-
-				PostFavorite.create(postId, user.id,(favorite: PostFavorite) => {
-					targetPost.favoritesCount++;
-					targetPost.update(() => { });
-					Post.buildResponseObject(targetPost,(obj: any) => {
-						res.apiRender(obj);
-					});
+			if (targetPost.repostFromPostId == null) {
+				favoriteStep(req, res, app, user, targetPost);
+			} else { // ‚Ó‚Ÿ‚Ú‚ë‚¤‚Æ‚µ‚½Post‚ªRP‚¾‚Á‚½ê‡A–{—ˆ‚ÌPost‚ð‚Ó‚Ÿ‚Ú‚é‚æ‚¤‚É‚·‚é(RP‚ð‚Ó‚Ÿ‚Ú‚ç‚È‚¢‚æ‚¤‚É‚·‚é)
+				Post.find(targetPost.repostFromPostId,(trueTargetPost: Post) => {
+					favoriteStep(req, res, app, user, trueTargetPost);
 				});
+			}
+		});
+	});
+}
+
+function favoriteStep(req: any, res: APIResponse, app: Application, user: User, targetPost: Post) {
+	PostFavorite.isFavorited(targetPost.id, user.id,(isFavorited: boolean) => {
+		if (isFavorited) {
+			res.apiError(400, 'This post is already favorited :)');
+			return;
+		}
+
+		PostFavorite.create(targetPost.id, user.id,(favorite: PostFavorite) => {
+			targetPost.favoritesCount++;
+			targetPost.update(() => { });
+			Post.buildResponseObject(targetPost,(obj: any) => {
+				res.apiRender(obj);
 			});
 		});
 	});
