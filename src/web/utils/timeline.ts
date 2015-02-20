@@ -41,7 +41,7 @@ class Timeline {
 				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
 					var _repostFromPost: any = repostFromPost;
 					_repostFromPost.isRepostToPost = true;
-					User.find(post.userId,(repostedByUser: User) => {
+					User.findNoImages(post.userId,(repostedByUser: User) => {
 						_repostFromPost.repostedByUser = repostedByUser;
 						mapNext(null, _repostFromPost);
 					});
@@ -61,7 +61,7 @@ class Timeline {
 							});
 						},
 						(seriesNext: any) => {
-							User.find(post.userId,(user: User) => {
+							User.findNoImages(post.userId,(user: User) => {
 								seriesNext(null, user);
 							});
 						},
@@ -103,7 +103,7 @@ class Timeline {
 							Post.find(post.inReplyToPostId,(replyPost: any) => {
 								replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
 								post.reply = replyPost;
-								User.find(post.reply.userId,(replyUser: User) => {
+								User.findNoImages(post.reply.userId,(replyUser: User) => {
 									post.reply.user = replyUser;
 									seriesNext(null, null);
 								});

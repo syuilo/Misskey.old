@@ -72,6 +72,22 @@ class User {
 			(err: any, users: any[]) => callback(users[0]!= null ? new User(users[0]): null));
 	}
 
+	public static findNoImages(id: number, callback: (user: User) => void): void {
+		db.query("select id, created_at, screen_name, password, mail_address, tutorial, is_suspended, is_premium, credit, lang, badge, name, comment, color, web_theme_id, bio, url, location, tag, exp, lv from users where id = ?",
+			[id],
+			(err: any, users: any[]) => {
+				if (users[0] != null) {
+					var user: any = users[0];
+					user.icon = null;
+					user.header = null;
+					user.wallpaper = null;
+					callback(new User(user));
+				} else {
+					callback(null)
+				}
+			});
+	}
+
 	public static findByScreenName(screenName: string, callback: (user: User) => void): void {
 		db.query("select * from users where screen_name = ?",
 			[screenName],
