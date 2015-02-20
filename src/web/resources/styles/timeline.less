@@ -503,7 +503,7 @@
 					display: block;
 					position: absolute;
 					top: 50%;
-					left: 23px;
+					left: 31px;
 					width: 2px;
 					height: 50%;
 					background: rgba(0, 0, 0, 0.1);
@@ -622,6 +622,18 @@
 		}
 
 			> .post[data-is-reply='true'] {
+				> article {
+					&:before {
+						content: "";
+						display: block;
+						position: absolute;
+						bottom: 50%;
+						left: 31px;
+						width: 2px;
+						height: 50%;
+						background: rgba(0, 0, 0, 0.1);
+					}
+				}
 			}
 
 			> .post[data-is-talk='true'] {
