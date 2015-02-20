@@ -68,7 +68,7 @@ class User {
 	public static find(id: number, callback: (user: User) => void): void {
 		db.query("select * from users where id = ?",
 			[id],
-			(err: any, users: any[]) => callback(users[0]!= null ? new User(users[0]): null));
+			(err: any, users: any[]) => callback(users[0] != null ? new User(users[0]) : null));
 	}
 
 	public static findByScreenName(screenName: string, callback: (user: User) => void): void {
@@ -80,6 +80,12 @@ class User {
 	public static getLevelRanking(callback: (users: User[]) => void): void {
 		db.query('select * from users where is_suspended = 0 order by level desc limit 10',
 			(err: any, users: any[]) => callback(users.map((user) => new User(user))));
+	}
+
+	public static searchByScreenName(screenName: string, limit: number, callback: (users: User[]) => void): void {
+		db.query("select * from users where screen_name like ? order by id limit ?",
+			['%' + screenName + '%', limit],
+			(err: any, users: any[]) => callback(users.length != 0 ? users.map((user) => new User(user)) : null));
 	}
 
 	public filt(): any {
