@@ -10,12 +10,12 @@ var authorize = require('../../auth');
 
 var postTimeline = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
-		var sinceId = req.query.since_id != null ? req.query.since_id: null;
+		var sinceId = req.query.since_id != null ? req.query.since_id : null;
 		var maxId = req.query.max_id != null ? req.query.max_id : null;
-		Post.getTimeline(req.me.id, 30, sinceId, maxId,(posts: Post[]) => {
-				Timeline.selialyzeTimelineObject(posts, req,(filtedPosts: Post[]) => {
-					res.apiRender(filtedPosts);
-				});
+		Post.getTimeline(user.id, 30, sinceId, maxId,(posts: Post[]) => {
+			Timeline.selialyzeTimelineObject(posts, user,(filtedPosts: Post[]) => {
+				res.apiRender(filtedPosts);
+			});
 		});
 	});
 }

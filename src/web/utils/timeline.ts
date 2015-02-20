@@ -13,7 +13,8 @@ export = Timeline;
 class Timeline {
 	public static generateHtml(posts: Post[], req: any, callback: (timelineHtml: string) => void) {
 		if (posts != null) {
-			Timeline.selialyzeTimelineObject(posts, req,(timeline: any[]) => {
+			var me = req.login ? req.me : null;
+			Timeline.selialyzeTimelineObject(posts, me,(timeline: any[]) => {
 				var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {});
 				var html = compiler({
 					posts: timeline,
@@ -35,7 +36,7 @@ class Timeline {
 		}
 	}
 
-	public static selialyzeTimelineObject(posts: Post[], req: any, callback: (posts: any[]) => void): void {
+	public static selialyzeTimelineObject(posts: Post[], me: User, callback: (posts: any[]) => void): void {
 		async.map(posts,(post: any, mapNext: any) => {
 			if (post.repostFromPostId != null && post.repostFromPostId != 0) {
 				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
@@ -78,8 +79,8 @@ class Timeline {
 						},
 						*/
 						(seriesNext: any) => {
-							if (req.login) {
-								PostFavorite.isFavorited(post.id, req.me.id,(isFavorited: boolean) => {
+							if (me != null) {
+								PostFavorite.isFavorited(post.id, me.id,(isFavorited: boolean) => {
 									seriesNext(null, isFavorited);
 								});
 							} else {
@@ -87,8 +88,8 @@ class Timeline {
 							}
 						},
 						(seriesNext: any) => {
-							if (req.login) {
-								Post.isReposted(post.id, req.me.id,(isReposted: boolean) => {
+							if (me != null) {
+								Post.isReposted(post.id, me.id,(isReposted: boolean) => {
 									seriesNext(null, isReposted);
 								});
 							} else {
