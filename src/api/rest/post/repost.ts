@@ -23,12 +23,12 @@ var postRepost = (req: any, res: APIResponse) => {
 				return;
 			}
 
-			if (targetPost.repostFromPostId != null) {
+			if (targetPost.repostFromPostId == null) {
+				repostStep(req, res, app, user, targetPost);
+			} else { // RP‚µ‚æ‚¤‚Æ‚µ‚½Post‚ªRP‚¾‚Á‚½ê‡A–{—ˆ‚ÌPost‚ðRP‚·‚é‚æ‚¤‚É‚·‚é(RP‚ðRP‚µ‚È‚¢‚æ‚¤‚É‚·‚é)
 				Post.find(targetPost.repostFromPostId,(trueTargetPost: Post) => {
 					repostStep(req, res, app, user, trueTargetPost);
 				});
-			} else {
-				repostStep(req, res, app, user, targetPost);
 			}
 		});
 	});
