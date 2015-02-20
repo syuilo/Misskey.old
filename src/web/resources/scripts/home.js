@@ -95,4 +95,27 @@ $(function() {
 			$submitButton.text('Update');
 		});
 	});
+
+	$('#timeline .loadMore').click(function() {
+		$button = $(this);
+		$button.attr('disabled', true);
+		$button.text('Loading...');
+		$.ajax('https://api.misskey.xyz/post/create', {
+			type: 'get',
+			data: {},
+			dataType: 'json',
+			xhrFields: { withCredentials: true }
+		}).done(function(data) {
+			$button.attr('disabled', false);
+			$button.text('Read more!');
+			data.forEach(function(post) {
+				var $post = TIMELINE.generatePostElement(post, conf).hide();
+				TIMELINE.setEventPost($post);
+				$post.appendTo($('#timeline .timeline > .posts')).show(200);
+			});
+		}).fail(function(data) {
+			$button.attr('disabled', false);
+			$button.text('Failed...');
+		});
+	});
 });

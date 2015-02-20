@@ -35,6 +35,7 @@ function router(app: express.Express): void {
 	app.post(/\/post\/create(\..+)?$/, require('./rest/post/create'));
 	app.post(/\/post\/favorite(\..+)?$/, require('./rest/post/favorite'));
 	app.post(/\/post\/repost(\..+)?$/, require('./rest/post/repost'));
+	app.get(/\/post\/timeline(\..+)?$/, require('./rest/post/timeline'));
 	app.post(/\/talk\/say(\..+)?$/, require('./rest/talk/say'));
 	app.get(/\/search\/user(\..+)?$/, require('./rest/search/user'));
 	app.all(/\/teapot\/coffee(\..+)?$/, require('./rest/teapot/coffee'));
