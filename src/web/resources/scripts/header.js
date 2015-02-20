@@ -1,0 +1,43 @@
+var musicCenterOpen = false;
+
+$(function() {
+	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
+		if (musicCenterOpen) {
+			$("#misskey-musicCenter").css('top', '-100%');
+		} else {
+			$("#misskey-musicCenter").css('top', '0');
+		}
+		musicCenterOpen = !musicCenterOpen;
+	});
+	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
+
+	$("#misskey-main-header .search input").keyup(function() {
+		$("#misskey-main-header .search .result").empty();
+		$.ajax('https://api.misskey.xyz/search/user', {
+			type: 'get',
+			data: { 'query': $(this).val() },
+			dataType: 'json',
+			xhrFields: { withCredentials: true }
+		}).done(function(result) {
+			if (result.length > 0) {
+				$("#misskey-main-header .search .result").append($('<ol class="users">'));
+				result.forEach(function(user) {
+					$("#misskey-main-header .search .result ol").append(
+						$('<li>').append(
+							$('<a>').attr('href', 'https://misskey.xyz/' + user.screenName).append(
+								$('<img class="icon" alt="icon">').attr('src', 'https://misskey.xyz/img/icon/' + user.screenName)
+							).append(
+								$('<span class="name">').text(user.name)
+							)
+						)
+					);
+				});
+			}
+		}).fail(function() {
+		});
+	});
+});
+
+$(window).load(function() {
+	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
+});
