@@ -2,9 +2,10 @@ header#misskey-main-header
 	script.
 		var musicCenterOpen = false;
 		
-		/*$(window).resize(function() { $("#misskey-musicCenter") });*/
+		$(window).resize(function() { $("#misskey-musicCenter").css('height', $(window).height() + 'px') });
 		$(function() {
-			$("#misskey-main-header > .main > .mainContentsContainer nav .misskey").click(function() {
+			$("#misskey-main-header > .main > nav .misskey").click(function() {
+				$("#misskey-musicCenter").css('height', $(window).height() + 'px')
 				if (musicCenterOpen) {
 					$("#misskey-musicCenter").css('top', '-100%');
 				} else {
