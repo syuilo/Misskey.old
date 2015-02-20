@@ -12,17 +12,19 @@ $(function() {
 	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
 
 	$("#misskey-main-header .search input").keyup(function() {
-		$("#misskey-main-header .search .result").empty();
+		var $result = $("#misskey-main-header .search .result");
+		$result.empty();
 		$.ajax('https://api.misskey.xyz/search/user', {
 			type: 'get',
 			data: { 'query': $(this).val() },
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(result) {
+			$result.empty();
 			if (result.length > 0) {
-				$("#misskey-main-header .search .result").append($('<ol class="users">'));
+				$result.append($('<ol class="users">'));
 				result.forEach(function(user) {
-					$("#misskey-main-header .search .result ol").append(
+					$result.find('ol').append(
 						$('<li>').append(
 							$('<a>').attr('href', 'https://misskey.xyz/' + user.screenName).append(
 								$('<img class="icon" alt="icon">').attr('src', 'https://misskey.xyz/img/icon/' + user.screenName)
