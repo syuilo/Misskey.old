@@ -179,6 +179,7 @@ textarea {
 
 				> .search {
 					display: inline-block;
+					position: relative;
 
 					> input {
 						-webkit-appearance: none;
@@ -221,18 +222,35 @@ textarea {
 							list-style: none;
 
 							li {
-								.icon {
-									vertical-align: middle;
-									min-width: 32px;
-									min-height: 32px;
-									max-width: 32px;
-									max-height: 32px;
-									margin: 0 8px 0 0;
-									border-radius: 6px;
-								}
+								a {
+									display: inline-block;
+									box-sizing: border-box;
+									width: 100%;
+									padding: 4px 16px;
+									color: rgba(0, 0, 0, 0.8);
 
-								.name {
-									
+									&:hover {
+										color: #fff;
+										background: @themeColor;
+									}
+
+									&:active {
+										color: #fff;
+										background: darken(@themeColor, 10%);
+									}
+
+									.icon {
+										vertical-align: middle;
+										min-width: 32px;
+										min-height: 32px;
+										max-width: 32px;
+										max-height: 32px;
+										margin: 0 8px 0 0;
+										border-radius: 6px;
+									}
+
+									.name {
+									}
 								}
 							}
 						}
