@@ -2,6 +2,7 @@
 
 import fs = require('fs');
 import gm = require('gm');
+import async = require('async');
 import APIResponse = require('../../api-response');
 import Streamer = require('../../../utils/streaming');
 import Application = require('../../../models/application');
