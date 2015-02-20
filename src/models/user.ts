@@ -11,8 +11,6 @@ class User {
 	createdAt: string;
 	credit: number;
 	exp: number;
-	header: Buffer;
-	icon: Buffer;
 	id: number;
 	isPremium: boolean;
 	isSuspended: boolean;
@@ -28,7 +26,6 @@ class User {
 	twitterAccessToken: string;
 	twitterAccessTokenSecret: string;
 	url: string;
-	wallpaper: Buffer;
 	webThemeId: number;
 
 	public constructor(user: any) {
@@ -39,8 +36,6 @@ class User {
 		this.createdAt = user.created_at;
 		this.credit = user.credit;
 		this.exp = user.exp;
-		this.header = user.header;
-		this.icon = user.icon;
 		this.id = user.id;
 		this.isPremium = Boolean(user.is_premium);
 		this.isSuspended = Boolean(user.is_suspended);
@@ -56,7 +51,6 @@ class User {
 		this.twitterAccessToken = user.twitter_access_token;
 		this.twitterAccessTokenSecret = user.twitter_access_token_secret;
 		this.url = user.url;
-		this.wallpaper = user.wallpaper;
 		this.webThemeId = user.web_theme_id;
 	}
 
@@ -75,22 +69,6 @@ class User {
 		db.query("select * from users where id = ?",
 			[id],
 			(err: any, users: any[]) => callback(users[0]!= null ? new User(users[0]): null));
-	}
-
-	public static findNoImages(id: number, callback: (user: User) => void): void {
-		db.query("select id, created_at, screen_name, password, mail_address, tutorial, is_suspended, is_premium, credit, lang, badge, name, comment, color, web_theme_id, bio, url, location, tag, exp, lv from users where id = ?",
-			[id],
-			(err: any, users: any[]) => {
-				if (users[0] != null) {
-					var user: any = users[0];
-					user.icon = null;
-					user.header = null;
-					user.wallpaper = null;
-					callback(new User(user));
-				} else {
-					callback(null)
-				}
-			});
 	}
 
 	public static findByScreenName(screenName: string, callback: (user: User) => void): void {
@@ -125,8 +103,8 @@ class User {
 	}
 
     public update(callback?: () => void): void {
-		db.query('update users set screen_name =?, password =?, mail_address =?, credit =?, tutorial =?, is_suspended =?, name =?, comment =?, lang =?, badge =?, icon =?, color =?, header =?, wallpaper =?, web_theme_id =?, bio =?, url =?, location =?, tag =?, exp =?, lv =?, twitter_access_token =?, twitter_access_token_secret =? where id =?',
-			[this.screenName, this.password, this.mailAddress, this.credit, this.tutorial, this.isSuspended, this.name, this.comment, this.lang, this.badge, this.icon, this.color, this.header, this.wallpaper, this.webThemeId, this.bio, this.url, this.location, this.tag, this.exp, this.lv, this.twitterAccessToken, this.twitterAccessTokenSecret, this.id],
+		db.query('update users set screen_name =?, password =?, mail_address =?, credit =?, tutorial =?, is_suspended =?, name =?, comment =?, lang =?, badge =?, color =?, web_theme_id =?, bio =?, url =?, location =?, tag =?, exp =?, lv =?, twitter_access_token =?, twitter_access_token_secret =? where id =?',
+			[this.screenName, this.password, this.mailAddress, this.credit, this.tutorial, this.isSuspended, this.name, this.comment, this.lang, this.badge, this.color, this.webThemeId, this.bio, this.url, this.location, this.tag, this.exp, this.lv, this.twitterAccessToken, this.twitterAccessTokenSecret, this.id],
 			callback);
 	}
 }

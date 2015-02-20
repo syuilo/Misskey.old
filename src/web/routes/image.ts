@@ -5,6 +5,7 @@ import path = require('path');
 import express = require('express');
 import gm = require('gm');
 import User = require('../../models/user');
+import UserImage = require('../../models/user-image');
 import Post = require('../../models/post');
 import TalkMessage = require('../../models/talk-message');
 import WebTheme = require('../../models/webtheme');
@@ -16,18 +17,24 @@ var router = (app: express.Express): void => {
 	/* User icon */
 	app.get('/img/icon/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			User.find(Number(req.params.idOrSn),(user: User) => {
-				display(user);
+			UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
+				display(userImage);
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
-				display(user);
+				if (user == null) {
+					res.status(404).send('User not found.');
+					return;
+				}
+				UserImage.find(user.id,(userImage: UserImage) => {
+					display(userImage);
+				});
 			});
 		}
 
-		var display = (user: User) => {
-			if (user != null) {
-				var imageBuffer = user.icon != null ? user.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
+		var display = (userImage: UserImage) => {
+			if (userImage != null) {
+				var imageBuffer = userImage.icon != null ? userImage.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
 				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
@@ -38,18 +45,24 @@ var router = (app: express.Express): void => {
 	/* User header */
 	app.get('/img/header/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			User.find(Number(req.params.idOrSn),(user: User) => {
-				display(user);
+			UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
+				display(userImage);
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
-				display(user);
+				if (user == null) {
+					res.status(404).send('User not found.');
+					return;
+				}
+				UserImage.find(user.id,(userImage: UserImage) => {
+					display(userImage);
+				});
 			});
 		}
 
-		var display = (user: User) => {
-			if (user != null) {
-				var imageBuffer = user.header != null ? user.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
+		var display = (userImage: UserImage) => {
+			if (userImage != null) {
+				var imageBuffer = userImage.header != null ? userImage.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
 				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
@@ -60,18 +73,24 @@ var router = (app: express.Express): void => {
 	/* User wallpaper */
 	app.get('/img/wallpaper/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			User.find(Number(req.params.idOrSn),(user: User) => {
-				display(user);
+			UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
+				display(userImage);
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
-				display(user);
+				if (user == null) {
+					res.status(404).send('User not found.');
+					return;
+				}
+				UserImage.find(user.id,(userImage: UserImage) => {
+					display(userImage);
+				});
 			});
 		}
 
-		var display = (user: User) => {
-			if (user != null) {
-				var imageBuffer = user.wallpaper != null ? user.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
+		var display = (userImage: UserImage) => {
+			if (userImage != null) {
+				var imageBuffer = userImage.wallpaper != null ? userImage.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
 				sendImage(req, res, imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
