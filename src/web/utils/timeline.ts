@@ -58,6 +58,8 @@ class Timeline {
 					async.series([
 						(seriesNext: any) => {
 							Application.find(post.appId,(app: Application) => {
+								delete app.consumerKey;
+								delete app.callbackUrl;
 								seriesNext(null, app);
 							});
 						},
