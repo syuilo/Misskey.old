@@ -222,9 +222,17 @@
 						&:before {
 							content: "";
 							display: block;
+							position: absolute;
+							top: 0;
+							left: 23px;
 							width: 2px;
 							height: 100%;
-							background: rgba(0, 0, 0, 0.5);
+							background: rgba(0, 0, 0, 0.1);
+						}
+
+						&:first-child:before {
+							top: 50%;
+							height: 50%;
 						}
 
 						> article {
@@ -489,6 +497,17 @@
 					}
 				}
 
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 23px;
+					width: 2px;
+					height: 100%;
+					background: rgba(0, 0, 0, 0.1);
+				}
+
 				> article {
 					.timeline-replyArticle;
 					padding: 8px 8px 0 8px;
@@ -600,6 +619,21 @@
 				}
 			}
 		}
+
+		> .post[data-is-reply='true'] {
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					bottom: 50%;
+					left: 23px;
+					width: 2px;
+					height: 50%;
+					background: rgba(0, 0, 0, 0.1);
+				}
+			}
+
+				
 
 			> .post[data-is-repostpost='true'] {
 				background: rgba(128, 255, 0, 0.1);
