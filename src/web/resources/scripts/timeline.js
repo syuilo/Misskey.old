@@ -29,7 +29,7 @@ TIMELINE.generatePostElement = function(post) {
 		function generateTalkPostsList() {
 			var ol = $('<ol class="talk">');
 			post.moreTalk.forEach(function(talkPost) {
-				ol.append($('<li class="post">').append(generateArticle(talkPost, false)));
+				ol.append($('<li class="post">').append(generateArticle(talkPost, true)));
 			});
 			return ol;
 		}
