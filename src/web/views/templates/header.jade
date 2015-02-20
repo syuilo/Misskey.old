@@ -1,11 +1,13 @@
+if login
+		div#misskey-musicCenter.musicCenter
+			p.comment= me.comment
+
 header#misskey-main-header
 	script.
 		var musicCenterOpen = false;
 		
-		$(window).resize(function() { $("#misskey-musicCenter").css('height', $(window).height() + 'px') });
 		$(function() {
 			$("#misskey-main-header > .main > nav .misskey").click(function() {
-				$("#misskey-musicCenter").css('height', $(window).height() + 'px')
 				if (musicCenterOpen) {
 					$("#misskey-musicCenter").css('top', '-100%');
 				} else {
@@ -16,9 +18,6 @@ header#misskey-main-header
 			$("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px");
 		});
 		$(window).load(function() { $("body").css("margin-top", $("body > #misskey-main-header").outerHeight()+"px"); });
-	if login
-		div#misskey-musicCenter.musicCenter
-			p.comment= me.comment
 	div.main
 		div.mainContentsContainer
 			if login
