@@ -204,6 +204,8 @@
 				text-align: center;
 
 				> i {
+					position: absolute;
+					left: 50%;
 					color: rgba(0, 0, 0, 0.5);
 				}
 
@@ -216,6 +218,14 @@
 
 					> .post {
 						position: relative;
+
+						&:before {
+							content: "";
+							display: block;
+							width: 2px;
+							height: 100%;
+							background: rgba(0, 0, 0, 0.5);
+						}
 
 						> article {
 							.timeline-replyArticle;
