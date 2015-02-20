@@ -7,6 +7,7 @@ import gm = require('gm');
 import User = require('../../models/user');
 import UserImage = require('../../models/user-image');
 import Post = require('../../models/post');
+import PostImage = require('../../models/post-image');
 import TalkMessage = require('../../models/talk-message');
 import WebTheme = require('../../models/webtheme');
 import config = require('../../config');
@@ -100,16 +101,12 @@ var router = (app: express.Express): void => {
 
 	/* Post */
 	app.get('/img/post/:id',(req: any, res: any) => {
-		Post.find(req.params.id,(post: Post) => {
-			if (post != null) {
-				if (post.isImageAttached) {
-					var imageBuffer = post.image;
-					sendImage(req, res, imageBuffer);
-				} else {
-					res.status(404).send('Image not found.');
-				}
+		PostImage.find(req.params.id,(postImage: PostImage) => {
+			if (postImage != null) {
+				var imageBuffer = postImage.image;
+				sendImage(req, res, imageBuffer);
 			} else {
-				res.status(404).send('Post not found.');
+				res.status(404).send('Image not found.');
 			}
 		});
 	});

@@ -9,6 +9,7 @@ import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
 import Post = require('../../../models/post');
+import PostImage = require('../../../models/post-image');
 import PostMention = require('../../../models/post-mention');
 
 var authorize = require('../../auth');
@@ -37,7 +38,12 @@ var postCreate = (req: any, res: APIResponse) => {
 }
 
 function create(req: any, res: APIResponse, appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) {
-	Post.create(appId, irtpi, image, isImageAttached, text, userId, null,(post: Post) => {
+	Post.create(appId, irtpi, isImageAttached, text, userId, null,(post: Post) => {
+		// Save image
+		if (isImageAttached) {
+			PostImage.create(post.id, image,(postImage: PostImage) => {});
+		}
+
 		Post.buildResponseObject(post,(obj: any) => {
 			// More talk
 			if (obj.reply != null) {
