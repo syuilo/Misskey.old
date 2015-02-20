@@ -29,7 +29,10 @@ $(function() {
 				result.forEach(function(user) {
 					$result.find('ol').append(
 						$('<li>').append(
-							$('<a>').attr('href', 'https://misskey.xyz/' + user.screenName).append(
+							$('<a>').attr({
+								'href': 'https://misskey.xyz/' + user.screenName,
+								'title': user.comment,
+							}).append(
 								$('<img class="icon" alt="icon">').attr('src', 'https://misskey.xyz/img/icon/' + user.screenName)
 							).append(
 								$('<span class="name">').text(user.name)

@@ -6,7 +6,6 @@ div.timeline
 						style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 						data-id= post.id
 						data-user-id= post.user.id
-						data-user-comment= post.user.comment
 						data-user-color= post.user.color
 						data-is-reply!= post.isReply.toString(),
 						data-is-talk!= (post.moreTalk != null).toString(),
@@ -21,7 +20,7 @@ div.timeline
 								each talkPost in post.moreTalk
 									li.post
 										article
-											a.iconAnchor(href=url + '/' + talkPost.user.screenName + '/talk?noheader=true')
+											a.iconAnchor(href= url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 												img.icon(src=url + '/img/icon/' + talkPost.user.screenName, alt='icon')
 											header
 												h2
@@ -35,7 +34,7 @@ div.timeline
 					if post.isRepostToPost
 						div.repostInformation
 							p.info
-								a.iconAnchor(href=url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
+								a.iconAnchor(href=url + '/' + post.repostedByUser.screenName + '/talk?noheader=true', title= post.repostedByUser.comment != null ? post.repostedByUser.comment : '@' + post.repostedByUser.screenName)
 									img.icon(src=url + '/img/icon/' + post.repostedByUser.screenName, alt='icon')
 								i.fa.fa-retweet
 								a.name(href=url + '/' + post.repostedByUser.screenName, target='_blank')= post.repostedByUser.name
@@ -43,7 +42,7 @@ div.timeline
 					if post.isReply
 						div.replyTo
 							article
-								a.iconAnchor(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true')
+								a.iconAnchor(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true', title= post.reply.user.comment != null ? post.reply.user.comment : '@' + post.reply.user.screenName)
 									img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
 								header
 									h2
@@ -55,7 +54,7 @@ div.timeline
 									if post.reply.isImageAttached
 										img.image(src=url + '/img/post/' + post.reply.id, alt='image')
 					article
-						a.iconAnchor(href=url + '/' + post.user.screenName + '/talk?noheader=true')
+						a.iconAnchor(href=url + '/' + post.user.screenName + '/talk?noheader=true', title= post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
 							img.icon(src=url + '/img/icon/' + post.user.screenName, alt='icon')
 						header
 							h2

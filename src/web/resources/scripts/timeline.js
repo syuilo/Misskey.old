@@ -6,7 +6,6 @@ TIMELINE.generatePostElement = function(post) {
 		title: post.createdAt + '&#x0A;via ' + post.app.name,
 		'data-id': post.id,
 		'data-user-id': post.userId,
-		'data-user-comment': post.user.comment,
 		'data-user-color': post.user.color,
 		'data-is-reply': post.isReply.toString(),
 		'data-is-talk': (post.moreTalk != null).toString(),
@@ -41,7 +40,9 @@ TIMELINE.generatePostElement = function(post) {
 
 		function generateInfo() {
 			return $('<p class="info">')
-			.append($('<a class="iconAnchor">').attr('href', conf.url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
+			.append($('<a class="iconAnchor">')
+				.attr('href', conf.url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
+				.attr('title', post.repostedByUser.comment != null ? post.repostedByUser.comment ? '@' + post.repostedByUser.screenName)
 				.append(
 					$('<img class="icon" alt="icon">').attr('src', conf.url + '/img/icon/' + post.repostedByUser.screenName)))
 			.append($('<i class="fa fa-retweet">'))
@@ -65,6 +66,7 @@ TIMELINE.generatePostElement = function(post) {
 		function generateIcon() {
 			return $('<a class="iconAnchor">')
 			.attr('href', conf.url + '/' + post.user.screenName + '/talk?noheader=true')
+			.attr('title', post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
 			.append(
 			$('<img class="icon" alt="icon">')
 			.attr('src', conf.url + '/img/icon/' + post.user.screenName)
