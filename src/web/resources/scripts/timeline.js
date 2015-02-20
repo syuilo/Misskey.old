@@ -42,7 +42,7 @@ TIMELINE.generatePostElement = function(post) {
 			return $('<p class="info">')
 			.append($('<a class="iconAnchor">')
 				.attr('href', conf.url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
-				.attr('title', post.repostedByUser.comment != null ? post.repostedByUser.comment ? '@' + post.repostedByUser.screenName)
+				.attr('title', post.repostedByUser.comment != null ? post.repostedByUser.comment : '@' + post.repostedByUser.screenName)
 				.append(
 					$('<img class="icon" alt="icon">').attr('src', conf.url + '/img/icon/' + post.repostedByUser.screenName)))
 			.append($('<i class="fa fa-retweet">'))
