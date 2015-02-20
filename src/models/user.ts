@@ -63,7 +63,12 @@ class User {
 	public static create(screenName: string, password: string, tutorial: number, name: string, callback: (user: User) => void): void {
 		db.query('insert into users (screen_name, password, tutorial, name) values (?, ?, ?, ?)',
 			[screenName, password, tutorial, name],
-			(err: any, users: any[]) => callback(new User(users[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				User.find(info.insertId,(user: User) => {
+					callback(user);
+				});
+			});
 	}
 
 	public static find(id: number, callback: (user: User) => void): void {
