@@ -13,8 +13,8 @@ $(function() {
 
 	$("#misskey-main-header .search input").keyup(function() {
 		var $result = $("#misskey-main-header .search .result");
-		$result.empty();
-		if ($(this).val() == null) {
+		if ($(this).val() == '') {
+			$result.empty();
 			return;
 		}
 		$.ajax('https://api.misskey.xyz/search/user', {
