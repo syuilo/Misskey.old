@@ -35,50 +35,76 @@ var postCreate = (req: any, res: APIResponse) => {
 	});
 }
 
-var create = (req: any, res: APIResponse, appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
-	Post.create(appId, irtpi, image, isImageAttached, text, userId,null, (post: Post) => {
+function create(req: any, res: APIResponse, appId: number, irtpi: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) {
+	Post.create(appId, irtpi, image, isImageAttached, text, userId, null,(post: Post) => {
 		Post.buildResponseObject(post,(obj: any) => {
-			// Sent response
-			res.apiRender(obj);
-
-			/* Publish post event */
-			var streamObj = JSON.stringify({
-				type: 'post',
-				value: obj
-			});
-			
-			// Me
-			Streamer.publish('userStream:' + userId, streamObj);
-
-			// Followers
-			UserFollowing.findByFolloweeId(userId,(userFollowings: UserFollowing[]) => {
-				if (userFollowings != null) {
-					userFollowings.forEach((userFollowing: UserFollowing) => {
-						Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
-					});
-				}
-			});
-
-			// Mentions
-			var mentions = post.text.match(/@[a-zA-Z0-9_]+/g);
-			if (mentions != null) {
-				mentions.forEach((mentionSn: string) => {
-					mentionSn = mentionSn.replace('@', '');
-					User.findByScreenName(mentionSn,(replyUser: User) => {
-						if (replyUser != null) {
-							PostMention.create(post.id, replyUser.id,(createdMention: PostMention) => {
-								var streamMentionObj = JSON.stringify({
-									type: 'reply',
-									value: obj
-								});
-								Streamer.publish('userStream:' + replyUser.id, streamMentionObj);
-							});
-						}
-					});
+			// More talk
+			if (obj.reply.isReply) {
+				getMoreTalk(obj.reply,(talk: any[]) => {
+					obj.moreTalk = talk;
+					send(obj);
 				});
+			} else {
+				send(obj);
 			}
 		});
 	});
-};
+
+	function send(obj: any) {
+		// Sent response
+		res.apiRender(obj);
+
+		/* Publish post event */
+		var streamObj = JSON.stringify({
+			type: 'post',
+			value: obj
+		});
+			
+		// Me
+		Streamer.publish('userStream:' + userId, streamObj);
+
+		// Followers
+		UserFollowing.findByFolloweeId(userId,(userFollowings: UserFollowing[]) => {
+			if (userFollowings != null) {
+				userFollowings.forEach((userFollowing: UserFollowing) => {
+					Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
+				});
+			}
+		});
+
+		// Mentions
+		var mentions = obj.text.match(/@[a-zA-Z0-9_]+/g);
+		if (mentions != null) {
+			mentions.forEach((mentionSn: string) => {
+				mentionSn = mentionSn.replace('@', '');
+				User.findByScreenName(mentionSn,(replyUser: User) => {
+					if (replyUser != null) {
+						PostMention.create(obj.id, replyUser.id,(createdMention: PostMention) => {
+							var streamMentionObj = JSON.stringify({
+								type: 'reply',
+								value: obj
+							});
+							Streamer.publish('userStream:' + replyUser.id, streamMentionObj);
+						});
+					}
+				});
+			});
+		}
+	}
+}
+
+function getMoreTalk(post: Post, callback: (talk: any[]) => void) {
+	Post.getBeforeTalk(post.inReplyToPostId,(moreTalk: Post[]) => {
+		async.map(moreTalk,(talkPost: any, mapNext: any) => {
+			talkPost.isReply = talkPost.inReplyToPostId != 0 && talkPost.inReplyToPostId != null;
+			User.find(talkPost.userId,(talkPostUser: User) => {
+				talkPost.user = talkPostUser;
+				mapNext(null, talkPost);
+			});
+		},(err: any, moreTalkPosts: any[]) => {
+				callback(moreTalkPosts);
+			});
+	});
+}
 
 module.exports = postCreate;
