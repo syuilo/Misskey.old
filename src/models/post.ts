@@ -154,7 +154,8 @@ class Post {
 				callback([post]);
 			} else {
 				Post.getBeforeTalk(post.inReplyToPostId,(nextPosts: Post[]) => {
-					callback([post].concat(nextPosts));
+					nextPosts.push(post);
+					callback(nextPosts);
 				});
 			}
 		});
