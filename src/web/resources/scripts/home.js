@@ -102,7 +102,7 @@ $(function() {
 		$button.text('Loading...');
 		$.ajax('https://api.misskey.xyz/post/timeline', {
 			type: 'get',
-			data: { max_id: $('#timeline .timeline .posts .post:last-child').attr('data-id') },
+			data: { max_id: $('#timeline .timeline .posts > .post:last-child').attr('data-id') },
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
