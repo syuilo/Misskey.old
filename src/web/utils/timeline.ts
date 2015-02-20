@@ -105,7 +105,24 @@ class Timeline {
 								post.reply = replyPost;
 								User.find(post.reply.userId,(replyUser: User) => {
 									post.reply.user = replyUser;
-									seriesNext(null, null);
+
+									// More talk
+									if (post.reply.isReply) {
+										Post.getBeforeTalk(post.reply.inReplyToPostId,(moreTalk: Post[]) => {
+											async.map(moreTalk,(talkPost: any, mapNext: any) => {
+												talkPost.isReply = talkPost.inReplyToPostId != 0 && talkPost.inReplyToPostId != null;
+												User.find(talkPost.userId,(talkPostUser: User) => {
+													talkPost.user = talkPostUser;
+													mapNext(null, talkPost);
+												});
+											},(err: any, moreTalkPosts: any[]) => {
+													post.moreTalk = moreTalkPosts;
+													seriesNext(null, null);
+											});
+										});
+									} else {
+										seriesNext(null, null);
+									}
 								});
 							});
 						}],

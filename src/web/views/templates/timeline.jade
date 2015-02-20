@@ -12,6 +12,24 @@ div.timeline
 						data-is-reposted!= login ? post.isReposted.toString() : null,
 						data-is-repostpost!= post.isRepostToPost.toString(),
 						data-repost-by-user-id!= post.isRepostToPost ? post.repostedByUser.id : null)
+					if post.moreTalk != null
+						div.moreTalk
+							i.fa.fa-ellipsis-v
+							ol.talk
+								each talkPost in post.moreTalk
+									li.post
+										article
+											a.iconAnchor(href=url + '/' + talkPost.user.screenName + '/talk?noheader=true')
+												img.icon(src=url + '/img/icon/' + talkPost.user.screenName, alt='icon')
+											header
+												h2
+													a(href=url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
+												span.screenName= '@' + talkPost.user.screenName
+												a(href=url + '/' + talkPost.user.screenName + '/post/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
+											div.main
+												p.text!= (talkPost.isReply ? '<a href="' + url + '/post/' + talkPost.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
+												if talkPost.isImageAttached
+													img.image(src=url + '/img/post/' + talkPost.id, alt='image')
 					if post.isRepostToPost
 						div.repostInformation
 							p.info

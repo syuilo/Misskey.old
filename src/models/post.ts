@@ -148,6 +148,23 @@ class Post {
 		});
 	}
 
+	public static getBeforeTalk(id: number, callback: (posts: Post[]) => void): void {
+		Post.find(id,(post: Post) => {
+			if (post.inReplyToPostId == null || post.inReplyToPostId == 0) {
+				callback([post]);
+			} else {
+				Post.getBeforeTalk(post.inReplyToPostId,(nextPosts: Post[]) => {
+					callback([post].concat(nextPosts));
+				});
+			}
+		});
+	}
+
+	public static getAfterTalk(id: number, userId: number, callback: (post: Post) => void): void {
+		db.query("select * from posts where in_reply_to_post_id = ?",
+			[id],
+			(err: any, posts: any[]) => callback(posts[0] != null ? new Post(posts[0]) : null));
+	}
 	public update(callback: () => void): void {
 		db.query('update posts set favorites_count=?, reposts_count=? where id =?',
 			[this.favoritesCount, this.repostsCount, this.id],
