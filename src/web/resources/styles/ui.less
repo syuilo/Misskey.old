@@ -210,7 +210,7 @@ textarea {
 						top: auto;
 						right: 0;
 						z-index: 3;
-						width: 256px;
+						width: 300px;
 						margin: 0;
 						padding: 0;
 						background: #fff;
@@ -228,15 +228,32 @@ textarea {
 									width: 100%;
 									padding: 4px 16px;
 									color: rgba(0, 0, 0, 0.8);
+									transition: none;
 
 									&:hover {
 										color: #fff;
 										background: @themeColor;
+
+										.name {
+											color: #fff;
+										}
+
+										.screenName {
+											color: #fff;
+										}
 									}
 
 									&:active {
 										color: #fff;
 										background: darken(@themeColor, 10%);
+
+										.name {
+											color: #fff;
+										}
+
+										.screenName {
+											color: #fff;
+										}
 									}
 
 									.icon {
@@ -250,6 +267,14 @@ textarea {
 									}
 
 									.name {
+										margin: 0 8px 0 0;
+										font-weight: bold;
+										color: rgba(0, 0, 0, 0.8);
+									}
+
+									.screenName {
+										font-weight: normal;
+										color: rgba(0, 0, 0, 0.5);
 									}
 								}
 							}

@@ -14,6 +14,9 @@ $(function() {
 	$("#misskey-main-header .search input").keyup(function() {
 		var $result = $("#misskey-main-header .search .result");
 		$result.empty();
+		if ($(this).val() == null) {
+			return;
+		}
 		$.ajax('https://api.misskey.xyz/search/user', {
 			type: 'get',
 			data: { 'query': $(this).val() },
@@ -30,6 +33,8 @@ $(function() {
 								$('<img class="icon" alt="icon">').attr('src', 'https://misskey.xyz/img/icon/' + user.screenName)
 							).append(
 								$('<span class="name">').text(user.name)
+							).append(
+								$('<span class="screenName">').text('@' + user.screenName)
 							)
 						)
 					);
