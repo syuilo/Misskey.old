@@ -38,7 +38,7 @@ class Timeline {
 	public static selialyzeTimelineOnject(posts: Post[], req: any, callback: (posts: any[]) => void): void {
 		async.map(posts,(post: any, mapNext: any) => {
 			if (post.repostFromPostId != null) {
-				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
+				Post.find(post.repostFromPostId,(repostFromPost: any) => {
 					var _repostFromPost: any = repostFromPost;
 					_repostFromPost.isRepostToPost = true;
 					User.find(post.userId,(repostedByUser: User) => {
