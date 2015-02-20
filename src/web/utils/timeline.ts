@@ -108,17 +108,9 @@ class Timeline {
 
 									// More talk
 									if (post.reply.isReply) {
-										Post.getBeforeTalk(post.reply.inReplyToPostId,(moreTalk: Post[]) => {
-											async.map(moreTalk,(talkPost: any, mapNext: any) => {
-												talkPost.isReply = talkPost.inReplyToPostId != 0 && talkPost.inReplyToPostId != null;
-												User.find(talkPost.userId,(talkPostUser: User) => {
-													talkPost.user = talkPostUser;
-													mapNext(null, talkPost);
-												});
-											},(err: any, moreTalkPosts: any[]) => {
-													post.moreTalk = moreTalkPosts;
-													seriesNext(null, null);
-											});
+										getMoreTalk(post.reply,(talk: any[]) => {
+											post.moreTalk = talk;
+											seriesNext(null, null);
 										});
 									} else {
 										seriesNext(null, null);
@@ -137,6 +129,20 @@ class Timeline {
 						callback(results);
 					});
 			});
+
+		function getMoreTalk(post: Post, callback: (talk: any[]) => void) {
+			Post.getBeforeTalk(post.inReplyToPostId,(moreTalk: Post[]) => {
+				async.map(moreTalk,(talkPost: any, mapNext: any) => {
+					talkPost.isReply = talkPost.inReplyToPostId != 0 && talkPost.inReplyToPostId != null;
+					User.find(talkPost.userId,(talkPostUser: User) => {
+						talkPost.user = talkPostUser;
+						mapNext(null, talkPost);
+					});
+				},(err: any, moreTalkPosts: any[]) => {
+						callback(moreTalkPosts);
+					});
+			});
+		}
 	}
 
 	public static parseText(text: string): string {
