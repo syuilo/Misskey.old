@@ -35,6 +35,9 @@ header#misskey-main-header
 									i.fa.fa-comments
 									| トーク
 				div.right
+					div.search(role='search')
+						input(type='search', placeholder!='&#xf002;')
+						div.result
 					if login
 						div.account
 							a.screenNameAnchor(href= url + '/' + me.screenName)

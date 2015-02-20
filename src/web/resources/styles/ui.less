@@ -177,6 +177,30 @@ textarea {
 				float: right;
 				height: 3em;
 
+				> .search {
+					> input {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+						cursor: auto;
+						box-sizing: border-box;
+						margin: 4px 0;
+						padding: 6px;
+						font-size: 1em;
+						line-height: ~"calc(3em - 8px)";
+						color: #000;
+						outline: none;
+						border: solid 1px #ddd;
+						border-radius: 0;
+						box-shadow: none;
+						transition: color 0.5s ease, border 0.5s ease, box-shadow 0.1s ease;
+					}
+				}
+
 				> .account {
 					> .screenNameAnchor {
 						display: inline-block;
@@ -190,6 +214,7 @@ textarea {
 						> .screenName {
 							display: inline-block;
 							margin: 0 16px;
+							max-width: 16em;
 							line-height: 3em;
 							font-weight: bold;
 							text-decoration: none;
