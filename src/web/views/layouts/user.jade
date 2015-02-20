@@ -9,7 +9,7 @@ html(lang='ja'
 	head(prefix='og: http://ogp.me/ns#')
 		include ../templates/head
 		meta(name='robots', content='all')
-		meta(name='description', content=user.comment)
+		meta(name='description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(name='keywords', content='Misskey,' + user.screenName)
 		meta(property='og:title', content=user.name)
 		meta(property='og:type', content='article')
@@ -20,7 +20,7 @@ html(lang='ja'
 		meta(property='twitter:card', content='summary')
 		meta(property='twitter:site', content='@syuilo')
 		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
-		meta(property='twitter:description', content=user.comment)
+		meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
 		block title
@@ -49,7 +49,8 @@ html(lang='ja'
 							h1
 								span#name(itemprop='name')= user.name
 								span#screenName(itemprop='alternateName')= '@' + user.screenName
-							p#comment(itemprop='description')= user.comment
+							if user.comment != null
+								p#comment(itemprop='description')= user.comment
 				nav#headerNav(role='navigation')
 					div#headerNavBackground
 					div#headerNavMain
