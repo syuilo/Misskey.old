@@ -1,13 +1,12 @@
 if login
-		div#misskey-musicCenter.musicCenter
-			p.comment= me.comment
+	div#misskey-musicCenter.musicCenter
+		p.comment= me.comment
 
 header#misskey-main-header
 	script.
 		var musicCenterOpen = false;
-		
 		$(function() {
-			$("#misskey-main-header > .main > nav .misskey").click(function() {
+			$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
 				if (musicCenterOpen) {
 					$("#misskey-musicCenter").css('top', '-100%');
 				} else {
