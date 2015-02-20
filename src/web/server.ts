@@ -21,6 +21,7 @@ webServer.disable('x-powered-by');
 webServer.set('view engine', 'jade');
 webServer.set('views', __dirname + '/views');
 //webServer.locals.pretty = '  ';
+webServer.locals.compileDebug = false;
 webServer.use(compress());
 webServer.use(bodyParser.urlencoded({ extended: true }));
 webServer.use(cookieParser(config.cookie_pass));
