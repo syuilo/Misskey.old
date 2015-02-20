@@ -100,9 +100,9 @@ $(function() {
 		$button = $(this);
 		$button.attr('disabled', true);
 		$button.text('Loading...');
-		$.ajax('https://api.misskey.xyz/post/create', {
+		$.ajax('https://api.misskey.xyz/post/timeline', {
 			type: 'get',
-			data: {},
+			data: { max_id: $('#timeline .timeline .posts .post:last-child').attr('data-id') },
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
