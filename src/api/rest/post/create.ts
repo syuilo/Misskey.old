@@ -40,11 +40,15 @@ function create(req: any, res: APIResponse, appId: number, irtpi: number, image:
 	Post.create(appId, irtpi, image, isImageAttached, text, userId, null,(post: Post) => {
 		Post.buildResponseObject(post,(obj: any) => {
 			// More talk
-			if (obj.reply.isReply) {
-				getMoreTalk(obj.reply,(talk: any[]) => {
-					obj.moreTalk = talk;
+			if (obj.reply != null) {
+				if (obj.reply.isReply) {
+					getMoreTalk(obj.reply,(talk: any[]) => {
+						obj.moreTalk = talk;
+						send(obj);
+					});
+				} else {
 					send(obj);
-				});
+				}
 			} else {
 				send(obj);
 			}
