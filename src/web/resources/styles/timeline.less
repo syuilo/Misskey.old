@@ -672,6 +672,10 @@
 	}
 
 	> .loadMore {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: inline-block;
 		margin: 0;
 		padding: 0;
 		width: 100%;
@@ -681,14 +685,20 @@
 		background: #fff;
 		outline: none;
 		border: none;
+		color: rgba(0, 0, 0, 0.7);
 
 		&:hover {
 			background: #eee;
-			color: #1bb3b3;
+			color: @themeColor;
 		}
 
 		&:active {
 			background: #ddd;
+			color: @themeColor;
+		}
+
+		&:disabled {
+			color: rgba(0, 0, 0, 0.2);
 		}
 	}
 }
