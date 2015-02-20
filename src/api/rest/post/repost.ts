@@ -23,6 +23,11 @@ var postRepost = (req: any, res: APIResponse) => {
 				return;
 			}
 
+			if (targetPost.userId == user.id) {
+				res.apiError(400, 'This post is your post!!!');
+				return;
+			}
+
 			if (targetPost.repostFromPostId == null) {
 				repostStep(req, res, app, user, targetPost);
 			} else { // RP‚µ‚æ‚¤‚Æ‚µ‚½Post‚ªRP‚¾‚Á‚½ê‡A–{—ˆ‚ÌPost‚ğRP‚·‚é‚æ‚¤‚É‚·‚é(RP‚ğRP‚µ‚È‚¢‚æ‚¤‚É‚·‚é)
