@@ -28,13 +28,13 @@ class UserImage {
 	}
 
 	public static find(userId: number, callback: (userImage: UserImage) => void): void {
-		db.query("select * from users where user_id = ?",
+		db.query("select * from user_images where user_id = ?",
 			[userId],
 			(err: any, userImages: any[]) => callback(userImages[0] != null ? new UserImage(userImages[0]) : null));
 	}
 
     public update(callback: () => void): void {
-		db.query('update users set icon=?, header=?, wallpaper=? where user_id=?',
+		db.query('update user_images set icon=?, header=?, wallpaper=? where user_id=?',
 			[this.icon, this.header, this.wallpaper, this.userId],
 			callback);
 	}
