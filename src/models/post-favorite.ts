@@ -35,7 +35,7 @@ class PostFavorite {
     }
 
     public static isFavorited(postId: number, userId: number, callback: (favorite: boolean) => void): void {
-        db.query("select exists as exist (select * from post_favorites where post_id = ? and user_id = ?)",
+        db.query("select exists (select * from post_favorites where post_id = ? and user_id = ?) as exist",
             [postId, userId],
             (err: any, postFavorites: any[]) => callback(postFavorites[0].exist == 1 ? true : false));
     }
