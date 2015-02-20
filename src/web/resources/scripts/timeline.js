@@ -8,6 +8,7 @@ TIMELINE.generatePostElement = function(post) {
 		'data-user-id': post.userId,
 		'data-user-comment': post.user.comment,
 		'data-user-color': post.user.color,
+		'data-is-reply': post.isReply.toString(),
 		'data-is-favorited': 'false',
 		'data-is-reposted': 'false',
 		'data-is-repostpost': post.isRepostToPost ? 'true' : 'false',
