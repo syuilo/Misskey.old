@@ -7,7 +7,6 @@ class TalkMessage {
 	appId: number;
 	createdAt: string;
 	id: number;
-	image: Buffer;
 	isImageAttached: boolean;
 	text: string;
 	otherpartyId: number;
@@ -17,7 +16,6 @@ class TalkMessage {
 		this.appId = message.app_id;
 		this.createdAt = message.created_at;
 		this.id = message.id;
-		this.image = message.image;
 		this.isImageAttached = Boolean(message.is_image_attached);
 		this.text = message.text;
 		this.otherpartyId = message.otherparty_id;
@@ -30,10 +28,9 @@ class TalkMessage {
 		otherpartyId: number,
 		text: string,
 		isImageAttached: Boolean,
-		image: Buffer,
 		callback: (talkMessage: TalkMessage) => void): void {
-		db.query('insert into talk_messages (app_id, user_id, otherparty_id, text, is_image_attached, image) values (?, ?, ?, ?, ?, ?)',
-			[appId, userId, otherpartyId, text, isImageAttached, image],
+		db.query('insert into talk_messages (app_id, user_id, otherparty_id, text, is_image_attached) values (?, ?, ?, ?, ?)',
+			[appId, userId, otherpartyId, text, isImageAttached],
 			(err: any, info: any) => {
 				if (err) console.log(err);
 				TalkMessage.find(info.insertId,(talkMessage: TalkMessage) => {

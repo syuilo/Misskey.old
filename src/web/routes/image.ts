@@ -9,6 +9,7 @@ import UserImage = require('../../models/user-image');
 import Post = require('../../models/post');
 import PostImage = require('../../models/post-image');
 import TalkMessage = require('../../models/talk-message');
+import TalkMessageImage = require('../../models/talk-message-image');
 import WebTheme = require('../../models/webtheme');
 import config = require('../../config');
 
@@ -113,16 +114,12 @@ var router = (app: express.Express): void => {
 
 	/* Talk message */
 	app.get('/img/talk-message/:id',(req: any, res: any) => {
-		TalkMessage.find(req.params.id,(talkMessage: TalkMessage) => {
-			if (talkMessage != null) {
-				if (talkMessage.isImageAttached) {
-					var imageBuffer = talkMessage.image;
-					sendImage(req, res, imageBuffer);
-				} else {
-					res.status(404).send('Image not found.');
-				}
+		TalkMessageImage.find(req.params.id,(talkMessageImage: TalkMessageImage) => {
+			if (talkMessageImage != null) {
+				var imageBuffer = talkMessageImage.image;
+				sendImage(req, res, imageBuffer);
 			} else {
-				res.status(404).send('Message not found.');
+				res.status(404).send('Image not found.');
 			}
 		});
 	});

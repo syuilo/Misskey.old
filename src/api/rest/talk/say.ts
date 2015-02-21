@@ -8,6 +8,7 @@ import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
 import TalkMessage = require('../../../models/talk-message');
+import TalkMessageImage = require('../../../models/talk-message-image');
 
 var authorize = require('../../auth');
 
@@ -47,7 +48,12 @@ var talkSay = (req: any, res: APIResponse) => {
 }
 
 var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
-	TalkMessage.create(appId, userId, otherpartyId, text, isImageAttached, image,(talkMessage: TalkMessage) => {
+	TalkMessage.create(appId, userId, otherpartyId, text, isImageAttached,(talkMessage: TalkMessage) => {
+		// Save image
+		if (isImageAttached) {
+			TalkMessageImage.create(talkMessage.id, image,(talkMessageImage: TalkMessageImage) => { });
+		}
+
 		buildResponseObject(talkMessage,(obj: any) => {
 			// Sent response
 			res.apiRender(obj);
