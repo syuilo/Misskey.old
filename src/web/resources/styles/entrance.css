@@ -58,6 +58,11 @@ main {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			cursor: auto;
 			
 			box-sizing: border-box;
 			padding: 8px 16px;
