@@ -41,24 +41,30 @@ function create(req: any, res: APIResponse, appId: number, irtpi: number, image:
 	Post.create(appId, irtpi, isImageAttached, text, userId, null,(post: Post) => {
 		// Save image
 		if (isImageAttached) {
-			PostImage.create(post.id, image,(postImage: PostImage) => {});
+			PostImage.create(post.id, image,(postImage: PostImage) => {
+				sendResponse();
+			});
+		} else {
+			sendResponse();
 		}
 
-		Post.buildResponseObject(post,(obj: any) => {
-			// More talk
-			if (obj.reply != null) {
-				if (obj.reply.isReply) {
-					getMoreTalk(obj.reply,(talk: any[]) => {
-						obj.moreTalk = talk;
+		function sendResponse() {
+			Post.buildResponseObject(post,(obj: any) => {
+				// More talk
+				if (obj.reply != null) {
+					if (obj.reply.isReply) {
+						getMoreTalk(obj.reply,(talk: any[]) => {
+							obj.moreTalk = talk;
+							send(obj);
+						});
+					} else {
 						send(obj);
-					});
+					}
 				} else {
 					send(obj);
 				}
-			} else {
-				send(obj);
-			}
-		});
+			});
+		}
 	});
 
 	function send(obj: any) {
