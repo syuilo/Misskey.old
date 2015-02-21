@@ -2,14 +2,15 @@
 
 import config = require('../config');
 import Post = require('../models/post');
-import PostImage = require('../models/post-image');
+import TalkMessage = require('../models/talk-message');
+import TalkMessageImage = require('../models/talk-message-image');
 
-for (var i = 141213; i < 141350; i++) {
-	Post.find(i,(post: Post) => {
-		if (post != null) {
-			if (post.isImageAttached) {
-				PostImage.create(post.id, post.image,(image: PostImage) => {
-					console.log(post.id);
+for (var i = 1; i < 175; i++) {
+	TalkMessage.find(i,(message: TalkMessage) => {
+		if (message != null) {
+			if (message.isImageAttached) {
+				TalkMessageImage.create(message.id, message.image,(image: TalkMessageImage) => {
+					console.log(message.id);
 				});
 			}
 		}
