@@ -77,12 +77,15 @@ div.timeline
 											i.fa.fa-star
 										a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
 					footer
-						form.replyForm
-							textarea(name='text')= '@' + post.user.screenName + ' '
-							input(name='in_reply_to_post_id', type='hidden', value=post.id)
-							input(type='submit', value='Reply')
-							div.imageAttacher
-								p
-									i.fa.fa-picture-o
-								input(name='image', type='file', accept='image/*')
+						if login
+							form.replyForm
+								textarea(name='text')= '@' + post.user.screenName + ' '
+								input(name='in_reply_to_post_id', type='hidden', value=post.id)
+								input(type='submit', value='Reply')
+								div.imageAttacher
+									p
+										i.fa.fa-picture-o
+									input(name='image', type='file', accept='image/*')
+						else
+							p この投稿に返信するにはログインしてください。
 		button.loadMore(role='button') Read more!

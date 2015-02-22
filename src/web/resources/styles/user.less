@@ -247,6 +247,84 @@ main {
 				}
 			}
 		}
+
+		#content {
+			box-sizing: border-box;
+			padding: 16px 32px;
+			width: 100%;
+			margin: 0 auto;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			#bio {
+				font-size: 1.3em;
+			}
+
+			.usersList {
+				ol {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					li {
+						padding: 16px 0;
+
+						&:after {
+							content: "";
+							display: block;
+							clear: both;
+						}
+
+						a > .icon {
+							float: left;
+							min-width: 54px;
+							min-height: 54px;
+							max-width: 54px;
+							max-height: 54px;
+							margin: 0 12px 4px 0;
+							border-radius: 8px;
+							transition: all 0.1s ease;
+						}
+
+						> h2 {
+							text-align: left;
+							display: inline;
+							margin: 0;
+							padding: 0;
+							font-weight: normal;
+							font-size: 1em;
+
+							> a {
+								color: rgba(0, 0, 0, 0.9);
+								font-weight: bold;
+								text-decoration: none;
+								transition: all 0.1s ease;
+							}
+
+							> .screenName {
+								text-align: left;
+								margin: 0 0 0 8px;
+								color: rgba(0, 0, 0, 0.5);
+							}
+						}
+
+						> .comment {
+							display: block;
+							margin: 0 0 0 0;
+							padding: 0;
+							overflow: hidden;
+							word-wrap: break-word;
+							font-size: 1.1em;
+							color: rgba(0, 0, 0, 0.8);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	> #sideContents {
@@ -255,83 +333,6 @@ main {
 
 		> #timeline > .timeline > .posts > .post {
 			padding: 16px 4px !important;
-		}
-	}
-}
-
-#content {
-	/*border-top: solid 3px @themeColor;*/
-	width: 100%;
-	margin: 0 auto;
-
-	&:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-
-	#bio {
-		font-size: 1.3em;
-	}
-
-	.usersList {
-		ol {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-
-			li {
-				padding: 16px 0;
-
-				&:after {
-					content: "";
-					display: block;
-					clear: both;
-				}
-
-				a > .icon {
-					float: left;
-					min-width: 54px;
-					min-height: 54px;
-					max-width: 54px;
-					max-height: 54px;
-					margin: 0 12px 4px 0;
-					border-radius: 8px;
-					transition: all 0.1s ease;
-				}
-
-				> h2 {
-					text-align: left;
-					display: inline;
-					margin: 0;
-					padding: 0;
-					font-weight: normal;
-					font-size: 1em;
-
-					> a {
-						color: rgba(0, 0, 0, 0.9);
-						font-weight: bold;
-						text-decoration: none;
-						transition: all 0.1s ease;
-					}
-
-					> .screenName {
-						text-align: left;
-						margin: 0 0 0 8px;
-						color: rgba(0, 0, 0, 0.5);
-					}
-				}
-
-				> .comment {
-					display: block;
-					margin: 0 0 0 0;
-					padding: 0;
-					overflow: hidden;
-					word-wrap: break-word;
-					font-size: 1.1em;
-					color: rgba(0, 0, 0, 0.8);
-				}
-			}
 		}
 	}
 }
