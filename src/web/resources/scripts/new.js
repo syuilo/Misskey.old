@@ -76,10 +76,10 @@ $(function() {
 			return false;
 		}
 		if (passwordRetype != password) {
-			$('#passwordRetypeAvailable').before('<p id="passwordRetypeAvailable" class="fail">一致していませんっ</p>');
+			$('#passwordRetype').before('<p id="passwordRetypeAvailable" class="fail">一致していませんっ</p>');
 			return false;
 		}
-		$('#passwordRetypeAvailable').before('<p id="passwordRetypeAvailable" class="done">Okay!</p>');
+		$('#passwordRetype').before('<p id="passwordRetypeAvailable" class="done">Okay!</p>');
 	});
 
 	$('#color').change(function() {
