@@ -46,6 +46,15 @@ $(function() {
 		});
 	});
 
+	$('#name').keyup(function() {
+		$("#nameAvailable").remove();
+		var name = $('#name').val();
+		if (name.length == 0) {
+			return false;
+		}
+		$('#name').before('<p id="nameAvailable" class="done">Great!</p>');
+	});
+
 	$('#password').keyup(function() {
 		$("#passwordAvailable").remove();
 		var password = $('#password').val();
