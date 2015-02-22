@@ -5,6 +5,9 @@ $(function() {
 		$("#screenNameAvailable").remove();
 		var sn = $('#screenName').val();
 
+		if (sn == '') {
+			return false;
+		}
 		if (sn.length < 4) {
 			$('#screenName').before('<p id="screenNameAvailable" class="fail">4文字以上でお願いします</p>');
 			return false;
