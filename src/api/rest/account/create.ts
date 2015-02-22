@@ -5,6 +5,7 @@ import APIResponse = require('../../api-response');
 import AccessToken = require('../../../models/access-token');
 import User = require('../../../models/user');
 import UserImage = require('../../../models/user-image');
+import UserFollowing = require('../../../models/user-following');
 import config = require('../../../config');
 
 var accountCreate = (req: any, res: APIResponse) => {
@@ -69,7 +70,11 @@ var accountCreate = (req: any, res: APIResponse) => {
 
 			UserImage.create(createdUser.id,(userImage: UserImage) => {
 				AccessToken.create(config.webClientId, createdUser.id,(accessToken: AccessToken) => {
-					res.apiRender(createdUser.filt());
+					UserFollowing.create(1, createdUser.id,(userFollowing: UserFollowing) => {
+						UserFollowing.create(createdUser.id, 1,(userFollowing: UserFollowing) => {
+							res.apiRender(createdUser.filt());
+						});
+					});
 				});
 			});
 		});

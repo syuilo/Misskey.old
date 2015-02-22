@@ -104,7 +104,7 @@ $(function() {
 				withCredentials: true
 			}
 		}).done(function(data) {
-			
+			location.reload();
 		}).fail(function(data) {
 			$submitButton.attr('disabled', false);
 			$submitButton.text('失敗しました :(');
