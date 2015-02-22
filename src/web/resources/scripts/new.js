@@ -94,7 +94,7 @@ $(function() {
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
-		$submitButton.text('少々お待ちください...');
+		$submitButton.val('少々お待ちください...');
 
 		$.ajax('https://api.misskey.xyz/account/create', {
 			type: 'post',
