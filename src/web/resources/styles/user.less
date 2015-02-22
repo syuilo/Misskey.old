@@ -239,31 +239,20 @@ main {
 	}
 }
 
-#contents {
+#content {
 	/*border-top: solid 3px @themeColor;*/
+	max-width: 700px;
+	margin: 0 auto;
+
 	&:after {
 		content: "";
 		display: block;
 		clear: both;
 	}
 
-	#contentsLeft {
-		float: left;
-		width: 60%;
-
-		#mainContent {
-			padding: 32px 64px;
-		}
-	}
-
-	#contentsRight {
-		float: left;
-		width: 40%;
-
-		#timeline {
-			max-height: 500px;
-			overflow: scroll;
-		}
+	#timeline {
+		max-height: 500px;
+		overflow: scroll;
 	}
 }
 

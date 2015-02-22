@@ -71,10 +71,5 @@ html(lang='ja'
 									button#followButton.ui-followButton.following フォロー中
 								else
 									button#followButton.ui-followButton.notFollowing フォロー
-			div#contents
-				div#contentsLeft
-					div#mainContent
-						block content
-				div#contentsRight
-					div#timelineContent
-						div#timeline!= timelineHtml
+			div#content
+				block content

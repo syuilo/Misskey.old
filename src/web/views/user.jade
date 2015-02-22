@@ -5,11 +5,24 @@ block title
 
 block content
 	if page == 'home'
+		div#timeline!= timelineHtml
 		div#bio!= content
-	if page == 'followings' || page == 'followers'
+	if page == 'followings'
 		div.usersList
 			ol
-				each user in content
+				each user in followings
+					li
+						a(href= '/' + user.screenName)
+							img.icon(src='/img/icon/' + user.screenName, alt='icon')
+						h2
+							a(href='/' + user.screenName)= user.name
+							span.screenName= '@' + user.screenName
+						if user.comment != null
+							p.comment= user.comment
+	if page == 'followers'
+		div.usersList
+			ol
+				each user in followers
 					li
 						a(href= '/' + user.screenName)
 							img.icon(src='/img/icon/' + user.screenName, alt='icon')
