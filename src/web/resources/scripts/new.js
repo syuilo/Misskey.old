@@ -62,10 +62,30 @@ $(function() {
 			return false;
 		}
 		if (password.length < 8) {
-			$('#password').before("<p id='passwordAvailable'>8文字以上でお願いします</p>");
+			$('#password').before('<p id="passwordAvailable" class="fail">8文字以上でお願いします</p>');
 			return false;
 		}
-		$('#password').before("<p id='passwordAvailable'>OK</p>");
+		$('#password').before('<p id="passwordAvailable" class="done">Nice!</p>');
+	});
+
+	$('#passwordRetype').keyup(function() {
+		$("#passwordRetypeAvailable").remove();
+		var password = $('#password').val();
+		var passwordRetype = $('#passwordRetype').val();
+		if (password.length == 0) {
+			return false;
+		}
+		if (password != passwordRetype) {
+			$('#passwordRetypeAvailable').before('<p id="passwordRetypeAvailable" class="fail">一致していませんっ</p>');
+			return false;
+		}
+		$('#passwordRetypeAvailable').before('<p id="passwordRetypeAvailable" class="done">Okay!</p>');
+	});
+
+	$('#color').change(function() {
+		$("#colorAvailable").remove();
+		var color = $('#color').val();
+		$('#color').before('<p id="colorAvailable" class="done">Good!</p>');
 	});
 	
 	$('#form').submit(function(event) {
