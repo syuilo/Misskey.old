@@ -334,6 +334,7 @@ TIMELINE.setEventPost = function($post) {
 		$(event.target).is('textarea') ||
 		$(event.target).is('button') ||
 		$(event.target).is('i') ||
+		$(event.target).is('time') ||
 		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
 			if ($(this).children('footer').css('display') === 'none') {
