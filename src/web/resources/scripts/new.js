@@ -102,7 +102,7 @@ $(function() {
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
-			location.reload();
+			location.href = 'https://misskey.xyz';
 		}).fail(function(data) {
 			$submitButton.attr('disabled', false);
 			$submitButton.text('失敗しました :(');
