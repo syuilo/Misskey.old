@@ -9,23 +9,23 @@ $(function() {
 			return false;
 		}
 		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>”¼Šp‰p”‚Ì‚İ‚Å‚¨Šè‚¢‚µ‚Ü‚·‚Á</p>");
+			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>åŠè§’è‹±æ•°ã®ã¿ã§ãŠé¡˜ã„ã—ã¾ã™ã£</p>");
 			return false;
 		}
 		if (sn.match(/^[0-9]+$/)) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>‚·‚×‚Ä‚Ì•¶š‚ğ”š‚É‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñ</p>");
+			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>ã™ã¹ã¦ã®æ–‡å­—ã‚’æ•°å­—ã«ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“</p>");
 			return false;
 		}
 		if (sn.length < 4) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>4•¶šˆÈã‚Å‚¨Šè‚¢‚µ‚Ü‚·</p>");
+			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>4æ–‡å­—ä»¥ä¸Šã§ãŠé¡˜ã„ã—ã¾ã™</p>");
 			return false;
 		}
 		if (sn.length > 20) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>20•¶šˆÈ“à‚Å‚¨Šè‚¢‚µ‚Ü‚·</p>");
+			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>20æ–‡å­—ä»¥å†…ã§ãŠé¡˜ã„ã—ã¾ã™</p>");
 			return false;
 		}
 
-		$('#screenName').before("<p id='screenNameAvailable'>Šm”F’†...</p>");
+		$('#screenName').before("<p id='screenNameAvailable'>ç¢ºèªä¸­...</p>");
 		$.ajax('https://api.misskey.xyz/screenname_available', {
 			type: 'get',
 			data: { 'screen_name': sn },
@@ -35,10 +35,10 @@ $(function() {
 			}
 		}).done(function(result) {
 			if (result) {
-				$('#screenName').before("<p id='screenNameAvailable'>‚±‚ÌID‚ÍŠù‚Ég—p‚³‚ê‚Ä‚¢‚Ü‚·‚Á</p>");
+				$('#screenName').before("<p id='screenNameAvailable'>ã“ã®IDã¯æ—¢ã«ä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã™ã£</p>");
 				screenNameOk = false;
 			} else {
-				$('#screenName').before("<p id='screenNameAvailable'>‚±‚ÌID‚Íg—p‚Å‚«‚Ü‚·‚ÁI</p>");
+				$('#screenName').before("<p id='screenNameAvailable'>ã“ã®IDã¯ä½¿ç”¨ã§ãã¾ã™ã£ï¼</p>");
 				screenNameOk = true;
 			}
 		}).fail(function() {
@@ -52,7 +52,7 @@ $(function() {
 			return false;
 		}
 		if (password.length < 8) {
-			$('#password').before("<p id='passwordAvailable'>8•¶šˆÈã‚Å‚¨Šè‚¢‚µ‚Ü‚·</p>");
+			$('#password').before("<p id='passwordAvailable'>8æ–‡å­—ä»¥ä¸Šã§ãŠé¡˜ã„ã—ã¾ã™</p>");
 			return false;
 		}
 		$('#password').before("<p id='passwordAvailable'>OK</p>");
@@ -64,7 +64,7 @@ $(function() {
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
-		$submitButton.text('­X‚¨‘Ò‚¿‚­‚¾‚³‚¢...');
+		$submitButton.text('å°‘ã€…ãŠå¾…ã¡ãã ã•ã„...');
 
 		$.ajax('https://api.misskey.xyz/account/create', {
 			type: 'post',
@@ -77,7 +77,7 @@ $(function() {
 			
 		}).fail(function(data) {
 			$submitButton.attr('disabled', false);
-			$submitButton.text('¸”s‚µ‚Ü‚µ‚½ :(');
+			$submitButton.text('å¤±æ•—ã—ã¾ã—ãŸ :(');
 		});
 	});
 });
