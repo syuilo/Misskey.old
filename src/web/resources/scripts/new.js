@@ -5,27 +5,24 @@ $(function() {
 		$("#screenNameAvailable").remove();
 		var sn = $('#screenName').val();
 
-		if (sn.length == 0) {
-			return false;
-		}
-		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>半角英数のみでお願いしますっ</p>");
+		if (sn.length < 4) {
+			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">4文字以上でお願いします</p>');
 			return false;
 		}
 		if (sn.match(/^[0-9]+$/)) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>すべての文字を数字にすることはできません</p>");
+			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">すべての文字を数字にすることはできません</p>');
 			return false;
 		}
-		if (sn.length < 4) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>4文字以上でお願いします</p>");
+		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
+			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">半角英数のみでお願いしますっ</p>');
 			return false;
 		}
 		if (sn.length > 20) {
-			$("#register [name=screen_name]").before("<p id='screenNameAvailable'>20文字以内でお願いします</p>");
+			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">20文字以内でお願いします</p>');
 			return false;
 		}
 
-		$('#screenName').before("<p id='screenNameAvailable'>確認中...</p>");
+		$('#screenName').before('<p id="screenNameAvailable">確認中...</p>');
 		$.ajax('https://api.misskey.xyz/screenname_available', {
 			type: 'get',
 			data: { 'screen_name': sn },
@@ -34,11 +31,12 @@ $(function() {
 				withCredentials: true
 			}
 		}).done(function(result) {
+			$("#screenNameAvailable").remove();
 			if (result) {
-				$('#screenName').before("<p id='screenNameAvailable'>このIDは既に使用されていますっ</p>");
+				$('#screenName').before('<p id="screenNameAvailable" class="fail">このIDは既に使用されていますっ</p>');
 				screenNameOk = false;
 			} else {
-				$('#screenName').before("<p id='screenNameAvailable'>このIDは使用できますっ！</p>");
+				$('#screenName').before('<p id="screenNameAvailable" class="done">このIDは使用できますっ！</p>');
 				screenNameOk = true;
 			}
 		}).fail(function() {
