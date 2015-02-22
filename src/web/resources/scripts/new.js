@@ -98,11 +98,9 @@ $(function() {
 
 		$.ajax('https://api.misskey.xyz/account/create', {
 			type: 'post',
-			data: new FormData($form[0]),
+			data: $form.serialize(),
 			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
+			xhrFields: { withCredentials: true }
 		}).done(function(data) {
 			location.reload();
 		}).fail(function(data) {
