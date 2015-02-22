@@ -72,10 +72,10 @@ $(function() {
 		$("#passwordRetypeAvailable").remove();
 		var password = $('#password').val();
 		var passwordRetype = $('#passwordRetype').val();
-		if (password.length == 0) {
+		if (passwordRetype.length == 0) {
 			return false;
 		}
-		if (password != passwordRetype) {
+		if (passwordRetype != password) {
 			$('#passwordRetypeAvailable').before('<p id="passwordRetypeAvailable" class="fail">一致していませんっ</p>');
 			return false;
 		}
