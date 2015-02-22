@@ -38,5 +38,6 @@ function router(app: express.Express): void {
 	app.get(/\/post\/timeline(\..+)?$/, require('./rest/post/timeline'));
 	app.post(/\/talk\/say(\..+)?$/, require('./rest/talk/say'));
 	app.get(/\/search\/user(\..+)?$/, require('./rest/search/user'));
+	app.get(/\/screenname_available(\..+)?$/, require('./rest/screenname_available'));
 	app.all(/\/teapot\/coffee(\..+)?$/, require('./rest/teapot/coffee'));
 };
