@@ -22,6 +22,7 @@ function router(app: express.Express): void {
 	});
 
 	app.get(/\/sauth\/get_request_token(\..+)?$/, require('./rest/sauth/get_request_token'));
+	app.post(/\/account\/create(\..+)?$/, require('./rest/account/create'));
 	app.get(/\/account\/show(\..+)?$/, require('./rest/account/show'));
 	app.put(/\/account\/update(\..+)?$/, require('./rest/account/update'));
 	app.put(/\/account\/update_icon(\..+)?$/, require('./rest/account/update_icon'));
