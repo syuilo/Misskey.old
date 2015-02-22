@@ -6,19 +6,19 @@ $(function() {
 		var sn = $('#screenName').val();
 
 		if (sn.length < 4) {
-			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">4文字以上でお願いします</p>');
+			$('#screenName').before('<p id="screenNameAvailable" class="fail">4文字以上でお願いします</p>');
 			return false;
 		}
 		if (sn.match(/^[0-9]+$/)) {
-			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">すべての文字を数字にすることはできません</p>');
+			$('#screenName').before('<p id="screenNameAvailable" class="fail">すべての文字を数字にすることはできません</p>');
 			return false;
 		}
 		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">半角英数のみでお願いしますっ</p>');
+			$('#screenName').before('<p id="screenNameAvailable" class="fail">半角英数のみでお願いしますっ</p>');
 			return false;
 		}
 		if (sn.length > 20) {
-			$("#register [name=screen_name]").before('<p id="screenNameAvailable" class="fail">20文字以内でお願いします</p>');
+			$('#screenName').before('<p id="screenNameAvailable" class="fail">20文字以内でお願いします</p>');
 			return false;
 		}
 
