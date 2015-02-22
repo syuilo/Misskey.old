@@ -9,7 +9,7 @@ html, body {
 
 html {
 	color: #000;
-	background-color: #fff;
+	background-color: #eee;
 	background-image: url(@wallpaperUrl);
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -27,158 +27,168 @@ main {
 	background: #fff;
 	box-shadow: 1px 0 4px rgba(0, 0, 0, 0.5);
 
-	> header {
+	&:after {
+		content: "";
 		display: block;
-		position: relative;
-		width: 100%;
-		margin: 0;
-		padding: 0;
+		clear: both;
+	}
 
-		> #headerMain {
+	> #mainContents {
+		float: left;
+		width: ~"calc(100% - 400px)";
+
+		> header {
+			display: block;
 			position: relative;
 			width: 100%;
-			height: 350px;
-			// Background Image
-			background-image: url(@headerImageUrl);
-			background-repeat: no-repeat;
-			background-position: center center;
-			background-size: cover;
+			margin: 0;
+			padding: 0;
 
-			> #headerUserMenu {
-				position: absolute;
-				top: 0;
-				right: 0;
-				padding: 16px;
+			> #headerMain {
+				position: relative;
+				width: 100%;
+				height: 350px;
+				// Background Image
+				background-image: url(@headerImageUrl);
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: cover;
 
-				> ul {
+				> #headerUserMenu {
+					position: absolute;
+					top: 0;
+					right: 0;
+					padding: 16px;
+
+					> ul {
+						margin: 0;
+						padding: 0;
+						list-style: none;
+
+						li {
+							display: inline-block;
+							color: #fff;
+
+							a {
+								display: inline-block;
+								color: #fff;
+							}
+
+							button {
+								-webkit-appearance: none;
+								-moz-appearance: none;
+								appearance: none;
+								display: inline-block;
+								padding: 0;
+								background: transparent;
+								border: none;
+								outline: none;
+								cursor: pointer;
+								color: #fff;
+							}
+
+							i {
+								padding: 8px 16px;
+								font-size: 2em;
+								color: #fff;
+								text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+								&:hover {
+									color: @themeColor;
+								}
+							}
+						}
+					}
+				}
+
+				> #headerUserArea {
+					display: block;
+					box-sizing: border-box;
+					position: relative;
+					width: 300px;
+					height: 100%;
+					overflow: hidden;
 					margin: 0;
-					padding: 0;
-					list-style: none;
+					padding: 16px 8px;
+					text-align: center;
+					color: #fff;
+					text-shadow: 0 0 16px rgba(0,0,0,0.7);
+					box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
 
-					li {
-						display: inline-block;
-						color: #fff;
+					> #headerUserAreaBackground {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 1200px;
+						height: 350px;
+						background-image: url(@headerBlurImageUrl);
+						background-repeat: no-repeat;
+						background-position: center center;
+						background-size: cover;
+					}
 
-						a {
-							display: inline-block;
-							color: #fff;
-						}
+					> #headerUserAreaMain {
+						position: relative;
 
-						button {
-							-webkit-appearance: none;
-							-moz-appearance: none;
-							appearance: none;
-							display: inline-block;
+						#icon {
+							display: block;
+							width: 160px;
+							height: 160px;
+							max-width: 160px;
+							max-height: 160px;
+							margin: 0 auto;
 							padding: 0;
-							background: transparent;
-							border: none;
-							outline: none;
-							cursor: pointer;
-							color: #fff;
-						}
-
-						i {
-							padding: 8px 16px;
-							font-size: 2em;
-							color: #fff;
-							text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+							border-radius: 80px;
+							transition: all .2s ease;
 
 							&:hover {
-								color: @themeColor;
+								border-radius: 0;
+								filter: saturate(200%);
+								-webkit-filter: saturate(200%);
+								-moz-filter: saturate(200%);
+								-o-filter: saturate(200%);
+								-ms-filter: saturate(200%);
+								transform: scale(1.2) rotateZ(10deg);
+							}
+						}
+
+						h1 {
+							margin: 8px 0;
+							padding: 0;
+							font-size: 1em;
+							font-weight: normal;
+							color: #fff;
+							text-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+
+							#name {
+								display: block;
+								font-size: 2em;
+								color: #fff;
+							}
+
+							#screenName {
+								display: block;
+								margin: 0 4px;
+								font-size: 0.8em;
+								color: rgba(255, 255, 255, 0.7);
 							}
 						}
 					}
 				}
 			}
 
-			> #headerUserArea {
+			> nav {
 				display: block;
 				box-sizing: border-box;
 				position: relative;
-				width: 300px;
-				height: 100%;
-				overflow: hidden;
+				width: 100%;
 				margin: 0;
-				padding: 16px 8px;
-				text-align: center;
-				color: #fff;
-				text-shadow: 0 0 16px rgba(0,0,0,0.7);
-				box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+				padding: 0;
+				background: #fff;
+				box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
 
-				> #headerUserAreaBackground {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 1000px;
-					height: 350px;
-					background-image: url(@headerBlurImageUrl);
-					background-repeat: no-repeat;
-					background-position: center center;
-					background-size: cover;
-				}
-
-				> #headerUserAreaMain {
-					position: relative;
-
-					#icon {
-						display: block;
-						width: 160px;
-						height: 160px;
-						max-width: 160px;
-						max-height: 160px;
-						margin: 0 auto;
-						padding: 0;
-						border-radius: 80px;
-						transition: all .2s ease;
-
-						&:hover {
-							border-radius: 0;
-							filter: saturate(200%);
-							-webkit-filter: saturate(200%);
-							-moz-filter: saturate(200%);
-							-o-filter: saturate(200%);
-							-ms-filter: saturate(200%);
-							transform: scale(1.2) rotateZ(10deg);
-						}
-					}
-
-					h1 {
-						margin: 8px 0;
-						padding: 0;
-						font-size: 1em;
-						font-weight: normal;
-						color: #fff;
-						text-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
-
-						#name {
-							display: block;
-							font-size: 2em;
-							color: #fff;
-						}
-
-						#screenName {
-							display: block;
-							margin: 0 4px;
-							font-size: 0.8em;
-							color: rgba(255, 255, 255, 0.7);
-						}
-					}
-				}
-			}
-		}
-
-		> nav {
-			display: block;
-			box-sizing: border-box;
-			position: relative;
-			width: 100%;
-			margin: 0;
-			padding: 0;
-			background: #fff;
-			box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
-
-			> #headerNavBackground {
-				/*
+				> #headerNavBackground {
+					/*
 				position: absolute;
 				bottom: 0;
 				left: 0;
@@ -190,69 +200,70 @@ main {
 				background-size: cover;
 				clip: rect(400px, 1000px, 1000px, 0px);
 				*/
-			}
+				}
 
-			> #headerNavMain {
-				position: relative;
+				> #headerNavMain {
+					position: relative;
 
-				table {
-					padding: 6px 64px;
+					table {
+						padding: 6px 64px;
 
-					tr {
-						th, td {
-							min-width: 5em;
-							padding: 0;
-							margin: 0;
-						}
+						tr {
+							th, td {
+								min-width: 5em;
+								padding: 0;
+								margin: 0;
+							}
 
-						th {
-							text-align: left;
-							font-size: 0.8em;
-							font-weight: normal;
-							color: rgba(0, 0, 0, 0.5);
-						}
+							th {
+								text-align: left;
+								font-size: 0.8em;
+								font-weight: normal;
+								color: rgba(0, 0, 0, 0.5);
+							}
 
-						td {
-							font-size: 1.5em;
+							td {
+								font-size: 1.5em;
+							}
 						}
 					}
-				}
 
-				> #friendStatus {
-					position: absolute;
-					top: 0;
-					right: 0;
-					margin: 0;
-					padding: 12px 33px;
-					color: rgba(0, 0, 0, 0.7);
-				}
+					> #friendStatus {
+						position: absolute;
+						top: 0;
+						right: 0;
+						margin: 0;
+						padding: 12px 33px;
+						color: rgba(0, 0, 0, 0.7);
+					}
 
-				> #followButton {
-					display: block;
-					position: absolute;
-					bottom: 100%;
-					right: 0;
-					margin: 16px;
+					> #followButton {
+						display: block;
+						position: absolute;
+						bottom: 100%;
+						right: 0;
+						margin: 16px;
+					}
 				}
 			}
 		}
+	}
+
+	> #sideContents {
+		float: left;
+		width: 400px;
 	}
 }
 
 #content {
 	/*border-top: solid 3px @themeColor;*/
-	max-width: 700px;
+	width: 100%;
 	margin: 0 auto;
 
 	&:after {
 		content: "";
 		display: block;
 		clear: both;
-	}
-
-	#timeline {
-		max-height: 500px;
-		overflow: scroll;
 	}
 }
 

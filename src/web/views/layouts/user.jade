@@ -35,41 +35,44 @@ html(lang='ja'
 		include ../templates/header
 		
 		main(role='main')
-			header(role='banner')
-				div#headerMain
-					div#headerUserMenu
-						ul
-							li: a(href='/' + user.screenName + '/talk', title='このユーザーとトーク'): i.fa.fa-comments
-							li: button#sendNewReplyButton(title='このユーザーになんか言う'): i.fa.fa-pencil-square-o
-					div#headerUserArea
-						div#headerUserAreaBackground
-						div#headerUserAreaMain
-							a#iconAnchor
-								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
-							h1
-								span#name(itemprop='name')= user.name
-								span#screenName(itemprop='alternateName')= '@' + user.screenName
-							if user.comment != null
-								p#comment(itemprop='description')= user.comment
-				nav#headerNav(role='navigation')
-					div#headerNavBackground
-					div#headerNavMain
-						table
-							tr
-								th 投稿
-								th フォロー
-								th フォロワー
-							tr
-								td: a(href='/' + user.screenName)= postsCount
-								td: a(href='/' + user.screenName + '/followings')= followingsCount
-								td: a(href='/' + user.screenName + '/followers')= followersCount
-						if login
-							if me.id != user.id
-								if isFollowMe
-									p#friendStatus フォローされています
-								if isFollowing
-									button#followButton.ui-followButton.following フォロー中
-								else
-									button#followButton.ui-followButton.notFollowing フォロー
-			div#content
-				block content
+			div#mainContents
+				header(role='banner')
+					div#headerMain
+						div#headerUserMenu
+							ul
+								li: a(href='/' + user.screenName + '/talk', title='このユーザーとトーク'): i.fa.fa-comments
+								li: button#sendNewReplyButton(title='このユーザーになんか言う'): i.fa.fa-pencil-square-o
+						div#headerUserArea
+							div#headerUserAreaBackground
+							div#headerUserAreaMain
+								a#iconAnchor
+									img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
+								h1
+									span#name(itemprop='name')= user.name
+									span#screenName(itemprop='alternateName')= '@' + user.screenName
+								if user.comment != null
+									p#comment(itemprop='description')= user.comment
+					nav#headerNav(role='navigation')
+						div#headerNavBackground
+						div#headerNavMain
+							table
+								tr
+									th 投稿
+									th フォロー
+									th フォロワー
+								tr
+									td: a(href='/' + user.screenName)= postsCount
+									td: a(href='/' + user.screenName + '/followings')= followingsCount
+									td: a(href='/' + user.screenName + '/followers')= followersCount
+							if login
+								if me.id != user.id
+									if isFollowMe
+										p#friendStatus フォローされています
+									if isFollowing
+										button#followButton.ui-followButton.following フォロー中
+									else
+										button#followButton.ui-followButton.notFollowing フォロー
+				div#content
+					block content
+			div#sideContents
+				div#timeline!= timelineHtml

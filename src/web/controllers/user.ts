@@ -34,15 +34,11 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 			});
 		},
 		(callback: any) => {
-			if (content == 'home') {
-				Post.findByUserId(req.rootUser.id, 30, null, null,(posts: Post[]) => {
-					Timeline.generateHtml(posts, req,(timelineHtml: string) => {
-						callback(null, timelineHtml);
-					});
+			Post.findByUserId(req.rootUser.id, 30, null, null,(posts: Post[]) => {
+				Timeline.generateHtml(posts, req,(timelineHtml: string) => {
+					callback(null, timelineHtml);
 				});
-			} else {
-				callback(null, null);
-			}
+			});
 		},
 		(callback: any) => {
 			if (req.login) {
