@@ -61,7 +61,11 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 		(callback: any) => {
 			switch (content) {
 				case 'home':
-					callback(null, marked(req.rootUser.bio));
+					if (req.rootUser.bio != null) {
+						callback(null, marked(req.rootUser.bio));
+					} else {
+						callback(null, null);
+					}
 					break;
 				case 'followings':
 					UserFollowing.getFollowings(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
