@@ -5,7 +5,7 @@ $(window).load(function() {
 $(function() {
 	function headerSetBlurImage() {
 		var windowWidth = $(window).width();
-		var maxWidth = parseInt($('main').css('max-width'));
+		var maxWidth = $('#headerMain').width();
 		//var headerHeight = $('main > header').outerHeight();
 		var headerNavHeight = $('#headerNav').outerHeight();
 		if (windowWidth < maxWidth) {
