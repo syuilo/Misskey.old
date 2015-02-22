@@ -69,7 +69,7 @@ var router = (app: express.Express): void => {
 	});
 
 	app.post('/login',(req: any, res: any) => {
-		doLogin(app, req, req.body.screen_name, req.body.password,(user: User, webAccessToken: AccessToken) => {
+		doLogin(req, req.body.screen_name, req.body.password,(user: User, webAccessToken: AccessToken) => {
 			res.sendStatus(200);
 		},() => res.sendStatus(400));
 	});

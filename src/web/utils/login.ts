@@ -10,7 +10,7 @@ import config = require('../../config');
 
 export = login;
 
-function login(app: express.Express, req: any, screenName: string, password: string, done: (user: User, webAccessToken: AccessToken) => void, fail: () => void): void {
+function login(req: any, screenName: string, password: string, done: (user: User, webAccessToken: AccessToken) => void, fail: () => void): void {
 	var subscriber = redis.createClient(config.port.redis, 'localhost');
 	if (screenName == '' || password == '') {
 		fail();
