@@ -18,7 +18,7 @@ var accountUpdate = (req: any, res: APIResponse) => {
 		user.location = params.location != null ? params.location : '';
 		user.bio = params.bio != null ? params.bio : '';
 		user.tag = params.tag != null ? params.tag : '';
-		user.color = params.color != null ? params.color.match(/#[a-fA-F0-9]+/) ? params.color : user.color : '';
+		user.color = params.color != null ? params.color.match(/#[a-fA-F0-9]{6}/) ? params.color : user.color : '';
 		user.update(() => {
 			res.apiRender(user.filt());
 		});

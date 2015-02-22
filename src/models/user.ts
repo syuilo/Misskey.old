@@ -54,11 +54,15 @@ class User {
 		this.webThemeId = user.web_theme_id;
 	}
 
-	public static create(screenName: string, password: string, tutorial: number, name: string, callback: (user: User) => void): void {
-		db.query('insert into users (screen_name, password, tutorial, name) values (?, ?, ?, ?)',
-			[screenName, password, tutorial, name],
+	public static create(screenName: string, password: string, name: string, color: string, callback: (user: User) => void): void {
+		db.query('insert into users (screen_name, password, tutorial, name, color) values (?, ?, ?, ?, ?)',
+			[screenName, password, 1, name, color],
 			(err: any, info: any) => {
-				if (err) console.log(err);
+				if (err) {
+					console.log(err);
+					callback(null);
+					return;
+				};
 				User.find(info.insertId,(user: User) => {
 					callback(user);
 				});
