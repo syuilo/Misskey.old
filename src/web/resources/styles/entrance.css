@@ -155,3 +155,8 @@ main {
 			transition: all .2s ease;
 		}
 
+#new {
+	display: inline-block;
+	position: relative;
+	padding: 8px 16px;
+}
