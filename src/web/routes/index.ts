@@ -33,6 +33,10 @@ var router = (app: express.Express): void => {
 		}
 	});
 
+	app.get('/new',(req: any, res: any, next: () => void) => {
+		require('../controllers/new')(req, res);
+	});
+
 	app.get('/i/mention',(req: any, res: any, next: () => void) => {
 		require('../controllers/i-mention')(req, res);
 	});
