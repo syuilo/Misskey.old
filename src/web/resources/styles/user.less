@@ -32,7 +32,8 @@ main {
 	}
 
 	> #mainContents {
-		position: absolute;
+		position: relative;
+		z-index: 1;
 		float: left;
 		width: ~"calc(100% - 400px)";
 		height: 100%;
@@ -331,13 +332,20 @@ main {
 
 	> #sideContents {
 		float: right;
-		width: 392px;
-		margin-top: 8px;
+		width: 400px;
 		background: #fff;
 		box-shadow: 1px 0 2px rgba(0,0,0,0.2);
 
-		> #timeline > .timeline > .posts > .post {
-			padding: 16px 4px !important;
+		> #sideContentsMain {
+			position: fixed;
+			width: 400px;
+			height: 100%;
+			overflow: scroll;
+			background: #fff;
+
+			> #timeline > .timeline > .posts > .post {
+				padding: 16px 4px !important;
+			}
 		}
 	}
 }
