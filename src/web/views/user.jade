@@ -5,28 +5,34 @@ block title
 
 block content
 	if page == 'home'
-		div#bio!= bio
+		section#bioSection
+			h2 自己紹介
+			div#bio!= bio
 	if page == 'followings'
-		div.usersList
-			ol
-				each user in followings
-					li
-						a(href= '/' + user.screenName)
-							img.icon(src='/img/icon/' + user.screenName, alt='icon')
-						h2
-							a(href='/' + user.screenName)= user.name
-							span.screenName= '@' + user.screenName
-						if user.comment != null
-							p.comment= user.comment
+		section#followingsSection
+			h2 Followings
+			div.usersList
+				ol
+					each user in followings
+						li
+							a(href= '/' + user.screenName)
+								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+							h2
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment
 	if page == 'followers'
-		div.usersList
-			ol
-				each user in followers
-					li
-						a(href= '/' + user.screenName)
-							img.icon(src='/img/icon/' + user.screenName, alt='icon')
-						h2
-							a(href='/' + user.screenName)= user.name
-							span.screenName= '@' + user.screenName
-						if user.comment != null
-							p.comment= user.comment
+		section#followersSection
+			h2 Followers
+			div.usersList
+				ol
+					each user in followers
+						li
+							a(href= '/' + user.screenName)
+								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+							h2
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment
