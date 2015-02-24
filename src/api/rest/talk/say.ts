@@ -54,7 +54,7 @@ var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, i
 			TalkMessageImage.create(talkMessage.id, image,(talkMessageImage: TalkMessageImage) => { });
 		}
 
-		buildResponseObject(talkMessage,(obj: any) => {
+		TalkMessage.buildResponseObject(talkMessage,(obj: any) => {
 			// Sent response
 			res.apiRender(obj);
 
@@ -75,24 +75,6 @@ var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, i
 				type: 'meMessage',
 				value: obj
 			}));
-		});
-	});
-};
-
-var buildResponseObject = (talkMessage: TalkMessage, callback: (obj: any) => void): void => {
-	delete talkMessage.image;
-	var obj: any = talkMessage;
-	Application.find(talkMessage.appId,(app: Application) => {
-		delete app.callbackUrl;
-		delete app.consumerKey;
-		delete app.icon;
-		obj.app = app;
-		User.find(talkMessage.userId,(user: User) => {
-			obj.user = user.filt();
-			User.find(obj.otherpartyId,(otherparty: User) => {
-				obj.otherparty = otherparty.filt();
-				callback(obj);
-			});
 		});
 	});
 };

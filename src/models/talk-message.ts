@@ -1,6 +1,8 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import Application = require('./application');
+import User = require('./user');
 export = TalkMessage;
 
 class TalkMessage {
@@ -82,5 +84,21 @@ class TalkMessage {
 		db.query('delete from talk_messages where id = ?',
 			[this.id],
 			callback);
+	}
+
+	public static buildResponseObject(talkMessage: TalkMessage, callback: (obj: any) => void): void {
+		var obj: any = talkMessage;
+		Application.find(talkMessage.appId,(app: Application) => {
+			delete app.callbackUrl;
+			delete app.consumerKey;
+			obj.app = app;
+			User.find(talkMessage.userId,(user: User) => {
+				obj.user = user.filt();
+				User.find(obj.otherpartyId,(otherparty: User) => {
+					obj.otherparty = otherparty.filt();
+					callback(obj);
+				});
+			});
+		});
 	}
 }
