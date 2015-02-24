@@ -38,6 +38,8 @@ function router(app: express.Express): void {
 	app.post(/\/post\/repost(\..+)?$/, require('./rest/post/repost'));
 	app.get(/\/post\/timeline(\..+)?$/, require('./rest/post/timeline'));
 	app.post(/\/talk\/say(\..+)?$/, require('./rest/talk/say'));
+	app.put(/\/talk\/fix(\..+)?$/, require('./rest/talk/fix'));
+	app.delete(/\/talk\/delete(\..+)?$/, require('./rest/talk/delete'));
 	app.get(/\/search\/user(\..+)?$/, require('./rest/search/user'));
 	app.get(/\/screenname_available(\..+)?$/, require('./rest/screenname_available'));
 	app.all(/\/teapot\/coffee(\..+)?$/, require('./rest/teapot/coffee'));
