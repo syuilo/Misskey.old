@@ -77,8 +77,8 @@ class TalkMessage {
 	}
 
 	public update(callback: () => void = () => { }): void {
-		db.query('update talk_messages set text = ? where id =?',
-			[this.text, this.id],
+		db.query('update talk_messages set text=?, is_deleted=? where id=?',
+			[this.text, this.isDeleted, this.id],
 			callback);
 	}
 

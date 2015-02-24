@@ -29,21 +29,24 @@ function talkDelete(req: any, res: APIResponse) {
 				return;
 			}
 
-			talkMessage.destroy(() => {
-				// Sent response
-				res.apiRender({ status: 'success' });
+			talkMessage.isDeleted = true;
+			talkMessage.update(() => {
+				TalkMessage.buildResponseObject(talkMessage,(obj: any) => {
+					// Sent response
+					res.apiRender(obj);
 
-				// Other party
-				Streamer.publish('talkStream:' + talkMessage.otherpartyId + '-' + user.id, JSON.stringify({
-					type: 'otherpartyMessageDelete',
-					value: talkMessage.id
-				}));
+					// Other party
+					Streamer.publish('talkStream:' + talkMessage.otherpartyId + '-' + user.id, JSON.stringify({
+						type: 'otherpartyMessageDelete',
+						value: talkMessage.id
+					}));
 
-				// Me
-				Streamer.publish('talkStream:' + user.id + '-' + talkMessage.otherpartyId, JSON.stringify({
-					type: 'meMessageDelete',
-					value: talkMessage.id
-				}));
+					// Me
+					Streamer.publish('talkStream:' + user.id + '-' + talkMessage.otherpartyId, JSON.stringify({
+						type: 'meMessageDelete',
+						value: talkMessage.id
+					}));
+				});
 			});
 		});
 	});
