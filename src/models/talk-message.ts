@@ -9,6 +9,7 @@ class TalkMessage {
 	appId: number;
 	createdAt: string;
 	id: number;
+	isDeleted: boolean;
 	isImageAttached: boolean;
 	text: string;
 	otherpartyId: number;
@@ -18,6 +19,7 @@ class TalkMessage {
 		this.appId = message.app_id;
 		this.createdAt = message.created_at;
 		this.id = message.id;
+		this.isDeleted = Boolean(message.is_deleted);
 		this.isImageAttached = Boolean(message.is_image_attached);
 		this.text = message.text;
 		this.otherpartyId = message.otherparty_id;

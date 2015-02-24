@@ -30,6 +30,11 @@ function talkFix(req: any, res: APIResponse) {
 				return;
 			}
 
+			if (talkMessage.isDeleted) {
+				res.apiError(400, 'This message has already been deleted.');
+				return;
+			}
+
 			talkMessage.text = text;
 			talkMessage.update(() => {
 				TalkMessage.buildResponseObject(talkMessage,(obj: any) => {
