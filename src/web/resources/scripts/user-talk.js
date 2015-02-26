@@ -1,3 +1,122 @@
+var TALKSTREAM = {};
+
+TALKSTREAM.generateMessageElement = function(message) {
+	return $('<li>')
+		.attr({
+			class: 'message ' + (message.userId == $("html").attr("data-me-id") ? 'me' : 'otherparty'),
+			title: message.createdAt + '&#x0A;via ' + message.app.name,
+			'data-id': message.id,
+			'data-user-id': message.userId,
+			'data-user-color': message.user.color
+		})
+		.append(generateArticle());
+
+	function generateArticle() {
+		return $('<article>')
+		.append(generateIcon())
+		.append(generateContentContainer());
+
+		function generateContentContainer() {
+			return $('<div class="contentContainer">')
+			.append(generateContent())
+			.append(generateTime());
+
+			function generateContent() {
+				return $('<div class="content">')
+				.append($('<p class="text">').html(parseText(message.text)))
+				.append(message.isImageAttached ? generateImage() : null)
+
+				function generateImage() {
+					return $('<img alt="image" class="image">')
+					.attr('src', conf.url + '/img/talk-message/' + message.id);
+				}
+			}
+
+			function generateTime() {
+				return $('<time>')
+				.attr('datetime', message.createdAt)
+				.html(message.createdAt);
+			}
+		}
+
+		function generateIcon() {
+			return $('<a class="iconAnchor">')
+			.attr('href', conf.url + '/' + message.user.screenName)
+			.attr('title', message.user.comment)
+			.append(
+			$('<img class="icon" alt="icon">')
+			.attr('src', conf.url + '/img/icon/' + message.user.screenName)
+			);
+		}
+	}
+
+	function parseText(text) {
+		text = escapeHtml(text);
+		text = parseURL(text);
+		text = parseReply(text);
+		text = parseBold(text);
+		text = parseSmall(text);
+		text = parseNewLine(text);
+		return text;
+
+		function parseURL(text) {
+			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
+				return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
+			});
+		}
+
+		function parseReply(text) {
+			return text.replace(/@([a-zA-Z0-9_]+)/g, function(_, screenName) {
+				return '<a href="' + conf.url + '/' + screenName + '" target="_blank" class="screenName">@' + screenName + '</a>';
+			});
+		}
+
+		function parseBold(text) {
+			return text.replace(/\*\*(.+?)\*\*/g, function(_, word) {
+				return '<b>' + word + '</b>';
+			});
+		}
+
+		function parseSmall(text) {
+			return text.replace(/\(\((.+?)\)\)/g, function(_, word) {
+				return '<small>(' + word + ')</small>';
+			});
+		}
+
+		function parseNewLine(text) {
+			return text.replace(/(\r\n|\r|\n)/g, '<br>');
+		}
+	}
+
+	function escapeHtml(text) {
+		return $('<div>').text(text).html();
+	}
+}
+
+TALKSTREAM.setEvent = function($message) {
+	var id = $message.attr('data-id');
+	var $text = $message.find('.text');
+	$text.dblclick(function() {
+		var text = $text.text();
+		var $textarea = $('<textarea class="text">').text(text);
+		$text.replaceWith($textarea);
+		$textarea.change(function() {
+			var text = $textarea.text();
+			var $textp = $('<p class="text">').text(text);
+			$textarea.replaceWith($textp);
+
+			$.ajax('https://api.misskey.xyz/talk/fix', {
+				type: 'put',
+				data: { message_id: id , text: text},
+				dataType: 'json',
+				xhrFields: {withCredentials: true}
+			}).done(function(data) {
+			}).fail(function(data) {
+			});
+		});
+	});
+}
+
 $(function() {
 	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
 	scroll(0, $('html').outerHeight())
@@ -123,107 +242,13 @@ $(function() {
 	}, 1000);
 });
 
-
-function generateMessageElement(message) {
-	return $('<li>')
-	.attr({
-		class: 'message ' + (message.userId == $("html").attr("data-me-id") ? 'me' : 'otherparty'),
-		title: message.createdAt + '&#x0A;via ' + message.app.name,
-		'data-id': message.id,
-		'data-user-id': message.userId,
-		'data-user-color': message.user.color
-	})
-	.append(generateArticle());
-
-	function generateArticle() {
-		return $('<article>')
-		.append(generateIcon())
-		.append(generateContentContainer());
-
-		function generateContentContainer() {
-			return $('<div class="contentContainer">')
-			.append(generateContent())
-			.append(generateTime());
-
-			function generateContent() {
-				return $('<div class="content">')
-				.append($('<p class="text">').html(parseText(message.text)))
-				.append(message.isImageAttached ? generateImage() : null)
-
-				function generateImage() {
-					return $('<img alt="image" class="image">')
-					.attr('src', conf.url + '/img/talk-message/' + message.id);
-				}
-			}
-
-			function generateTime() {
-				return $('<time>')
-				.attr('datetime', message.createdAt)
-				.html(message.createdAt);
-			}
-		}
-
-		function generateIcon() {
-			return $('<a class="iconAnchor">')
-			.attr('href', conf.url + '/' + message.user.screenName)
-			.attr('title', message.user.comment)
-			.append(
-			$('<img class="icon" alt="icon">')
-			.attr('src', conf.url + '/img/icon/' + message.user.screenName)
-			);
-		}
-	}
-
-	function parseText(text) {
-		text = escapeHtml(text);
-		text = parseURL(text);
-		text = parseReply(text);
-		text = parseBold(text);
-		text = parseSmall(text);
-		text = parseNewLine(text);
-		return text;
-
-		function parseURL(text) {
-			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
-				return '<a href="' + url + '" target="_blank" class="url">' + url + '</a>';
-			});
-		}
-
-		function parseReply(text) {
-			return text.replace(/@([a-zA-Z0-9_]+)/g, function(_, screenName) {
-				return '<a href="' + conf.url + '/' + screenName + '" target="_blank" class="screenName">@' + screenName + '</a>';
-			});
-		}
-
-		function parseBold(text) {
-			return text.replace(/\*\*(.+?)\*\*/g, function(_, word) {
-				return '<b>' + word + '</b>';
-			});
-		}
-
-		function parseSmall(text) {
-			return text.replace(/\(\((.+?)\)\)/g, function(_, word) {
-				return '<small>(' + word + ')</small>';
-			});
-		}
-
-		function parseNewLine(text) {
-			return text.replace(/(\r\n|\r|\n)/g, '<br>');
-		}
-	}
-
-	function escapeHtml(text) {
-		return $('<div>').text(text).html();
-	}
-}
-
 $(window).load(function() {
 	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
 	scroll(0, document.body.clientHeight)
 });
 
 function appendMessage(message) {
-	var $message = generateMessageElement(message, conf).hide();
+	var $message = TALKSTREAM.generateMessageElement(message).hide();
 	$message.appendTo($('#stream > .messages')).show(200);
 	var animateTimer = setInterval(function() {
 		scroll(0, $('html').outerHeight());
