@@ -30,7 +30,7 @@ function openWindow($content, title, width, height) {
 		<div class=\"ui window\">\
 			<header>\
 				<h1>"+ title + "</h1>\
-				<button class=\"close\"><img src=\"https://misskey.xyz/resources/images/window-close.png\" alt=\"close\"/></button>\
+				<button class=\"close\" title=\"閉じる\"><img src=\"https://misskey.xyz/resources/images/window-close.png\" alt=\"close\"></button>\
 			</header>\
 			<div class=\"content\"></div>\
 		</div>\
