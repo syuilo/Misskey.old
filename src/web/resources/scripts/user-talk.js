@@ -95,8 +95,8 @@ TALKSTREAM.generateMessageElement = function(message) {
 
 TALKSTREAM.setEvent = function($message) {
 	var id = $message.attr('data-id');
-	var $text = $message.find('.text');
-	$text.dblclick(function() {
+	$message.find('.content').dblclick(function() {
+		var $text = $message.find('.text');
 		var text = $text.text();
 		var $textarea = $('<textarea class="text">').text(text);
 		$text.replaceWith($textarea);
