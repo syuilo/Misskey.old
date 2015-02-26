@@ -4,7 +4,8 @@ div.timeline
 			each post in posts
 				li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
 						style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
-						data-id= post.id
+						data-id= post.isRepostToPost ? post.source.id : post.id
+						data-source-id= post.isRepostToPost ? post.id : null
 						data-user-id= post.user.id
 						data-user-color= post.user.color
 						data-is-reply!= post.isReply.toString(),

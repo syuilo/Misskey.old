@@ -42,6 +42,7 @@ class Timeline {
 				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
 					var _repostFromPost: any = repostFromPost;
 					_repostFromPost.isRepostToPost = true;
+					_repostFromPost.source = post;
 					User.find(post.userId,(repostedByUser: User) => {
 						_repostFromPost.repostedByUser = repostedByUser;
 						mapNext(null, _repostFromPost);
