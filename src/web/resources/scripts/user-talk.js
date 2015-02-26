@@ -154,6 +154,14 @@ $(function() {
 		appendMessage(message);
 	});
 
+	socket.on('otherpartyMessageUpdate', function(message) {
+		console.log('otherpartyMessageUpdate', message);
+	});
+
+	socket.on('meMessageUpdate', function(message) {
+		console.log('meMessageUpdate', message);
+	});
+
 	socket.on('type', function(type) {
 		console.log('type', type.text);
 		if ($('#stream #otherpartyTyping')[0]) {

@@ -11,6 +11,7 @@ class TalkMessage {
 	id: number;
 	isDeleted: boolean;
 	isImageAttached: boolean;
+	isModified: boolean;
 	text: string;
 	otherpartyId: number;
 	userId: number;
@@ -21,6 +22,7 @@ class TalkMessage {
 		this.id = message.id;
 		this.isDeleted = Boolean(message.is_deleted);
 		this.isImageAttached = Boolean(message.is_image_attached);
+		this.isModified = Boolean(message.is_modified);
 		this.text = message.text;
 		this.otherpartyId = message.otherparty_id;
 		this.userId = message.user_id;
@@ -77,8 +79,8 @@ class TalkMessage {
 	}
 
 	public update(callback: () => void = () => { }): void {
-		db.query('update talk_messages set text=?, is_deleted=? where id=?',
-			[this.text, this.isDeleted, this.id],
+		db.query('update talk_messages set text=?, is_modified=?, is_deleted=? where id=?',
+			[this.text, this.isModified, this.isDeleted, this.id],
 			callback);
 	}
 
