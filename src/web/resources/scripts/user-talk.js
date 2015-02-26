@@ -113,6 +113,10 @@ TALKSTREAM.setEvent = function($message) {
 			}).fail(function(data) {
 			});
 		});
+		$textarea.blur(function() {
+			var $textp = $('<p class="text">').text(text);
+			$textarea.replaceWith($textp);
+		});
 	});
 }
 
