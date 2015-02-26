@@ -265,3 +265,9 @@ function appendMessage(message) {
 		clearInterval(animateTimer);
 	}, 201);
 }
+
+$(function() {
+	$('.messages .message.me').each(function() {
+		TALKSTREAM.setEvent($(this));
+	});
+});
