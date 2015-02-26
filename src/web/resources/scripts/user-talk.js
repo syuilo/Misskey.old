@@ -7,7 +7,7 @@ $(function() {
 	socket.on('connected', function() {
 		console.log('Connected');
 		socket.json.emit('init', {
-			'otherparty_id': $("html").attr("data-otherpartyId")
+			'otherparty_id': $("html").attr("data-otherparty-id")
 		});
 	});
 
@@ -127,11 +127,11 @@ $(function() {
 function generateMessageElement(message) {
 	return $('<li>')
 	.attr({
-		class: 'message ' + (message.userId == $("html").attr("data-meId") ? 'me' : 'otherparty'),
+		class: 'message ' + (message.userId == $("html").attr("data-me-id") ? 'me' : 'otherparty'),
 		title: message.createdAt + '&#x0A;via ' + message.app.name,
 		'data-id': message.id,
-		'data-userId': message.userId,
-		'data-userColor': message.user.color
+		'data-user-id': message.userId,
+		'data-user-color': message.user.color
 	})
 	.append(generateArticle());
 

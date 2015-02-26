@@ -1,15 +1,11 @@
 doctype html
 
-html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
+html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 	head
 		include templates/head
-		meta(name='description', content='ママに咲いたカーネーション')
-		meta(name='keywords', content='Misskey')
 		title= 'トーク: ' + otherparty.name
 		link(rel='stylesheet', href='/resources/styles/user-talk.css')
-		link(rel='stylesheet', href='/resources/styles/talk.css')
 		script(src=apiUrl + ':1207/socket.io/socket.io.js')
-		script(src='/resources/scripts/talk.js')
 		script(src='/resources/scripts/user-talk.js')
 		
 	body
