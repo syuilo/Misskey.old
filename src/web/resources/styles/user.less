@@ -27,6 +27,7 @@ main {
 	max-width: 1300px;
 	margin: 0 auto;
 	padding: 0;
+	background: #fff;
 
 	&:after {
 		content: "";
@@ -245,17 +246,18 @@ main {
 	}
 
 	#contents {
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
 		#content {
 			box-sizing: border-box;
+			float: left;
 			padding: 16px 32px;
-			width: 100%;
-			margin: 0 auto;
-
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
+			width: ~"calc(100% - 300px)";
+			margin: 0;
 
 			> section {
 				margin: 16px 0;
@@ -333,6 +335,11 @@ main {
 					}
 				}
 			}
+		}
+
+		#sideContents {
+			float: left;
+			width: 300px;
 		}
 	}
 }
