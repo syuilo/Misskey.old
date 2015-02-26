@@ -101,10 +101,9 @@ TALKSTREAM.setEvent = function($message) {
 		var $textarea = $('<textarea class="text">').text(text);
 		$text.replaceWith($textarea);
 		$textarea.change(function() {
-			var text = $textarea.text();
+			var text = $(this).val();
 			var $textp = $('<p class="text">').text(text);
 			$textarea.replaceWith($textp);
-
 			$.ajax('https://api.misskey.xyz/talk/fix', {
 				type: 'put',
 				data: { message_id: id , text: text},
