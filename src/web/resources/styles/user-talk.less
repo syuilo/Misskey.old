@@ -190,7 +190,7 @@ html {
 							top: ~"calc(((1.3em + (8px * 2)) / 2) - 8px)";
 						}
 
-						> .text {
+						> p.text {
 							user-select: text;
 							-moz-user-select: text;
 							-webkit-user-select: text;
@@ -242,6 +242,26 @@ html {
 								font-size: 0.8em;
 								color: rgba(0, 0, 0, 0.6);
 							}
+						}
+
+						> textarea.text {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							user-select: text;
+							-moz-user-select: text;
+							-webkit-user-select: text;
+							-ms-user-select: text;
+							cursor: default;
+							display: block;
+							margin: 0;
+							padding: 0;
+							word-wrap: break-word;
+							font-size: 1.1em;
+							color: #fff;
+							border: none;
+							outline: none;
+							background: rgba(255, 255, 255, 0.1);
 						}
 
 						> .image {
