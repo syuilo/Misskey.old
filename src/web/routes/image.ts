@@ -115,22 +115,22 @@ var router = (app: express.Express): void => {
 	/* Talk message */
 	app.get('/img/talk-message/:id',(req: any, res: any) => {
 		TalkMessageImage.find(req.params.id,(talkMessageImage: TalkMessageImage) => {
-			if (talkMessageImage != null) {
-				TalkMessage.find(talkMessageImage.messageId,(talkMessage: TalkMessage) => {
-					if (!req.login) {
-						res.status(403).send('Go home quickly.');
-						return;
-					}
-					if (req.user.id != talkMessage.userId && req.user.id != talkMessage.otherpartyId) {
-						res.status(403).send('Go home quickly.');
-						return;
-					}
-					var imageBuffer = talkMessageImage.image;
-					sendImage(req, res, imageBuffer);
-				});
-			} else {
+			if (talkMessageImage == null) {
 				res.status(404).send('Image not found.');
+				return;
 			}
+			TalkMessage.find(talkMessageImage.messageId,(talkMessage: TalkMessage) => {
+				if (!req.login) {
+					res.status(403).send('Go home quickly.');
+					return;
+				}
+				if (req.me.id != talkMessage.userId && req.me.id != talkMessage.otherpartyId) {
+					res.status(403).send('Go home quickly.');
+					return;
+				}
+				var imageBuffer = talkMessageImage.image;
+				sendImage(req, res, imageBuffer);
+			});
 		});
 	});
 
