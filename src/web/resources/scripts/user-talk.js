@@ -99,6 +99,10 @@ TALKSTREAM.setEvent = function($message) {
 		var $text = $message.find('.text');
 		var text = $text.text();
 		var $textarea = $('<textarea class="text">').text(text);
+		$textarea.css({
+			width: $text.outerWidth() + 'px',
+			height: $text.outerHeight() + 'px'
+		});
 		$text.replaceWith($textarea);
 		$textarea.focus();
 		$textarea.change(function() {
