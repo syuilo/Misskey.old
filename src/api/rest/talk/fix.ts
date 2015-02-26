@@ -30,6 +30,11 @@ function talkFix(req: any, res: APIResponse) {
 				return;
 			}
 
+			if (talkMessage.userId != user.id) {
+				res.apiError(400, 'Message that you have sent only can not be modified.');
+				return;
+			}
+
 			if (talkMessage.isDeleted) {
 				res.apiError(400, 'This message has already been deleted.');
 				return;
