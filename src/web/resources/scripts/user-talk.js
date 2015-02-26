@@ -106,9 +106,9 @@ TALKSTREAM.setEvent = function($message) {
 			$textarea.replaceWith($textp);
 			$.ajax('https://api.misskey.xyz/talk/fix', {
 				type: 'put',
-				data: { message_id: id , text: text},
+				data: { message_id: id, text: text },
 				dataType: 'json',
-				xhrFields: {withCredentials: true}
+				xhrFields: { withCredentials: true }
 			}).done(function(data) {
 			}).fail(function(data) {
 			});
@@ -159,10 +159,18 @@ $(function() {
 
 	socket.on('otherpartyMessageUpdate', function(message) {
 		console.log('otherpartyMessageUpdate', message);
+		var $message = $('#stream > .messages').find('.message[data-id=' + message.id + ']');
+		if ($message != null) {
+			$message.find('.text').text(message.text);
+		}
 	});
 
 	socket.on('meMessageUpdate', function(message) {
 		console.log('meMessageUpdate', message);
+		var $message = $('#stream > .messages').find('.message[data-id=' + message.id + ']');
+		if ($message != null) {
+			$message.find('.text').text(message.text);
+		}
 	});
 
 	socket.on('type', function(type) {
