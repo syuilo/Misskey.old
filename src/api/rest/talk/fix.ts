@@ -41,6 +41,7 @@ function talkFix(req: any, res: APIResponse) {
 			}
 
 			talkMessage.text = text;
+			talkMessage.isModified = true;
 			talkMessage.update(() => {
 				TalkMessage.buildResponseObject(talkMessage,(obj: any) => {
 					// Sent response
