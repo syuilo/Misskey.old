@@ -9,7 +9,7 @@ html, body {
 
 html {
 	color: #000;
-	background-color: #eee;
+	background-color: #fff;
 	/*
 	background-image: url(@wallpaperUrl);
 	background-attachment: fixed;
@@ -246,6 +246,10 @@ main {
 	}
 
 	#contents {
+		width: 100%;
+		max-width: 1100px;
+		margin: 0 auto;
+
 		&:after {
 			content: "";
 			display: block;
@@ -344,6 +348,9 @@ main {
 			width: 380px;
 
 			#timeline {
+				max-height: 600px;
+				overflow: scroll;
+
 				.timeline > .posts > .post {
 					padding: 8px 0 !important;
 				}
