@@ -131,7 +131,6 @@ function generateMessageElement(message) {
 		title: message.createdAt + '&#x0A;via ' + message.app.name,
 		'data-id': message.id,
 		'data-userId': message.userId,
-		'data-userComment': message.user.comment,
 		'data-userColor': message.user.color
 	})
 	.append(generateArticle());
@@ -165,8 +164,9 @@ function generateMessageElement(message) {
 		}
 
 		function generateIcon() {
-			return $('<a>')
+			return $('<a class="iconAnchor">')
 			.attr('href', conf.url + '/' + message.user.screenName)
+			.attr('title', message.user.comment)
 			.append(
 			$('<img class="icon" alt="icon">')
 			.attr('src', conf.url + '/img/icon/' + message.user.screenName)

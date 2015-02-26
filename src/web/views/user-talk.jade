@@ -30,10 +30,9 @@ html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
 											title!= '#{message.createdAt}&#x0A;via #{message.app.name}'
 											data-id= message.id
 											data-userId= message.user.id
-											data-userComment= message.user.comment
 											data-userColor= message.user.color)
 										article
-											a(href=url + '/' + message.user.screenName)
+											a.iconAnchor(href= url + '/' + message.user.screenName, title= message.user.comment)
 												img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
 											div.contentContainer
 												div.content
