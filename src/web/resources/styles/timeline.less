@@ -240,6 +240,20 @@
 							.timeline-replyArticle;
 						}
 					}
+
+						> .post[data-user-verified='true'] {
+							> article > header > h2 > a {
+								&:before {
+									content: '';
+									display: inline-block;
+									vertical-align: text-bottom;
+									width: 16px;
+									height: 16px;
+									background-image: url('/resources/images/verified.png');
+									background-size: 16px 16px;
+								}
+							}
+						}
 				}
 
 				& + .replyTo {
@@ -517,6 +531,20 @@
 				}
 			}
 
+				> .replyTo[data-user-verified='true'] {
+					> article > header > h2 > a {
+						&:before {
+							content: '';
+							display: inline-block;
+							vertical-align: text-bottom;
+							width: 16px;
+							height: 16px;
+							background-image: url('/resources/images/verified.png');
+							background-size: 16px 16px;
+						}
+					}
+				}
+
 			> footer {
 				display: none;
 				padding: 4px 16px;
@@ -676,6 +704,7 @@
 					&:before {
 						content: '';
 						display: inline-block;
+						vertical-align: text-bottom;
 						width: 16px;
 						height: 16px;
 						background-image: url('/resources/images/verified.png');
