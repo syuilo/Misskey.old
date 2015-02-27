@@ -221,6 +221,16 @@ html {
 							top: ~"calc(((1.3em + (8px * 2)) / 2) - 8px)";
 						}
 
+						> p.isDeleted {
+							display: block;
+							margin: 0;
+							padding: 0;
+							overflow: hidden;
+							word-wrap: break-word;
+							font-size: 1.1em;
+							color: rgba(0, 0, 0, 0.5);
+						}
+
 						> p.text {
 							user-select: text;
 							-moz-user-select: text;
@@ -228,7 +238,7 @@ html {
 							-ms-user-select: text;
 							cursor: default;
 							display: block;
-							margin: 0 0 0 0;
+							margin: 0;
 							padding: 0;
 							overflow: hidden;
 							word-wrap: break-word;
@@ -336,7 +346,11 @@ html {
 								border-left: solid 8px #33B623;
 							}
 
-							> .text {
+							> p.isDeleted {
+								color: rgba(255, 255, 255, 0.5);
+							}
+
+							> p.text {
 								color: #fff;
 
 								> .url {
@@ -351,6 +365,16 @@ html {
 					}
 				}
 			}
+
+				> .message.me[data-is-deleted='true'] {
+					> article {
+						> .contentContainer {
+							> .content {
+								background: rgba(51, 182, 35, 0.5);
+							}
+						}
+					}
+				}
 
 			> .message.otherparty {
 				> article {
@@ -382,5 +406,15 @@ html {
 					}
 				}
 			}
+
+				> .message.otherparty[data-is-deleted='true'] {
+					> article {
+						> .contentContainer {
+							> .content {
+								background: rgba(255, 255, 255, 0.5);
+							}
+						}
+					}
+				}
 	}
 }
