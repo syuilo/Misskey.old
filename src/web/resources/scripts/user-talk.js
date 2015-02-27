@@ -18,8 +18,14 @@ TALKSTREAM.generateMessageElement = function(message) {
 
 		function generateContentContainer() {
 			return $('<div class="contentContainer">')
+			.append(message.userId == $("html").attr("data-me-id") ? generateDeleteButton() : null)
 			.append(generateContent())
 			.append(generateTime());
+
+			function generateDeleteButton() {
+				return $('<button class="deleteButton" role="button" title="メッセージを削除">')
+				.append($('<img src="/resources/images/destroy.png" alt="Delete">'));
+			}
 
 			function generateContent() {
 				return $('<div class="content">')
