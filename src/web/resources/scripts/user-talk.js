@@ -302,6 +302,7 @@ $(window).load(function() {
 function appendMessage(message) {
 	var $message = TALKSTREAM.generateMessageElement(message).hide();
 	$message.appendTo($('#stream > .messages')).show(200);
+	TALKSTREAM.setEvent($message);
 	var animateTimer = setInterval(function() {
 		scroll(0, $('html').outerHeight());
 	}, 1);
