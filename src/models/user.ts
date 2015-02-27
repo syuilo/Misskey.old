@@ -103,6 +103,7 @@ class User {
 		obj.credit = this.credit;
 		obj.exp = this.exp;
 		obj.id = this.id;
+		obj.isPremium = this.isPremium;
 		obj.lang = this.lang;
 		obj.location = this.location;
 		obj.lv = this.lv;
