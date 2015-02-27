@@ -7,6 +7,7 @@ TIMELINE.generatePostElement = function(post) {
 		'data-id': post.id,
 		'data-user-id': post.userId,
 		'data-user-color': post.user.color,
+		'data-user-verified': post.user.isPremium.toString(),
 		'data-is-reply': post.isReply.toString(),
 		'data-is-talk': (post.moreTalk != null).toString(),
 		'data-is-favorited': 'false',
@@ -28,7 +29,9 @@ TIMELINE.generatePostElement = function(post) {
 		function generateTalkPostsList() {
 			var ol = $('<ol class="talk">');
 			post.moreTalk.forEach(function(talkPost) {
-				ol.append($('<li class="post">').append(generateArticle(talkPost, true)));
+				ol.append($('<li class="post">')
+					.attr('data-user-verified', talkPost.user.isPremium.toString())
+					.append(generateArticle(talkPost, true)));
 			});
 			return ol;
 		}
@@ -53,6 +56,7 @@ TIMELINE.generatePostElement = function(post) {
 
 	function generateReplyTo() {
 		return $('<div class="replyTo">')
+		.attr('data-user-verified', post.reply.user.isPremium.toString())
 		.append(generateArticle(post.reply, true));
 	}
 
