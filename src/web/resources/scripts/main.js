@@ -64,8 +64,7 @@ function openWindow($content, title, width, height, canPopout, popoutUrl) {
 	}
 
 	function popout() {
-		var offset = $window.offset();
-		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',top=' + offset.top + ',left=' + offset.left + ',menubar=no,toolbar=no,location=no,status=no');
+		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',menubar=no,toolbar=no,location=no,status=no');
 		close();
 	}
 
