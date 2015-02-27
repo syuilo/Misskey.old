@@ -20,6 +20,8 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 								p#emptyStream
 									i.fa.fa-info-circle
 									| このユーザーとまだ会話したことがありませんっ
+									br
+									a(href='http://syuilo.com/447', target='_blank') 使い方を見る
 							ol.messages
 								each message in messages
 									li(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
