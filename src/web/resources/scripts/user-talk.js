@@ -139,7 +139,8 @@ TALKSTREAM.setEvent = function($message) {
 	});
 
 	$message.find('.deleteButton').click(function() {
-		$(this).attr('disabled', true);
+		$button = $(this);
+		$button.attr('disabled', true);
 		$.ajax('https://api.misskey.xyz/talk/delete', {
 			type: 'delete',
 			data: { message_id: id },
@@ -147,9 +148,9 @@ TALKSTREAM.setEvent = function($message) {
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
 			$message.attr('data-is-deleted', 'true');
-			$(this).remove();
+			$button.remove();
 		}).fail(function(data) {
-			$(this).attr('disabled', false);
+			$button.attr('disabled', false);
 		});
 	});
 }
