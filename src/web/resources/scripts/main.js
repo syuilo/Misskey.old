@@ -1,3 +1,11 @@
+$.fn.extend({
+	viewportOffset: function() {
+		$window = $(window);
+		p = this.offset();
+		return { left: p.left - $window.scrollLeft(), top: p.top - $window.scrollTop() };
+	}
+});
+
 $(function() {
 	updateRelativeTimes();
 
@@ -56,7 +64,8 @@ function openWindow($content, title, width, height, canPopout, popoutUrl) {
 	}
 
 	function popout() {
-		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',top=' + $window.position().top + ',left=' + $window.position().left + ',menubar=no,toolbar=no,location=no,status=no');
+		var viewportOffset = $window.viewportOffset;
+		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',top=' + viewportOffset.top + ',left=' + viewportOffset.left + ',menubar=no,toolbar=no,location=no,status=no');
 		close();
 	}
 
