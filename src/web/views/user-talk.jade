@@ -37,13 +37,13 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 												if !message.isDeleted && (message.userId == me.id)
 													button.deleteButton(role='button', title='メッセージを削除')
 														img(src='/resources/images/destroy.png', alt='Delete')
-												if !message.isDeleted
-													div.content
+												div.content
+													if !message.isDeleted
 														p.text!= parseText(message.text)
 														if message.isImageAttached
 															img.image(src=url + '/img/talk-message/' + message.id, alt='image')
-												else
-													p.isDeleted このメッセージは削除されました
+													else
+														p.isDeleted このメッセージは削除されました
 												time(datetime=message.createdAt)= message.createdAt
 							if !followingMe
 								p#noFollowingMe
