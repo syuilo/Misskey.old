@@ -6,6 +6,10 @@ $.fn.extend({
 	}
 });
 
+function escapeHTML(val) {
+	return $('<div />').text(val).html();
+};
+
 $(function() {
 	updateRelativeTimes();
 

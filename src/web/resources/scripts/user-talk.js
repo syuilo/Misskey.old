@@ -232,7 +232,7 @@ $(function() {
 			$('#stream #otherpartyTyping').remove();
 		}
 
-		var $typing = $('<div id="otherpartyTyping"><img src="/img/icon/' + type.userId + '" alt="icon"><p>' + type.text + '</p></div>');
+		var $typing = $('<div id="otherpartyTyping"><img src="/img/icon/' + type.userId + '" alt="icon"><p>' + escapeHTML(type.text) + '</p></div>');
 		$typing.appendTo($('#stream')).animate({
 			opacity: 0
 		}, 5000);
