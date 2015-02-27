@@ -8,12 +8,12 @@ div.timeline
 						data-source-id= post.isRepostToPost ? post.id : null
 						data-user-id= post.user.id
 						data-user-color= post.user.color
-						data-user-verified= post.user.isPremium
-						data-is-reply!= post.isReply.toString(),
-						data-is-talk!= (post.moreTalk != null).toString(),
-						data-is-favorited!= login ? post.isFavorited.toString() : null,
-						data-is-reposted!= login ? post.isReposted.toString() : null,
-						data-is-repostpost!= post.isRepostToPost.toString(),
+						data-user-verified!= post.user.isPremium.toString()
+						data-is-reply!= post.isReply.toString()
+						data-is-talk!= (post.moreTalk != null).toString()
+						data-is-favorited!= login ? post.isFavorited.toString() : null
+						data-is-reposted!= login ? post.isReposted.toString() : null
+						data-is-repostpost!= post.isRepostToPost.toString()
 						data-repost-by-user-id!= post.isRepostToPost ? post.repostedByUser.id : null)
 					if post.moreTalk != null
 						div.moreTalk
@@ -24,7 +24,7 @@ div.timeline
 										data-id= talkPost.id
 										data-user-id= talkPost.user.id
 										data-user-color= talkPost.user.color
-										data-user-verified= talkPost.user.isPremium)
+										data-user-verified!= talkPost.user.isPremium.toString())
 										article
 											a.iconAnchor(href= url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 												img.icon(src=url + '/img/icon/' + talkPost.user.screenName, alt='icon')
@@ -50,7 +50,7 @@ div.timeline
 							data-id= post.reply.id
 							data-user-id= post.reply.user.id
 							data-user-color= post.reply.user.color
-							data-user-verified= post.reply.user.isPremium)
+							data-user-verified!= post.reply.user.isPremium.toString())
 							article
 								a.iconAnchor(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true', title= post.reply.user.comment != null ? post.reply.user.comment : '@' + post.reply.user.screenName)
 									img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')
