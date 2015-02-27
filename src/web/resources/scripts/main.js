@@ -87,11 +87,11 @@ function openWindow($content, title, width, height, canPopout, popoutUrl) {
 		}, 200);
 	});
 
-	$window.find("header > .popout").click(function() {
+	$window.find("header > .buttons > .popout").click(function() {
 		popout();
 	});
 
-	$window.find("header > .close").click(function() {
+	$window.find("header > .buttons > .close").click(function() {
 		close();
 	});
 
