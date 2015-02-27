@@ -183,6 +183,9 @@ $(function() {
 	socket.on('otherpartyMessage', function(message) {
 		console.log('otherpartyMessage', message);
 		new Audio('/resources/sounds/talk-message.mp3').play();
+		if ($('#stream #otherpartyTyping')[0]) {
+			$('#stream #otherpartyTyping').remove();
+		}
 		appendMessage(message);
 	});
 
