@@ -14,7 +14,7 @@ block content
 			div.usersList
 				ol
 					each user in followings
-						li
+						li(data-user-verified!= post.reply.user.isPremium.toString())
 							a(href= '/' + user.screenName)
 								img.icon(src='/img/icon/' + user.screenName, alt='icon')
 							h2
@@ -28,7 +28,7 @@ block content
 			div.usersList
 				ol
 					each user in followers
-						li
+						li(data-user-verified!= post.reply.user.isPremium.toString())
 							a(href= '/' + user.screenName)
 								img.icon(src='/img/icon/' + user.screenName, alt='icon')
 							h2

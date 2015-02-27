@@ -341,22 +341,36 @@ main {
 							color: rgba(0, 0, 0, 0.8);
 						}
 					}
+
+						li[data-user-verified='true'] {
+							> h2 > a {
+								&:before {
+									content: '';
+									display: inline-block;
+									vertical-align: text-bottom;
+									margin-right: 3px;
+									width: 16px;
+									height: 16px;
+									background-image: url('/resources/images/verified.png');
+									background-size: 16px 16px;
+								}
+							}
+						}
 				}
 			}
-		}
 
-		#sideContents {
-			float: left;
-			width: 380px;
+			#sideContents {
+				float: left;
+				width: 380px;
 
-			#timeline {
-				max-height: 600px;
-				overflow: scroll;
+				#timeline {
+					max-height: 600px;
+					overflow: scroll;
 
-				.timeline > .posts > .post {
-					padding: 8px 0 !important;
+					.timeline > .posts > .post {
+						padding: 8px 0 !important;
+					}
 				}
 			}
 		}
 	}
-}
