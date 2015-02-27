@@ -735,44 +735,47 @@ textarea {
 			}
 		}
 
-		> button {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: inline-block;
-			padding: 0;
+		> .buttons {
 			float: right;
-			background: transparent;
-			border: none;
-			outline: none;
-			cursor: pointer;
 
-			&:hover {
-				background: #eee;
+			> button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: inline-block;
+				padding: 0;
+				background: transparent;
+				border: none;
 				outline: none;
+				cursor: pointer;
+
+				&:hover {
+					background: #eee;
+					outline: none;
+				}
+
+				&:focus {
+					background: #ddd;
+					outline: none;
+				}
+
+				&:active {
+					background: #ddd;
+					outline: none;
+				}
+
+				img {
+					pointer-events: none;
+					min-width: 32px;
+					max-width: 32px;
+					min-height: 32px;
+					max-height: 32px;
+					vertical-align: bottom;
+				}
 			}
 
-			&:focus {
-				background: #ddd;
-				outline: none;
+			> .close {
 			}
-
-			&:active {
-				background: #ddd;
-				outline: none;
-			}
-
-			img {
-				pointer-events: none;
-				min-width: 32px;
-				max-width: 32px;
-				min-height: 32px;
-				max-height: 32px;
-				vertical-align: bottom;
-			}
-		}
-
-		> .close {
 		}
 	}
 

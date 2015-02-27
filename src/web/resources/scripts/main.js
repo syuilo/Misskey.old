@@ -32,8 +32,10 @@ function openWindow($content, title, width, height, canPopout, popoutUrl) {
 		<div class=\"ui window\">\
 			<header>\
 				<h1>"+ title + "</h1>\
-				<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>\
-				<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>\
+				<div class=\"buttons\">\
+					<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>\
+					<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>\
+				</div>\
 			</header>\
 			<div class=\"content\"></div>\
 		</div>\
