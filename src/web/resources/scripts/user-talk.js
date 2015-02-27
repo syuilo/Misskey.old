@@ -146,6 +146,7 @@ TALKSTREAM.setEvent = function($message) {
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
+			$message.attr('data-is-deleted', 'true');
 			$(this).remove();
 		}).fail(function(data) {
 			$(this).attr('disabled', false);
