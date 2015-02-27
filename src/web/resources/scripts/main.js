@@ -56,7 +56,8 @@ function openWindow($content, title, width, height, canPopout, popoutUrl) {
 	}
 
 	function popout() {
-		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height);
+		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',top=' + $window.position().top + ',left=' + $window.position().left + ',menubar=no,toolbar=no,location=no,status=no');
+		close();
 	}
 
 	function close() {
