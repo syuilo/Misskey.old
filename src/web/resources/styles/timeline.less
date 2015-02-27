@@ -2,6 +2,17 @@
 
 /* Timeline
  * ---------------------------------------------------------------- */
+.timeline-verifiedIcon {
+	content: '';
+	display: inline-block;
+	vertical-align: text-bottom;
+	margin-right: 3px;
+	width: 16px;
+	height: 16px;
+	background-image: url('/resources/images/verified.png');
+	background-size: 16px 16px;
+}
+
 .timeline-replyArticle {
 	position: relative;
 	padding: 8px;
@@ -244,13 +255,7 @@
 						> .post[data-user-verified='true'] {
 							> article > header > h2 > a {
 								&:before {
-									content: '';
-									display: inline-block;
-									vertical-align: text-bottom;
-									width: 16px;
-									height: 16px;
-									background-image: url('/resources/images/verified.png');
-									background-size: 16px 16px;
+									.timeline-verifiedIcon;
 								}
 							}
 						}
@@ -534,13 +539,7 @@
 				> .replyTo[data-user-verified='true'] {
 					> article > header > h2 > a {
 						&:before {
-							content: '';
-							display: inline-block;
-							vertical-align: text-bottom;
-							width: 16px;
-							height: 16px;
-							background-image: url('/resources/images/verified.png');
-							background-size: 16px 16px;
+							.timeline-verifiedIcon;
 						}
 					}
 				}
@@ -702,13 +701,7 @@
 			> .post[data-user-verified='true'] {
 				> article > header > h2 > a {
 					&:before {
-						content: '';
-						display: inline-block;
-						vertical-align: text-bottom;
-						width: 16px;
-						height: 16px;
-						background-image: url('/resources/images/verified.png');
-						background-size: 16px 16px;
+						.timeline-verifiedIcon;
 					}
 				}
 			}
