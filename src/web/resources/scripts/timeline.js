@@ -183,12 +183,19 @@ TIMELINE.generatePostElement = function(post) {
 
 	function parseText(text) {
 		text = escapeHtml(text);
+		text = parsePre(text);
 		text = parseURL(text);
 		text = parseReply(text);
 		text = parseBold(text);
 		text = parseSmall(text);
 		text = parseNewLine(text);
 		return text;
+
+		function parsePre(text) {
+			return text.replace(/'''(.+?)'''/g, function(_, word) {
+				return '<pre>' + word + '</pre>';
+			});
+		}
 
 		function parseURL(text) {
 			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
