@@ -25,12 +25,15 @@ $(function() {
 	}
 });
 
-function openWindow($content, title, width, height) {
+function openWindow($content, title, width, height, canPopout, popoutUrl) {
+	var canPopout = canPopout === undefined ? false : canPopout;
+
 	var $window = $("\
 		<div class=\"ui window\">\
 			<header>\
 				<h1>"+ title + "</h1>\
-				<button class=\"close\" title=\"閉じる\"><img src=\"https://misskey.xyz/resources/images/window-close.png\" alt=\"close\"></button>\
+				<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>\
+				<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>\
 			</header>\
 			<div class=\"content\"></div>\
 		</div>\
@@ -48,6 +51,10 @@ function openWindow($content, title, width, height) {
 				z = Number($(this).css("z-index"));
 		});
 		$window.css("z-index", z + 1);
+	}
+
+	function popout() {
+		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height);
 	}
 
 	function close() {
@@ -78,6 +85,10 @@ function openWindow($content, title, width, height) {
 		}, 200);
 	});
 
+	$window.find("header > .popout").click(function() {
+		popout();
+	});
+
 	$window.find("header > .close").click(function() {
 		close();
 	});
@@ -87,6 +98,9 @@ function openWindow($content, title, width, height) {
 	});
 
 	$window.find("header").mousedown(function(e) {
+		if ($(e.target).is('button') ||
+		$(e.target).is('img')) return;
+
 		$window.find(".content").css({
 			'pointer-events': 'none',
 			'user-select': 'none'

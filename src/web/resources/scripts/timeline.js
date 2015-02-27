@@ -237,8 +237,9 @@ TIMELINE.generatePostElement = function(post) {
 
 TIMELINE.setEventPost = function($post) {
 	$post.children('article').children('a').click(function() {
-		var $content = $("<iframe>").attr({ src: $post.children('article').children('a').attr('href'), seamless: true });
-		openWindow($content, '<i class="fa fa-comments"></i>' + $post.children('article').children('header').children('h2').children('a').text(), 300, 450);
+		var url = $post.children('article').children('a').attr('href');
+		var $content = $("<iframe>").attr({ src: url, seamless: true });
+		openWindow($content, '<i class="fa fa-comments"></i>' + $post.children('article').children('header').children('h2').children('a').text(), 300, 450, true, url);
 		return false;
 	});
 
