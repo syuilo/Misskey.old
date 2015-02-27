@@ -102,6 +102,7 @@ TALKSTREAM.generateMessageElement = function(message) {
 
 TALKSTREAM.setEvent = function($message) {
 	var id = $message.attr('data-id');
+
 	$message.find('.content').dblclick(function() {
 		var $text = $message.find('.text');
 		var text = $text.text();
@@ -128,6 +129,19 @@ TALKSTREAM.setEvent = function($message) {
 		$textarea.blur(function() {
 			var $textp = $('<p class="text">').text(text);
 			$textarea.replaceWith($textp);
+		});
+	});
+
+	$message.find('.deleteButton').click(function() {
+		$(this).attr('disabled', true);
+		$.ajax('https://api.misskey.xyz/talk/delete', {
+			type: 'delete',
+			data: { message_id: id },
+			dataType: 'json',
+			xhrFields: { withCredentials: true }
+		}).done(function(data) {
+		}).fail(function(data) {
+			$(this).attr('disabled', false);
 		});
 	});
 }
@@ -182,6 +196,24 @@ $(function() {
 		var $message = $('#stream > .messages').find('.message[data-id=' + message.id + ']');
 		if ($message != null) {
 			$message.find('.text').text(message.text);
+		}
+	});
+
+	socket.on('otherpartyMessageDelete', function(id) {
+		console.log('otherpartyMessageDelete', id);
+		var $message = $('#stream > .messages').find('.message[data-id=' + id + ']');
+		if ($message != null) {
+			$message.find('.content').empty();
+			$message.find('.content').append('<p class="isDeleted">このメッセージは削除されました</p>');
+		}
+	});
+
+	socket.on('meMessageDelete', function(id) {
+		console.log('otherpartyMessageDelete', id);
+		var $message = $('#stream > .messages').find('.message[data-id=' + id + ']');
+		if ($message != null) {
+			$message.find('.content').empty();
+			$message.find('.content').append('<p class="isDeleted">このメッセージは削除されました</p>');
 		}
 	});
 

@@ -33,10 +33,16 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 											a.iconAnchor(href= url + '/' + message.user.screenName, title= message.user.comment)
 												img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
 											div.contentContainer
-												div.content
-													p.text!= parseText(message.text)
-													if message.isImageAttached
-														img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+												if !message.isDeleted
+													button.deleteButton
+														img(src='/resources/images/destroy.png', alt='Delete')
+												if !message.isDeleted
+													div.content
+														p.text!= parseText(message.text)
+														if message.isImageAttached
+															img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+												else
+													p.isDeleted このメッセージは削除されました
 												time(datetime=message.createdAt)= message.createdAt
 							if !followingMe
 								p#noFollowingMe

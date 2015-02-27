@@ -171,6 +171,35 @@ html {
 					padding: 0;
 					max-width: ~"calc(100% - 78px)";
 
+					&:hover {
+						> deleteButton {
+							display: block;
+						}
+					}
+
+					> deleteButton {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: none;
+						position: absolute;
+						top: -8px;
+						right: -8px;
+						margin: 0;
+						padding: 0;
+						cursor: pointer;
+						outline: none;
+						border: none;
+						border-radius: 0;
+						box-shadow: none;
+						background: transparent;
+
+						> img {
+							width: 16px;
+							height: 16px;
+						}
+					}
+
 					> .content {
 						display: block;
 						float: inherit;
