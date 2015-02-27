@@ -174,7 +174,7 @@ TIMELINE.generatePostElement = function(post) {
 			}
 
 			function generateSubmitButton() {
-				return $('<input type="submit" value="Reply">');
+				return $('<input type="submit" value="&#xf112; Reply" class="fa fa-reply">');
 			}
 
 			function generateImageAttacher() {

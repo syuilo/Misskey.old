@@ -91,7 +91,7 @@ div.timeline
 							form.replyForm
 								textarea(name='text')= '@' + post.user.screenName + ' '
 								input(name='in_reply_to_post_id', type='hidden', value=post.id)
-								input(type='submit', value='Reply')
+								input.fa.fa-reply(type='submit', value!='&#xf112; Reply')
 								div.imageAttacher
 									p
 										i.fa.fa-picture-o
