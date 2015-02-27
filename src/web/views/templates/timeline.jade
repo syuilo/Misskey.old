@@ -8,6 +8,7 @@ div.timeline
 						data-source-id= post.isRepostToPost ? post.id : null
 						data-user-id= post.user.id
 						data-user-color= post.user.color
+						data-user-verified= post.user.isPremium
 						data-is-reply!= post.isReply.toString(),
 						data-is-talk!= (post.moreTalk != null).toString(),
 						data-is-favorited!= login ? post.isFavorited.toString() : null,
@@ -19,7 +20,11 @@ div.timeline
 							i.fa.fa-ellipsis-v
 							ol.talk
 								each talkPost in post.moreTalk
-									li.post
+									li.post(title!= '#{talkPost.createdAt}&#x0A;'
+										data-id= talkPost.id
+										data-user-id= talkPost.user.id
+										data-user-color= talkPost.user.color
+										data-user-verified= talkPost.user.isPremium)
 										article
 											a.iconAnchor(href= url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 												img.icon(src=url + '/img/icon/' + talkPost.user.screenName, alt='icon')
@@ -41,7 +46,11 @@ div.timeline
 								a.name(href=url + '/' + post.repostedByUser.screenName, target='_blank')= post.repostedByUser.name
 								| によってRepost
 					if post.isReply
-						div.replyTo
+						div.replyTo(title!= '#{post.reply.createdAt}&#x0A;'
+							data-id= post.reply.id
+							data-user-id= post.reply.user.id
+							data-user-color= post.reply.user.color
+							data-user-verified= post.reply.user.isPremium)
 							article
 								a.iconAnchor(href=url + '/' + post.reply.user.screenName + '/talk?noheader=true', title= post.reply.user.comment != null ? post.reply.user.comment : '@' + post.reply.user.screenName)
 									img.icon(src=url + '/img/icon/' + post.reply.user.screenName, alt='icon')

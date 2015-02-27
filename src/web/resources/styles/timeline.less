@@ -670,6 +670,19 @@
 					}
 				}
 			}
+
+			> .post[data-user-verified='true'] {
+				> article > header > h2 > a {
+					&:before {
+						content: '';
+						display: inline-block;
+						width: 16px;
+						height: 16px;
+						background-image: url('/resources/images/verified.png');
+						background-size: 16px 16px;
+					}
+				}
+			}
 	}
 
 	> .loadMore {
