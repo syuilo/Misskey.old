@@ -273,14 +273,12 @@ $(function() {
 			$('#otherpartyStatus #alive').remove();
 		} else {
 			$status.addClass('opening');
-			setTimeout(function() {
-				$status.removeClass('opening');
-			}, 1000);
 		}
 		$('#otherpartyStatus').prepend($status);
 		scroll(0, $('html').outerHeight());
 		setTimeout(function() {
 			$status.addClass('normal');
+			$status.removeClass('opening');
 		}, 500);
 		setTimeout(function() {
 			$status.addClass('closing');
