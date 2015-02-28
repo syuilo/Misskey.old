@@ -92,6 +92,7 @@ html {
 
 #postFormContainer {
 	position: fixed;
+	z-index: 2;
 	bottom: 0;
 	width: 100%;
 	background: #55788E;
@@ -222,6 +223,17 @@ html {
 						> .deleteButton {
 							display: block;
 						}
+					}
+
+					> .readed {
+						display: block;
+						position: absolute;
+						z-index: 1;
+						bottom: 16px;
+						left: -12px;
+						margin: 0;
+						color: rgba(0, 0, 0, 0.5);
+						font-size: 0.7em;
 					}
 
 					> .deleteButton {
