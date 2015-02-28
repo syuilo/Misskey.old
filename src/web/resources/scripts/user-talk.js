@@ -258,7 +258,7 @@ $(function() {
 		}, 500);
 		setTimeout(function() {
 			$status.remove();
-		}, 6000);
+		}, 4000);
 	});
 
 	socket.on('type', function(type) {
@@ -278,7 +278,7 @@ $(function() {
 
 	setInterval(function() {
 		socket.emit('alive');
-	}, 5000);
+	}, 3000);
 
 	$('#postForm textarea').bind('input', function() {
 		socket.json.emit('type', {

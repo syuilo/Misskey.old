@@ -44,12 +44,12 @@ html {
 			max-width: 28px;
 			max-height: 28px;
 			border-radius: 4px;
-			filter: saturate(200%);
-			-webkit-filter: saturate(200%);
-			-moz-filter: saturate(200%);
-			-o-filter: saturate(200%);
-			-ms-filter: saturate(200%);
-			transition: all 4s linear;
+			filter: saturate(300%);
+			-webkit-filter: saturate(300%);
+			-moz-filter: saturate(300%);
+			-o-filter: saturate(300%);
+			-ms-filter: saturate(300%);
+			transition: all 3s linear;
 
 			&.normal {
 				filter: saturate(0%);
@@ -67,6 +67,20 @@ html {
 			margin: 0 4px;
 			font-size: 0.9em;
 			color: rgba(0, 0, 0, 0.7);
+			background: #fff;
+
+			&:before {
+				content: "";
+				pointer-events: none;
+				display: inline-block;
+				position: absolute;
+				top: ~"calc(((0.9em + (4px * 2)) / 2) - 4px)";
+				left: -14px;
+				border-top: solid 4px transparent;
+				border-right: solid 4px #fff;
+				border-bottom: solid 4px transparent;
+				border-left: solid 4px transparent;
+			}
 		}
 	}
 }
