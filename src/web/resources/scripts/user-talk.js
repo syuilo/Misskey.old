@@ -237,14 +237,25 @@ $(function() {
 		}
 	});
 
+	socket.on('alive', function() {
+		console.log('alive');
+
+		var $status = $('<img src="/img/icon/' + type.userId + '" alt="icon">');
+		$('#otherpartyStatus').prepend($status);
+		scroll(0, $('html').outerHeight());
+		setTimeout(function() {
+			$status.remove();
+		}, 6000);
+	});
+
 	socket.on('type', function(type) {
 		console.log('type', type.text);
-		if ($('#stream #otherpartyTyping')[0]) {
-			$('#stream #otherpartyTyping').remove();
+		if ($('#otherpartyStatus #otherpartyTyping')[0]) {
+			$('#otherpartyStatus #otherpartyTyping').remove();
 		}
 
-		var $typing = $('<div id="otherpartyTyping"><img src="/img/icon/' + type.userId + '" alt="icon"><p>' + escapeHTML(type.text) + '</p></div>');
-		$typing.appendTo($('#stream')).animate({
+		var $typing = $('<p id="otherpartyTyping">' + escapeHTML(type.text) + '</p>');
+		$typing.appendTo($('#otherpartyStatus')).animate({
 			opacity: 0
 		}, 5000);
 		scroll(0, $('html').outerHeight());
@@ -252,6 +263,10 @@ $(function() {
 			$typing.remove();
 		}, 5000);
 	});
+
+	setInterval(function() {
+		socket.json.emit('alive');
+	}, 5000);
 
 	$('#postForm textarea').bind('input', function() {
 		socket.json.emit('type', {
