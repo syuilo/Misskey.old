@@ -186,8 +186,8 @@ $(function() {
 	socket.on('otherpartyMessage', function(message) {
 		console.log('otherpartyMessage', message);
 		new Audio('/resources/sounds/talk-message.mp3').play();
-		if ($('#stream #otherpartyTyping')[0]) {
-			$('#stream #otherpartyTyping').remove();
+		if ($('#otherpartyStatus #otherpartyTyping')[0]) {
+			$('#otherpartyStatus #otherpartyTyping').remove();
 		}
 		appendMessage(message);
 		$.ajax('https://api.misskey.xyz/talk/read', {
