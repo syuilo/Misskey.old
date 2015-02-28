@@ -179,6 +179,9 @@ $(function() {
 	socket.on('inited', function() {
 		console.log('Inited');
 		socket.emit('alive');
+		$('.messages .message.otherParty').each(function() {
+			socket.emit('read', $(this).attr('data-id'));
+		});
 	});
 
 	socket.on('disconnect', function(client) {
@@ -371,8 +374,5 @@ function appendMessage(message) {
 $(function() {
 	$('.messages .message.me').each(function() {
 		TALKSTREAM.setEvent($(this));
-	});
-	$('.messages .message.otherParty').each(function() {
-		socket.emit('read', $(this).attr('data-id'));
 	});
 });
