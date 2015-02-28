@@ -14,10 +14,15 @@ var sarver = (io: any, sessionStore: any): void => {
 		var sid = cookies[config.sessionKey];
 
 		// Get session
-		sessionStore.get(sid.match(/s:(.+?)\./)[1],(err: any, session: any) => {
+		var sidkey = sid.match(/s:(.+?)\./)[1];
+		sessionStore.get(sidkey,(err: any, session: any) => {
 			if (err) {
 				console.log(err.message);
 			} else {
+				if (session == null) {
+					console.log('undefined: ' + sidkey);
+					return;
+				}
 				var uid = socket.userId = session.userId;
 				var publisher = redis.createClient();
 
@@ -29,7 +34,7 @@ var sarver = (io: any, sessionStore: any): void => {
 
 					var subscriber = redis.createClient();
 					subscriber.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
-					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyEnterTheTalk'));
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
 					subscriber.on('message',(channel: any, content: any) => {
 						content = JSON.parse(content);
@@ -56,7 +61,7 @@ var sarver = (io: any, sessionStore: any): void => {
 				});
 
 				socket.on('disconnect',() => {
-					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify('otherpartyLeftTheTalk'));
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyLeftTheTalk');
 				});
 			}
 		});
