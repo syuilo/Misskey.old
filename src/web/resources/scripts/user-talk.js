@@ -311,6 +311,10 @@ $(window).load(function() {
 	scroll(0, document.body.clientHeight)
 });
 
+$(window).resize(function() {
+	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+});
+
 function appendMessage(message) {
 	var $message = TALKSTREAM.generateMessageElement(message).hide();
 	$message.appendTo($('#stream > .messages')).show(200);
