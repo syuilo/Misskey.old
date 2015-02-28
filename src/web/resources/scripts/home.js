@@ -60,7 +60,7 @@ $(function() {
 		n.onclick = function() {
 			var url = 'https://misskey.xyz/' + message.user.screenName + '/talk?noheader=true';
 			var $content = $("<iframe>").attr({ src: url, seamless: true });
-			openWindow($content, '<i class="fa fa-comments"></i>ÉgÅ[ÉN: ' + escapeHTML(message.user.name), 300, 450, true, url);
+			openWindow($content, '<i class="fa fa-comments"></i>„Éà„Éº„ÇØ: ' + escapeHTML(message.user.name), 300, 450, true, url);
 		};
 	});
 
