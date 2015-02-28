@@ -62,24 +62,26 @@ html {
 
 		#otherpartyTyping {
 			display: inline-block;
-			line-height: 28px;
+			line-height: 26px;
 			vertical-align: middle;
-			margin: 0 4px;
+			margin: 0 4px 0 8px;
+			padding: 0 8px;
 			font-size: 0.9em;
 			color: rgba(0, 0, 0, 0.7);
 			background: #fff;
+			border-radius: 4px;
 
 			&:before {
 				content: "";
 				pointer-events: none;
 				display: inline-block;
 				position: absolute;
-				top: ~"calc(((0.9em + (4px * 2)) / 2) - 4px)";
-				left: -14px;
-				border-top: solid 4px transparent;
-				border-right: solid 4px #fff;
-				border-bottom: solid 4px transparent;
-				border-left: solid 4px transparent;
+				top: 7px;
+				left: -12px;
+				border-top: solid 6px transparent;
+				border-right: solid 6px #fff;
+				border-bottom: solid 6px transparent;
+				border-left: solid 6px transparent;
 			}
 		}
 	}
