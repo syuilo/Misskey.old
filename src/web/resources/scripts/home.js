@@ -48,6 +48,20 @@ $(function() {
 
 	socket.on('talkMessage', function(message) {
 		console.log('talkMessage', message);
+		var n = new Notification(message.user.name, {
+			body: message.text,
+			icon: conf.url + '/img/icon/' + message.user.screenName
+		});
+		n.onshow = function() {
+			setTimeout(function() {
+				n.close();
+			}, 10000);
+		};
+		n.onclick = function() {
+			var url = 'https://misskey.xyz/' + message.user.screenName + '/talk?noheader=true';
+			var $content = $("<iframe>").attr({ src: url, seamless: true });
+			openWindow($content, '<i class="fa fa-comments"></i>ÉgÅ[ÉN: ' + escapeHTML(user.name), 300, 450, true, url);
+		};
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
