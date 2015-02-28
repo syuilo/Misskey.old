@@ -268,17 +268,25 @@ $(function() {
 
 	socket.on('alive', function() {
 		console.log('alive');
+		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon" id="alive">');
 		if ($('#otherpartyStatus #alive')[0]) {
 			$('#otherpartyStatus #alive').remove();
+		} else {
+			$status.addClass('opening');
+			setTimeout(function() {
+				$status.removeClass('opening');
+			}, 1000);
 		}
-		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon" id="alive">');
 		$('#otherpartyStatus').prepend($status);
 		scroll(0, $('html').outerHeight());
 		setTimeout(function() {
 			$status.addClass('normal');
 		}, 500);
 		setTimeout(function() {
-			$status.remove();
+			$status.addClass('closing');
+			setTimeout(function() {
+				$status.remove();
+			}, 1000);
 		}, 3000);
 	});
 

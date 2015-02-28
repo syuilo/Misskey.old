@@ -51,7 +51,15 @@ html {
 			-moz-filter: saturate(300%);
 			-o-filter: saturate(300%);
 			-ms-filter: saturate(300%);
-			transition: all 2s linear;
+			transition: filter 2s linear, transform 1s ease;
+
+			&.opening {
+				transform: scale(0);
+			}
+
+			&.closing {
+				transform: scale(0);
+			}
 
 			&.normal {
 				filter: saturate(0%);
