@@ -3,6 +3,7 @@
 import fs = require('fs');
 import path = require('path');
 import express = require('express');
+import minify = require('express-minify');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
 import session = require('express-session');
@@ -47,6 +48,9 @@ webServer.use(session({
 		prefix: 'misskey-session:'
 	})
 }));
+
+/* Compressing settings */
+webServer.use(minify());
 
 webServer.initSession = (req: any, res: any, callback: () => void) => {
 	res.set({
