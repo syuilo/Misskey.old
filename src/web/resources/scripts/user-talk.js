@@ -171,6 +171,11 @@ $(function() {
 		});
 	});
 
+	socket.on('inited', function() {
+		console.log('Inited');
+		socket.emit('alive');
+	});
+
 	socket.on('disconnect', function(client) {
 		console.log('Disconnected');
 	});
@@ -271,7 +276,6 @@ $(function() {
 		}, 5000);
 	});
 
-	socket.emit('alive');
 	setInterval(function() {
 		socket.emit('alive');
 	}, 5000);

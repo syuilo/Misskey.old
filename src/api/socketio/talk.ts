@@ -36,6 +36,8 @@ var sarver = (io: any, sessionStore: any): void => {
 					subscriber.subscribe('misskey:talkStream:' + uid + '-' + socket.otherpartyId);
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
+					socket.emit('inited');
+
 					subscriber.on('message',(channel: any, content: any) => {
 						try {
 							content = JSON.parse(content);
