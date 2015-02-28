@@ -52,11 +52,18 @@ var sarver = (io: any, sessionStore: any): void => {
 					});
 				});
 
+				socket.on('read',(id: string) => {
+					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify({
+						type: 'read',
+						value: id
+					}));
+				});
+
 				socket.on('alive',(req: any) => {
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'alive');
 				});
 
-				socket.on('type',(text: any) => {
+				socket.on('type',(text: string) => {
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify({
 						type: 'type',
 						value: text

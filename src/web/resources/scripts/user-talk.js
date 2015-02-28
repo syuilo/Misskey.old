@@ -18,9 +18,14 @@ TALKSTREAM.generateMessageElement = function(message) {
 
 		function generateContentContainer() {
 			return $('<div class="contentContainer">')
+			.append(message.isReaded ? generateReadStatus() : null)
 			.append(message.userId == $("html").attr("data-me-id") ? generateDeleteButton() : null)
 			.append(generateContent())
 			.append(generateTime());
+
+			function generateReadStatus() {
+				return $('<p class="readed">').text('既読');
+			}
 
 			function generateDeleteButton() {
 				return $('<button class="deleteButton" role="button" title="メッセージを削除">')
@@ -245,6 +250,14 @@ $(function() {
 		}
 	});
 
+	socket.on('read', function(id) {
+		console.log('read', id);
+		var $message = $('#stream > .messages').find('.message[data-id=' + id + ']');
+		if ($message != null) {
+			$message.find('.contentContainer').prepend($('<p class="readed">').text('既読'));
+		}
+	});
+
 	socket.on('alive', function() {
 		console.log('alive');
 		if ($('#otherpartyStatus #alive')[0]) {
@@ -358,5 +371,8 @@ function appendMessage(message) {
 $(function() {
 	$('.messages .message.me').each(function() {
 		TALKSTREAM.setEvent($(this));
+	});
+	$('.messages .message.otherParty').each(function() {
+		socket.emit('read', $(this).attr('data-id'));
 	});
 });
