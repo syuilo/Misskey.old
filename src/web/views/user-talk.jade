@@ -28,8 +28,8 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 											title!= '#{message.createdAt}&#x0A;via #{message.app.name}'
 											data-id= message.id
 											data-is-deleted!= message.isDeleted.toString()
-											data-userId= message.user.id
-											data-userColor= message.user.color)
+											data-user-id= message.user.id
+											data-user-color= message.user.color)
 										article
 											a.iconAnchor(href= url + '/' + message.user.screenName, title= message.user.comment)
 												img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
