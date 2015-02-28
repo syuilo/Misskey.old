@@ -41,6 +41,7 @@ function router(app: express.Express): void {
 	app.post(/\/talk\/say(\..+)?$/, require('./rest/talk/say'));
 	app.put(/\/talk\/fix(\..+)?$/, require('./rest/talk/fix'));
 	app.delete(/\/talk\/delete(\..+)?$/, require('./rest/talk/delete'));
+	app.post(/\/talk\/read(\..+)?$/, require('./rest/talk/read'));
 	app.get(/\/search\/user(\..+)?$/, require('./rest/search/user'));
 	app.get(/\/screenname_available(\..+)?$/, require('./rest/screenname_available'));
 	app.all(/\/teapot\/coffee(\..+)?$/, require('./rest/teapot/coffee'));
