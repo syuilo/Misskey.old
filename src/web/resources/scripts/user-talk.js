@@ -179,7 +179,7 @@ $(function() {
 	socket.on('inited', function() {
 		console.log('Inited');
 		socket.emit('alive');
-		$('.messages .message.otherParty').each(function() {
+		$('.messages .message.otherparty').each(function() {
 			socket.emit('read', $(this).attr('data-id'));
 		});
 	});
