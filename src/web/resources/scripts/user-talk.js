@@ -187,6 +187,14 @@ $(function() {
 			$('#stream #otherpartyTyping').remove();
 		}
 		appendMessage(message);
+		$.ajax('https://api.misskey.xyz/talk/read', {
+			type: 'post',
+			data: { message_id: message.id },
+			dataType: 'json',
+			xhrFields: { withCredentials: true }
+		}).done(function(data) {
+		}).fail(function(data) {
+		});
 	});
 
 	socket.on('meMessage', function(message) {
