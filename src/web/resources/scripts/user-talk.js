@@ -262,11 +262,14 @@ $(function() {
 	});
 
 	socket.on('type', function(type) {
-		console.log('type', type.text);
+		console.log('type', type);
 		if ($('#otherpartyStatus #otherpartyTyping')[0]) {
 			$('#otherpartyStatus #otherpartyTyping').remove();
 		}
-		var $typing = $('<p id="otherpartyTyping">' + escapeHTML(type.text) + '</p>');
+		if (type == '') {
+			return;
+		}
+		var $typing = $('<p id="otherpartyTyping">' + escapeHTML(type) + '</p>');
 		$typing.appendTo($('#otherpartyStatus')).animate({
 			opacity: 0
 		}, 5000);
@@ -281,9 +284,7 @@ $(function() {
 	}, 2000);
 
 	$('#postForm textarea').bind('input', function() {
-		socket.json.emit('type', {
-			'text': $('#postForm textarea').val()
-		});
+		socket.emit('type', $('#postForm textarea').val());
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {

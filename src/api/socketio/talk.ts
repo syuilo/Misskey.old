@@ -56,11 +56,11 @@ var sarver = (io: any, sessionStore: any): void => {
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'alive');
 				});
 
-				socket.on('type',(req: any) => {
+				socket.on('type',(text: any) => {
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, JSON.stringify({
 						type: 'type',
 						value: {
-							text: req.text,
+							text: text,
 							userId: uid
 						}
 					}));
