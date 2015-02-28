@@ -14,10 +14,16 @@ var sarver = (io: any, sessionStore: any): void => {
 		var sid = cookies[config.sessionKey];
 
 		// Get session
-		sessionStore.get(sid.match(/s:(.+?)\./)[1],(err: any, session: any) => {
+		var sidkey = sid.match(/s:(.+?)\./)[1];
+		sessionStore.get(sidkey,(err: any, session: any) => {
 			if (err) {
 				console.log(err.message);
 			} else {
+				if (session == null) {
+					console.log('undefined: ' + sidkey);
+					return;
+				}
+
 				var uid = socket.userId = session.userId;
 
 				// Subscribe stream
