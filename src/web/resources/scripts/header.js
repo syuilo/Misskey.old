@@ -1,17 +1,25 @@
 var musicCenterOpen = false;
 
-$(function() {
+function updateStatuses() {
 	$.ajax('https://api.misskey.xyz/account/unreadalltalks_count', {
 		type: 'get',
 		dataType: 'json',
 		xhrFields: { withCredentials: true }
 	}).done(function(result) {
+		if ($("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount")[0]) {
+			$('#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount').remove();
+		}
 		if (result !== 0) {
 			$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a").append(
 				$('<span class="unreadCount">').text(result));
 		}
 	}).fail(function() {
 	});
+}
+
+$(function() {
+	updateStatuses();
+	setInterval(updateStatuses, 2000);
 
 	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
 		if (musicCenterOpen) {
