@@ -4,10 +4,12 @@ $(function() {
 	$.ajax('https://api.misskey.xyz/account/unreadalltalks_count', {
 		type: 'get',
 		dataType: 'json',
-		xhrFields: {withCredentials: true}
+		xhrFields: { withCredentials: true }
 	}).done(function(result) {
-		$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk").append(
-			$('<span class="unreadCount">').text(result));
+		if (result !== 0) {
+			$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk").append(
+				$('<span class="unreadCount">').text(result));
+		}
 	}).fail(function() {
 	});
 
