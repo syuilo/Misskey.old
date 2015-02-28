@@ -35,6 +35,8 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 												img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
 											div.contentContainer
 												if !message.isDeleted && (message.userId == me.id)
+													if message.isReaded
+														p.readed 既読
 													button.deleteButton(role='button', title='メッセージを削除')
 														img(src='/resources/images/destroy.png', alt='Delete')
 												div.content
