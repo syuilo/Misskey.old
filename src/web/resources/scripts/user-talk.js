@@ -253,7 +253,7 @@ $(function() {
 		}, 5000);
 	});
 
-	$('#postForm textarea').keyup(function() {
+	$('#postForm textarea').bind('input', function() {
 		socket.json.emit('type', {
 			'text': $('#postForm textarea').val()
 		});
