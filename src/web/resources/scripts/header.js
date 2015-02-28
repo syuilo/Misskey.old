@@ -1,6 +1,16 @@
 var musicCenterOpen = false;
 
 $(function() {
+	$.ajax('https://api.misskey.xyz/account/unreadalltalks_count', {
+		type: 'get',
+		dataType: 'json',
+		xhrFields: {withCredentials: true}
+	}).done(function(result) {
+		$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk").append(
+			$('<span class="unreadCount">').text(result));
+	}).fail(function() {
+	});
+
 	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
 		if (musicCenterOpen) {
 			$("#misskey-musicCenter").css('top', '-100%');
