@@ -38,12 +38,26 @@ html {
 		width: 100%;
 		height: 28px;
 
-		img {
+		#alive {
 			display: inline;
 			vertical-align: middle;
 			max-width: 28px;
 			max-height: 28px;
 			border-radius: 4px;
+			filter: saturate(200%);
+			-webkit-filter: saturate(200%);
+			-moz-filter: saturate(200%);
+			-o-filter: saturate(200%);
+			-ms-filter: saturate(200%);
+			transition: all 5s linear;
+
+			&.normal {
+				filter: saturate(50%);
+				-webkit-filter: saturate(50%);
+				-moz-filter: saturate(50%);
+				-o-filter: saturate(50%);
+				-ms-filter: saturate(50%);
+			}
 		}
 
 		#otherpartyTyping {
