@@ -6,6 +6,7 @@ TALKSTREAM.generateMessageElement = function(message) {
 			class: 'message ' + (message.userId == $("html").attr("data-me-id") ? 'me' : 'otherparty'),
 			title: message.createdAt + '&#x0A;via ' + message.app.name,
 			'data-id': message.id,
+			'data-is-readed': message.isReaded.toString(),
 			'data-user-id': message.userId,
 			'data-user-color': message.user.color
 		})
@@ -258,7 +259,10 @@ $(function() {
 		console.log('read', id);
 		var $message = $('#stream > .messages').find('.message[data-id=' + id + ']');
 		if ($message != null) {
-			$message.find('.contentContainer').prepend($('<p class="readed">').text('既読'));
+			if ($message.attr('data-is-readed') == 'false') {
+				$message.attr('data-is-readed', 'true');
+				$message.find('.contentContainer').prepend($('<p class="readed">').text('既読'));
+			}
 		}
 	});
 

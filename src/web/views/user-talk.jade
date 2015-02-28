@@ -27,6 +27,7 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 									li(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 											title!= '#{message.createdAt}&#x0A;via #{message.app.name}'
 											data-id= message.id
+											data-is-readed!= message.isReaded.toString()
 											data-is-deleted!= message.isDeleted.toString()
 											data-user-id= message.user.id
 											data-user-color= message.user.color)
