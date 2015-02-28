@@ -243,7 +243,7 @@ $(function() {
 	socket.on('alive', function() {
 		console.log('alive');
 
-		var $status = $('<img src="/img/icon/' + type.userId + '" alt="icon">');
+		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon">');
 		$('#otherpartyStatus').prepend($status);
 		scroll(0, $('html').outerHeight());
 		setTimeout(function() {
