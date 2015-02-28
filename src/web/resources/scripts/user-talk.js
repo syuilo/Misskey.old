@@ -242,8 +242,10 @@ $(function() {
 
 	socket.on('alive', function() {
 		console.log('alive');
-
-		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon">');
+		if ($('#otherpartyStatus #alive')[0]) {
+			$('#otherpartyStatus #alive').remove();
+		}
+		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon" id="alive">');
 		$('#otherpartyStatus').prepend($status);
 		scroll(0, $('html').outerHeight());
 		setTimeout(function() {
@@ -256,7 +258,6 @@ $(function() {
 		if ($('#otherpartyStatus #otherpartyTyping')[0]) {
 			$('#otherpartyStatus #otherpartyTyping').remove();
 		}
-
 		var $typing = $('<p id="otherpartyTyping">' + escapeHTML(type.text) + '</p>');
 		$typing.appendTo($('#otherpartyStatus')).animate({
 			opacity: 0
