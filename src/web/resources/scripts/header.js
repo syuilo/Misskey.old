@@ -19,7 +19,7 @@ function updateStatuses() {
 
 $(function() {
 	updateStatuses();
-	setInterval(updateStatuses, 2000);
+	setInterval(updateStatuses, 5000);
 
 	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
 		if (musicCenterOpen) {
