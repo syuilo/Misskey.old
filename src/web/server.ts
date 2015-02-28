@@ -95,6 +95,14 @@ webServer.initSession = (req: any, res: any, callback: () => void) => {
 	}
 };
 
+webServer.get('/favicon.ico',(req: any, res: any, next: () => void) => {
+	res.sendFile('./resources/favicon.ico');
+});
+
+webServer.get('/manifest.json',(req: any, res: any, next: () => void) => {
+	res.sendFile('./resources/manifest.json');
+});
+
 /* Resources rooting */
 resourcesRouter(webServer);
 
