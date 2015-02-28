@@ -108,51 +108,54 @@ TALKSTREAM.generateMessageElement = function(message) {
 
 TALKSTREAM.setEvent = function($message) {
 	var id = $message.attr('data-id');
+	var userId = $message.attr('data-user-id');
 
-	$message.find('.content').dblclick(function() {
-		var $text = $message.find('.text');
-		var text = $text.text();
-		var $textarea = $('<textarea class="text">').text(text);
-		$textarea.css({
-			width: ($text.outerWidth() + 1) + 'px',
-			height: ($text.outerHeight() + 1) + 'px'
+	if (userId == $("html").attr("data-me-id")) {
+		$message.find('.content').dblclick(function() {
+			var $text = $message.find('.text');
+			var text = $text.text();
+			var $textarea = $('<textarea class="text">').text(text);
+			$textarea.css({
+				width: ($text.outerWidth() + 1) + 'px',
+				height: ($text.outerHeight() + 1) + 'px'
+			});
+			$text.replaceWith($textarea);
+			$textarea.focus();
+			$textarea.change(function() {
+				var text = $(this).val();
+				var $textp = $('<p class="text">').text(text);
+				$textarea.replaceWith($textp);
+				$.ajax('https://api.misskey.xyz/talk/fix', {
+					type: 'put',
+					data: { message_id: id, text: text },
+					dataType: 'json',
+					xhrFields: { withCredentials: true }
+				}).done(function(data) {
+				}).fail(function(data) {
+				});
+			});
+			$textarea.blur(function() {
+				var $textp = $('<p class="text">').text(text);
+				$textarea.replaceWith($textp);
+			});
 		});
-		$text.replaceWith($textarea);
-		$textarea.focus();
-		$textarea.change(function() {
-			var text = $(this).val();
-			var $textp = $('<p class="text">').text(text);
-			$textarea.replaceWith($textp);
-			$.ajax('https://api.misskey.xyz/talk/fix', {
-				type: 'put',
-				data: { message_id: id, text: text },
+
+		$message.find('.deleteButton').click(function() {
+			$button = $(this);
+			$button.attr('disabled', true);
+			$.ajax('https://api.misskey.xyz/talk/delete', {
+				type: 'delete',
+				data: { message_id: id },
 				dataType: 'json',
 				xhrFields: { withCredentials: true }
 			}).done(function(data) {
+				$message.attr('data-is-deleted', 'true');
+				$button.remove();
 			}).fail(function(data) {
+				$button.attr('disabled', false);
 			});
 		});
-		$textarea.blur(function() {
-			var $textp = $('<p class="text">').text(text);
-			$textarea.replaceWith($textp);
-		});
-	});
-
-	$message.find('.deleteButton').click(function() {
-		$button = $(this);
-		$button.attr('disabled', true);
-		$.ajax('https://api.misskey.xyz/talk/delete', {
-			type: 'delete',
-			data: { message_id: id },
-			dataType: 'json',
-			xhrFields: { withCredentials: true }
-		}).done(function(data) {
-			$message.attr('data-is-deleted', 'true');
-			$button.remove();
-		}).fail(function(data) {
-			$button.attr('disabled', false);
-		});
-	});
+	}
 }
 
 $(function() {
