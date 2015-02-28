@@ -247,8 +247,10 @@ $(function() {
 		}
 		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon" id="alive">');
 		$('#otherpartyStatus').prepend($status);
-		$status.addClass('normal');
 		scroll(0, $('html').outerHeight());
+		setTimeout(function() {
+			$status.addClass('normal');
+		}, 500);
 		setTimeout(function() {
 			$status.remove();
 		}, 6000);
