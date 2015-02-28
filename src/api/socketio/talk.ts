@@ -37,10 +37,14 @@ var sarver = (io: any, sessionStore: any): void => {
 					publisher.publish('misskey:talkStream:' + socket.otherpartyId + '-' + uid, 'otherpartyEnterTheTalk');
 
 					subscriber.on('message',(channel: any, content: any) => {
-						content = JSON.parse(content);
-						if (content.type != null && content.value != null) {
-							socket.emit(content.type, content.value);
-						} else {
+						try {
+							content = JSON.parse(content);
+							if (content.type != null && content.value != null) {
+								socket.emit(content.type, content.value);
+							} else {
+								socket.emit(content);
+							}
+						} catch (e) {
 							socket.emit(content);
 						}
 					});
