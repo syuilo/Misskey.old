@@ -264,8 +264,9 @@ $(function() {
 		}, 5000);
 	});
 
+	socket.emit('alive');
 	setInterval(function() {
-		socket.json.emit('alive');
+		socket.emit('alive');
 	}, 5000);
 
 	$('#postForm textarea').bind('input', function() {
