@@ -237,9 +237,10 @@ TIMELINE.generatePostElement = function(post) {
 
 TIMELINE.setEventPost = function($post) {
 	$post.children('article').children('a').click(function() {
+		var windowId = 'misskey-window-talk-' + $post.attr('data-user-id');
 		var url = $post.children('article').children('a').attr('href');
 		var $content = $("<iframe>").attr({ src: url, seamless: true });
-		openWindow($content, '<i class="fa fa-comments"></i>' + $post.children('article').children('header').children('h2').children('a').text(), 300, 450, true, url);
+		openWindow(windowId, $content, '<i class="fa fa-comments"></i>' + $post.children('article').children('header').children('h2').children('a').text(), 300, 450, true, url);
 		return false;
 	});
 

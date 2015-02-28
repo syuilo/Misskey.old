@@ -37,11 +37,11 @@ $(function() {
 	}
 });
 
-function openWindow($content, title, width, height, canPopout, popoutUrl) {
+function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
 	var canPopout = canPopout === undefined ? false : canPopout;
 
 	var $window = $("\
-		<div class=\"ui window\">\
+		<div class=\"ui window\" id=\"" + id + "\">\
 			<header>\
 				<h1>"+ title + "</h1>\
 				<div class=\"buttons\">\

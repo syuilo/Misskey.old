@@ -48,6 +48,10 @@ $(function() {
 
 	socket.on('talkMessage', function(message) {
 		console.log('talkMessage', message);
+		var windowId = 'misskey-window-talk-' + message.user.id;
+		if ($('#' + windowId)[0]) {
+			return;
+		}
 		var n = new Notification(message.user.name, {
 			body: message.text,
 			icon: conf.url + '/img/icon/' + message.user.screenName
@@ -60,7 +64,7 @@ $(function() {
 		n.onclick = function() {
 			var url = 'https://misskey.xyz/' + message.user.screenName + '/talk?noheader=true';
 			var $content = $("<iframe>").attr({ src: url, seamless: true });
-			openWindow($content, '<i class="fa fa-comments"></i>' + escapeHTML(message.user.name), 300, 450, true, url);
+			openWindow(windowId, $content, '<i class="fa fa-comments"></i>' + escapeHTML(message.user.name), 300, 450, true, url);
 		};
 	});
 
