@@ -7,7 +7,7 @@ $(function() {
 		xhrFields: { withCredentials: true }
 	}).done(function(result) {
 		if (result !== 0) {
-			$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk").append(
+			$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a").append(
 				$('<span class="unreadCount">').text(result));
 		}
 	}).fail(function() {
