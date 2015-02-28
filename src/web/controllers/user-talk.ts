@@ -20,6 +20,12 @@ var render = (req: any, res: any): void => {
 					return (a.id < b.id) ? -1 : 1;
 				});
 
+				// Šù“Ç‚É‚·‚é
+				otherpartyMessages.forEach((otherpartyMessage: TalkMessage) => {
+					otherpartyMessage.isReaded = true;
+					otherpartyMessage.update();
+				});
+
 				selialyzeTimelineOnject(messages,(serializedMessages: any[]) => {
 					res.display(req, res, 'user-talk', {
 						otherparty: req.rootUser,

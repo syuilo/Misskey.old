@@ -80,6 +80,18 @@ class TalkMessage {
 			(err: any, messages: any[]) => callback(messages.length != 0 ? messages.map((message) => new TalkMessage(message)) : null));
 	}
 
+	public static getAllUnreadCount(userId: number, callback: (unreadCount: number) => void): void {
+		db.query("select count(*) as count from talk_messages where otherparty_id = ? and is_readed = 0",
+			[userId],
+			(err: any, messages: any[]) => callback(messages[0].count));
+	}
+
+	public static getUserUnreadCount(userId: number, otherpartyId: number, callback: (unreadCount: number) => void): void {
+		db.query("select count(*) as count from talk_messages where otherparty_id = ? and user_id = ? and is_readed = 0",
+			[userId, otherpartyId],
+			(err: any, messages: any[]) => callback(messages[0].count));
+	}
+
 	public update(callback: () => void = () => { }): void {
 		db.query('update talk_messages set text=?, is_modified=?, is_deleted=?, is_readed=? where id=?',
 			[this.text, this.isModified, this.isDeleted, this.isReaded, this.id],
