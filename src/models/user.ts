@@ -1,6 +1,7 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import moment = require("moment");
 export = User;
 
 class User {
@@ -33,7 +34,7 @@ class User {
 		this.bio = user.bio;
 		this.color = user.color;
 		this.comment = user.comment;
-		this.createdAt = user.created_at;
+		this.createdAt = moment(user.created_at).format('YYYY-MM-DD HH:mm:ss Z');
 		this.credit = user.credit;
 		this.exp = user.exp;
 		this.id = user.id;
