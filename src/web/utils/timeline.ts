@@ -16,7 +16,7 @@ class Timeline {
 			var me = req.login ? req.me : null;
 			Timeline.selialyzeTimelineObject(posts, me,(timeline: any[]) => {
 				var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {
-					pretty: '  '
+					//pretty: '  '
 				});
 				var html = compiler({
 					posts: timeline,
@@ -28,7 +28,7 @@ class Timeline {
 			});
 		} else {
 			var compiler = jade.compileFile(__dirname + '/../views/templates/timeline.jade', {
-				pretty: '  '
+				//pretty: '  '
 			});
 			var html = compiler({
 				posts: null,
