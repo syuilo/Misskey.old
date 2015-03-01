@@ -20,7 +20,7 @@ class TalkMessage {
 
 	public constructor(message: any) {
 		this.appId = message.app_id;
-		this.createdAt = moment(message.created_at).format('YYYY-MM-DD HH:mm:ss Z');
+		this.createdAt = moment(message.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.id = message.id;
 		this.isDeleted = Boolean(message.is_deleted);
 		this.isImageAttached = Boolean(message.is_image_attached);

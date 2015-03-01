@@ -24,7 +24,7 @@ class Post {
 
 	public constructor(post: any) {
 		this.appId = post.app_id;
-		this.createdAt = moment(post.created_at).format('YYYY-MM-DD HH:mm:ss Z');
+		this.createdAt = moment(post.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.favoritesCount = post.favorites_count;
 		this.id = post.id;
 		this.inReplyToPostId = post.in_reply_to_post_id;
