@@ -93,6 +93,13 @@ textarea {
 
 	> .informationCenter {
 		display: block;
+		height: 0;
+		width: 100%;
+		max-width: 1300px;
+		margin: 0 auto;
+		overflow: hidden;
+		color: contrast(@themeColor);
+		background: @themeColor;
 		transition: all 0.5s cubic-bezier(0,0,0,1);
 
 		&:after {
@@ -100,8 +107,6 @@ textarea {
 			display: block;
 			clear: both;
 		}
-
-
 	}
 
 	> .main {
