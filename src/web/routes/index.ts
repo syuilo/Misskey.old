@@ -19,8 +19,8 @@ var router = (app: express.Express): void => {
 				req.data.rootUser = user;
 				next();
 			} else {
-				res.display(req, res, 'user-notFound', {
-				});
+				res.status(404);
+				res.display(req, res, 'user-notFound', {});
 			}
 		});
 	});
