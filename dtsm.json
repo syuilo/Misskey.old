@@ -34,6 +34,30 @@
     },
     "bcrypt/bcrypt.d.ts": {
       "ref": "2cc4331067a81e2ae6bc4590e7b33bf286c8f28f"
+    },
+    "cookie/cookie.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "gm/gm.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "multer/multer.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "js-yaml/js-yaml.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "socket.io/socket.io.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "marked/marked.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "compression/compression.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "less/less.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
     }
   }
 }
