@@ -165,6 +165,14 @@ TALKSTREAM.setEvent = function($message) {
 }
 
 $(function() {
+	var meId = $("html").attr("data-me-id");
+	var otherpartyId = $("html").attr("data-otherparty-id");
+
+	// オートセーブがあるなら復元
+	if ($.cookie('talk-autosave-' + otherpartyId)) {
+		$('#postForm textarea').val($.cookie('talk-autosave-' + otherpartyId));
+	}
+
 	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
 	scroll(0, $('html').outerHeight())
 
@@ -173,7 +181,7 @@ $(function() {
 	socket.on('connected', function() {
 		console.log('Connected');
 		socket.json.emit('init', {
-			'otherparty_id': $("html").attr("data-otherparty-id")
+			'otherparty_id': otherpartyId
 		});
 	});
 
@@ -268,7 +276,7 @@ $(function() {
 
 	socket.on('alive', function() {
 		console.log('alive');
-		var $status = $('<img src="/img/icon/' + $("html").attr("data-otherparty-id") + '" alt="icon" id="alive">');
+		var $status = $('<img src="/img/icon/' + otherpartyId + '" alt="icon" id="alive">');
 		if ($('#otherpartyStatus #alive')[0]) {
 			$('#otherpartyStatus #alive').remove();
 		} else {
@@ -311,7 +319,12 @@ $(function() {
 	}, 2000);
 
 	$('#postForm textarea').bind('input', function() {
-		socket.emit('type', $('#postForm textarea').val());
+		var text = $('#postForm textarea').val();
+
+		// オートセーブ
+		$.cookie('talk-autosave-' + otherpartyId, text, { expires: 365 });
+
+		socket.emit('type', text);
 	});
 
 	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
@@ -333,7 +346,6 @@ $(function() {
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
-		$submitButton.text('Updating...');
 
 		$.ajax('https://api.misskey.xyz/talk/say', {
 			type: 'post',
@@ -350,15 +362,26 @@ $(function() {
 			$form.find('.imageAttacher').find('p, img').remove();
 			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
-			$submitButton.text('Update');
+			$.removeCookie('talk-autosave-' + otherpartyId);
 		}).fail(function(data) {
 			$form[0].reset();
 			$form.find('textarea').focus();
 			/*alert('error');*/
 			$submitButton.attr('disabled', false);
-			$submitButton.text('Update');
 		});
 	});
+
+	function appendMessage(message) {
+		var $message = TALKSTREAM.generateMessageElement(message).hide();
+		$message.appendTo($('#stream > .messages')).show(200);
+		TALKSTREAM.setEvent($message);
+		var animateTimer = setInterval(function() {
+			scroll(0, $('html').outerHeight());
+		}, 1);
+		setTimeout(function() {
+			clearInterval(animateTimer);
+		}, 210);
+	}
 });
 
 $(window).load(function() {
@@ -369,18 +392,6 @@ $(window).load(function() {
 $(window).resize(function() {
 	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
 });
-
-function appendMessage(message) {
-	var $message = TALKSTREAM.generateMessageElement(message).hide();
-	$message.appendTo($('#stream > .messages')).show(200);
-	TALKSTREAM.setEvent($message);
-	var animateTimer = setInterval(function() {
-		scroll(0, $('html').outerHeight());
-	}, 1);
-	setTimeout(function() {
-		clearInterval(animateTimer);
-	}, 201);
-}
 
 $(function() {
 	$('.messages .message.me').each(function() {
