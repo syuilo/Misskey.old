@@ -2,6 +2,7 @@
 
 import db = require('../db');
 import async = require('async');
+import moment = require("moment");
 import Application = require('./application');
 import User = require('./user');
 import UserFollowing = require('./user-following');
@@ -23,7 +24,7 @@ class Post {
 
 	public constructor(post: any) {
 		this.appId = post.app_id;
-		this.createdAt = post.created_at;
+		this.createdAt = moment(post.created_at).format('YYYY-MM-DD HH:mm:ss Z');
 		this.favoritesCount = post.favorites_count;
 		this.id = post.id;
 		this.inReplyToPostId = post.in_reply_to_post_id;
