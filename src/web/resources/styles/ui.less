@@ -107,6 +107,27 @@ textarea {
 			display: block;
 			clear: both;
 		}
+
+		.info {
+			display: block;
+			float: left;
+			width: 330px;
+		}
+
+		.p {
+			display: block;
+			float: left;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			font-size: 1.2em;
+		}
+
+		.nav {
+			display: block;
+			float: left;
+			width: ~"calc(100% - 330px)";
+		}
 	}
 
 	> .main {
@@ -144,6 +165,9 @@ textarea {
 						vertical-align: top;
 
 						> .misskey {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
 							display: inline-block;
 							font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
 							margin: 0 10px;
@@ -151,6 +175,9 @@ textarea {
 							line-height: 3rem;
 							font-size: 1.5em;
 							color: rgba(0, 0, 0, 0.5);
+							border: none;
+							outline: none;
+							background: transparent;
 							transition: all 0.2s ease;
 
 							&:hover {
