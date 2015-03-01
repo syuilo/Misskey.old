@@ -58,6 +58,9 @@
     },
     "less/less.d.ts": {
       "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
+    },
+    "moment/moment.d.ts": {
+      "ref": "3882d337bb0808cde9fe4c08012508a48c135482"
     }
   }
 }
