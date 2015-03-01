@@ -23,9 +23,9 @@ $(function() {
 
 	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
 		if (musicCenterOpen) {
-			$("#misskey-musicCenter").css('top', '-100%');
+			$("#misskey-main-header > .informationCenter").css('width', '0');
 		} else {
-			$("#misskey-musicCenter").css('top', '0');
+			$("#misskey-main-header > .informationCenter").css('width', '200px');
 		}
 		musicCenterOpen = !musicCenterOpen;
 	});

@@ -91,6 +91,19 @@ textarea {
 	z-index: 1024;
 	width: 100%;
 
+	> .informationCenter {
+		display: block;
+		transition: all 0.5s cubic-bezier(0,0,0,1);
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+
+	}
+
 	> .main {
 		max-height: 3em;
 		margin: 0;
