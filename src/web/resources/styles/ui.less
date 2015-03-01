@@ -94,9 +94,6 @@ textarea {
 	> .informationCenter {
 		display: block;
 		height: 0;
-		width: 100%;
-		max-width: 1300px;
-		margin: 0 auto;
 		overflow: hidden;
 		color: contrast(@themeColor);
 		background: @themeColor;
@@ -108,25 +105,31 @@ textarea {
 			clear: both;
 		}
 
-		.info {
-			display: block;
-			float: left;
-			width: 330px;
-		}
-
-		.p {
-			display: block;
-			float: left;
+		> .informationCenterContainer {
 			width: 100%;
-			margin: 0;
-			padding: 0;
-			font-size: 1.2em;
-		}
+			max-width: 1300px;
+			margin: 0 auto;
 
-		.nav {
-			display: block;
-			float: left;
-			width: ~"calc(100% - 330px)";
+			.info {
+				display: block;
+				float: left;
+				width: 330px;
+			}
+
+			.p {
+				display: block;
+				float: left;
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				font-size: 1.2em;
+			}
+
+			.nav {
+				display: block;
+				float: left;
+				width: ~"calc(100% - 330px)";
+			}
 		}
 	}
 
