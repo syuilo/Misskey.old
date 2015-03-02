@@ -1,16 +1,9 @@
+@themeColor: <%themeColor%>;
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
 * {
-	font-family:
-		'Open Sans',
-		Helvetica,
-		Arial,
-		'Hiragino Kaku Gothic ProN',
-		'ヒラギノ角ゴ ProN W3',
-		Meiryo UI,
-		Meiryo,
-		メイリオ,
-		sans-serif;
+	font-family: 'Open Sans', Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo UI, Meiryo, メイリオ, sans-serif;
 }
 
 html, body {
@@ -56,6 +49,7 @@ main {
 	height: 100%;
 	text-align: center;
 }
+
 	main > h1 {
 		margin: 0;
 		padding: 32px;
@@ -65,17 +59,15 @@ main {
 		position: relative;
 		box-sizing: border-box;
 		width: 350px;
-		margin: 0 auto;
+		margin: 0 180px 0 auto;
 		padding: 32px 32px 0 32px;
-		
-		background: #223;
-		box-shadow: 8px 8px 2px rgba(0, 0, 0, 0.2);
-		
+		border-top: solid 3px @themeColor;
+		background: #fff;
+		box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 		transform: perspective(512px);
-	}
 
-		main > #loginForm input[type=text],
-		main > #loginForm input[type=password] {
+		#loginForm input[type=text],
+		#loginForm input[type=password] {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
@@ -84,33 +76,32 @@ main {
 			-webkit-user-select: text;
 			-ms-user-select: text;
 			cursor: auto;
-			
 			box-sizing: border-box;
 			padding: 8px 16px;
 			margin: 8px 0;
 			width: 100%;
-			
 			font-size: 1.2em;
 			color: #fff;
 			outline: none;
-			border: solid 1px #445;
+			border: solid 1px #eee;
 			border-radius: 0;
 			box-shadow: none;
 			background: transparent;
-			
 			transition: all .5s ease;
+
+			&:hover {
+				border: solid 1px @themeColor;
+				transition: all .2s ease;
+			}
+
+			&:focus {
+				border: solid 1px @themeColor;
+				color: @themeColor;
+				transition: all .2s ease;
+			}
 		}
-		main > #loginForm input[type=text]:hover,
-		main > #loginForm input[type=password]:hover {
-			border: solid 1px #5e0;
-			transition: all .2s ease;
-		}
-		main > #loginForm input[type=text]:focus,
-		main > #loginForm input[type=password]:focus {
-			border: solid 1px #5e0;
-			color: #5e0;
-			transition: all .2s ease;
-		}
+	}
+
 		main > #loginForm input[type=text]::-webkit-input-placeholder,
 		main > #loginForm input[type=password]::-webkit-input-placeholder,
 		main > #loginForm input[type=text]::-moz-placeholder,
@@ -124,14 +115,11 @@ main {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
-			
 			cursor: pointer;
-			
 			box-sizing: border-box;
 			padding: 16px 16px 32px 16px;
 			margin: 0;
 			width: 100%;
-			
 			font-size: 1.2em;
 			color: #fff;
 			outline: none;
@@ -139,21 +127,23 @@ main {
 			border-radius: 0;
 			box-shadow: none;
 			background: transparent;
-			
 			transition: all .5s ease;
 		}
-		main > #loginForm input[type=submit]:hover {
-			color: #5e0;
-			transition: all .2s ease;
-		}
-		main > #loginForm input[type=submit]:focus {
-			color: #5e0;
-			transition: all .2s ease;
-		}
-		main > #loginForm input[type=submit]:active {
-			color: #3c0;
-			transition: all .2s ease;
-		}
+
+			main > #loginForm input[type=submit]:hover {
+				color: #5e0;
+				transition: all .2s ease;
+			}
+
+			main > #loginForm input[type=submit]:focus {
+				color: #5e0;
+				transition: all .2s ease;
+			}
+
+			main > #loginForm input[type=submit]:active {
+				color: #3c0;
+				transition: all .2s ease;
+			}
 
 #new {
 	display: inline-block;
