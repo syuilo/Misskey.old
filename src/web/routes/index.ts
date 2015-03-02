@@ -25,6 +25,19 @@ var router = (app: express.Express): void => {
 		});
 	});
 
+	app.param('postId', (req: any, res: any, next: () => void , postId: number) => {
+		Post.find(postId, (post: Post) => {
+			if (post != null) {
+				req.rootPost = post;
+				req.data.rootPost = post;
+				next();
+			} else {
+				req.status(404);
+				res.display(req, res, 'post-notFound', {});
+			}
+		});
+	});
+
 	app.get('/',(req: any, res: any, next: () => void) => {
 		if (req.login) {
 			require('../controllers/home')(req, res);
@@ -94,6 +107,11 @@ var router = (app: express.Express): void => {
 		require('../controllers/user')(req, res, 'followers');
 	});
 	app.get('/:userSn/talk', require('../controllers/user-talk'));
+
+	app.get('/:userSn/:postId(\\d+)', (req: any, res: any, next: () => void) => {
+		require('../controllers/post')(req, res);
+	});
+
 
 	/* Image */
 	imageRouter(app);
