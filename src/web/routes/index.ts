@@ -63,6 +63,10 @@ var router = (app: express.Express): void => {
 		res.send('var conf = ' + JSON.stringify(config.publicConfig) + ';');
 	});
 
+	app.get('/dev',(req: any, res: any, next: () => void) => {
+		require('../controllers/dev')(req, res);
+	});
+
 	/* Actions */
 	app.get('/login',(req: any, res: any) => {
 		res.display(req, res, 'login', {});
