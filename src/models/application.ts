@@ -62,9 +62,9 @@ class Application {
 			(err: any, apps: any[]) => callback(apps[0] != null ? new Application(apps[0]) : null));
 	}
 
-	public static findByScreenName(screenName: string, callback: (apps: Application[]) => void): void {
-		db.query("select * from applications where screen_name = ?",
-			[screenName],
+	public static findByUserId(userId: number, callback: (apps: Application[]) => void): void {
+		db.query("select * from applications where user_id = ?",
+			[userId],
 			(err: any, apps: any[]) => callback(apps.length != 0 ? apps.map((app) => new Application(app)) : null));
 	}
 
