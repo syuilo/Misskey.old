@@ -8,7 +8,6 @@
 /// <reference path="redis\redis.d.ts" />
 /// <reference path="bcrypt\bcrypt.d.ts" />
 /// <reference path="socket.io\socket.io.d.ts" />
-/// <reference path="jquery\jquery.d.ts" />
 /// <reference path="less\less.d.ts" />
 /// <reference path="compression\compression.d.ts" />
 /// <reference path="js-yaml\js-yaml.d.ts" />
