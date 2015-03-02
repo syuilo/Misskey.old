@@ -65,7 +65,7 @@ class Application {
 	public static findByScreenName(screenName: string, callback: (apps: Application[]) => void): void {
 		db.query("select * from applications where screen_name = ?",
 			[screenName],
-			(err: any, apps: any[]) => callback(apps.map(app => new Application(app))));
+			(err: any, apps: any[]) => callback(apps.length != 0 ? apps.map((app) => new Application(app)) : null));
 	}
 
     public update(callback?: () => void): void {
