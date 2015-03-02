@@ -1,0 +1,32 @@
+doctype html
+
+html
+	head
+		meta(charset='UTF-8')
+		title Misskey Developer Center
+		link(rel='stylesheet', href='/resources/styles/dev.css')
+		script(src='/resources/scripts/dev.js')
+	body
+		header.flex
+			div#titleLogo.flex
+				h1 Misskey Developer Center
+				p 君の創り出す未来へ
+			if login
+				a#anchorLogout(href='/logout', target='_blank') Logout
+			else
+				a#anchorLogout(href='/', target='_blank') Login
+		div#contents.flex
+			nav
+				ul
+					li
+						h1 MyApplication
+							each app in apps
+								p app.name
+					li
+						h1 REST API
+							p Item1
+					li
+						h1 MenuItem
+			main
+		footer
+			small (c)Misskey.
