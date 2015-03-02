@@ -285,6 +285,7 @@ TIMELINE.setEventPost = function($post) {
 		$button.attr('disabled', true);
 
 		if ($post.attr('data-is-favorited') == 'true') {
+			$post.attr('data-is-favorited', 'false')
 			$.ajax('https://api.misskey.xyz/post/unfavorite', {
 				type: 'delete',
 				data: { 'post_id': $post.attr('data-id') },
@@ -292,11 +293,12 @@ TIMELINE.setEventPost = function($post) {
 				xhrFields: { withCredentials: true }
 			}).done(function() {
 				$button.attr('disabled', false);
-				$post.attr('data-is-favorited', 'false')
 			}).fail(function() {
 				$button.attr('disabled', false);
+				$post.attr('data-is-favorited', 'true')
 			});
 		} else {
+			$post.attr('data-is-favorited', 'true')
 			$.ajax('https://api.misskey.xyz/post/favorite', {
 				type: 'post',
 				data: { 'post_id': $post.attr('data-id') },
@@ -304,9 +306,9 @@ TIMELINE.setEventPost = function($post) {
 				xhrFields: { withCredentials: true }
 			}).done(function() {
 				$button.attr('disabled', false);
-				$post.attr('data-is-favorited', 'true')
 			}).fail(function() {
 				$button.attr('disabled', false);
+				$post.attr('data-is-favorited', 'false')
 			});
 		}
 	});
