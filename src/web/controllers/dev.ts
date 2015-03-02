@@ -10,7 +10,7 @@ export = render;
 var render = (req: any, res: any): void => {
 	async.series([
 		(callback: any) => {
-            Application.findByScreenName(req.me.screenName,(apps: Application[]) => {
+            Application.findByUserId(req.me.id,(apps: Application[]) => {
 				callback(null, apps);
 			});
 		}],
