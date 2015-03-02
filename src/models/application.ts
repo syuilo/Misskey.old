@@ -68,9 +68,9 @@ class Application {
 			(err: any, apps: any[]) => callback(apps.map(app => new Application(app))));
 	}
 
-	public update(callback?: () => void): void {
-		db.query('update applications set where id =?',
-			[this.id],
-			callback);
-	}
+    public update(callback?: () => void): void {
+        db.query('update applications set name = ?, consumer_key = ?, callback_url = ?, description = ?, is_suspended, where id = ?',
+            [this.name, this.consumerKey, this.callbackUrl, this.description, this.isSuspended, this.id],
+            callback);
+    }
 }
