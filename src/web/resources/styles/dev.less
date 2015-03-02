@@ -1,3 +1,5 @@
+@themeColor: <%themeColor%>;
+
 @import url(http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css);
 
 * {
@@ -14,9 +16,10 @@
 }
 
 html {
-	background: fixed no-repeat;
-	background-size: cover;
-	background-image: linear-gradient(rgba(33,31,95,0.85), rgba(33,31,95,0.85)), url("dev.jpg");
+	color: #000;
+	background-color: #fff;
+	background-image: url('/resources/images/grid.png');
+	background-repeat: repeat;
 }
 
 body {
@@ -35,7 +38,7 @@ body {
 	header {
 		/*flexコンテナとしての設定*/
 		justify-content: space-between;
-		background-color: rgba(26, 25, 76, 0.7);
+		background: @themeColor;
 		height: 150px;
 		min-width: 760px;
 
