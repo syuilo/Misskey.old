@@ -5,6 +5,11 @@ $(function() {
 
 	}
 
+	// オートセーブがあるなら復元
+	if ($.cookie('post-autosave')) {
+		$('#postForm textarea').val($.cookie('post-autosave'));
+	}
+
 	socket = io.connect('https://api.misskey.xyz:1207/streaming/home', { port: 1207 });
 
 	socket.on('connected', function() {
@@ -105,6 +110,7 @@ $(function() {
 			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
+			$.removeCookie('post-autosave');
 		}).fail(function(data) {
 			$form[0].reset();
 			$form.find('textarea').focus();
@@ -112,6 +118,13 @@ $(function() {
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
 		});
+	});
+
+	$('#postForm textarea').bind('input', function() {
+		var text = $('#postForm textarea').val();
+
+		// オートセーブ
+		$.cookie('post-autosave', text, { path: '/', expires: 365 });
 	});
 
 	$('#timeline .loadMore').click(function() {
