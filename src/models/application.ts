@@ -68,9 +68,24 @@ class Application {
 			(err: any, apps: any[]) => callback(apps.map(app => new Application(app))));
 	}
 
-	public update(callback?: () => void): void {
-		db.query('update applications set where id =?',
-			[this.id],
-			callback);
-	}
+    public update(name: string = null, description: string = null, callback?: () => void): void {
+        if (name != null && description != null) {
+            db.query('update applications set name = ?, description = ? where id = ?',
+                [name, description, this.id],
+                callback);
+        }
+        else if (name != null && description == null) {
+            db.query('update applications set name = ? where id = ?',
+                [name, this.id],
+                callback);
+        }
+        else if (name == null && description != null) {
+            db.query('update applications set description = ? where id = ?',
+                [description, this.id],
+                callback);
+        }
+        else {
+            // Not Implemented
+        }
+    }
 }
