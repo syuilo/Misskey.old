@@ -48,14 +48,13 @@ main video {
 main {
 	height: 100%;
 	text-align: center;
-}
 
-	main > h1 {
+	> h1 {
 		margin: 0;
 		padding: 32px;
 	}
 
-	main > #loginForm {
+	#loginForm {
 		position: relative;
 		box-sizing: border-box;
 		width: 350px;
@@ -66,8 +65,8 @@ main {
 		box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 		transform: perspective(512px);
 
-		#loginForm input[type=text],
-		#loginForm input[type=password] {
+		input[type=text],
+		input[type=password] {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
@@ -100,18 +99,8 @@ main {
 				transition: all .2s ease;
 			}
 		}
-	}
 
-		main > #loginForm input[type=text]::-webkit-input-placeholder,
-		main > #loginForm input[type=password]::-webkit-input-placeholder,
-		main > #loginForm input[type=text]::-moz-placeholder,
-		main > #loginForm input[type=password]::-moz-placeholder,
-		main > #loginForm input[type=text]:-ms-input-placeholder,
-		main > #loginForm input[type=password]:-ms-input-placeholder {
-			color: #334;
-		}
-
-		main > #loginForm input[type=submit] {
+		input[type=submit] {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
@@ -128,22 +117,33 @@ main {
 			box-shadow: none;
 			background: transparent;
 			transition: all .5s ease;
+
+			&:hover {
+				color: @themeColor;
+				transition: all .2s ease;
+			}
+
+			&:focus {
+				color: @themeColor;
+				transition: all .2s ease;
+			}
+
+			&:active {
+				color: darken(@themeColor, 30%);
+				transition: all .2s ease;
+			}
 		}
+	}
+}
 
-			main > #loginForm input[type=submit]:hover {
-				color: #5e0;
-				transition: all .2s ease;
-			}
-
-			main > #loginForm input[type=submit]:focus {
-				color: #5e0;
-				transition: all .2s ease;
-			}
-
-			main > #loginForm input[type=submit]:active {
-				color: #3c0;
-				transition: all .2s ease;
-			}
+	main > #loginForm input[type=text]::-webkit-input-placeholder,
+	main > #loginForm input[type=password]::-webkit-input-placeholder,
+	main > #loginForm input[type=text]::-moz-placeholder,
+	main > #loginForm input[type=password]::-moz-placeholder,
+	main > #loginForm input[type=text]:-ms-input-placeholder,
+	main > #loginForm input[type=password]:-ms-input-placeholder {
+		color: #334;
+	}
 
 #new {
 	display: inline-block;
