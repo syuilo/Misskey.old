@@ -106,12 +106,16 @@ var router = (app: express.Express): void => {
 	app.get('/:userSn/followers',(req: any, res: any, next: () => void) => {
 		require('../controllers/user')(req, res, 'followers');
 	});
+
 	app.get('/:userSn/talk', require('../controllers/user-talk'));
 
 	app.get('/:userSn/:postId(\\d+)', (req: any, res: any, next: () => void) => {
 		require('../controllers/post')(req, res);
 	});
 
+	app.get('/:userSn/post/:postId(\\d+)',(req: any, res: any, next: () => void) => {
+		require('../controllers/post')(req, res);
+	});
 
 	/* Image */
 	imageRouter(app);
