@@ -33,7 +33,6 @@ body {
 
 	header {
 		background: #ff005c;
-		min-height: 64px;
 
 		#titleLogo {
 			margin-left: 40px;
@@ -56,6 +55,12 @@ body {
 	}
 
 	#contents {
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 
 		nav {
 			display: block;

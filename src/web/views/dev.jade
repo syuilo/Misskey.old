@@ -7,9 +7,13 @@ html
 		link(rel='stylesheet', href='/resources/styles/dev.css')
 		script(src='/resources/scripts/dev.js')
 	body
+		include templates/header
+		
 		header
 			div#titleLogo
-				h1 Misskey Developer Center
+				h1
+					i.fa.fa-terminal
+					| Developer Center
 		div#contents
 			nav
 				ul
