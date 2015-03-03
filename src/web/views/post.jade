@@ -4,21 +4,22 @@ html(lang='ja', dir='ltr')
 	head
 		include templates/head
 		meta(name='keywords', content='Misskey')
-		title= user.name + ' さんはMisskeyを使っています'
+		title= user.name + ' さんの投稿'
 		link(rel='stylesheet', href='/resources/styles/ui.css')
 		link(rel='stylesheet', href='/resources/styles/post.css')
 
 	body
 		main(role='main')
+			h1= user.name + ' さんの投稿'
 			ol
 				- for(var i = 0; i < beforeTalks.length; i++) {
 					li
-						article
-							footer
-								h1= beforeTalks[i].user.name
+						article.post
+							header
+								h2= beforeTalks[i].user.name
 							p= beforeTalks[i].text
 				- }
 			article(role='article')
-				footer(role='contentinfo')
+				header(role='contentinfo')
 					h1= user.name
 				p= post.text
