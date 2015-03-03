@@ -7,14 +7,6 @@
 	padding: 0;
 }
 
-.flex {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-}
-
 html {
 	color: #000;
 	background-color: #fff;
@@ -36,18 +28,12 @@ body {
 	}
 
 	header {
-		/*flexコンテナとしての設定*/
-		justify-content: space-between;
 		background: @themeColor;
 		height: 150px;
 		min-width: 760px;
 
 		#titleLogo {
-			/*flexアイテムとしての設定*/
-			align-self: center;
 			margin-left: 40px;
-			/*flexコンテナとしての設定*/
-			flex-flow: column nowrap;
 
 			h1 {
 				color: #fff;
@@ -55,16 +41,12 @@ body {
 			}
 
 			p {
-				/*flexアイテムとしての設定*/
-				align-self: flex-end;
 				color: #fff;
 				font-size: 20px;
 			}
 		}
 
 		#anchorLogout {
-			/*flexアイテムとしての設定*/
-			align-self: flex-end;
 			margin: 0 10px 10px 0;
 			font-size: 25px;
 		}
@@ -73,10 +55,13 @@ body {
 	#contents {
 
 		nav {
-			background-color: rgba(29, 28, 81, 0.7);
+			display: block;
+			float: left;
+			height: 100%;
 			min-height: 512px;
+			width: 300px;
 			padding: 0 64px 0 0;
-			border-radius: 0 0 10px 0;
+			background-color: #333;
 
 			ul {
 
@@ -108,6 +93,9 @@ body {
 		}
 
 		main {
+			display: block;
+			float: left;
+			width: ~"calc(100% - 300px)";
 
 			article {
 				font-size: 19px;
