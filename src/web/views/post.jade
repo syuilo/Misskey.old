@@ -1,0 +1,27 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include templates/head
+		meta(name='keywords', content='Misskey')
+		title= user.name + ' さんの投稿'
+		link(rel='stylesheet', href='/resources/styles/ui.css')
+
+	body
+		main(role='main')
+			h1= user.name + ' さんの投稿'
+			div
+				ol
+					- for(var i = 0; i < beforeTalks.length; i++) {
+						li
+							article
+								header
+									h2
+										a(href='#')= beforeTalks[i].user.name
+								p= beforeTalks[i].text
+					- }
+			article(role='article')
+				header(role='contentinfo')
+					h1
+						a(href='#')= user.name
+				p= post.text
