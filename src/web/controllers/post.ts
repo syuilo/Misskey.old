@@ -29,7 +29,7 @@ var render = (req: any, res: any): void => {
 	], (err: any, results: any) => {
 		res.display(req, res, 'post', {
 			post: req.rootPost,
-			postUser: results[0],
+			user: results[0],
 			beforeTalks: results[1]
 		});
 	});
