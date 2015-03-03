@@ -14,9 +14,10 @@ html(lang='ja', dir='ltr')
 			ol
 				- for(var i = 0; i < beforeTalks.length; i++) {
 					li
-						article.post
+						article
 							header
-								h2= beforeTalks[i].user.name
+								h2
+									a(href='#')= beforeTalks[i].user.name
 							p= beforeTalks[i].text
 				- }
 			article(role='article')
