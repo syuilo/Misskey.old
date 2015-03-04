@@ -15,7 +15,7 @@ var render = (req: any, res: any): void => {
                     callback(null, apps);
                 });
             } else {
-                callback(null, null);
+                callback(null, []);
             }
 		}],
 		(err: any, results: any) => {
