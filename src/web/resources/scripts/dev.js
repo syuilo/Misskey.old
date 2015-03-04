@@ -2,11 +2,6 @@ $.fn.isVisible = function() {
 	return $.expr.filters.visible(this[0]);
 };
 
-//ウィンドウのリサイズ時
-$(window).on('load resize', function() {
-	$('main').width( $(window).width() - $('nav').width() );
-});
-
 $(function() {
 	$('li p').hide();
 

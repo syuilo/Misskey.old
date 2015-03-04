@@ -1,27 +1,26 @@
-@import url(http://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css);
+@themeColor: <%themeColor%>;
+
+@import url(https://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css);
 
 * {
 	margin: 0;
 	padding: 0;
 }
 
-.flex {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
+html, body {
+	height: 100%;
 }
 
 html {
-	background: fixed no-repeat;
-	background-size: cover;
-	background-image: linear-gradient(rgba(33,31,95,0.85), rgba(33,31,95,0.85)), url("/resources/images/dev.jpg");
+	color: #000;
+	background-color: #fff;
+	background-image: url('/resources/images/grid.png');
+	background-repeat: repeat;
 }
 
 body {
 	color: #fff;
-	font-family: "mplus-1c-light", sans-serif;
+	font-family: "mplus-1c-light", sans-serif !important;
 
 	a {
 		color: rgba(152, 186, 220, 1);
@@ -33,71 +32,77 @@ body {
 	}
 
 	header {
-		/*flexコンテナとしての設定*/
-		justify-content: space-between;
-		background-color: rgba(26, 25, 76, 0.7);
-		height: 150px;
-		min-width: 760px;
+		background-color: #ff005c;
+		background-image: url('/resources/images/grid.png');
+		background-repeat: repeat;
 
 		#titleLogo {
-			/*flexアイテムとしての設定*/
-			align-self: center;
-			margin-left: 40px;
-			/*flexコンテナとしての設定*/
-			flex-flow: column nowrap;
+			box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
 
 			h1 {
-				color: rgba(152, 186, 220, 1);
-				font-size: 40px;
+				display: inline-block;
+				padding: 8px 64px;
+				color: #fff;
+				font-size: 2em;
+				font-weight: 100;
+
+				i {
+					margin-right: 8px;
+				}
 			}
 
 			p {
-				/*flexアイテムとしての設定*/
-				align-self: flex-end;
-				color: rgb(143, 142, 167);
+				color: #fff;
 				font-size: 20px;
 			}
 		}
 
 		#anchorLogout {
-			/*flexアイテムとしての設定*/
-			align-self: flex-end;
 			margin: 0 10px 10px 0;
 			font-size: 25px;
 		}
 	}
 
 	#contents {
+		height: 100%;
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 
 		nav {
-			background-color: rgba(29, 28, 81, 0.7);
+			display: block;
+			float: left;
+			height: 100%;
 			min-height: 512px;
-			padding: 0 64px 0 0;
-			border-radius: 0 0 10px 0;
+			width: 300px;
+			padding: 0;
+			background-color: #333;
 
 			ul {
 
 				li {
-					padding: 10px 0 10px 0;
+					padding: 0;
 					font-size: 19px;
 					white-space: nowrap;
 
-					* {
-						padding-left: 21px;
+					i {
+						margin-right: 8px;
 					}
 
 					h1 {
 						font-size: 25px;
-						border-left: 8px solid rgb(74, 73, 116);
+						border-left: 8px solid #222;
 						margin-top: 0;
 						vertical-align: middle;
-						padding: 0 8px 3px 8px;
+						padding: 8px 8px;
 						font-weight: 100;
 						cursor: pointer;
 
 						&:hover {
-							background: rgba(255, 255, 255, 0.7);
-							color: rgba(29, 28, 81, 0.7);
+							background: rgba(255, 255, 255, 0.2);
 						}
 					}
 				}
@@ -105,6 +110,9 @@ body {
 		}
 
 		main {
+			display: block;
+			float: left;
+			width: ~"calc(100% - 300px)";
 
 			article {
 				font-size: 19px;

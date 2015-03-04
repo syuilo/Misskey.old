@@ -12,6 +12,9 @@ import imageRouter = require('./image');
 export = router;
 
 var router = (app: express.Express): void => {
+	/* Image */
+	imageRouter(app);
+	
 	app.param('userSn',(req: any, res: any, next: () => void, sn: string) => {
 		User.findByScreenName(sn,(user: User) => {
 			if (user != null) {
@@ -106,13 +109,14 @@ var router = (app: express.Express): void => {
 	app.get('/:userSn/followers',(req: any, res: any, next: () => void) => {
 		require('../controllers/user')(req, res, 'followers');
 	});
+
 	app.get('/:userSn/talk', require('../controllers/user-talk'));
 
 	app.get('/:userSn/:postId(\\d+)', (req: any, res: any, next: () => void) => {
 		require('../controllers/post')(req, res);
 	});
 
-
-	/* Image */
-	imageRouter(app);
+	app.get('/:userSn/post/:postId(\\d+)',(req: any, res: any, next: () => void) => {
+		require('../controllers/post')(req, res);
+	});
 };

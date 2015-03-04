@@ -100,6 +100,7 @@ TIMELINE.generatePostElement = function(post) {
 			function generateTime() {
 				return $('<a>')
 				.attr('href', conf.url + '/' + post.user.screenName + '/' + post.id)
+				.attr('target', '_blank')
 				.append(
 					$('<time>')
 					.attr('datetime', post.createdAt)

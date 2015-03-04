@@ -69,3 +69,12 @@ header#misskey-main-header(role='banner')
 										li: a(href='/logout')
 											i(class='fa fa-power-off')
 											| ログアウト
+			else
+				div.left
+					nav
+						div.mainNav
+							button(role='button').misskey Misskey
+							ul
+								li.home: a(href='/')
+									i.fa.fa-home
+									| エントランス
