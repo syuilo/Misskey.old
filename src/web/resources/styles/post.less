@@ -1,0 +1,51 @@
+@themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+
+html, body {
+	height: 100%;
+}
+
+main {
+	display: block;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+
+	> #post {
+		padding: 16px 0;
+
+		> article {
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> .sub {
+				box-sizing: border-box;
+				float: left;
+				width: 120px;
+				text-align: center;
+
+				> .icon {
+					min-width: 54px;
+					min-height: 54px;
+					max-width: 54px;
+					max-height: 54px;
+					margin: 0;
+					border-radius: 6px;
+				}
+			}
+
+			> .main {
+				box-sizing: border-box;
+				float: left;
+				width: ~"calc(100% - 120px)";
+
+				> .text {
+					font-size: 1.5em;
+				}
+			}
+		}
+	}
+}
