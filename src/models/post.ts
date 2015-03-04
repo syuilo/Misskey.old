@@ -165,6 +165,7 @@ class Post {
 			[id],
 			(err: any, posts: any[]) => callback(posts[0] != null ? new Post(posts[0]) : null));
 	}
+
 	public update(callback: () => void): void {
 		db.query('update posts set favorites_count=?, reposts_count=? where id =?',
 			[this.favoritesCount, this.repostsCount, this.id],
