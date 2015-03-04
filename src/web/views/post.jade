@@ -3,25 +3,54 @@ doctype html
 html(lang='ja', dir='ltr')
 	head
 		include templates/head
+		meta(name='description', content= post.user.name + 'さんの投稿')
 		meta(name='keywords', content='Misskey')
-		title= user.name + ' さんの投稿'
-		link(rel='stylesheet', href='/resources/styles/ui.css')
-
+		title= post.user.name + 'さんの投稿'
+		link(rel='stylesheet', href='/resources/styles/post.css')
+		script(src='/resources/scripts/post.js')
+	
 	body
+		include templates/header
+		
 		main(role='main')
-			h1= user.name + ' さんの投稿'
-			div
-				ol
-					- for(var i = 0; i < beforeTalks.length; i++) {
-						li
-							article
+			ol#beforeTalks
+				- for (var i = 0; i < beforeTalks.length; i++){
+					li.post
+						article
+							div.sub
+								img.icon(src='/img/icon' + beforeTalks[i].user.screenName, alt='icon')
+							div.main
 								header
-									h2
-										a(href='#')= beforeTalks[i].user.name
-								p= beforeTalks[i].text
-					- }
-			article(role='article')
-				header(role='contentinfo')
-					h1
-						a(href='#')= user.name
-				p= post.text
+									a.nameAnchor(href='/' + post.user.screenName): p.name = post.user.name
+									p.screenName = '@' + post.user.screenName
+								div.text = post.text
+				- }
+			div.post#target
+				article
+					div.sub
+						img.icon(src='/img/icon/' + post.user.screenName, alt='icon')
+					div.main
+						header
+							a.nameAnchor(href='/' + post.user.screenName): p.name= post.user.name
+							p.screenName= '@' + post.user.screenName
+						div.text= post.text
+						div.actions
+							div.repost
+								button.repostButton(title= isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+									i.fa.fa-retweet
+								a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
+							div.favorite
+								button.favoriteButton(title= isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+									i.fa.fa-star
+								a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
+				if login
+					form#replyForm
+						textarea(name='text')= '@' + post.user.screenName + ' '
+						input(name='in_reply_to_post_id', type='hidden', value=post.id)
+						input(type='submit', value!='&#xf112; Reply')
+						div.imageAttacher
+							p
+								i.fa.fa-picture-o
+							input(name='image', type='file', accept='image/*')
+				else
+					p この投稿に返信するにはログインしてください。
