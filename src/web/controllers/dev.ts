@@ -9,14 +9,14 @@ export = render;
 
 var render = (req: any, res: any): void => {
 	async.series([
-        (callback: any) => {
-            if (req.login) {
-                Application.findByUserId(req.me.id, (apps: Application[]) => {
-                    callback(null, apps);
-                });
-            } else {
-                callback(null, []);
-            }
+		(callback: any) => {
+			if (req.login) {
+				Application.findByUserId(req.me.id, (apps: Application[]) => {
+					callback(null, apps);
+				});
+			} else {
+				callback(null, []);
+			}
 		}],
 		(err: any, results: any) => {
 			res.display(req, res, 'dev', {
