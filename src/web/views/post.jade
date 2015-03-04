@@ -22,15 +22,15 @@ html(lang='ja', dir='ltr')
 							a.nameAnchor(href='/' + post.user.screenName): p.name= post.user.name
 							p.screenName= '@' + post.user.screenName
 						div.text= post.text
-							div.actions
-								div.repost
-									button.repostButton(title= isReposted ? 'Repostを取り消し' : 'Repost', role='button')
-										i.fa.fa-retweet
-									a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
-								div.favorite
-									button.favoriteButton(title= isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
-										i.fa.fa-star
-									a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
+						div.actions
+							div.repost
+								button.repostButton(title= isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+									i.fa.fa-retweet
+								a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
+							div.favorite
+								button.favoriteButton(title= isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+									i.fa.fa-star
+								a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
 				if login
 					form#replyForm
 						textarea(name='text')= '@' + post.user.screenName + ' '
