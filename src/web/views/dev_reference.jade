@@ -1,0 +1,14 @@
+doctype html
+
+html
+	head
+		include templates/head
+		title Misskey Developer Center
+		link(rel='stylesheet', href='/resources/styles/dev.css')
+		//-script(src='/resources/scripts/dev-api.js')
+	body
+		main
+			- var path = q.replace(/-/g, "/");
+			include #{path}
+		footer
+			small (c)Misskey.

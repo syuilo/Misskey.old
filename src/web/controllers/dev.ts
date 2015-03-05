@@ -8,19 +8,29 @@ import conf = require('../../config');
 export = render;
 
 var render = (req: any, res: any): void => {
-	async.series([
-		(callback: any) => {
-			if (req.login) {
-				Application.findByUserId(req.me.id, (apps: Application[]) => {
-					callback(null, apps);
-				});
-			} else {
-				callback(null, []);
-			}
-		}],
-		(err: any, results: any) => {
-			res.display(req, res, 'dev', {
-				apps: results[0],
-			});
+	if (req.query.q) {
+		var query = "..-..-reference-apis";
+		for (var item in req.query.q.split("-")) {
+			query += "-" + item;
+		}
+		res.display(req, res, "dev_reference", {
+			q: query
 		});
+	} else {
+		async.series([
+			(callback: any) => {
+				if (req.login) {
+					Application.findByUserId(req.me.id, (apps: Application[]) => {
+						callback(null, apps);
+					});
+				} else {
+					callback(null, []);
+				}
+			}],
+			(err: any, results: any) => {
+				res.display(req, res, 'dev', {
+					apps: results[0],
+				});
+			});
+	}
 };
