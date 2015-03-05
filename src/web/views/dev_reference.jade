@@ -9,6 +9,6 @@ html
 	body
 		main
 			- var path = q.replace(/-/g, "/");
-			include #{path}
+			include= path
 		footer
 			small (c)Misskey.
