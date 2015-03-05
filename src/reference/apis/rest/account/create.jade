@@ -1,0 +1,41 @@
+extends ../layout.jade
+
+block title
+	account/create
+
+block method
+	POST
+
+block endpoint
+	https://api.misskey.xyz/account/create
+
+block overview
+	p 新しくアカウントを作成します。
+
+block parameters
+	table
+		thead
+			tr
+				th Name
+				th isRequired
+				th Description
+		tbody
+			tr
+				td screen_name
+				td required
+				td スクリーンネーム(5～19文字)
+			tr
+				td name
+				td required
+				td 名前
+			tr
+				td password
+				td required
+				td パスワード(9文字以上)
+			tr
+				td color
+				td required
+				td ユーザーカラー
+
+block response
+	作成したアカウントのUserオブジェクト
