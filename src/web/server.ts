@@ -99,10 +99,10 @@ webServer.initSession = (req: any, res: any, callback: () => void) => {
 	}
 };
 
+/* Statics */
 webServer.get('/favicon.ico',(req: any, res: any, next: () => void) => {
 	res.sendFile(path.resolve(__dirname + '/resources/favicon.ico'));
 });
-
 webServer.get('/manifest.json',(req: any, res: any, next: () => void) => {
 	res.sendFile(path.resolve(__dirname + '/resources/manifest.json'));
 });
@@ -118,14 +118,16 @@ webServer.all('*',(req: any, res: any, next: () => void) => {
 });
 indexRouter(webServer);
 
+/* Not found handling */
 webServer.use((req, res, next) => {
 	res.status(404);
 	res.display(req, res, 'notFound', {});
 });
 
+/* Error handling */
 webServer.use((err, req, res, next) => {
 	res.status(500);
-	res.send('oops! : ' + err.message);
+	res.display(req, res, 'error', { err: err });
 });
 
 webServer.listen(config.port.web);
