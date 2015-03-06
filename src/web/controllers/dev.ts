@@ -9,8 +9,10 @@ export = render;
 
 var render = (req: any, res: any): void => {
 	if (req.query.q) {
-		var items:string[] = req.query.q.split("-");
-		var path = __dirname + "/../../reference/apis/" + items.join("/") + ".jade";
+		var items: string[] = req.query.q.split("-");
+		var path = (req.query.q.indexOf("..", 0) != -1)
+			? (__dirname + "/../../reference/bad_request_error.jade")
+			: (__dirname + "/../../reference/apis/" + items.join("/") + ".jade");
 		var compiler = jade.compileFile(path, {});
 		var html = compiler();
 		res.display(req, res, "dev_reference", {
