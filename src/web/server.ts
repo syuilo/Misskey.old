@@ -23,7 +23,6 @@ webServer.set('view engine', 'jade');
 webServer.set('views', __dirname + '/views');
 //webServer.locals.pretty = '  ';
 webServer.locals.compileDebug = false;
-webServer.use(compress());
 webServer.use(bodyParser.urlencoded({ extended: true }));
 webServer.use(cookieParser(config.cookie_pass));
 
@@ -50,6 +49,7 @@ webServer.use(session({
 }));
 
 /* Compressing settings */
+webServer.use(compress());
 webServer.use(minify());
 
 webServer.initSession = (req: any, res: any, callback: () => void) => {
