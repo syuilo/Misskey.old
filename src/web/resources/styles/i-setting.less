@@ -216,7 +216,7 @@ fieldset {
 #iconEditForm {
 	box-sizing: border-box;
 	float: left;
-	width: 300px;
+	width: 320px;
 	padding: 0 16px;
 
 	&:hover {
@@ -237,16 +237,21 @@ fieldset {
 	.icon {
 		width: 200px;
 		height: 200px;
+		margin: 16px auto !important;
 	}
 
 	> label {
 		padding: 16px 16px;
 	}
+
+	> input[type=submit] {
+		margin-left: 8px;
+	}
 }
 
 #profileEditForm {
 	float: left;
-	width: ~"calc(100% - 300px)";
+	width: ~"calc(100% - 320px)";
 }
 
 #iconEditForm .icon,
