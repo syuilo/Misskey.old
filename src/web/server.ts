@@ -118,9 +118,14 @@ webServer.all('*',(req: any, res: any, next: () => void) => {
 });
 indexRouter(webServer);
 
-webServer.use(function (req, res, next) {
+webServer.use((req, res, next) => {
 	res.status(404);
 	res.display(req, res, 'notFound', {});
+});
+
+webServer.use((err, req, res, next) => {
+	res.status(500);
+	res.send('oops! : ' + err.message);
 });
 
 webServer.listen(config.port.web);
