@@ -1,0 +1,29 @@
+extends ../layout.jade
+
+block title
+	post/show
+
+block method
+	GET
+
+block endpoint
+	https://api.misskey.xyz/post/show
+
+block overview
+	p ステータス情報を取得します。
+
+block parameters
+	table
+		thead
+			tr
+				th Name
+				th isRequired?
+				th Description
+		tbody
+			tr
+				td id
+				td yes
+				td 投稿ID。
+
+block response
+	Postオブジェクト
