@@ -6,6 +6,7 @@ paths =
 	ts: './src/**/*.ts'
 	webRes: './src/web/resources/**/**'
 	webViews: './src/web/views/**/*.jade'
+	webDevReferences: './src/reference/**/*.jade'
 
 gulp.task 'clean', del.bind(null, ['./bin/**'])
 
@@ -27,6 +28,8 @@ gulp.task 'build-web-res', ->
 gulp.task 'build-web-views', ->
 	gulp.src paths.webViews
 		.pipe gulp.dest './bin/web/views'
+	gulp.src paths.webDevReferences
+		.pipe gulp.dest './bin/reference'
 
 gulp.task 'build', ['build-ts', 'build-web-res', 'build-web-views']
 
