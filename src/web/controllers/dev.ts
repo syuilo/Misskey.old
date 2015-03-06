@@ -2,19 +2,19 @@
 
 import async = require('async');
 import Application = require('../../models/application');
-
+import jade = require('jade');
 import conf = require('../../config');
 
 export = render;
 
 var render = (req: any, res: any): void => {
 	if (req.query.q) {
-		var query = "..-..-reference-apis";
-		for (var item in req.query.q.split("-")) {
-			query += "-" + item;
-		}
+		var items:string[] = req.query.q.split("-");
+		var path = "../../reference/apis/" + items.join("/") + ".jade";
+		var compiler = jade.compileFile(path, {});
+		var html = compiler();
 		res.display(req, res, "dev_reference", {
-			q: query
+			passedHtml: html,
 		});
 	} else {
 		async.series([
