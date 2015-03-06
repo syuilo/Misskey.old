@@ -10,7 +10,7 @@ export = render;
 var render = (req: any, res: any): void => {
 	if (req.query.q) {
 		var items:string[] = req.query.q.split("-");
-		var path = "../../reference/apis/" + items.join("/") + ".jade";
+		var path = __dirname + "/../../reference/apis/" + items.join("/") + ".jade";
 		var compiler = jade.compileFile(path, {});
 		var html = compiler();
 		res.display(req, res, "dev_reference", {
