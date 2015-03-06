@@ -1,0 +1,37 @@
+extends ../layout.jade
+
+block title
+	post/create
+
+block method
+	POST
+
+block endpoint
+	https://api.misskey.xyz/post/create
+
+block overview
+	p ステータスを投稿します。
+
+block parameters
+	table
+		thead
+			tr
+				th Name
+				th isRequired
+				th Description
+		tbody
+			tr
+				td text
+				td required
+				td 本文。
+			tr
+				td image
+				td 
+				td 添付する画像。
+			tr
+				td in_reply_to_post_id
+				td 
+				td 返信先投稿ID。
+
+block response
+	作成したアカウントのUserオブジェクト
