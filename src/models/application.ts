@@ -65,7 +65,7 @@ class Application {
 	public static findByUserId(userId: number, callback: (apps: Application[]) => void): void {
 		db.query("select * from applications where user_id = ?",
 			[userId],
-			(err: any, apps: any[]) => callback(apps.length != 0 ? apps.map((app) => new Application(app)) : null));
+			(err: any, apps: any[]) => callback(apps[0] != null ? apps.map((app) => new Application(app)) : null));
 	}
 
     public update(callback?: () => void): void {
