@@ -33,9 +33,9 @@ var postCreate = (req: any, res: APIResponse) => {
 
 							create(req, res, app.id, inReplyToPostId, buffer, true, text, user.id);
 						});
-				} else {
-					res.apiError(400, 'duplicate content :(');
 				}
+			} else {
+					res.apiError(400, 'duplicate content :(');
 			}
 		});
 	});
