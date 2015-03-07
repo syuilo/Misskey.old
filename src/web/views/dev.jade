@@ -21,8 +21,9 @@ html
 						h1
 							i.fa.fa-puzzle-piece
 							| My Applications
-						each app in apps
-							p= app.name
+						if apps != null
+							each app in apps
+								p= app.name
 					li
 						h1 REST API
 						p Item1
