@@ -148,13 +148,15 @@ body {
 				}
 
 				table {
+					box-sizing: border-box;
+					margin: 0 16px;
 					border-collapse: collapse;
 					border: solid 1px #eee;
 					background: #fff;
 
 					th,
 					td {
-						padding: 8px 12px;
+						padding: 8px 16px;
 						border: solid 1px #eee;
 					}
 
@@ -163,6 +165,14 @@ body {
 						font-size: 1.1em;
 						color: #555;
 						background: #eee;
+					}
+
+					td {
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+						cursor: auto;
 					}
 				}
 			}
