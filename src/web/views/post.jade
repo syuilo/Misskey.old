@@ -13,8 +13,20 @@ html(lang='ja', dir='ltr')
 		include templates/header
 		
 		main(role='main')
-			div#post
-				article#article
+			ol#beforeTalks
+				- for (var i = 0; i < beforeTalks.length; i++){
+					li.post
+						article
+							div.sub
+								img.icon(src='/img/icon' + beforeTalks[i].user.screenName, alt='icon')
+							div.main
+								header
+									a.nameAnchor(href='/' + post.user.screenName): p.name = post.user.name
+									p.screenName = '@' + post.user.screenName
+								div.text = post.text
+				- }
+			div.post#target
+				article
 					div.sub
 						img.icon(src='/img/icon/' + post.user.screenName, alt='icon')
 					div.main

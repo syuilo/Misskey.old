@@ -15,25 +15,29 @@ import PostMention = require('../../../models/post-mention');
 var authorize = require('../../auth');
 
 var postCreate = (req: any, res: APIResponse) => {
-	authorize(req, res,(user: User, app: Application) => {
-		var text = req.body.text != null ? req.body.text : '';
-		var inReplyToPostId = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
+	authorize(req, res, (user: User, app: Application) => {
+		Post.findByUserId(user.id, 1, null, null, (posts: Post[]) => {
+			if (req.body.text != posts[0].text) {
+				var text = req.body.text != null ? req.body.text : '';
+				var inReplyToPostId = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
 
-		if (Object.keys(req.files).length === 1) {
-			var path = req.files.image.path;
-			var imageQuality = user.isPremium ? 90 : 70;
-			gm(path)
-				.compress('jpeg')
-				.quality(imageQuality)
-				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
-				if (error) throw error;
-				fs.unlink(path);
+				if (Object.keys(req.files).length === 1) {
+					var path = req.files.image.path;
+					var imageQuality = user.isPremium ? 90 : 70;
+					gm(path)
+						.compress('jpeg')
+						.quality(imageQuality)
+						.toBuffer('jpeg', (error: any, buffer: Buffer) => {
+							if (error) throw error;
+							fs.unlink(path);
 
-				create(req, res, app.id, inReplyToPostId, buffer, true, text, user.id);
-			});
-		} else {
-			create(req, res, app.id, inReplyToPostId, null, false, text, user.id);
-		}
+							create(req, res, app.id, inReplyToPostId, buffer, true, text, user.id);
+						});
+				} else {
+					res.apiError(400, 'duplicate content :(');
+				}
+			}
+		});
 	});
 }
 
