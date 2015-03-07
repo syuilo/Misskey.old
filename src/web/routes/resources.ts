@@ -13,7 +13,7 @@ import config = require('../../config');
 export = router;
 
 function compileLess(lessCss: string, styleUser: User, callback: (css: string) => void) {
-	lessCss = lessCss.replace(/<%themeColor%>/g, styleUser != null ? styleUser.color : '#ff006c');
+	lessCss = lessCss.replace(/<%themeColor%>/g, styleUser != null ? styleUser.color : '#ff005c');
 	lessCss = lessCss.replace(/<%wallpaperUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/wallpaper/${styleUser.screenName}"` : '');
 	lessCss = lessCss.replace(/<%headerImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}"` : '');
 	lessCss = lessCss.replace(/<%headerBlurImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}?blur={radius: 64, sigma: 20}"` : '');
