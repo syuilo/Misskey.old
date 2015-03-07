@@ -33,7 +33,10 @@ html(lang='ja', dir='ltr')
 						header
 							a.nameAnchor(href='/' + post.user.screenName): p.name= post.user.name
 							p.screenName= '@' + post.user.screenName
-						div.text= post.text
+						div.contents
+							div.text= post.text
+							if post.isImageAttached
+								img.image(src='/img/post/' + post.id, alt='image')
 						div.actions
 							div.repost
 								button.repostButton(title= isReposted ? 'Repostを取り消し' : 'Repost', role='button')

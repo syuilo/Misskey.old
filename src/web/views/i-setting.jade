@@ -42,14 +42,6 @@ html(lang='ja', dir='ltr')
 						i(class='fa fa-cogs')
 						| 設定
 				div#profile
-					form#iconEditForm
-						label
-							h2 アイコン
-							div.icon
-								p 画像をドロップまたは選択
-								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
-								input(name='image', type='file', accept='image/*')
-						input.ui-inputSubmit(type='submit', value='アップデート')
 					form#profileEditForm
 						label
 							h2.title 名前
@@ -101,7 +93,15 @@ html(lang='ja', dir='ltr')
 							div.content
 								input.ui-inputColor(name='color', type='color', value=me.color)
 						input.ui-inputSubmit(type='submit', value='アップデート')
-				
+					form#iconEditForm
+						label
+							h2 アイコン
+							div.icon
+								p 画像をドロップまたは選択
+								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
+								input(name='image', type='file', accept='image/*')
+						input.ui-inputSubmit(type='submit', value='アップデート')
+					
 				div#design
 					form#headerEditForm
 						label

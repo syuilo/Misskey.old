@@ -126,7 +126,7 @@ fieldset {
 
 	header {
 		box-sizing: border-box;
-		width: 1000px;
+		width: 100%;
 		padding: 16px 16px 0 16px;
 		background: rgba(255, 255, 255, 0.9);
 
@@ -214,8 +214,10 @@ fieldset {
 }
 
 #iconEditForm {
+	box-sizing: border-box;
 	float: left;
-	width: 220px;
+	width: 320px;
+	padding: 0 16px;
 
 	&:hover {
 		h2 {
@@ -233,14 +235,24 @@ fieldset {
 	}
 
 	.icon {
-		width: 180px;
-		height: 180px;
+		width: 200px;
+		height: 200px;
+		margin: 16px auto !important;
+	}
+
+	> label {
+		padding: 16px 16px;
+	}
+
+	> input[type=submit] {
+		float: right;
+		margin-right: 16px;
 	}
 }
 
 #profileEditForm {
 	float: left;
-	width: ~"calc(100% - 220px)";
+	width: ~"calc(100% - 320px)";
 }
 
 #iconEditForm .icon,

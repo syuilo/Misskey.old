@@ -31,7 +31,7 @@ $(function() {
 	});
 	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
 
-	$("#misskey-main-header .search input").keyup(function() {
+	$("#misskey-main-header .search input").bind('input', function() {
 		var $result = $("#misskey-main-header .search .result");
 		if ($(this).val() == '') {
 			$result.empty();

@@ -1,0 +1,19 @@
+extends ../layout.jade
+
+block title
+	| account/show
+
+block method
+	| GET
+
+block endpoint
+	| https://api.misskey.xyz/account/show
+
+block overview
+	p アカウントのユーザー情報を取得します
+
+block parameters
+	p None
+
+block response
+	アカウントのUserオブジェクト

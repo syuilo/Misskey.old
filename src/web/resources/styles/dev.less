@@ -1,10 +1,12 @@
 @themeColor: <%themeColor%>;
 
 @import url(https://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css);
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand);
 
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'Patrick Hand','Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo','メイリオ','sans-serif';
 }
 
 html, body {
@@ -31,10 +33,13 @@ body {
 		}
 	}
 
-	header {
+	> header {
 		background-color: #ff005c;
 		background-image: url('/resources/images/grid.png');
 		background-repeat: repeat;
+	}
+
+	header {
 
 		#titleLogo {
 			box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
@@ -115,6 +120,7 @@ body {
 			width: ~"calc(100% - 300px)";
 
 			article {
+				color: #000;
 				font-size: 19px;
 				font-weight: 100;
 				margin: 20px 30px;
@@ -124,21 +130,50 @@ body {
 				}
 
 				h1 {
-					font-size: 26px;
+					font-size: 3em;
 					margin: 10px 0;
 					font-weight: 600;
 				}
 
 				h2 {
-					font-size: 23px;
+					font-size: 2em;
 					margin: 10px 0;
 					font-weight: 600;
 				}
 
 				h3 {
-					font-size: 20px;
+					font-size: 1.5em;
 					margin: 10px 0;
 					font-weight: 600;
+				}
+
+				table {
+					box-sizing: border-box;
+					margin: 0 16px;
+					border-collapse: collapse;
+					border: solid 1px #eee;
+					background: #fff;
+
+					th,
+					td {
+						padding: 8px 16px;
+						border: solid 1px #eee;
+					}
+
+					th {
+						font-weight: normal;
+						font-size: 1.1em;
+						color: #555;
+						background: #eee;
+					}
+
+					td {
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+						cursor: auto;
+					}
 				}
 			}
 		}

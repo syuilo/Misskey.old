@@ -1,0 +1,14 @@
+doctype html
+
+html
+	head
+		include templates/head
+		title Misskey Developer Center - API Reference
+		link(rel='stylesheet', href='/resources/styles/dev.css')
+		//-script(src='/resources/scripts/dev-api.js')
+	body
+		#contents
+			main
+				!= passedHtml
+		footer
+			small (c)Misskey.

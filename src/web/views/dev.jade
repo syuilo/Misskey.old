@@ -18,16 +18,18 @@ html
 			nav
 				ul
 					li
-						h1
-							i.fa.fa-puzzle-piece
+						h1#myApplications
+							i.fa.fa-puzzle-piece: a(href='')
 							| My Applications
-						each app in apps
-							p= app.name
+						if apps != null
+							each app in apps
+								p(href='##{app.name}')
+								|= app.name
 					li
-						h1 REST API
-						p Item1
+						h1#restApi REST API
+						p#rest-account-show account/show
 					li
-						h1 MenuItem
+						h1#myStyles MyStyles
 			main
 		footer
 			small (c)Misskey.
