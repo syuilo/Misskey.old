@@ -23,7 +23,7 @@ var render = (req: any, res: any): void => {
 			(callback: any) => {
 				if (req.login) {
 					Application.findByUserId(req.me.id, (apps: Application[]) => {
-						callback(null, apps);
+						callback(null, apps != null ? apps : []);
 					});
 				} else {
 					callback(null, []);
