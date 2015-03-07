@@ -82,6 +82,18 @@ var router = (app: express.Express): void => {
 	app.get('/dev',(req: any, res: any, next: () => void) => {
 		require('../controllers/dev')(req, res);
 	});
+	app.get('/dev/reference', (req: any, res: any, next: () => void) => {
+		require('../controllers/dev-reference')(req, res);
+	});
+	app.get('/dev/myapp', (req: any, res: any, next: () => void) => {
+		require('../controllers/dev-myapp')(req, res);
+	});
+	app.get('/dev/usertheme', (req: any, res: any, next: () => void) => {
+		require('../controllers/dev-usertheme')(req, res);
+	});
+	app.get('/dev/usertheme/new', (req: any, res: any, next: () => void) => {
+		require('../controllers/dev-usertheme-new')(req, res);
+	});
 
 	/* Actions */
 	app.get('/login',(req: any, res: any) => {

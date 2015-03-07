@@ -2,7 +2,8 @@
 
 import async = require('async');
 import Application = require('../../models/application');
-import WebTheme = require('../../models/webtheme');
+import webtheme = require('../../models/webtheme');
+import fs = require('fs');
 import conf = require('../../config');
 
 export = render;
@@ -10,19 +11,13 @@ export = render;
 var render = (req: any, res: any): void => {
 	async.series([
 		(callback: any) => {
-			Application.findByUserId(req.me.id, (apps: Application[]) => {
+			webtheme.find(req.query.q, (apps: webtheme) => {
 				callback(null, apps);
-			});
-		},
-		(callback: any) => {
-			WebTheme.findByUserId(req.me.id, (themes: WebTheme[]) => {
-				callback(null, themes);
 			});
 		}],
 		(err: any, results: any) => {
-			res.display(req, res, 'dev', {
-				apps: results[0],
-				themes: results[0],
+			res.display(req, res, 'dev-usertheme', {
+				theme: results[0],
 			});
 		});
 };
