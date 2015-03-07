@@ -8,28 +8,40 @@ html
 		script(src='/resources/scripts/dev.js')
 	body
 		include templates/header
-		
+
 		header
-			div#titleLogo
+			#titleLogo
 				h1
 					i.fa.fa-terminal
 					| Developer-Center
-		div#contents
+		#contents
 			nav
 				ul
-					li
-						h1#myApplications
-							i.fa.fa-puzzle-piece: a(href='')
+					li#myApp
+						h1
+							i.fa.fa-puzzle-piece
 							| My Applications
 						if apps != null
-							each app in apps
-								p(href='##{app.name}')
-								|= app.name
-					li
-						h1#restApi REST API
-						p#rest-account-show account/show
-					li
-						h1#myStyles MyStyles
+							ul
+								each app in apps
+									li(id='#' + app.id)= app.name
+					li#restApi
+						h1 REST API
+						ul
+							li: h2 Object
+							li#objects-user user
+							li: h2 API
+							li#rest-account-create account/create
+							li#rest-account-show account/show
+							li#rest-post-create post/create
+							li#rest-post-show post/show
+							li#rest-sauth-get_request_token sauth/get_request_token
+					li#userTheme
+						h1 UserTheme
+						if themes != null
+							ul 
+								each theme in themes
+									li(id='#' + theme.id)= theme.name
 			main
 		footer
 			small (c)Misskey.
