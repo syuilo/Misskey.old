@@ -446,7 +446,7 @@ textarea {
 							display: block;
 							position: absolute;
 							top: ~"calc(3em + 16px)";
-							right: 0;
+							right: -14px;
 							z-index: 3;
 							margin: 0;
 							padding: 16px;
@@ -459,8 +459,8 @@ textarea {
 								content: "";
 								display: block;
 								position: absolute;
-								top: -16px;
-								right: 0;
+								top: -32px;
+								right: 16px;
 								width: 0;
 								height: 0;
 								border-top: solid 16px transparent;
@@ -475,6 +475,7 @@ textarea {
 								height: 450px;
 								overflow-x: auto;
 								overflow-y: scroll;
+								font-size: 1rem;
 
 								> ol {
 									margin: 0;
@@ -484,8 +485,18 @@ textarea {
 
 									> li {
 										display: inline-block;
+										position: relative;
 										width: 100%;
 										border-bottom: solid 1px #eee;
+
+										> time {
+											position: absolute;
+											top: 0;
+											right: 0;
+											padding: 8px;
+											font-size: 0.8em;
+											color: rgba(0, 0, 0, 0.5);
+										}
 									}
 								}
 							}
