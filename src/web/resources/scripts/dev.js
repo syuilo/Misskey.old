@@ -13,24 +13,31 @@ $(function() {
 		}
 	});
 
-	$('#myApp ul li').click(function () {
+	$('#myapp ul li').click(function () {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
-			$.ajax({
-				url: 'https://misskey.xyz/dev/myapp?q=' + idName,
-				type: 'GET',
-				dataType: 'html',
-			})
-			.done(function(data) {
-				$("main").html($(data).html());
-			})
-			.fail(function(data) {
-				//失敗時
-			});
+			if(idName == "myapp-new") {
+
+			} else {
+				$.ajax({
+					url: 'https://misskey.xyz/dev/myapp?q=' + idName,
+					type: 'GET',
+					dataType: 'html',
+				})
+				.done(function(data) {
+					$("main").html($(data).html());
+				})
+				.fail(function(data) {
+					//失敗時
+				})
+				.always(function(data) {
+
+				});
+			}
 		}
 	});
 
-	$('#restApi ul li').click(function () {
+	$('#restapi ul li , #streamingapi ul li').click(function () {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
 			$.ajax({
@@ -43,24 +50,34 @@ $(function() {
 			})
 			.fail(function(data) {
 				//失敗時
+			})
+			.always(function(data) {
+
 			});
 		}
 	});
 
-	$('#userTheme ul li').click(function () {
+	$('#usertheme ul li').click(function () {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
-			$.ajax({
-				url: 'https://misskey.xyz/dev/usertheme?q=' + idName,
-				type: 'GET',
-				dataType: 'html',
-			})
-			.done(function(data) {
-				$("main").html($(data).html());
-			})
-			.fail(function(data) {
-				//失敗時
-			});
+			if(idName == "usertheme-new") {
+
+			} else {
+				$.ajax({
+					url: 'https://misskey.xyz/dev/usertheme?q=' + idName,
+					type: 'GET',
+					dataType: 'html',
+				})
+				.done(function(data) {
+					$("main").html($(data).html());
+				})
+				.fail(function(data) {
+					//失敗時
+				})
+				.always(function(data) {
+
+				});
+			}
 		}
 	});
 });
