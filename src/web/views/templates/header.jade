@@ -56,7 +56,7 @@ header#misskey-main-header(role='banner')
 									if notices != null
 										ol
 											each notice in notices
-												li
+												li(title= notice.createdAt)
 													time(datetime= notice.createdAt)= notice.createdAt
 													div.content!= notice.content
 													span.appName= notice.app.name
