@@ -22,7 +22,7 @@ var render = (req: any, res: any): void => {
 		(err: any, results: any) => {
 			res.display(req, res, 'dev', {
 				apps: results[0],
-				themes: results[0],
+				themes: results[1],
 			});
 		});
 };
