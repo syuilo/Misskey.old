@@ -2,12 +2,14 @@
 
 import fs = require('fs');
 import path = require('path');
+import async = require('async');
 import express = require('express');
 import minify = require('express-minify');
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
 import session = require('express-session');
 import compress = require('compression');
+import Application = require('../models/application');
 import User = require('../models/user');
 import Notice = require('../models/notice');
 
@@ -90,10 +92,17 @@ webServer.initSession = (req: any, res: any, callback: () => void) => {
 		var userId = req.session.userId;
 		User.find(userId,(user: User) => {
 			Notice.findByuserId(user.id,(notices: Notice[]) => {
-				req.data.notices = notices;
-				req.data.me = user;
-				req.me = user;
-				callback();
+				async.map(notices,(notice: any, mapNext: any) => {
+					Application.find(notice.appId,(app: Application) => {
+						notice.app = app;
+						mapNext(null, notice);
+					});
+				},(err: any, results: any[]) => {
+						req.data.notices = results;
+						req.data.me = user;
+						req.me = user;
+						callback();
+					});
 			});
 		});
 	} else {
