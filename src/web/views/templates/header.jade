@@ -52,6 +52,8 @@ header#misskey-main-header(role='banner')
 						div.dropdown
 							i.fa.fa-bell
 							div.dropdownContainer
+								button.allDeleteButton(role='button', title='全て削除')
+									i.fa.fa-trash
 								div.dropdownContent
 									if notices != null
 										ol
