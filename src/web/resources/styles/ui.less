@@ -485,17 +485,39 @@ textarea {
 
 									> li {
 										display: inline-block;
+										box-sizing: border-box;
 										position: relative;
 										width: 100%;
+										padding: 16px 0;
 										border-bottom: solid 1px #eee;
 
 										> time {
 											position: absolute;
 											top: 0;
+											left: 0;
+											padding: 8px;
+											font-size: 0.5em;
+											color: rgba(0, 0, 0, 0.5);
+										}
+
+										> .appName {
+											position: absolute;
+											bottom: 0;
 											right: 0;
 											padding: 8px;
-											font-size: 0.8em;
+											font-size: 0.5em;
 											color: rgba(0, 0, 0, 0.5);
+										}
+
+										> .deleteButton {
+											position: absolute;
+											top: 0;
+											right: 0;
+											padding: 8px;
+										}
+
+										> .content {
+											font-size: 0.8em;
 										}
 									}
 								}
