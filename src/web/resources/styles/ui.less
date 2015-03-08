@@ -409,6 +409,70 @@ textarea {
 					}
 				}
 
+				> .notice {
+					display: inline-block;
+					vertical-align: top;
+
+					> .dropdown {
+						display: inline-block;
+						position: relative;
+						overflow: visible;
+						clear: both;
+						float: right;
+
+						&:hover {
+							> .dropdownContent {
+								visibility: visible;
+								opacity: 1;
+								transform: scale(1);
+								transition: opacity 0.1s linear;
+							}
+						}
+
+						> .iconAnchor {
+							display: block;
+
+							> .icon {
+								display: block;
+								box-sizing: border-box;
+								min-width: 3em;
+								max-width: 3em;
+								min-height: 3em;
+								max-height: 3em;
+							}
+						}
+
+						> .dropdownContent {
+							visibility: hidden;
+							opacity: 0;
+							display: block;
+							position: absolute;
+							top: auto;
+							right: 0;
+							z-index: 3;
+							width: 270px;
+							margin: 0;
+							padding: 0;
+							background: #fff;
+							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+							transform: scale(0.9);
+							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+
+							> ul {
+								margin: 0;
+								padding: 0;
+								list-style: none;
+								font-size: 1.2em;
+
+								> li {
+									display: inline-block;
+									width: 100%;
+								}
+							}
+						}
+					}
+				}
+
 				> .account {
 					display: inline-block;
 					vertical-align: top;
