@@ -17,12 +17,13 @@ var authorize = require('../../auth');
 var postCreate = (req: any, res: APIResponse) => {
 	authorize(req, res,(user: User, app: Application) => {
 		Post.findByUserId(user.id, 1, null, null,(posts: Post[]) => {
-			if (req.body.text === posts[0].text) {
+			var text = req.body.text != null ? req.body.text : '';
+			var inReplyToPostId = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
+
+			if (posts != null && text === posts[0].text) {
 				res.apiError(400, 'duplicate content :(');
 				return;
 			}
-			var text = req.body.text != null ? req.body.text : '';
-			var inReplyToPostId = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
 
 			if (Object.keys(req.files).length === 1) {
 				var path = req.files.image.path;
