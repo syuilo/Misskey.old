@@ -92,17 +92,23 @@ webServer.initSession = (req: any, res: any, callback: () => void) => {
 		var userId = req.session.userId;
 		User.find(userId,(user: User) => {
 			Notice.findByuserId(user.id,(notices: Notice[]) => {
-				async.map(notices,(notice: any, mapNext: any) => {
-					Application.find(notice.appId,(app: Application) => {
-						notice.app = app;
-						mapNext(null, notice);
-					});
-				},(err: any, results: any[]) => {
-						req.data.notices = results;
-						req.data.me = user;
-						req.me = user;
-						callback();
-					});
+				if (notices != null) {
+					async.map(notices,(notice: any, mapNext: any) => {
+						Application.find(notice.appId,(app: Application) => {
+							notice.app = app;
+							mapNext(null, notice);
+						});
+					},(err: any, results: any[]) => {
+							req.data.notices = results;
+							req.data.me = user;
+							req.me = user;
+							callback();
+						});
+				} else {
+					req.data.me = user;
+					req.me = user;
+					callback();
+				}
 			});
 		});
 	} else {
