@@ -12,7 +12,7 @@ class Notice {
 	userId: number;
 
 	public constructor(notice: any) {
-		this.appId = notice.appId;
+		this.appId = notice.app_id;
 		this.content = notice.content;
 		this.createdAt = moment(notice.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.id = notice.id;
