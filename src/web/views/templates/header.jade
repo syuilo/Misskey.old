@@ -51,17 +51,18 @@ header#misskey-main-header(role='banner')
 					div.notice
 						div.dropdown
 							i.fa.fa-bell
-							div.dropdownContent
-								if notices != null
-									ol
-										each notice in notices
-											li
-												time(datetime= notice.createdAt)= notice.createdAt
-												div.content!= notice.content
-												span.appName= notice.app.name
-												button.deleteButton
-								else
-									p 通知はありません
+							div.dropdownContainer
+								div.dropdownContent
+									if notices != null
+										ol
+											each notice in notices
+												li
+													time(datetime= notice.createdAt)= notice.createdAt
+													div.content!= notice.content
+													span.appName= notice.app.name
+													button.deleteButton
+									else
+										p 通知はありません
 					if login
 						div.account
 							a.screenNameAnchor(href= url + '/' + me.screenName)

@@ -440,7 +440,7 @@ textarea {
 							color: rgba(0,0,0,0.5);
 						}
 
-						> .dropdownContent {
+						> .dropdownContainer {
 							visibility: hidden;
 							opacity: 0;
 							display: block;
@@ -448,11 +448,6 @@ textarea {
 							top: ~"calc(3em + 16px)";
 							right: 0;
 							z-index: 3;
-							box-sizing: border-box;
-							width: 350px;
-							height: 450px;
-							overflow-x: auto;
-							overflow-y: scroll;
 							margin: 0;
 							padding: 16px;
 							background: #fff;
@@ -463,25 +458,35 @@ textarea {
 							&:before {
 								content: "";
 								display: block;
-								position: relative;
+								position: absolute;
 								top: -16px;
 								right: 0;
+								width: 0;
+								height: 0;
 								border-top: solid 16px transparent;
 								border-right: solid 16px transparent;
 								border-bottom: solid 16px #fff;
 								border-left: solid 16px transparent;
 							}
 
-							> ol {
-								margin: 0;
-								padding: 0;
-								list-style: none;
-								font-size: 1.2em;
+							> .dropdownContent {
+								box-sizing: border-box;
+								width: 350px;
+								height: 450px;
+								overflow-x: auto;
+								overflow-y: scroll;
 
-								> li {
-									display: inline-block;
-									width: 100%;
-									border-bottom: solid 1px #eee;
+								> ol {
+									margin: 0;
+									padding: 0;
+									list-style: none;
+									font-size: 1.2em;
+
+									> li {
+										display: inline-block;
+										width: 100%;
+										border-bottom: solid 1px #eee;
+									}
 								}
 							}
 						}
