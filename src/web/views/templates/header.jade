@@ -60,7 +60,8 @@ header#misskey-main-header(role='banner')
 													time(datetime= notice.createdAt)= notice.createdAt
 													div.content!= notice.content
 													span.appName= notice.app.name
-													button.deleteButton
+													button.deleteButton(role='button', title='削除')
+														img(src='/resources/images/notice-delete.png', alt='Delete')
 									else
 										p 通知はありません
 					if login

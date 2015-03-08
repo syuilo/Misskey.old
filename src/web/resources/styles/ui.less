@@ -491,6 +491,12 @@ textarea {
 										padding: 24px 16px;
 										border-bottom: solid 1px #eee;
 
+										&:hover {
+											> .deleteButton {
+												display: block;
+											}
+										}
+
 										> time {
 											position: absolute;
 											top: 0;
@@ -510,10 +516,28 @@ textarea {
 										}
 
 										> .deleteButton {
+											-webkit-appearance: none;
+											-moz-appearance: none;
+											appearance: none;
+											display: none;
 											position: absolute;
 											top: 0;
 											right: 0;
-											padding: 8px;
+											margin: 0;
+											padding: 0;
+											cursor: pointer;
+											outline: none;
+											border: none;
+											border-radius: 0;
+											box-shadow: none;
+											background: transparent;
+
+											> img {
+												vertical-align: bottom;
+												width: 16px;
+												height: 16px;
+												cursor: pointer;
+											}
 										}
 
 										> .content {
