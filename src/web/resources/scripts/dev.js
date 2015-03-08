@@ -20,7 +20,7 @@ $(function() {
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$(data).find('#contents main').get(0).html(data);
+			$("main").html($(data).html());
 		})
 		.fail(function(data) {
 			//失敗時
@@ -35,7 +35,7 @@ $(function() {
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$(data).find('#contents main').get(0).html(data);
+			$("main").html($(data).children("main").html());
 		})
 		.fail(function(data) {
 			//失敗時
@@ -50,7 +50,7 @@ $(function() {
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$(data).find('#contents main').get(0).html(data);
+			$("main").html($(data).html());
 		})
 		.fail(function(data) {
 			//失敗時
