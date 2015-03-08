@@ -10,38 +10,42 @@ html
 		include templates/header
 
 		header
-			#titleLogo
+			#titlelogo
 				h1
 					i.fa.fa-terminal
 					| Developer-Center
 		#contents
 			nav
 				ul
-					li#myApp
+					li#myapp
 						h1
 							i.fa.fa-puzzle-piece
 							| My Applications
-						if apps != null
-							ul
+						ul
+							if apps != null
 								each app in apps
-									li(id='#' + app.id)= app.name
-					li#restApi
+									li(id='#myApp-' + app.id)= app.name
+							li#myapp-new ＋新しいアプリケーションの作成
+					li#restapi
 						h1 REST API
 						ul
 							li: h2 Object
-							li#objects-user user
+							li#objects-user User
 							li: h2 API
 							li#rest-account-create account/create
 							li#rest-account-show account/show
 							li#rest-post-create post/create
 							li#rest-post-show post/show
 							li#rest-sauth-get_request_token sauth/get_request_token
-					li#userTheme
+					li#streamingapi
+						h1 Streaming API
+					li#usertheme
 						h1 UserTheme
-						if themes != null
-							ul 
+						ul
+							if themes != null
 								each theme in themes
-									li(id='#' + theme.id)= theme.name
+									li(id='#userTheme-' + theme.id)= theme.name
+							li#usertheme-new ＋新しいユーザーテーマの作成
 			main
 		footer
 			small (c)Misskey.
