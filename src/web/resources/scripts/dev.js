@@ -14,13 +14,14 @@ $(function() {
 	});
 
 	$('#myApp ul li').click(function () {
+		var idName = $(this).attr("id");
 		$.ajax({
-			url: 'https://misskey.xyz/dev/myapp',
+			url: 'https://misskey.xyz/dev/myapp?q=' + idName,
 			type: 'GET',
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$(data).find('#contents main').get(0).html(data);
+			$("main").html($(data).html());
 		})
 		.fail(function(data) {
 			//失敗時
@@ -30,12 +31,12 @@ $(function() {
 	$('#restApi ul li').click(function () {
 		var idName = $(this).attr("id");
 		$.ajax({
-			url: 'https://misskey.xyz/dev/reference',
+			url: 'https://misskey.xyz/dev/reference?q=' + idName,
 			type: 'GET',
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$(data).find('#contents main').get(0).html(data);
+			$("main").html($(data).children("main").html());
 		})
 		.fail(function(data) {
 			//失敗時
@@ -45,12 +46,12 @@ $(function() {
 	$('#userTheme ul li').click(function () {
 		var idName = $(this).attr("id");
 		$.ajax({
-			url: 'https://misskey.xyz/dev/usertheme',
+			url: 'https://misskey.xyz/dev/usertheme?q=' + idName,
 			type: 'GET',
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$(data).find('#contents main').get(0).html(data);
+			$("main").html($(data).html());
 		})
 		.fail(function(data) {
 			//失敗時
