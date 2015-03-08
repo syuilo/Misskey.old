@@ -1,6 +1,7 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import moment = require("moment");
 export = Notice;
 
 class Notice {
@@ -13,7 +14,7 @@ class Notice {
 	public constructor(notice: any) {
 		this.appId = notice.appId;
 		this.content = notice.content;
-		this.createdAt = notice.created_at;
+		this.createdAt = moment(notice.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.id = notice.id;
 		this.userId = notice.user_id;
 	}
@@ -21,7 +22,7 @@ class Notice {
 	public static create(appId: number, content: string, userId: number, callback: (notice: Notice) => void): void {
 		db.query('insert into notices (app_id, content, user_id) values (?, ?, ?)',
 			[appId, content, userId],
-			(err: any, info: any) => { Notice.find(info.insertId, (notice: Notice) => { callback(notice); });});
+			(err: any, info: any) => { Notice.find(info.insertId,(notice: Notice) => { callback(notice); }); });
 	}
 
 	public static find(id: number, callback: (notice: Notice) => void): void {
