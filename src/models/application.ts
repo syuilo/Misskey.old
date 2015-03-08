@@ -1,6 +1,7 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import moment = require("moment");
 export = Application;
 
 import crypto = require('crypto');
@@ -29,7 +30,7 @@ class Application {
 		this.id = app.id;
 		this.name = app.name;
 		this.userId = app.userId;
-		this.createdAt = app.created_at;
+		this.createdAt = moment(app.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.consumerKey = app.consumer_key;
 		this.callbackUrl = app.callback_url;
 		this.description = app.description;
