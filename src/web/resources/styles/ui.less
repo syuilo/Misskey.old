@@ -412,6 +412,7 @@ textarea {
 				> .notice {
 					display: inline-block;
 					vertical-align: top;
+					height: 100%;
 
 					> .dropdown {
 						display: inline-block;
@@ -419,6 +420,7 @@ textarea {
 						overflow: visible;
 						clear: both;
 						float: right;
+						height: 100%;
 
 						&:hover {
 							> .dropdownContent {
@@ -432,7 +434,9 @@ textarea {
 						> i {
 							display: inline-block;
 							height: 100%;
+							padding: 0 8px;
 							font-size: 1.2em;
+							line-height: 3rem;
 							color: rgba(0,0,0,0.5);
 						}
 
@@ -452,7 +456,7 @@ textarea {
 							transform: scale(0.9);
 							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
 
-							> ul {
+							> ol {
 								margin: 0;
 								padding: 0;
 								list-style: none;
