@@ -3,13 +3,13 @@ $.fn.isVisible = function() {
 };
 
 $(function() {
-	$('#contents nav ul li').hide();
+	$('#contents nav ul li ul').hide();
 
 	$('#contents nav ul li h1').click(function () {
-		if($(this).parent().children('p').isVisible() == true) {
-			$(this).parent().children('p').hide(250);
+		if($(this).parent().children('ul').isVisible() == true) {
+			$(this).parent().children('ul').hide(250);
 		} else {
-			$(this).parent().children('p').show(250);
+			$(this).parent().children('ul').show(250);
 		}
 	});
 
