@@ -34,9 +34,10 @@ var postCreate = (req: any, res: APIResponse) => {
 					.toBuffer('jpeg',(error: any, buffer: Buffer) => {
 					if (error) throw error;
 					fs.unlink(path);
-
 					create(req, res, app.id, inReplyToPostId, buffer, true, text, user.id);
 				});
+			} else {
+				create(req, res, app.id, inReplyToPostId, null, false, text, user.id);
 			}
 		});
 	});
