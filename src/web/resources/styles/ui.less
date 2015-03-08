@@ -445,7 +445,7 @@ textarea {
 							opacity: 0;
 							display: block;
 							position: absolute;
-							top: auto;
+							top: ~"calc(3em + 16px)";
 							right: 0;
 							z-index: 3;
 							box-sizing: border-box;
@@ -459,6 +459,18 @@ textarea {
 							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 							transform: scale(0.9);
 							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+
+							&:before {
+								content: "";
+								display: block;
+								position: relative;
+								top: -16px;
+								right: 0;
+								border-top: solid 16px transparent;
+								border-right: solid 16px transparent;
+								border-bottom: solid 16px #fff;
+								border-left: solid 16px transparent;
+							}
 
 							> ol {
 								margin: 0;
