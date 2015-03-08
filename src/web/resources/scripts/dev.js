@@ -25,7 +25,7 @@ $(function() {
 		.fail(function(data) {
 			//失敗時
 		});
-	}
+	});
 
 	$('#restApi ul li').click(function () {
 		var idName = $(this).attr("id");
@@ -40,7 +40,7 @@ $(function() {
 		.fail(function(data) {
 			//失敗時
 		});
-	}
+	});
 
 	$('#userTheme ul li').click(function () {
 		var idName = $(this).attr("id");
@@ -55,5 +55,5 @@ $(function() {
 		.fail(function(data) {
 			//失敗時
 		});
-	}
+	});
 });
