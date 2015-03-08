@@ -9,6 +9,7 @@ import cookieParser = require('cookie-parser');
 import session = require('express-session');
 import compress = require('compression');
 import User = require('../models/user');
+import Notice = require('../models/notice');
 
 import db = require('../db');
 import resourcesRouter = require('./routes/resources');
@@ -88,9 +89,12 @@ webServer.initSession = (req: any, res: any, callback: () => void) => {
 	if (req.login) {
 		var userId = req.session.userId;
 		User.find(userId,(user: User) => {
-			req.data.me = user;
-			req.me = user;
-			callback();
+			Notice.findByuserId(user.id,(notices: Notice[]) => {
+				req.data.notices = notices;
+				req.data.me = user;
+				req.me = user;
+				callback();
+			});
 		});
 	} else {
 		req.data.me = null;
