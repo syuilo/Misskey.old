@@ -24,19 +24,17 @@ class Application {
 	developerName: string;
 	developerWebsite: string;
 	isSuspended: boolean
-	
+
 	public constructor(app: any) {
-		if (app != null) {
-			this.id = app.id;
-			this.name = app.name;
-			this.userId = app.userId;
-			this.createdAt = app.created_at;
-			this.consumerKey = app.consumer_key;
-			this.callbackUrl = app.callback_url;
-			this.description = app.description;
-			this.developerName = app.developerName;
-			this.isSuspended = Boolean(app.isSuspended);
-		}
+		this.id = app.id;
+		this.name = app.name;
+		this.userId = app.userId;
+		this.createdAt = app.created_at;
+		this.consumerKey = app.consumer_key;
+		this.callbackUrl = app.callback_url;
+		this.description = app.description;
+		this.developerName = app.developerName;
+		this.isSuspended = Boolean(app.isSuspended);
 	}
 
 	public static generateCK(userId: number) {
@@ -47,16 +45,21 @@ class Application {
 		var ck = Application.generateCK(userId);
 		db.query('insert into applications (name, user_id, consumer_key, description) values (?, ?, ?, ?)',
 			[name, userId, ck, description],
-			(err: any, apps: any[]) => callback(new Application(apps[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				Application.find(info.insertId,(app: Application) => {
+					callback(app);
+				});
+			});
 	}
 
-	public static find(id: number, callback: (app: Application) => void):  void {
+	public static find(id: number, callback: (app: Application) => void): void {
 		db.query("select * from applications where id = ?",
 			[id],
 			(err: any, apps: any[]) => callback(apps[0] != null ? new Application(apps[0]) : null));
 	}
 
-	public static findByConsumerKey(consumerKey: string, callback: (app: Application) => void):  void {
+	public static findByConsumerKey(consumerKey: string, callback: (app: Application) => void): void {
 		db.query("select * from applications where consumer_key = ?",
 			[consumerKey],
 			(err: any, apps: any[]) => callback(apps[0] != null ? new Application(apps[0]) : null));
@@ -68,9 +71,9 @@ class Application {
 			(err: any, apps: any[]) => callback(apps.length != 0 ? apps.map((app) => new Application(app)) : null));
 	}
 
-    public update(callback?: () => void): void {
-        db.query('update applications set name = ?, consumer_key = ?, callback_url = ?, description = ?, is_suspended, where id = ?',
-            [this.name, this.consumerKey, this.callbackUrl, this.description, this.isSuspended, this.id],
-            callback);
-    }
+	public update(callback: () => void): void {
+		db.query('update applications set name = ?, consumer_key = ?, callback_url = ?, description = ?, is_suspended, where id = ?',
+			[this.name, this.consumerKey, this.callbackUrl, this.description, this.isSuspended, this.id],
+			callback);
+	}
 }
