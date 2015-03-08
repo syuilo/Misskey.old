@@ -56,7 +56,10 @@ header#misskey-main-header(role='banner')
 									ol
 										each notice in notices
 											li
-												
+												time(datetime= notice.createdAt)= notice.createdAt
+												div.content!= notice.content
+												span.appName= notice.app.name
+												button.deleteButton
 								else
 									p 通知はありません
 					if login
