@@ -5,7 +5,10 @@ html(lang='ja', dir='ltr')
 		include templates/head
 		meta(name='description', content='Misskey 画像')
 		meta(name='keywords', content='Misskey')
-		title= fileName
+		if author != null
+			title= author.name + 'の投稿画像'
+		else
+			title= fileName
 		link(rel='stylesheet', href='/resources/styles/image.css')
 	
 	body
@@ -13,11 +16,14 @@ html(lang='ja', dir='ltr')
 		
 		main(role='main')
 			header
-				if author != null
-					div#author
-						img.icon(src='/img/icon/' + author.screenName, alt='icon')
-						a.name(href='/' + author.screenName)= author.name
-				h1#title= fileName
+				h1#title
+					if author != null
+						div#author
+							img.icon(src='/img/icon/' + author.screenName, alt='icon')
+							a.name(href='/' + author.screenName)= author.name
+						| が投稿
+					else
+						= fileName
 			img#image(src=imageUrl, alt='image')
 			a#download(href=imageUrl, download=fileName)
 				i.fa.fa-download
