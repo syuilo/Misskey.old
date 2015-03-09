@@ -6,6 +6,8 @@ import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
 import Post = require('../../../models/post');
+import Notice = require('../../../models/notice');
+import config = require('../../../config');
 
 var authorize = require('../../auth');
 
@@ -73,6 +75,12 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 							});
 						}
 					});
+				});
+				Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
+					Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
+						type: 'notice', 
+						value: notice
+					}));
 				});
 			});
 		});
