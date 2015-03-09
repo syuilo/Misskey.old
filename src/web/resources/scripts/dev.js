@@ -3,7 +3,7 @@ $.fn.isVisible = function() {
 };
 
 $(function() {
-	$('#contents nav ul li ul').hide();
+	$('#contents > nav > ul > li > ul').hide();
 
 	$('#contents nav ul li h1').click(function () {
 		if($(this).parent().children('ul').isVisible() == true) {
