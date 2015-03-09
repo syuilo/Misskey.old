@@ -46,7 +46,6 @@ $(function() {
 				$notice.css({
 					transition: 'all 0.2s ease-in',
 					transform: 'perspective(512px) translateY(20%) scale(0.8) rotateX(45deg)',
-					margin: 0,
 					opacity: 0
 				});
 				setTimeout($notice.remove(), 300);
