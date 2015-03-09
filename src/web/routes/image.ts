@@ -18,7 +18,7 @@ export = router;
 function router(app: express.Express): void {
 	function displayImage(req: any, res: any, image: Buffer, imageUrl: string, fileName: string, author: User) {
 		var img = gm(image);
-		img.size(function (err, val) {
+		img.size((err, val) => {
 			var width = val.width;
 			var height = val.height;
 
