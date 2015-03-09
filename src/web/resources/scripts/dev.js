@@ -11,7 +11,7 @@ function showContents(targetUrl, methodType) {
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$('main').html($(data).html());
+			$("main").html($(data).children("main").html());
 		})
 		.fail(function(data) {
 			//失敗時
