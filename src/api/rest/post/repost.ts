@@ -50,43 +50,42 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 
 		User.find(targetPost.userId,(targetPostUser: User) => {
 			Post.create(app.id, null, null, 'RP @' + targetPostUser.screenName + ' ' + targetPost.text, user.id, targetPost.id,(post: Post) => {
-				Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
-					if (notice != null) {
-						targetPost.repostsCount++;
-						targetPost.update(() => { });
-						Post.buildResponseObject(targetPost,(targetPostObj: any) => {
-							targetPostObj.isRepostToPost = true;
-							targetPostObj.repostedByUser = user.filt();
-							// Sent response
-							res.apiRender(targetPostObj);
+				targetPost.repostsCount++;
+				targetPost.update(() => { });
+				Post.buildResponseObject(targetPost,(targetPostObj: any) => {
+					targetPostObj.isRepostToPost = true;
+					targetPostObj.repostedByUser = user.filt();
+					// Sent response
+					res.apiRender(targetPostObj);
 
-							/* Publish post event */
-							var streamObj = JSON.stringify({
-								type: 'repost',
-								value: targetPostObj
+					/* Publish post event */
+					var streamObj = JSON.stringify({
+						type: 'repost',
+						value: targetPostObj
+					});
+			
+					// Me
+					Streamer.publish('userStream:' + user.id, streamObj);
+
+					// Followers
+					UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
+						if (userFollowings != null) {
+							userFollowings.forEach((userFollowing: UserFollowing) => {
+								Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
 							});
-					
-							// Me
-							Streamer.publish('userStream:' + user.id, streamObj);
+						}
+					});
 
-							// Followers
-							UserFollowing.findByFolloweeId(user.id,(userFollowings: UserFollowing[]) => {
-								if (userFollowings != null) {
-									userFollowings.forEach((userFollowing: UserFollowing) => {
-										Streamer.publish('userStream:' + userFollowing.followerId, streamObj);
-									});
-								}
-							});
-
-							Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
-								type: 'notice', 
-								value: notice
-							}));
-						});
-					} else {
-						res.apiError(500, 'Failed to create notice :(');
-					}
+					Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
+						type: 'notice', 
+						value: notice
+					}));
 				});
+			});
+			Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
+				if (notice == null) {
+					res.apiError(500, 'Failed to create notce :(');
+				}
 			});
 		});
 	});
