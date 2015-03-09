@@ -6,6 +6,8 @@ import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import Post = require('../../../models/post');
 import PostFavorite = require('../../../models/post-favorite');
+import Notice = require('../../../models/notice');
+import config = require('../../../config');
 
 var authorize = require('../../auth');
 
@@ -46,6 +48,17 @@ function favoriteStep(req: any, res: APIResponse, app: Application, user: User, 
 			targetPost.update(() => { });
 			Post.buildResponseObject(targetPost,(obj: any) => {
 				res.apiRender(obj);
+			});
+
+			var content: any;
+			content.type = 'favorite';
+			content.value.post = targetPost;
+			content.value.user = user.filt();
+			Notice.create(config.webClientId, JSON.stringify(content), targetPost.userId,(notice: Notice) => {
+				Streamer.publish('userStream:' + targetPost.userId, JSON.stringify({
+					type: 'notice',
+					value: notice
+				}));
 			});
 		});
 	});
