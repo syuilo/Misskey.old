@@ -77,7 +77,7 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 					});
 				});
 				Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
-					if (notice == null) {
+					if (notice != null) {
 						Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
 							type: 'notice', 
 							value: notice
