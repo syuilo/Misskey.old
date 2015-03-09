@@ -52,6 +52,7 @@ function favoriteStep(req: any, res: APIResponse, app: Application, user: User, 
 
 			var content: any = {};
 			content.type = 'favorite';
+			content.value = {};
 			content.value.post = targetPost;
 			content.value.user = user.filt();
 			Notice.create(config.webClientId, JSON.stringify(content), targetPost.userId,(notice: Notice) => {
