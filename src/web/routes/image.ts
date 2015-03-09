@@ -104,8 +104,14 @@ var router = (app: express.Express): void => {
 	app.get('/img/post/:id',(req: any, res: any) => {
 		PostImage.find(req.params.id,(postImage: PostImage) => {
 			if (postImage != null) {
-				var imageBuffer = postImage.image;
-				sendImage(req, res, imageBuffer);
+				if (req.accepts('text/html') == 'text/html') {
+					res.display(req, res, 'image', {
+						imageUrl: 'https://misskey.xyz/img/post/' + req.params.id
+					});
+				} else {
+					var imageBuffer = postImage.image;
+					sendImage(req, res, imageBuffer);
+				}
 			} else {
 				res.status(404).send('Image not found.');
 			}

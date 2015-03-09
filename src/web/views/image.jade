@@ -1,0 +1,15 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include templates/head
+		meta(name='description', content='Misskey画像ビューア')
+		meta(name='keywords', content='Misskey')
+		title= '画像ビューア'
+		link(rel='stylesheet', href='/resources/styles/image.css')
+	
+	body
+		include templates/header
+		
+		main(role='main')
+			img(src=imageUrl, alt='image')
