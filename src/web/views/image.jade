@@ -6,9 +6,9 @@ html(lang='ja', dir='ltr')
 		meta(name='description', content='Misskey 画像')
 		meta(name='keywords', content='Misskey')
 		if author != null
-			title= author.name + 'の投稿画像'
+			title= author.name + 'の投稿画像 (' + width + 'x' + height + ')'
 		else
-			title= fileName
+			title= fileName + ' (' + width + 'x' + height + ')'
 		link(rel='stylesheet', href='/resources/styles/image.css')
 	
 	body
@@ -28,3 +28,7 @@ html(lang='ja', dir='ltr')
 			a#download(href=imageUrl, download=fileName)
 				i.fa.fa-download
 				| 画像をダウンロード
+			div#details
+				dl
+					dt サイズ
+					dd= width + 'x' + height
