@@ -15,7 +15,15 @@ import config = require('../../config');
 
 export = router;
 
-var router = (app: express.Express): void => {
+function router(app: express.Express): void {
+	function displayImage(req: any, res: any, imageUrl: string, fileName: string, author: User) {
+		res.display(req, res, 'image', {
+			imageUrl: imageUrl,
+			fileName: author.screenName + '.jpg',
+			author: author
+		});
+	}
+
 	/* User icon */
 	app.get('/img/icon/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
@@ -43,11 +51,7 @@ var router = (app: express.Express): void => {
 		var display = (user: User, userImage: UserImage) => {
 			if (userImage != null) {
 				if (req.headers['accept'].indexOf('text') === 0) {
-					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/icon/' + req.params.idOrSn,
-						fileName: user.screenName + '.jpg',
-						author: user
-					});
+					displayImage(req, res, 'https://misskey.xyz/img/icon/' + req.params.idOrSn, user.screenName + '.jpg', user);
 				} else {
 					var imageBuffer = userImage.icon != null ? userImage.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
 					sendImage(req, res, imageBuffer);
@@ -85,11 +89,7 @@ var router = (app: express.Express): void => {
 		var display = (user: User, userImage: UserImage) => {
 			if (userImage != null) {
 				if (req.headers['accept'].indexOf('text') === 0) {
-					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/header/' + req.params.idOrSn,
-						fileName: user.screenName + '.jpg',
-						author: user
-					});
+					displayImage(req, res, 'https://misskey.xyz/img/header/' + req.params.idOrSn, user.screenName + '.jpg', user);
 				} else {
 					var imageBuffer = userImage.header != null ? userImage.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
 					sendImage(req, res, imageBuffer);
@@ -127,11 +127,7 @@ var router = (app: express.Express): void => {
 		var display = (user: User, userImage: UserImage) => {
 			if (userImage != null) {
 				if (req.headers['accept'].indexOf('text') === 0) {
-					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/wallpaper/' + req.params.idOrSn,
-						fileName: user.screenName + '.jpg',
-						author: user
-					});
+					displayImage(req, res, 'https://misskey.xyz/img/wallpaper/' + req.params.idOrSn, user.screenName + '.jpg', user);
 				} else {
 					var imageBuffer = userImage.wallpaper != null ? userImage.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
 					sendImage(req, res, imageBuffer);
@@ -149,11 +145,7 @@ var router = (app: express.Express): void => {
 				Post.find(postImage.postId,(post: Post) => {
 					if (req.headers['accept'].indexOf('text') === 0) {
 						User.find(post.userId,(user: User) => {
-							res.display(req, res, 'image', {
-								imageUrl: 'https://misskey.xyz/img/post/' + req.params.id,
-								fileName: post.createdAt + '.jpg',
-								author: user
-							});
+							displayImage(req, res, 'https://misskey.xyz/img/post/' + req.params.id, post.createdAt + '.jpg', user);
 						});
 					} else {
 						var imageBuffer = postImage.image;
@@ -184,11 +176,7 @@ var router = (app: express.Express): void => {
 				}
 				if (req.headers['accept'].indexOf('text') === 0) {
 					User.find(talkMessage.userId,(user: User) => {
-						res.display(req, res, 'image', {
-							imageUrl: 'https://misskey.xyz/img/talk-message/' + req.params.id,
-							fileName: talkMessage.createdAt + '.jpg',
-							author: user
-						});
+						displayImage(req, res, 'https://misskey.xyz/img/talk-message/' + req.params.id, talkMessage.createdAt + '.jpg', user);
 					});
 				} else {
 					var imageBuffer = talkMessageImage.image;
