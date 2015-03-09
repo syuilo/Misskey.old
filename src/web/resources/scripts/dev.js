@@ -11,7 +11,7 @@ function showContents(targetUrl, methodType) {
 			dataType: 'html',
 		})
 		.done(function(data) {
-			$('main').html($(data).html());
+			$("main").html($(data).children("main").html());
 		})
 		.fail(function(data) {
 			//失敗時
@@ -27,7 +27,7 @@ function showContents(targetUrl, methodType) {
 function dispLoading(message) {
 	var loadingMessage = message != '' ? '<div id="loading-text">' + message + '</div>' : '';
 	if($('#loading').size() == 0) {
-		$('body').append('<div id="loading">' + loadingMessage + '</div>');
+		$('main').html('<div id="loading"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div>');
 		$('#loading').hide();
 		$('#loading').fadeIn(500);
 	}
