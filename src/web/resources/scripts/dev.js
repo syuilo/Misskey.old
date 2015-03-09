@@ -2,6 +2,45 @@ $.fn.isVisible = function() {
 	return $.expr.filters.visible(this[0]);
 };
 
+function showContents(targetUrl, methodType = 'GET') {
+	if(methodType == 'GET') {
+		dispLoading();
+		$.ajax({
+			url: targetUrl,
+			type: 'GET',
+			dataType: 'html',
+		})
+		.done(function(data) {
+			$('main').html($(data).html());
+		})
+		.fail(function(data) {
+			//失敗時
+		})
+		.always(function(data) {
+			removeLoading();
+		});
+	}else{
+		console.log("not implement.");
+	}
+}
+
+function dispLoading(message) {
+	var loadingMessage = message != '' ? '<div id="loading-text">' + message + '</div>' : '';
+	if($('#loading').size() == 0) {
+		$('main').insertBefore('<div id="loading">' + loadingMessage + '</div>');
+		$('#loading').hide();
+		$('#loading').fadeIn(500);
+	}
+}
+
+function removeLoading() {
+	$('#loading').fadeOut(
+		500,
+		function() {
+			$('#loading').remove();
+		});
+}
+
 $(function() {
 	$('#contents > nav > ul > li > ul').hide();
 
@@ -14,25 +53,12 @@ $(function() {
 	});
 
 	$('#myapp ul li').click(function () {
-		if($(this).children().prop("nodeType") != 1) {
-			var idName = $(this).attr("id");
-			if(idName == "myapp-new") {
-
+		if($(this).children().prop('nodeType') != 1) {
+			var idName = $(this).attr('id');
+			if(idName == 'myapp-new') {
+				showContents('https://misskey.xyz/dev/myapp-new');
 			} else {
-				$.ajax({
-					url: 'https://misskey.xyz/dev/myapp?q=' + idName,
-					type: 'GET',
-					dataType: 'html',
-				})
-				.done(function(data) {
-					$("main").html($(data).html());
-				})
-				.fail(function(data) {
-					//失敗時
-				})
-				.always(function(data) {
-
-				});
+				showContents('https://misskey.xyz/dev/myapp?q=' + idName);
 			}
 		}
 	});
@@ -40,20 +66,7 @@ $(function() {
 	$('#restapi ul li , #streamingapi ul li').click(function () {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
-			$.ajax({
-				url: 'https://misskey.xyz/dev/reference?q=' + idName,
-				type: 'GET',
-				dataType: 'html',
-			})
-			.done(function(data) {
-				$("main").html($(data).children("main").html());
-			})
-			.fail(function(data) {
-				//失敗時
-			})
-			.always(function(data) {
-
-			});
+			showContents('https://misskey.xyz/dev/reference?q=' + idName);
 		}
 	});
 
@@ -61,22 +74,9 @@ $(function() {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
 			if(idName == "usertheme-new") {
-
+				showContents('https://misskey.xyz/dev/usertheme-new');
 			} else {
-				$.ajax({
-					url: 'https://misskey.xyz/dev/usertheme?q=' + idName,
-					type: 'GET',
-					dataType: 'html',
-				})
-				.done(function(data) {
-					$("main").html($(data).html());
-				})
-				.fail(function(data) {
-					//失敗時
-				})
-				.always(function(data) {
-
-				});
+				showContents('https://misskey.xyz/dev/usertheme?q=' + idName);
 			}
 		}
 	});
