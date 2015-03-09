@@ -77,6 +77,11 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 									});
 								}
 							});
+
+							Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
+								type: 'notice', 
+								value: notice
+							}));
 						});
 					} else {
 						res.apiError(400, 'Failed to create notice :(');
