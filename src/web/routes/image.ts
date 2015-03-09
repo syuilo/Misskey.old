@@ -105,7 +105,7 @@ var router = (app: express.Express): void => {
 		PostImage.find(req.params.id,(postImage: PostImage) => {
 			if (postImage != null) {
 				console.log(req.headers['accept']);
-				if (req.headers['accept'].indexof('text') === 0) {
+				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
 						imageUrl: 'https://misskey.xyz/img/post/' + req.params.id
 					});
