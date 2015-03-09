@@ -84,7 +84,7 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 							}));
 						});
 					} else {
-						res.apiError(400, 'Failed to create notice :(');
+						res.apiError(500, 'Failed to create notice :(');
 					}
 				});
 			});
