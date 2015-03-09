@@ -36,8 +36,14 @@ var router = (app: express.Express): void => {
 
 		var display = (userImage: UserImage) => {
 			if (userImage != null) {
-				var imageBuffer = userImage.icon != null ? userImage.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
-				sendImage(req, res, imageBuffer);
+				if (req.headers['accept'].indexOf('text') === 0) {
+					res.display(req, res, 'image', {
+						imageUrl: 'https://misskey.xyz/img/icon/' + req.params.idOrSn
+					});
+				} else {
+					var imageBuffer = userImage.icon != null ? userImage.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
+					sendImage(req, res, imageBuffer);
+				}
 			} else {
 				res.status(404).send('User not found.');
 			}
@@ -64,8 +70,14 @@ var router = (app: express.Express): void => {
 
 		var display = (userImage: UserImage) => {
 			if (userImage != null) {
-				var imageBuffer = userImage.header != null ? userImage.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
-				sendImage(req, res, imageBuffer);
+				if (req.headers['accept'].indexOf('text') === 0) {
+					res.display(req, res, 'image', {
+						imageUrl: 'https://misskey.xyz/img/header/' + req.params.idOrSn
+					});
+				} else {
+					var imageBuffer = userImage.header != null ? userImage.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
+					sendImage(req, res, imageBuffer);
+				}
 			} else {
 				res.status(404).send('User not found.');
 			}
@@ -134,8 +146,14 @@ var router = (app: express.Express): void => {
 					res.status(403).send('Go home quickly.');
 					return;
 				}
-				var imageBuffer = talkMessageImage.image;
-				sendImage(req, res, imageBuffer);
+				if (req.headers['accept'].indexOf('text') === 0) {
+					res.display(req, res, 'image', {
+						imageUrl: 'https://misskey.xyz/img/talk-message/' + req.params.id
+					});
+				} else {
+					var imageBuffer = talkMessageImage.image;
+					sendImage(req, res, imageBuffer);
+				}
 			});
 		});
 	});
