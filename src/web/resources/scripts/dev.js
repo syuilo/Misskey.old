@@ -27,7 +27,7 @@ function showContents(targetUrl, methodType) {
 function dispLoading(message) {
 	var loadingMessage = message != '' ? '<div id="loading-text">' + message + '</div>' : '';
 	if($('#loading').size() == 0) {
-		$('main').insertBefore('<div id="loading">' + loadingMessage + '</div>');
+		$('main').append('<div id="loading">' + loadingMessage + '</div>');
 		$('#loading').hide();
 		$('#loading').fadeIn(500);
 	}
