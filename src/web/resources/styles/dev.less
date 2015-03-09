@@ -82,6 +82,9 @@ body {
 			background-color: #333;
 
 			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
 
 				li {
 					padding: 0;
@@ -107,18 +110,28 @@ body {
 					}
 
 					ul {
+						margin: 0;
+						padding-left: 16px;
+						list-style: none;
 
-						li{
-							cursor: pointer;
-
-							&:hover {
-								background: rgba(255, 255, 255, 0.2);
-							}
-
+						li {
 							h2 {
-
 								&:hover {
 									background-color: #333;
+								}
+							}
+
+							ul {
+								margin: 0;
+								padding-left: 16px;
+								list-style: none;
+
+								li {
+									cursor: pointer;
+
+									&:hover {
+										background: rgba(255, 255, 255, 0.2);
+									}
 								}
 							}
 						}
