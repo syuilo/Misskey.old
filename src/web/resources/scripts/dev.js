@@ -4,7 +4,7 @@ $.fn.isVisible = function() {
 
 function showContents(targetUrl, methodType) {
 	if(methodType == 'GET') {
-		dispLoading();
+		dispLoading("Now Loading...");
 		$.ajax({
 			url: targetUrl,
 			type: 'GET',
