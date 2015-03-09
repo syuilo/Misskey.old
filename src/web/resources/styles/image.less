@@ -2,25 +2,47 @@ main {
 	display: block;
 	width: 100%;
 	text-align: center;
-	
-	#title {
-		margin: 0;
-		padding: 16px;
-		font-size: 1.5em;
-		font-weight: normal;
-		color: rgba(0, 0, 0, 0.8);
+
+	header {
+		#author {
+			display: inline-block;
+
+			.icon {
+				vertical-align: middle;
+				min-width: 54px;
+				min-height: 54px;
+				max-width: 54px;
+				max-height: 54px;
+				margin: 0 12px 4px 0;
+				border-radius: 8px;
+			}
+
+			.name {
+				margin: 0 8px;
+			}
+		}
+
+		#title {
+			display: inline-block;
+			margin: 0;
+			padding: 16px;
+			font-size: 1.5em;
+			font-weight: normal;
+			color: rgba(0, 0, 0, 0.8);
+		}
 	}
-	
+
 	#image {
 		display: block;
 		margin: 0 auto;
 		border-radius: 8px;
+		box-shadow: 0 0 64px rgba(0, 0, 0, 0.2);
 	}
-	
+
 	#download {
 		display: inline-block;
 		padding: 8px;
-		
+
 		i {
 			margin-right: 8px;
 		}

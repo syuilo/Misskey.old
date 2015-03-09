@@ -12,7 +12,12 @@ html(lang='ja', dir='ltr')
 		include templates/header
 		
 		main(role='main')
-			h1#title= fileName
+			header
+				if author != null
+					div#author
+						img.icon(src='/img/icon/' + author.screenName, alt='icon')
+						a.name(href='/' + author.screenName)= author.name
+				h1#title= fileName
 			img#image(src=imageUrl, alt='image')
 			a#download(href=imageUrl, download=fileName)
 				i.fa.fa-download
