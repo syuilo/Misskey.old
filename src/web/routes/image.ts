@@ -19,8 +19,14 @@ var router = (app: express.Express): void => {
 	/* User icon */
 	app.get('/img/icon/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
-				display(userImage);
+			User.find(req.params.idOrSn,(user: User) => {
+				if (user == null) {
+					res.status(404).send('User not found.');
+					return;
+				}
+				UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
+					display(user, userImage);
+				});
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
@@ -29,16 +35,18 @@ var router = (app: express.Express): void => {
 					return;
 				}
 				UserImage.find(user.id,(userImage: UserImage) => {
-					display(userImage);
+					display(user, userImage);
 				});
 			});
 		}
 
-		var display = (userImage: UserImage) => {
+		var display = (user: User, userImage: UserImage) => {
 			if (userImage != null) {
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/icon/' + req.params.idOrSn
+						imageUrl: 'https://misskey.xyz/img/icon/' + req.params.idOrSn,
+						title: user.name + 'さんのアイコン',
+						fileName: user.screenName + '.jpg'
 					});
 				} else {
 					var imageBuffer = userImage.icon != null ? userImage.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
@@ -53,8 +61,14 @@ var router = (app: express.Express): void => {
 	/* User header */
 	app.get('/img/header/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
-				display(userImage);
+			User.find(req.params.idOrSn,(user: User) => {
+				if (user == null) {
+					res.status(404).send('User not found.');
+					return;
+				}
+				UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
+					display(user, userImage);
+				});
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
@@ -63,16 +77,18 @@ var router = (app: express.Express): void => {
 					return;
 				}
 				UserImage.find(user.id,(userImage: UserImage) => {
-					display(userImage);
+					display(user, userImage);
 				});
 			});
 		}
 
-		var display = (userImage: UserImage) => {
+		var display = (user: User, userImage: UserImage) => {
 			if (userImage != null) {
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/header/' + req.params.idOrSn
+						imageUrl: 'https://misskey.xyz/img/header/' + req.params.idOrSn,
+						title: user.name + 'さんのヘッダー',
+						fileName: user.screenName + '.jpg'
 					});
 				} else {
 					var imageBuffer = userImage.header != null ? userImage.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
@@ -87,8 +103,14 @@ var router = (app: express.Express): void => {
 	/* User wallpaper */
 	app.get('/img/wallpaper/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
-				display(userImage);
+			User.find(req.params.idOrSn,(user: User) => {
+				if (user == null) {
+					res.status(404).send('User not found.');
+					return;
+				}
+				UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
+					display(user, userImage);
+				});
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
@@ -97,15 +119,23 @@ var router = (app: express.Express): void => {
 					return;
 				}
 				UserImage.find(user.id,(userImage: UserImage) => {
-					display(userImage);
+					display(user, userImage);
 				});
 			});
 		}
 
-		var display = (userImage: UserImage) => {
+		var display = (user: User, userImage: UserImage) => {
 			if (userImage != null) {
-				var imageBuffer = userImage.wallpaper != null ? userImage.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
-				sendImage(req, res, imageBuffer);
+				if (req.headers['accept'].indexOf('text') === 0) {
+					res.display(req, res, 'image', {
+						imageUrl: 'https://misskey.xyz/img/wallpaper/' + req.params.idOrSn,
+						title: user.name + 'さんの壁紙',
+						fileName: user.screenName + '.jpg'
+					});
+				} else {
+					var imageBuffer = userImage.wallpaper != null ? userImage.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
+					sendImage(req, res, imageBuffer);
+				}
 			} else {
 				res.status(404).send('User not found.');
 			}
@@ -116,14 +146,18 @@ var router = (app: express.Express): void => {
 	app.get('/img/post/:id',(req: any, res: any) => {
 		PostImage.find(req.params.id,(postImage: PostImage) => {
 			if (postImage != null) {
-				if (req.headers['accept'].indexOf('text') === 0) {
-					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/post/' + req.params.id
-					});
-				} else {
-					var imageBuffer = postImage.image;
-					sendImage(req, res, imageBuffer);
-				}
+				Post.find(postImage.postId,(post: Post) => {
+					if (req.headers['accept'].indexOf('text') === 0) {
+						res.display(req, res, 'image', {
+							imageUrl: 'https://misskey.xyz/img/post/' + req.params.id,
+							title: post.createdAt + 'の投稿の添付画像',
+							fileName: post.createdAt + '.jpg'
+						});
+					} else {
+						var imageBuffer = postImage.image;
+						sendImage(req, res, imageBuffer);
+					}
+				});
 			} else {
 				res.status(404).send('Image not found.');
 			}
@@ -148,7 +182,9 @@ var router = (app: express.Express): void => {
 				}
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
-						imageUrl: 'https://misskey.xyz/img/talk-message/' + req.params.id
+						imageUrl: 'https://misskey.xyz/img/talk-message/' + req.params.id,
+						title: 'トークメッセージの添付画像',
+						fileName: talkMessage.createdAt + '.jpg'
 					});
 				} else {
 					var imageBuffer = talkMessageImage.image;
