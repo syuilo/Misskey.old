@@ -32,12 +32,15 @@ $(function() {
 	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
 
 	$('#misskey-main-header .notice .allDeleteButton').click(function() {
+		$button = $(this);
+		$button.attr('disabled', true);
 		$.ajax('https://api.misskey.xyz/notice/deleteall', {
 			type: 'delete',
 			data: {},
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function() {
+			$button.attr('disabled', false);
 			$('#misskey-main-header .notice .notices .notice').each(function() {
 				var $notice = $(this);
 				$notice.css({
@@ -49,6 +52,7 @@ $(function() {
 				setTimeout($notice.remove(), 300);
 			});
 		}).fail(function() {
+			$button.attr('disabled', false);
 		});
 	});
 
