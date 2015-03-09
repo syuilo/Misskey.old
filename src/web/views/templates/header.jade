@@ -66,7 +66,7 @@ header#misskey-main-header(role='banner')
 													button.deleteButton(role='button', title='削除')
 														img(src='/resources/images/notice-delete.png', alt='Delete')
 									else
-										p 通知はありません
+										p.empty 通知はありません
 					if login
 						div.account
 							a.screenNameAnchor(href= url + '/' + me.screenName)
