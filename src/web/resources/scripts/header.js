@@ -31,6 +31,27 @@ $(function() {
 	});
 	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
 
+	$('#misskey-main-header .notice .deleteAllButton').click(function() {
+		$.ajax('https://api.misskey.xyz/notice/deleteall', {
+			type: 'delete',
+			data: {},
+			dataType: 'json',
+			xhrFields: { withCredentials: true }
+		}).done(function() {
+			$('#misskey-main-header .notice .notices .notice').each(function() {
+				var $notice = $(this);
+				$notice.css({
+					transition: 'all 0.2s ease-in',
+					transform: 'perspective(512px) translateY(20%) scale(0.8) rotateX(45deg)',
+					margin: 0,
+					opacity: 0
+				});
+				setTimeout($notice.remove(), 300);
+			});
+		}).fail(function() {
+		});
+	});
+
 	$("#misskey-main-header .search input").bind('input', function() {
 		var $result = $("#misskey-main-header .search .result");
 		if ($(this).val() == '') {

@@ -56,9 +56,9 @@ header#misskey-main-header(role='banner')
 									i.fa.fa-trash
 								div.dropdownContent
 									if notices != null
-										ol
+										ol.notices
 											each notice in notices
-												li(title= notice.createdAt
+												li.notice(title= notice.createdAt
 													data-id= notice.id)
 													time(datetime= notice.createdAt)= notice.createdAt
 													div.content!= notice.content
