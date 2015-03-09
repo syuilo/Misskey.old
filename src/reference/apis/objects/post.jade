@@ -1,0 +1,60 @@
+extends ./layout.jade
+
+block title
+	| Post
+
+block overview
+	p ポスト(投稿情報)を格納するオブジェクトです。
+
+block properties
+	table
+		thead
+			tr
+				th Name
+				th Type
+				th Description
+		tbody
+			tr
+				td id
+				td Number
+				td ポストID。
+			tr
+				td text
+				td String
+				td 本文。
+			tr
+				td createdAt
+				td String
+				td ポストの投稿日時。
+			tr
+				td userId
+				td Number
+				td ユーザーID
+			tr
+				td favoritesCount
+				td Number
+				td 被ふぁぼの数
+			tr
+				td repostsCount
+				td Number
+				td 被RPの数
+			tr
+				td isImageAttached
+				td Boolean
+				td 画像が添付されているかを示す
+			tr
+				td inReplyToPostId
+				td Number
+				td 返信先のポストID
+			tr
+				td user
+				td Userオブジェクト
+				td ポストを投稿したユーザーのUserオブジェクト(必須ではない)
+			tr
+				td app
+				td Appオブジェクト
+				td 投稿元アプリケーションのAppオブジェクト
+			tr
+				td isReply
+				td Boolean
+				td 返信であるかを示す(互換性の為に残してあります。非推奨)
