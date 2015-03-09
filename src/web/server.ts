@@ -146,7 +146,12 @@ webServer.use((req, res, next) => {
 /* Error handling */
 webServer.use((err, req, res, next) => {
 	res.status(500);
-	res.display(req, res, 'error', { err: err });
+	if ('display' in res) {
+		res.display(req, res, 'error', { err: err });
+	} else {
+		console.log(err);
+		res.send();
+	}
 });
 
 webServer.listen(config.port.web);
