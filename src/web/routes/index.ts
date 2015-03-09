@@ -88,6 +88,9 @@ var router = (app: express.Express): void => {
 	app.get('/dev/myapp', (req: any, res: any, next: () => void) => {
 		require('../controllers/dev-myapp')(req, res);
 	});
+	app.get('/dev/myapp/new', (req: any, res: any, next: () => void) => {
+		require('../controllers/dev-myapp-new')(req, res);
+	});
 	app.get('/dev/usertheme', (req: any, res: any, next: () => void) => {
 		require('../controllers/dev-usertheme')(req, res);
 	});
