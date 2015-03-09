@@ -2,7 +2,7 @@ $.fn.isVisible = function() {
 	return $.expr.filters.visible(this[0]);
 };
 
-function showContents(targetUrl, methodType = 'GET') {
+function showContents(targetUrl, methodType) {
 	if(methodType == 'GET') {
 		dispLoading();
 		$.ajax({
@@ -56,9 +56,9 @@ $(function() {
 		if($(this).children().prop('nodeType') != 1) {
 			var idName = $(this).attr('id');
 			if(idName == 'myapp-new') {
-				showContents('https://misskey.xyz/dev/myapp-new');
+				showContents('https://misskey.xyz/dev/myapp-new', 'GET');
 			} else {
-				showContents('https://misskey.xyz/dev/myapp?q=' + idName);
+				showContents('https://misskey.xyz/dev/myapp?q=' + idName, 'GET');
 			}
 		}
 	});
@@ -66,7 +66,7 @@ $(function() {
 	$('#restapi ul li , #streamingapi ul li').click(function () {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
-			showContents('https://misskey.xyz/dev/reference?q=' + idName);
+			showContents('https://misskey.xyz/dev/reference?q=' + idName, 'GET');
 		}
 	});
 
@@ -74,9 +74,9 @@ $(function() {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
 			if(idName == "usertheme-new") {
-				showContents('https://misskey.xyz/dev/usertheme-new');
+				showContents('https://misskey.xyz/dev/usertheme-new', 'GET');
 			} else {
-				showContents('https://misskey.xyz/dev/usertheme?q=' + idName);
+				showContents('https://misskey.xyz/dev/usertheme?q=' + idName, 'GET');
 			}
 		}
 	});
