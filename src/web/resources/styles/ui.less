@@ -423,6 +423,10 @@ textarea {
 						height: 100%;
 
 						&:hover {
+							> .i {
+								background: #eee;
+							}
+
 							> .dropdownContainer {
 								visibility: visible;
 								opacity: 1;
@@ -431,13 +435,20 @@ textarea {
 							}
 						}
 
-						> i {
+						> .i {
 							display: inline-block;
+							box-sizing: border-box;
+							min-width: 48px;
 							height: 100%;
 							padding: 0 8px;
-							font-size: 1.2em;
-							line-height: 3rem;
-							color: rgba(0,0,0,0.5);
+							text-align: center;
+
+							> i {
+								display: inline-block;
+								font-size: 1.2em;
+								line-height: 48px;
+								color: rgba(0,0,0,0.5);
+							}
 						}
 
 						> .dropdownContainer {
@@ -600,7 +611,8 @@ textarea {
 					vertical-align: top;
 
 					> .screenNameAnchor {
-						display: inline-block;
+						/*display: inline-block;*/
+						display: none;
 
 						&:hover {
 							> .screenName {
