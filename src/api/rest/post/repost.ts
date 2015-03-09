@@ -75,17 +75,15 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 							});
 						}
 					});
-
-					Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
-						type: 'notice', 
-						value: notice
-					}));
 				});
-			});
-			Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
-				if (notice == null) {
-					res.apiError(500, 'Failed to create notce :(');
-				}
+				Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
+					if (notice == null) {
+						Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
+							type: 'notice', 
+							value: notice
+						}));
+					}
+				});
 			});
 		});
 	});
