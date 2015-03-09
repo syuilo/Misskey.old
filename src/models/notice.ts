@@ -43,7 +43,7 @@ class Notice {
 	}
 
 	public destroy(callback: () => void): void {
-		db.query('delete from notices where id = ?"',
+		db.query('delete from notices where id = ?',
 			[this.id],
 			callback);
 	}
