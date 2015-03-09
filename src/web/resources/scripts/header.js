@@ -48,7 +48,9 @@ $(function() {
 					transform: 'perspective(512px) translateY(20%) scale(0.8) rotateX(45deg)',
 					opacity: 0
 				});
-				setTimeout($notice.remove(), 300);
+				setTimeout(function() {
+					$notice.remove();
+				}, 300);
 			});
 		}).fail(function() {
 			$button.attr('disabled', false);
