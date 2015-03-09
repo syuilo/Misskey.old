@@ -56,7 +56,7 @@ $(function() {
 		if($(this).children().prop('nodeType') != 1) {
 			var idName = $(this).attr('id');
 			if(idName == 'myapp-new') {
-				showContents('https://misskey.xyz/dev/myapp-new', 'GET');
+				showContents('https://misskey.xyz/dev/myapp/new', 'GET');
 			} else {
 				showContents('https://misskey.xyz/dev/myapp?q=' + idName, 'GET');
 			}
@@ -74,7 +74,7 @@ $(function() {
 		if($(this).children().prop("nodeType") != 1) {
 			var idName = $(this).attr("id");
 			if(idName == "usertheme-new") {
-				showContents('https://misskey.xyz/dev/usertheme-new', 'GET');
+				showContents('https://misskey.xyz/dev/usertheme/new', 'GET');
 			} else {
 				showContents('https://misskey.xyz/dev/usertheme?q=' + idName, 'GET');
 			}
