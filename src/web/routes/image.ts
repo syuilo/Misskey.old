@@ -45,7 +45,6 @@ var router = (app: express.Express): void => {
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
 						imageUrl: 'https://misskey.xyz/img/icon/' + req.params.idOrSn,
-						title: user.name + 'さんのアイコン',
 						fileName: user.screenName + '.jpg'
 					});
 				} else {
@@ -87,7 +86,6 @@ var router = (app: express.Express): void => {
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
 						imageUrl: 'https://misskey.xyz/img/header/' + req.params.idOrSn,
-						title: user.name + 'さんのヘッダー',
 						fileName: user.screenName + '.jpg'
 					});
 				} else {
@@ -129,7 +127,6 @@ var router = (app: express.Express): void => {
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
 						imageUrl: 'https://misskey.xyz/img/wallpaper/' + req.params.idOrSn,
-						title: user.name + 'さんの壁紙',
 						fileName: user.screenName + '.jpg'
 					});
 				} else {
@@ -150,7 +147,6 @@ var router = (app: express.Express): void => {
 					if (req.headers['accept'].indexOf('text') === 0) {
 						res.display(req, res, 'image', {
 							imageUrl: 'https://misskey.xyz/img/post/' + req.params.id,
-							title: post.createdAt + 'の投稿の添付画像',
 							fileName: post.createdAt + '.jpg'
 						});
 					} else {
@@ -183,7 +179,6 @@ var router = (app: express.Express): void => {
 				if (req.headers['accept'].indexOf('text') === 0) {
 					res.display(req, res, 'image', {
 						imageUrl: 'https://misskey.xyz/img/talk-message/' + req.params.id,
-						title: 'トークメッセージの添付画像',
 						fileName: talkMessage.createdAt + '.jpg'
 					});
 				} else {

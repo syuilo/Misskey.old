@@ -3,15 +3,15 @@ doctype html
 html(lang='ja', dir='ltr')
 	head
 		include templates/head
-		meta(name='description', content=title)
+		meta(name='description', content='Misskey 画像')
 		meta(name='keywords', content='Misskey')
-		title= title
+		title= fileName
 		link(rel='stylesheet', href='/resources/styles/image.css')
 	
 	body
 		include templates/header
 		
 		main(role='main')
-			h1#title= title
+			h1#title= fileName
 			img#image(src=imageUrl, alt='image')
 			a#download(href=imageUrl, download=fileName)
