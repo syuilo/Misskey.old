@@ -31,7 +31,7 @@ $(function() {
 	});
 	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
 
-	$('#misskey-main-header .notice .deleteAllButton').click(function() {
+	$('#misskey-main-header .notice .allDeleteButton').click(function() {
 		$.ajax('https://api.misskey.xyz/notice/deleteall', {
 			type: 'delete',
 			data: {},
