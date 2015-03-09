@@ -76,7 +76,11 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 						}
 					});
 				});
-				Notice.create(config.webClientId, user.name + ' さんがあなたの投稿をRepostしました', targetPostUser.id, (notice: Notice) => {
+				var content: any;
+				content.type = 'repost';
+				content.value.post = post;
+				content.value.user = user.filt();
+				Notice.create(config.webClientId, JSON.stringify(content) , targetPostUser.id, (notice: Notice) => {
 					Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
 						type: 'notice', 
 						value: notice
