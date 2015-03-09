@@ -50,7 +50,7 @@ function favoriteStep(req: any, res: APIResponse, app: Application, user: User, 
 				res.apiRender(obj);
 			});
 
-			var content: any;
+			var content: any = {};
 			content.type = 'favorite';
 			content.value.post = targetPost;
 			content.value.user = user.filt();

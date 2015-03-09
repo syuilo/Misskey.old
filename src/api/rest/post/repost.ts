@@ -76,7 +76,7 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 						}
 					});
 				});
-				var content: any;
+				var content: any = {};
 				content.type = 'repost';
 				content.value.post = post;
 				content.value.user = user.filt();
