@@ -25,7 +25,7 @@ var postFavorite = (req: any, res: APIResponse) => {
 
 			if (targetPost.repostFromPostId == null) {
 				favoriteStep(req, res, app, user, targetPost);
-			} else { // ‚Ó‚Ÿ‚Ú‚ë‚¤‚Æ‚µ‚½Post‚ªRP‚¾‚Á‚½ê‡A–{—ˆ‚ÌPost‚ð‚Ó‚Ÿ‚Ú‚é‚æ‚¤‚É‚·‚é(RP‚ð‚Ó‚Ÿ‚Ú‚ç‚È‚¢‚æ‚¤‚É‚·‚é)
+			} else { // ãµãã¼ã‚ã†ã¨ã—ãŸPostãŒRPã ã£ãŸå ´åˆã€æœ¬æ¥ã®Postã‚’ãµãã¼ã‚‹ã‚ˆã†ã«ã™ã‚‹(RPã‚’ãµãã¼ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹)
 				Post.find(targetPost.repostFromPostId,(trueTargetPost: Post) => {
 					favoriteStep(req, res, app, user, trueTargetPost);
 				});

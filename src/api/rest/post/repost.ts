@@ -30,7 +30,7 @@ var postRepost = (req: any, res: APIResponse) => {
 
 			if (targetPost.repostFromPostId == null) {
 				repostStep(req, res, app, user, targetPost);
-			} else { // RP‚µ‚æ‚¤‚Æ‚µ‚½Post‚ªRP‚¾‚Á‚½ê‡A–{—ˆ‚ÌPost‚ðRP‚·‚é‚æ‚¤‚É‚·‚é(RP‚ðRP‚µ‚È‚¢‚æ‚¤‚É‚·‚é)
+			} else { // RPã—ã‚ˆã†ã¨ã—ãŸPostãŒRPã ã£ãŸå ´åˆã€æœ¬æ¥ã®Postã‚’RPã™ã‚‹ã‚ˆã†ã«ã™ã‚‹(RPã‚’RPã—ãªã„ã‚ˆã†ã«ã™ã‚‹)
 				Post.find(targetPost.repostFromPostId,(trueTargetPost: Post) => {
 					repostStep(req, res, app, user, trueTargetPost);
 				});
