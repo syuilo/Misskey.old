@@ -4,7 +4,7 @@ block title
 	| Post
 
 block overview
-	p ポスト(投稿情報)を格納するオブジェクトです。
+	p ステータス(投稿)を格納するオブジェクトです。
 
 block properties
 	table
@@ -17,7 +17,7 @@ block properties
 			tr
 				td id
 				td Number
-				td ポストID。
+				td ステータスID。
 			tr
 				td text
 				td String
@@ -29,32 +29,32 @@ block properties
 			tr
 				td userId
 				td Number
-				td ユーザーID
+				td ユーザーID。
 			tr
 				td favoritesCount
 				td Number
-				td 被ふぁぼの数
+				td 被お気入りの数。
 			tr
 				td repostsCount
 				td Number
-				td 被RPの数
+				td 被RPの数。
 			tr
 				td isImageAttached
 				td Boolean
-				td 画像が添付されているかを示す
+				td 画像が添付されているかを示す。
 			tr
 				td inReplyToPostId
 				td Number
-				td 返信先のポストID
+				td 返信先のポストID。
 			tr
 				td user
 				td Userオブジェクト
-				td ポストを投稿したユーザーのUserオブジェクト(必須ではない)
+				td ポストを投稿したユーザーのUserオブジェクト(オプション)。
 			tr
 				td app
 				td Appオブジェクト
-				td 投稿元アプリケーションのAppオブジェクト
+				td 投稿元アプリケーションのAppオブジェクト。
 			tr
 				td isReply
 				td Boolean
-				td 返信であるかを示す(互換性の為に残してあります。非推奨)
+				td 返信であるかを示す(互換性の為に残してあります。非推奨)。
