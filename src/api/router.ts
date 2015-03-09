@@ -31,6 +31,8 @@ function router(app: express.Express): void {
 	app.put(/\/account\/update_webtheme(\..+)?$/, require('./rest/account/update_webtheme'));
 	app.get(/\/account\/unreadalltalks_count(\..+)?$/, require('./rest/account/unreadalltalks_count'));
 	app.delete(/\/account\/reset_webtheme(\..+)?$/, require('./rest/account/reset_webtheme'));
+	app.delete(/\/notice\/delete(\..+)?$/, require('./rest/notice/delete'));
+	app.delete(/\/notice\/deleteall(\..+)?$/, require('./rest/notice/deleteall'));
 	app.get(/\/users\/show(\..+)?$/, require('./rest/users/show'));
 	app.post(/\/users\/follow(\..+)?$/, require('./rest/users/follow'));
 	app.delete(/\/users\/unfollow(\..+)?$/, require('./rest/users/unfollow'));
