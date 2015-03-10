@@ -5,13 +5,11 @@ import AccessToken = require('../../models/access-token');
 import User = require('../../models/user');
 import Notice = require('../../models/notice');
 import bcrypt = require('bcrypt');
-import redis = require('redis');
 import config = require('../../config');
 
 export = login;
 
 function login(req: any, screenName: string, password: string, done: (user: User, webAccessToken: AccessToken) => void, fail: () => void): void {
-	var subscriber = redis.createClient(config.port.redis, 'localhost');
 	if (screenName == '' || password == '') {
 		fail();
 	} else {
@@ -24,11 +22,6 @@ function login(req: any, screenName: string, password: string, done: (user: User
 					if (same) {
 						AccessToken.findByUserIdAndAppId(user.id, config.webClientId,(webAccessToken: AccessToken) => {
 							Notice.create(config.webClientId, 'login', 'ログインしました。', user.id,(notice: Notice) => {
-								var noticeData: any = {};
-								noticeData['data'] = notice;
-								noticeData['type'] = 'notice';
-								subscriber.publish('misskey:userstream', JSON.stringify(noticeData));
-
 								req.session.userId = user.id;
 								req.session.consumerKey = config.webClientConsumerKey;
 								req.session.accessToken = webAccessToken.token;
