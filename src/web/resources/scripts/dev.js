@@ -4,40 +4,50 @@ $.fn.isVisible = function() {
 
 function showContents(targetUrl, methodType) {
 	if(methodType == 'GET') {
-		dispLoading("Now Loading...");
-		$.ajax({
-			url: targetUrl,
-			type: 'GET',
-			dataType: 'html',
-		})
-		.done(function(data) {
-			$("main").html($(data).children("main").html());
-		})
-		.fail(function(data) {
-			//失敗時
-		})
-		.always(function(data) {
-			removeLoading();
+		var callbacks = $.Callbacks();
+		callbacks.add(dispLoading("Now Loading..."));
+		dispLoading("Now Loading...", function() {
+			$.ajax({
+				url: targetUrl,
+				type: 'GET',
+				dataType: 'html',
+			})
+			.done(function(data) {
+				removeLoading(function() {
+					$("main").hide();
+					$("main").html($(data).children("main").html());
+					$("main").fadeIn(500);
+				});
+			})
+			.fail(function(data) {
+				//失敗時
+				removeLoading(function() {
+					$("main").hide();
+					$("main").html("<article><p>Failed to display contents :(</p></article>");
+					$("main").fadeIn(500);
+				});
+			})
 		});
 	}else{
 		console.log("not implement.");
 	}
 }
 
-function dispLoading(message) {
+function dispLoading(message, callback) {
 	var loadingMessage = message != '' ? '<div id="loading-text">' + message + '</div>' : '';
 	if($('#loading').size() == 0) {
 		$('main').html('<div id="loading"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div>');
 		$('#loading').hide();
-		$('#loading').fadeIn(500);
+		$('#loading').fadeIn(500, callback);
 	}
 }
 
-function removeLoading() {
+function removeLoading(callback) {
 	$('#loading').fadeOut(
 		500,
 		function() {
 			$('#loading').remove();
+			callback();
 		});
 }
 
@@ -45,7 +55,7 @@ $(function() {
 	$('#contents > nav > ul > li > ul').hide();
 
 	$('#contents nav ul li h1').click(function () {
-		if($(this).parent().children('ul').isVisible() == true) {
+		if($(this).parent().children('ul').isVisible()) {
 			$(this).parent().children('ul').hide(250);
 		} else {
 			$(this).parent().children('ul').show(250);
