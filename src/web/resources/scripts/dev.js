@@ -16,17 +16,15 @@ function showContents(targetUrl, methodType) {
 				$("main").fadeOut(fadeTime, function() {
 					$("main").html($(data).children("main").html());
 					$("main").fadeIn(fadeTime, function() {
-						removeLoading(function() {});
+						removeLoading();
 					});
 				});
 			})
 			.fail(function(data) {
-				removeLoading(function() {
-					$("main").fadeOut(fadeTime, function() {
-						$("main").html("<article><p>Failed to display contents :(</p></article>");
-						$("main").fadeIn(fadeTime, function() {
-							removeLoading(function() {});
-						});
+				$("main").fadeOut(fadeTime, function() {
+					$("main").html("<article><p>Failed to display contents :(</p></article>");
+					$("main").fadeIn(fadeTime, function() {
+						removeLoading();
 					});
 				});
 			});
@@ -45,12 +43,11 @@ function dispLoading(message, callback) {
 	}
 }
 
-function removeLoading(callback) {
+function removeLoading() {
 	$('#loading').fadeOut(
 		fadeTime,
 		function() {
 			$('#loading').remove();
-			callback();
 		});
 }
 
