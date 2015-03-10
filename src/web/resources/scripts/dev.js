@@ -37,7 +37,7 @@ function showContents(targetUrl, methodType) {
 function dispLoading(message, callback) {
 	var loadingMessage = message != '' ? '<div id="loading-text">' + message + '</div>' : '';
 	if($('#loading').size() == 0) {
-		$('body > header').before('<div id="loading"><div id="loading-container"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div></div>');
+		$('body').append('<div id="loading"><div id="loading-container"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div></div>');
 		$('#loading').hide();
 		$('#loading').fadeIn(fadeTime, callback());
 	}
