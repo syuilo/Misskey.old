@@ -56,9 +56,9 @@ $(function() {
 
 	$('#contents nav ul li h1').click(function () {
 		if($(this).parent().children('ul').isVisible()) {
-			$(this).parent().children('ul').hide(fadeTime);
+			$(this).parent().children('ul').hide(250);
 		} else {
-			$(this).parent().children('ul').show(fadeTime);
+			$(this).parent().children('ul').show(250);
 		}
 	});
 
