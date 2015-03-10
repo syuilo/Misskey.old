@@ -17,7 +17,7 @@ function api(req: any, res: APIResponse) {
 
 		Notice.find(noticeId,(notice: Notice) => {
 			if (notice.userId !== user.id) {
-				res.apiError(400, 'Cannot delete The Notification, if it not Addressed to itself');
+				res.apiError(400, 'Cannot delete The notification which not addressed to you');
 				return;
 			}
 			notice.destroy(() => {
