@@ -165,12 +165,12 @@
 
 .timeline {
 
-	> .posts {
+	> .statuses {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 
-		> .post {
+		> .status.post {
 			position: relative;
 			padding: 16px 24px;
 			border-left: solid 3px transparent;
@@ -650,7 +650,7 @@
 			}
 		}
 
-			> .post[data-is-reply='true'] {
+			> .status.post[data-is-reply='true'] {
 				> article {
 					&:before {
 						content: "";
@@ -666,7 +666,7 @@
 				}
 			}
 
-			> .post[data-is-talk='true'] {
+			> .status.post[data-is-talk='true'] {
 				> .replyTo {
 					&:before {
 						top: 0;
@@ -675,11 +675,11 @@
 				}
 			}
 
-			> .post[data-is-repostpost='true'] {
+			> .status.post[data-is-repostpost='true'] {
 				background: rgba(128, 255, 0, 0.1);
 			}
 
-			> .post[data-is-favorited='true'] > article > footer > .actions > .favorite {
+			> .status.post[data-is-favorited='true'] > article > footer > .actions > .favorite {
 				> button {
 					color: @themeColor;
 
@@ -689,7 +689,7 @@
 				}
 			}
 
-			> .post[data-is-reposted='true'] > article > footer > .actions > .repost {
+			> .status.post[data-is-reposted='true'] > article > footer > .actions > .repost {
 				> button {
 					color: @themeColor;
 
@@ -699,7 +699,7 @@
 				}
 			}
 
-			> .post[data-user-verified='true'] {
+			> .status.post[data-user-verified='true'] {
 				> article > header > h2 > a {
 					&:before {
 						.timeline-verifiedIcon;

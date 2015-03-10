@@ -1,7 +1,7 @@
 var TIMELINE = {};
 
 TIMELINE.generatePostElement = function(post) {
-	return $('<li class="post">')
+	return $('<li class="status post">')
 	.attr({
 		title: post.createdAt + '&#x0A;via ' + post.app.name,
 		'data-id': post.id,
@@ -353,13 +353,13 @@ TIMELINE.setEventPost = function($post) {
 		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
 			if ($(this).children('footer').css('display') === 'none') {
-				$('.timeline > .posts > .post > .moreTalk > i').each(function() {
+				$('.timeline > .statuses > .status.post > .moreTalk > i').each(function() {
 					$(this).show(200);
 				});
-				$('.timeline > .posts > .post > .moreTalk > .talk').each(function() {
+				$('.timeline > .statuses > .status.post > .moreTalk > .talk').each(function() {
 					$(this).hide(200);
 				});
-				$('.timeline > .posts > .post > footer').each(function() {
+				$('.timeline > .statuses > .status.post > footer').each(function() {
 					$(this).hide(200);
 				});
 				$(this).children('.moreTalk').children('i').hide(200);

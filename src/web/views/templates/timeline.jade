@@ -1,8 +1,8 @@
 div.timeline
-	if posts != null && posts.length > 0
-		ol.posts
-			each post in posts
-				li.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
+	if statuses != null && statuses.length > 0
+		ol.statuses
+			each status in statuses
+				li.status.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
 						style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 						data-id= post.isRepostToPost ? post.source.id : post.id
 						data-source-id= post.isRepostToPost ? post.id : null

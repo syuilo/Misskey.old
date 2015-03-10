@@ -24,7 +24,7 @@ $(function() {
 		new Audio('/resources/sounds/pop.mp3').play();
 		var $post = TIMELINE.generatePostElement(post, conf).hide();
 		TIMELINE.setEventPost($post);
-		$post.prependTo($('#timeline .timeline > .posts')).show(200);
+		$post.prependTo($('#timeline .timeline > .statuses')).show(200);
 	});
 
 	socket.on('repost', function(post) {
@@ -32,7 +32,7 @@ $(function() {
 		new Audio('/resources/sounds/pop.mp3').play();
 		var $post = TIMELINE.generatePostElement(post, conf).hide();
 		TIMELINE.setEventPost($post);
-		$post.prependTo($('#timeline .timeline > .posts')).show(200);
+		$post.prependTo($('#timeline .timeline > .statuses')).show(200);
 	});
 
 	socket.on('reply', function(post) {
