@@ -77,11 +77,9 @@ function repostStep(req: any, res: APIResponse, app: Application, user: User, ta
 					});
 				});
 				var content: any = {};
-				content.type = 'repost';
-				content.value = {};
-				content.value.post = post;
-				content.value.user = user.filt();
-				Notice.create(config.webClientId, JSON.stringify(content) , targetPostUser.id, (notice: Notice) => {
+				content.post = post;
+				content.user = user.filt();
+				Notice.create(config.webClientId, 'repost', JSON.stringify(content) , targetPostUser.id, (notice: Notice) => {
 					Streamer.publish('userStream:' + targetPostUser.id, JSON.stringify({
 						type: 'notice', 
 						value: notice

@@ -51,11 +51,9 @@ function favoriteStep(req: any, res: APIResponse, app: Application, user: User, 
 			});
 
 			var content: any = {};
-			content.type = 'favorite';
-			content.value = {};
-			content.value.post = targetPost;
-			content.value.user = user.filt();
-			Notice.create(config.webClientId, JSON.stringify(content), targetPost.userId,(notice: Notice) => {
+			content.post = targetPost;
+			content.user = user.filt();
+			Notice.create(config.webClientId, 'favorite', JSON.stringify(content), targetPost.userId,(notice: Notice) => {
 				Streamer.publish('userStream:' + targetPost.userId, JSON.stringify({
 					type: 'notice',
 					value: notice

@@ -15,15 +15,15 @@ function login(req: any, screenName: string, password: string, done: (user: User
 	if (screenName == '' || password == '') {
 		fail();
 	} else {
-		User.findByScreenName(screenName, (user: User) => {
+		User.findByScreenName(screenName,(user: User) => {
 			if (user == null) {
 				fail();
 			} else {
 				var dbPassword = user.password.replace('$2y$', '$2a$');
-				bcrypt.compare(password, dbPassword, (err: any, same: boolean) => {
+				bcrypt.compare(password, dbPassword,(err: any, same: boolean) => {
 					if (same) {
-						AccessToken.findByUserIdAndAppId(user.id, config.webClientId, (webAccessToken: AccessToken) => {
-							Notice.create(config.webClientId, 'ログインしました。', user.id, (notice: Notice) => {
+						AccessToken.findByUserIdAndAppId(user.id, config.webClientId,(webAccessToken: AccessToken) => {
+							Notice.create(config.webClientId, 'login', 'ログインしました。', user.id,(notice: Notice) => {
 								var noticeData: any = {};
 								noticeData['data'] = notice;
 								noticeData['type'] = 'notice';

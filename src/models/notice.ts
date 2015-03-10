@@ -9,6 +9,7 @@ class Notice {
 	content: string;
 	createdAt: string;
 	id: number;
+	type: string;
 	userId: number;
 
 	public constructor(notice: any) {
@@ -16,12 +17,13 @@ class Notice {
 		this.content = notice.content;
 		this.createdAt = moment(notice.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.id = notice.id;
+		this.type = notice.type;
 		this.userId = notice.user_id;
 	}
 
-	public static create(appId: number, content: string, userId: number, callback: (notice: Notice) => void): void {
-		db.query('insert into notices (app_id, content, user_id) values (?, ?, ?)',
-			[appId, content, userId],
+	public static create(appId: number, type: string, content: string, userId: number, callback: (notice: Notice) => void): void {
+		db.query('insert into notices (app_id, type, content, user_id) values (?, ?, ?, ?)',
+			[appId, type, content, userId],
 			(err: any, info: any) => {
 				if (err) console.log(err);
 				Notice.find(info.insertId,(notice: Notice) => {
