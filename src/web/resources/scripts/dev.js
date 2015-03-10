@@ -4,8 +4,6 @@ $.fn.isVisible = function() {
 
 function showContents(targetUrl, methodType) {
 	if(methodType == 'GET') {
-		var callbacks = $.Callbacks();
-		callbacks.add(dispLoading("Now Loading..."));
 		dispLoading("Now Loading...", function() {
 			$.ajax({
 				url: targetUrl,
@@ -26,7 +24,7 @@ function showContents(targetUrl, methodType) {
 					$("main").html("<article><p>Failed to display contents :(</p></article>");
 					$("main").fadeIn(500);
 				});
-			})
+			});
 		});
 	}else{
 		console.log("not implement.");
