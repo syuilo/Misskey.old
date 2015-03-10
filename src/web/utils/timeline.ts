@@ -19,7 +19,7 @@ class Timeline {
 					//pretty: '  '
 				});
 				var html = compiler({
-					posts: timeline,
+					statuses: timeline,
 					login: req.login,
 					url: conf.publicConfig.url,
 					parseText: Timeline.parseText
@@ -31,7 +31,7 @@ class Timeline {
 				//pretty: '  '
 			});
 			var html = compiler({
-				posts: null,
+				statuses: null,
 				url: conf.publicConfig.url,
 				login: req.login,
 				parseText: Timeline.parseText
