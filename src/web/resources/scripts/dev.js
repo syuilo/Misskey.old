@@ -44,7 +44,7 @@ function dispLoading(message, callback) {
 
 function removeLoading(callback) {
 	$('#loading').fadeOut(
-		250,
+		fadeTime,
 		function() {
 			$('#loading').remove();
 			callback();
