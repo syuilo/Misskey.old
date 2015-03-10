@@ -5,6 +5,8 @@ import Streamer = require('../../../utils/streaming');
 import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
+import Notice = require('../../../models/notice');
+import config = require('../../../config');
 
 var authorize = require('../../auth');
 
@@ -35,6 +37,13 @@ var usersFollow = (req: any, res: APIResponse) => {
 					Streamer.publish('userStream:' + targetUser.id, JSON.stringify(streamObj));
 
 					res.apiRender(targetUser.filt());
+
+					Notice.create(config.webClientId, user.name + '(@' + user.screenName + ') さんがあなたをフォローしました', targetUser.id, (notice: Notice) => {
+						Streamer.publish('userStream:' + targetUser.id, JSON.stringify({
+							type: 'notice',
+							value: notice
+						}));
+					});
 				});
 			});
 		});
