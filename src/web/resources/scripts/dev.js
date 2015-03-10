@@ -22,10 +22,11 @@ function showContents(targetUrl, methodType) {
 			})
 			.fail(function(data) {
 				removeLoading(function() {
-				$("main").fadeOut(fadeTime, function() {
-					$("main").html("<article><p>Failed to display contents :(</p></article>");
-					$("main").fadeIn(fadeTime, function() {
-						removeLoading(function() {});
+					$("main").fadeOut(fadeTime, function() {
+						$("main").html("<article><p>Failed to display contents :(</p></article>");
+						$("main").fadeIn(fadeTime, function() {
+							removeLoading(function() {});
+						});
 					});
 				});
 			});
