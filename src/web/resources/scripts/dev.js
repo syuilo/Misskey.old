@@ -38,7 +38,7 @@ function dispLoading(message, callback) {
 	if($('#loading').size() == 0) {
 		$('main').html('<div id="loading"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div>');
 		$('#loading').hide();
-		$('#loading').fadeIn(500, callback);
+		$('#loading').fadeIn(500, callback());
 	}
 }
 
