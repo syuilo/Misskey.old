@@ -13,19 +13,19 @@ function showContents(targetUrl, methodType) {
 				dataType: 'html',
 			})
 			.done(function(data) {
-				removeLoading(function() {
-					$("main").fadeOut(fadeTime, function() {
-						$("main").html($(data).children("main").html());
-						$("main").fadeIn(fadeTime);
+				$("main").fadeOut(fadeTime, function() {
+					$("main").html($(data).children("main").html());
+					$("main").fadeIn(fadeTime, function() {
+						removeLoading(function() {});
 					});
 				});
 			})
 			.fail(function(data) {
-				//失敗時
 				removeLoading(function() {
-					$("main").fadeOut(fadeTime, function() {
-						$("main").html("<article><p>Failed to display contents :(</p></article>");
-						$("main").fadeIn(fadeTime);
+				$("main").fadeOut(fadeTime, function() {
+					$("main").html("<article><p>Failed to display contents :(</p></article>");
+					$("main").fadeIn(fadeTime, function() {
+						removeLoading(function() {});
 					});
 				});
 			});
