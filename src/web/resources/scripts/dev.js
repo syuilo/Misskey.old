@@ -14,17 +14,19 @@ function showContents(targetUrl, methodType) {
 			})
 			.done(function(data) {
 				removeLoading(function() {
-					$("main").hide();
-					$("main").html($(data).children("main").html());
-					$("main").fadeIn(fadeTime);
+					$("main").fadeOut(fadeTime, function() {
+						$("main").html($(data).children("main").html());
+						$("main").fadeIn(fadeTime);
+					});
 				});
 			})
 			.fail(function(data) {
 				//失敗時
 				removeLoading(function() {
-					$("main").hide();
-					$("main").html("<article><p>Failed to display contents :(</p></article>");
-					$("main").fadeIn(fadeTime);
+					$("main").fadeOut(fadeTime, function() {
+						$("main").html("<article><p>Failed to display contents :(</p></article>");
+						$("main").fadeIn(fadeTime);
+					});
 				});
 			});
 		});
