@@ -13,19 +13,19 @@ function showContents(targetUrl, methodType) {
 				dataType: 'html',
 			})
 			.done(function(data) {
-				removeLoading(function() {
-					$("main").fadeOut(fadeTime, function() {
-						$("main").html($(data).children("main").html());
-						$("main").fadeIn(fadeTime);
+				$("main").fadeOut(fadeTime, function() {
+					$("main").html($(data).children("main").html());
+					$("main").fadeIn(fadeTime, function() {
+						removeLoading(function() {});
 					});
 				});
 			})
 			.fail(function(data) {
-				//失敗時
 				removeLoading(function() {
-					$("main").fadeOut(fadeTime, function() {
-						$("main").html("<article><p>Failed to display contents :(</p></article>");
-						$("main").fadeIn(fadeTime);
+				$("main").fadeOut(fadeTime, function() {
+					$("main").html("<article><p>Failed to display contents :(</p></article>");
+					$("main").fadeIn(fadeTime, function() {
+						removeLoading(function() {});
 					});
 				});
 			});
@@ -38,7 +38,7 @@ function showContents(targetUrl, methodType) {
 function dispLoading(message, callback) {
 	var loadingMessage = message != '' ? '<div id="loading-text">' + message + '</div>' : '';
 	if($('#loading').size() == 0) {
-		$('body > header').before('<div id="loading"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div>');
+		$('body > header').before('<div id="loading"><div id="loading-container"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div></div>');
 		$('#loading').hide();
 		$('#loading').fadeIn(fadeTime, callback());
 	}
