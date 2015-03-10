@@ -2,6 +2,8 @@ $.fn.isVisible = function() {
 	return $.expr.filters.visible(this[0]);
 };
 
+var fadeTime = 250;
+
 function showContents(targetUrl, methodType) {
 	if(methodType == 'GET') {
 		dispLoading("Now Loading...", function() {
@@ -14,7 +16,7 @@ function showContents(targetUrl, methodType) {
 				removeLoading(function() {
 					$("main").hide();
 					$("main").html($(data).children("main").html());
-					$("main").fadeIn(500);
+					$("main").fadeIn(fadeTime);
 				});
 			})
 			.fail(function(data) {
@@ -22,7 +24,7 @@ function showContents(targetUrl, methodType) {
 				removeLoading(function() {
 					$("main").hide();
 					$("main").html("<article><p>Failed to display contents :(</p></article>");
-					$("main").fadeIn(500);
+					$("main").fadeIn(fadeTime);
 				});
 			});
 		});
@@ -36,13 +38,13 @@ function dispLoading(message, callback) {
 	if($('#loading').size() == 0) {
 		$('main').html('<div id="loading"><img id="loading-image" src="/resources/images/loading/loading.gif"></img>' + loadingMessage + '</div>');
 		$('#loading').hide();
-		$('#loading').fadeIn(500, callback());
+		$('#loading').fadeIn(fadeTime, callback());
 	}
 }
 
 function removeLoading(callback) {
 	$('#loading').fadeOut(
-		500,
+		250,
 		function() {
 			$('#loading').remove();
 			callback();
@@ -54,9 +56,9 @@ $(function() {
 
 	$('#contents nav ul li h1').click(function () {
 		if($(this).parent().children('ul').isVisible()) {
-			$(this).parent().children('ul').hide(250);
+			$(this).parent().children('ul').hide(fadeTime);
 		} else {
-			$(this).parent().children('ul').show(250);
+			$(this).parent().children('ul').show(fadeTime);
 		}
 	});
 
