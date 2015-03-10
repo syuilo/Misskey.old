@@ -2,6 +2,7 @@ div.timeline
 	if statuses != null && statuses.length > 0
 		ol.statuses
 			each status in statuses
+				- var post = status;
 				li.status.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
 						style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 						data-id= post.isRepostToPost ? post.source.id : post.id
