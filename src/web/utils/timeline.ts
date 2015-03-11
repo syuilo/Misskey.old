@@ -155,7 +155,7 @@ class Timeline {
 
 	public static parseText(text: string): string {
 		text = escapeHtml(text);
-		text = parsePre(text);
+		text = parsePreFormatted(text);
 		text = parseURL(text);
 		text = parseReply(text);
 		text = parseBold(text);
@@ -171,7 +171,7 @@ class Timeline {
 				.replace(/"/g, '&quot;');
 		}
 
-		function parsePre(text: string): string {
+		function parsePreFormatted(text: string): string {
 			return text.replace(/'''(.+?)'''/g,(_: string, word: string) => {
 				return `<pre>${word}</pre>`;
 			});
