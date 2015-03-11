@@ -4,6 +4,6 @@ import conf = require('../../config');
 
 export = render;
 
-var render = (req: any, res: any): void => {
+function render(req: any, res: any): void {
 	res.display(req, res, 'new', {});
 };
