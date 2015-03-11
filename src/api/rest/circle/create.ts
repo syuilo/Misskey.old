@@ -2,11 +2,13 @@
 
 import APIResponse = require('../../api-response');
 import Application = require('../../../models/application');
+import Circle = require('../../../models/circle');
 import User = require('../../../models/user');
 
 var authorize = require('../../auth');
 
 var circleCreate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
+		
 	});
 }
