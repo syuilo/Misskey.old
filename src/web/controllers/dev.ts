@@ -7,7 +7,7 @@ import conf = require('../../config');
 
 export = render;
 
-var render = (req: any, res: any): void => {
+function render(req: any, res: any): void {
 	async.series([
 		(callback: any) => {
 			Application.findByUserId(req.me.id, (apps: Application[]) => {
