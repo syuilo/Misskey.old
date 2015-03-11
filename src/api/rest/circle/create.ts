@@ -9,6 +9,8 @@ var authorize = require('../../auth');
 
 var circleCreate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
-		
+		if (req.body.name == null) {
+			res.apiError(400, 'name parameter is required :(');
+		}
 	});
 }
