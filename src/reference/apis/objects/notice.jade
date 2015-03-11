@@ -1,0 +1,40 @@
+extends ./layout.jade
+
+block title
+	| Notice
+
+block overview
+	p 通知を格納するオブジェクトです。
+
+block properties
+	table
+		thead
+			tr
+				th Name
+				th Type
+				th Description
+		tbody
+			tr
+				td appId
+				td Number
+				td アプリケーションIDを示します。
+			tr
+				td content
+				td String
+				td 通知の内容を示します。
+			tr
+				td createdAt
+				td String
+				td 作成日時を示します。
+			tr
+				td id
+				td Number
+				td 通知IDを示します。
+			tr
+				td type
+				td String
+				td 通知種別を示します。
+			tr
+				td userId
+				td Number
+				td 通知対象のユーザIDを示します。
