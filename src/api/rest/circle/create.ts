@@ -15,5 +15,8 @@ var circleCreate = (req: any, res: APIResponse) => {
 		if (req.body.description == null) {
 			res.apiError(400, 'description parameter is required :(');
 		}
+		Circle.create(user.id, req.body.name, req.body.description, (circle: Circle) => {
+			res.apiRender(circle);
+		});
 	});
 }
