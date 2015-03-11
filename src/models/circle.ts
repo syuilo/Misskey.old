@@ -22,9 +22,9 @@ class Circle {
         this.userId = circle.user_id;
     }
 
-    public static create(userId: number, name: string, description: string, callback: (circle: Circle) => void): void {
-        db.query('insert into circles (user_id, name, description) values (?, ?, ?)',
-            [userId, name, description],
+    public static create(userId: number, name: string, screenName: string, description: string, callback: (circle: Circle) => void): void {
+        db.query('insert into circles (user_id, name, screen_name, description) values (?, ?, ?, ?)',
+            [userId, name, screenName, description],
             (err, circles) => callback(new Circle(circles[0])));
     }
 
