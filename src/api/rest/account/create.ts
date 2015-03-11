@@ -16,12 +16,16 @@ var accountCreate = (req: any, res: APIResponse) => {
 	}
 	var screenName = req.body.screen_name;
 	screenName = screenName.replace(/^@/, '');
-	if (screenName.length < 4 ||
-		screenName.length > 20 ||
-		screenName.match(/^[0-9]+$/) ||
-		!screenName.match(/^[a-zA-Z0-9_]+$/)) {
+	if (!validateScreenName(screenName)) {
 		res.apiError(400, 'screen_name invalid format');
 		return;
+	}
+	
+	function validateScreenName(screenName: string) {
+		return 4 <= screenName.length &&
+			screenName.length <= 20 &&
+			!screenName.match(/^[0-9]+$/) &&
+			screenName.match(/^[a-zA-Z0-9_]+$/);
 	}
 
 	if (req.body.name == null) {
