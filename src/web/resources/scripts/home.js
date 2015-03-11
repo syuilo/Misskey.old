@@ -133,7 +133,7 @@ $(function() {
 		$button.text('Loading...');
 		$.ajax('https://api.misskey.xyz/post/timeline', {
 			type: 'get',
-			data: { max_id: $('#timeline .timeline .posts > .post:last-child').attr('data-id') },
+			data: { max_id: $('#timeline .timeline .statuses > .status:last-child').attr('data-id') },
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
@@ -142,7 +142,7 @@ $(function() {
 			data.forEach(function(post) {
 				var $post = TIMELINE.generatePostElement(post, conf).hide();
 				TIMELINE.setEventPost($post);
-				$post.appendTo($('#timeline .timeline > .posts')).show(200);
+				$post.appendTo($('#timeline .timeline > .statuses')).show(200);
 			});
 		}).fail(function(data) {
 			$button.attr('disabled', false);
