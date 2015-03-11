@@ -24,7 +24,7 @@ class Application {
 	description: string;
 	developerName: string;
 	developerWebsite: string;
-	isSuspended: boolean
+	isSuspended: boolean;
 
 	public constructor(app: any) {
 		this.id = app.id;
