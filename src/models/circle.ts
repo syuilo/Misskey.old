@@ -43,7 +43,7 @@ class Circle {
             (err, circles) => callback(new Circle(circles[0])));        
     }
 
-    public static isScreenNameExist(screenName: string, callback: (screenName: boolean) => void): void {
+    public static isScreenNameExist(screenName: string, callback: (exist: boolean) => void): void {
         db.query('select exists (select * from circles where screen_name = ?) as exist',
             [screenName],
             (err: any, circles: any[]) => callback(circles[0].exist == 1 ? true : false));
