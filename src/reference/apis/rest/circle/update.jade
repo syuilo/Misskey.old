@@ -1,0 +1,34 @@
+extends ../layout.jade
+
+block title
+	| circle/update
+
+block method
+	| POST
+
+block endpoint
+	| https://api.misskey.xyz/circle/update
+
+block overview
+	p サークルの情報を更新します。
+
+block parameters
+	table
+		thead
+			tr
+				th Name
+				th isRequired?
+				th Description
+		tbody
+			tr
+				td circle_id
+				td yes
+				td 更新するサークルのID
+			tr
+				td name
+				td no
+				td 新しい名前
+			tr
+				td description
+				td no
+				td 新しい説明
