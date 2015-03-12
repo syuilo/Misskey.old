@@ -9,12 +9,12 @@ var authorize = require('../../auth');
 
 var circleUpdate = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
-		var param = req.body;
-		if (param.circle_id == null) {
+		var params = req.body;
+		if (params.circle_id == null) {
 			res.apiError(400, 'circle_id parameter is required :(');
 			return;
 		}
-		Circle.find(param.circle_id, (circle: Circle) => {
+		Circle.find(params.circle_id, (circle: Circle) => {
 			if (circle != null) {
 
 			} else {
