@@ -11,6 +11,7 @@ var circleShow = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
 		if (req.query.circle_id == null) {
 			res.apiError(400, 'circle_id is required :(');
+			return;
 		}
 	});
 }
