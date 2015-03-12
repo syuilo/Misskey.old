@@ -19,6 +19,9 @@ var circleUpdate = (req: any, res: APIResponse) => {
 				if (params.name != null) {
 					circle.name = params.name;
 				}
+				if (params.description != null) {
+					circle.description = params.description;
+				}
 			} else {
 				res.apiError(404, 'Not found that circle :(');
 				return;
