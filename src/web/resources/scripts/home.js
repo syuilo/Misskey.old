@@ -22,7 +22,7 @@ $(function() {
 	socket.on('post', function(post) {
 		console.log('post', post);
 		var currentPath = location.pathname;
-		if (currentPath != "i/mention") {
+		if (currentPath != "/i/mention") {
 			new Audio('/resources/sounds/pop.mp3').play();
 			var $post = TIMELINE.generatePostElement(post, conf).hide();
 			TIMELINE.setEventPost($post);
