@@ -8,6 +8,7 @@ Thanks:
 * Node.js
 * MySQL
 * Redis
+* GraphicsMagick
 
 ## License
 The MIT License
