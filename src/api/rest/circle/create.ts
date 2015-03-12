@@ -21,8 +21,14 @@ var circleCreate = (req: any, res: APIResponse) => {
 			res.apiError(400, 'description parameter is required :(');
 			return;
 		}
-		Circle.create(user.id, req.body.name, req.body.screen_name, req.body.description, (circle: Circle) => {
-			res.apiRender(circle);
+		Circle.isScreenNameExist(req.body.screen_name, (exist: boolean) => {
+			if (!exist) {
+				Circle.create(user.id, req.body.name, req.body.screen_name, req.body.description, (circle: Circle) => {
+					res.apiRender(circle);
+				});
+			} else {
+				res.apiError(400, 'that screen_name is exist :(')
+			}
 		});
 	});
 }
