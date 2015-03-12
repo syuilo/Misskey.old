@@ -13,5 +13,8 @@ var circleShow = (req: any, res: APIResponse) => {
 			res.apiError(400, 'circle_id is required :(');
 			return;
 		}
+		Circle.find(req.query.circle_id, (circle: Circle) => {
+			res.apiRender(circle);
+		});
 	});
 }
