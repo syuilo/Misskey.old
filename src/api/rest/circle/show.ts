@@ -18,7 +18,6 @@ var circleShow = (req: any, res: APIResponse) => {
 				res.apiRender(circle);
 			} else {
 				res.apiError(404, 'Not found that circle :(');
-				return;
 			}
 		});
 	});
