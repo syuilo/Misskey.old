@@ -23,3 +23,5 @@ var circleShow = (req: any, res: APIResponse) => {
 		});
 	});
 }
+
+module.exports = circleShow;
