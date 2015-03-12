@@ -13,7 +13,7 @@ var SauthGetRequestToken = (req: any, res: APIResponse) => {
 			if (app != null) {
 				SauthRequestToken.create(app.id,(requestToken: SauthRequestToken) => {
 					res.apiRender({
-						'token': requestToken.token
+						token: requestToken.token
 					});
 				});
 			} else {
