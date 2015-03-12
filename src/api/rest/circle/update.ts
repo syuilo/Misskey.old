@@ -16,15 +16,20 @@ var circleUpdate = (req: any, res: APIResponse) => {
 		}
 		Circle.find(params.circle_id, (circle: Circle) => {
 			if (circle != null) {
-				if (params.name != null) {
-					circle.name = params.name;
+				if (circle.userId == user.id) {
+					if (params.name != null) {
+						circle.name = params.name;
+					}
+					if (params.description != null) {
+						circle.description = params.description;
+					}
+					circle.update(() => {
+						res.apiRender(circle);
+					});
+				} else {
+					res.apiError(400, 'That is not your circle :(');
+					return;
 				}
-				if (params.description != null) {
-					circle.description = params.description;
-				}
-				circle.update(() => {
-					res.apiRender(circle);
-				});
 			} else {
 				res.apiError(404, 'Not found that circle :(');
 				return;
