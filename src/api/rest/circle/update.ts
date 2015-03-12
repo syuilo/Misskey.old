@@ -15,7 +15,12 @@ var circleUpdate = (req: any, res: APIResponse) => {
 			return;
 		}
 		Circle.find(param.circle_id, (circle: Circle) => {
-			
+			if (circle != null) {
+
+			} else {
+				res.apiError(404, 'Not found that circle :(');
+				return;
+			}
 		});
 	});
 }
