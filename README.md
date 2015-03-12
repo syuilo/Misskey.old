@@ -11,6 +11,6 @@ Thanks:
 * GraphicsMagick
 
 ## License
-The MIT License. (See LICENSE file)
+The MIT License. (See [LICENSE](LICENSE) file)
 
 (c) syuilo.
