@@ -14,7 +14,12 @@ var circleShow = (req: any, res: APIResponse) => {
 			return;
 		}
 		Circle.find(req.query.circle_id, (circle: Circle) => {
-			res.apiRender(circle);
+			if (circle != null) {
+				res.apiRender(circle);
+			} else {
+				res.apiError(404, 'Not found that circle :(');
+				return;
+			}
 		});
 	});
 }
