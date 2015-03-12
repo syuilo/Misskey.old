@@ -14,6 +14,9 @@ var circleUpdate = (req: any, res: APIResponse) => {
 			res.apiError(400, 'circle_id parameter is required :(');
 			return;
 		}
+		Circle.find(param.circle_id, (circle: Circle) => {
+			
+		});
 	});
 }
 
