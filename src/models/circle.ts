@@ -23,9 +23,12 @@ class Circle {
     }
 
     public static create(userId: number, name: string, screenName: string, description: string, callback: (circle: Circle) => void): void {
-        db.query('insert into circles (user_id, name, screen_name, description) values (?, ?, ?, ?)',
-            [userId, name, screenName, description],
-            (err, circles) => callback(new Circle(circles[0])));
+        db.query('insert into circles (user_id, name, screen_name, description) values (?, ?, ?, ?)', [userId, name, screenName, description], (err: any, info: any) => {
+            if (err) console.log(err);
+            Circle.find(info.insertId, (circle: Circle) => {
+                callback(circle);
+            })
+        });
     }
 
     public static find(id: number, callback: (circle: Circle) => void): void {
