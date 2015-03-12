@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/bundle.d.ts" />
+/// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
 export = Circle;
@@ -41,6 +41,12 @@ class Circle {
         db.query("select * form circles where user_id = ?",
             [userId],
             (err, circles) => callback(new Circle(circles[0])));        
+    }
+
+    public static isScreenNameExist(screenName: string, callback: (screenName: boolean) => void): void {
+        db.query('select exists (select * from circles where screen_name = ?) as exist',
+            [screenName],
+            (err: any, circles: any[]) => callback(circles[0].exist == 1 ? true : false));
     }
 
     public update(callback?: () => void): void {
