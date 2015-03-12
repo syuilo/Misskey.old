@@ -47,5 +47,6 @@ function router(app: express.Express): void {
 	app.get(/\/search\/user(\..+)?$/, require('./rest/search/user'));
 	app.get(/\/screenname_available(\..+)?$/, require('./rest/screenname_available'));
 	app.post(/\/circle\/create(\..+)?$/, require('./rest/circle/create'));
+	app.get(/\/circle\/show(\..+)?$/, require('./rest/circle/show'));
 	app.all(/\/teapot\/coffee(\..+)?$/, require('./rest/teapot/coffee'));
 };
