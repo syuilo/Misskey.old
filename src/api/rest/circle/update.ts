@@ -16,7 +16,9 @@ var circleUpdate = (req: any, res: APIResponse) => {
 		}
 		Circle.find(params.circle_id, (circle: Circle) => {
 			if (circle != null) {
-
+				if (params.name != null) {
+					circle.name = params.name;
+				}
 			} else {
 				res.apiError(404, 'Not found that circle :(');
 				return;
