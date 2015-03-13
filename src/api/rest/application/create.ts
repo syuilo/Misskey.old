@@ -1,14 +1,8 @@
 /// <reference path="../../../../typings/bundle.d.ts" />
 
-import bcrypt = require('bcrypt');
 import APIResponse = require('../../api-response');
-import AccessToken = require('../../../models/access-token');
 import User = require('../../../models/user');
-import UserImage = require('../../../models/user-image');
-import UserFollowing = require('../../../models/user-following');
-import doLogin = require('../../../web/utils/login');
 import Application = require('../../../models/application');
-import config = require('../../../config');
 
 var authorize = require('../../auth');
 
