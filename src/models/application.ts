@@ -14,6 +14,10 @@ var createHash = (() => {
 	};
 })();
 
+function getNowTimestamp(): number {
+	return +new Date;
+}
+
 class Application {
 	id: number;
 	name: string;
@@ -39,8 +43,8 @@ class Application {
 		this.isSuspended = Boolean(app.is_suspended);
 	}
 
-	public static generateCK(userId: number) {
-		createHash(userId + (+new Date()).toString())
+	public static generateCK(userId: number): string {
+		return createHash(userId + getNowTimestamp().toString());
 	}
 
 	public static create(name: string, userId: number, callbackUrl:string, description: string, developerName: string, developerWebsite: string, callback: (app: Application) => void): void {
