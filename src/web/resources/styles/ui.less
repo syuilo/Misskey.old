@@ -780,8 +780,14 @@ textarea {
 		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
 	}
 
-	&::-webkit-input-placeholder,
-	&:-ms-input-placeholder,
+	&::-webkit-input-placeholder {
+		color: rgb(169, 169, 169);
+	}
+
+	&:-ms-input-placeholder {
+		color: rgb(169, 169, 169);
+	}
+
 	&:-moz-placeholder {
 		color: rgb(169, 169, 169);
 	}
