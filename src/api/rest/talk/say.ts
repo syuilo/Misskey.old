@@ -24,7 +24,7 @@ var talkSay = (req: any, res: APIResponse) => {
 
 		UserFollowing.isFollowing(otherpartyId, user.id,(isFollowing: boolean) => {
 			if (!isFollowing) {
-				res.apiError(400, 'You are not follow from this user. To send a message, you need to have been followed from the other party.');
+				res.apiError(400, 'You are not followed from this user. To send a message, you need to have been followed from the other party.');
 				return;
 			}
 
