@@ -29,23 +29,24 @@ class Application {
 	public constructor(app: any) {
 		this.id = app.id;
 		this.name = app.name;
-		this.userId = app.userId;
+		this.userId = app.user_id;
 		this.createdAt = moment(app.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.consumerKey = app.consumer_key;
 		this.callbackUrl = app.callback_url;
 		this.description = app.description;
-		this.developerName = app.developerName;
-		this.isSuspended = Boolean(app.isSuspended);
+		this.developerName = app.developer_name;
+		this.developerWebsite = app.developer_website;
+		this.isSuspended = Boolean(app.is_suspended);
 	}
 
 	public static generateCK(userId: number) {
 		createHash(userId + (+new Date()).toString())
 	}
 
-	public static create(name: string, userId: number, description: string, callback: (app: Application) => void): void {
+	public static create(name: string, userId: number, callbackUrl:string, description: string, developerName: string, developerWebsite: string, callback: (app: Application) => void): void {
 		var ck = Application.generateCK(userId);
-		db.query('insert into applications (name, user_id, consumer_key, description) values (?, ?, ?, ?)',
-			[name, userId, ck, description],
+		db.query('insert into applications (name, user_id, consumer_key, callback_url, description, developer_name, developer_website) values (?, ?, ?, ?, ?, ?, ?)',
+			[name, userId, ck, callbackUrl, description, developerName, developerWebsite],
 			(err: any, info: any) => {
 				if (err) console.log(err);
 				Application.find(info.insertId,(app: Application) => {
@@ -73,8 +74,8 @@ class Application {
 	}
 
 	public update(callback: () => void): void {
-		db.query('update applications set name = ?, consumer_key = ?, callback_url = ?, description = ?, is_suspended, where id = ?',
-			[this.name, this.consumerKey, this.callbackUrl, this.description, this.isSuspended, this.id],
+		db.query('update applications set name = ?, consumer_key = ?, callback_url = ?, description = ?, developer_name = ?, developer_website = ?, is_suspended = ?, where id = ?',
+			[this.name, this.consumerKey, this.callbackUrl, this.description, this.developerName, this.developerWebsite, this.isSuspended, this.id],
 			callback);
 	}
 }
