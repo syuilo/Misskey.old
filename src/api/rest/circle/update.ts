@@ -32,7 +32,6 @@ var circleUpdate = (req: any, res: APIResponse) => {
 				}
 			} else {
 				res.apiError(404, 'Not found that circle :(');
-				return;
 			}
 		});
 	});
