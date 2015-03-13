@@ -99,11 +99,7 @@ var router = (app: any): void => {
 							readFileSendLess(req, res, resourcePath, req.login ? req.me : null);
 						} else {
 							User.findByScreenName(req.query.user,(styleUser: User) => {
-								if (styleUser != null) {
-									readFileSendLess(req, res, resourcePath, styleUser);
-								} else {
-									readFileSendLess(req, res, resourcePath, null);
-								}
+								readFileSendLess(req, res, resourcePath, styleUser != null ? styleUser : null);
 							});
 						}
 					});
