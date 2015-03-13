@@ -90,28 +90,30 @@ var router = (app: any): void => {
 
 	/* General */
 	app.get(/^\/resources\/.*/,(req: any, res: any, next: () => void) => {
-		if (req.path.indexOf('..') === -1) {
-			if (req.path.match(/\.css$/)) {
-				var resourcePath = path.resolve(__dirname + '/..' + req.path.replace(/\.css$/, '.less'));
-				if (fs.existsSync(resourcePath)) {
-					app.initSession(req, res,() => {
-						if (req.query.user == null) {
-							readFileSendLess(req, res, resourcePath, req.login ? req.me : null);
-						} else {
-							User.findByScreenName(req.query.user,(styleUser: User) => {
-								readFileSendLess(req, res, resourcePath, styleUser != null ? styleUser : null);
-							});
-						}
-					});
-					return;
-				}
+		if (req.path.indexOf('..') > -1) {
+			res.status(400).send('invalid path');
+			return;
+		}
+		if (req.path.match(/\.css$/)) {
+			var resourcePath = path.resolve(__dirname + '/..' + req.path.replace(/\.css$/, '.less'));
+			if (fs.existsSync(resourcePath)) {
+				app.initSession(req, res,() => {
+					if (req.query.user == null) {
+						readFileSendLess(req, res, resourcePath, req.login ? req.me : null);
+					} else {
+						User.findByScreenName(req.query.user,(styleUser: User) => {
+							readFileSendLess(req, res, resourcePath, styleUser != null ? styleUser : null);
+						});
+					}
+				});
+				return;
 			}
-			if (req.url.indexOf('.less') === -1) {
-				var resourcePath = path.resolve(__dirname + '/..' + req.path);
-				res.sendFile(resourcePath);
-			} else {
-				next();
-			}
+		}
+		if (req.url.indexOf('.less') === -1) {
+			var resourcePath = path.resolve(__dirname + '/..' + req.path);
+			res.sendFile(resourcePath);
+		} else {
+			next();
 		}
 	});
 };
