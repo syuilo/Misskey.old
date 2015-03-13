@@ -113,7 +113,7 @@ $(function() {
 	
 	function post()
 	{
-		var form = $('#postForm');
+		var $form = $('#postForm');
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
