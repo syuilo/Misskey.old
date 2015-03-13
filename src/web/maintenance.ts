@@ -17,7 +17,7 @@ webServer.use(minify());
 /* Precompile */
 var message = jade.renderFile(__dirname + '/views/maintenance.jade');
 
-/* General rooting */
+/* General routing */
 webServer.all('*',(req: express.Request, res: express.Response, next: () => void) => {
 	res.status(503);
 	res.send(message);
