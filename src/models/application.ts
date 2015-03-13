@@ -49,14 +49,21 @@ class Application {
 
 	public static create(name: string, userId: number, callbackUrl:string, description: string, developerName: string, developerWebsite: string, callback: (app: Application) => void): void {
 		var ck = Application.generateCK(userId);
-		db.query('insert into applications (name, user_id, consumer_key, callback_url, description, developer_name, developer_website) values (?, ?, ?, ?, ?, ?, ?)',
-			[name, userId, ck, callbackUrl, description, developerName, developerWebsite],
-			(err: any, info: any) => {
-				if (err) console.log(err);
-				Application.find(info.insertId,(app: Application) => {
-					callback(app);
-				});
-			});
+
+		Application.findByName(name, (app: Application) => {
+			if (app == null) {
+				db.query('insert into applications (name, user_id, consumer_key, callback_url, description, developer_name, developer_website) values (?, ?, ?, ?, ?, ?, ?)',
+					[name, userId, ck, callbackUrl, description, developerName, developerWebsite],
+					(err: any, info: any) => {
+						if (err) console.log(err);
+						Application.find(info.insertId, (app: Application) => {
+							callback(app);
+						});
+					});
+			} else {
+				callback(null);
+			}
+		});
 	}
 
 	public static find(id: number, callback: (app: Application) => void): void {
@@ -68,6 +75,12 @@ class Application {
 	public static findByConsumerKey(consumerKey: string, callback: (app: Application) => void): void {
 		db.query("select * from applications where consumer_key = ?",
 			[consumerKey],
+			(err: any, apps: any[]) => callback(apps[0] != null ? new Application(apps[0]) : null));
+	}
+
+	public static findByName(name: string, callback: (app: Application) => void): void {
+		db.query("select * from applications where name = ?",
+			[name],
 			(err: any, apps: any[]) => callback(apps[0] != null ? new Application(apps[0]) : null));
 	}
 
