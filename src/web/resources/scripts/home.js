@@ -97,9 +97,21 @@ $(function() {
 		};
 		reader.readAsDataURL(file);
 	});
-
+	
+	$('#postForm').keydown(function(event) {
+		if (event.charCode == 13 && event.ctrlKey) {
+			event.preventDefault();
+			post();
+		}
+	});	
+	
 	$('#postForm').submit(function(event) {
 		event.preventDefault();
+		post();
+	});
+	
+	function post()
+	{
 		var $form = $(this);
 		var $submitButton = $form.find('[type=submit]');
 
@@ -130,7 +142,7 @@ $(function() {
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
 		});
-	});
+	}
 
 	$('#postForm textarea').bind('input', function() {
 		var text = $('#postForm textarea').val();
