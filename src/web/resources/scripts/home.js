@@ -41,22 +41,26 @@ $(function() {
 
 	socket.on('reply', function(post) {
 		console.log('reply', post);
-		new Audio('/resources/sounds/pop.mp3').play();
-		var $post = TIMELINE.generatePostElement(post, conf).hide();
-		TIMELINE.setEventPost($post);
-		$post.prependTo($('#timeline .timeline > .statuses')).show(200);
-		var n = new Notification(post.user.name, {
-			body: post.text,
-			icon: conf.url + '/img/icon/' + post.user.screenName
-		});
-		n.onshow = function() {
-			setTimeout(function() {
-				n.close();
-			}, 10000);
-		};
-		n.onclick = function() {
-			window.open(conf.url + '/' + post.user.screenName + '/post/' + post.id);
-		};
+		var currentPath = location.pathname;
+		currentPath = currentPath.indexOf('/') == 0 ? currentPath : '/' + currentPath;
+		if (currentPath == "/i/mention") {
+			new Audio('/resources/sounds/pop.mp3').play();
+			var $post = TIMELINE.generatePostElement(post, conf).hide();
+			TIMELINE.setEventPost($post);
+			$post.prependTo($('#timeline .timeline > .statuses')).show(200);
+			var n = new Notification(post.user.name, {
+				body: post.text,
+				icon: conf.url + '/img/icon/' + post.user.screenName
+			});
+			n.onshow = function() {
+				setTimeout(function() {
+					n.close();
+				}, 10000);
+			};
+			n.onclick = function() {
+				window.open(conf.url + '/' + post.user.screenName + '/post/' + post.id);
+			};
+		}
 	});
 
 	socket.on('talkMessage', function(message) {
