@@ -19,7 +19,7 @@ function compileLess(lessCss: string, styleUser: User, callback: (css: string) =
 		callback(output.css);
 	});
 
-	function preCompile(lessCss: string) {
+	function preCompile(lessCss: string, color: string) {
 		return lessCss.replace(/<%themeColor%>/g, color)
 			.replace(/<%wallpaperUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/wallpaper/${styleUser.screenName}"` : '')
 			.replace(/<%headerImageUrl%>/g, styleUser != null ? `"${config.publicConfig.url}/img/header/${styleUser.screenName}"` : '')
