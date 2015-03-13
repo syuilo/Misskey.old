@@ -8,16 +8,19 @@ var screenNameAvailable = (req: any, res: APIResponse) => {
 		res.apiError(400, 'screen_name parameter is required :(');
 		return;
 	}
-	if (req.query.screen_name == '') {
+	var screenName = req.query.screen_name.replace(/^@/, '');
+	if (isEmpty(req.query.screen_name)) {
 		res.apiError(400, 'Empty screen_name');
 		return;
 	}
-	var screenName = req.query.screen_name;
-	screenName = screenName.replace(/^@/, '');
-
 	User.findByScreenName(screenName,(user: User) => {
 		res.apiRender(user != null);
 	});
 }
+
+function isEmpty(text: string): boolean {
+	return text === '';
+}
+
 
 module.exports = screenNameAvailable;
