@@ -98,6 +98,42 @@ $(function() {
 		reader.readAsDataURL(file);
 	});
 
+	$('#postForm').keydown(function(event) {
+		if (event.charCode == 13 && event.ctrlKey) {
+			event.preventDefault();
+		var $form = $(this);
+		var $submitButton = $form.find('[type=submit]');
+
+		$submitButton.attr('disabled', true);
+		$submitButton.text('Updating...');
+
+		$.ajax('https://api.misskey.xyz/post/create', {
+			type: 'post',
+			processData: false,
+			contentType: false,
+			data: new FormData($form[0]),
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		}).done(function(data) {
+			$form[0].reset();
+			$form.find('textarea').focus();
+			$form.find('.imageAttacher').find('p, img').remove();
+			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
+			$submitButton.attr('disabled', false);
+			$submitButton.text('Update');
+			$.removeCookie('post-autosave');
+		}).fail(function(data) {
+			$form[0].reset();
+			$form.find('textarea').focus();
+			/*alert('error');*/
+			$submitButton.attr('disabled', false);
+			$submitButton.text('Update');
+		});
+		}
+	});
+
 	$('#postForm').submit(function(event) {
 		event.preventDefault();
 		var $form = $(this);
