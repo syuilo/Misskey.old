@@ -101,19 +101,19 @@ $(function() {
 	$('#postForm').keydown(function(event) {
 		if (event.charCode == 13 && event.ctrlKey) {
 			event.preventDefault();
-			post();
+			post($(this));
 		}
 	});	
 	
 	$('#postForm').submit(function(event) {
 		event.preventDefault();
 
-		post();
+		post($(this));
 	});
 	
-	function post()
+	function post(obj)
 	{
-		var $form = $('#postForm');
+		var $form = obj;
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
