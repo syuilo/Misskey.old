@@ -40,6 +40,10 @@ $(function() {
 
 	socket.on('reply', function(post) {
 		console.log('reply', post);
+		new Audio('/resources/sounds/pop.mp3').play();
+		var $post = TIMELINE.generatePostElement(post, conf).hide();
+		TIMELINE.setEventPost($post);
+		$post.prependTo($('#timeline .timeline > .statuses')).show(200);
 		var n = new Notification(post.user.name, {
 			body: post.text,
 			icon: conf.url + '/img/icon/' + post.user.screenName
