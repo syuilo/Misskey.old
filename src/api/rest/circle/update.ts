@@ -15,24 +15,23 @@ var circleUpdate = (req: any, res: APIResponse) => {
 			return;
 		}
 		Circle.find(params.circle_id, (circle: Circle) => {
-			if (circle != null) {
-				if (circle.userId == user.id) {
-					if (params.name != null) {
-						circle.name = params.name;
-					}
-					if (params.description != null) {
-						circle.description = params.description;
-					}
-					circle.update(() => {
-						res.apiRender(circle);
-					});
-				} else {
-					res.apiError(400, 'That is not your circle :(');
-					return;
-				}
-			} else {
+			if (circle == null) {
 				res.apiError(404, 'Not found that circle :(');
+				return;
 			}
+			if (circle.userId != user.id) {
+				res.apiError(400, 'That is not your circle :(');
+				return;
+			}
+			if (params.name != null) {
+				circle.name = params.name;
+			}
+			if (params.description != null) {
+				circle.description = params.description;
+			}
+			circle.update(() => {
+				res.apiRender(circle);
+			});
 		});
 	});
 }
