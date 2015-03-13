@@ -111,9 +111,8 @@ $(function() {
 		post($(this));
 	});
 	
-	function post(obj)
+	function post($form)
 	{
-		var $form = obj;
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
