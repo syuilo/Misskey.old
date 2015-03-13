@@ -107,12 +107,13 @@ $(function() {
 	
 	$('#postForm').submit(function(event) {
 		event.preventDefault();
+
 		post();
 	});
 	
 	function post()
 	{
-		var $form = $(this);
+		var form = $('#postForm');
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
