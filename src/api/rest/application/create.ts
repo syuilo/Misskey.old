@@ -18,7 +18,7 @@ function createApplication(req: any, res: APIResponse): void {
 			res.apiError(403, 'Your application has no permission');
 		} else if (name === null || name === '') {
 			res.apiError(400, 'name cannot be empty :(');
-		} else if (name.length > 32)) {
+		} else if (name.length > 32) {
 			res.apiError(400, 'name cannot be more than 32 charactors');
 		} else if (callbackUrl === null || callbackUrl === '') {
 			res.apiError(400, 'callback_url cannot be empty :(');
