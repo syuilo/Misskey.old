@@ -38,4 +38,4 @@ var applicationDelete = (req: any, res: APIResponse) => {
 	});
 }
 
-module.exports = applicationCreate;
+module.exports = applicationDelete;
