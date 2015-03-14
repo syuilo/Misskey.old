@@ -14,7 +14,7 @@ var showPost = (req: any, res: APIResponse) => {
 			return;
 		}
 		Post.find(req.query.post_id, (post: Post) => {
-
+			res.apiRender(post);
 		});
 	});
 }
