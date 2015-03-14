@@ -16,3 +16,4 @@
 /// <reference path="compression/compression.d.ts" />
 /// <reference path="less/less.d.ts" />
 /// <reference path="moment/moment.d.ts" />
+/// <reference path="mongoose/mongoose.d.ts" />
