@@ -6,81 +6,46 @@ import Application = require('../../../models/application');
 
 var authorize = require('../../auth');
 
-var applicationCreate = (req: any, res: APIResponse) => {
+function createApplication(req: any, res: APIResponse): void {
 	authorize(req, res, (user: User, app: Application) => {
-
-		if (app.name != 'Web') {
-			res.apiError(403, 'access is not allowed :(');
-			return;
-		}
-
-		if (req.body.name == null) {
-			res.apiError(400, 'name parameter is required :(');
-			return;
-		}
-		var name = req.body.name;
-		if (!(name != '' && name.length <= 32)) {
-			res.apiError(400, 'name invalid format');
-			return;
-		}
-
-		if (req.body.callback_url == null) {
-			res.apiError(400, 'callback_url parameter is required :(');
-			return;
-		}
-		var callbackUrl = req.body.callback_url;
-		if (callbackUrl == '') {
-			res.apiError(400, 'name invalid format');
-			return;
-		}
-
-		if (req.body.description == null) {
-			res.apiError(400, 'description parameter is required :(');
-			return;
-		}
-		var description = req.body.description;
-		if (!(description.length >= 10 && description.length <= 400)) {
-			res.apiError(400, 'description invalid format');
-			return;
-		}
-
-		if (req.body.developer_name == null) {
-			res.apiError(400, 'developer_name parameter is required :(');
-			return;
-		}
-		var developerName = req.body.developer_name;
-		if (!(developerName != '')) {
-			res.apiError(400, 'developer_name invalid format');
-			return;
-		}
-
-		if (req.body.developer_website == null) {
-			res.apiError(400, 'developer_website parameter is required :(');
-			return;
-		}
-		var developerWebsite = req.body.developer_website;
-		if (!(developerWebsite != '')) {
-			res.apiError(400, 'developer_website invalid format');
-			return;
-		}
-
-		if (!user.isPremium) {
+		var name = typeof req.body.name !== 'undefined' ? req.body.name : null;
+		var callbackUrl = typeof req.body.callback_url !== 'undefined' ? req.body.callback_url : null;
+		var description = typeof req.body.description !== 'undefined' ? req.body.description : null;
+		var developerName = typeof req.body.developer_name !== 'undefined' ? req.body.developer_name : null;
+		var developerWebsite = typeof req.body.developer_website !== 'undefined' ? req.body.developer_website : null;
+		
+		if (app.name !== 'Web') {
+			res.apiError(403, 'Your application has no permission');
+		} else if (name === null || name === '') {
+			res.apiError(400, 'name cannot be empty :(');
+		} else if (name.length > 32)) {
+			res.apiError(400, 'name cannot be more than 32 charactors');
+		} else if (callbackUrl === null || callbackUrl === '') {
+			res.apiError(400, 'callback_url cannot be empty :(');
+		} else if (description === null) {
+			res.apiError(400, 'description cannot be empty :(');
+		} else if (description.length < 10 || 400 < description.length) {
+			res.apiError(400, 'description cannot be less than 10 charactors and more than 400 charactors');
+		} else if (developerName === null || developerName === '') {
+			res.apiError(400, 'developer_name cannot be empty :(');
+		} else if (developerWebsite === null || developerWebsite === '') {
+			res.apiError(400, 'developer_website cannot be empty :(');
+		} else if (!user.isPremium) {
 			Application.findByUserId(user.id, (apps: Application[]) => {
-				if (!(apps.length <= 1)) {
-					res.apiError(400, 'can not create application at two or more. need PlusAccount to do so.');
-					return;
+				if (1 <= apps.length) {
+					res.apiError(400, 'cannot create application at two or more. need PlusAccount to do so.');
 				}
 			});
 		} else {
 			Application.create(name, user.id, callbackUrl, description, developerName, developerWebsite, (createdApp: Application) => {
 				if (createdApp == null) {
 					res.apiError(500, 'Sorry, register failed.');
-					return;
+				} else {
+					res.apiRender(createdApp);
 				}
-				res.apiRender(createdApp);
 			});
 		}
 	});
 }
 
-module.exports = applicationCreate;
+export = createApplication;
