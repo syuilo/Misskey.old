@@ -36,7 +36,7 @@
 			"password": "パスワード",
 			"password_caption": "8文字以上の強固なパスワード。",
 			"retypepassword": "パスワード(再入力)",
-			"retypepassword_caption": "確認のため、もう一度同じパスワードを入力してくだしあ。",
+			"retypepassword_caption": "確認のため、もう一度同じパスワードを入力してください。",
 			"usercolor": "ユーザーカラー",
 			"usercolor_caption": "あなたのイメージカラー。",
 			"create": "アカウントを作成する"
