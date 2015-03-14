@@ -6,13 +6,11 @@ import TalkMessage = require('../models/talk-message');
 import TalkMessageImage = require('../models/talk-message-image');
 
 for (var i = 1; i < 175; i++) {
-	TalkMessage.find(i,(message: TalkMessage) => {
-		if (message != null) {
-			if (message.isImageAttached) {
-				TalkMessageImage.create(message.id, message.image,(image: TalkMessageImage) => {
-					console.log(message.id);
-				});
-			}
+	TalkMessage.find(i, (message: TalkMessage) => {
+		if (message != null && message.isImageAttached) {
+			TalkMessageImage.create(message.id, message.image, (image: TalkMessageImage) => {
+				console.log(message.id);
+			});
 		}
 	});
 }
