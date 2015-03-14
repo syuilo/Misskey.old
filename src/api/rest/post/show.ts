@@ -23,4 +23,4 @@ var showPost = (req: any, res: APIResponse) => {
 	});
 }
 
-module.exports =showPost;
+module.exports = showPost;
