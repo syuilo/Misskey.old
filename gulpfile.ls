@@ -1,6 +1,7 @@
 require! {
 	gulp
 	del
+	'gulp-plumber': plumber
 	'gulp-typescript': ts
 	'gulp-livescript': ls
 }
@@ -16,12 +17,14 @@ gulp.task \clean del.bind(null, ['./bin/**'])
 
 gulp.task \build-ls ->
 	gulp.src paths.ls
+		.pipe plumber!
 		.pipe ls!
 		.on \error (console.log.bind console)
 		.pipe gulp.dest './bin/'
 
 gulp.task \build-ts ->
 	gulp.src paths.ts
+		.pipe plumber!
 		.pipe ts do
 			target: \ES5
 			module: \commonjs
@@ -33,12 +36,15 @@ gulp.task \build-ts ->
 
 gulp.task \build-web-res ->
 	gulp.src paths.webRes
+		.pipe plumber!
 		.pipe gulp.dest './bin/web/resources'
 
 gulp.task \build-web-views ->
 	gulp.src paths.webViews
+		.pipe plumber!
 		.pipe gulp.dest './bin/web/views'
 	gulp.src paths.webDevReferences
+		.pipe plumber!
 		.pipe gulp.dest './bin/reference'
 
 gulp.task \build <[ build-ls build-ts build-web-res build-web-views ]>

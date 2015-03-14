@@ -11,6 +11,7 @@
     "dtsm": "^0.1.0",
     "gulp": "^3.8.10",
     "gulp-livescript": "^2.3.0",
+    "gulp-plumber": "^1.0.0",
     "gulp-typescript": "^2.3.0"
   },
   "dependencies": {
