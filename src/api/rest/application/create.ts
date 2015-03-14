@@ -34,9 +34,15 @@ function createApplication(req: any, res: APIResponse): void {
 			Application.findByUserId(user.id, (apps: Application[]) => {
 				if (1 <= apps.length) {
 					res.apiError(400, 'cannot create application at two or more. need PlusAccount to do so.');
+				} else {
+					create();
 				}
 			});
 		} else {
+			create();
+		}
+		
+		function create() {
 			Application.create(name, user.id, callbackUrl, description, developerName, developerWebsite, (createdApp: Application) => {
 				if (createdApp == null) {
 					res.apiError(500, 'Sorry, register failed.');
