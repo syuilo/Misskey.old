@@ -18,7 +18,9 @@ var showPost = (req: any, res: APIResponse) => {
 				res.apiError(404, 'Not found that post :(');
 				return;
 			}
-			res.apiRender(post);
+			Post.buildResponseObject(post, (obj: any) => {
+				res.apiRender(obj);
+			});
 		});
 	});
 }
