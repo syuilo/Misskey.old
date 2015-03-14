@@ -14,6 +14,10 @@ var showPost = (req: any, res: APIResponse) => {
 			return;
 		}
 		Post.find(req.query.post_id, (post: Post) => {
+			if (post == null) {
+				res.apiError(404, 'Not found that post :(');
+				return;
+			}
 			res.apiRender(post);
 		});
 	});
