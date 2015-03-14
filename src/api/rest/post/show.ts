@@ -2,6 +2,7 @@
 
 import APIResponse = require('../../api-response');
 import Application = require('../../../models/application');
+import Post = require('../../../models/post');
 import User = require('../../../models/user');
 
 var authorize = require('../../auth');
@@ -12,6 +13,9 @@ var showPost = (req: any, res: APIResponse) => {
 			res.apiError(400, 'post_id parameter is required :(');
 			return;
 		}
+		Post.find(req.query.post_id, (post: Post) => {
+
+		});
 	});
 }
 
