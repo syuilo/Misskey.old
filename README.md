@@ -13,6 +13,7 @@ Thanks:
 
 ## Contribution
 Report any problems to [Issue](https://github.com/syuilo/Misskey/issues?q=is%3Aopen)
+
 Send [Pull Request](https://github.com/syuilo/Misskey/pulls?q=is%3Aopen)
 
 ## License
