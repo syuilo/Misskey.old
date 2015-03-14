@@ -10,7 +10,7 @@ import config = require('../../config');
 export = login;
 
 function login(req: any, screenName: string, password: string, done: (user: User, webAccessToken: AccessToken) => void, fail: () => void): void {
-	if (screenName == '' || password == '') {
+	if (screenName === '' || password === '') {
 		fail();
 	} else {
 		User.findByScreenName(screenName,(user: User) => {
