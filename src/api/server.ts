@@ -69,13 +69,12 @@ apiServer.use((req: any, res: APIResponse, next: any) => {
 	};
 
 	res.apiError = (code: number, message: string) => {
-		var data = {
+		res.status(code);
+		sent({
 			error: {
 				message: message
 			}
-		};
-		res.status(code);
-		sent(data);
+		});
 	};
 
 	next();
