@@ -7,7 +7,7 @@ Thanks:
 
 ## Requirement
 * Node.js
-* MySQL
+* MySQL (will be replaced by MongoDB)
 * Redis
 * GraphicsMagick
 
