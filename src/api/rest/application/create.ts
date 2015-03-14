@@ -71,15 +71,15 @@ var applicationCreate = (req: any, res: APIResponse) => {
 					return;
 				}
 			});
+		} else {
+			Application.create(name, user.id, callbackUrl, description, developerName, developerWebsite, (createdApp: Application) => {
+				if (createdApp == null) {
+					res.apiError(500, 'Sorry, register failed.');
+					return;
+				}
+				res.apiRender(createdApp);
+			});
 		}
-
-		Application.create(name, user.id, callbackUrl, description, developerName, developerWebsite, (createdApp: Application) => {
-			if (createdApp == null) {
-				res.apiError(500, 'Sorry, register failed.');
-				return;
-			}
-			res.apiRender(createdApp);
-		});
 	});
 }
 
