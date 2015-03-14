@@ -19,15 +19,12 @@ function router(app: express.Express): void {
 	function displayImage(req: any, res: any, image: Buffer, imageUrl: string, fileName: string, author: User) {
 		var img = gm(image);
 		img.size((err, val) => {
-			var width = val.width;
-			var height = val.height;
-
 			res.display(req, res, 'image', {
 				imageUrl: imageUrl,
 				fileName: author.screenName + '.jpg',
 				author: author,
-				width: width,
-				height: height
+				width: val.width,
+				height: val.height
 			});
 		});
 	}
