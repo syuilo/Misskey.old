@@ -24,18 +24,14 @@ var render = (req: any, res: any): void => {
 		},
 		(callback: any) => {
 			if (req.login) {
-				PostFavorite.isFavorited(req.rootPost.id, req.me.id,(isFavorited: boolean) => {
-					callback(null, isFavorited);
-				});
+				PostFavorite.isFavorited(req.rootPost.id, req.me.id, callback.bind(null, null));
 			} else {
 				callback(null, null);
 			}
 		},
 		(callback: any) => {
 			if (req.login) {
-				Post.isReposted(req.rootPost.id, req.me.id,(isReposted: boolean) => {
-					callback(null, isReposted);
-				});
+				Post.isReposted(req.rootPost.id, req.me.id, callback.bind(null, null));
 			} else {
 				callback(null, null);
 			}
