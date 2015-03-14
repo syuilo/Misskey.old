@@ -40,5 +40,39 @@
     "url": "https://github.com/syuilo/Misskey.git"
   },
   "homepage": "https://github.com/syuilo/Misskey.git",
-  "license": "MIT"
+  "license": "MIT",
+  "author": {
+    "name": "syuilo",
+    "email": "syuilotan@yahoo.co.jp",
+    "url" : "https://github.com/syuilo"
+  },
+  "contributors": [
+    {
+      "name": "syuilo",
+      "email": "syuilotan@yahoo.co.jp",
+      "url" : "https://github.com/syuilo"
+    },
+    {
+      "name": "Afuafu",
+      "url": "https://github.com/afuafu55"
+    },
+    {
+      "name": "まりはち",
+      "email": "marihachi0620@gmail.com",
+      "url": "https://github.com/marihachi"
+    },
+    {
+      "name": "Aya Morisawa",
+      "url": "https://github.com/AyaMorisawa"
+    },
+    {
+      "name": "はらだい",
+      "email": "mail@haradai.net",
+      "url": "https://github.com/ha-dai"
+    },
+    {
+      "name": "シトリン",
+      "url": "https://github.com/Citringo"
+    }
+  ]
 }
