@@ -98,13 +98,11 @@ $(function() {
 		reader.readAsDataURL(file);
 	});
 	
-	$(document).ready(function(){
-		$('#postForm textarea').keypress(function(event) {
-			if (event.charCode == 13 && event.ctrlKey) {
-				event.preventDefault();
-				post($(this));
-			}
-		});
+	$('#postForm textarea').keypress(function(event) {
+		if (event.charCode == 13 && event.ctrlKey) {
+			event.preventDefault();
+			post($(this));
+		}
 	});
 	
 	$('#postForm').submit(function(event) {
