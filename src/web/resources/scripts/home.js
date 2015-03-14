@@ -98,12 +98,14 @@ $(function() {
 		reader.readAsDataURL(file);
 	});
 	
-	$('#postForm').keydown(function(event) {
-		if (event.charCode == 13 && event.ctrlKey) {
-			event.preventDefault();
-			post($(this));
-		}
-	});	
+	$(document).ready(function(){
+		$('#postForm textarea').keypress(function(event) {
+			if (event.charCode == 13 && event.ctrlKey) {
+				event.preventDefault();
+				post($(this));
+			}
+		});
+	});
 	
 	$('#postForm').submit(function(event) {
 		event.preventDefault();
