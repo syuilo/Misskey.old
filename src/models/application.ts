@@ -95,4 +95,10 @@ class Application {
 			[this.name, this.consumerKey, this.callbackUrl, this.description, this.developerName, this.developerWebsite, this.isSuspended, this.id],
 			callback);
 	}
+
+	public destroy(callback: () => void): void {
+		db.query('delete from applications where id = ?',
+			[this.id],
+			callback);
+	}
 }
