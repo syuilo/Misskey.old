@@ -20,6 +20,8 @@ var postCreate = (req: any, res: APIResponse) => {
 			var text = req.body.text != null ? req.body.text : '';
 			var inReplyToPostId = req.body.in_reply_to_post_id != null ? req.body.in_reply_to_post_id : null;
 
+			text = text.trim();
+
 			if (posts != null && text === posts[0].text) {
 				res.apiError(400, 'duplicate content :(');
 				return;
