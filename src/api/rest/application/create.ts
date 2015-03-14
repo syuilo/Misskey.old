@@ -64,6 +64,15 @@ var applicationCreate = (req: any, res: APIResponse) => {
 			return;
 		}
 
+		if (!user.isPremium) {
+			Application.findByUserId(user.id, (apps: Application[]) => {
+				if (!(apps.length <= 1)) {
+					res.apiError(400, 'can not create application at two or more. need PlusAccount to do so.');
+					return;
+				}
+			});
+		}
+
 		Application.create(name, user.id, callbackUrl, description, developerName, developerWebsite, (createdApp: Application) => {
 			if (createdApp == null) {
 				res.apiError(500, 'Sorry, register failed.');
