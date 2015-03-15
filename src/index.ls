@@ -1,2 +1,3 @@
-require './web/server'
-require './api/server'
+require
+ .. './web/server'
+ .. './api/server'
