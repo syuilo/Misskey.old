@@ -6,14 +6,14 @@ import AccessToken = require('../../../models/access-token');
 import SauthRequestToken = require('../../../models/sauth-request-token');
 import Application = require('../../../models/application');
 
-var SauthGetRequestToken = (req: any, res: APIResponse) => {
-	if (req.query.consumer_key != null) {
-		var consumerKey = req.query.consumer_key;
-		Application.findByConsumerKey(consumerKey,(app: Application) => {
+function getRequestToken(req: any, res: APIResponse): void {
+	var consumerKey = typeof req.query.consumer_key !== 'undefined' ? req.query.consumer_key : null;
+	if (consumerKey !== null) {
+		Application.findByConsumerKey(consumerKey, (app: Application) => {
 			if (app != null) {
-				SauthRequestToken.create(app.id,(requestToken: SauthRequestToken) => {
+				SauthRequestToken.create(app.id, (requestToken: SauthRequestToken) => {
 					res.apiRender({
-						'token': requestToken.token
+						token: requestToken.token
 					});
 				});
 			} else {
@@ -25,4 +25,4 @@ var SauthGetRequestToken = (req: any, res: APIResponse) => {
 	}
 }
 
-module.exports = SauthGetRequestToken;
+export = getRequestToken;

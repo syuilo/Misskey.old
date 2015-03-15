@@ -7,12 +7,16 @@ html(lang='ja', dir='ltr')
 		meta(name='keywords', content='Misskey')
 		block title
 		link(rel='stylesheet', href='/resources/styles/home.css')
+		link(rel='stylesheet', href='/resources/styles/theme/home.css')
 		block assets
 		
 	body
+		include ../templates/header
+		
 		nav
 			div#me
-				img#meIcon(src=url + '/img/icon/' + me.screenName, alt='icon')
+				a#meIconAnchor(href=url + '/' + me.screenName)
+					img#meIcon(src=url + '/img/icon/' + me.screenName, alt='icon')
 				span#meName(contenteditable)= me.name
 				span#meScreenName= me.screenName
 				p#meComment(contenteditable)= me.comment
@@ -22,7 +26,7 @@ html(lang='ja', dir='ltr')
 					td: a#me-postsCount(href=url + '/' + me.screenName)= postsCount
 				tr
 					th フォロー
-					td: a#me-followingsCount(href=url + '/' + me.screenName + '/following')= followingsCount
+					td: a#me-followingsCount(href=url + '/' + me.screenName + '/followings')= followingsCount
 				tr
 					th フォロワー
 					td: a#me-followersCount(href=url + '/' + me.screenName + '/followers')= followersCount
@@ -30,17 +34,17 @@ html(lang='ja', dir='ltr')
 				li: a(href=url)
 					i.fa.fa-home
 					| ホーム
-				li: a(href=url + '/i/mention')
+				li: a(href='/i/mention')
 					i.fa.fa-at
 					| メンション
-				li: a(href=url + '/i/talks')
+				li: a(href='/i/talks')
 					i.fa.fa-comments
 					| トーク
 			ul
-				li: a(href=url + '/i')
+				li: a(href='/i')
 					i.fa.fa-user
 					| マイ メニュー
-				li: a(href=url + '/i/setting')
+				li: a(href='/i/setting')
 					i.fa.fa-cog
 					| 設定
 		

@@ -1,24 +1,31 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import moment = require("moment");
+import Application = require('./application');
+import User = require('./user');
 export = TalkMessage;
 
 class TalkMessage {
 	appId: number;
 	createdAt: string;
 	id: number;
-	image: string;
+	isDeleted: boolean;
 	isImageAttached: boolean;
+	isModified: boolean;
+	isReaded: boolean;
 	text: string;
 	otherpartyId: number;
 	userId: number;
 
 	public constructor(message: any) {
 		this.appId = message.app_id;
-		this.createdAt = message.created_at;
+		this.createdAt = moment(message.created_at).format('YYYY/MM/DD HH:mm:ss Z');
 		this.id = message.id;
-		this.image = message.image;
+		this.isDeleted = Boolean(message.is_deleted);
 		this.isImageAttached = Boolean(message.is_image_attached);
+		this.isModified = Boolean(message.is_modified);
+		this.isReaded = Boolean(message.is_readed);
 		this.text = message.text;
 		this.otherpartyId = message.otherparty_id;
 		this.userId = message.user_id;
@@ -30,10 +37,9 @@ class TalkMessage {
 		otherpartyId: number,
 		text: string,
 		isImageAttached: Boolean,
-		image: Buffer,
 		callback: (talkMessage: TalkMessage) => void): void {
-		db.query('insert into talk_messages (app_id, user_id, otherparty_id, text, is_image_attached, image) values (?, ?, ?, ?, ?, ?)',
-			[appId, userId, otherpartyId, text, isImageAttached, image],
+		db.query('insert into talk_messages (app_id, user_id, otherparty_id, text, is_image_attached) values (?, ?, ?, ?, ?)',
+			[appId, userId, otherpartyId, text, isImageAttached],
 			(err: any, info: any) => {
 				if (err) console.log(err);
 				TalkMessage.find(info.insertId,(talkMessage: TalkMessage) => {
@@ -75,9 +81,21 @@ class TalkMessage {
 			(err: any, messages: any[]) => callback(messages.length != 0 ? messages.map((message) => new TalkMessage(message)) : null));
 	}
 
+	public static getAllUnreadCount(userId: number, callback: (unreadCount: number) => void): void {
+		db.query("select count(*) as count from talk_messages where otherparty_id = ? and is_readed = 0",
+			[userId],
+			(err: any, messages: any[]) => callback(messages[0].count));
+	}
+
+	public static getUserUnreadCount(userId: number, otherpartyId: number, callback: (unreadCount: number) => void): void {
+		db.query("select count(*) as count from talk_messages where otherparty_id = ? and user_id = ? and is_readed = 0",
+			[userId, otherpartyId],
+			(err: any, messages: any[]) => callback(messages[0].count));
+	}
+
 	public update(callback: () => void = () => { }): void {
-		db.query('update talk_messages set text = ? where id =?',
-			[this.text, this.id],
+		db.query('update talk_messages set text=?, is_modified=?, is_deleted=?, is_readed=? where id=?',
+			[this.text, this.isModified, this.isDeleted, this.isReaded, this.id],
 			callback);
 	}
 
@@ -85,5 +103,21 @@ class TalkMessage {
 		db.query('delete from talk_messages where id = ?',
 			[this.id],
 			callback);
+	}
+
+	public static buildResponseObject(talkMessage: TalkMessage, callback: (obj: any) => void): void {
+		var obj: any = talkMessage;
+		Application.find(talkMessage.appId,(app: Application) => {
+			delete app.callbackUrl;
+			delete app.consumerKey;
+			obj.app = app;
+			User.find(talkMessage.userId,(user: User) => {
+				obj.user = user.filt();
+				User.find(obj.otherpartyId,(otherparty: User) => {
+					obj.otherparty = otherparty.filt();
+					callback(obj);
+				});
+			});
+		});
 	}
 }

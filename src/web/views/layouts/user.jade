@@ -1,7 +1,6 @@
 doctype html
 
-html(
-	lang='ja'
+html(lang='ja'
 	dir='ltr'
 	itemscope
 	itemtype='http://schema.org/ProfilePage'
@@ -10,7 +9,7 @@ html(
 	head(prefix='og: http://ogp.me/ns#')
 		include ../templates/head
 		meta(name='robots', content='all')
-		meta(name='description', content=user.comment)
+		meta(name='description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(name='keywords', content='Misskey,' + user.screenName)
 		meta(property='og:title', content=user.name)
 		meta(property='og:type', content='article')
@@ -21,19 +20,27 @@ html(
 		meta(property='twitter:card', content='summary')
 		meta(property='twitter:site', content='@syuilo')
 		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
-		meta(property='twitter:description', content=user.comment)
+		meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
 		block title
 		link(rel='stylesheet', href='/resources/styles/user.css?user=' + user.screenName)
 		link(rel='stylesheet', href='/resources/styles/timeline.css?user=' + user.screenName)
+		link(rel='stylesheet', href='/resources/styles/theme/user.css?user=' + user.screenName)
+		link(rel='stylesheet', href='/resources/styles/theme/timeline.css?user=' + user.screenName)
 		script(src='/resources/scripts/timeline.js')
 		script(src='/resources/scripts/user.js')
 	
 	body
+		include ../templates/header
+		
 		main(role='main')
 			header(role='banner')
 				div#headerMain
+					div#headerUserMenu
+						ul
+							li: a(href='/' + user.screenName + '/talk', title='このユーザーとトーク'): i.fa.fa-comments
+							li: button#sendNewReplyButton(title='このユーザーになんか言う'): i.fa.fa-pencil-square-o
 					div#headerUserArea
 						div#headerUserAreaBackground
 						div#headerUserAreaMain
@@ -42,29 +49,30 @@ html(
 							h1
 								span#name(itemprop='name')= user.name
 								span#screenName(itemprop='alternateName')= '@' + user.screenName
-							p#comment(itemprop='description')= user.comment
+							if user.comment != null
+								p#comment(itemprop='description')= user.comment
 				nav#headerNav(role='navigation')
-					table
-						tr
-							th 投稿
-							th フォロー
-							th フォロワー
-						tr
-							td: a(href='/' + user.screenName)= postsCount
-							td: a(href='/' + user.screenName + '/followings')= followingsCount
-							td: a(href='/' + user.screenName + '/followers')= followersCount
-					if login
-						if me.id != user.id
-							if isFollowMe
-								p#friendStatus フォローされています
-							if isFollowing
-								button#followButton.ui-followButton.following フォロー中
-							else
-								button#followButton.ui-followButton.notFollowing フォロー
+					div#headerNavBackground
+					div#headerNavMain
+						table
+							tr
+								th 投稿
+								th フォロー
+								th フォロワー
+							tr
+								td: a(href='/' + user.screenName)= postsCount
+								td: a(href='/' + user.screenName + '/followings')= followingsCount
+								td: a(href='/' + user.screenName + '/followers')= followersCount
+						if login
+							if me.id != user.id
+								if isFollowMe
+									p#friendStatus フォローされています
+								if isFollowing
+									button#followButton.ui-followButton.following フォロー中
+								else
+									button#followButton.ui-followButton.notFollowing フォロー
 			div#contents
-				div#contentsLeft
-					div#mainContent
-						block content
-				div#contentsRight
-					div#timelineContent
-						div#timeline!= timelineHtml
+				div#content
+					block content
+				div#sideContents
+					div#timeline!= timelineHtml

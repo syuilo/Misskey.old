@@ -13,15 +13,14 @@ export = authorize;
 
 var authorize = (req: any, res: APIResponse, success: (user: User, app: Application) => void): void  => {
 	var isLogged = (req.session != null && req.session.userId != null);
-
-	if (req.method === 'GET') {
-		var consumerKey = req.query.consumer_key;
-		var accessToken = req.query.access_token;
-	} else {
-		var consumerKey = req.body.consumer_key;
-		var accessToken = req.body.access_token;
+	
+	function getParameter(req: any, name: string): string {
+		return req[req.method === 'GET' ? 'query' : 'body'][name];
 	}
 	
+	var consumerKey = getParameter(req, 'consumer_key');
+	var accessToken = getParameter(req, 'access_token');
+
 	var fail = (message: string): void => {
 		res.apiError(401, message);
 		return;

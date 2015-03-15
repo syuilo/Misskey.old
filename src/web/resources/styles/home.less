@@ -17,6 +17,10 @@ html {
 	*/
 }
 
+.timeline>.posts>.post {
+	padding: 16px 24px !important;
+}
+
 body {
 	> nav {
 		display: block;
@@ -27,7 +31,7 @@ body {
 		background: #fff;
 
 		> #me {
-			#meIcon {
+			#meIconAnchor {
 				display: block;
 				max-width: 128px;
 				max-height: 128px;
@@ -35,6 +39,16 @@ body {
 				padding: 0;
 				vertical-align: bottom;
 				border-radius: 64px;
+
+				#meIcon {
+					display: block;
+					max-width: 128px;
+					max-height: 128px;
+					margin: 0;
+					padding: 0;
+					vertical-align: bottom;
+					border-radius: 64px;
+				}
 			}
 
 			#meScreenName {
@@ -87,7 +101,6 @@ body {
 	width: 100%;
 	border-collapse: collapse;
 	border-radius: 4px;
-	background: rgba(255, 255, 255, 0.8);
 
 	a {
 		text-decoration: none;
@@ -172,7 +185,7 @@ main {
 					color: #000;
 					outline: none;
 					border: solid 1px #eee;
-					border-radius: 4px;
+					border-radius: 0;
 					box-shadow: none;
 					transition: all 0.2s ease;
 
@@ -184,7 +197,6 @@ main {
 						color: @themeColor;
 						outline: none;
 						border: solid 1px @themeColor;
-						box-shadow: 0 0 4px fade(@themeColor, 30%);
 					}
 				}
 
@@ -250,6 +262,7 @@ main {
 					border-radius: 2px;
 					box-shadow: none;
 					transition: background 0.1s ease;
+					font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ÉqÉâÉMÉmäpÉS ProN W3','Meiryo UI','Meiryo, ÉÅÉCÉäÉI','sans-serif';
 
 					&:hover {
 						background: lighten(@themeColor, 10%);
@@ -266,7 +279,7 @@ main {
 			.timelineMain {
 				box-sizing: border-box;
 				width: 100%;
-				max-width: 700px;
+				max-width: 764px;
 				margin: 0 auto;
 				padding: 0 16px 16px 16px;
 			}

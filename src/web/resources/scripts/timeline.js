@@ -1,34 +1,76 @@
 var TIMELINE = {};
 
 TIMELINE.generatePostElement = function(post) {
-	return $('<li class="post">')
+	return $('<li class="status post">')
 	.attr({
 		title: post.createdAt + '&#x0A;via ' + post.app.name,
 		'data-id': post.id,
-		'data-userId': post.userId,
-		'data-userComment': post.user.comment,
-		'data-userColor': post.user.color,
+		'data-user-id': post.userId,
+		'data-user-color': post.user.color,
+		'data-user-verified': post.user.isPremium.toString(),
+		'data-is-reply': post.isReply.toString(),
+		'data-is-talk': (post.moreTalk != null).toString(),
+		'data-is-favorited': 'false',
+		'data-is-reposted': 'false',
+		'data-is-repostpost': post.isRepostToPost ? 'true' : 'false',
 		style: post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
 	})
+	.append(post.moreTalk != null ? generateTalk() : null)
+	.append(post.isRepostToPost ? generateRepostInformation() : null)
 	.append(post.isReply ? generateReplyTo() : null)
-	.append(generateArticle(post))
+	.append(generateArticle(post, false))
 	.append(generateFooter());
+
+	function generateTalk() {
+		return $('<div class="moreTalk">')
+		.append($('<i class="fa fa-ellipsis-v">'))
+		.append(generateTalkPostsList());
+
+		function generateTalkPostsList() {
+			var ol = $('<ol class="talk">');
+			post.moreTalk.forEach(function(talkPost) {
+				ol.append($('<li class="post">')
+					.attr('data-user-verified', talkPost.user.isPremium.toString())
+					.append(generateArticle(talkPost, true)));
+			});
+			return ol;
+		}
+	}
+
+	function generateRepostInformation() {
+		return $('<div class="repostInformation">')
+		.append(generateInfo());
+
+		function generateInfo() {
+			return $('<p class="info">')
+			.append($('<a class="iconAnchor">')
+				.attr('href', conf.url + '/' + post.repostedByUser.screenName + '/talk?noheader=true')
+				.attr('title', post.repostedByUser.comment != null ? post.repostedByUser.comment : '@' + post.repostedByUser.screenName)
+				.append(
+					$('<img class="icon" alt="icon">').attr('src', conf.url + '/img/icon/' + post.repostedByUser.screenName)))
+			.append($('<i class="fa fa-retweet">'))
+			.append($('<a class="name" target="_blank">').attr('href', conf.url + '/' + post.repostedByUser.screenName).text(post.repostedByUser.name))
+			.append('によってRepost');
+		}
+	}
 
 	function generateReplyTo() {
 		return $('<div class="replyTo">')
-		.append(generateArticle(post.reply));
+		.attr('data-user-verified', post.reply.user.isPremium.toString())
+		.append(generateArticle(post.reply, true));
 	}
 
-	function generateArticle(post) {
+	function generateArticle(post, isReplyToNode) {
 		return $('<article>')
 		.append(generateIcon())
 		.append(generateHeader())
-		.append($('<p class="text">').html((post.isReply ? '<a href="' + conf.url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply" > </i></a>' : '') + parseText(post.text)))
-		.append(post.isImageAttached ? generateImage() : null);
+		.append(generateMain())
+		.append(!isReplyToNode ? generateFooter() : null);
 
 		function generateIcon() {
-			return $('<a>')
-			.attr('href', conf.url + '/' + post.user.screenName + '/talk')
+			return $('<a class="iconAnchor">')
+			.attr('href', conf.url + '/' + post.user.screenName + '/talk?noheader=true')
+			.attr('title', post.user.comment != null ? post.user.comment : '@' + post.user.screenName)
 			.append(
 			$('<img class="icon" alt="icon">')
 			.attr('src', conf.url + '/img/icon/' + post.user.screenName)
@@ -45,7 +87,7 @@ TIMELINE.generatePostElement = function(post) {
 			}
 
 			function generateName() {
-				return $('<a>')
+				return $('<a target="_blank">')
 				.attr('href', conf.url + '/' + post.user.screenName)
 				.text(escapeHtml(post.user.name));
 			}
@@ -56,15 +98,57 @@ TIMELINE.generatePostElement = function(post) {
 			}
 
 			function generateTime() {
-				return $('<time>')
-				.attr('datetime', post.createdAt)
-				.text(post.createdAt);
+				return $('<a>')
+				.attr('href', conf.url + '/' + post.user.screenName + '/' + post.id)
+				.append(
+					$('<time>')
+					.attr('datetime', post.createdAt)
+					.text(post.createdAt));
 			}
 		}
 
-		function generateImage() {
-			return $('<img alt="image" class="image">')
-			.attr('src', conf.url + '/img/post/' + post.id);
+		function generateMain() {
+			return $('<div class="main">')
+			.append($('<p class="text">').html((post.isReply ? '<a href="' + conf.url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"> </i></a>' : '') + parseText(post.text)))
+			.append(post.isImageAttached ? generateImage() : null);
+
+			function generateImage() {
+				return $('<img alt="image" class="image">')
+				.attr('src', conf.url + '/img/post/' + post.id);
+			}
+		}
+
+		function generateFooter() {
+			return $('<footer>')
+			.append(generateActions());
+
+			function generateActions() {
+				return $('<div class="actions">')
+				.append(generateRepost())
+				.append(generateFavorite());
+
+				function generateRepost() {
+					return $('<div class="repost">')
+					.append(generateRepostButton())
+					.append($('<a class="count">').attr('href', conf.url + '/' + post.user.screenName + '/' + post.id + '/reposts'));
+
+					function generateRepostButton() {
+						return $('<button class="repostButton" title="Repost" role="button">')
+						.append($('<i class="fa fa-retweet">'));
+					}
+				}
+
+				function generateFavorite() {
+					return $('<div class="favorite">')
+					.append(generateFavoriteButton())
+					.append($('<a class="count">').attr('href', conf.url + '/' + post.user.screenName + '/' + post.id + '/favorites'));
+
+					function generateFavoriteButton() {
+						return $('<button class="favoriteButton" title="お気に入り" role="button">')
+						.append($('<i class="fa fa-star">'));
+					}
+				}
+			}
 		}
 	}
 
@@ -90,7 +174,7 @@ TIMELINE.generatePostElement = function(post) {
 			}
 
 			function generateSubmitButton() {
-				return $('<input type="submit" value="Reply">');
+				return $('<input type="submit" value="&#xf112; Reply" class="fa fa-reply">');
 			}
 
 			function generateImageAttacher() {
@@ -103,12 +187,19 @@ TIMELINE.generatePostElement = function(post) {
 
 	function parseText(text) {
 		text = escapeHtml(text);
+		text = parsePre(text);
 		text = parseURL(text);
 		text = parseReply(text);
 		text = parseBold(text);
 		text = parseSmall(text);
 		text = parseNewLine(text);
 		return text;
+
+		function parsePre(text) {
+			return text.replace(/'''(.+?)'''/g, function(_, word) {
+				return '<pre>' + word + '</pre>';
+			});
+		}
 
 		function parseURL(text) {
 			return text.replace(/https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g, function(url) {
@@ -146,8 +237,10 @@ TIMELINE.generatePostElement = function(post) {
 
 TIMELINE.setEventPost = function($post) {
 	$post.children('article').children('a').click(function() {
-		var $content = $("<iframe>").attr({ src: $post.children('article').children('a').attr('href'), seamless: true });
-		openWindow($content, '<i class="fa fa-comments"></i>' + $post.children('article').children('header').children('h2').children('a').text(), 300, 450);
+		var windowId = 'misskey-window-talk-' + $post.attr('data-user-id');
+		var url = $post.children('article').children('a').attr('href');
+		var $content = $("<iframe>").attr({ src: url, seamless: true });
+		openWindow(windowId, $content, '<i class="fa fa-comments"></i>' + $post.children('article').children('header').children('h2').children('a').text(), 300, 450, true, url);
 		return false;
 	});
 
@@ -174,35 +267,6 @@ TIMELINE.setEventPost = function($post) {
 		});
 	});
 
-	/*
-	$post.find('.fr').submit(function (event) {
-	event.preventDefault();
-	var $form = $(this);
-	var $submitButton = $form.find('[type=image]');
-	$submitButton.attr('disabled', true);
-	$.ajax({
-	url: $form.attr('action'),
-	type: $form.attr('method'),
-	data: new FormData($form[0]),
-	processData: false,
-	contentType: false,
-	}).done(function () {
-	$submitButton.attr('disabled', false);
-	if ($post.attr('data-is_favorite')) {
-	$post.attr('data-is_favorite', false);
-	$submitButton.attr('src', 'https://misskey.xyz/img/misskey/unfavorite.svg');
-	$form.attr('action', 'https://misskey.xyz/api/post/favorite/create');
-	} else {
-	$post.attr('data-is_favorite', true);
-	$submitButton.attr('src', 'https://misskey.xyz/img/misskey/favorite.svg');
-	$form.attr('action', 'https://misskey.xyz/api/post/favorite/delete');
-	}
-	}).fail(function () {
-	$submitButton.attr('disabled', false);
-	});
-	});
-	*/
-
 	$post.find('.imageAttacher input[name=image]').change(function() {
 		var $input = $(this);
 		var file = $(this).prop('files')[0];
@@ -216,19 +280,98 @@ TIMELINE.setEventPost = function($post) {
 		reader.readAsDataURL(file);
 	});
 
+	$post.find('article > footer > .actions > .favorite > .favoriteButton').click(function() {
+		var $button = $(this);
+		$button.attr('disabled', true);
+
+		if ($post.attr('data-is-favorited') == 'true') {
+			$post.attr('data-is-favorited', 'false')
+			$.ajax('https://api.misskey.xyz/post/unfavorite', {
+				type: 'delete',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+			}).fail(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-favorited', 'true')
+			});
+		} else {
+			$post.attr('data-is-favorited', 'true')
+			$.ajax('https://api.misskey.xyz/post/favorite', {
+				type: 'post',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+			}).fail(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-favorited', 'false')
+			});
+		}
+	});
+
+	$post.find('article > footer > .actions > .repost > .repostButton').click(function() {
+		var $button = $(this);
+		$button.attr('disabled', true);
+
+		if ($post.attr('data-is-reposted') == 'true') {
+			$.ajax('https://api.misskey.xyz/post/unrepost', {
+				type: 'delete',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-reposted', 'false')
+			}).fail(function() {
+				$button.attr('disabled', false);
+			});
+		} else {
+			$.ajax('https://api.misskey.xyz/post/repost', {
+				type: 'post',
+				data: { 'post_id': $post.attr('data-id') },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function() {
+				$button.attr('disabled', false);
+				$post.attr('data-is-reposted', 'true')
+			}).fail(function() {
+				$button.attr('disabled', false);
+			});
+		}
+	});
+
 	$post.click(function(event) {
+		if ($(event.target).is('input') ||
+		$(event.target).is('textarea') ||
+		$(event.target).is('button') ||
+		$(event.target).is('i') ||
+		$(event.target).is('time') ||
+		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
-			if ($(event.target).is('input') || $(event.target).is('textarea')) return;
-			if ($(this).find('footer').css('display') === 'none') {
-				$('.timeline > .posts > .post footer').each(function() {
+			if ($(this).children('footer').css('display') === 'none') {
+				$('.timeline > .statuses > .status.post > .moreTalk > i').each(function() {
+					$(this).show(200);
+				});
+				$('.timeline > .statuses > .status.post > .moreTalk > .talk').each(function() {
 					$(this).hide(200);
 				});
-				$(this).find('footer').show(200);
+				$('.timeline > .statuses > .status.post > footer').each(function() {
+					$(this).hide(200);
+				});
+				$(this).children('.moreTalk').children('i').hide(200);
+				$(this).children('.moreTalk').children('.talk').show(200);
+				$(this).children('footer').show(200);
 				var text = $(this).find('footer .replyForm textarea').val();
 				$(this).find('footer .replyForm textarea').val('');
 				$(this).find('footer .replyForm textarea').focus().val(text);
 			} else {
-				$(this).find('footer').hide(200);
+				$(this).children('.moreTalk').children('i').show(200);
+				$(this).children('.moreTalk').children('.talk').hide(200);
+				$(this).children('footer').hide(200);
 			}
 		}
 	});

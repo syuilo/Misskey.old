@@ -1,0 +1,63 @@
+doctype html
+
+html
+	head
+		include templates/head
+		title Misskey Developer Center
+		link(rel='stylesheet', href='/resources/styles/dev.css')
+		script(src='/resources/scripts/dev.js')
+	body
+		include templates/header
+
+		header
+			#titlelogo
+				h1
+					i.fa.fa-terminal
+					| Developer-Center
+		#contents
+			nav
+				ul
+					li#myapp
+						h1
+							i.fa.fa-puzzle-piece
+							| My Applications
+						ul
+							if apps != null
+								each app in apps
+									li(id='#myApp-' + app.id)= app.name
+							li#myapp-new ＋新しいアプリケーションの作成
+					li#restapi
+						h1 REST API
+						ul
+							li
+								h2 Objects
+								ul
+									li#objects-user User
+									li#objects-post Post
+									li#objects-notice Notice
+									li#objects-circle Circle
+							li
+								h2 Endpoints
+								ul
+									li#rest-account-create account/create
+									li#rest-account-show account/show
+									li#rest-post-create post/create
+									li#rest-post-show post/show
+									li#rest-search-user search/user
+									li#rest-sauth-get_request_token sauth/get_request_token
+									li#rest-sauth-get_access_token sauth/get_access_token
+									li#rest-circle-create circle/create
+									li#rest-circle-show circle/show
+									li#rest-circle-update circle/update
+					li#streamingapi
+						h1 Streaming API
+					li#usertheme
+						h1 UserTheme
+						ul
+							if themes != null
+								each theme in themes
+									li(id='#userTheme-' + theme.id)= theme.name
+							li#usertheme-new ＋新しいユーザーテーマの作成
+			main
+		footer
+			small (c)Misskey.

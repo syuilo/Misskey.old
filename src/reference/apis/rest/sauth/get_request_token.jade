@@ -1,0 +1,30 @@
+extends ../layout.jade
+
+block title
+	| sauth/get_request_token
+
+block method
+	| GET
+
+block endpoint
+	| https://api.misskey.xyz/sauth/get_request_token
+
+block overview
+	p SAuthのリクエストトークンを取得します。
+	p 他のAPIを利用する際に必要なアクセストークンの取得に必要です。
+
+block parameters
+	table
+		thead
+			tr
+				th Name
+				th isRequired?
+				th Description
+		tbody
+			tr
+				td consumer_key
+				td yes
+				td アプリケーションの登録で得られたコンシューマキー
+
+block response
+	p リクエストトークン

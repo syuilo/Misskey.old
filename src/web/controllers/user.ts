@@ -35,7 +35,7 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 		},
 		(callback: any) => {
 			Post.findByUserId(req.rootUser.id, 30, null, null,(posts: Post[]) => {
-				Timeline.generateHtml(posts,(timelineHtml: string) => {
+				Timeline.generateHtml(posts, req,(timelineHtml: string) => {
 					callback(null, timelineHtml);
 				});
 			});
@@ -59,40 +59,52 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 			}
 		},
 		(callback: any) => {
-			switch (content) {
-				case 'home':
+			if (content == 'home') {
+				if (req.rootUser.bio != null) {
 					callback(null, marked(req.rootUser.bio));
-					break;
-				case 'followings':
-					UserFollowing.getFollowings(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
-						if (userFollowings != null) {
-							async.map(userFollowings,(userFollowing: UserFollowing, next: any) => {
-								User.find(userFollowing.followeeId,(user: User) => {
-									next(null, user);
-								});
-							},(err: any, results: User[]) => {
-									callback(null, results);
-								});
-						} else {
-							callback(null, null);
-						}
-					});
-					break;
-				case 'followers':
-					UserFollowing.getFollowers(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
-						if (userFollowings != null) {
-							async.map(userFollowings,(userFollowing: UserFollowing, next: any) => {
-								User.find(userFollowing.followerId,(user: User) => {
-									next(null, user);
-								});
-							},(err: any, results: User[]) => {
-									callback(null, results);
-								});
-						} else {
-							callback(null, null);
-						}
-					});
-					break;
+				} else {
+					callback(null, null);
+				}
+			} else {
+				callback(null, null);
+			}
+		},
+		(callback: any) => {
+			if (content == 'followings') {
+				UserFollowing.getFollowings(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
+					if (userFollowings != null) {
+						async.map(userFollowings,(userFollowing: UserFollowing, next: any) => {
+							User.find(userFollowing.followeeId,(user: User) => {
+								next(null, user);
+							});
+						},(err: any, results: User[]) => {
+								callback(null, results);
+							});
+					} else {
+						callback(null, null);
+					}
+				});
+			} else {
+				callback(null, null);
+			}
+		},
+		(callback: any) => {
+			if (content == 'followers') {
+				UserFollowing.getFollowers(req.rootUser.id, 50,(userFollowings: UserFollowing[]) => {
+					if (userFollowings != null) {
+						async.map(userFollowings,(userFollowing: UserFollowing, next: any) => {
+							User.find(userFollowing.followerId,(user: User) => {
+								next(null, user);
+							});
+						},(err: any, results: User[]) => {
+								callback(null, results);
+							});
+					} else {
+						callback(null, null);
+					}
+				});
+			} else {
+				callback(null, null);
 			}
 		}],
 		(err: any, results: any) => {
@@ -103,7 +115,9 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 				timelineHtml: results[3],
 				isFollowing: results[4],
 				isFollowMe: results[5],
-				content: results[6],
+				bio: results[6],
+				followings: results[7],
+				followers: results[8],
 				user: req.rootUser,
 				tags: req.rootUser.tag != null ? req.rootUser.tag.split(',') : null,
 				url: conf.publicConfig.url,

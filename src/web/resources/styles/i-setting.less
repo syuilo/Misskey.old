@@ -115,7 +115,6 @@ fieldset {
 	box-sizing: border-box;
 	width: ~"calc(100% - 200px)";
 	min-height: 100%;
-	margin-top: 80px;
 	padding: 0;
 	background: #fff;
 
@@ -126,11 +125,8 @@ fieldset {
 	}
 
 	header {
-		position: fixed;
-		top: 0;
-		z-index: 1;
 		box-sizing: border-box;
-		width: 1000px;
+		width: 100%;
 		padding: 16px 16px 0 16px;
 		background: rgba(255, 255, 255, 0.9);
 
@@ -218,8 +214,10 @@ fieldset {
 }
 
 #iconEditForm {
+	box-sizing: border-box;
 	float: left;
-	width: 220px;
+	width: 320px;
+	padding: 0 16px;
 
 	&:hover {
 		h2 {
@@ -237,14 +235,24 @@ fieldset {
 	}
 
 	.icon {
-		width: 180px;
-		height: 180px;
+		width: 200px;
+		height: 200px;
+		margin: 16px auto !important;
+	}
+
+	> label {
+		padding: 16px 16px;
+	}
+
+	> input[type=submit] {
+		float: right;
+		margin-right: 16px;
 	}
 }
 
 #profileEditForm {
 	float: left;
-	width: ~"calc(100% - 220px)";
+	width: ~"calc(100% - 320px)";
 }
 
 #iconEditForm .icon,
@@ -419,149 +427,142 @@ fieldset {
 
 
 #webtheme {
-}
-
-.themes {
-	display: block;
-	padding: 16px;
-	list-style: none;
-}
-
-	.themes .theme {
-		position: relative;
+	.themes {
 		display: block;
-		z-index: 0;
-		float: left;
-		margin: 8px;
-		padding: 0;
-		width: 256px;
-		height: 192px;
-		border: solid 1px rgba(0, 0, 0, 0.1);
-		/*transition: all 0.2s ease;*/
-	}
+		padding: 16px;
+		list-style: none;
 
-		.themes .theme:hover {
-			/*transform: scale(1.05);*/
-		}
-
-		.themes .theme.active {
-			outline: dashed 2px #0af;
-		}
-
-		.themes .theme .content {
-			display: block;
+		.theme {
 			position: relative;
+			display: block;
+			z-index: 0;
+			float: left;
+			margin: 8px;
+			padding: 0;
 			width: 256px;
 			height: 192px;
-			overflow: hidden;
-		}
-
-			.themes .theme .content .thumbnail {
+			border: solid 1px rgba(0, 0, 0, 0.1);
+			/*transition: all 0.2s ease;*/
+			> .title {
 				display: block;
-				width: 256px;
-				height: 192px;
-				margin-top: 0px;
-				transition: margin-top 0.3s ease;
+				position: absolute;
+				bottom: 8px;
+				left: -8px;
+				min-width: 5em;
+				padding: 4px 8px;
+				text-align: center;
+				font-weight: normal;
+				font-size: 1em;
+				color: #fff;
+				background: #04F;
+				box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+				border-top: solid 1px rgba(255, 255, 255, 0.1);
+
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					bottom: -8px;
+					left: -8px;
+					z-index: -1;
+					border: solid 8px transparent;
+					border-right: solid 8px #02B;
+				}
 			}
 
-			.themes .theme .content .form {
+			.content {
 				display: block;
 				position: relative;
-				box-sizing: border-box;
 				width: 256px;
 				height: 192px;
-				padding: 16px;
 				overflow: hidden;
-				background: #eee;
-			}
 
-				.themes .theme .content .form .title {
-					display: inline-block;
-					margin: 4px 0 8px 0;
-					font-size: 1em;
-					font-weight: bold;
-					color: #555;
+				.thumbnail {
+					display: block;
+					width: 256px;
+					height: 192px;
+					margin-top: 0px;
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: cover;
+					transition: margin-top 0.3s ease;
 				}
 
-				.themes .theme .content .form .description {
-					margin: 0;
-					font-size: 0.8em;
-					color: #555;
-				}
-
-				.themes .theme .content .form .author {
-					position: absolute;
-					top: 4px;
-					right: 4px;
-				}
-
-					.themes .theme .content .form .author:before {
-						content: "çÏê¨é“:";
-						display: block;
-						position: absolute;
-						top: 2px;
-						right: 40px;
-						font-size: 0.5em;
-						color: #aaa;
-					}
-
-					.themes .theme .content .form .author .name {
-						display: inline-block;
-						margin: 4px 8px;
-						min-width: 8em;
-						text-align: right;
-						font-size: 0.8em;
-						color: #aaa;
-					}
-
-					.themes .theme .content .form .author .icon {
-						min-width: 32px;
-						min-height: 32px;
-						max-width: 32px;
-						max-height: 32px;
-						vertical-align: text-bottom;
-					}
-
-				.themes .theme .content .form form {
-					position: absolute;
-					top: 0;
-					left: 0;
+				.form {
+					display: block;
+					position: relative;
 					box-sizing: border-box;
 					width: 256px;
 					height: 192px;
-				}
+					padding: 16px;
+					overflow: hidden;
+					background: #eee;
 
-					.themes .theme .content .form form input {
-						display: block;
-						position: absolute;
-						bottom: 8px;
-						right: 8px;
-						margin: 0;
+					.title {
+						display: inline-block;
+						margin: 4px 0 8px 0;
+						font-size: 1em;
+						font-weight: bold;
+						color: #555;
 					}
 
-		.themes .theme > .title {
-			display: block;
-			position: absolute;
-			bottom: 8px;
-			left: -8px;
-			min-width: 5em;
-			padding: 4px 8px;
-			text-align: center;
-			font-weight: normal;
-			font-size: 1em;
-			color: #fff;
-			background: #04F;
-			box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
-			border-top: solid 1px rgba(255, 255, 255, 0.1);
-		}
+					.description {
+						margin: 0;
+						font-size: 0.8em;
+						color: #555;
+					}
 
-			.themes .theme > .title:before {
-				content: "";
-				display: block;
-				position: absolute;
-				bottom: -8px;
-				left: -8px;
-				z-index: -1;
-				border: solid 8px transparent;
-				border-right: solid 8px #02B;
+					.author {
+						position: absolute;
+						top: 4px;
+						right: 4px;
+
+						&:before {
+							content: "‰ΩúÊàêËÄÖ:";
+							display: block;
+							position: absolute;
+							top: 2px;
+							right: 40px;
+							font-size: 0.5em;
+							color: #aaa;
+						}
+
+						.name {
+							display: inline-block;
+							margin: 4px 8px;
+							min-width: 8em;
+							text-align: right;
+							font-size: 0.8em;
+							color: #aaa;
+						}
+
+						.icon {
+							min-width: 32px;
+							min-height: 32px;
+							max-width: 32px;
+							max-height: 32px;
+							vertical-align: text-bottom;
+						}
+					}
+
+					form {
+						position: absolute;
+						top: 0;
+						left: 0;
+						box-sizing: border-box;
+						width: 256px;
+						height: 192px;
+
+						input {
+							display: block;
+							position: absolute;
+							bottom: 8px;
+							right: 8px;
+							margin: 0;
+						}
+					}
+				}
 			}
+		}
+	}
+}

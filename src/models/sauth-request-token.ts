@@ -34,7 +34,12 @@ class SAuthRequestToken {
 		var token = SAuthRequestToken.generateToken(appId);
 		db.query('insert into sauth_request_tokens (app_id, token) values (?, ?)',
 			[appId, token],
-			(err, sauthRequestTokens) => callback(new SAuthRequestToken(sauthRequestTokens[0])));
+			(err: any, info: any) => {
+				if (err) console.log(err);
+				SAuthRequestToken.find(token, (token: SAuthRequestToken) => {
+					callback(token);
+				});
+			});
 	}
 
 	public static find(requestToken: string, callback: (sauthRequestToken: SAuthRequestToken) => void): void {

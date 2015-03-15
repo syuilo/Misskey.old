@@ -1,0 +1,47 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include templates/head
+		meta(name='description', content= post.user.name + 'さんの投稿')
+		meta(name='keywords', content='Misskey')
+		title= post.user.name + 'さんの投稿'
+		link(rel='stylesheet', href='/resources/styles/post.css')
+		script(src='/resources/scripts/post.js')
+	
+	body
+		include templates/header
+		
+		main(role='main')
+			div#post
+				article#article
+					div.sub
+						img.icon(src='/img/icon/' + post.user.screenName, alt='icon')
+					div.main
+						header
+							a.nameAnchor(href='/' + post.user.screenName): p.name= post.user.name
+							p.screenName= '@' + post.user.screenName
+						div.contents
+							div.text= post.text
+							if post.isImageAttached
+								img.image(src='/img/post/' + post.id, alt='image')
+						div.actions
+							div.repost
+								button.repostButton(title= isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+									i.fa.fa-retweet
+								a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/reposts').count= post.repostsCount != 0 ? post.repostsCount : ''
+							div.favorite
+								button.favoriteButton(title= isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+									i.fa.fa-star
+								a(href=url + '/' + post.user.screenName + '/post/' + post.id + '/favorites').count= post.favoritesCount != 0 ? post.favoritesCount : ''
+				if login
+					form#replyForm
+						textarea(name='text')= '@' + post.user.screenName + ' '
+						input(name='in_reply_to_post_id', type='hidden', value=post.id)
+						input(type='submit', value!='&#xf112; Reply')
+						div.imageAttacher
+							p
+								i.fa.fa-picture-o
+							input(name='image', type='file', accept='image/*')
+				else
+					p この投稿に返信するにはログインしてください。

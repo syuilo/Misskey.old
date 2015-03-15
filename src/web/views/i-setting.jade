@@ -10,6 +10,8 @@ html(lang='ja', dir='ltr')
 		script(src='/resources/scripts/i-setting.js')
 	
 	body
+		include templates/header
+		
 		main(role='main')
 			nav
 				a(href='/')
@@ -40,14 +42,6 @@ html(lang='ja', dir='ltr')
 						i(class='fa fa-cogs')
 						| 設定
 				div#profile
-					form#iconEditForm
-						label
-							h2 アイコン
-							div.icon
-								p 画像をドロップまたは選択
-								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
-								input(name='image', type='file', accept='image/*')
-						input.ui-inputSubmit(type='submit', value='アップデート')
 					form#profileEditForm
 						label
 							h2.title 名前
@@ -99,7 +93,15 @@ html(lang='ja', dir='ltr')
 							div.content
 								input.ui-inputColor(name='color', type='color', value=me.color)
 						input.ui-inputSubmit(type='submit', value='アップデート')
-				
+					form#iconEditForm
+						label
+							h2 アイコン
+							div.icon
+								p 画像をドロップまたは選択
+								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
+								input(name='image', type='file', accept='image/*')
+						input.ui-inputSubmit(type='submit', value='アップデート')
+					
 				div#design
 					form#headerEditForm
 						label
@@ -119,13 +121,28 @@ html(lang='ja', dir='ltr')
 						input.ui-inputSubmit(type='submit', value='アップデート')
 
 				div#webtheme
-					p comming soon....
+					button#webthemeResetButton デフォルトのテーマに戻す
+					ul.themes
+						each theme in webthemes
+							li.theme
+								div.content
+									div.thumbnail(style='background-image: url("https://misskey.xyz/img/webtheme_thumbnail/#{theme.id}")')
+									div.form
+										cite.title= theme.name
+										p.description= theme.description
+										div.author
+											span.name= theme.user.screenName
+											img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
+										form
+											input(name='theme_id', value=theme.id, type='hidden')
+											input.ui-inputSubmit(type='submit', value='インストール')
+								h2.title= theme.name
 
 				div#application
-					p comming soon....
+					p coming soon....
 
 				div#mail
-					p comming soon....
+					p coming soon....
 
 				div#logout
 					a(href='/logout') ログアウト

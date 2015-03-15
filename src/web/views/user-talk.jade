@@ -1,46 +1,65 @@
 doctype html
 
-html(lang='ja', dir='ltr', data-meId= me.id, data-otherpartyId= otherparty.id)
+html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 	head
 		include templates/head
-		meta(name='description', content='ママに咲いたカーネーション')
-		meta(name='keywords', content='Misskey')
 		title= 'トーク: ' + otherparty.name
 		link(rel='stylesheet', href='/resources/styles/user-talk.css')
-		link(rel='stylesheet', href='/resources/styles/talk.css')
 		script(src=apiUrl + ':1207/socket.io/socket.io.js')
-		script(src='/resources/scripts/talk.js')
 		script(src='/resources/scripts/user-talk.js')
 		
 	body
+		if !noHeader
+			include templates/header
 		main
 			div#timeline
 				div.timelineContainer
 					div.timelineMain
 						div.talkStream#stream
+							if messages == null || messages.length == 0
+								p#emptyStream
+									i.fa.fa-info-circle
+									| このユーザーとまだ会話したことがありませんっ
+									br
+									a(href='http://syuilo.com/447', target='_blank') 使い方を見る
 							ol.messages
 								each message in messages
 									li(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 											title!= '#{message.createdAt}&#x0A;via #{message.app.name}'
 											data-id= message.id
-											data-userId= message.user.id
-											data-userComment= message.user.comment
-											data-userColor= message.user.color)
+											data-is-readed!= message.isReaded.toString()
+											data-is-deleted!= message.isDeleted.toString()
+											data-user-id= message.user.id
+											data-user-color= message.user.color)
 										article
-											a(href=url + '/' + message.user.screenName)
+											a.iconAnchor(href= url + '/' + message.user.screenName, title= message.user.comment)
 												img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
 											div.contentContainer
+												if !message.isDeleted && (message.userId == me.id)
+													if message.isReaded
+														p.readed 既読
+													button.deleteButton(role='button', title='メッセージを削除')
+														img(src='/resources/images/destroy.png', alt='Delete')
 												div.content
-													p.text!= parseText(message.text)
-													if message.isImageAttached
-														img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+													if !message.isDeleted
+														p.text!= parseText(message.text)
+														if message.isImageAttached
+															img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+													else
+														p.isDeleted このメッセージは削除されました
 												time(datetime=message.createdAt)= message.createdAt
-				div#postFormContainer
-					form#postForm(enctype='multipart/form-data')
-						textarea(name='text', placeholder='Message...')
-						input(name='otherparty_id', type='hidden', value=otherparty.id)
-						input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
-						div.imageAttacher(title='メッセージに画像を添付')
-							p
-								i(class='fa fa-picture-o')
-							input(name='image', type='file', accept='image/*')
+							if !followingMe
+								p#noFollowingMe
+									i.fa.fa-exclamation-circle
+									| このユーザーからフォローされていないためメッセージを送れませんっ！
+							div#otherpartyStatus
+				if followingMe
+					div#postFormContainer
+						form#postForm(enctype='multipart/form-data')
+							textarea(name='text', placeholder='Message...')
+							input(name='otherparty_id', type='hidden', value=otherparty.id)
+							input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
+							div.imageAttacher(title='メッセージに画像を添付')
+								p
+									i(class='fa fa-picture-o')
+								input(name='image', type='file', accept='image/*')
