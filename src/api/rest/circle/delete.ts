@@ -15,7 +15,10 @@ var circleDelete = (req: any, res: APIResponse) => {
 		}
 		var circleId = req.body.circle_id;
 		Circle.find(circleId, (circle: Circle) => {
-			
+			if (circle == null) {
+				res.apiError(404, 'Not found that circle :(');
+				return;
+			}
 		});
 	});
 }
