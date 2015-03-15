@@ -1,6 +1,6 @@
 require! {
 	async
-	'../../../models/User': User
+	'../../../models/user': User
 	'../../auth': authorize
 }
 module.exports = (req, res) ->
