@@ -3,10 +3,8 @@ require! {
 	'../../../models/application': Application
 	'../../../models/circle': Circle
 	'../../../models/user': User
+	'../../auth': authorize
 }
-
-authorize = require '../../auth'
-
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		if req.body.circle_id == null
