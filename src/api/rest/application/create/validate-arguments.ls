@@ -1,7 +1,9 @@
 is-null-or-empty = -> it == null || it == ''
 
+config = require('../../../../config')
+
 validate-arguments = (app, name, callback-url, description, developer-name, developer-website) ->
-	| app.name != 'Web' => [403 'Your application has no permission']
+	| app.id != config.webClientId => [403 'Your application has no permission']
 	| is-null-or-empty name => [400 'name cannot be empty :(']
 	| is-null-or-empty callback-url => [400 'callback_url cannot be empty :(']
 	| is-null-or-empty description => [400 'description cannot be empty :(']
