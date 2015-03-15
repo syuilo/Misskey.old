@@ -19,6 +19,10 @@ var circleDelete = (req: any, res: APIResponse) => {
 				res.apiError(404, 'Not found that circle :(');
 				return;
 			}
+			if (circle.userId != user.id) {
+				res.apiError(400, 'That circle is not your circle :(');
+				return;
+			}
 		});
 	});
 }
