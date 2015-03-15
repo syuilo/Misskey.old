@@ -9,9 +9,9 @@ require! {
 paths =
 	ts: './src/**/*.ts'
 	ls: './src/**/*.ls'
-	webRes: './src/web/resources/**/**'
-	webViews: './src/web/views/**/*.jade'
-	webDevReferences: './src/reference/**/*.jade'
+	web-res: './src/web/resources/**/**'
+	web-views: './src/web/views/**/*.jade'
+	web-dev-references: './src/reference/**/*.jade'
 
 gulp.task \clean del.bind(null, ['./bin/**'])
 
@@ -28,22 +28,22 @@ gulp.task \build-ts ->
 		.pipe ts do
 			target: \ES5
 			module: \commonjs
-			removeComments: true
-			noImplicitAny: true
-			declarationFiles: false
+			remove-comments: true
+			no-implicit-any: true
+			declaration-files: false
 		.js
 		.pipe gulp.dest './bin/'
 
 gulp.task \build-web-res ->
-	gulp.src paths.webRes
+	gulp.src paths.web-res
 		.pipe plumber!
 		.pipe gulp.dest './bin/web/resources'
 
 gulp.task \build-web-views ->
-	gulp.src paths.webViews
+	gulp.src paths.web-views
 		.pipe plumber!
 		.pipe gulp.dest './bin/web/views'
-	gulp.src paths.webDevReferences
+	gulp.src paths.web-dev-references
 		.pipe plumber!
 		.pipe gulp.dest './bin/reference'
 
@@ -52,7 +52,7 @@ gulp.task \build <[ build-ls build-ts build-web-res build-web-views ]>
 gulp.task \watch <[ build ]> ->
 	gulp.watch paths.ls, <[ build-ls ]>
 	gulp.watch paths.ts, <[ build-ts ]>
-	gulp.watch paths.webRes, <[ build-web-res ]>
-	gulp.watch paths.webViews, <[ build-web-views ]>
+	gulp.watch paths.web-res, <[ build-web-res ]>
+	gulp.watch paths.web-views, <[ build-web-views ]>
 
 gulp.task \default <[ build ]>
