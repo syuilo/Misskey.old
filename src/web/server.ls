@@ -95,8 +95,7 @@ web-server = express!
 				..me = null
 			callback!
 
-# Statics
-web-server
+	# Statics
 	..get '/favicon.ico' (req, res, next) ->
 		res.sendFile path.resolve(__dirname + '/resources/favicon.ico')
 	
