@@ -46,6 +46,7 @@
     "url": "https://github.com/syuilo/Misskey.git"
   },
   "homepage": "https://github.com/syuilo/Misskey.git",
+  "bugs": "http://github.com/syuilo/Misskey/issues",
   "license": "MIT",
   "author": {
     "name": "syuilo",
