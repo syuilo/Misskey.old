@@ -59,13 +59,13 @@ web-server = express!
 			'Access-Control-Allow-Credentials': true
 			'X-Frame-Options': \SAMEORIGIN
 
-req
-	..login = (req.session != null && req.session.user-id != null) # Is logged
-	..data = # Render datas
-		config: config
-		url: config.public-config.url
-		api-url: config.public-config.api-url
-		login: req.login
+		req
+			..login = (req.session != null && req.session.user-id != null) # Is logged
+			..data = # Render datas
+				config: config
+				url: config.public-config.url
+				api-url: config.public-config.api-url
+				login: req.login
 
 # Renderer function
 res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
