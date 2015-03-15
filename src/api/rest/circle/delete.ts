@@ -2,6 +2,7 @@
 
 import APIResponse = require('../../api-response');
 import Application = require('../../../models/application');
+import Circle = require('../../../models/circle');
 import User  = requier('../../../models/user');
 
 var authorize = require('../../auth');
@@ -13,6 +14,9 @@ var circleDelete = (req: any, res: APIResponse) => {
 			return;
 		}
 		var circleId = req.body.circle_id;
+		Circle.find(circleId, (circle: Circle) => {
+			
+		});
 	});
 }
 
