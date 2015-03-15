@@ -5,6 +5,8 @@ require! {
 	'../../../models/user': User
 }
 
+authorize = require '../../auth'
+
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		if req.query.circle_id == null
