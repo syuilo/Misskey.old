@@ -1,0 +1,5 @@
+short_name:  'Misskey'
+name:  'Misskey'
+start_url:  'https://misskey.xyz'
+display: 'standalone'
+orientation: 'landscape'
