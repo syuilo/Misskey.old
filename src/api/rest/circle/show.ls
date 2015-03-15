@@ -15,4 +15,4 @@ module.exports = (req, res) ->
 			if circle == null
 				res.apiError(404, 'Not found that circle :(')
 				return
-			res.apiRender(circle);
+			res.apiRender(circle)
