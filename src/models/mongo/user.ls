@@ -29,4 +29,4 @@ user-schema = new mongoose.Schema do
 	url: { type: String }
 	using-web-theme-id: { type: Number }
 
-export = db.model 'User' user-schema
+module.exports = db.model 'User' user-schema
