@@ -1,6 +1,8 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
+import User = require('./user');
+
 export = Circle;
 
 class Circle {
@@ -59,5 +61,13 @@ class Circle {
         db.query('delete from circle_join_requests where id = ?',
             [this.id],
             callback);
+    }
+
+    public static buildResponseObject(circle: Circle, callback: (obj: any) => void): void {
+		var obj: any = circle;
+		User.find(circle.userId, (user: User) => {
+			obj.user = user.filt();
+			callback(obj);
+		});
     }
 }
