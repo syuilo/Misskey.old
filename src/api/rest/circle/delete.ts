@@ -8,7 +8,11 @@ var authorize = require('../../auth');
 
 var circleDelete = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
-		
+		if (req.body.circle_id == null) {
+			res.apiError(400, 'circle_id parameter is required :(');
+			return;
+		}
+		var circleId = req.body.circle_id;
 	});
 }
 
