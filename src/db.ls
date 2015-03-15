@@ -1,1 +1,1 @@
-module.exports = require('mysql').createPool require('./config').db
+module.exports = require(\mysql).createPool require('./config').db
