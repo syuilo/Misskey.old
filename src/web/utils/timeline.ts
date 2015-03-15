@@ -44,13 +44,18 @@ class Timeline {
 		async.map(posts,(post: any, mapNext: any) => {
 			if (post.repostFromPostId != null && post.repostFromPostId != 0) {
 				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
-					var _repostFromPost: any = repostFromPost;
-					_repostFromPost.isRepostToPost = true;
-					_repostFromPost.source = post;
-					User.find(post.userId,(repostedByUser: User) => {
-						_repostFromPost.repostedByUser = repostedByUser;
-						mapNext(null, _repostFromPost);
-					});
+					var _repostFromPost: any = repostFromPost
+					if (_repostFromPost != null) {
+						_repostFromPost.isRepostToPost = true;
+						_repostFromPost.source = post;
+						User.find(post.userId,(repostedByUser: User) => {
+							_repostFromPost.repostedByUser = repostedByUser;
+							mapNext(null, _repostFromPost);
+						});
+					} else {
+						post.isRepostToPost = false;
+					mapNext(null, post);
+					}
 				});
 			} else {
 				post.isRepostToPost = false;
@@ -58,85 +63,87 @@ class Timeline {
 			}
 		},(err: any, timelinePosts: any[]) => {
 				async.map(timelinePosts,(post: any, mapNext: any) => {
-					post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
-
-					async.series([
-						(seriesNext: any) => {
-							Application.find(post.appId,(app: Application) => {
-								delete app.consumerKey;
-								delete app.callbackUrl;
-								seriesNext(null, app);
-							});
-						},
-						(seriesNext: any) => {
-							User.find(post.userId,(user: User) => {
-								seriesNext(null, user);
-							});
-						},
-						/*
-						(seriesNext: any) => {
-							PostFavorite.getPostFavoritesCount(post.id,(favoritesCount: number) => {
-								seriesNext(null, favoritesCount);
-							});
-						},
-						(seriesNext: any) => {
-							Post.getRepostCount(post.id,(repostsCount: number) => {
-								seriesNext(null, repostsCount);
-							});
-						},
-						*/
-						(seriesNext: any) => {
-							if (me != null) {
-								PostFavorite.isFavorited(post.id, me.id,(isFavorited: boolean) => {
-									seriesNext(null, isFavorited);
+					if (post != null) {
+						post.isReply = post.inReplyToPostId != 0 && post.inReplyToPostId != null;
+						
+						async.series([
+							(seriesNext: any) => {
+								Application.find(post.appId,(app: Application) => {
+									delete app.consumerKey;
+									delete app.callbackUrl;
+									seriesNext(null, app);
 								});
-							} else {
-								seriesNext(null, null);
-							}
-						},
-						(seriesNext: any) => {
-							if (me != null) {
-								Post.isReposted(post.id, me.id,(isReposted: boolean) => {
-									seriesNext(null, isReposted);
+							},
+							(seriesNext: any) => {
+								User.find(post.userId,(user: User) => {
+									seriesNext(null, user);
 								});
-							} else {
-								seriesNext(null, null);
-							}
-						},
-						(seriesNext: any) => {
-							if (!post.isReply) {
-								seriesNext(null, null);
-								return;
-							}
-							Post.find(post.inReplyToPostId,(replyPost: any) => {
-								replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
-								post.reply = replyPost;
-								User.find(post.reply.userId,(replyUser: User) => {
-									post.reply.user = replyUser;
-
-									// More talk
-									if (post.reply.isReply) {
-										getMoreTalk(post.reply,(talk: any[]) => {
-											post.moreTalk = talk;
+							},
+							/*
+							(seriesNext: any) => {
+								PostFavorite.getPostFavoritesCount(post.id,(favoritesCount: number) => {
+									seriesNext(null, favoritesCount);
+								});
+							},
+							(seriesNext: any) => {
+								Post.getRepostCount(post.id,(repostsCount: number) => {
+									seriesNext(null, repostsCount);
+								});
+							},
+							*/
+							(seriesNext: any) => {
+								if (me != null) {
+									PostFavorite.isFavorited(post.id, me.id,(isFavorited: boolean) => {
+										seriesNext(null, isFavorited);
+									});
+								} else {
+									seriesNext(null, null);
+								}
+							},
+							(seriesNext: any) => {
+								if (me != null) {
+									Post.isReposted(post.id, me.id,(isReposted: boolean) => {
+										seriesNext(null, isReposted);
+									});
+								} else {
+									seriesNext(null, null);
+								}
+							},
+							(seriesNext: any) => {
+								if (!post.isReply) {
+									seriesNext(null, null);
+									return;
+								}
+								Post.find(post.inReplyToPostId,(replyPost: any) => {
+									replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
+									post.reply = replyPost;
+									User.find(post.reply.userId,(replyUser: User) => {
+										post.reply.user = replyUser;
+	
+										// More talk
+										if (post.reply.isReply) {
+											getMoreTalk(post.reply,(talk: any[]) => {
+												post.moreTalk = talk;
+												seriesNext(null, null);
+											});
+										} else {
 											seriesNext(null, null);
-										});
-									} else {
-										seriesNext(null, null);
-									}
+										}
+									});
 								});
-							});
-						}],
-						(err: any, results: any) => {
-							post.app = results[0];
-							post.user = results[1];
-							post.isFavorited = results[2];
-							post.isReposted = results[3];
-							mapNext(null, post);
+							}],
+							(err: any, results: any) => {
+								post.app = results[0];
+								post.user = results[1];
+								post.isFavorited = results[2];
+								post.isReposted = results[3];
+								mapNext(null, post);
 						});
-				},(err: any, results: Post[]) => {
-						callback(results);
-					});
+					}
+			},(err: any, results: Post[]) => {
+				callback(results);
 			});
+		});
 
 		function getMoreTalk(post: Post, callback: (talk: any[]) => void) {
 			Post.getBeforeTalk(post.inReplyToPostId,(moreTalk: Post[]) => {
