@@ -19,7 +19,7 @@ server = https.create-server do
 		res.write-head 200 "Content-Type": "text/plain"
 		res.end 'kyoppie'
 	
-server.listen 1207
+server.listen config.port.streaming
 
 io = SocketIO.listen server, origins: 'misskey.xyz:*'
 
