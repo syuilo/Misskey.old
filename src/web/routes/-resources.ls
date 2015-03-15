@@ -5,11 +5,10 @@ require! {
 	gm
 	compression
 	less
-	'../../models/user'
-	'../../models/webtheme'
+	'../../models/user': User
+	'../../models/webtheme': Webtheme
+	'../../config': config
 }
-
-'../../config': config
 
 export = router
 
