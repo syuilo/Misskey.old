@@ -23,6 +23,9 @@ var circleDelete = (req: any, res: APIResponse) => {
 				res.apiError(400, 'That circle is not your circle :(');
 				return;
 			}
+			circle.destroy(() => {
+				res.apiRender(circle);
+			});
 		});
 	});
 }
