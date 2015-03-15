@@ -4,12 +4,14 @@ import APIResponse = require('../../api-response');
 import User = require('../../../models/user');
 import Application = require('../../../models/application');
 
+import config = require('../config');
+
 var authorize = require('../../auth');
 
 var applicationDelete = (req: any, res: APIResponse) => {
 	authorize(req, res, (user: User, app: Application) => {
 
-		if (app.name != 'Web') {
+		if (app.id != config.webClientId) {
 			res.apiError(403, 'access is not allowed :(');
 			return;
 		}
