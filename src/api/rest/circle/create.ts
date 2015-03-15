@@ -13,17 +13,20 @@ var circleCreate = (req: any, res: APIResponse) => {
 			res.apiError(400, 'name parameter is required :(');
 			return;
 		}
+		var name = req.body.name;
 		if (req.body.screen_name == null) {
 			res.apiError(400, 'screen_name is required :(');
 			return;
 		}
+		var screenName = req.body.screen_name;
 		if (req.body.description == null) {
 			res.apiError(400, 'description parameter is required :(');
 			return;
 		}
-		Circle.existScreenName(req.body.screen_name, (exist: boolean) => {
+		var description = req.body.description;
+		Circle.existScreenName(screenName, (exist: boolean) => {
 			if (!exist) {
-				Circle.create(user.id, req.body.name, req.body.screen_name, req.body.description, (circle: Circle) => {
+				Circle.create(user.id, name, screenName, description, (circle: Circle) => {
 					res.apiRender(circle);
 				});
 			} else {
