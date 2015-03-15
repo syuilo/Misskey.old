@@ -27,4 +27,5 @@ var userSchema = new mongoose.Schema({
 	usingWebThemeId: { type: Number }
 });
 
-export = db.model('User', userSchema);
+var model = db.model('User', userSchema);
+export = model;
