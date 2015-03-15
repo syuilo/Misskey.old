@@ -44,13 +44,18 @@ class Timeline {
 		async.map(posts,(post: any, mapNext: any) => {
 			if (post.repostFromPostId != null && post.repostFromPostId != 0) {
 				Post.find(post.repostFromPostId,(repostFromPost: Post) => {
-					var _repostFromPost: any = repostFromPost;
-					_repostFromPost.isRepostToPost = true;
-					_repostFromPost.source = post;
-					User.find(post.userId,(repostedByUser: User) => {
-						_repostFromPost.repostedByUser = repostedByUser;
-						mapNext(null, _repostFromPost);
-					});
+					if (repostFromPost != null) {
+						var _repostFromPost: any = repostFromPost;
+						_repostFromPost.isRepostToPost = true;
+						_repostFromPost.source = post;
+						User.find(post.userId,(repostedByUser: User) => {
+							_repostFromPost.repostedByUser = repostedByUser;
+							mapNext(null, _repostFromPost);
+						});
+					} else {
+						post.isRepostToPost = false;
+						mapNext(null, post);
+					}
 				});
 			} else {
 				post.isRepostToPost = false;
@@ -109,6 +114,11 @@ class Timeline {
 								return;
 							}
 							Post.find(post.inReplyToPostId,(replyPost: any) => {
+								if (replyPost == null) {
+									replyPost.isReply = false;
+									seriesNext(null, null);
+									return;
+								}
 								replyPost.isReply = replyPost.inReplyToPostId != 0 && replyPost.inReplyToPostId != null;
 								post.reply = replyPost;
 								User.find(post.reply.userId,(replyUser: User) => {
