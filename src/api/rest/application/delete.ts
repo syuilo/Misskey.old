@@ -4,7 +4,7 @@ import APIResponse = require('../../api-response');
 import User = require('../../../models/user');
 import Application = require('../../../models/application');
 
-import config = require('../config');
+import config = require('../../../config');
 
 var authorize = require('../../auth');
 
