@@ -1,29 +1,16 @@
 require! {
-	'../../api-response': APIResponse
-	'../../../models/application': Application
 	'../../../models/circle': Circle
-	'../../../models/user': User
 }
-
-authorize = require '../../auth';
-
+authorize = require '../../auth'
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
-		if req.body.name == null
-			res.apiError 400, 'name parameter is required :(';
-			return
 		name = req.body.name
-		if req.body.screen_name == null
-			res.apiError 400, 'screen_name parameter is required :('
-			return
 		screen-name = req.body.screen_name
-		if req.body.description == null
-			res.apiError 400, 'description parameter is required :('
-			return
 		description = req.body.description
-		Circle.existScreenName screen-name, (exist) ->
-			if exist
-				res.apiError 400, 'That screen name is exist :('
-				return
-			Circle.create user.id, name, screen-name, description, (circle) ->
-				res.apiRender circle
+		switch
+			| req.body.name == null => res.api-error 400 'name parameter is required :('
+			| req.body.screen_name == null => res.api-error 400 'screen_name parameter is required :('
+			| req.body.description == null => res.api-error 400 'description parameter is required :('
+			| _ => Circle.exist-screen-name screen-name, (exist) ->
+				| exist => res.api-error 400 'That screen name is exist :('
+				| _ => Circle.create user.id, name, screen-name, description, (circle) -> res.api-render circle

@@ -9,12 +9,10 @@ authorize = require '../../auth'
 
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
-		if req.query.circle_id == null
-			res.apiError 400, 'circle_id is required :('
-			return
-		circle_id = req.query.circle_id
-		Circle.find circle_id, (circle) ->
-			if circle == null
-				res.apiError 404, 'Not found that circle :('
-				return
-			res.apiRender circle
+		circle-id = req.query.circle_id
+		if circle-id == null
+			then res.api-error 400 'circle_id is required :('
+			else Circle.find circle_id, (circle) ->
+				if circle == null
+					then res.api-error 404 'Not found that circle :('
+					else res.api-render circle

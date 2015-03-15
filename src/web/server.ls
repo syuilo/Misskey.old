@@ -27,7 +27,7 @@ web-server = express!
 	..set 'views', __dirname + '/views'
 	..locals.compile-debug = false
 
-	..use body-parser.urlencode extended: true
+	..use body-parser.urlencoded extended: true
 	..use cookie-parser config.cookie_pass
 
 	# Session settings
@@ -59,41 +59,41 @@ web-server = express!
 			'Access-Control-Allow-Credentials': true
 			'X-Frame-Options': \SAMEORIGIN
 
-req
-	..login = (req.session != null && req.session.user-id != null) # Is logged
-	..data = # Render datas
-		config: config
-		url: config.public-config.url
-		api-url: config.public-config.api-url
-		login: req.login
+		req
+			..login = (req.session != null && req.session.user-id != null) # Is logged
+			..data = # Render datas
+				config: config
+				url: config.public-config.url
+				api-url: config.public-config.api-url
+				login: req.login
 
-# Renderer function
-res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
+		# Renderer function
+		res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
 
-if req.login
-	user-id = req.session.user-id
-	User.find user-id, (user) ->
-		Notice.find-byuser-id user.id, (notices) ->
-			if notices != null
-				async.map notices, (notice, next) ->
-					Application.find notice.appId, (app) -> next null, notice.app
-				, (err, results) ->
-					req
-						..data
-							..notices = results
+		if req.login
+			user-id = req.session.user-id
+			User.find user-id, (user) ->
+				Notice.find-byuser-id user.id, (notices) ->
+					if notices != null
+						async.map notices, (notice, next) ->
+							Application.find notice.appId, (app) -> next null, notice.app
+						, (err, results) ->
+							req
+								..data
+									..notices = results
+									..me = user
+								..me = user
+							callback!
+					else
+						req
+							..data.me = user
 							..me = user
-						..me = user
-					callback!
-			else
-				req
-					..data.me = user
-					..me = user
-				callback!
-else
-	req
-		..data.me = null
-		..me = null
-	callback!
+						callback!
+		else
+			req
+				..data.me = null
+				..me = null
+			callback!
 
 # Statics
 webServer

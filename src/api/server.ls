@@ -3,8 +3,8 @@ require! {
 	cookie
 	multer
 	redis
-	body-parser
-	cookie-parser
+	'body-parser': body-parser
+	'cookie-parser': cookie-parser
 	'express-session': session
 	'js-yaml': yaml
 	'../config': config

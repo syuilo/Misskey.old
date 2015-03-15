@@ -5,23 +5,17 @@ require! {
 	'../../../models/user': User
 }
 
-authorize = require('../../auth');
+authorize = require '../../auth'
 
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		if req.body.circle_id == null
-			res.apiError 400, 'circle_id parameter is required :(';
-			return
-		Circle.find req.body.circle_id, (circle) ->
-			if circle == null
-				res.apiError 404, 'Not found that circle :(';
-				return;
-			if circle.userId != user.id
-				res.apiError 403, 'That is not your circle :('
-				return
-			if req.body.name != null
-				circle.name = req.body.name
-			if req.body.description != null
-				circle.description = req.body.description
-			circle.update ->
-				res.apiRender circle;
+			then res.apiError 400, 'circle_id parameter is required :('
+			else Circle.find req.body.circle_id, (circle) ->
+				switch
+					| circle == null => res.api-error 404 'Not found that circle :('
+					| circle.user-id != user.id => res.api-error 403 'That is not your circle :('
+					| _ =>
+						circle.name = req.body.name if req.body.name != null
+						circle.description = req.body.description if req.body.description != null 
+						circle.update -> res.api-render circle
