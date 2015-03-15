@@ -19,11 +19,13 @@ var userSchema = new mongoose.Schema({
 	isSuspended: { type: Boolean, default: false },
 	lang: { type: String, default: 'ja', required: true },
 	lastName: { type: String },
+	links: { type: [String] },
 	location: { type: String },
 	lv: { type: Number },
 	name: { type: String },
 	password: { type: String, required: true },
 	screenName: { type: String, required: true },
+	tags: { type: [String] },
 	url: { type: String },
 	usingWebThemeId: { type: Number }
 });
