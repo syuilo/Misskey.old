@@ -6,7 +6,7 @@ require! {
 	'../config': config
 }
 
-web-server = express!;
+web-server = express!
 	..disable 'x-powered-by'
 	..use compress!
 	..use minify!
