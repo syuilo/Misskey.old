@@ -1,8 +1,9 @@
 /// <reference path="../../../typings/bundle.d.ts" />
 
 import mongoose = require('mongoose');
+import config = require('../../config');
 
-var db = mongoose.connect('mongodb://localhost/Misskey');
+var db = mongoose.connect(config.mongo.uri, config.mongo.options);
 
 var userSchema = new mongoose.Schema({
 	bio: { type: String },
