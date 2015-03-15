@@ -23,5 +23,5 @@ module.exports = (req, res) ->
 				circle.name = req.body.name
 			if req.body.description != null
 				circle.description = req.body.description
-			circle.update () ->
+			circle.update ->
 				res.apiRender circle;
