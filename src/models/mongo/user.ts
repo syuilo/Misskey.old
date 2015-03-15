@@ -15,7 +15,7 @@ var userSchema = new mongoose.Schema({
 	firstName: { type: String },
 	gender: { type: String },
 	isPlused: { type: Boolean },
-	isSuspended: { type: Boolean }
+	isSuspended: { type: Boolean },
 	lang: { type: String },
 	lastName: { type: String },
 	location: { type: String },
@@ -24,7 +24,7 @@ var userSchema = new mongoose.Schema({
 	password: { type: String },
 	screenName: { type: String, required: true },
 	url: { type: String },
-	usingWebThemeId: { type: Number },
+	usingWebThemeId: { type: Number }
 });
 
 export = db.model('User', userSchema);
