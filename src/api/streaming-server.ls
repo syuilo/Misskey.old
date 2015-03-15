@@ -23,7 +23,7 @@ server.listen 1207
 
 io = SocketIO.listen server, origins: 'misskey.xyz:*'
 
-RedisStore  (require \connect-redis) session
+RedisStore = (require \connect-redis) session
 session-store = new RedisStore do
 	db: 1
 	prefix: 'misskey-session:'
