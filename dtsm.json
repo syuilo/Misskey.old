@@ -9,58 +9,31 @@
   "bundle": "typings/bundle.d.ts",
   "dependencies": {
     "node/node.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "a5c5c908920a7d3d7b127b63bdeabe1d8911a284"
     },
     "express/express.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "a5c5c908920a7d3d7b127b63bdeabe1d8911a284"
     },
     "async/async.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "494b30d2327ab489fa5b5f082a3c9a299e4c5644"
     },
     "mysql/mysql.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "494b30d2327ab489fa5b5f082a3c9a299e4c5644"
     },
     "body-parser/body-parser.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
     },
     "cookie-parser/cookie-parser.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
     },
     "express-session/express-session.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "30cfe7dedb3ae990a369cda93995d69b169465bd"
     },
     "redis/redis.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "2cc4331067a81e2ae6bc4590e7b33bf286c8f28f"
     },
     "bcrypt/bcrypt.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "cookie/cookie.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "gm/gm.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "multer/multer.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "js-yaml/js-yaml.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "socket.io/socket.io.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "marked/marked.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "compression/compression.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "less/less.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
-    },
-    "moment/moment.d.ts": {
-      "ref": "3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277"
+      "ref": "2cc4331067a81e2ae6bc4590e7b33bf286c8f28f"
     }
   }
 }

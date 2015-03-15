@@ -1,4 +1,4 @@
-/// <reference path="../../typings/bundle.d.ts" />
+﻿/// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
 export = Circle;
@@ -22,13 +22,10 @@ class Circle {
         this.userId = circle.user_id;
     }
 
-    public static create(userId: number, name: string, screenName: string, description: string, callback: (circle: Circle) => void): void {
-        db.query('insert into circles (user_id, name, screen_name, description) values (?, ?, ?, ?)', [userId, name, screenName, description], (err: any, info: any) => {
-            if (err) console.log(err);
-            Circle.find(info.insertId, (circle: Circle) => {
-                callback(circle);
-            })
-        });
+    public static create(userId: number, name: string, description: string, callback: (circle: Circle) => void): void {
+        db.query('insert into circles (user_id, name, description) values (?, ?, ?)',
+            [userId, name, description],
+            (err, circles) => callback(new Circle(circles[0])));
     }
 
     public static find(id: number, callback: (circle: Circle) => void): void {
@@ -41,12 +38,6 @@ class Circle {
         db.query("select * form circles where user_id = ?",
             [userId],
             (err, circles) => callback(new Circle(circles[0])));        
-    }
-
-    public static existScreenName(screenName: string, callback: (exist: boolean) => void): void {
-        db.query('select exists (select * from circles where screen_name = ?) as exist',
-            [screenName],
-            (err: any, circles: any[]) => callback(circles[0].exist == 1 ? true : false));
     }
 
     public update(callback?: () => void): void {

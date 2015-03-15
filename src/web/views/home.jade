@@ -1,25 +1,62 @@
-extends ./layouts/home
+doctype html
 
-block title
-	title Misskey ホーム
-
-block assets
-	link(rel='stylesheet', href='/resources/styles/timeline.css')
-	link(rel='stylesheet', href='/resources/styles/theme/timeline.css')
-	script(src=apiUrl + ':1207/socket.io/socket.io.js')
-	script(src='/resources/scripts/timeline.js')
-	script(src='/resources/scripts/home.js')
-
-block content
-	div#timeline
-		div#postFormContainer
-			form#postForm(enctype='multipart/form-data')
-				textarea(name='text', placeholder='What\'s up?')
-				input(type='submit', value!='Update &#xf1d8;')
-				div.imageAttacher
-					p
-						i.fa.fa-picture-o
-					input(name='image', type='file', accept='image/*')
-			
-		div.timelineContainer
-			div.timelineMain!= timelineHtml
+html(lang='ja', dir='ltr')
+	head
+		include templates/head
+		meta(name='description', content='ママに咲いたカーネーション')
+		meta(name='keywords', content='Misskey')
+		title Misskey ホーム
+		link(rel='stylesheet', href='/resources/styles/home.css')
+		link(rel='stylesheet', href='/resources/styles/timeline.css')
+		script(src=apiUrl + ':1207/socket.io/socket.io.js')
+		script(src='/resources/scripts/timeline.js')
+		script(src='/resources/scripts/home.js')
+		
+	body
+		nav
+			div#me
+				img#meIcon(src=url + '/img/icon/' + me.screenName, alt='icon')
+				span#meName(contenteditable)= me.name
+				span#meScreenName= me.screenName
+				p#meComment(contenteditable)= me.comment
+			table#me-status
+				tr
+					th 投稿
+					td: a#me-postsCount(href=url + '/' + me.screenName)= postsCount
+				tr
+					th フォロー
+					td: a#me-followingsCount(href=url + '/' + me.screenName + '/following')= followingsCount
+				tr
+					th フォロワー
+					td: a#me-followersCount(href=url + '/' + me.screenName + '/followers')= followersCount
+			ul
+				li: a(href=url)
+					i(class='fa fa-home')
+					| ホーム
+				li: a(href=url + '/i/mention')
+					i(class='fa fa-at')
+					| メンション
+				li: a(href=url + '/i/talks')
+					i(class='fa fa-comments')
+					| トーク
+			ul
+				li: a(href=url + '/i')
+					i(class='fa fa-user')
+					| マイ メニュー
+				li: a(href=url + '/i/setting')
+					i(class='fa fa-cog')
+					| 設定
+		
+		main
+			div#timeline
+				div#postFormContainer
+					form#postForm(enctype='multipart/form-data')
+						textarea(name='text', placeholder='What\'s up?')
+						input(type='submit', value='Update')
+						div.imageAttacher
+							p
+								i(class='fa fa-picture-o')
+							input(name='image', type='file', accept='image/*')
+					
+				div.timelineContainer
+					div.timelineMain!= timelineHtml

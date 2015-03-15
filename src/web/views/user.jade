@@ -5,34 +5,15 @@ block title
 
 block content
 	if page == 'home'
-		section#bioSection
-			h2 自己紹介
-			div#bio!= bio
-	if page == 'followings'
-		section#followingsSection
-			h2 Followings
-			div.usersList
-				ol
-					each user in followings
-						li(data-user-verified!= user.isPremium.toString())
-							a(href= '/' + user.screenName)
-								img.icon(src='/img/icon/' + user.screenName, alt='icon')
-							h2
-								a(href='/' + user.screenName)= user.name
-								span.screenName= '@' + user.screenName
-							if user.comment != null
-								p.comment= user.comment
-	if page == 'followers'
-		section#followersSection
-			h2 Followers
-			div.usersList
-				ol
-					each user in followers
-						li(data-user-verified!= user.isPremium.toString())
-							a(href= '/' + user.screenName)
-								img.icon(src='/img/icon/' + user.screenName, alt='icon')
-							h2
-								a(href='/' + user.screenName)= user.name
-								span.screenName= '@' + user.screenName
-							if user.comment != null
-								p.comment= user.comment
+		div#bio!= content
+	if page == 'followings' || page == 'followers'
+		div.usersList
+			ol
+				each user in content
+					li
+						a(href= '/' + user.screenName)
+							img.icon(src='/img/icon/' + user.screenName, alt='icon')
+						h2
+							a(href='/' + user.screenName)= user.name
+							span.screenName= '@' + user.screenName
+						p.comment= user.comment

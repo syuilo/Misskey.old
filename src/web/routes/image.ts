@@ -5,99 +5,62 @@ import path = require('path');
 import express = require('express');
 import gm = require('gm');
 import User = require('../../models/user');
-import UserImage = require('../../models/user-image');
 import Post = require('../../models/post');
-import PostImage = require('../../models/post-image');
 import TalkMessage = require('../../models/talk-message');
-import TalkMessageImage = require('../../models/talk-message-image');
-import WebTheme = require('../../models/webtheme');
 import config = require('../../config');
 
 export = router;
 
-function router(app: express.Express): void {
-	function displayImage(req: any, res: any, image: Buffer, imageUrl: string, fileName: string, author: User) {
-		var img = gm(image);
-		img.size((err, val) => {
-			res.display(req, res, 'image', {
-				imageUrl: imageUrl,
-				fileName: author.screenName + '.jpg',
-				author: author,
-				width: val.width,
-				height: val.height
-			});
-		});
-	}
-
-	/* User icon */
+var router = (app: express.Express): void => {
 	app.get('/img/icon/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			User.find(req.params.idOrSn,(user: User) => {
-				if (user == null) {
-					res.status(404).send('User not found.');
-					return;
-				}
-				UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
-					display(user, userImage);
-				});
+			User.find(Number(req.params.idOrSn),(user: User) => {
+				display(user);
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
-				if (user == null) {
-					res.status(404).send('User not found.');
-					return;
-				}
-				UserImage.find(user.id,(userImage: UserImage) => {
-					display(user, userImage);
-				});
+				display(user);
 			});
 		}
 
-		var display = (user: User, userImage: UserImage) => {
-			if (userImage != null) {
-				var imageBuffer = userImage.icon != null ? userImage.icon : fs.readFileSync(path.resolve(__dirname + '/../resources/images/icon_default.jpg'));
-				if (req.headers['accept'].indexOf('text') === 0) {
-					displayImage(req, res, imageBuffer, 'https://misskey.xyz/img/icon/' + req.params.idOrSn, user.screenName + '.jpg', user);
-				} else {
-					sendImage(req, res, imageBuffer);
-				}
+		var display = (user: User) => {
+			if (user != null) {
+				var img = user.icon;
+				res.set('Content-Type', 'image/jpeg');
+				res.send(img);
 			} else {
 				res.status(404).send('User not found.');
 			}
 		};
 	});
 
-	/* User header */
 	app.get('/img/header/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			User.find(req.params.idOrSn,(user: User) => {
-				if (user == null) {
-					res.status(404).send('User not found.');
-					return;
-				}
-				UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
-					display(user, userImage);
-				});
+			User.find(Number(req.params.idOrSn),(user: User) => {
+				display(user);
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
-				if (user == null) {
-					res.status(404).send('User not found.');
-					return;
-				}
-				UserImage.find(user.id,(userImage: UserImage) => {
-					display(user, userImage);
-				});
+				display(user);
 			});
 		}
 
-		var display = (user: User, userImage: UserImage) => {
-			if (userImage != null) {
-				var imageBuffer = userImage.header != null ? userImage.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
-				if (req.headers['accept'].indexOf('text') === 0) {
-					displayImage(req, res, imageBuffer, 'https://misskey.xyz/img/header/' + req.params.idOrSn, user.screenName + '.jpg', user);
+		var display = (user: User) => {
+			if (user != null) {
+				var imageBuffer = user.header != null ? user.header : fs.readFileSync(path.resolve(__dirname + '/../resources/images/header_default.jpg'));
+				if (req.query.blur == null) {
+					res.set('Content-Type', 'image/jpeg');
+					res.send(imageBuffer);
 				} else {
-					sendImage(req, res, imageBuffer);
+					gm(imageBuffer)
+						.blur(req.query.blur, 20)
+						.compress('jpeg')
+						.quality(80)
+						.toBuffer('jpeg',(error: any, buffer: Buffer) => {
+						if (error) throw error;
+						res.set('Content-Type', 'image/jpeg');
+						res.send(buffer);
+					});
 				}
 			} else {
 				res.status(404).send('User not found.');
@@ -105,123 +68,57 @@ function router(app: express.Express): void {
 		};
 	});
 
-	/* User wallpaper */
 	app.get('/img/wallpaper/:idOrSn',(req: any, res: any) => {
 		if (req.params.idOrSn.match(/^[0-9]+$/)) {
-			User.find(req.params.idOrSn,(user: User) => {
-				if (user == null) {
-					res.status(404).send('User not found.');
-					return;
-				}
-				UserImage.find(Number(req.params.idOrSn),(userImage: UserImage) => {
-					display(user, userImage);
-				});
+			User.find(Number(req.params.idOrSn),(user: User) => {
+				display(user);
 			});
 		} else {
 			User.findByScreenName(req.params.idOrSn,(user: User) => {
-				if (user == null) {
-					res.status(404).send('User not found.');
-					return;
-				}
-				UserImage.find(user.id,(userImage: UserImage) => {
-					display(user, userImage);
-				});
+				display(user);
 			});
 		}
 
-		var display = (user: User, userImage: UserImage) => {
-			if (userImage != null) {
-				var imageBuffer = userImage.wallpaper != null ? userImage.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
-				if (req.headers['accept'].indexOf('text') === 0) {
-					displayImage(req, res, imageBuffer, 'https://misskey.xyz/img/wallpaper/' + req.params.idOrSn, user.screenName + '.jpg', user);
-				} else {
-					sendImage(req, res, imageBuffer);
-				}
+		var display = (user: User) => {
+			if (user != null) {
+				var imageBuffer = user.wallpaper != null ? user.wallpaper : fs.readFileSync(path.resolve(__dirname + '/../resources/images/wallpaper_default.jpg'));
+				res.set('Content-Type', 'image/jpeg');
+				res.send(imageBuffer);
 			} else {
 				res.status(404).send('User not found.');
 			}
 		};
 	});
 
-	/* Post */
 	app.get('/img/post/:id',(req: any, res: any) => {
-		PostImage.find(req.params.id,(postImage: PostImage) => {
-			if (postImage != null) {
-				Post.find(postImage.postId,(post: Post) => {
-					var imageBuffer = postImage.image;
-					if (req.headers['accept'].indexOf('text') === 0) {
-						User.find(post.userId,(user: User) => {
-							displayImage(req, res, imageBuffer, 'https://misskey.xyz/img/post/' + req.params.id, post.createdAt + '.jpg', user);
-						});
-					} else {
-						sendImage(req, res, imageBuffer);
-					}
-				});
-			} else {
-				res.status(404).send('Image not found.');
-			}
-		});
-	});
-
-	/* Talk message */
-	app.get('/img/talk-message/:id',(req: any, res: any) => {
-		TalkMessageImage.find(req.params.id,(talkMessageImage: TalkMessageImage) => {
-			if (talkMessageImage == null) {
-				res.status(404).send('Image not found.');
-				return;
-			}
-			TalkMessage.find(talkMessageImage.messageId,(talkMessage: TalkMessage) => {
-				if (!req.login) {
-					res.status(403).send('Go home quickly.');
-					return;
-				}
-				if (req.me.id != talkMessage.userId && req.me.id != talkMessage.otherpartyId) {
-					res.status(403).send('Go home quickly.');
-					return;
-				}
-				var imageBuffer = talkMessageImage.image;
-				if (req.headers['accept'].indexOf('text') === 0) {
-					User.find(talkMessage.userId,(user: User) => {
-						displayImage(req, res, imageBuffer, 'https://misskey.xyz/img/talk-message/' + req.params.id, talkMessage.createdAt + '.jpg', user);
-					});
+		Post.find(req.params.id,(post: Post) => {
+			if (post != null) {
+				if (post.isImageAttached) {
+					var img = post.image;
+					res.set('Content-Type', 'image/jpeg');
+					res.send(img);
 				} else {
-					sendImage(req, res, imageBuffer);
+					res.status(404).send('Image not found.');
 				}
-			});
+			} else {
+				res.status(404).send('Post not found.');
+			}
 		});
 	});
 
-	/* Webtheme thumbnail */
-	app.get('/img/webtheme_thumbnail/:id',(req: any, res: any) => {
-		WebTheme.find(req.params.id,(webtheme: WebTheme) => {
-			if (webtheme != null) {
-				var imageBuffer = webtheme.thumbnail;
-				sendImage(req, res, imageBuffer);
+	app.get('/img/talk-message/:id',(req: any, res: any) => {
+		TalkMessage.find(req.params.id,(talkMessage: TalkMessage) => {
+			if (talkMessage != null) {
+				if (talkMessage.isImageAttached) {
+					var img = talkMessage.image;
+					res.set('Content-Type', 'image/jpeg');
+					res.send(img);
+				} else {
+					res.status(404).send('Image not found.');
+				}
 			} else {
-				res.status(404).send('WebTheme not found.');
+				res.status(404).send('Message not found.');
 			}
 		});
 	});
 };
-
-function sendImage(req: any, res: any, image: Buffer) {
-	if (req.query.blur != null) {
-		try {
-			var options = JSON.parse(req.query.blur.replace(/([a-zA-Z]+)\s?:\s?([^,}"]+)/g, '"$1":$2'));
-			gm(image)
-				.blur(options.radius, options.sigma)
-				.compress('jpeg')
-				.quality(80)
-				.toBuffer('jpeg',(error: any, buffer: Buffer) => {
-				if (error) throw error;
-				res.set('Content-Type', 'image/jpeg');
-				res.send(buffer);
-			});
-		} catch (e) {
-			res.status(400).send(e);
-		}
-	} else {
-		res.set('Content-Type', 'image/jpeg');
-		res.send(image);
-	}
-}

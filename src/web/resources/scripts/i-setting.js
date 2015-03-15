@@ -6,7 +6,7 @@ $(function() {
 
 		$submitButton.attr("disabled", true);
 		$submitButton.attr("value", "アップロード中...");
-
+		
 		$.ajax(url, {
 			type: 'PUT',
 			data: fd,
@@ -34,10 +34,10 @@ $(function() {
 		event.preventDefault();
 		var $form = $(this);
 		var $submitButton = $form.find("[type=submit]");
-
+		
 		$submitButton.attr("disabled", true);
 		$submitButton.attr("value", "保存中...");
-
+		
 		$.ajax('https://api.misskey.xyz/account/update', {
 			type: 'PUT',
 			processData: false,
@@ -57,7 +57,7 @@ $(function() {
 			$submitButton.attr("disabled", false);
 		});
 	});
-
+	
 	$("#iconEditForm input[type=file]").change(function() {
 		var file = $(this).prop('files')[0];
 		if (!file.type.match('image.*')) {
@@ -94,7 +94,7 @@ $(function() {
 		};
 		reader.readAsDataURL(file);
 	});
-
+	
 	$("#iconEditForm").submit(function(event) {
 		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_icon');
 	});
@@ -103,57 +103,5 @@ $(function() {
 	});
 	$("#headerEditForm").submit(function(event) {
 		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_header');
-	});
-
-	$('#webtheme .theme').hover(function() {
-		$(this).find('.thumbnail').css({
-			'margin-top': '-192px'
-		});
-	},
-	function() {
-		$(this).find('.thumbnail').css({
-			'margin-top': '0px'
-		});
-	});
-
-	$("#webtheme .theme form").submit(function(event) {
-		event.preventDefault();
-		var $form = $(this);
-		var $submitButton = $form.find("[type=submit]");
-
-		$submitButton.attr("disabled", true);
-		$submitButton.attr("value", "インストール中...");
-
-		$.ajax('https://api.misskey.xyz/account/update_webtheme', {
-			type: 'put',
-			data: $form.serialize(),
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).done(function(data) {
-			location.reload();
-		}).fail(function(data) {
-			$submitButton.attr("disabled", false);
-			$submitButton.attr("value", "失敗したかも");
-		});
-	});
-
-	$("#webthemeResetButton").click(function() {
-		var $button = $(this);
-
-		$button.attr("disabled", true);
-
-		$.ajax('https://api.misskey.xyz/account/reset_webtheme', {
-			type: 'delete',
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).done(function(data) {
-			location.reload();
-		}).fail(function(data) {
-			$submitButton.attr("disabled", false);
-		});
 	});
 });

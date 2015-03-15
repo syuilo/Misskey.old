@@ -8,7 +8,6 @@ import Application = require('../../../models/application');
 import User = require('../../../models/user');
 import UserFollowing = require('../../../models/user-following');
 import TalkMessage = require('../../../models/talk-message');
-import TalkMessageImage = require('../../../models/talk-message-image');
 
 var authorize = require('../../auth');
 
@@ -24,7 +23,7 @@ var talkSay = (req: any, res: APIResponse) => {
 
 		UserFollowing.isFollowing(otherpartyId, user.id,(isFollowing: boolean) => {
 			if (!isFollowing) {
-				res.apiError(400, 'You are not followed from this user. To send a message, you need to have been followed from the other party.');
+				res.apiError(400, 'You are not follow from this user. To send a message, you need to have been followed from the other party.');
 				return;
 			}
 
@@ -48,13 +47,8 @@ var talkSay = (req: any, res: APIResponse) => {
 }
 
 var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, image: Buffer, isImageAttached: boolean, text: string, userId: number) => {
-	TalkMessage.create(appId, userId, otherpartyId, text, isImageAttached,(talkMessage: TalkMessage) => {
-		// Save image
-		if (isImageAttached) {
-			TalkMessageImage.create(talkMessage.id, image,(talkMessageImage: TalkMessageImage) => { });
-		}
-
-		TalkMessage.buildResponseObject(talkMessage,(obj: any) => {
+	TalkMessage.create(appId, userId, otherpartyId, text, isImageAttached, image,(talkMessage: TalkMessage) => {
+		buildResponseObject(talkMessage,(obj: any) => {
 			// Sent response
 			res.apiRender(obj);
 
@@ -75,6 +69,24 @@ var create = (req: any, res: APIResponse, appId: number, otherpartyId: number, i
 				type: 'meMessage',
 				value: obj
 			}));
+		});
+	});
+};
+
+var buildResponseObject = (talkMessage: TalkMessage, callback: (obj: any) => void): void => {
+	delete talkMessage.image;
+	var obj: any = talkMessage;
+	Application.find(talkMessage.appId,(app: Application) => {
+		delete app.callbackUrl;
+		delete app.consumerKey;
+		delete app.icon;
+		obj.app = app;
+		User.find(talkMessage.userId,(user: User) => {
+			obj.user = user.filt();
+			User.find(obj.otherpartyId,(otherparty: User) => {
+				obj.otherparty = otherparty.filt();
+				callback(obj);
+			});
 		});
 	});
 };

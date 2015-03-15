@@ -14,30 +14,20 @@ var sarver = (io: any, sessionStore: any): void => {
 		var sid = cookies[config.sessionKey];
 
 		// Get session
-		var sidkey = sid.match(/s:(.+?)\./)[1];
-		sessionStore.get(sidkey,(err: any, session: any) => {
+		sessionStore.get(sid.match(/s:(.+?)\./)[1],(err: any, session: any) => {
 			if (err) {
 				console.log(err.message);
 			} else {
-				if (session == null) {
-					console.log('undefined: ' + sidkey);
-					return;
-				}
-
 				var uid = socket.userId = session.userId;
 
 				// Subscribe stream
 				var pubsub = redis.createClient();
 				pubsub.subscribe('misskey:userStream:' + uid);
 				pubsub.on('message',(channel: any, content: any) => {
-					try {
-						content = JSON.parse(content);
-						if (content.type != null && content.value != null) {
-							socket.emit(content.type, content.value);
-						} else {
-							socket.emit(content);
-						}
-					} catch (e) {
+					content = JSON.parse(content);
+					if (content.type != null && content.value != null) {
+						socket.emit(content.type, content.value);
+					} else {
 						socket.emit(content);
 					}
 				});

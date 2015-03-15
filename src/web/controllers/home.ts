@@ -28,14 +28,22 @@ var render = (req: any, res: any, content: string = 'home'): void => {
 			});
 		},
 		(callback: any) => {
-			({
-				home: Post.getTimeline,
-				mention: Post.getMentions
-			})[content](req.me.id, 30, null, null, (posts: Post[]) => {
-				Timeline.generateHtml(posts, req, (timelineHtml: string) => {
-					callback(null, timelineHtml);
-				});
-			});
+			switch (content) {
+				case 'home':
+					Post.getTimeline(req.me.id, 30, null, null,(posts: Post[]) => {
+						Timeline.generateHtml(posts,(timelineHtml: string) => {
+							callback(null, timelineHtml);
+						});
+					});
+					break;
+				case 'mention':
+					Post.getMentions(req.me.id, 30, null, null,(posts: Post[]) => {
+						Timeline.generateHtml(posts,(timelineHtml: string) => {
+							callback(null, timelineHtml);
+						});
+					});
+					break;
+			}
 		}],
 		(err: any, results: any) => {
 			res.display(req, res, 'home', {

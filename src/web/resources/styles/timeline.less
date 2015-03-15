@@ -2,181 +2,20 @@
 
 /* Timeline
  * ---------------------------------------------------------------- */
-.timeline-verifiedIcon {
-	content: '';
-	display: inline-block;
-	vertical-align: text-bottom;
-	margin-right: 4px;
-	width: 1.1em;
-	height: 1.1em;
-	background-image: url('/resources/images/verified.png');
-	background-size: 1.1em 1.1em;
-}
-
-.timeline-replyArticle {
-	position: relative;
-	padding: 8px;
-
-	&:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-
-	> header {
-		margin-bottom: 2px;
-		white-space: nowrap;
-		overflow: hidden;
-
-		> h2 {
-			text-align: left;
-			display: inline;
-			margin: 0;
-			padding: 0;
-			font-weight: normal;
-			font-size: 1em;
-
-			> a {
-				color: rgba(0, 0, 0, 0.7);
-				font-weight: normal;
-				text-decoration: none;
-				transition: all 0.1s ease;
-			}
-		}
-
-		> a {
-			> time {
-				position: absolute;
-				top: 8px;
-				right: 8px;
-				display: inline;
-				vertical-align: top;
-				color: rgba(0, 0, 0, 0.4);
-				font-size: small;
-			}
-		}
-
-		> .badge {
-			text-align: left;
-			display: inline;
-			font-size: .7em;
-			margin-right: 4px;
-			padding: 2px 6px;
-			vertical-align: middle;
-			background-color: #1bb3b3;
-			border-radius: 2px;
-			color: #fff;
-			font-weight: bold;
-		}
-
-		> .screenName {
-			text-align: left;
-			margin: 0 0 0 8px;
-			color: rgba(0, 0, 0, 0.5);
-		}
-	}
-
-	> a > .icon {
-		float: left;
-		min-width: 32px;
-		min-height: 32px;
-		max-width: 32px;
-		max-height: 32px;
-		margin: 0 12px 4px 0;
-		border-radius: 6px;
-		transition: all 0.1s ease;
-	}
-
-	> .main {
-		> .text {
-			user-select: text;
-			-moz-user-select: text;
-			-webkit-user-select: text;
-			-ms-user-select: text;
-			cursor: auto;
-			display: block;
-			margin: 0 0 0 0;
-			padding: 0;
-			overflow: hidden;
-			word-wrap: break-word;
-			font-size: 0.9em;
-			color: rgba(0, 0, 0, 0.5);
-
-			* {
-				user-select: text;
-				-moz-user-select: text;
-				-webkit-user-select: text;
-				-ms-user-select: text;
-			}
-
-			.reply {
-				margin: 0 8px 0 0;
-				color: rgba(0, 0, 0, 0.5);
-			}
-
-			.url {
-				color: #1bb3b3;
-				text-decoration: none;
-
-				&:after {
-					content: "\f14c";
-					font-family: FontAwesome;
-					font-size: 0.9em;
-					font-weight: normal;
-					font-style: normal;
-					display: inline-block;
-					padding-left: 2px;
-				}
-
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-
-			.screenName {
-				color: @themeColor;
-				text-decoration: none;
-				transition: text-shadow 0.2s ease;
-
-				&:hover {
-					text-shadow: 0 0 4px fade(@themeColor, 30%);
-				}
-			}
-
-			b {
-				font-weight: bold;
-			}
-
-			small {
-				margin: 0 4px;
-				font-size: 0.8em;
-				color: rgba(0, 0, 0, 0.3);
-			}
-		}
-
-		> .image {
-			display: block;
-			max-width: 100%;
-			max-height: 256px;
-			border-radius: 4px;
-		}
-	}
-}
-
 .timeline {
 
-	> .statuses {
+	> .posts {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 
-		> .status.post {
+		> .post {
 			position: relative;
-			padding: 16px 24px;
+			padding: 12px 0;
 			border-left: solid 3px transparent;
 			background-color: transparent;
 			transition: background-color 0.2s ease;
-
+			/*
 			&:before {
 				content: "";
 				position: absolute;
@@ -185,16 +24,16 @@
 				display: block;
 				width: ~"calc(100% + 3px)";
 				height: 1px;
-				background: rgba(0, 0, 0, 0.025);
+				background: rgba(0, 0, 0, 0.05);
 			}
-
+			
 			&:first-child:before {
 				content: "";
 				display: none;
 				width: 0;
 				height: 0;
 			}
-
+			*/
 			&:hover {
 				background-color: rgba(0, 0, 0, 0.02);
 				transition: background-color 0s ease;
@@ -209,89 +48,6 @@
 					-moz-filter: saturate(200%);
 					-o-filter: saturate(200%);
 					-ms-filter: saturate(200%);
-				}
-			}
-
-			> .moreTalk {
-				text-align: center;
-
-				> i {
-					position: absolute;
-					left: 50%;
-					color: rgba(0,0,0,0.1);
-				}
-
-				> .talk {
-					display: none;
-					margin: 0;
-					padding: 0 8px;
-					list-style: none;
-					text-align: left;
-
-					> .post {
-						position: relative;
-
-						&:before {
-							content: "";
-							display: block;
-							position: absolute;
-							top: 0;
-							left: 23px;
-							width: 2px;
-							height: 100%;
-							background: rgba(0, 0, 0, 0.1);
-						}
-
-						&:first-child:before {
-							top: 50%;
-							height: 50%;
-						}
-
-						> article {
-							.timeline-replyArticle;
-						}
-					}
-
-						> .post[data-user-verified='true'] {
-							> article > header > h2 > a {
-								&:before {
-									.timeline-verifiedIcon;
-								}
-							}
-						}
-				}
-
-				& + .replyTo {
-					padding: 0 8px 0 8px;
-				}
-			}
-
-			> .repostInformation {
-				padding: 0 8px;
-				color: #57B800;
-
-				> .info {
-					margin: 0;
-					padding: 0;
-
-					a > .icon {
-						vertical-align: middle;
-						min-width: 32px;
-						min-height: 32px;
-						max-width: 32px;
-						max-height: 32px;
-						margin: 0 8px 0 0;
-						border-radius: 6px;
-						transition: all 0.1s ease;
-					}
-
-					i {
-						margin-right: 4px;
-					}
-
-					.name {
-						font-weight: bold;
-					}
 				}
 			}
 
@@ -326,16 +82,14 @@
 						}
 					}
 
-					> a {
-						> time {
-							position: absolute;
-							top: 16px;
-							right: 12px;
-							display: inline;
-							vertical-align: top;
-							color: rgba(0, 0, 0, 0.6);
-							font-size: small;
-						}
+					> time {
+						position: absolute;
+						top: 16px;
+						right: 12px;
+						display: inline;
+						vertical-align: top;
+						color: rgba(0, 0, 0, 0.6);
+						font-size: small;
 					}
 
 					> .badge {
@@ -369,135 +123,69 @@
 					transition: all 0.1s ease;
 				}
 
-				> .main {
-					> .text {
-						user-select: text;
-						-moz-user-select: text;
-						-webkit-user-select: text;
-						-ms-user-select: text;
-						cursor: default;
-						display: block;
-						margin: 0 0 0 0;
-						padding: 0;
-						overflow: hidden;
-						word-wrap: break-word;
-						font-size: 1.1em;
+				> .text {
+					display: block;
+					margin: 0 0 0 0;
+					padding: 0;
+					overflow: hidden;
+					word-wrap: break-word;
+					font-size: 1.1em;
+					color: rgba(0, 0, 0, 0.8);
+
+					.reply {
+						margin: 0 8px 0 0;
 						color: rgba(0, 0, 0, 0.8);
+					}
 
-						* {
-							user-select: text;
-							-moz-user-select: text;
-							-webkit-user-select: text;
-							-ms-user-select: text;
+					.url {
+						color: #1bb3b3;
+						text-decoration: none;
+
+						&:hover {
+							text-decoration: underline;
 						}
 
-						.reply {
-							margin: 0 8px 0 0;
-							color: rgba(0, 0, 0, 0.8);
-						}
-
-						.url {
-							color: #1bb3b3;
-							text-decoration: none;
-
-							&:hover {
-								text-decoration: underline;
-							}
-
-							&:after {
-								content: "\f14c";
-								display: inline-block;
-								padding-left: 2px;
-								font-family: FontAwesome;
-								font-size: 0.9em;
-								font-weight: normal;
-								font-style: normal;
-							}
-						}
-
-						.screenName {
-							color: @themeColor;
-							text-decoration: none;
-							transition: text-shadow 0.2s ease;
-
-							&:hover {
-								text-shadow: 0 0 4px fade(@themeColor, 30%);
-							}
-						}
-
-						b {
-							font-weight: bold;
-						}
-
-						small {
-							margin: 0 4px;
-							font-size: 0.8em;
-							color: rgba(0, 0, 0, 0.6);
+						&:after {
+							content: "\f14c";
+							display: inline-block;
+							padding-left: 2px;
+							font-family: FontAwesome;
+							font-size: 0.9em;
+							font-weight: normal;
+							font-style: normal;
 						}
 					}
 
-					> .image {
-						display: block;
-						max-width: 100%;
-						max-height: 512px;
-						border-radius: 4px;
+					.screenName {
+						color: @themeColor;
+						text-decoration: none;
+						transition: text-shadow 0.2s ease;
+
+						&:hover {
+							text-shadow: 0 0 4px fade(@themeColor, 30%);
+						}
+					}
+
+					b {
+						font-weight: bold;
+					}
+
+					small {
+						margin: 0 4px;
+						font-size: 0.8em;
+						color: rgba(0, 0, 0, 0.6);
 					}
 				}
 
-				> footer {
-					> .actions {
-						position: absolute;
-						bottom: 0;
-						right: 0;
-
-						> .repost, > .favorite {
-							display: inline-block;
-							padding: 0 16px;
-
-							> button {
-								-webkit-appearance: none;
-								-moz-appearance: none;
-								appearance: none;
-								display: inline-block;
-								box-sizing: border-box;
-								margin: 0;
-								padding: 8px;
-								cursor: pointer;
-								font-size: 1em;
-								font-weight: normal;
-								text-decoration: none;
-								color: rgba(0, 0, 0, 0.5);
-								outline: none;
-								border: none;
-								border-radius: 0;
-								box-shadow: none;
-								background: transparent;
-
-								&:hover {
-									color: rgba(0, 0, 0, 0.7);
-								}
-
-								> i {
-									cursor: pointer;
-								}
-							}
-
-							> a {
-								color: rgba(0, 0, 0, 0.5);
-								text-decoration: none;
-
-								&:hover {
-									text-decoration: underline;
-								}
-							}
-						}
-					}
+				> .image {
+					display: block;
+					max-width: 100%;
+					max-height: 512px;
 				}
 			}
 
-			> .replyTo {
+			.replyTo {
 				display: inline-block;
-				position: relative;
 				width: 100%;
 				box-sizing: border-box;
 				padding: 8px 8px 0px 8px;
@@ -519,30 +207,139 @@
 					}
 				}
 
-				&:before {
-					content: "";
-					display: block;
-					position: absolute;
-					top: 50%;
-					left: 31px;
-					width: 2px;
-					height: 50%;
-					background: rgba(0, 0, 0, 0.1);
-				}
-
 				> article {
-					.timeline-replyArticle;
+					position: relative;
 					padding: 8px 8px 0 8px;
-				}
-			}
 
-				> .replyTo[data-user-verified='true'] {
-					> article > header > h2 > a {
-						&:before {
-							.timeline-verifiedIcon;
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+
+					> header {
+						margin-bottom: 2px;
+						white-space: nowrap;
+						overflow: hidden;
+
+						> h2 {
+							text-align: left;
+							display: inline;
+							margin: 0;
+							padding: 0;
+							font-weight: normal;
+							font-size: 1em;
+
+							> a {
+								color: rgba(0, 0, 0, 0.7);
+								font-weight: normal;
+								text-decoration: none;
+								transition: all 0.1s ease;
+							}
+						}
+
+						> time {
+							position: absolute;
+							top: 8px;
+							right: 8px;
+							display: inline;
+							vertical-align: top;
+							color: rgba(0, 0, 0, 0.4);
+							font-size: small;
+						}
+
+						> .badge {
+							text-align: left;
+							display: inline;
+							font-size: .7em;
+							margin-right: 4px;
+							padding: 2px 6px;
+							vertical-align: middle;
+							background-color: #1bb3b3;
+							border-radius: 2px;
+							color: #fff;
+							font-weight: bold;
+						}
+
+						> .screenName {
+							text-align: left;
+							margin: 0 0 0 8px;
+							color: rgba(0, 0, 0, 0.5);
 						}
 					}
+
+					> a > .icon {
+						float: left;
+						min-width: 32px;
+						min-height: 32px;
+						max-width: 32px;
+						max-height: 32px;
+						margin: 0 12px 4px 0;
+						border-radius: 6px;
+						transition: all 0.1s ease;
+					}
+
+					> .text {
+						display: block;
+						margin: 0 0 0 0;
+						padding: 0;
+						overflow: hidden;
+						word-wrap: break-word;
+						font-size: 0.9em;
+						color: rgba(0, 0, 0, 0.5);
+
+						.reply {
+							margin: 0 8px 0 0;
+							color: rgba(0, 0, 0, 0.5);
+						}
+
+						.url {
+							color: #1bb3b3;
+							text-decoration: none;
+
+							&:after {
+								content: "\f14c";
+								font-family: FontAwesome;
+								font-size: 0.9em;
+								font-weight: normal;
+								font-style: normal;
+								display: inline-block;
+								padding-left: 2px;
+							}
+
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+
+						.screenName {
+							color: @themeColor;
+							text-decoration: none;
+							transition: text-shadow 0.2s ease;
+
+							&:hover {
+								text-shadow: 0 0 4px fade(@themeColor, 30%);
+							}
+						}
+
+						b {
+							font-weight: bold;
+						}
+
+						small {
+							margin: 0 4px;
+							font-size: 0.8em;
+							color: rgba(0, 0, 0, 0.3);
+						}
+					}
+
+					> .image {
+						display: block;
+						max-width: 100%;
+						max-height: 256px;
+					}
 				}
+			}
 
 			> footer {
 				display: none;
@@ -564,7 +361,7 @@
 						padding: 8px;
 						outline: 0;
 						border: solid 1px #eee;
-						border-radius: 0;
+						border-radius: 4px 4px 4px 0;
 						font-size: 1.1em;
 						transition: all 0.2s ease;
 
@@ -576,6 +373,7 @@
 							color: @themeColor;
 							outline: none;
 							border: solid 1px @themeColor;
+							box-shadow: 0 0 4px fade(@themeColor, 30%);
 						}
 					}
 
@@ -600,7 +398,6 @@
 						border-radius: 0;
 						box-shadow: none;
 						transition: background 0.1s ease;
-						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
 
 						&:hover {
 							background: lighten(@themeColor, 10%);
@@ -649,77 +446,14 @@
 				}
 			}
 		}
-
-			> .status.post[data-is-reply='true'] {
-				> article {
-					&:before {
-						content: "";
-						display: block;
-						position: absolute;
-						z-index: -1;
-						top: -4px;
-						left: 31px;
-						width: 2px;
-						height: 50%;
-						background: rgba(0, 0, 0, 0.1);
-					}
-				}
-			}
-
-			> .status.post[data-is-talk='true'] {
-				> .replyTo {
-					&:before {
-						top: 0;
-						height: 100%;
-					}
-				}
-			}
-
-			> .status.post[data-is-repostpost='true'] {
-				background: rgba(128, 255, 0, 0.1);
-			}
-
-			> .status.post[data-is-favorited='true'] > article > footer > .actions > .favorite {
-				> button {
-					color: @themeColor;
-
-					&:hover {
-						color: darken(@themeColor, 10%);
-					}
-				}
-			}
-
-			> .status.post[data-is-reposted='true'] > article > footer > .actions > .repost {
-				> button {
-					color: @themeColor;
-
-					&:hover {
-						color: darken(@themeColor, 10%);
-					}
-				}
-			}
-
-			> .status.post[data-user-verified='true'] {
-				> article > header > h2 > a {
-					&:before {
-						.timeline-verifiedIcon;
-					}
-				}
-			}
 	}
 
 	> .loadMore {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		display: inline-block;
 		margin: 0;
 		padding: 0;
 		width: 100%;
 		height: 3em;
 		line-height: 3em;
-		font-size: 1.05em;
-		color: rgba(0, 0, 0, 0.7);
 		cursor: pointer;
 		background: #fff;
 		outline: none;
@@ -727,16 +461,11 @@
 
 		&:hover {
 			background: #eee;
-			color: @themeColor;
+			color: #1bb3b3;
 		}
 
 		&:active {
 			background: #ddd;
-			color: @themeColor;
-		}
-
-		&:disabled {
-			color: rgba(0, 0, 0, 0.2);
 		}
 	}
 }

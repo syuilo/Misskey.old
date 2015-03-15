@@ -1,7 +1,6 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
-import moment = require("moment");
 export = User;
 
 class User {
@@ -12,6 +11,8 @@ class User {
 	createdAt: string;
 	credit: number;
 	exp: number;
+	header: Buffer;
+	icon: Buffer;
 	id: number;
 	isPremium: boolean;
 	isSuspended: boolean;
@@ -27,6 +28,7 @@ class User {
 	twitterAccessToken: string;
 	twitterAccessTokenSecret: string;
 	url: string;
+	wallpaper: Buffer;
 	webThemeId: number;
 
 	public constructor(user: any) {
@@ -34,9 +36,11 @@ class User {
 		this.bio = user.bio;
 		this.color = user.color;
 		this.comment = user.comment;
-		this.createdAt = moment(user.created_at).format('YYYY/MM/DD HH:mm:ss Z');
+		this.createdAt = user.created_at;
 		this.credit = user.credit;
 		this.exp = user.exp;
+		this.header = user.header;
+		this.icon = user.icon;
 		this.id = user.id;
 		this.isPremium = Boolean(user.is_premium);
 		this.isSuspended = Boolean(user.is_suspended);
@@ -52,28 +56,20 @@ class User {
 		this.twitterAccessToken = user.twitter_access_token;
 		this.twitterAccessTokenSecret = user.twitter_access_token_secret;
 		this.url = user.url;
+		this.wallpaper = user.wallpaper;
 		this.webThemeId = user.web_theme_id;
 	}
 
-	public static create(screenName: string, password: string, name: string, color: string, callback: (user: User) => void): void {
-		db.query('insert into users (screen_name, password, tutorial, name, color) values (?, ?, ?, ?, ?)',
-			[screenName, password, 1, name, color],
-			(err: any, info: any) => {
-				if (err) {
-					console.log(err);
-					callback(null);
-					return;
-				};
-				User.find(info.insertId,(user: User) => {
-					callback(user);
-				});
-			});
+	public static create(screenName: string, password: string, tutorial: number, name: string, callback: (user: User) => void): void {
+		db.query('insert into users (screen_name, password, tutorial, name) values (?, ?, ?, ?)',
+			[screenName, password, tutorial, name],
+			(err: any, users: any[]) => callback(new User(users[0])));
 	}
 
 	public static find(id: number, callback: (user: User) => void): void {
 		db.query("select * from users where id = ?",
 			[id],
-			(err: any, users: any[]) => callback(users[0] != null ? new User(users[0]) : null));
+			(err: any, users: any[]) => callback(users[0]!= null ? new User(users[0]): null));
 	}
 
 	public static findByScreenName(screenName: string, callback: (user: User) => void): void {
@@ -87,13 +83,6 @@ class User {
 			(err: any, users: any[]) => callback(users.map((user) => new User(user))));
 	}
 
-	public static searchByScreenName(screenName: string, limit: number, callback: (users: User[]) => void): void {
-		screenName = screenName.replace(/_/g, '\\_');
-		db.query("select * from users where screen_name like ? order by id limit ?",
-			['%' + screenName + '%', limit],
-			(err: any, users: any[]) => callback(users.length != 0 ? users.map((user) => new User(user)) : null));
-	}
-
 	public filt(): any {
 		var obj: any = {};
 		obj.badge = this.badge;
@@ -104,7 +93,6 @@ class User {
 		obj.credit = this.credit;
 		obj.exp = this.exp;
 		obj.id = this.id;
-		obj.isPremium = this.isPremium;
 		obj.lang = this.lang;
 		obj.location = this.location;
 		obj.lv = this.lv;
@@ -116,8 +104,8 @@ class User {
 	}
 
     public update(callback?: () => void): void {
-		db.query('update users set screen_name =?, password =?, mail_address =?, credit =?, tutorial =?, is_suspended =?, name =?, comment =?, lang =?, badge =?, color =?, web_theme_id =?, bio =?, url =?, location =?, tag =?, exp =?, lv =?, twitter_access_token =?, twitter_access_token_secret =? where id =?',
-			[this.screenName, this.password, this.mailAddress, this.credit, this.tutorial, this.isSuspended, this.name, this.comment, this.lang, this.badge, this.color, this.webThemeId, this.bio, this.url, this.location, this.tag, this.exp, this.lv, this.twitterAccessToken, this.twitterAccessTokenSecret, this.id],
+		db.query('update users set screen_name =?, password =?, mail_address =?, credit =?, tutorial =?, is_suspended =?, name =?, comment =?, lang =?, badge =?, icon =?, color =?, header =?, wallpaper =?, web_theme_id =?, bio =?, url =?, location =?, tag =?, exp =?, lv =?, twitter_access_token =?, twitter_access_token_secret =? where id =?',
+			[this.screenName, this.password, this.mailAddress, this.credit, this.tutorial, this.isSuspended, this.name, this.comment, this.lang, this.badge, this.icon, this.color, this.header, this.wallpaper, this.webThemeId, this.bio, this.url, this.location, this.tag, this.exp, this.lv, this.twitterAccessToken, this.twitterAccessTokenSecret, this.id],
 			callback);
 	}
 }

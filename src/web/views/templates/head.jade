@@ -1,25 +1,12 @@
 meta(charset='utf-8')
 meta(name='application-name', content='Misskey')
-meta(name='theme-color', content='#ff005c')
-meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQOHvjxlvnm4')
-meta(name='dns-prefetch', content='//maxcdn.bootstrapcdn.com')
-meta(name='dns-prefetch', content='//ajax.googleapis.com')
-link(rel='shortcut icon', href='/favicon.ico')
-link(rel='manifest', href='/manifest.json')
+meta(name='theme-color', content='#831c86')
+link(rel='shortcut icon', href='/favicon.icon')
 link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 if rootUser != null
 	link(rel='stylesheet', href='/resources/styles/ui.css?user=' + rootUser.screenName)
-	link(rel='stylesheet', href='/resources/styles/theme/ui.css?user=' + rootUser.screenName)
 else
 	link(rel='stylesheet', href='/resources/styles/ui.css')
-	link(rel='stylesheet', href='/resources/styles/theme/ui.css')
-script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 script(src='/config')
 script(src='/resources/scripts/main.js')
-script.
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-57628372-1', 'auto');
-	ga('send', 'pageview');

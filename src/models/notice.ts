@@ -1,7 +1,6 @@
 /// <reference path="../../typings/bundle.d.ts" />
 
 import db = require('../db');
-import moment = require("moment");
 export = Notice;
 
 class Notice {
@@ -9,27 +8,20 @@ class Notice {
 	content: string;
 	createdAt: string;
 	id: number;
-	type: string;
 	userId: number;
 
 	public constructor(notice: any) {
-		this.appId = notice.app_id;
+		this.appId = notice.appId;
 		this.content = notice.content;
-		this.createdAt = moment(notice.created_at).format('YYYY/MM/DD HH:mm:ss Z');
+		this.createdAt = notice.created_at;
 		this.id = notice.id;
-		this.type = notice.type;
 		this.userId = notice.user_id;
 	}
 
-	public static create(appId: number, type: string, content: string, userId: number, callback: (notice: Notice) => void): void {
-		db.query('insert into notices (app_id, type, content, user_id) values (?, ?, ?, ?)',
-			[appId, type, content, userId],
-			(err: any, info: any) => {
-				if (err) console.log(err);
-				Notice.find(info.insertId,(notice: Notice) => {
-					callback(notice);
-				});
-			});
+	public static create(appId: number, content: string, userId: number, callback: (notice: Notice) => void): void {
+		db.query('insert into notices (app_id, content, user_id) values (?, ?, ?)',
+			[appId, content, userId],
+			(err: any, info: any) => { Notice.find(info.insertId, (notice: Notice) => { callback(notice); });});
 	}
 
 	public static find(id: number, callback: (notice: Notice) => void): void {
@@ -41,11 +33,11 @@ class Notice {
 	public static findByuserId(userId: number, callback: (notices: Notice[]) => void): void {
 		db.query("select * from notices where user_id = ? order by created_at desc",
 			[userId],
-			(err: any, notices: any[]) => callback(notices.length != 0 ? notices.map((notice) => new Notice(notice)) : null));
+			(err: any, notices: any[]) => callback(notices.map((notice) => new Notice(notice))));
 	}
 
-	public destroy(callback: () => void): void {
-		db.query('delete from notices where id = ?',
+	public destroy(callback?: () => void): void {
+		db.query('delete from notices where id = ?"',
 			[this.id],
 			callback);
 	}

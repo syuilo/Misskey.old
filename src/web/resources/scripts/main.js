@@ -1,53 +1,9 @@
-$.fn.extend({
-	viewportOffset: function() {
-		$window = $(window);
-		p = this.offset();
-		return { left: p.left - $window.scrollLeft(), top: p.top - $window.scrollTop() };
-	}
-});
-
-function escapeHTML(val) {
-	return $('<div />').text(val).html();
-};
-
-$(function() {
-	updateRelativeTimes();
-
-	setInterval(function() {
-		updateRelativeTimes();
-	}, 100);
-
-	function updateRelativeTimes() {
-		var now = new Date();
-		$('time').each(function() {
-			function pad2(n) { return n < 10 ? '0' + n : n }
-			var date = new Date($(this).attr('datetime'));
-			var ago = ~~((now - date) / 1000);
-			var timeText =
-				ago >= 31536000 ? ~~(ago / 31536000) + "年前" :
-				ago >= 2592000 ? ~~(ago / 2592000) + "ヶ月前" :
-				ago >= 604800 ? ~~(ago / 604800) + "週間前" :
-				ago >= 86400 ? ~~(ago / 86400) + "日前" :
-				ago >= 3600 ? ~~(ago / 3600) + "時間前" :
-				ago >= 60 ? ~~(ago / 60) + "分前" :
-				ago >= 5 ? ~~(ago % 60) + "秒前" :
-				ago < 5 ? 'いま' : "";
-			$(this).text(timeText);
-		});
-	}
-});
-
-function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
-	var canPopout = canPopout === undefined ? false : canPopout;
-
+function openWindow($content, title, width, height) {
 	var $window = $("\
-		<div class=\"ui window\" id=\"" + id + "\">\
+		<div class=\"ui window\">\
 			<header>\
 				<h1>"+ title + "</h1>\
-				<div class=\"buttons\">\
-					<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>\
-					<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>\
-				</div>\
+				<button class=\"close\"><img src=\"https://misskey.xyz/resources/images/window-close.png\" alt=\"close\"/></button>\
 			</header>\
 			<div class=\"content\"></div>\
 		</div>\
@@ -65,11 +21,6 @@ function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
 				z = Number($(this).css("z-index"));
 		});
 		$window.css("z-index", z + 1);
-	}
-
-	function popout() {
-		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',menubar=no,toolbar=no,location=no,status=no');
-		close();
 	}
 
 	function close() {
@@ -100,11 +51,7 @@ function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
 		}, 200);
 	});
 
-	$window.find("header > .buttons > .popout").click(function() {
-		popout();
-	});
-
-	$window.find("header > .buttons > .close").click(function() {
+	$window.find("header > .close").click(function() {
 		close();
 	});
 
@@ -113,9 +60,6 @@ function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
 	});
 
 	$window.find("header").mousedown(function(e) {
-		if ($(e.target).is('button') ||
-		$(e.target).is('img')) return;
-
 		$window.find(".content").css({
 			'pointer-events': 'none',
 			'user-select': 'none'
@@ -199,121 +143,3 @@ function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
 		}
 	});
 }
-
-/*!
- * jQuery Cookie Plugin v1.4.1
- * https://github.com/carhartl/jquery-cookie
- *
- * Copyright 2006, 2014 Klaus Hartl
- * Released under the MIT license
- */
-(function(factory) {
-	if (typeof define === 'function' && define.amd) {
-		// AMD
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		// CommonJS
-		factory(require('jquery'));
-	} else {
-		// Browser globals
-		factory(jQuery);
-	}
-}(function($) {
-
-	var pluses = /\+/g;
-
-	function encode(s) {
-		return config.raw ? s : encodeURIComponent(s);
-	}
-
-	function decode(s) {
-		return config.raw ? s : decodeURIComponent(s);
-	}
-
-	function stringifyCookieValue(value) {
-		return encode(config.json ? JSON.stringify(value) : String(value));
-	}
-
-	function parseCookieValue(s) {
-		if (s.indexOf('"') === 0) {
-			// This is a quoted cookie as according to RFC2068, unescape...
-			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
-		}
-
-		try {
-			// Replace server-side written pluses with spaces.
-			// If we can't decode the cookie, ignore it, it's unusable.
-			// If we can't parse the cookie, ignore it, it's unusable.
-			s = decodeURIComponent(s.replace(pluses, ' '));
-			return config.json ? JSON.parse(s) : s;
-		} catch (e) { }
-	}
-
-	function read(s, converter) {
-		var value = config.raw ? s : parseCookieValue(s);
-		return $.isFunction(converter) ? converter(value) : value;
-	}
-
-	var config = $.cookie = function(key, value, options) {
-
-		// Write
-
-		if (arguments.length > 1 && !$.isFunction(value)) {
-			options = $.extend({}, config.defaults, options);
-
-			if (typeof options.expires === 'number') {
-				var days = options.expires, t = options.expires = new Date();
-				t.setTime(+t + days * 864e+5);
-			}
-
-			return (document.cookie = [
-				encode(key), '=', stringifyCookieValue(value),
-				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-				options.path ? '; path=' + options.path : '',
-				options.domain ? '; domain=' + options.domain : '',
-				options.secure ? '; secure' : ''
-			].join(''));
-		}
-
-		// Read
-
-		var result = key ? undefined : {};
-
-		// To prevent the for loop in the first place assign an empty array
-		// in case there are no cookies at all. Also prevents odd result when
-		// calling $.cookie().
-		var cookies = document.cookie ? document.cookie.split('; ') : [];
-
-		for (var i = 0, l = cookies.length; i < l; i++) {
-			var parts = cookies[i].split('=');
-			var name = decode(parts.shift());
-			var cookie = parts.join('=');
-
-			if (key && key === name) {
-				// If second argument (value) is a function it's a converter...
-				result = read(cookie, value);
-				break;
-			}
-
-			// Prevent storing a cookie that we couldn't decode.
-			if (!key && (cookie = read(cookie)) !== undefined) {
-				result[name] = cookie;
-			}
-		}
-
-		return result;
-	};
-
-	config.defaults = {};
-
-	$.removeCookie = function(key, options) {
-		if ($.cookie(key) === undefined) {
-			return false;
-		}
-
-		// Must not alter options, thus extending a fresh object...
-		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
-		return !$.cookie(key);
-	};
-
-}));

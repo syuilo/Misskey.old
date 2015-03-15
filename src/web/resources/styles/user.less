@@ -10,94 +10,40 @@ html, body {
 html {
 	color: #000;
 	background-color: #fff;
-	/*
 	background-image: url(@wallpaperUrl);
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
-	*/
 }
 
 main {
 	display: block;
 	position: relative;
-	box-sizing: border-box;
 	width: 100%;
-	max-width: 1300px;
+	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0;
 	background: #fff;
-
-	&:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
+	box-shadow: 1px 0 4px rgba(0, 0, 0, 0.5);
 
 	> header {
 		display: block;
 		position: relative;
 		width: 100%;
+		height: 400px;
 		margin: 0;
 		padding: 0;
+		// Background Image
+		background-image: url(@headerImageUrl);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
 
 		> #headerMain {
 			position: relative;
 			width: 100%;
-			height: 350px;
-			// Background Image
-			background-image: url(@headerImageUrl);
-			background-repeat: no-repeat;
-			background-position: center center;
-			background-size: cover;
-
-			> #headerUserMenu {
-				position: absolute;
-				top: 0;
-				right: 0;
-				padding: 16px;
-
-				> ul {
-					margin: 0;
-					padding: 0;
-					list-style: none;
-
-					li {
-						display: inline-block;
-						color: #fff;
-
-						a {
-							display: inline-block;
-							color: #fff;
-						}
-
-						button {
-							-webkit-appearance: none;
-							-moz-appearance: none;
-							appearance: none;
-							display: inline-block;
-							padding: 0;
-							background: transparent;
-							border: none;
-							outline: none;
-							cursor: pointer;
-							color: #fff;
-						}
-
-						i {
-							padding: 8px 16px;
-							font-size: 2em;
-							color: #fff;
-							text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-
-							&:hover {
-								color: @themeColor;
-							}
-						}
-					}
-				}
-			}
+			height: 100%;
 
 			> #headerUserArea {
 				display: block;
@@ -107,18 +53,18 @@ main {
 				height: 100%;
 				overflow: hidden;
 				margin: 0;
-				padding: 16px 8px;
+				padding: 8px;
 				text-align: center;
 				color: #fff;
 				text-shadow: 0 0 16px rgba(0,0,0,0.7);
-				box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+
 
 				> #headerUserAreaBackground {
 					position: absolute;
 					top: 0;
 					left: 0;
-					width: 100%;
-					height: 350px;
+					width: 1000px;
+					height: 400px;
 					background-image: url(@headerBlurImageUrl);
 					background-repeat: no-repeat;
 					background-position: center center;
@@ -146,7 +92,6 @@ main {
 							-moz-filter: saturate(200%);
 							-o-filter: saturate(200%);
 							-ms-filter: saturate(200%);
-							transform: scale(1.2) rotateZ(10deg);
 						}
 					}
 
@@ -178,199 +123,142 @@ main {
 		> nav {
 			display: block;
 			box-sizing: border-box;
-			position: relative;
+			position: absolute;
+			bottom: 0;
+			left: 0;
 			width: 100%;
 			margin: 0;
 			padding: 0;
 			background: #fff;
+			border-bottom: solid 1px #eee;
 
-			> #headerNavBackground {
-				/*
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 1000px;
-				height: 400px;
-				background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(@headerBlurImageUrl);
-				background-repeat: no-repeat;
-				background-position: center center;
-				background-size: cover;
-				clip: rect(400px, 1000px, 1000px, 0px);
-				*/
-			}
+			table {
+				padding: 0 64px;
 
-			> #headerNavMain {
-				position: relative;
-				box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
+				tr {
+					th, td {
+						min-width: 4em;
+					}
 
-				table {
-					padding: 6px 64px;
-					margin: 0 auto;
+					th {
+						text-align: left;
+						font-size: 0.8em;
+						font-weight: normal;
+						color: rgba(0, 0, 0, 0.5);
+					}
 
-					tr {
-						th, td {
-							min-width: 5em;
-							padding: 0;
-							margin: 0;
-						}
-
-						th {
-							text-align: left;
-							font-size: 0.8em;
-							font-weight: normal;
-							color: rgba(0, 0, 0, 0.5);
-						}
-
-						td {
-							font-size: 1.5em;
-						}
+					td {
+						font-size: 1.5em;
 					}
 				}
+			}
 
-				> #friendStatus {
-					position: absolute;
-					top: 0;
-					right: 0;
-					margin: 0;
-					padding: 12px 33px;
-					color: rgba(0, 0, 0, 0.7);
-				}
+			> #friendStatus {
+				position: absolute;
+				top: 0;
+				right: 0;
+				margin: 0;
+				padding: 8px 16px;
+				color: rgba(0, 0, 0, 0.7);
+			}
 
-				> #followButton {
-					display: block;
-					position: absolute;
-					bottom: 100%;
-					right: 0;
-					margin: 16px;
-				}
+			> #followButton {
+				position: absolute;
+				top: -100%;
+				right: 16px;
+				margin: 8px;
 			}
 		}
 	}
+}
 
-	#contents {
-		width: 100%;
-		max-width: 1200px;
-		margin: 0 auto;
+#contents {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
 
-		&:after {
-			content: "";
-			display: block;
-			clear: both;
+	#contentsLeft {
+		float: left;
+		width: 60%;
+
+		#mainContent {
+			padding: 32px 64px;
 		}
+	}
 
-		#content {
-			box-sizing: border-box;
-			float: left;
-			padding: 16px 48px;
-			width: ~"calc(100% - 380px)";
-			margin: 0;
+	#contentsRight {
+		float: left;
+		width: 40%;
 
-			> section {
-				margin: 16px 0;
-
-				> h2 {
-					padding: 8px 16px;
-					margin: 0;
-					color: #444;
-					border-bottom: solid 1px #eee;
-				}
-			}
-
-			#bio {
-				margin: 0 16px;
-				font-size: 1.3em;
-			}
-
-			.usersList {
-				padding: 16px 32px;
-
-				ol {
-					margin: 0;
-					padding: 0;
-					list-style: none;
-
-					li {
-						padding: 16px 0;
-
-						&:after {
-							content: "";
-							display: block;
-							clear: both;
-						}
-
-						a > .icon {
-							float: left;
-							min-width: 54px;
-							min-height: 54px;
-							max-width: 54px;
-							max-height: 54px;
-							margin: 0 12px 4px 0;
-							border-radius: 8px;
-							transition: all 0.1s ease;
-						}
-
-						> h2 {
-							text-align: left;
-							display: inline;
-							margin: 0;
-							padding: 0;
-							font-weight: normal;
-							font-size: 1em;
-
-							> a {
-								color: rgba(0, 0, 0, 0.9);
-								font-weight: bold;
-								text-decoration: none;
-								transition: all 0.1s ease;
-							}
-
-							> .screenName {
-								text-align: left;
-								margin: 0 0 0 8px;
-								color: rgba(0, 0, 0, 0.5);
-							}
-						}
-
-						> .comment {
-							display: block;
-							margin: 0 0 0 0;
-							padding: 0;
-							overflow: hidden;
-							word-wrap: break-word;
-							font-size: 1.1em;
-							color: rgba(0, 0, 0, 0.8);
-						}
-					}
-
-						li[data-user-verified='true'] {
-							> h2 > a {
-								&:before {
-									content: '';
-									display: inline-block;
-									vertical-align: text-bottom;
-									margin-right: 4px;
-									width: 1.1em;
-									height: 1.1em;
-									background-image: url('/resources/images/verified.png');
-									background-size: 1.1em 1.1em;
-								}
-							}
-						}
-				}
-			}
+		#timeline {
+			max-height: 500px;
+			overflow: scroll;
 		}
+	}
+}
 
-		#sideContents {
-			float: left;
-			width: 380px;
+#bio {
+	font-size: 1.3em;
+}
 
-			#timeline {
-				max-height: 600px;
-				overflow: scroll;
+.usersList {
+	ol {
+		margin: 0;
+		padding: 0;
+		list-style: none;
 
-				.timeline > .posts > .post {
-					padding: 8px 0 !important;
+		li {
+			padding: 16px 0;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			a > .icon {
+				float: left;
+				min-width: 54px;
+				min-height: 54px;
+				max-width: 54px;
+				max-height: 54px;
+				margin: 0 12px 4px 0;
+				border-radius: 8px;
+				transition: all 0.1s ease;
+			}
+
+			> h2 {
+				text-align: left;
+				display: inline;
+				margin: 0;
+				padding: 0;
+				font-weight: normal;
+				font-size: 1em;
+
+				> a {
+					color: rgba(0, 0, 0, 0.9);
+					font-weight: bold;
+					text-decoration: none;
+					transition: all 0.1s ease;
 				}
+
+				> .screenName {
+					text-align: left;
+					margin: 0 0 0 8px;
+					color: rgba(0, 0, 0, 0.5);
+				}
+			}
+
+			> .comment {
+				display: block;
+				margin: 0 0 0 0;
+				padding: 0;
+				overflow: hidden;
+				word-wrap: break-word;
+				font-size: 1.1em;
+				color: rgba(0, 0, 0, 0.8);
 			}
 		}
 	}
