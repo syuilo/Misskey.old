@@ -1,25 +1,18 @@
 require! {
 	async
-	'../../api-response': APIResponse
-	'../../../models/application': Application
 	'../../../models/User': User
-	'../../../utils/streaming': Streamer
+	'../../auth': authorize
 }
-
-authorize = require '../../auth'
-
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
-		if req.query.query == null
-			res.apiError 400, 'query parameter is required :('
-			return
 		query = req.query.query
-		if query == ''
-			res.apiError 400, 'Empty query'
-			return
-		query = query.replace /^@/, '';
-		User.searchByScreenName query, 5, (users) ->
-			async.map users, (user, next) ->
-				next null, user.filt!
-			, (err, results) ->
-				res.apiRender results;
+		switch
+			| query == null => res.api-error 400 'query parameter is required :('
+			| query == '' => res.api-error 400 'Empty query'
+			| _ =>
+				query = query.replace /^@/ ''
+				User.search-by-screen-name query, 5, (users) ->
+					async.map users, (user, next) ->
+						next null, user.filt!
+					, (err, results) ->
+						res.api-render results
