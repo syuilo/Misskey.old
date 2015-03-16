@@ -1,5 +1,5 @@
 require! {
-	'../../../models/application', Application
+	'../../../models/application': Application
 }
 
 authorize = require('../../auth');
