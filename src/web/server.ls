@@ -60,7 +60,7 @@ web-server = express!
 			'X-Frame-Options': \SAMEORIGIN
 
 		req
-			..login = (req.session != null && req.session.user-id != null) # Is logged
+			..login = (req.session != void 0 && req.session != null && req.session.user-id != null) # Is logged
 			..data = # Render datas
 				config: config
 				url: config.public-config.url
@@ -73,30 +73,17 @@ web-server = express!
 		if req.login
 			user-id = req.session.user-id
 			User.find user-id, (user) ->
-				Notice.find-byuser-id user.id, (notices) ->
-					if notices != null
-						async.map notices, (notice, next) ->
-							Application.find notice.appId, (app) -> next null, notice.app
-						, (err, results) ->
-							req
-								..data
-									..notices = results
-									..me = user
-								..me = user
-							callback!
-					else
-						req
-							..data.me = user
-							..me = user
-						callback!
+				req
+					..data.me = user
+					..me = user
+				callback!
 		else
 			req
 				..data.me = null
 				..me = null
 			callback!
 
-# Statics
-webServer
+	# Statics
 	..get '/favicon.ico' (req, res, next) ->
 		res.sendFile path.resolve(__dirname + '/resources/favicon.ico')
 	
@@ -104,21 +91,21 @@ webServer
 		res.sendFile path.resolve(__dirname + '/resources/manifest.json')
 
 # Resources rooting
-resourcesRouter webServer
+resourcesRouter web-server
 
 # General rooting
-webServer.all '*' (req, res, next) ->
-	webServer.initSession req, res, -> next!
+web-server.all '*' (req, res, next) ->
+	web-server.initSession req, res, -> next!
 
-indexRouter webServer
+indexRouter web-server
 
 # Not found handling
-webServer.use (req, res, next) ->
+web-server.use (req, res, next) ->
 	res.status 404
 	res.display req, res, 'notFound', {}
 
 # Error handling
-webServer.use (err, req, res, next) ->
+web-server.use (err, req, res, next) ->
 	res.status 500
 	if res.hasOwnProperty 'display'
 		res.display req, res, 'error', err: err
@@ -127,4 +114,4 @@ webServer.use (err, req, res, next) ->
 		res.send!
 
 # Listen
-webServer.listen config.port.web
+web-server.listen config.port.web

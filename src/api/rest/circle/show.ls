@@ -3,10 +3,8 @@ require! {
 	'../../api-response': APIResponse
 	'../../../models/circle': Circle
 	'../../../models/user': User
+	'../../auth': authorize
 }
-
-authorize = require '../../auth'
-
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		circle-id = req.query.circle_id

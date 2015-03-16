@@ -1,7 +1,7 @@
 require! {
 	'../../../models/circle': Circle
+	'../../auth': authorize
 }
-authorize = require '../../auth'
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		name = req.body.name
