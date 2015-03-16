@@ -12,9 +12,12 @@ Thanks:
 * GraphicsMagick
 
 ## Contribution
-Report any problems to [Issue](https://github.com/syuilo/Misskey/issues?q=is%3Aopen)
+Many ways to contribute to Misskey
 
-Send [Pull Request](https://github.com/syuilo/Misskey/pulls?q=is%3Aopen)
+* Report any problems to [Issue](https://github.com/syuilo/Misskey/issues)
+* Discussion on [Issue](https://github.com/syuilo/Misskey/issues)
+* Send [Pull Request](https://github.com/syuilo/Misskey/pulls)
+* Review [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
 ## License
 The MIT License. (See [LICENSE](LICENSE) file)
