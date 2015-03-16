@@ -50,7 +50,9 @@ module.exports = (app) ->
 	function display-user-image(req, res, id-or-sn, image-property-name)
 		function display(user, user-image)
 			if user-image != null
-				image-buffer = if user-image[image-property-name] != null then user-image[image-property-name] else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
+				image-buffer = if user-image[image-property-name] != null
+					then user-image[image-property-name]
+					else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
 				if req.headers['accept'].index-of 'text' == 0
 					display-image do
 						req
