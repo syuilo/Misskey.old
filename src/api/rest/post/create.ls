@@ -76,6 +76,11 @@ create = (req, res, app-id, irtpi, image, is-image-attached, text, user-id) ->
 				mention-sn = mention-sn.replace '@', ''
 				User.find-by-screen-name mention-sn, (reply-user) ->
 					if reply-user != null
+						PostMention.create obj.id, reply-user.id, (created-mention) ->
+							stream-mention-obj = JSON.stringify do
+								type: 'reply'
+								value: obj
+							Streamer.publish 'userStream:' + reply-user.id, stream-mention-obj
 
 	get-more-talk = (post, callback) ->
 		Post.get-before-talk post.in-reply-to-post-id, (more-talk) ->
