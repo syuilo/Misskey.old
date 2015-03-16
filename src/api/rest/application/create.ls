@@ -12,7 +12,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 
 		err = validate-arguments app, name, callback-url, description, developer-name, developer-website
 
-		if err === null
+		if err !== null
 			res.api-error err[0], err[1]
 		else if !user.is-premium
 			has-app-one-or-more (one-or-more) ->
