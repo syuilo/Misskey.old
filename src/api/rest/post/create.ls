@@ -4,7 +4,9 @@ require! {
 	gm
 	'../../../models/post': Post
 	'../../../models/post-image': PostImage
+	'../../../models/post-mention': PostMention
 	'../../../utils/streaming': Streamer
+	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 }
 
