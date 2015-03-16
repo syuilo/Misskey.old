@@ -25,6 +25,7 @@ module.exports = (req, res) ->
 					return
 				create!
 				return
+		create!
 
 		create = ->
 			Application.create name, user.id, callback-url, description, developer-name, developer-website, (created-app) ->
