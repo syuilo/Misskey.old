@@ -73,22 +73,10 @@ web-server = express!
 		if req.login
 			user-id = req.session.user-id
 			User.find user-id, (user) ->
-				Notice.find-byuser-id user.id, (notices) ->
-					if notices != null
-						async.map notices, (notice, next) ->
-							Application.find notice.appId, (app) -> next null, notice.app
-						, (err, results) ->
-							req
-								..data
-									..notices = results
-									..me = user
-								..me = user
-							callback!
-					else
-						req
-							..data.me = user
-							..me = user
-						callback!
+				req
+					..data.me = user
+					..me = user
+				callback!
 		else
 			req
 				..data.me = null
