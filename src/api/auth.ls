@@ -20,7 +20,7 @@ module.exports = (req, res, success) ->
 	if consumer-key == null || access-token == null
 		if (req.header 'Referer') != null
 			referer = req.header 'Referer'
-			if referer.match new RegExp '^' + config.publicConfig.url
+			if referer.match new RegExp '^' + config.public-config.url
 				if is-logged
 					if req.session.consumer-key != null && req.session.access-token != null
 						consumer-key = req.session.consumer-key
