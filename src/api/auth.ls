@@ -15,7 +15,7 @@ module.exports = (req, res, success) ->
 	access-token = get-parameter req, 'access_token'
 
 	fail = (message) ->
-		res.apiError 401, message
+		res.api-error 401, message
 
 	if consumer-key == null || access-token == null
 		if (req.header 'Referer') != null
