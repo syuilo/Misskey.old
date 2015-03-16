@@ -16,7 +16,7 @@ module.exports = (req, res) ->
 		err = validate-argument(app, name, callback-url, description, developer-name, developer-website)
 
 		if err === null
-			res.apiError(err[0], err[1])
+			res.apiError err[0], err[1]
 			return
 		if !user.isPremium
 			has-app-one-or-more (one-or-more) ->
