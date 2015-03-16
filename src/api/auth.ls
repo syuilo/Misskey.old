@@ -16,6 +16,7 @@ module.exports = (req, res, success) ->
 
 	fail = (message) ->
 		res.api-error 401, message
+		return
 
 	if consumer-key == null || access-token == null
 		if (req.header 'Referer') != null
