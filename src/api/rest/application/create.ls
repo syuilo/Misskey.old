@@ -2,7 +2,7 @@ require! {
 	'../../../models/application': Application
 }
 
-authorize = require('../../auth');
+authorize = require('../../auth')
 validate-argument = require('./create/validate-arguments')
 
 module.exports = (req, res) ->
