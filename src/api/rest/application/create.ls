@@ -13,8 +13,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		err = validate-arguments app, name, callback-url, description, developer-name, developer-website
 
 		if err === null
-			res.apiError err[0], err[1]
-		else if !user.isPremium
+			res.api-error err[0], err[1]
+		else if !user.is-premium
 			has-app-one-or-more (one-or-more) ->
 				if one-or-more
 					res.api-error 403 'Cannot create application at twon or more. You need PlusAccount to do so :('
