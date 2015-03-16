@@ -5,6 +5,7 @@ require! {
 	gm
 	'../../models/user': User
 	'../../models/user-image': UserImage
+	'../../models/post': Status
 	'../../models/post-image': StatusImage
 	'../../models/talk-message': TalkMessage
 	'../../models/talk-message-image': TalkMessageImage
@@ -51,7 +52,12 @@ module.exports = (app) ->
 			if user-image != null
 				image-buffer = user-image[image-property-name] != null ? user-image[image-property-name] : fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
 				if req.headers['accept'].index-of 'text' == 0
-					display-image req, res, image-buffer, 'https://misskey.xyz/img/' + image-property-name + '/' + id-or-sn, user.screen-name
+					display-image do
+						req
+						res
+						image-buffer
+						'https://misskey.xyz/img/' + image-property-name + '/' + id-or-sn
+						user.screen-name
 				else
 					send-image req, res, image-buffer
 		if id-or-sn.match /^[0-9]+$/
@@ -74,8 +80,58 @@ module.exports = (app) ->
 					display user, user-image
 
 	function display-status-image(req, res, id)
+		StatusImage.find id, (status-image) ->
+			if status-image != null
+				image-buffer = status-image.image
+				Status.find status-image.post-id, (post) ->
+					if req.headers['accept'].indexOf 'text' == 0
+						User.find post.userId, (user) ->
+							display-image do
+								req
+								res
+								image-buffer
+								'https://misskey.xyz/img/post/' + id
+								post.created-at + '.jpg'
+								user
+					else
+						send-image req, res, image-buffer
+			else
+				res
+					.status 404
+					.send 'Image not found.'
+				return
 
-	
+	function display-talkmessage-image(req, res, id)
+		function authorize(talkmessage)
+			| !req.login => [403 'Access denied.']
+			| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
+			| _ => null
+		TalkMessageImage.find id, (talkmessage-image) ->
+			if talkmessage-image == null
+				res
+					.status 404
+					.send 'Image not found.'
+				return
+			TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
+				err = authorize talkmessage
+				if err == null
+					image-buffer = talkmessage-image.image;
+					if req.headers['accept'].indexOf 'text' == 0
+						User.find talkmessage.user-id, (user) ->
+							display-image do
+								req
+								res
+								image-buffer
+								'https://misskey.xyz/img/talk-message/' + id
+								talkmessage.created-at + '.jpg'
+								user
+					else
+						send-image req, res, image-buffer
+				else
+					res
+						.status err[0]
+						.send err[1]
+
 	# User icon
 	app.get '/img/icon/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
@@ -99,4 +155,16 @@ module.exports = (app) ->
 	# Talk message
 	app.get '/img/talk-message/:id' (req, res) ->
 		id = req.params.id
+		display-talkmessage-image req, res, id
 		
+	# Webtheme thumbnail
+	app.get '/img/webtheme_thumbnail/:id' (req, res) ->
+		id = req.params.id
+		WebTheme.find id, (webtheme) ->
+			if webtheme != null
+				image-buffer = webtheme.thumbnail
+				send-image req, res, image-buffer
+			else
+				res
+					..status 404
+					..send 'WebTheme not found.'
