@@ -102,11 +102,6 @@ module.exports = (app) ->
 				return
 
 	function display-talkmessage-image(req, res, id)
-		function authorize(talkmessage)
-			switch
-				| !req.login => [403 'Access denied.']
-				| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
-				| _ => null
 		TalkMessageImage.find id, (talkmessage-image) ->
 			if talkmessage-image == null
 				res
@@ -114,7 +109,10 @@ module.exports = (app) ->
 					..send 'Image not found.'
 				return
 			TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
-				err = authorize talkmessage
+				err = ->
+					| !req.login => [403 'Access denied.']
+					| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
+					| _ => null
 				if err == null
 					image-buffer = talkmessage-image.image;
 					if req.headers['accept'].indexOf 'text' == 0
