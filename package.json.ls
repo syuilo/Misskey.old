@@ -18,7 +18,6 @@ scripts:
 dev-dependencies:
 	LiveScript: '^1.3.1'
 	del: '^1.1.1'
-	dtsm: '^0.1.0'
 	gulp: '^3.8.10'
 	'gulp-livescript': '^2.3.0'
 	'gulp-plumber': '^1.0.0'
