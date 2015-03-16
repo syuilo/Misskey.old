@@ -11,7 +11,7 @@ authorize = require '../../auth'
 favorite-step = (req, res, app, user, target-post) ->
 	PostFavorite.is-favorited target-post.id, user.id (is-favorited) ->
 		if is-favorited
-			res.api-error 400 'This post is already favorited :)'
+			res.api-error 400 'This post is already favorited :('
 			return
 
 		PostFavorite.create target-post.id, user.id (favorite) ->
