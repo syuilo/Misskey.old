@@ -3,7 +3,14 @@
   "description": "Misskey",
   "version": "0.0.6",
   "private": true,
-  "main": "./index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/syuilo/Misskey.git",
+  "bugs": "http://github.com/syuilo/Misskey/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/syuilo/Misskey.git"
+  },
+  "main": "./",
   "scripts": {
     "build": "gulp build",
     "clean": "gulp clean",
@@ -18,36 +25,34 @@
     "gulp-plumber": "^1.0.0",
     "gulp-typescript": "^2.3.0"
   },
-  "dependencies": {
-    "async": "^0.9.0",
-    "bcrypt": "^0.8.0",
-    "body-parser": "^1.10.1",
-    "compression": "^1.4.0",
-    "connect-redis": "^2.1.0",
-    "cookie": "^0.1.2",
-    "cookie-parser": "^1.3.3",
-    "express": "^4.10.6",
-    "express-minify": "^0.1.3",
-    "express-session": "^1.10.1",
-    "gm": "^1.9.0",
-    "jade": "^1.9.1",
-    "js-yaml": "^3.2.6",
-    "less": "^2.4.0",
-    "marked": "^0.3.3",
-    "moment": "^2.9.0",
-    "mongoose": "^3.8.25",
-    "multer": "^0.1.7",
-    "mysql": "^2.5.4",
-    "redis": "^0.12.1",
-    "socket.io": "^1.3.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/syuilo/Misskey.git"
-  },
-  "homepage": "https://github.com/syuilo/Misskey.git",
-  "bugs": "http://github.com/syuilo/Misskey/issues",
-  "license": "MIT",
+  "dependencies": [
+    {
+      "async": "^0.9.0",
+      "bcrypt": "^0.8.0"
+    },
+    "body-parser:",
+    "^1.10.1",
+    {
+      "compression": "^1.4.0",
+      "connect-redis": "^2.1.0",
+      "cookie": "^0.1.2",
+      "cookie-parser": "^1.3.3",
+      "express": "^4.10.6",
+      "express-minify": "^0.1.3",
+      "express-session": "^1.10.1",
+      "gm": "^1.9.0",
+      "jade": "^1.9.1",
+      "js-yaml": "^3.2.6",
+      "less": "^2.4.0",
+      "marked": "^0.3.3",
+      "moment": "^2.9.0",
+      "mongoose": "^3.8.25",
+      "multer": "^0.1.7",
+      "mysql": "^2.5.4",
+      "redis": "^0.12.1",
+      "socket.io": "^1.3.4"
+    }
+  ],
   "author": {
     "name": "syuilo",
     "email": "syuilotan@yahoo.co.jp",
