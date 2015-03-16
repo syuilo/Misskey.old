@@ -2,9 +2,6 @@
 npm-debug.log
 /node_modules/
 
-## TypeScript definition file
-#/typings/
-
 # Output
 /bin/
 
