@@ -8,7 +8,7 @@ db = mongoose.connect config.mongo.uri, config.mongo.options
 application-schema = new mongoose.Schema do
 	name: { type: String }
 	user-id: { type: Number }
-	created-at: { type: String }
+	created-at: { type: Date, default: Date.now }
 	consumer-key: { type: String }
 	callback-url: { type: String }
 	description: { type: String }
