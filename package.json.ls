@@ -9,7 +9,7 @@ repository:
 	type: 'git'
 	url: 'https://github.com/syuilo/Misskey.git'
 
-main: './'
+main: './bin/'
 scripts:
 	build: 'gulp build'
 	clean: 'gulp clean'
@@ -26,7 +26,7 @@ dev-dependencies:
 dependencies:
 	async: '^0.9.0'
 	bcrypt: '^0.8.0'
-	'body-parser:' '^1.10.1'
+	'body-parser': '^1.10.1'
 	compression: '^1.4.0'
 	'connect-redis': '^2.1.0'
 	cookie: '^0.1.2'
