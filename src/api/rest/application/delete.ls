@@ -21,7 +21,7 @@ module.exports = (req, res) ->
 
 		Application.find id, (app) ->
 			if app == null
-				res.api-error 400, 'Application not found.'
+				res.api-error 404, 'Application not found.'
 				return
 			app.destroy ->
 				res.api-render { status: 'success' }
