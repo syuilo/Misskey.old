@@ -50,7 +50,7 @@ module.exports = (app) ->
 	function display-user-image(req, res, id-or-sn, image-property-name)
 		function display(user, user-image)
 			if user-image != null
-				image-buffer = user-image[image-property-name] != null ? user-image[image-property-name] : fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
+				image-buffer = if user-image[image-property-name] != null then user-image[image-property-name] else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
 				if req.headers['accept'].index-of 'text' == 0
 					display-image do
 						req
@@ -64,8 +64,8 @@ module.exports = (app) ->
 			User.find id-or-sn, (user) ->
 				if user == null
 					res
-						.status 404
-						.send 'User not found.'
+						..status 404
+						..send 'User not found.'
 					return
 				UserImage.find Number id-or-sn, (user-image) ->
 					display user, user-image
@@ -73,8 +73,8 @@ module.exports = (app) ->
 			User.findByScreenName id-or-sn, (user) ->
 				if user == null
 					res
-						.status 404
-						.send 'User not found.'
+						..status 404
+						..send 'User not found.'
 					return
 				UserImage.find user.id, (user-image) ->
 					display user, user-image
@@ -97,20 +97,21 @@ module.exports = (app) ->
 						send-image req, res, image-buffer
 			else
 				res
-					.status 404
-					.send 'Image not found.'
+					..status 404
+					..send 'Image not found.'
 				return
 
 	function display-talkmessage-image(req, res, id)
 		function authorize(talkmessage)
-			| !req.login => [403 'Access denied.']
-			| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
-			| _ => null
+			switch
+				| !req.login => [403 'Access denied.']
+				| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
+				| _ => null
 		TalkMessageImage.find id, (talkmessage-image) ->
 			if talkmessage-image == null
 				res
-					.status 404
-					.send 'Image not found.'
+					..status 404
+					..send 'Image not found.'
 				return
 			TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
 				err = authorize talkmessage
@@ -129,8 +130,8 @@ module.exports = (app) ->
 						send-image req, res, image-buffer
 				else
 					res
-						.status err[0]
-						.send err[1]
+						..status err[0]
+						..send err[1]
 
 	# User icon
 	app.get '/img/icon/:idOrSn' (req, res) ->
