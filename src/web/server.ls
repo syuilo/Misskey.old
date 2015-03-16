@@ -60,7 +60,7 @@ web-server = express!
 			'X-Frame-Options': \SAMEORIGIN
 
 		req
-			..login = (req.session != void 0 && req.session != null && req.session.user-id != null) # Is logged
+			..login = req.session != void && req.session != null && req.session.user-id != null # Is logged
 			..data = # Render datas
 				config: config
 				url: config.public-config.url
