@@ -23,10 +23,11 @@ cookie-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
 
 web-server = express!
 	..disable 'x-powered-by'
-	..set 'view engine' \jade
-	..set 'views', __dirname + '/views'
 	..locals.compile-debug = false
-
+	..set
+		.. 'view engine' \jade
+		.. 'views', __dirname + '/views'
+	
 	..use body-parser.urlencoded {+extended}
 	..use cookie-parser config.cookie_pass
 
@@ -48,8 +49,9 @@ web-server = express!
 			prefix: 'misskey-session:'
 
 	# Compressing settings
-	..use compress!
-	..use minify!
+	..use
+		.. compress!
+		.. minify!
 
 	..init-session = (req, res, callback) ->
 		res.set do
@@ -88,26 +90,26 @@ web-server = express!
 		res.sendFile path.resolve(__dirname + '/resources/favicon.ico')
 	
 	..get '/manifest.json', (req, res, next) ->
-		res.sendFile path.resolve(__dirname + '/resources/manifest.json')
+		res.send-file path.resolve(__dirname + '/resources/manifest.json')
 
 # Resources rooting
-resourcesRouter web-server
+resources-router web-server
 
 # General rooting
-web-server.all '*' (req, res, next) ->
-	web-server.initSession req, res, -> next!
+web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next!
 
-indexRouter web-server
+index-router web-server
 
 # Not found handling
 web-server.use (req, res, next) ->
-	res.status 404
-	res.display req, res, 'notFound', {}
+	res
+		..status 404
+		..display req, res, 'notFound', {}
 
 # Error handling
 web-server.use (err, req, res, next) ->
 	res.status 500
-	if res.hasOwnProperty 'display'
+	if res.has-own-property 'display'
 		res.display req, res, 'error', err: err
 	else
 		console.log err
