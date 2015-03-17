@@ -11,6 +11,7 @@ repository:
 
 main: './bin/'
 scripts:
+	install: 'gulp build'
 	build: 'gulp build'
 	clean: 'gulp clean'
 	watch: 'gulp watch'
