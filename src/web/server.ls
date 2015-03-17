@@ -19,7 +19,7 @@ require! {
 
 RedisStore = (require 'connect-redis') session
 
-year = (60 * 60 * 24 * 365) * 1000
+cookie-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
 
 web-server = express!
 	..disable 'x-powered-by'
@@ -41,8 +41,8 @@ web-server = express!
 			domain: '.' + config.public-config.domain
 			http-only: false
 			secure: false
-			expires: new Date(Date.now! + year)
-			max-age: year
+			expires: new Date Date.now! + cookie-expires
+			max-age: cookie-expires
 		store: new RedisStore do
 			db: 1
 			prefix: 'misskey-session:'
