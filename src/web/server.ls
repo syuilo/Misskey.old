@@ -27,7 +27,7 @@ web-server = express!
 	..set 'views', __dirname + '/views'
 	..locals.compile-debug = false
 
-	..use body-parser.urlencoded extended: true
+	..use body-parser.urlencoded {+extended}
 	..use cookie-parser config.cookie_pass
 
 	# Session settings
