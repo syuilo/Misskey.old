@@ -53,7 +53,7 @@ module.exports = (app) ->
 	
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
-		function send-theme-style(user) ->
+		function send-theme-style(user)
 			style-name = req.params[0]
 			theme-id = user.web-theme-id
 			if theme-id == null
@@ -77,7 +77,7 @@ module.exports = (app) ->
 						..status 500
 						..send 'Theme parse failed.'
 		
-		if req.query.user != void 0 && req.query.user != null
+		if req.query.user != void && req.query.user != null
 			User.find-by-screen-name req.query.user, (theme-user) ->
 				if theme-user != null
 					send-theme-style theme-user
@@ -103,7 +103,7 @@ module.exports = (app) ->
 			resource-path = path.resolve __dirname + '/..' + req.path.replace /\.css$/ '.less'
 			if fs.exists-sync resource-path
 				app.init-session req, res, ->
-					if req.query.user == void 0 || req.query.user == null
+					if req.query.user == void || req.query.user == null
 						read-file-send-less do
 							req
 							res
