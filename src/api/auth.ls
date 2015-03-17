@@ -5,8 +5,8 @@ require! {
 	'../models/user': User
 }
 module.exports = (req, res, success) ->
-	is-logged = req.session != null && req.session.user-id != null
-	get-parameter = (req, name) -> req[req.mathod === 'GET' ? 'query' : 'body'][name]
+	is-logged = req.session? && req.session.user-id?
+	get-parameter = (req, name) -> req[if req.method == \GET then \query else \body][name]
 	consumer-key = get-parameter req, 'consumer_key'
 	access-token = get-parameter req, 'access_token'
 	fail = (message) -> res.api-error 401 message
