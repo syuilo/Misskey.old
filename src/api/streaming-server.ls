@@ -16,7 +16,7 @@ server = https.create-server do
 	ca: (fs.read-file-sync '../../../../certs/sub.class1.server.ca.pem').to-string!
 	
 	(req, res) ->
-		res.write-head 200 "Content-Type": "text/plain"
+		res.write-head 200 'Content-Type': 'text/plain'
 		res.end 'kyoppie'
 	
 server.listen config.port.streaming
