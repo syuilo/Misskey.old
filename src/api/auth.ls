@@ -7,7 +7,7 @@ require! {
 	'../models/user': User
 }
 
-export (req, res, success) ->
+module.exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
 	get-parameter = (req, name) -> req[if req.method == \GET then \query else \body][name]
 	consumer-key = get-parameter req, 'consumer_key'
