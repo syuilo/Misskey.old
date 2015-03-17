@@ -16,14 +16,13 @@ scripts:
 	clean: 'gulp clean'
 	watch: 'gulp watch'
 
-dev-dependencies:
+dependencies:
 	LiveScript: '^1.3.1'
 	del: '^1.1.1'
 	gulp: '^3.8.10'
 	'gulp-livescript': '^2.3.0'
 	'gulp-plumber': '^1.0.0'
 	'gulp-typescript': '^2.3.0'
-dependencies:
 	async: '^0.9.0'
 	bcrypt: '^0.8.0'
 	'body-parser': '^1.10.1'
