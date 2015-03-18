@@ -1,1 +1,1 @@
-module.exports = require \mysql .create-pool (require './config' .db)
+exports = require \mysql .create-pool (require './config' .db)
