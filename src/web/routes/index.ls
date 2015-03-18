@@ -3,7 +3,6 @@ require! {
 	express
 	'../../models/access-token': AccessToken
 	'../../models/user': User
-	'../../models/post': Post
 	'../utils/login': do-login
 	'../../config': config
 	'./image': image-router
@@ -20,7 +19,7 @@ module.exports = (app) ->
 						next!
 					else
 						res.status 404
-						
+					
 			.. 'postId' (req, res, next, post-id) ->
 				Post.find post-id, (post) ->
 					if post != null
@@ -34,6 +33,9 @@ module.exports = (app) ->
 				if req.login
 					then (require '../controllers/home') req, res
 					else res.display req, res, 'entrance', {}
+			.. '/config' (req, res, next) ->
+				res.set 'Content-Type' 'application/javascript'
+				res.send 'var conf = ' + (JSON.stringify config.public-config) + ';'
 			.. '/new' (req, res, next) -> (require '../controllers/new') req, res
 			.. '/i/mention' (req, res, next) -> (require '../controllers/i-mention') req, res
 			.. '/i/mentions' (req, res, next) -> (require '../controllers/i-mention') req, res
@@ -41,9 +43,6 @@ module.exports = (app) ->
 			.. '/i/talks' (req, res, next) -> (require '../controllers/i-talks') req, res
 			.. '/i/setting' (req, res, next) -> (require '../controllers/i-setting') req, res
 			.. '/i/settings' (req, res, next) -> (require '../controllers/i-setting') req, res
-			.. '/config' (req, res, next) ->
-				res.set 'Content-Type' 'application/javascript'
-				res.send 'var conf = ' + (JSON.stringify config.public-config) + ';'
 			.. '/dev' (req, res, next) -> (require '../controllers/dev') req, res
 			.. '/dev/reference' (req, res, next) -> (require '../controllers/dev-reference') req, res
 			.. '/dev/myapp' (req, res, next) -> (require '../controllers/dev-myapp') req, res
