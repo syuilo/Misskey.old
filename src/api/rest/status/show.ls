@@ -1,5 +1,5 @@
 require! {
-	'../../../models/post': Post
+	'../../../models/status': Post
 	'../../auth': authorize
 }
 module.exports = (req, res) ->

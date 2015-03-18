@@ -2,9 +2,9 @@ require! {
 	async
 	fs
 	gm
-	'../../../models/post': Post
-	'../../../models/post-image': PostImage
-	'../../../models/post-mention': PostMention
+	'../../../models/status': Post
+	'../../../models/status-image': PostImage
+	'../../../models/status-mention': PostMention
 	'../../../utils/streaming': Streamer
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing

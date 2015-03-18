@@ -1,8 +1,8 @@
 require! {
 	'../../../config': config
 	'../../../models/notice': Notice
-	'../../../models/post': Post
-	'../../../models/post-favorite': PostFavorite
+	'../../../models/status': Post
+	'../../../models/status-favorite': PostFavorite
 	'../../../utils/streaming': Streamer
 	'../../auth': authorize
 }

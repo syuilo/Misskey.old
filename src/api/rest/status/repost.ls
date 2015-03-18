@@ -1,6 +1,6 @@
 required! {
 	'../../../models/notice': Notice
-	'../../../models/post': Post
+	'../../../models/status': Post
 	'../../../utils/steaming': Streamer
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
