@@ -12,7 +12,7 @@ module.exports = (io, session-store) ->
 			if err
 				console.log err.message
 			else
-				if session == null
+				if !session?
 					console.log 'undefined: ' + sidkey
 				else
 					uid = socket.user-id = session.user-id
@@ -21,7 +21,7 @@ module.exports = (io, session-store) ->
 						..on \message (channel, content) ->
 						try
 							content = JSON.parse content
-							if content.type != null && content.value != null
+							if content.type? && content.value?
 								then socket.emit content.type, content.value
 								else socket.emit content
 						catch e
