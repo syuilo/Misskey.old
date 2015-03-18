@@ -17,7 +17,7 @@ module.exports = (req, res) ->
 
 	switch
 	| req.body.screen_name == null => res.api-error 400 'screen_name parameter is required :('
-	| !validate-screen-name screen-name => res.api-error 400 'screen_name invalid format'
+	| screen-name < 4 || 20 < screen-name || screen-name.match /^[0-9]+$/ || !screen-name.match /^[a-zA-Z0-9_]+$/ => res.api-error 400 'screen_name invalid format'
 	| req.body.name == null => res.api-error 400 'name parameter is required :('
 	| name == '' => res.api-error 400 'name parameter is required :('
 	| req.body.password == null => res.api-error 400 'password parameter is required :('
@@ -39,6 +39,3 @@ module.exports = (req, res) ->
 									res.api-render created-user.filt!
 								, ->
 									res.send-status 500
-
-	function validate-screen-name screen-name
-		4 <= screen-name.length && screen-name.length <= 20 && (!screen-name.match /^[0-9]+$/) && (screen-name.match /^[a-zA-Z0-9_]+$/)
