@@ -1,1 +1,1 @@
-module.exports = (req, res) -> res.apiError 418 "I'm a teapot."
+exports = (, res) -> res.api-error 418 "I'm a teapot."
