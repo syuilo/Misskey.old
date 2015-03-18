@@ -19,6 +19,6 @@ exports = (statuses, viewer, callback) ->
 		html = compiler do
 			statuses: null
 			url: config.publicConfig.url
-			login: !viewer?
+			login: viewer?
 			parseText: textparser
 		callback html
