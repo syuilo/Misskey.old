@@ -31,15 +31,14 @@ module.exports = (req, res) ->
 			hash-password = bcrypt.hash-sync password, salt
 			User.create screen-name, hash-password, name, color, (created-user) ->
 				| created-user == null => res.api-error 500 'Sorry, register failed. please try again.'
-				| _ =>
-					UserImage.create created-user.id, (user-image) ->
-						AccessToken.create config.web-client-id, created-user.id, (access-token) ->
-							UserFollowing.create 1, created-user.id, 1, (user-following) ->
-								UserFollowing.create created-user.id, 1, (user-following) ->
-									do-login req, created-user.screen-name, password, (user, web-access-token) ->
-										res.api-render created-user.filt!
-									, ->
-										res.send-status 500
+				| _ => UserImage.create created-user.id, (user-image) ->
+					AccessToken.create config.web-client-id, created-user.id, (access-token) ->
+						UserFollowing.create 1, created-user.id, 1, (user-following) ->
+							UserFollowing.create created-user.id, 1, (user-following) ->
+								do-login req, created-user.screen-name, password, (user, web-access-token) ->
+									res.api-render created-user.filt!
+								, ->
+									res.send-status 500
 
 	function validate-screen-name screen-name
 		4 <= screen-name.length && screen-name.length <= 20 && (!screen-name.match /^[0-9]+$/) && (screen-name.match /^[a-zA-Z0-9_]+$/)
