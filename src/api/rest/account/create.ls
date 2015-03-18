@@ -9,13 +9,13 @@ require! {
 }
 
 module.exports = (req, res) ->
-	screen-name = req.body.screen_name
+	screen-name = req.body.screen-name
 	name = req.body.name
 	password = req.body.password
 	color = req.body.color
 
 	switch
-	| req.body.screen_name == null => res.api-error 400 'screen_name parameter is required :('
+	| req.body.screen-name == null => res.api-error 400 'screen_name parameter is required :('
 	| screen-name < 4 || 20 < screen-name || screen-name.match /^[0-9]+$/ || !screen-name.match /^[a-zA-Z0-9_]+$/ => res.api-error 400 'screen_name invalid format'
 	| req.body.name == null => res.api-error 400 'name parameter is required :('
 	| name == '' => res.api-error 400 'name parameter is required :('
