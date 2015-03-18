@@ -31,9 +31,9 @@ module.exports = (app) ->
 				options = JSON.parse req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
 				gm image-buffer
 					..blur options.radius, options.sigma
-					..compress 'jpeg'
+					..compress ¥jpeg
 					..quality 80
-					..to-buffer 'jpeg' (err, buffer) ->
+					..to-buffer ¥jpeg (err, buffer) ->
 						if error then throw error
 						res
 							..set 'Content-Type' 'image/jpeg'
