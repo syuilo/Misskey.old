@@ -15,13 +15,13 @@ module.exports = (req, res) ->
 	color = req.body.color
 
 	switch
-	| screen-name == null => res.api-error 400 'screen_name parameter is required :('
+	| screen-name? => res.api-error 400 'screen_name parameter is required :('
 	| screen-name < 4 || 20 < screen-name || screen-name.match /^[0-9]+$/ || !screen-name.match /^[a-zA-Z0-9_]+$/ => res.api-error 400 'screen_name invalid format'
-	| name == null => res.api-error 400 'name parameter is required :('
+	| name? => res.api-error 400 'name parameter is required :('
 	| name == '' => res.api-error 400 'name parameter is required :('
-	| password == null => res.api-error 400 'password parameter is required :('
+	| password? => res.api-error 400 'password parameter is required :('
 	| password.length < 8 => res.api-error 400 'password invalid format'
-	| color == null => res.api-error 400 'color parameter is required :('
+	| color? => res.api-error 400 'color parameter is required :('
 	| !color.match /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
 	| _ => User.find-by-screen-name screen-name, (user) ->
 		| !user? => res.api-error 500 'This screen name is already used.'
