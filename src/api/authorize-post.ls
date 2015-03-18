@@ -6,27 +6,24 @@ require! {
 	'../models/user': User 
 	'../web/utils/login': do-login
 }
-module.exports = (req, res, server) ->
-	login = req.session != null && req.session.user-id != null
+exports = (req, res, server) ->
+	login = req.session? && req.session.user-id?
 	
-	request-token = typeof req.query.request_token != \undefined ? req.query.request_token : null
-	screen-name = typeof req.body.screen_name != \undefined ? req.body.screen_name : null
-	password = typeof req.body.password != \undefined ? req.body.password : null
+	request-token = req.query.request_token ? null
+	screen-name = req.body.screen_name ? null
+	password = req.body.password ? null
 	
-	if request-token != null
+	if request-token?
 		SauthRequestToken.find request-token, (request-token-instance) ->
-			if request-token-instance != null && !request-token-instance.is-invalid
+			if request-token-instance? && !request-token-instance.is-invalid
 				Application.find request-token-instance.app-id, (app) ->
-					if screen-name != null && password != null
+					| screen-name? && password? =>
 						do-login server, screen-name, password, (user, web-access-token) ->
 							validate request-token-instance, user, app
 						, render-confirmation
-					else if login
-						User.find req.session.user-id, (user) ->
-							validate request-token-instance, user, app
-					else
-						render-confirmation!
-	
+					| login => User.find req.session.user-id, (user) ->
+						validate request-token-instance, user, app
+					| _ => render-confirmation!
 	
 	function validate(request-token-instance, user, app)
 		if req.body.cancel != null
@@ -36,26 +33,14 @@ module.exports = (req, res, server) ->
 			render-cancel!
 		else
 			SauthPinCode.create app.id, user.id, (pincode) ->
-				if app.callback-url == ''
-					render-success!
-				else
-					res.redirect app.callback-url + '?pincode=' + pincode.code
+				| app.callback-url == '' => render-success!
+				| _ => res.redirect app.callback-url + '?pincode=' + pincode.code
 	
 	function render-confirmation
-		res.render '../web/views/authorize-confirm' do
-			login: false
-			app: app
-			login-failed: false
-
+		res.render '../web/views/authorize-confirm' {app, -login, -login-failed}
+	
 	function render-cancel
-		res.render '../web/views/authorize-cancel' do
-			login: true
-			app: app
-			me: user
+		res.render '../web/views/authorize-cancel' {app, +login, me: user}
 	
 	function render-success
-		res.render '../web/views/authorize-success' do
-			login: true
-			me: user
-			app: app
-			code: pincode.code
+		res.render '../web/views/authorize-success' {app, +login, me: user, code: pincode.code }
