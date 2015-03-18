@@ -40,10 +40,10 @@ module.exports = (app) ->
 		..delete /\/users\/unfollow(\..+)?$/               require './rest/users/unfollow'
 		
 		# Status
-		..post   /\/status\/update(\..+)?$/                  require './rest/status/update'
-		..post   /\/status\/favorite(\..+)?$/                require './rest/status/favorite'
-		..post   /\/status\/repost(\..+)?$/                  require './rest/status/repost'
-		..get    /\/status\/timeline(\..+)?$/                require './rest/status/timeline'
+		..post   /\/status\/update(\..+)?$/                require './rest/status/update'
+		..post   /\/status\/favorite(\..+)?$/              require './rest/status/favorite'
+		..post   /\/status\/repost(\..+)?$/                require './rest/status/repost'
+		..get    /\/status\/timeline(\..+)?$/              require './rest/status/timeline'
 		
 		# Talk
 		..post   /\/talk\/say(\..+)?$/                     require './rest/talk/say'
