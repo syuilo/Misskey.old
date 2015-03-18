@@ -1,1 +1,1 @@
-module.exports = require '../../../config.json'
+exports = require '../../../config.json'
