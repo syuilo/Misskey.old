@@ -117,7 +117,7 @@ module.exports = (app) ->
 					| _ => null
 				if err == null
 					image-buffer = talkmessage-image.image;
-					if req.headers['accept'].indexOf 'text' == 0
+					if req.headers[\accept].index-of 'text' == 0
 						User.find talkmessage.user-id, (user) ->
 							display-image do
 								req
