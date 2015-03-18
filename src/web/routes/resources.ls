@@ -53,29 +53,27 @@ module.exports = (app) ->
 	
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
+		style-name = req.params[0]
+		theme-id = user.web-theme-id
 		function send-theme-style(user)
-			style-name = req.params[0]
-			theme-id = user.web-theme-id
-			if theme-id == null
-				res.send ''
-				return
-			Webtheme.find theme-id, (theme) ->
-				if theme == null
-					res.send ''
-					return
-				try
-					theme-obj = JSON.parse theme.style
-					if theme-obj[styleName]
-						compile-less theme-obj[styleName], user, (css) ->
-							res
-								..header 'Content-type' 'text/css'
-								..send css
-					else
-						res.send('');
-				catch e
-					res
-						..status 500
-						..send 'Theme parse failed.'
+			switch
+			| theme-id == null => res.send!
+			| _ => Webtheme.find theme-id, (theme) ->
+				| theme == null => res.send!
+				| _ =>
+					try
+						theme-obj = JSON.parse theme.style
+						if theme-obj[styleName]
+							compile-less theme-obj[styleName], user, (css) ->
+								res
+									..header 'Content-type' 'text/css'
+									..send css
+						else
+							res.send!
+					catch e
+						res
+							..status 500
+							..send 'Theme parse failed.'
 		
 		if req.query.user != void && req.query.user != null
 			User.find-by-screen-name req.query.user, (theme-user) ->
@@ -90,35 +88,34 @@ module.exports = (app) ->
 				if req.login
 					send-theme-style req.me
 				else
-					res.send ''
+					res.send!
 	
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
-		if req.path.index-of '..' > -1
+		| req.path.index-of '..' > -1 =>
 			res
 				..status 400
 				..send 'invalid path'
-			return;
-		if req.path.match /\.css$/
-			resource-path = path.resolve __dirname + '/..' + req.path.replace /\.css$/ '.less'
-			if fs.exists-sync resource-path
-				app.init-session req, res, ->
-					if req.query.user == void || req.query.user == null
-						read-file-send-less do
-							req
-							res
-							resource-path
-							if req.login then req.me else null
-					else
-						User.find-by-screen-name req.query.user, (style-user) ->
+		| _ =>
+			if req.path.match /\.css$/
+				resource-path = path.resolve __dirname + '/..' + req.path.replace /\.css$/ '.less'
+				if fs.exists-sync resource-path
+					app.init-session req, res, ->
+						if req.query.user == void || req.query.user == null
 							read-file-send-less do
 								req
 								res
 								resource-path
-								if styleUser != null then styleUser else null
-				return
-		if req.url.index-of '.less' == -1
-			resource-path = path.resolve __dirname + '/..' + req.path
-			res.send-file resource-path
-		else
-			next!
+								if req.login then req.me else null
+						else
+							User.find-by-screen-name req.query.user, (style-user) ->
+								read-file-send-less do
+									req
+									res
+									resource-path
+									if styleUser != null then styleUser else null
+			if req.url.index-of '.less' == -1
+				resource-path = path.resolve __dirname + '/..' + req.path
+				res.send-file resource-path
+			else
+				next!
