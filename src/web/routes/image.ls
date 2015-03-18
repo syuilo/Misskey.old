@@ -10,7 +10,7 @@ require! {
 	'../../models/talk-message': TalkMessage
 	'../../models/talk-message-image': TalkMessageImage
 	'../../models/webtheme': Webtheme
-	'../../config': config
+	'../../config'
 }
 
 module.exports = (app) ->
@@ -26,7 +26,7 @@ module.exports = (app) ->
 			}
 	
 	function send-image(req, res, image-buffer)
-		if req.query.blur != null
+		if req.query.blur?
 			try
 				options = JSON.parse req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
 				gm image-buffer
@@ -130,8 +130,8 @@ module.exports = (app) ->
 						send-image req, res, image-buffer
 				else
 					res
-						..status err[0]
-						..send err[1]
+						..status err.0
+						..send err.1
 
 	# User icon
 	app.get '/img/icon/:idOrSn' (req, res) ->
