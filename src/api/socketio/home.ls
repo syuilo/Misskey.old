@@ -4,7 +4,7 @@ require! {
 	'../../config': config
 }
 module.exports = (io, session-store) ->
-	io.of '/streaming/home' .on 'connection' (socket) ->
+	io.of '/streaming/home' .on \connection (socket) ->
 		cookies = cookie.parse socket.handshake.headers.cookie
 		sid = cookies[config.session-key]
 		sidkey = sid.match /s:(.+?)\./ .1
@@ -18,7 +18,7 @@ module.exports = (io, session-store) ->
 					uid = socket.user-id = session.user-id
 					pubsub = redis.create-client!
 						..subscribe 'misskey:userStream:' + uid
-						..on 'message' (channel, content) ->
+						..on \message (channel, content) ->
 						try
 							content = JSON.parse content
 							if content.type != null && content.value != null
@@ -26,4 +26,4 @@ module.exports = (io, session-store) ->
 								else socket.emit content
 						catch e
 							socket.emit content
-					socket.on 'disconnect' ->
+					socket.on \disconnect ->
