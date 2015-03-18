@@ -1,3 +1,5 @@
+import require \prelude-ls
+
 require! {
 	express
 	bcrypt
@@ -7,8 +9,8 @@ require! {
 	'../../config': config
 }
 
-module.exports = (req, screen-name, password, done, fail) ->
-	| screen-name == '' || password == '' => fail!
+exports = (req, screen-name, password, done, fail) ->
+	| any empty, [screen-name, password] => fail!
 	| _ => User.find-by-screen-name screen-name, (user) ->
 		| !user? => fail!
 		| _ =>
