@@ -39,11 +39,11 @@ module.exports = (app) ->
 		..post   /\/users\/follow(\..+)?$/                 require './rest/users/follow'
 		..delete /\/users\/unfollow(\..+)?$/               require './rest/users/unfollow'
 		
-		# Post
-		..post   /\/post\/create(\..+)?$/                  require './rest/post/create'
-		..post   /\/post\/favorite(\..+)?$/                require './rest/post/favorite'
-		..post   /\/post\/repost(\..+)?$/                  require './rest/post/repost'
-		..get    /\/post\/timeline(\..+)?$/                require './rest/post/timeline'
+		# Status
+		..post   /\/status\/update(\..+)?$/                  require './rest/status/update'
+		..post   /\/status\/favorite(\..+)?$/                require './rest/status/favorite'
+		..post   /\/status\/repost(\..+)?$/                  require './rest/status/repost'
+		..get    /\/status\/timeline(\..+)?$/                require './rest/status/timeline'
 		
 		# Talk
 		..post   /\/talk\/say(\..+)?$/                     require './rest/talk/say'
