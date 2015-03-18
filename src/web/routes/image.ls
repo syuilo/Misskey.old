@@ -53,7 +53,7 @@ module.exports = (app) ->
 				image-buffer = if user-image[image-property-name] != null
 					then user-image[image-property-name]
 					else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
-				if req.headers['accept'].index-of 'text' == 0
+				if req.headers[¥accept].index-of 'text' == 0
 					display-image do
 						req
 						res
@@ -87,7 +87,7 @@ module.exports = (app) ->
 			if status-image != null
 				image-buffer = status-image.image
 				Status.find status-image.post-id, (post) ->
-					if req.headers['accept'].indexOf 'text' == 0
+					if req.headers[¥accept].index-of 'text' == 0
 						User.find post.userId, (user) ->
 							display-image do
 								req
