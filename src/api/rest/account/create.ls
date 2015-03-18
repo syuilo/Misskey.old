@@ -2,12 +2,11 @@ require! {
 	bcrypt
 	'../../../models/access-token': AccessToken
 	'../../../config': config
+	'../../../web/utils/login': do-login
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/user-image': UserImage
 }
-
-do-login = require '../../../web/utils/login'
 
 module.exports = (req, res) ->
 	screen-name = req.body.screen_name
