@@ -29,7 +29,7 @@ module.exports = (req, res) ->
 			salt = bcrypt.gen-salt-sync 16
 			hash-password = bcrypt.hash-sync password, salt
 			User.create screen-name, hash-password, name, color, (created-user) ->
-				| created-user == null => res.api-error 500 'Sorry, register failed. please try again.'
+				| created-user? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ => UserImage.create created-user.id, (user-image) ->
 					AccessToken.create config.web-client-id, created-user.id, (access-token) ->
 						UserFollowing.create 1, created-user.id, 1, (user-following) ->
