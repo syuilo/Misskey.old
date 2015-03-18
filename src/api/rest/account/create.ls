@@ -8,7 +8,7 @@ require! {
 	'../../../models/user-image': UserImage
 }
 
-module.exports = (req, res) ->
+exports = (req, res) ->
 	screen-name = req.body.screen_name
 	name = req.body.name
 	password = req.body.password
