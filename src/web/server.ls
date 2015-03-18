@@ -58,7 +58,7 @@ web-server = express!
 			'Access-Control-Allow-Origin': config.public-config.url
 			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
 			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
-			'Access-Control-Allow-Credentials': true
+			'Access-Control-Allow-Credentials': yes
 			'X-Frame-Options': \SAMEORIGIN
 
 		req
