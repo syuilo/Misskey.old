@@ -111,7 +111,7 @@ module.exports = (app) ->
 					..send 'Image not found.'
 				return
 			TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
-				err = ->
+				err = switch
 					| !req.login => [403 'Access denied.']
 					| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
 					| _ => null
