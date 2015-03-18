@@ -64,23 +64,24 @@ module.exports = (app) ->
 					send-image req, res, image-buffer
 		if id-or-sn.match /^[0-9]+$/
 			User.find id-or-sn, (user) ->
-				if user == null
+				if user?
+					UserImage.find Number id-or-sn, (user-image) ->
+						display user, user-image
+				else
 					res
 						..status 404
 						..send 'User not found.'
-					return
-				UserImage.find Number id-or-sn, (user-image) ->
-					display user, user-image
+				
 		else
 			User.findByScreenName id-or-sn, (user) ->
-				if user == null
+				if user?
+					UserImage.find user.id, (user-image) ->
+						display user, user-image
+				else
 					res
 						..status 404
 						..send 'User not found.'
-					return
-				UserImage.find user.id, (user-image) ->
-					display user, user-image
-
+				
 	function display-status-image(req, res, id)
 		StatusImage.find id, (status-image) ->
 			if status-image != null
@@ -101,37 +102,36 @@ module.exports = (app) ->
 				res
 					..status 404
 					..send 'Image not found.'
-				return
 
 	function display-talkmessage-image(req, res, id)
 		TalkMessageImage.find id, (talkmessage-image) ->
-			if talkmessage-image == null
-				res
+			if talkmessage-image?
+				TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
+					err = switch
+						| !req.login => [403 'Access denied.']
+						| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
+						| _ => null
+					if err == null
+						image-buffer = talkmessage-image.image;
+						if req.headers[\accept].index-of 'text' == 0
+							User.find talkmessage.user-id, (user) ->
+								display-image do
+									req
+									res
+									image-buffer
+									'https://misskey.xyz/img/talk-message/' + id
+									talkmessage.created-at + '.jpg'
+									user
+						else
+							send-image req, res, image-buffer
+					else
+						res
+							..status err.0
+							..send err.1
+			else
+			  	res
 					..status 404
 					..send 'Image not found.'
-				return
-			TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
-				err = switch
-					| !req.login => [403 'Access denied.']
-					| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
-					| _ => null
-				if err == null
-					image-buffer = talkmessage-image.image;
-					if req.headers[\accept].index-of 'text' == 0
-						User.find talkmessage.user-id, (user) ->
-							display-image do
-								req
-								res
-								image-buffer
-								'https://misskey.xyz/img/talk-message/' + id
-								talkmessage.created-at + '.jpg'
-								user
-					else
-						send-image req, res, image-buffer
-				else
-					res
-						..status err.0
-						..send err.1
 
 	# User icon
 	app.get '/img/icon/:idOrSn' (req, res) ->
