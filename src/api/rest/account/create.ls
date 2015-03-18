@@ -16,7 +16,7 @@ exports = (req, res) ->
 
 	switch
 	| !screen-name? => res.api-error 400 'screen_name parameter is required :('
-	| !(4 <= screen-name <= 20) || screen-name.match /^[0-9]+$/ || !screen-name.match /^[a-zA-Z0-9_]+$/ => res.api-error 400 'screen_name invalid format'
+	| screen-name.match /^[0-9]+$/ || !screen-name.match /^[a-zA-Z0-9_]{4,20}$/ => res.api-error 400 'screen_name invalid format'
 	| !name? => res.api-error 400 'name parameter is required :('
 	| name == '' => res.api-error 400 'name parameter is required :('
 	| !password? => res.api-error 400 'password parameter is required :('
