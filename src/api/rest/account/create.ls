@@ -25,23 +25,21 @@ module.exports = (req, res) ->
 	| req.body.color == null => res.api-error 400 'color parameter is required :('
 	| !req.body.color.match /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
 	| _ => User.find-by-screen-name screen-name, (user) ->
-		if user == null
+		| !user? => res.api-error 500 'This screen name is already used.'
+		| _ =>
 			salt = bcrypt.gen-salt-sync 16
 			hash-password = bcrypt.hash-sync password, salt
 			User.create screen-name, hash-password, name, color, (created-user) ->
-				if created-user != null
+				| created-user == null => res.api-error 500 'Sorry, register failed. please try again.'
+				| _ =>
 					UserImage.create created-user.id, (user-image) ->
-					AccessToken.create config.web-client-id, created-user.id, (access-token) ->
-						UserFollowing.create 1, created-user.id, 1, (user-following) ->
-							UserFollowing.create created-user.id, 1, (user-following) ->
-								do-login req, created-user.screen-name, password, (user, web-access-token) ->
-									res.api-render created-user.filt!
-								, ->
-									res.send-status 500
-				else
-					res.api-error 500 'Sorry, register failed. please try again.'
-		else
-			res.api-error 500 'This screen name is already used.'
+						AccessToken.create config.web-client-id, created-user.id, (access-token) ->
+							UserFollowing.create 1, created-user.id, 1, (user-following) ->
+								UserFollowing.create created-user.id, 1, (user-following) ->
+									do-login req, created-user.screen-name, password, (user, web-access-token) ->
+										res.api-render created-user.filt!
+									, ->
+										res.send-status 500
 
 	function validate-screen-name screen-name
 		4 <= screen-name.length && screen-name.length <= 20 && (!screen-name.match /^[0-9]+$/) && (screen-name.match /^[a-zA-Z0-9_]+$/)
