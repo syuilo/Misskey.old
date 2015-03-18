@@ -2,13 +2,11 @@ require! {
 	gulp
 	del
 	'gulp-plumber': plumber
-	'gulp-typescript': ts
 	'gulp-livescript': ls
 }
 
 paths =
 	package-json: './package.json.ls'
-	ts: './src/**/*.ts'
 	ls: './src/**/*.ls'
 	web-res: './src/web/resources/**/**'
 	web-views: './src/web/views/**/*.jade'
@@ -30,18 +28,6 @@ gulp.task \build-ls ->
 		.on \error (console.log.bind console)
 		.pipe gulp.dest './bin/'
 
-gulp.task \build-ts ->
-	gulp.src paths.ts
-		.pipe plumber!
-		.pipe ts do
-			target: \ES5
-			module: \commonjs
-			remove-comments: true
-			no-implicit-any: true
-			declaration-files: false
-		.js
-		.pipe gulp.dest './bin/'
-
 gulp.task \build-web-res ->
 	gulp.src paths.web-res
 		.pipe plumber!
@@ -55,12 +41,11 @@ gulp.task \build-web-views ->
 		.pipe plumber!
 		.pipe gulp.dest './bin/reference'
 
-gulp.task \build <[ build-package-json build-ls build-ts build-web-res build-web-views ]>
+gulp.task \build <[ build-package-json build-ls build-web-res build-web-views ]>
 
 gulp.task \watch <[ build ]> ->
 	gulp.watch paths.package-json, <[ build-package-json ]>
 	gulp.watch paths.ls, <[ build-ls ]>
-	gulp.watch paths.ts, <[ build-ts ]>
 	gulp.watch paths.web-res, <[ build-web-res ]>
 	gulp.watch paths.web-views, <[ build-web-views ]>
 
