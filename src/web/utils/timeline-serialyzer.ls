@@ -9,6 +9,34 @@ require! {
 }
 
 exports = (statuses, me, callback) ->
+	function get-app(status)
+		(next) ->
+			Application.find status.app-id, (app) ->
+				delete app.consumer-key
+				delete app.callback-url
+				next null, app
+	
+	function get-user(status)
+		(next) ->
+			User.find status.user-id (user) ->
+				next null, user
+	
+	function get-is-favorited(status, me)
+		(next) ->
+			if me != null
+				StatusFavorite.is-favorited status.id, me.id, (is-favorited) ->
+					next null, is-favorited
+			else
+				next null, null
+	
+	function get-is-reposted(status, me)
+		(next) ->
+			if me != null
+				Status.is-reposted status.id, me.id, (is-reposted) ->
+					next null, is-reposted
+			else
+				next null, null
+	
 	async.map do
 		statuses
 		(status, map-next) -> # Analyze repost
@@ -34,26 +62,10 @@ exports = (statuses, me, callback) ->
 					status.is-reply = status.in-reply-to-status-id != 0 && status.in-reply-to-status-id != null
 					async.series do
 						[
-							(next) ->
-								Application.find status.app-id, (app) ->
-									delete app.consumer-key
-									delete app.callback-url
-									next null, app
-							(next) ->
-								User.find status.user-id (user) ->
-									next null, user
-							(next) ->
-								if me != null
-									StatusFavorite.is-favorited status.id, me.id, (is-favorited) ->
-										next null, is-favorited
-								else
-									next null, null
-							(next) ->
-								if me != null
-									Status.is-reposted status.id, me.id, (is-reposted) ->
-										next null, is-reposted
-								else
-									next null, null
+							get-app status
+							get-user status
+							get-is-favorited status, me
+							get-is-reposted status, me
 							(next) ->
 								| !status.is-reply => next null, null
 								| _ =>
@@ -76,10 +88,10 @@ exports = (statuses, me, callback) ->
 													next null, null
 						]
 						(err, results) ->
-							status.app = results[0]
-							status.user = results[1]
-							status.is-favorited = results[2]
-							status.is-reposted = results[3]
+							status.app = results.0
+							status.user = results.1
+							status.is-favorited = results.2
+							status.is-reposted = results.3
 							map-next null, status
 				(err, results) ->
 					callback results
