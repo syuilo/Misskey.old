@@ -101,7 +101,7 @@ exports = (app) ->
 				resource-path = path.resolve __dirname + '/..' + req.path.replace /\.css$/ '.less'
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
-						if req.query.user == void || req.query.user == null
+						if !req.query.user?
 							read-file-send-less do
 								req
 								res
