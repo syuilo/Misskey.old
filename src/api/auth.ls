@@ -7,18 +7,18 @@ require! {
 	'../models/user': User
 }
 
-module.exports = (req, res, success) ->
+exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
-	get-parameter = (req, name) -> req[if req.method == \GET then \query else \body][name]
+	get-parameter = (req, name) -> req[{GET: \query, POST: \body}[req.method]][name]
 	consumer-key = get-parameter req, 'consumer_key'
 	access-token = get-parameter req, 'access_token'
 	fail = (message) -> res.api-error 401 message
 	referer = req.header 'Referer'
 	switch
-	| [consumer-key, access-token, referer] |> map (== null) |> or-list =>
+	| any (== null), [consumer-key, access-token, referer] =>
 		fail 'CK or CS or referer cannot be empty'
 	| !(referer.match new RegExp '^' + config.public-config.url && is-logged) => fail 'not logged'
-	| [req.session.consumer-key, req.session.access-token] |> map (== null) |> or-list =>
+	| any (== null), [req.session.consumer-key, req.session.access-token] =>
 		fail 'You are logged in, but, Ck or CS has not been set.'
 	| _ =>
 		consumer-key = req.session.consumer-key
