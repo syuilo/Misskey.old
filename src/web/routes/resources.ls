@@ -53,7 +53,7 @@ exports = (app) ->
 	
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
-		style-name = req.params[0]
+		style-name = req.params.0
 		theme-id = user.web-theme-id
 		function send-theme-style(user)
 			switch
