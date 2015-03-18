@@ -19,7 +19,7 @@ require! {
 
 RedisStore = (require 'connect-redis') session
 
-cookie-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
+session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
 
 web-server = express!
 	..disable 'x-powered-by'
@@ -35,15 +35,15 @@ web-server = express!
 	..use session do
 		key: config.session-key
 		secret: config.session-secret
-		resave: false
-		saveUninitialized: true
+		resave: no
+		save-uninitialized: yes
 		cookie:
 			path: '/'
 			domain: '.' + config.public-config.domain
-			http-only: false
-			secure: false
-			expires: new Date Date.now! + cookie-expires
-			max-age: cookie-expires
+			http-only: no
+			secure: no
+			expires: new Date Date.now! + session-expires
+			max-age: session-expires
 		store: new RedisStore do
 			db: 1
 			prefix: 'misskey-session:'
@@ -109,7 +109,7 @@ web-server.use (req, res, next) ->
 # Error handling
 web-server.use (err, req, res, next) ->
 	res.status 500
-	if res.has-own-property 'display'
+	if res.has-own-property \display
 		res.display req, res, 'error', err: err
 	else
 		console.log err
