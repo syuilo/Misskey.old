@@ -161,7 +161,7 @@ module.exports = (app) ->
 	# Webtheme thumbnail
 	app.get '/img/webtheme_thumbnail/:id' (req, res) ->
 		id = req.params.id
-		WebTheme.find id, (webtheme) ->
+		Webtheme.find id, (webtheme) ->
 			if webtheme != null
 				image-buffer = webtheme.thumbnail
 				send-image req, res, image-buffer
