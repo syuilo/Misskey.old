@@ -30,13 +30,13 @@ api-server
 	..use session do
 		key: config.session-key
 		secret: config.session-secret
-		resave: false
-		save-uninitialized: true
+		resave: no
+		save-uninitialized: yes
 		cookie:
 			path: '/'
 			domain: '.' + config.public-config.domain
-			http-only: false
-			secure: false
+			http-only: no
+			secure: no
 			max-age: null
 		store: session-store
 
@@ -63,7 +63,7 @@ api-server.all '*' (req, res, next) ->
 		'Access-Control-Allow-Origin': config.public-config.url
 		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
 		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-		'Access-Control-Allow-Credentials': true
+		'Access-Control-Allow-Credentials': yes
 		'X-Frame-Options': \SAMEORIGIN
 	next!
 
