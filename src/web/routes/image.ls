@@ -136,17 +136,17 @@ module.exports = (app) ->
 	# User icon
 	app.get '/img/icon/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
-		display-user-image req, res, id-or-sn, 'icon'
+		display-user-image req, res, id-or-sn, ¥icon
 
 	# User header
 	app.get '/img/header/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
-		display-user-image req, res, id-or-sn, 'header'
+		display-user-image req, res, id-or-sn, ¥header
 
 	# User wallpaper
 	app.get '/img/wallpaper/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
-		display-user-image req, res, id-or-sn, 'wallpaper'
+		display-user-image req, res, id-or-sn, ¥wallpaper
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
