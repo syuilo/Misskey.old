@@ -10,7 +10,7 @@ require! {
 	'../../config': config
 }
 
-module.exports = (app) ->
+exports = (app) ->
 	function compile-less (less-css, style-user, callback)
 		color = if style-user != null && style-user.color.match(/#[a-fA-F0-9]{6}/)
 			then style-user.color
@@ -75,7 +75,7 @@ module.exports = (app) ->
 							..status 500
 							..send 'Theme parse failed.'
 		
-		if req.query.user != void && req.query.user != null
+		if req.query.user?
 			User.find-by-screen-name req.query.user, (theme-user) ->
 				if theme-user != null
 					send-theme-style theme-user
