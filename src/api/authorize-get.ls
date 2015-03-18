@@ -17,7 +17,4 @@ exports = (req, res) ->
 					login: true
 					me: user
 					app: app
-			| _ => res.render '../web/views/authorize-confirm' do
-				login: false
-				app: app
-				login-failed: false
+			| _ => res.render '../web/views/authorize-confirm' {app, -login, -login-failed}
