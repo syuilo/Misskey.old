@@ -1,5 +1,5 @@
 require! {
-	'../../auth': authorize		
+	'../../auth': authorize
 	'../../../config'
 	fs
 	gm
@@ -21,11 +21,11 @@ exports = (req, res) ->
 				switch
 				| Object.keys req.files .length === 1 =>
 					path = req.files.image.path
-					image-quality = if user.is-premium then 100 else 70
+					image-quality = if user.is-premium then 80 else 60
 					gm path
-						..compress 'jpeg'
+						..compress \jpeg
 						..quality image-quality
-						..to-buffer 'jpeg', (error, buffer) ->
+						..to-buffer \jpeg (error, buffer) ->
 							| error => throw error
 							| _ => 
 								fs.unlink path
