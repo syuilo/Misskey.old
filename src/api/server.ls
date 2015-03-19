@@ -42,8 +42,8 @@ api-server
 
 api-server.use (req, res, next) ->
 	sent = (data) -> switch req.format
-		| 'json' => res.json data
-		| 'yaml' =>
+		| \json => res.json data
+		| \yaml =>
 			res
 				..header 'Content-Type' 'text/x-yaml'
 				..send yaml.safe-dump data
