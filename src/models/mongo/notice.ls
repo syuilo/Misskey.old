@@ -6,10 +6,10 @@ require! {
 db = mongoose.connect config.mongo.uri, config.mongo.options
 
 notice-schema = new mongoose.Schema do
-	app-id: { type: Number, required: true }
+	app-id: { type: Number, required: yes }
 	content: { type: String }
 	created-at: { type: Date, default: Date.now }
 	type: { type: String }
-	user-id: { type: Number, required: true }
+	user-id: { type: Number, required: yes }
 
-module.exports = db.model 'Notice' notice-schema
+exports = db.model 'Notice' notice-schema
