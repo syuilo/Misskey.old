@@ -15,9 +15,8 @@ exports = (req, res) ->
 				| _ => User.find user-id, (target-user) ->
 					| !target-user? => res.api-error 404 'User not found...'
 					| _ => UserFollowing.create target-user.id, user.id, (following) ->
-						stream-obj = {}
-						stream-obj
-							..type = 'followedMe'
-							..value = user.filt!
+						stream-obj = 
+							type: 'followedMe'
+							value: user.filt!
 						Streamer.publish 'userStream:' + target-user.id, JSON.stringify stream-obj
 						res.api-render target-user.filt!
