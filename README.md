@@ -13,7 +13,7 @@ Thanks:
 
 ## How to build
 1. `npm install`
-2. `gulp build`
+2. `npm run build`
 
 ## Contribution
 Many ways to contribute to Misskey
