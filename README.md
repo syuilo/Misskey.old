@@ -11,8 +11,9 @@ Thanks:
 * Redis
 * GraphicsMagick
 
-## Setup
-Run `npm install`
+## How to build
+1. `npm install`
+2. `gulp build`
 
 ## Contribution
 Many ways to contribute to Misskey
