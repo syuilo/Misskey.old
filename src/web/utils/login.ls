@@ -14,7 +14,7 @@ exports = (req, screen-name, password, done, fail) ->
 	| _ => User.find-by-screen-name screen-name, (user) ->
 		| !user? => fail!
 		| _ =>
-			db-password = user.password.replace '$2y$', '$2a$'
+			db-password = user.password.replace '$2y$' '$2a$'
 			bcrypt.compare password, db-password, (err, same) ->
 				| !same => fail!
 				| _ => AccessToken.find-by-user-id-and-app-id user.id, config.web-client-id, (web-access-token) ->
