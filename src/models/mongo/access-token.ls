@@ -6,8 +6,8 @@ require! {
 db = mongoose.connect config.mongo.uri, config.mongo.options
 
 access-token-schema = new mongooes.Schema do
-	app-id: { type: Number, required: true }
-	token: { type: String, required: true }
-	user-id: { type: Number, required: true }
+	app-id: { type: Number, required: yes }
+	token: { type: String, required: yes }
+	user-id: { type: Number, required: yes }
 
-module.exports = db.model 'AccessToken' access-token-schema
+exports = db.model \AccessToken access-token-schema
