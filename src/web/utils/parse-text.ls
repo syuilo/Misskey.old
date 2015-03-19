@@ -1,11 +1,6 @@
-exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
+require! 'escape-html'
 
-function escape-html text
-	text
-		.replace /&(?!\w+;)/g '&amp;'
-		.replace /</g '&lt;'
-		.replace />/g '&gt;'
-		.replace /"/g '&quot;'
+exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
 
 function parse-url text
 	text.replace /https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g (url) ->

@@ -23,6 +23,7 @@ dependencies:
 	'connect-redis': '^2.1.0'
 	cookie: '^0.1.2'
 	'cookie-parser': '^1.3.3'
+	'escape-html': '^1.0.1'
 	express: '^4.10.6'
 	'express-minify': '^0.1.3'
 	'express-session': '^1.10.1'
