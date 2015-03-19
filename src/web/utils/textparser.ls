@@ -8,7 +8,7 @@ exports = (text) ->
 	|> parse-newline
 
 function escape-html text
-	String text
+	text
 		.replace /&(?!\w+;)/g '&amp;'
 		.replace /</g '&lt;'
 		.replace />/g '&gt;'
