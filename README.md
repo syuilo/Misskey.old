@@ -1,10 +1,6 @@
 # Misskey
 https://misskey.xyz/
 
-Thanks:
-古谷向日葵
-大室櫻子
-
 ## Requirement
 * Node.js
 * MySQL (will be replaced by MongoDB)
@@ -26,9 +22,7 @@ Many ways to contribute to Misskey
 * Review [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
 ## License
-The MIT License. (See [LICENSE](LICENSE) file)
-
-(c) syuilo.
+The MIT License. See [LICENSE](LICENSE).
 
 ## Questions?
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues)
