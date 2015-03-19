@@ -7,10 +7,8 @@ require! {
 	'body-parser': body-parser
 	'cookie-parser': cookie-parser
 	'express-session': session
-	'compression': compress
-	'../models/application': Application
+	'compression'
 	'../models/user': User
-	'../models/notice': Notice
 	'../db': db
 	'./routes/resources': resources-router
 	'./routes/index': index-router
@@ -19,7 +17,7 @@ require! {
 
 RedisStore = (require 'connect-redis') session
 
-session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
+session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
 
 web-server = express!
 	..disable 'x-powered-by'
@@ -50,7 +48,7 @@ web-server = express!
 
 	# Compressing settings
 	..use
-		.. compress!
+		.. compression!
 		.. minify!
 
 	..init-session = (req, res, callback) ->
