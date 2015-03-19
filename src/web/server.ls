@@ -95,9 +95,10 @@ web-server = express!
 # Resources rooting
 resources-router web-server
 
-# General rooting
+# Init session
 web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next!
 
+# General rooting
 index-router web-server
 
 # Not found handling
