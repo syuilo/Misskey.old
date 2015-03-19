@@ -7,7 +7,7 @@ require! {
 	less
 	'../../models/user': User
 	'../../models/webtheme': Webtheme
-	'../../config': config
+	'../../config'
 }
 
 exports = (app) ->
