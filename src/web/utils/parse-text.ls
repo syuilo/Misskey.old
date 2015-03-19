@@ -1,11 +1,4 @@
-exports = (text) ->
-	text
-	|> escape-html
-	|> parse-url
-	|> parse-reply
-	|> parse-bold
-	|> parse-small
-	|> parse-newline
+exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
 
 function escape-html text
 	text
