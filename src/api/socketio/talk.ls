@@ -5,7 +5,7 @@ require! {
 	'../../config': config
 	'express-session': session
 }
-module.exports = (io, session-store) ->
+exports = (io, session-store) ->
 	io.of '/streaming/talk' .on \connection (socket) ->
 		cookies = cookie.parse socket.handshake.headers.cookie
 		sid = cookies[config.session-key]
