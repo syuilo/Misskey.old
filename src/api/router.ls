@@ -1,7 +1,7 @@
 require! {
 	express
 }
-module.exports = (app) ->
+exports = (app) ->
 	app
 		..all '*' (req, res, next) ->
 			filename = req.url.match /.+\/(.+?)([\?#;].*)?$/
