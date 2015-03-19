@@ -29,3 +29,6 @@ Many ways to contribute to Misskey
 The MIT License. (See [LICENSE](LICENSE) file)
 
 (c) syuilo.
+
+## Questions?
+If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues)
