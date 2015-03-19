@@ -9,7 +9,6 @@ require! {
 	'express-session': session
 	'compression'
 	'../models/user': User
-	'../db': db
 	'./routes/resources': resources-router
 	'./routes/index': index-router
 	'../config': config
@@ -72,7 +71,7 @@ web-server = express!
 
 		if req.login
 			user-id = req.session.user-id
-			User.find user-id, (user) ->
+			User.find-one { _id: user-id }, (err, user) ->
 				req
 					..data.me = user
 					..me = user
