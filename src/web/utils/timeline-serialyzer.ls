@@ -23,7 +23,7 @@ exports = (statuses, me, callback) ->
 	
 	function get-is-favorited(status, me)
 		(next) ->
-			if me != null
+			if me?
 				StatusFavorite.is-favorited status.id, me.id, (is-favorited) ->
 					next null, is-favorited
 			else
@@ -31,7 +31,7 @@ exports = (statuses, me, callback) ->
 	
 	function get-is-reposted(status, me)
 		(next) ->
-			if me != null
+			if me?
 				Status.is-reposted status.id, me.id, (is-reposted) ->
 					next null, is-reposted
 			else
@@ -42,7 +42,7 @@ exports = (statuses, me, callback) ->
 			| !status.is-reply => next null, null
 			| _ =>
 				Status.find status.in-reply-to-status-id, (reply-status) ->
-					| reply-status == null =>
+					| !reply-status? =>
 						status.is-reply = no
 						next null, null
 					| _ =>
@@ -62,7 +62,7 @@ exports = (statuses, me, callback) ->
 		(status, map-next) -> # Analyze repost
 			| status.repost-from-status-id? && status.repost-from-status-id != 0 =>
 				Status.find status.repost-from-status-id, (repost-from-post) ->
-					| repost-from-post != null =>
+					| repost-from-post? =>
 						_repost-from-post = repost-from-post
 							..is-repost-to-post = yes
 							..source = status
