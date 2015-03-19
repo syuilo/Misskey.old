@@ -44,7 +44,6 @@ module.exports = (app) ->
 			.. '/i/setting' (req, res, next) -> (require '../controllers/i-setting') req, res
 			.. '/i/settings' (req, res, next) -> (require '../controllers/i-setting') req, res
 			.. '/dev' (req, res, next) -> (require '../controllers/dev') req, res
-			.. '/dev/reference' (req, res, next) -> (require '../controllers/dev-reference') req, res
 			.. '/dev/myapp' (req, res, next) -> (require '../controllers/dev-myapp') req, res
 			.. '/dev/myapp/new' (req, res, next) -> (require '../controllers/dev-myapp-new') req, res
 			.. '/dev/usertheme' (req, res, next) -> (require '../controllers/dev-usertheme') req, res
