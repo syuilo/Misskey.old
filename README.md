@@ -11,6 +11,9 @@ Thanks:
 * Redis
 * GraphicsMagick
 
+## Setup
+Run `npm install`
+
 ## Contribution
 Many ways to contribute to Misskey
 
