@@ -12,8 +12,10 @@ Thanks:
 * GraphicsMagick
 
 ## How to build
-1. `npm install`
-2. `npm run build`
+1. `git clone git://github.com/syuilo/Misskey.git`
+2. `cd Misskey`
+3. `npm install`
+4. `npm run build`
 
 ## Contribution
 Many ways to contribute to Misskey
