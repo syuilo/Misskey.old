@@ -37,6 +37,26 @@ exports = (statuses, me, callback) ->
 			else
 				next null, null
 	
+	function get-reply(status)
+		(next) ->
+			| !status.is-reply => next null, null
+			| _ =>
+				Status.find status.in-reply-to-status-id, (reply-status) ->
+					| reply-status == null =>
+						status.is-reply = no
+						next null, null
+					| _ =>
+						reply-status.is-reply = reply-status.in-reply-to-status-id != 0 && reply-status.in-reply-to-status-id != null
+						status.reply = reply-status
+						User.find reply-status.user-id, (reply-user) ->
+							status.reply.user = reply-user
+							if reply-status.is-reply
+								serialize-talk reply-status, (talk) ->
+									status.more-talk = talk
+									next null, null
+							else
+								next null, null
+	
 	async.map do
 		statuses
 		(status, map-next) -> # Analyze repost
@@ -66,26 +86,7 @@ exports = (statuses, me, callback) ->
 							get-user status
 							get-is-favorited status, me
 							get-is-reposted status, me
-							(next) ->
-								| !status.is-reply => next null, null
-								| _ =>
-									Status.find status.in-reply-to-status-id, (reply-status) ->
-										| reply-status == null =>
-											status.is-reply = no
-											next null, null
-										| _ =>
-											reply-status.is-reply = reply-status.in-reply-to-status-id != 0 && reply-status.in-reply-to-status-id != null
-											status.reply = reply-status
-											User.find reply-status.user-id, (reply-user) ->
-												status.reply.user = reply-user
-												
-												# Get more talk
-												if reply-status.is-reply
-													serialize-talk reply-status, (talk) ->
-														status.more-talk = talk
-														next null, null
-												else
-													next null, null
+							get-reply status
 						]
 						(err, results) ->
 							status.app = results.0
