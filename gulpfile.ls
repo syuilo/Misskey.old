@@ -1,6 +1,7 @@
 require! {
 	gulp
 	'gulp-plumber': plumber
+	'gulp-livescript': ls
 }
 
 paths =

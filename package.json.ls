@@ -28,6 +28,7 @@ dependencies:
 	'express-session': '^1.10.1'
 	gm: '^1.9.0'
 	gulp: '^3.8.10'
+	'gulp-livescript': '^2.3.0'
 	'gulp-plumber': '^1.0.0'
 	jade: '^1.9.1'
 	'js-yaml': '^3.2.6'
