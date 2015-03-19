@@ -34,8 +34,9 @@ exports = (req, res) ->
 
 function create req, res, app-id, otherparty-id, image, is-image-attached, text, user-id
 	TalkMessage.create app-id, user-id, otherparty-id, text, is-attached, (talk-message) ->
-		| is-image-attached => TalkMessageImage.create talk-message.id, image, (talk-message-image) ->
-		| _ => TalkMessage.buildResponseObject talk-message, (obj) ->
+		if is-image-attached
+			TalkMessageImage.create talk-message.id, image, (talk-message-image) ->
+		TalkMessage.buildResponseObject talk-message, (obj) ->
 			res.api-render obj
 			Streamer.publish 'userStream:' + otherparty-id, JSON.stringify do
 				type: \talkMessage
