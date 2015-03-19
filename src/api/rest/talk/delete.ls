@@ -17,7 +17,7 @@ exports = (req, res) ->
 				talk-message
 					..is-deleted = true
 					..update ->
-						talk-message.buildResponseObject talk-message, (obj) ->
+						talk-message.build-response-object talk-message, (obj) ->
 							res.api-render obj
 							Streamer.publish 'talkStream:' + talk-message.otherparty-id + '-' + user.id, JSON.stringify do
 								type: 'otherpartyMessageDelete'
