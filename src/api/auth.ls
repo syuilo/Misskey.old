@@ -7,11 +7,13 @@ require! {
 	'../models/user': User
 }
 
+get-express-param = (req, name) --> req[{GET: \query, POST: \body}[req.method]][name]
+
 exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
-	get-parameter = (req, name) -> req[{GET: \query, POST: \body}[req.method]][name]
-	consumer-key = get-parameter req, 'consumer_key'
-	access-token = get-parameter req, 'access_token'
+	get-param = get-express-param req
+	consumer-key = get-param 'consumer_key'
+	access-token = get-param 'access_token'
 	fail = res.api-error 401 _
 	referer = req.header 'Referer'
 	switch
@@ -21,9 +23,7 @@ exports = (req, res, success) ->
 	| any (== null), [req.session.consumer-key, req.session.access-token] =>
 		fail 'You are logged in, but, Ck or CS has not been set.'
 	| _ =>
-		consumer-key = req.session.consumer-key
-		access-token = req.session.access-token
-
+		{consumer-key, access_token} = req.session
 		AccessToken.find access-token, (access-token-instance) ->
 			| !access-token-instance? => fail 'Bad request'
 			| _ => Application.find-by-consumer-key consumer-key, (application) ->
