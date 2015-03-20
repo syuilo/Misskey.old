@@ -23,7 +23,7 @@ exports = (req, res, success) ->
 	| any (== null), [req.session.consumer-key, req.session.access-token] =>
 		fail 'You are logged in, but, Ck or CS has not been set.'
 	| _ =>
-		{consumer-key, access_token} = req.session
+		{consumer-key, access-token} = req.session
 		AccessToken.find access-token, (access-token-instance) ->
 			| !access-token-instance? => fail 'Bad request'
 			| _ => Application.find-by-consumer-key consumer-key, (application) ->
