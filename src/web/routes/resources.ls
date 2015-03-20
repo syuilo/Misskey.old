@@ -97,25 +97,24 @@ exports = (app) ->
 				..status 400
 				..send 'invalid path'
 		| _ =>
-			if req.path.match /\.css$/
+			| req.path.match /\.css$/ =>
 				resource-path = path.resolve __dirname + '/..' + req.path.replace /\.css$/ '.less'
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
-						if !req.query.user?
-							read-file-send-less do
-								req
-								res
-								resource-path
-								if req.login then req.me else null
-						else
+						| req.query.user? =>
 							User.find-by-screen-name req.query.user, (style-user) ->
 								read-file-send-less do
 									req
 									res
 									resource-path
 									if styleUser != null then styleUser else null
-			if req.url.index-of '.less' == -1
+						| _ =>
+							read-file-send-less do
+								req
+								res
+								resource-path
+								if req.login then req.me else null
+			| req.url.index-of '.less' == -1 =>
 				resource-path = path.resolve __dirname + '/..' + req.path
 				res.send-file resource-path
-			else
-				next!
+			| _ => next!
