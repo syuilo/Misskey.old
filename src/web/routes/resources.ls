@@ -29,17 +29,17 @@ exports = (app) ->
 					color
 				.replace do
 					/<%wallpaperUrl%>/g
-					if styleUser != null
+					if style-user?
 						then "\"#{config.public-config.url}/img/wallpaper/#{style-user.screen-name}\""
 						else ''
 				.replace do
 					/<%headerImageUrl%>/g
-					if styleUser != null
+					if style-user?
 						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}\""
 						else ''
 				.replace do
 					/<%headerBlurImageUrl%>/g
-					if styleUser != null
+					if style-user?
 						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}?blur={radius: 64, sigma: 20}\""
 						else ''
 	
