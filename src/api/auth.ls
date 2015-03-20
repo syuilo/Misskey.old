@@ -7,7 +7,7 @@ require! {
 	'../models/user': User
 }
 
-get-express-param = (req, name) --> req[{GET: \query, POST: \body}[req.method]][name]
+get-express-param = (req, name) --> req[{GET: \query, POST: \body}[req.method] ? null][name] ? null
 
 exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
