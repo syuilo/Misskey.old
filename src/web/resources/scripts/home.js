@@ -98,10 +98,9 @@ $(function() {
 		reader.readAsDataURL(file);
 	});
 	
-	$('#postForm textarea').keypress(function(event) {
-		if (event.charCode == 13 && event.ctrlKey) {
-			event.preventDefault();
-			post($(this));
+	$(window).keypress(function(e) {
+		if (e.charCode == 13 && e.ctrlKey) {
+			post($('#postForm textarea'));
 		}
 	});
 	
