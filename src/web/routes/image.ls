@@ -26,6 +26,7 @@ module.exports = (app) ->
 			}
 	
 	function send-image(req, res, image-buffer)
+		switch
 		| req.query.blur? =>
 			try
 				options = JSON.parse req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
@@ -49,6 +50,7 @@ module.exports = (app) ->
 
 	function display-user-image(req, res, id-or-sn, image-property-name)
 		function display(user, user-image)
+			switch
 			| user-image? =>
 				image-buffer = if user-image[image-property-name] != null
 					then user-image[image-property-name]
@@ -62,7 +64,7 @@ module.exports = (app) ->
 						user.screen-name
 				else
 					send-image req, res, image-buffer
-        switch            
+		switch            
 		| id-or-sn.match /^[0-9]+$/ =>
 			User.find id-or-sn, (user) ->
 				| user? =>
@@ -129,24 +131,24 @@ module.exports = (app) ->
 							..status err.0
 							..send err.1
 			| _ =>
-			  	res
+				res
 					..status 404
 					..send 'Image not found.'
-
+	
 	# User icon
-	app.get '/img/icon/:idOrSn' (req, res) ->
+	app.get '//icon/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
-		display-user-image req, res, id-or-sn, ¥icon
+		display-user-image req, res, id-or-sn, \icon
 
 	# User header
 	app.get '/img/header/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
-		display-user-image req, res, id-or-sn, ¥header
+		display-user-image req, res, id-or-sn, \header
 
 	# User wallpaper
 	app.get '/img/wallpaper/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
-		display-user-image req, res, id-or-sn, ¥wallpaper
+		display-user-image req, res, id-or-sn, \wallpaper
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
