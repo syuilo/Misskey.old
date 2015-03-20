@@ -3,7 +3,7 @@ import require \prelude-ls
 require! {
 	'../models/access-token': AccessToken
 	'../models/application': Application
-	'../config': config
+	'../config'
 	'../models/user': User
 }
 
@@ -12,7 +12,7 @@ exports = (req, res, success) ->
 	get-parameter = (req, name) -> req[{GET: \query, POST: \body}[req.method]][name]
 	consumer-key = get-parameter req, 'consumer_key'
 	access-token = get-parameter req, 'access_token'
-	fail = (message) -> res.api-error 401 message
+	fail = res.api-error 401 _
 	referer = req.header 'Referer'
 	switch
 	| any (== null), [consumer-key, access-token, referer] =>
