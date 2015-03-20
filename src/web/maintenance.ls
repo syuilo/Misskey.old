@@ -6,7 +6,7 @@ require! {
 	'express-minify': minify
 }
 
-message = jade.render-file __dirname + '/views/maintenance.jade'
+message = jade.render-file "#{__dirname}/views/maintenance.jade"
 
 web-server = express!
 	..disable 'x-powered-by'
