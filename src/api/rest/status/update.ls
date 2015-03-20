@@ -2,36 +2,35 @@ require! {
 	async
 	fs
 	gm
-	'../../../models/status': Post
-	'../../../models/status-image': PostImage
-	'../../../models/status-mention': PostMention
+	'../../../models/status': Status
+	'../../../models/status-image': StatusImage
+	'../../../models/status-mention': StatusMention
 	'../../../utils/streaming': Streamer
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../auth': authorize
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) -> Post.find-by-user-id user.id, 1, null, null, (post) ->
-	text = if req.body.text != null then req.body.text else ''
-	in-reply-to-post-id = if req.body.in_reply_to_post_id != null then req.body.in_reply_to_post_id else null
+module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
+	text = if req.body.text? then req.body.text else ''
+	in-reply-to-post-id = if req.body.in_reply_to_post_id? then req.body.in_reply_to_post_id else null
 	text .= trim!
 	switch
-	| posts != null && text == posts[0].text => res.api-error 400 'duplicate content :('
+	| status? && text == status.text => res.api-error 400 'Duplicate content'
 	| (Object.keys req.files).length == 1 =>
 		path = req.files.image.path
-		image-quality = user.is-premium ? 90 : 70
+		image-quality = user.is-premium ? 80 : 60
 		gm path
-			.compress 'jpeg'
+			.compress \jpeg
 			.quality image-quality
-			.to-buffer 'jpeg' (error, buffer) ->
-				throw error if error
+			.to-buffer \jpeg (, buffer) ->
 				fs.unlink path
 				create req, res, app.id, in-reply-to-post-id, buffer, true, next, text, user.id
 	| _ => create req, res, app.id, in-reply-to-post-id, null, false, text, user.id
 
 create = (req, res, app-id, irtpi, image, is-image-attached, text, user-id) ->
 	Post.create app-id, irtpi, is-image-attached, text, user-id, null, (post) ->
-		| is-image-attached => PostImage.create post.id, image, send-response
+		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
 		| _ => send-response!
 
 	send-response = -> Post.build-response-object post, (obj) ->
