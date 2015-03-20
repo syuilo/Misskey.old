@@ -11,7 +11,7 @@ require! {
 
 exports = (req, res) ->
 	authorize req, res, (user, app) ->
-		text = if req.body.text? then req.body.text else ''
+		text = req.body.text ? ''
 		otherparty-id = req.body.otherparty_id
 		switch
 		| !otherparty-id? => res.api-error 400 'otherparty_id parameter is required :('
