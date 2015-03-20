@@ -3,7 +3,7 @@ https://misskey.xyz/
 
 ## Requirement
 * Node.js
-* MySQL (will be replaced by MongoDB)
+* MongoDB
 * Redis
 * GraphicsMagick
 
