@@ -24,8 +24,8 @@ Many ways to contribute to Misskey
 ## License
 The MIT License. See [LICENSE](LICENSE).
 
-## Questions?
-If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues)
-
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
+
+## Questions?
+If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues)
