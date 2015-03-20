@@ -12,7 +12,7 @@ web-server = express!
 	..disable 'x-powered-by'
 	..use compression!
 	..use minify!
-	..all '*' (req, res, next) ->
+	..all '*' (, res,) ->
 		res
 			..status 503
 			..send message
