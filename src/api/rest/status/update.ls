@@ -6,6 +6,7 @@ require! {
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
 	'../../../utils/streaming': Streamer
+	'../../../utils/status-response-filter'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../auth': authorize
@@ -25,15 +26,32 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			.quality image-quality
 			.to-buffer \jpeg (, buffer) ->
 				fs.unlink path
-				create req, res, app.id, in-reply-to-post-id, buffer, true, next, text, user.id
-	| _ => create req, res, app.id, in-reply-to-post-id, null, false, text, user.id
+				create do
+					req
+					res
+					app.id
+					in-reply-to-post-id
+					buffer
+					true
+					next
+					text
+					user.id
+	| _ => create do
+		req
+		res
+		app.id
+		in-reply-to-post-id
+		null
+		false
+		text
+		user.id
 
 create = (req, res, app-id, irtpi, image, is-image-attached, text, user-id) ->
-	Post.create app-id, irtpi, is-image-attached, text, user-id, null, (post) ->
+	Status.insert { app-id, irtpi, is-image-attached, text, user-id, null } (status) ->
 		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
 		| _ => send-response!
 
-	send-response = -> Post.build-response-object post, (obj) ->
+	send-response = -> status-response-filter status, (obj) ->
 		get-more-talk obj.reply, (talk) -> obj.more-talk = talk if obj.reply != null && obj.reply.is-reply
 		send obj
 
