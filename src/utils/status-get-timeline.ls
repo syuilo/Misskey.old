@@ -7,8 +7,7 @@ exports = (user-id, limit, since-id, max-id, callback) ->
 		callback statuses
 	UserFollowing.find { follower-id: user-id }, (followings) ->
 		| followings? =>
-			followings-ids = []
-			followings-ids.push user-id # Get my statuses
+			followings-ids = [user-id] # Get my statuses
 			followings.for-each (following) ->
 				followings-ids.push following.followee-id.to-string!
 			query = switch
