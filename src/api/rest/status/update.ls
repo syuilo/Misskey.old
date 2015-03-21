@@ -7,6 +7,7 @@ require! {
 	'../../../models/status-mention': StatusMention
 	'../../../utils/streaming': Streamer
 	'../../../utils/status-response-filter'
+	'../../../utils/status-get-before-talk'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../auth': authorize
@@ -31,8 +32,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 					res
 					app.id
 					in-reply-to-status-id
+					yes
 					buffer
-					true
 					text
 					user.id
 	| _ => create do
@@ -40,12 +41,12 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 		res
 		app.id
 		in-reply-to-status-id
+		no
 		null
-		false
 		text
 		user.id
 
-function create(req, res, app-id, in-reply-to-status-id, image, is-image-attached, text, user-id)
+function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user-id)
 	Status.insert { 
 		app-id
 		in-reply-to-status-id
@@ -87,9 +88,9 @@ function create(req, res, app-id, in-reply-to-status-id, image, is-image-attache
 	function get-more-talk(status, callback)
 		status-get-before-talk status.in-reply-to-status-id, (more-talk) ->
 			async.map more-talk, (talk-post, map-next) ->
-				talk-post.is-reply = talk-post-in-reply-to-post-id != 0 && talk-post.in-reply-to-post-id != null
-				User.find talk-post.user-id, (talk-post-user) ->
+				talk-post.is-reply = talk-post.in-reply-to-status-id != 0 && talk-post.in-reply-to-status-id != null
+				User.find-by-id talk-post.user-id, (, talk-post-user) ->
 					talk-post.user = talk-post-user
 					map-next null talk-post
-			, (err, more-talk-posts) ->
+			, (, more-talk-posts) ->
 				callback more-talk-posts
