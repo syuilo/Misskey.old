@@ -1,5 +1,6 @@
 require! 'escape-html'
 
+# String -> String
 exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
 
 function parse-url text
