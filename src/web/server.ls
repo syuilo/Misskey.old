@@ -71,7 +71,7 @@ web-server = express!
 
 		if req.login
 			user-id = req.session.user-id
-			User.find-one { _id: user-id }, (err, user) ->
+			User.find-by-id user-id, (, user) ->
 				req
 					..data.me = user
 					..me = user
