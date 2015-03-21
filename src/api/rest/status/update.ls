@@ -68,24 +68,24 @@ function create(req, res, app-id, in-reply-to-status-id, image, is-image-attache
 			type: \post
 			value: obj
 
-		Streamer.publish 'userStream:' + user-id, stream-obj
+		Streamer.publish 'userStream:' + user-id stream-obj
 
-		UserFollowing.find-by-followee-id user-id, (user-followings) ->
-			| user-followings != null => user-followings.for-each (user-following) ->
-				Streamer.publish 'userStream:' + user-following.follower-id, stream-obj
+		UserFollowing.find { followee-id: user-id } (followings) ->
+			| followings? => followings.for-each (following) ->
+				Streamer.publish 'userStream:' + following.follower-id, stream-obj
 
 		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
-		if mentions != null then mentions.for-each (mention-sn) ->
+		if mentions? then mentions.for-each (mention-sn) ->
 			mention-sn .= replace '@' ''
-			User.find-by-screen-name mention-sn, (reply-user) ->
-				| reply-user != null => PostMention.create obj.id, reply-user.id, (created-mention) ->
+			User.find-one { screen-name: mention-sn } (reply-user) ->
+				| reply-user? => StatusMention.insert { status-id: obj.id, user-id: reply-user.id } (,) ->
 					stream-mention-obj = JSON.stringify do
-						type: 'reply'
+						type: \reply
 						value: obj
 					Streamer.publish 'userStream:' + reply-user.id, stream-mention-obj
 
-	get-more-talk = (post, callback) ->
-		Post.get-before-talk post.in-reply-to-post-id, (more-talk) ->
+	function get-more-talk(status, callback)
+		status-get-before-talk status.in-reply-to-status-id, (more-talk) ->
 			async.map more-talk, (talk-post, map-next) ->
 				talk-post.is-reply = talk-post-in-reply-to-post-id != 0 && talk-post.in-reply-to-post-id != null
 				User.find talk-post.user-id, (talk-post-user) ->
