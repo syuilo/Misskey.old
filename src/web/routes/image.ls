@@ -63,20 +63,20 @@ module.exports = (app) ->
 				else
 					send-image req, res, image-buffer
 		
-		switch            
+		switch
 		| id-or-sn.match /^[0-9]+$/ =>
-			User.find id-or-sn, (user) ->
+			User.find-by-id id-or-sn, (, user) ->
 				| user? =>
-					UserImage.find Number id-or-sn, (user-image) ->
+					UserImage.find-one { user-id: Number id-or-sn } (, user-image) ->
 						display user, user-image
 				| _ =>
 					res
 						..status 404
 						..send 'User not found.'
 		| _ =>
-			User.findByScreenName id-or-sn, (user) ->
+			User.find-one { screen-name: id-or-sn } (, user) ->
 				| user? =>
-					UserImage.find user.id, (user-image) ->
+					UserImage.find-one { user-id: user.id } (, user-image) ->
 						display user, user-image
 				| _ =>
 					res
@@ -87,15 +87,15 @@ module.exports = (app) ->
 		StatusImage.find id, (status-image) ->
 			| status-image? =>
 				image-buffer = status-image.image
-				Status.find status-image.post-id, (post) ->
+				Status.find-by-id status-image.status-id, (, status) ->
 					if req.headers[\accept].index-of 'text' == 0
-						User.find post.userId, (user) ->
+						User.find-by-id status.user-id, (, user) ->
 							display-image do
 								req
 								res
 								image-buffer
 								'https://misskey.xyz/img/post/' + id
-								post.created-at + '.jpg'
+								status.created-at + '.jpg'
 								user
 					else
 						send-image req, res, image-buffer
@@ -105,9 +105,9 @@ module.exports = (app) ->
 					..send 'Image not found.'
 
 	function display-talkmessage-image(req, res, id)
-		TalkMessageImage.find id, (talkmessage-image) ->
+		TalkMessageImage.find-one { message-id: id } (, talkmessage-image) ->
 			| talkmessage-image? =>
-				TalkMessage.find talkmessage-image.message-id, (talkmessage) ->
+				TalkMessage.find-by-id talkmessage-image.message-id, (, talkmessage) ->
 					err = switch
 						| !req.login => [403 'Access denied.']
 						| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
@@ -115,7 +115,7 @@ module.exports = (app) ->
 					if err == null
 						image-buffer = talkmessage-image.image;
 						if req.headers[\accept].index-of 'text' == 0
-							User.find talkmessage.user-id, (user) ->
+							User.find-by-id talkmessage.user-id, (, user) ->
 								display-image do
 									req
 									res
@@ -135,7 +135,7 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
-	app.get '//icon/:idOrSn' (req, res) ->
+	app.get '/img/icon/:idOrSn' (req, res) ->
 		id-or-sn = req.params.idOrSn
 		display-user-image req, res, id-or-sn, \icon
 
@@ -162,7 +162,7 @@ module.exports = (app) ->
 	# Webtheme thumbnail
 	app.get '/img/webtheme_thumbnail/:id' (req, res) ->
 		id = req.params.id
-		Webtheme.find id, (webtheme) ->
+		Webtheme.find-by-id id, (, webtheme) ->
 			| webtheme? =>
 				image-buffer = webtheme.thumbnail
 				send-image req, res, image-buffer

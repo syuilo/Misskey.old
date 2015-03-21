@@ -56,7 +56,7 @@ exports = (app) ->
 		function send-theme-style(user)
 			switch
 			| theme-id == null => res.send!
-			| _ => Webtheme.find-by-id theme-id, (theme) ->
+			| _ => Webtheme.find-by-id theme-id, (, theme) ->
 				| theme == null => res.send!
 				| _ =>
 					try
@@ -74,7 +74,7 @@ exports = (app) ->
 							..send 'Theme parse failed.'
 		
 		if req.query.user?
-			User.find-one { screem-name: req.query.user } (theme-user) ->
+			User.find-one { screem-name: req.query.user } (, theme-user) ->
 				if theme-user?
 					send-theme-style theme-user
 				else
@@ -100,7 +100,7 @@ exports = (app) ->
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
 						| req.query.user? =>
-							User.find-one { screen-name: req.query.user } (style-user) ->
+							User.find-one { screen-name: req.query.user } (, style-user) ->
 								read-file-send-less do
 									req
 									res
