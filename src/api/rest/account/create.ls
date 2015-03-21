@@ -23,12 +23,12 @@ exports = (req, res) ->
 	| password.length < 8 => res.api-error 400 'password invalid format'
 	| !color? => res.api-error 400 'color parameter is required :('
 	| !color.match /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
-	| _ => User.find-one {screen-name: screen-name} screen-name, (, user) ->
+	| _ => User.find-one {screen-name} (, user) ->
 		| !user? => res.api-error 500 'This screen name is already used.'
 		| _ =>
 			salt = bcrypt.gen-salt-sync 16
 			hash-password = bcrypt.hash-sync password, salt
-			User.insert { screen-name: screen-name, password: hash-password, name: name, color: color } (, created-user) ->
+			User.insert { screen-name, password: hash-password, name, color } (, created-user) ->
 				| created-user? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ => UserImage.insert { user-id: created-user.id } (, user-image) ->
 					AccessToken.insert { app-id: config.web-client-id, user-id: created-user.id} (, access-token) ->
