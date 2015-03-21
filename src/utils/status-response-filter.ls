@@ -6,7 +6,18 @@ require! {
 	'./user-response-filter'
 	'../config'
 }
-exports = (status, callback) ->
+exports = (source-status, callback) ->
+	status = {
+		app-id: source-status.app-id
+		created-at: source-status.created-at
+		favorites-count: source-status.favorites-count
+		in-reply-to-status-id: source-status.in-reply-to-status-id
+		is-image-attached: source-status.is-image-attached
+		reposts-count: source-status.reposts-count
+		repost-from-status-id: source-status.repost-from-status-id
+		text: source-status.text
+		user-id: source-status.user-id
+	}
 	status.is-reply = status.in-reply-to-status-id == 0 or status.in-reply-to-status-id == null
 	async.series do
 		[
