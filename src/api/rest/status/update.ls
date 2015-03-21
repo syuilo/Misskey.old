@@ -14,7 +14,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
 	text = if req.body.text? then req.body.text else ''
-	in-reply-to-post-id = if req.body.in_reply_to_post_id? then req.body.in_reply_to_post_id else null
+	in-reply-to-status-id = if req.body.in_reply_to_status_id? then req.body.in_reply_to_status_id else null
 	text .= trim!
 	switch
 	| status? && text == status.text => res.api-error 400 'Duplicate content'
@@ -30,35 +30,42 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 					req
 					res
 					app.id
-					in-reply-to-post-id
+					in-reply-to-status-id
 					buffer
 					true
-					next
 					text
 					user.id
 	| _ => create do
 		req
 		res
 		app.id
-		in-reply-to-post-id
+		in-reply-to-status-id
 		null
 		false
 		text
 		user.id
 
-create = (req, res, app-id, irtpi, image, is-image-attached, text, user-id) ->
-	Status.insert { app-id, irtpi, is-image-attached, text, user-id, null } (status) ->
+function create(req, res, app-id, in-reply-to-status-id, image, is-image-attached, text, user-id)
+	Status.insert { 
+		app-id
+		in-reply-to-status-id
+		is-image-attached
+		text
+		user-id
+	} (status) ->
 		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
 		| _ => send-response!
 
-	send-response = -> status-response-filter status, (obj) ->
-		get-more-talk obj.reply, (talk) -> obj.more-talk = talk if obj.reply != null && obj.reply.is-reply
-		send obj
+	function send-response()
+		status-response-filter status, (obj) ->
+			get-more-talk obj.reply, (talk) ->
+				obj.more-talk = talk if obj.reply != null && obj.reply.is-reply
+				send obj
 
-	send = (obj) ->
+	function send(obj)
 		res.api-render obj
 		stream-obj = JSON.stringify do
-			type: 'post'
+			type: \post
 			value: obj
 
 		Streamer.publish 'userStream:' + user-id, stream-obj
