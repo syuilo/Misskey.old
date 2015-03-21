@@ -28,7 +28,7 @@ exports = (req, res) ->
 		| _ =>
 			salt = bcrypt.gen-salt-sync 16
 			hash-password = bcrypt.hash-sync password, salt
-			User.insert { screen-name: screen-name, password: hash-password, name: name. color: color } (, created-user) ->
+			User.insert { screen-name: screen-name, password: hash-password, name: name, color: color } (, created-user) ->
 				| created-user? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ => UserImage.insert { user-id: created-user.id } (, user-image) ->
 					AccessToken.insert { app-id: config.web-client-id, user-id: created-user.id} (, access-token) ->
