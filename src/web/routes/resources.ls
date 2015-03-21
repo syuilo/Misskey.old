@@ -12,14 +12,13 @@ require! {
 
 exports = (app) ->
 	function compile-less (less-css, style-user, callback)
-		color = if style-user != null && style-user.color.match(/#[a-fA-F0-9]{6}/)
+		color = if style-user? && style-user.color.match /#[a-fA-F0-9]{6}/
 			then style-user.color
 			else config.theme-color
 		less.render do
 			pre-compile less-css, style-user, color
-			{ compress: true }
-			(err, output) ->
-				if err then throw err
+			{ +compress }
+			(, output) ->
 				callback output.css
 		
 		function pre-compile(less-css, style-user, color)
@@ -44,8 +43,7 @@ exports = (app) ->
 						else ''
 	
 	function read-file-send-less(req, res, path, style-user)
-		fs.read-file path, 'utf8', (err, less-css) ->
-			if err then throw err
+		fs.read-file path, \utf8, (, less-css) ->
 			compile-less less-css, style-user, (css) ->
 				res
 					..header 'Content-type' 'text/css'
