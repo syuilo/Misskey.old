@@ -24,7 +24,7 @@ session-store = new RedisStore do
 	prefix: 'misskey-session:'
 
 api-server
-	..use body-parser.urlencoded extended: true
+	..use body-parser.urlencoded {+extended}
 	..use multer!
 	..use cookie-parser config.cookie_pass
 	..use session do
