@@ -1,10 +1,5 @@
 require! {
-	async
-	'../models/user': User
 	'../models/user-following': UserFollowing
-	'../models/status': Status
-	'./user-response-filter'
-	'../config'
 }
 
 exports = (user-id, limit, since-id, max-id, callback) ->
