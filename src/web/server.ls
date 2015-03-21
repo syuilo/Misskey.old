@@ -83,11 +83,11 @@ web-server = express!
 			callback!
 
 	# Statics
-	..get '/favicon.ico' (req, res, next) ->
-		res.sendFile path.resolve(__dirname + '/resources/favicon.ico')
+	..get '/favicon.ico' (, res,) ->
+		res.sendFile path.resolve __dirname + '/resources/favicon.ico'
 	
-	..get '/manifest.json', (req, res, next) ->
-		res.send-file path.resolve(__dirname + '/resources/manifest.json')
+	..get '/manifest.json', (, res,) ->
+		res.send-file path.resolve __dirname + '/resources/manifest.json'
 
 # Resources rooting
 resources-router web-server
@@ -99,13 +99,13 @@ web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next
 index-router web-server
 
 # Not found handling
-web-server.use (req, res, next) ->
+web-server.use (req, res,) ->
 	res
 		..status 404
 		..display req, res, 'notFound', {}
 
 # Error handling
-web-server.use (err, req, res, next) ->
+web-server.use (err, req, res,) ->
 	res.status 500
 	if res.has-own-property \display
 		res.display req, res, 'error', err: err
