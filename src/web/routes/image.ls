@@ -34,8 +34,7 @@ module.exports = (app) ->
 					..blur options.radius, options.sigma
 					..compress \jpeg
 					..quality 80
-					..to-buffer \jpeg (err, buffer) ->
-						if error then throw error
+					..to-buffer \jpeg (, buffer) ->
 						res
 							..set 'Content-Type' 'image/jpeg'
 							..send buffer
@@ -50,12 +49,11 @@ module.exports = (app) ->
 
 	function display-user-image(req, res, id-or-sn, image-property-name)
 		function display(user, user-image)
-			switch
-			| user-image? =>
+			if user-image?
 				image-buffer = if user-image[image-property-name] != null
 					then user-image[image-property-name]
 					else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
-				if req.headers[\accept].index-of 'text' == 0
+				if req.headers[\accept].index-of \text == 0
 					display-image do
 						req
 						res
@@ -64,6 +62,7 @@ module.exports = (app) ->
 						user.screen-name
 				else
 					send-image req, res, image-buffer
+		
 		switch            
 		| id-or-sn.match /^[0-9]+$/ =>
 			User.find id-or-sn, (user) ->
