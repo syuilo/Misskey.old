@@ -14,6 +14,8 @@ user-schema = new mongoose.Schema do
 	emailaddress: { type: Number }
 	exp: { type: String }
 	first-name: { type: String }
+	followers-count: { type: Number, default: 0 }
+	friends-count: { type: Number, default: 0 }
 	gender: { type: String }
 	is-plused: { type: Boolean, default: no }
 	is-suspended: { type: Boolean, default: no }
