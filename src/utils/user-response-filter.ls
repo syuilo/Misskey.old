@@ -1,14 +1,17 @@
-exports = (user) ->
-	color: user.color
-	comment: user.comment
-	created-at: user.created-at
-	is-plused: user.is-plused
-	is-suspended: user.is-suspended
-	lang: user.lang
-	last-name: user.last-name
-	links: user.links
-	location: user.location
-	name: user.name
-	screen-name: user.screen-name
-	tags: user.tags
-	url: user.url
+allowed = <[
+		color
+		comment
+		created-at
+		is-plus
+		is-suspended
+		lang
+		last-name
+		link
+		location
+		name
+		screen-name
+		tags
+		url
+	]> |> map camelize
+
+exports = (user) -> user |> obj-to-pairs |> filter ([name, ]) -> name in allowed |> pairs-to-obj
