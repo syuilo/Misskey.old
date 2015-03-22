@@ -31,7 +31,7 @@ routing =
 		[\post /\/status\/repost(\..+)?$/   './rest/status/repost']
 		[\get  /\/status\/timeline(\..+)?$/ './rest/status/timeline']
 	
-	talk
+	talk:
 		[\post   /\/talk\/say(\..+)?$/    './rest/talk/say']
 		[\put    /\/talk\/fix(\..+)?$/    './rest/talk/fix']
 		[\delete /\/talk\/delete(\..+)?$/ './rest/talk/delete']
