@@ -4,6 +4,7 @@ require! {
 	'../../../models/notice': Notice
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
+	'../../../utils/status-is-favorited': status-is-favorited
 	'../../../utils/streaming': Streamer
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -14,7 +15,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			| _ => Status.find-one { id: target-status.repost-from-status-id } (, true-target-status) -> favorite-step req, res, app, user, true-target-status
 
 function favorite-step req, res, app, user, target-status
-	StatusFavorite.is-favorited target-status.id, user.id, (is-favorited) ->
+	status-is-favorited target-status.id, user.id, (is-favorited) ->
 		| is-favorited => res.api-error 400 'This post is already favorited :('
 		| _ => StatusFavorite.insert { status-id: target-status.id, user-id: user.id } (, favorite) ->
 			target-status
