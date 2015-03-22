@@ -1,17 +1,17 @@
 import require \prelude-ls
 
 require! {
+	'../config'
+	'../utils/get-express-params'
 	'../models/access-token': AccessToken
 	'../models/application': Application
-	'../config'
 	'../models/user': User
 }
 
 exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
-	get-param = get-express-param req
-	consumer-key = get-param 'consumer_key'
-	access-token = get-param 'access_token'
+	get-params = get-express-params req
+	[consumer-key, access-token] = get-params <[ consumer_key access_token ]>
 	fail = res.api-error 401 _
 	referer = req.header 'Referer'
 	switch
