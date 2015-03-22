@@ -3,18 +3,19 @@ require! {
 	path
 	async
 	express
+	compression
+	'../config'
+	'body-parser'
+	'cookie-parser'
+	'connect-redis'
 	'express-minify': minify
-	'body-parser': body-parser
-	'cookie-parser': cookie-parser
 	'express-session': session
-	'compression'
 	'../models/user': User
 	'./routes/resources': resources-router
 	'./routes/index': index-router
-	'../config': config
 }
 
-RedisStore = (require 'connect-redis') session
+RedisStore = connect-redis session
 
 session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
 
