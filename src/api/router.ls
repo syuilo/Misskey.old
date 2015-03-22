@@ -58,9 +58,9 @@ exports = (app) ->
 			next!
 		
 		# Authorize
-		..get    '/authorize' require './authorize-get'
-		..post   '/authorize' (req, res) -> (require './authorize-post') req, res, app
-		..get    /\/sauth\/get_request_token(\..+)?$/      require './rest/sauth/get_request_token'
+		..get  '/authorize' require './authorize-get'
+		..post '/authorize' (req, res) -> (require './authorize-post') req, res, app
+		..get  /\/sauth\/get_request_token(\..+)?$/ require './rest/sauth/get_request_token'
 	
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
