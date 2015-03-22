@@ -29,6 +29,6 @@ user-schema = new mongoose.Schema do
 	screen-name: { type: String, required: yes }
 	tags: { type: [String] }
 	url: { type: String }
-	using-web-theme-id: { type: Number }
+	using-webtheme-id: { type: Number }
 
 exports = db.model \User user-schema
