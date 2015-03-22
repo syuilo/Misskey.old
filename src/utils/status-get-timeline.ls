@@ -1,3 +1,5 @@
+import require \prelude-ls
+
 require! {
 	'../models/user-following': UserFollowing
 }
@@ -7,9 +9,7 @@ exports = (user-id, limit, since-id, max-id, callback) ->
 		callback statuses
 	UserFollowing.find { follower-id: user-id }, (followings) ->
 		| followings? =>
-			followings-ids = [user-id] # Get my statuses
-			followings.for-each (following) ->
-				followings-ids.push following.followee-id.to-string!
+			followings-ids = [user-id] ++ (followings |> map (following) -> following.followee-id.to-string!)
 			query = switch
 				| !since-id? and !max-id? => { user-id: { $in: followings-ids } }
 				| since-id? => { $and: [ user-id: { $in: followings-ids }, id: { $gt: since-id } ] }
