@@ -22,6 +22,6 @@ exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 
 	err, messages <- TalkMessage.find query .sort \-created-at .limit limit .exec
 	
-	switch
-	| err? => reject err
-	| _ => resolve messages
+	if err?
+		then reject err
+		else resolve messages
