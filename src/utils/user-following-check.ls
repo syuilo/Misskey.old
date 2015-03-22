@@ -1,8 +1,8 @@
+import require './mongo-query'
+
 require! {
 	'../models/user-following': UserFollowing
 }
-
-$and = (a, b) --> $and: [a, b]
 
 # Number -> Number -> Promise Boolean
 exports = (follower-id, followee-id) ->
