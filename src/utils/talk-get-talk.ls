@@ -21,7 +21,7 @@ exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 		| max-id? => base-query `$and` {id: {$lt: max-id}}
 
 	err, messages <- TalkMessage.find query .sort \-created-at .limit limit .exec
-	if err?
-		reject err
-	else
-		resolve messages
+	
+	switch
+	| err? => reject err
+	| _ => resolve messages
