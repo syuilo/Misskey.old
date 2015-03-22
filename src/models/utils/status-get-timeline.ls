@@ -5,9 +5,9 @@ require! {
 }
 
 exports = (user-id, limit, since-id, max-id, callback) ->
-	function query-callback(err, statuses)
+	function query-callback(, statuses)
 		callback statuses
-	UserFollowing.find { follower-id: user-id }, (followings) ->
+	UserFollowing.find { follower-id: user-id }, (, followings) ->
 		| followings? =>
 			followings-ids = [user-id] ++ (followings |> map (following) -> following.followee-id.to-string!)
 			query = switch
