@@ -2,4 +2,5 @@ require! {
 	'../models/circle': Circle
 }
 exports = (screen-name, callback) ->
-	callback Circle .find screen-name .limit 1 .count! > 0
+	Circle .count { screen-name } (, count) ->
+		callback count > 0
