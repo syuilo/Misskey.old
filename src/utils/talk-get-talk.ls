@@ -19,8 +19,7 @@ exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 			]}
 		]}
 	
-	query = switch
-		| !any (?), [since-id, max-id] => base-query
+	query = | !any (?), [since-id, max-id] => base-query
 		| since-id? =>
 			{$and: [
 				base-query
