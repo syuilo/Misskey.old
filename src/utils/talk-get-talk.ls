@@ -4,7 +4,9 @@ require! {
 	'../models/talk-message': TalkMessage
 }
 
-exports = (me-id, otherparty-id, limit, since-id, max-id, callback) ->
+# Number -> Number -> Number -> Number -> Number -> Promise [Message]
+exports = (me-id, otherparty-id, limit, since-id, max-id) ->
+	(resolve, reject) <- new Promise!
 	base-query =
 		{$or: [
 			{$and: [
@@ -34,4 +36,4 @@ exports = (me-id, otherparty-id, limit, since-id, max-id, callback) ->
 		.find query
 		.sort \-created-at
 		.limit limit
-		.exec (, messages) -> callback messages
+		.exec (, messages) -> resolve messages
