@@ -17,7 +17,7 @@ exports = (req, res, success) ->
 	switch
 	| any (== null), [consumer-key, access-token, referer] =>
 		fail 'CK or CS or referer cannot be empty'
-	| !(referer.match new RegExp '^' + config.public-config.url && is-logged) => fail 'not logged'
+	| !(referer.match == //^#{config.public-config.url}// && is-logged) => fail 'not logged'
 	| any (== null), [req.session.consumer-key, req.session.access-token] =>
 		fail 'You are logged in, but, Ck or CS has not been set.'
 	| _ =>
