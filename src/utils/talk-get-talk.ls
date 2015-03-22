@@ -1,3 +1,5 @@
+import require \prelude-ls
+
 require! {
 	'../models/talk-message': TalkMessage
 }
@@ -16,7 +18,7 @@ exports = (me-id, otherparty-id, limit, since-id, max-id, callback) ->
 		]}
 	
 	query = switch
-		| !since-id? and !max-id? => base-query
+		| !any (?), [since-id, max-id] => base-query
 		| since-id? =>
 			{$and: [
 				base-query
@@ -32,5 +34,4 @@ exports = (me-id, otherparty-id, limit, since-id, max-id, callback) ->
 		.find query
 		.sort \-created-at
 		.limit limit
-		.exec (, messages) ->
-			callback messages
+		.exec (, messages) -> callback messages
