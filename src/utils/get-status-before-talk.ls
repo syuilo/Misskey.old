@@ -11,4 +11,4 @@ function get-status-before-talk id
 	if status.in-reply-to-status-id? or status.in-reply-to-status-id == 0
 		resolve [status]
 	else
-		get-status-before-talk status.in-reply-to-status-id .then -> resolve next-statuses ++ [status]
+		get-status-before-talk status.in-reply-to-status-id .then (next-statuses) -> resolve next-statuses ++ [status]
