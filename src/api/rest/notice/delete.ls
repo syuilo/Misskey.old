@@ -1,15 +1,9 @@
-require! {
-	'../../../models/notice': Notice
+	require! {
 	'../../auth': authorize
+	'../../../models/notice': Notice
 }
-module.exports = (req, res) ->
-	authorize req, res, (user, app) ->
-		notice-id = req.body.notice_id
-		if notice-id == null
-			res.api-error 400 'notice_id parameter is required :('
-		else
-			Notice.find notice-id, (notice) ->
-				if notice.user-id != user.id
-					res.api-error 400 'Cannot delete The notification which not addressed to you'
-				else
-					notice.destroy -> res.api-render status: 'success'
+exports = (req, res) -> authorize res, res, (user, app) ->
+	| !(notice-id = req.body.notice_id)? => res.api-error 400 'notice_id parameter is required :('
+	| _ => Notice.find-by-id notice-id, (, notice) ->
+		| notice.user-id != user.id => res.api-error 400 'Cannot delete The notification which not addressed to you'
+		| _ => notice.destroy -> res.api-render status: \success
