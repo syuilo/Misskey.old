@@ -1,6 +1,7 @@
 import require \prelude-ls
 
 require! {
+	'./is-null'
 	'../models/talk-message': TalkMessage
 }
 
@@ -13,7 +14,7 @@ exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 	
 	base-query = ({user-id: me-id} `$and` {otherparty-id}) `$or` ({user-id: otherparty-id} `$and` {otherparty-id: me-id})
 	
-	query = | all (?) >> (!), [since-id, max-id] => base-query
+	query = | all is-null, [since-id, max-id] => base-query
 		| since-id? => base-query `$and` {id: {$gt: since-id}}
 		| max-id? => base-query `$and` {id: {$lt: max-id}}
 
