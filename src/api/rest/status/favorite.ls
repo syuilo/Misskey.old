@@ -7,7 +7,9 @@ require! {
 	'../../../utils/status-is-favorited': status-is-favorited
 	'../../../utils/status-response-filter': status-response-filter
 	'../../../utils/streaming': Streamer
+	'../../../utils/user-response-filter': user-response-filter
 }
+
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| (status-id = req.body.status_id) == null => res.api-error 400 'status_id parameter is required :('
 	| _ => Status.find-one {id: status-id} (, target-status) ->
@@ -25,7 +27,7 @@ function favorite-step req, res, app, user, target-status
 			status-response-filter target-post, res.api-render
 			content =
 				status: target-status
-				user: user.filt!
+				user: user-response-filter user
 			Notice.insert { app-id: config.web-client-id, type: \favorite, content: JSON.stringify content, user-id: target-status.user-id } (, notice) ->
 				Streamer.publish 'userStream:' + target-status.user-id, JSON.stringify do
 					type: \notice
