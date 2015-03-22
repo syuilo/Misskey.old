@@ -8,15 +8,15 @@ require! {
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| (post-id = req.body.post_id) == null => res.api-error 400 'post_id parameter is required :('
-	| _ => Post.find-one {id: post-id} (, target-post) ->
+	| _ => Status.find-one {id: post-id} (, target-post) ->
 			| !target-post? => res.api-error 404 'Post not found...'
 			| !target-post.repost-from-post-id? => favorite-step req, res, app, user, target-post
-			| _ => Post.find-one { id: target-post.repost-from-post-id } (, true-target-post) -> favorite-step req, res, app, user, true-target-post
+			| _ => Status.find-one { id: target-post.repost-from-post-id } (, true-target-post) -> favorite-step req, res, app, user, true-target-post
 
 function favorite-step req, res, app, user, target-post
-	PostFavorite.is-favorited target-post.id, user.id, (is-favorited) ->
+	StatusFavorite.is-favorited target-post.id, user.id, (is-favorited) ->
 		| is-favorited => res.api-error 400 'This post is already favorited :('
-		| _ => PostFavorite.insert { status-id: target-post.id, user-id: user.id } (, favorite) ->
+		| _ => StatusFavorite.insert { status-id: target-post.id, user-id: user.id } (, favorite) ->
 			target-post
 				..favorites-count++
 				..update ->
