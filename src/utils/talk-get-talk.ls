@@ -4,8 +4,8 @@ require! {
 	'../models/talk-message': TalkMessage
 }
 
-$or = (x, y) --> $or: [x, y]
-$and = (x, y) --> $and: [x, y]
+$or = (a, b) --> $or: [a, b]
+$and = (a, b) --> $and: [a, b]
 
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]
 exports = (me-id, otherparty-id, limit, since-id, max-id) ->
