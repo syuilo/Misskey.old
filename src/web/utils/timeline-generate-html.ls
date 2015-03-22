@@ -6,7 +6,7 @@ require! {
 }
 
 exports = (statuses, viewer, callback) ->
-	compiler = jade.compile-file __dirname + '/../views/templates/timeline.jade'
+	compiler = jade.compile-file "#__dirname/../views/templates/timeline.jade"
 	if statuses?
 		serialyzer statuses, viewrer, (timeline) ->
 			html = compiler do
