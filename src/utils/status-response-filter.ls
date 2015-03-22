@@ -29,9 +29,8 @@ exports = (source-status, callback) ->
 			
 			# Get author
 			(next) ->
-				User.find-by-id status.user-id, (, user) ->
-					user-response-filter user, (user) ->
-						next null user
+				(, user) <- User.find-by-id status.user-id
+				next null user-response-filter user
 			
 			# Get reply from
 			(next) ->
