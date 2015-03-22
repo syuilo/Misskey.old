@@ -4,10 +4,10 @@ require! {
 	'../../../models/notice': Notice
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
-	'../../../utils/status-is-favorited': status-is-favorited
-	'../../../utils/status-response-filter': status-response-filter
+	'../../../utils/status-is-favorited'
+	'../../../utils/status-response-filter'
 	'../../../utils/streaming': Streamer
-	'../../../utils/user-response-filter': user-response-filter
+	'../../../utils/user-response-filter'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
