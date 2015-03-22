@@ -1,3 +1,5 @@
+import require \prelude-ls
+
 allowed = <[
 	color
 	comment
