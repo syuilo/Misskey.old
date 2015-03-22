@@ -1,3 +1,5 @@
+import require \prelude-ls
+
 routing =
 	account:
 		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
@@ -9,6 +11,42 @@ routing =
 		[\put    /\/account\/update_webtheme(\..+)?$/      './rest/account/update_webtheme']
 		[\get    /\/account\/unreadalltalks_count(\..+)?$/ './rest/account/unreadalltalks_count']
 		[\delete /\/account\/reset_webtheme(\..+)?$/       './rest/account/reset_webtheme']
+	
+	application:
+		[\post /\/application\/create(\..+)?$/ './rest/application/create']
+		[\post /\/application\/delete(\..+)?$/ './rest/application/delete']
+	
+	notice:
+		[\delete /\/notice\/delete(\..+)?$/    './rest/notice/delete']
+		[\delete /\/notice\/deleteall(\..+)?$/ './rest/notice/deleteall']
+	
+	users:
+		[\get    /\/users\/show(\..+)?$/     './rest/users/show']
+		[\post   /\/users\/follow(\..+)?$/   './rest/users/follow']
+		[\delete /\/users\/unfollow(\..+)?$/ './rest/users/unfollow']
+	
+	status:
+		[\post /\/status\/update(\..+)?$/   './rest/status/update']
+		[\post /\/status\/favorite(\..+)?$/ './rest/status/favorite']
+		[\post /\/status\/repost(\..+)?$/   './rest/status/repost']
+		[\get  /\/status\/timeline(\..+)?$/ './rest/status/timeline']
+	
+	talk
+		[\post   /\/talk\/say(\..+)?$/    './rest/talk/say']
+		[\put    /\/talk\/fix(\..+)?$/    './rest/talk/fix']
+		[\delete /\/talk\/delete(\..+)?$/ './rest/talk/delete']
+		[\post   /\/talk\/read(\..+)?$/   './rest/talk/read']
+	
+	circle:
+		[\post /\/circle\/create(\..+)?$/ './rest/circle/create']
+		[\get  /\/circle\/show(\..+)?$/   './rest/circle/show']
+		[\put  /\/circle\/update(\..+)?$/ './rest/circle/update']
+	
+	other:
+		[\get /\/search\/user(\..+)?$/         './rest/search/user']
+		[\get /\/screenname_available(\..+)?$/ './rest/screenname_available']
+		[\all /\/teapot\/coffee(\..+)?$/       './rest/teapot/coffee']
+
 
 exports = (app) ->
 	app
@@ -24,41 +62,5 @@ exports = (app) ->
 		..post   '/authorize' (req, res) -> (require './authorize-post') req, res, app
 		..get    /\/sauth\/get_request_token(\..+)?$/      require './rest/sauth/get_request_token'
 	
-	routing.account |> each ([method, url, handler]) ->
+	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
-	
-	app
-		# Application
-		..post   /\/application\/create(\..+)?$/           require './rest/application/create'
-		..post   /\/application\/delete(\..+)?$/           require './rest/application/delete'
-		
-		# Notice
-		..delete /\/notice\/delete(\..+)?$/                require './rest/notice/delete'
-		..delete /\/notice\/deleteall(\..+)?$/             require './rest/notice/deleteall'
-		
-		# Users
-		..get    /\/users\/show(\..+)?$/                   require './rest/users/show'
-		..post   /\/users\/follow(\..+)?$/                 require './rest/users/follow'
-		..delete /\/users\/unfollow(\..+)?$/               require './rest/users/unfollow'
-		
-		# Status
-		..post   /\/status\/update(\..+)?$/                require './rest/status/update'
-		..post   /\/status\/favorite(\..+)?$/              require './rest/status/favorite'
-		..post   /\/status\/repost(\..+)?$/                require './rest/status/repost'
-		..get    /\/status\/timeline(\..+)?$/              require './rest/status/timeline'
-		
-		# Talk
-		..post   /\/talk\/say(\..+)?$/                     require './rest/talk/say'
-		..put    /\/talk\/fix(\..+)?$/                     require './rest/talk/fix'
-		..delete /\/talk\/delete(\..+)?$/                  require './rest/talk/delete'
-		..post   /\/talk\/read(\..+)?$/                    require './rest/talk/read'
-		
-		# Circle
-		..post   /\/circle\/create(\..+)?$/                require './rest/circle/create'
-		..get    /\/circle\/show(\..+)?$/                  require './rest/circle/show'
-		..put    /\/circle\/update(\..+)?$/                require './rest/circle/update'
-		
-		# Other
-		..get    /\/search\/user(\..+)?$/                  require './rest/search/user'
-		..get    /\/screenname_available(\..+)?$/          require './rest/screenname_available'
-		..all    /\/teapot\/coffee(\..+)?$/                require './rest/teapot/coffee'
