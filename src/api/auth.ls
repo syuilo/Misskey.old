@@ -13,7 +13,7 @@ exports = (req, res, success) ->
 	get-params = get-express-params req
 	[consumer-key, access-token] = get-params <[ consumer_key access_token ]>
 	fail = res.api-error 401 _
-	referer = req.header 'Referer'
+	referer = req.header \Referer
 	switch
 	| any (== null), [consumer-key, access-token, referer] =>
 		fail 'CK or CS or referer cannot be empty'
