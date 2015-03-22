@@ -8,6 +8,6 @@ require! {
 }
 
 exports = (req, res) ->
-	talk-get-talk req.me.id, req.root-user.id, 32, null, null, (messages) ->
+	talk-get-talk req.me.id, req.root-user.id, 32messages, null, null, (messages) ->
 		
 			
