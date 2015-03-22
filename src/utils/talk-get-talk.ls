@@ -5,10 +5,10 @@ require! {
 }
 
 # a -> b -> [a, b]
-$or = (x, y) --> {$or: [x, y]}
+$or = (x, y) --> $or: [x, y]
 
 # a -> b -> [a, b]
-$and = (x, y) --> {$and: [x, y]}
+$and = (x, y) --> $and: [x, y]
 
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]
 exports = (me-id, otherparty-id, limit, since-id, max-id) ->
