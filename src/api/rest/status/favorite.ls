@@ -15,7 +15,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| _ => Status.find-by-id status-id, (, target-status) ->
 			| !target-status? => res.api-error 404 'Post not found...'
 			| !target-status.repost-from-status-id? => favorite-step req, res, app, user, target-status
-			| _ => Status.find-by-id target-status.repost-from-status-id (, true-target-status) -> favorite-step req, res, app, user, true-target-status
+			| _ => Status.find-by-id target-status.repost-from-status-id, (, true-target-status) -> favorite-step req, res, app, user, true-target-status
 
 function favorite-step req, res, app, user, target-status
 	status-is-favorited target-status.id, user.id, (is-favorited) ->
