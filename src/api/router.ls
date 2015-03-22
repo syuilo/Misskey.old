@@ -1,6 +1,19 @@
 require! {
 	express
 }
+
+routing =
+	account:
+		[\post /\/account\/create(\..+)?$/ './rest/account/create']
+		[\get /\/account\/show(\..+)?$/ './rest/account/show']
+		[\put /\/account\/update(\..+)?$/ './rest/account/update']
+		[\put /\/account\/update_icon(\..+)?$/ './rest/account/update_icon']
+		[\put /\/account\/update_header(\..+)?$/ './rest/account/update_header']
+		[\put /\/account\/update_wallpaper(\..+)?$/ './rest/account/update_wallpaper']
+		[\put /\/account\/update_webtheme(\..+)?$/ './rest/account/update_webtheme']
+		[\get /\/account\/unreadalltalks_count(\..+)?$/ './rest/account/unreadalltalks_count']
+		[\delete /\/account\/reset_webtheme(\..+)?$/ './rest/account/reset_webtheme']
+
 exports = (app) ->
 	app
 		..all '*' (req, res, next) ->
@@ -14,18 +27,11 @@ exports = (app) ->
 		..get    '/authorize' require './authorize-get'
 		..post   '/authorize' (req, res) -> (require './authorize-post') req, res, app
 		..get    /\/sauth\/get_request_token(\..+)?$/      require './rest/sauth/get_request_token'
-		
-		# Account
-		..post   /\/account\/create(\..+)?$/               require './rest/account/create'
-		..get    /\/account\/show(\..+)?$/                 require './rest/account/show'
-		..put    /\/account\/update(\..+)?$/               require './rest/account/update'
-		..put    /\/account\/update_icon(\..+)?$/          require './rest/account/update_icon'
-		..put    /\/account\/update_header(\..+)?$/        require './rest/account/update_header'
-		..put    /\/account\/update_wallpaper(\..+)?$/     require './rest/account/update_wallpaper'
-		..put    /\/account\/update_webtheme(\..+)?$/      require './rest/account/update_webtheme'
-		..get    /\/account\/unreadalltalks_count(\..+)?$/ require './rest/account/unreadalltalks_count'
-		..delete /\/account\/reset_webtheme(\..+)?$/       require './rest/account/reset_webtheme'
-		
+	
+	routing.account |> each ([method, url, handler]) ->
+		app[method] url, require handler
+	
+	app
 		# Application
 		..post   /\/application\/create(\..+)?$/           require './rest/application/create'
 		..post   /\/application\/delete(\..+)?$/           require './rest/application/delete'
