@@ -9,4 +9,4 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| !(description = req.body.description)? => res.api-error 400 'description parameter is required :('
 	| _ => circle-exist-screen-name screen-name, (exist) ->
 		| exist => res.api-error 400 'That screen name is exist :('
-		| _ => Circle.insert { user-id: user.id, name: name, screen-name, description} (circle) -> res.api-render circle
+		| _ => Circle.insert { user-id: user.id, name, screen-name, description} (circle) -> res.api-render circle
