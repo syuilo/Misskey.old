@@ -12,4 +12,4 @@ function get-status-before-talk id
 			resolve [status]
 		else
 			next-statuses <- get-status-before-talk status.in-reply-to-status-id
-			resolve next-statuses ++ status
+			resolve next-statuses ++ [status]
