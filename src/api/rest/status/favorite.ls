@@ -24,7 +24,7 @@ function favorite-step req, res, app, user, target-post
 			content =
 				post: target-post
 				user: user.filt!
-			Notice.insert { app-id: config.web-client-id, type: 'favorite', content: JSON.stringify content, user-id: target-post.user-id } (, notice) ->
+			Notice.insert { app-id: config.web-client-id, type: \favorite, content: JSON.stringify content, user-id: target-post.user-id } (, notice) ->
 				Streamer.publish 'userStream:' + target-post.user-id, JSON.stringify do
-					type: 'notice'
+					type: \notice
 					value: notice
