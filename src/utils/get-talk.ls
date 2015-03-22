@@ -1,12 +1,10 @@
 import require \prelude-ls
+import require './mongoose-query'
 
 require! {
 	'./is-null'
 	'../models/talk-message': TalkMessage
 }
-
-$or = (a, b) --> $or: [a, b]
-$and = (a, b) --> $and: [a, b]
 
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]
 exports = (me-id, otherparty-id, limit, since-id, max-id) ->
