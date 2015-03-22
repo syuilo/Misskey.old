@@ -1,18 +1,14 @@
-require! {
-	express
-}
-
 routing =
 	account:
-		[\post /\/account\/create(\..+)?$/ './rest/account/create']
-		[\get /\/account\/show(\..+)?$/ './rest/account/show']
-		[\put /\/account\/update(\..+)?$/ './rest/account/update']
-		[\put /\/account\/update_icon(\..+)?$/ './rest/account/update_icon']
-		[\put /\/account\/update_header(\..+)?$/ './rest/account/update_header']
-		[\put /\/account\/update_wallpaper(\..+)?$/ './rest/account/update_wallpaper']
-		[\put /\/account\/update_webtheme(\..+)?$/ './rest/account/update_webtheme']
-		[\get /\/account\/unreadalltalks_count(\..+)?$/ './rest/account/unreadalltalks_count']
-		[\delete /\/account\/reset_webtheme(\..+)?$/ './rest/account/reset_webtheme']
+		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
+		[\get    /\/account\/show(\..+)?$/                 './rest/account/show']
+		[\put    /\/account\/update(\..+)?$/               './rest/account/update']
+		[\put    /\/account\/update_icon(\..+)?$/          './rest/account/update_icon']
+		[\put    /\/account\/update_header(\..+)?$/        './rest/account/update_header']
+		[\put    /\/account\/update_wallpaper(\..+)?$/     './rest/account/update_wallpaper']
+		[\put    /\/account\/update_webtheme(\..+)?$/      './rest/account/update_webtheme']
+		[\get    /\/account\/unreadalltalks_count(\..+)?$/ './rest/account/unreadalltalks_count']
+		[\delete /\/account\/reset_webtheme(\..+)?$/       './rest/account/reset_webtheme']
 
 exports = (app) ->
 	app
