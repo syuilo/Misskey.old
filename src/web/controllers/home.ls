@@ -9,11 +9,11 @@ post-gets =
 	mention: Post.getMentions
 module.exports = (req, res, content = 'home') ->
 	async.series [
-		(callback) -> Post.get-user-posts-count req.me.id, (count) -> callback null, count
-		(callback) -> UserFollowing.get-followings-count req.me.id, (count) -> callback null, count
-		(callback) -> UserFollowing.get-followers-count req.me.id, (count) -> callback null, count
-		(callback) -> post-gets[content] req.me.id, 30, null, null, (posts) ->
-			Timeline.generate-html posts, req, (timeline-html) -> callback null, timeline-html
+		(next) -> Post.get-user-posts-count req.me.id, (count) -> next null, count
+		(next) -> UserFollowing.get-followings-count req.me.id, (count) -> next null, count
+		(next) -> UserFollowing.get-followers-count req.me.id, (count) -> next null, count
+		(next) -> post-gets[content] req.me.id, 30, null, null, (posts) ->
+			Timeline.generate-html posts, req, (timeline-html) -> next null, timeline-html
 	], (err, results) -> res.display req, res, 'home' do
 		posts-count: results[0]
 		followings-count: results[1]
