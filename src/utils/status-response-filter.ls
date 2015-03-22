@@ -45,8 +45,4 @@ exports = (source-status, callback) ->
 						| _ => next null null
 				| _ => next null null
 		]
-		(, result) ->
-			status.application = result.0
-			status.user = result.1
-			status.reply = result.2
-			callback status
+		(, [status.application, status.user, status.reply]) -> callback status
