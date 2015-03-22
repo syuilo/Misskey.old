@@ -1,4 +1,4 @@
-import require './mongo-query'
+import require './mongoose-query'
 
 require! {
 	'../models/user-following': UserFollowing
