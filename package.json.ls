@@ -37,7 +37,7 @@ dependencies:
 	LiveScript: '^1.3.1'
 	marked: '^0.3.3'
 	moment: '^2.9.0'
-	mongoose: '^3.8.25'
+	mongoose: '^3.9.7'
 	multer: '^0.1.7'
 	'prelude-ls': '^1.1.1'
 	redis: '^0.12.1'
