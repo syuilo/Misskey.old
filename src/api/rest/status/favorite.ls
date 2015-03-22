@@ -1,19 +1,19 @@
 require! {
+	'../../auth': authorize
 	'../../../config': config
 	'../../../models/notice': Notice
-	'../../../models/status': Post
-	'../../../models/status-favorite': PostFavorite
+	'../../../models/status': Status
+	'../../../models/status-favorite': StatusFavorite
 	'../../../utils/streaming': Streamer
-	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| (post-id = req.body.post_id) == null => res.api-error 400 'post_id parameter is required :('
-	| _ => Post.find post-id, (target-post) ->
-			| target-post == null => res.api-error 404 'Post not found...'
-			| target-post.repost-from-post-id == null => favorite-step req, res, app, user, target-post
-			| _ => Post.find target-post.repost-from-post-id, (true-target-post) -> favorite-step req, res, app, user, true-target-post
+	| _ => Post.find-one {id: post-id} (, target-post) ->
+			| !target-post? => res.api-error 404 'Post not found...'
+			| !target-post.repost-from-post-id? => favorite-step req, res, app, user, target-post
+			| _ => Post.find-one { id: target-post.repost-from-post-id } (, true-target-post) -> favorite-step req, res, app, user, true-target-post
 
-favorite-step = (req, res, app, user, target-post) ->
+function favorite-step req, res, app, user, target-post
 	PostFavorite.is-favorited target-post.id, user.id, (is-favorited) ->
 		| is-favorited => res.api-error 400 'This post is already favorited :('
 		| _ => PostFavorite.create target-post.id, user.id, (favorite) ->
@@ -24,7 +24,7 @@ favorite-step = (req, res, app, user, target-post) ->
 			content =
 				post: target-post
 				user: user.filt!
-			Notice.create config.web-client-id, 'favorite', JSON.stringify content, target-post.user-id, (notice) ->
+			Notice.insert { app-id: config.web-client-id, type: 'favorite', content: JSON.stringify content, user-id: target-post.user-id } (, notice) ->
 				Streamer.publish 'userStream:' + target-post.user-id, JSON.stringify do
 					type: 'notice'
 					value: notice
