@@ -2,9 +2,17 @@ require! {
 	'../models/user-following': UserFollowing
 }
 
-exports = (follower-id, followee-id, callback) ->
-	UserFollowing
-		.find { $and: [ { follower-id }, { followee-id } ] }
-		.limit 1following
-		.exec (, followings) ->
-			followings?
+$and = (a, b) --> $and: [a, b]
+
+# Number -> Number -> Promise Boolean
+exports = (follower-id, followee-id) ->
+	resolve, reject <- new Promise!
+	
+	err, followings <- UserFollowing
+		.find {follower-id} `$and` {followee-id}
+		.limit 1
+		.exec
+		
+	if err?
+		then reject err
+		else resolve followings?
