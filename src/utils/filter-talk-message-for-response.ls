@@ -1,6 +1,7 @@
 require! {
 	aync
 	'../models/application': Application
+	'../models/user': User
 }
 exports = (src-talk-msg) -> 
 	talk-msg = {
@@ -17,5 +18,9 @@ exports = (src-talk-msg) ->
 			(next) -> Application.find-by-id src-talk-msg.app-id, (, application) ->
 				| app? => next null app
 				| _ => next null null
+			(next) -> User.find-by-id src-talk-msg.otherparty-id, (, otherparty) ->
+				next null otherparty
+			(next) -> User.find-by-id src-talk-msg.user-id, (, user) ->
+				next null user
 		]
-		(, [talk-msg.application])　-> callback talk-msg
+		(, [talk-msg.application, talk-msg.otherparty, talk-msg.user])　-> callback talk-msg
