@@ -31,8 +31,8 @@ exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 				{ id: { $lt: max-id } }
 			]}
 	
-	TalkMessage
-		.find query
-		.sort \-created-at
-		.limit limit
-		.exec (, messages) -> resolve messages
+	err, messages <- TalkMessage.find query .sort \-created-at .limit limit .exec
+	if err?
+		resolve messages
+	else
+		reject err
