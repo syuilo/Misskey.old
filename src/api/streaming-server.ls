@@ -3,9 +3,9 @@ require! {
 	https
 	cookie
 	redis
-	'../config': config
-	'./socketio/home': home
-	'./socketio/talk': talk
+	'../config'
+	'./socketio/home'
+	'./socketio/talk'
 	'express-session': session
 	'socket.io': SocketIO
 }
