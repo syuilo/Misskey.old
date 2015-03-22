@@ -24,9 +24,9 @@ web-server = express!
 	..locals.compile-debug = false
 	..set
 		.. 'view engine' \jade
-		.. 'views', __dirname + '/views'
+		.. \views "#__dirname/views"
 	
-	..use body-parser.urlencoded { +extended }
+	..use body-parser.urlencoded {+extended}
 	..use cookie-parser config.cookie_pass
 
 	# Session settings
