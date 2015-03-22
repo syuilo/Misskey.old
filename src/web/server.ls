@@ -109,7 +109,7 @@ web-server.use (req, res,) ->
 web-server.use (err, req, res,) ->
 	res.status 500
 	if res.has-own-property \display
-		res.display req, res, 'error', err: err
+		res.display req, res, \error, {err}
 	else
 		console.log err
 		res.send!
