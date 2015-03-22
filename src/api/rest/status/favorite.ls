@@ -5,6 +5,7 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
 	'../../../utils/status-is-favorited': status-is-favorited
+	'../../../utils/status-response-filter': status-response-filter
 	'../../../utils/streaming': Streamer
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -21,7 +22,7 @@ function favorite-step req, res, app, user, target-status
 			target-status
 				..favorites-count++
 				..update ->
-			Post.build-response-object target-post, res.api-render
+			status-response-filter target-post, res.api-render
 			content =
 				status: target-status
 				user: user.filt!
