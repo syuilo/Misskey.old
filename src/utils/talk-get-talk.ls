@@ -4,35 +4,24 @@ require! {
 	'../models/talk-message': TalkMessage
 }
 
+# a -> b -> [a, b]
+$or = (x, y) --> {$or: [x, y]}
+
+# a -> b -> [a, b]
+$and = (x, y) --> {$and: [x, y]}
+
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]
 exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 	(resolve, reject) <- new Promise!
 	base-query =
-		{$or: [
-			{$and: [
-				{ user-id: me-id }
-				{ otherparty-id }
-			]}
-			{$and: [
-				{ user-id: otherparty-id }
-				{ otherparty-id: me-id }
-			]}
-		]}
+		({user-id: me-id} `$and` {otherparty-id}) `$or` ({user-id: otherparty-id} `$and` {otherparty-id: me-id})
 	
 	query = | !any (?), [since-id, max-id] => base-query
-		| since-id? =>
-			{$and: [
-				base-query
-				{ id: { $gt: since-id } }
-			]}
-		| max-id? =>
-			{$and: [
-				base-query
-				{ id: { $lt: max-id } }
-			]}
-	
+		| since-id? => base-query `$and` {id: {$gt: since-id}}
+		| max-id? => base-query `$and` {id: {$lt: max-id}}
+
 	err, messages <- TalkMessage.find query .sort \-created-at .limit limit .exec
 	if err?
-		resolve messages
-	else
 		reject err
+	else
+		resolve messages
