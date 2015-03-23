@@ -14,4 +14,4 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		..color = if params.color != null
 				then (if params.color.match /#[a-fA-F0-9]{6}/ then params.color else user.color)
 				else ''
-		..update -> res.api-render user.filt!
+		..save! -> res.api-render user.filt!
