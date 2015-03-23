@@ -16,6 +16,7 @@ exports = (req, screen-name, password, done, fail) ->
 		| _ =>
 			db-password = user.password.replace '$2y$' '$2a$'
 			bcrypt.compare password, db-password, (err, same) ->
+				| err => fail!
 				| !same => fail!
 				| _ => req.session
 							..user-id = user.id
