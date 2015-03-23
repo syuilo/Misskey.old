@@ -4,6 +4,8 @@ require! {
 	'../../models/user': User
 	'../../models/status': Status
 	'../../models/status-favorite': StatusFavorite
+	'../../models/status-check-favorited'
+	'../../models/status-check-reposted'
 	'./timeline-serialize-more-talk': serialize-talk
 	'../../config': config
 }
@@ -24,7 +26,7 @@ exports = (statuses, me, callback) ->
 	function get-is-favorited(status, me)
 		(next) ->
 			if me?
-				StatusFavorite.is-favorited status.id, me.id, (is-favorited) ->
+				status-check-favorited me.id, status.id .then (is-favorited) ->
 					next null, is-favorited
 			else
 				next null, null
@@ -32,7 +34,7 @@ exports = (statuses, me, callback) ->
 	function get-is-reposted(status, me)
 		(next) ->
 			if me?
-				Status.is-reposted status.id, me.id, (is-reposted) ->
+				status-check-reposted me.id, status.id .then (is-reposted) ->
 					next null, is-reposted
 			else
 				next null, null
@@ -41,14 +43,14 @@ exports = (statuses, me, callback) ->
 		(next) ->
 			| !status.is-reply => next null, null
 			| _ =>
-				Status.find status.in-reply-to-status-id, (reply-status) ->
+				Status.find-by-id status.in-reply-to-status-id, (, reply-status) ->
 					| !reply-status? =>
 						status.is-reply = no
 						next null, null
 					| _ =>
 						reply-status.is-reply = reply-status.in-reply-to-status-id != 0 && reply-status.in-reply-to-status-id != null
 						status.reply = reply-status
-						User.find reply-status.user-id, (reply-user) ->
+						User.find-by-id reply-status.user-id, (, reply-user) ->
 							status.reply.user = reply-user
 							if reply-status.is-reply
 								serialize-talk reply-status, (talk) ->
@@ -66,7 +68,7 @@ exports = (statuses, me, callback) ->
 						_repost-from-post = repost-from-post
 							..is-repost-to-post = yes
 							..source = status
-						User.find post.user-id (reposted-by-user) ->
+						User.find-by-id post.user-id, (, reposted-by-user) ->
 							_repost-from-post.reposted-by-user = reposted-by-user
 							map-next null, _repost-from-post
 					| _ =>
