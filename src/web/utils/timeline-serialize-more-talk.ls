@@ -14,5 +14,5 @@ exports = (status, callback) ->
 				User.find-by-id talk-status.user-id, (, talk-status-user) ->
 					talk-status.user = talk-status-user
 					next null, talk-status
-			(err: any, talk-statuses) ->
+			(, talk-statuses) ->
 				callback talk-statuses
