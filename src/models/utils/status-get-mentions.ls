@@ -4,13 +4,13 @@ import require './mongoose-query'
 require! {
 	'../status': Status
 	'../status-mention': StatusMention
+	'../../utils/is-null'
 }
 
 exports = (user-id, limit, since-id, max-id) ->
 	resolve, reject <- new Promise!
 	
-	query = switch
-		| all is-null, [since-id, max-id] => {user-id}
+	query = | all is-null, [since-id, max-id] => {user-id}
 		| since-id? => {user-id} `$and` {status-id: {$gt: since-id}}
 		| max-id?   => {user-id} `$and` {status-id: {$lt: max-id}}
 	(, mentions) <- StatusMention
