@@ -6,6 +6,7 @@ require! {
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/user-image': UserImage
+	'../../../models/utils/filter-user-for-response'
 }
 
 exports = (req, res) ->
@@ -35,6 +36,6 @@ exports = (req, res) ->
 						UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
 							UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
 								do-login req, created-user.screen-name, password, (user, web-access-token) ->
-									res.api-render created-user.filt!
+									res.api-render filter-user-for-response created-user
 								, ->
 									res.send-status 500
