@@ -11,6 +11,7 @@ status-schema = new mongoose.Schema do
 	favorites-count: { type: Number, default: 0 }
 	in-reply-to-status-id: { type: Number, default: null }
 	is-image-attached: { type: Boolean, default: false }
+	replies: {[Number]}
 	reposts-count: { type: Number, default: 0 }
 	repost-from-status-id: { type: Number, default: null }
 	text: { type: String, required: yes }
