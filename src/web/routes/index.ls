@@ -13,7 +13,7 @@ module.exports = (app) ->
 	
 	app
 		..param
-			.. 'userSn' (req, res, next, screen-name) ->
+			.. \userSn (req, res, next, screen-name) ->
 				User.find-one {screen-name} (, user) ->
 					if user?
 						req.root-user = req.data.root-user = user
@@ -21,7 +21,7 @@ module.exports = (app) ->
 					else
 						res.status 404
 					
-			.. 'statusId' (req, res, next, status-id) ->
+			.. \statusId (req, res, next, status-id) ->
 				Status.find-by-id status-id, (, status) ->
 					if status?
 						req.root-status = req.data.root-status = status
