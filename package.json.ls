@@ -14,6 +14,7 @@ main: './src/'
 scripts:
 	build: 'gulp build'
 	watch: 'gulp watch'
+	test: 'gulp test'
 
 dependencies:
 	async: '^0.9.0'

@@ -5,6 +5,7 @@ require! {
 }
 
 paths =
+	ls: './src/**/*.ls'
 	package-json: './package.json.ls'
 
 gulp.task \build-package-json ->
@@ -18,5 +19,10 @@ gulp.task \build <[ build-package-json ]>
 
 gulp.task \watch <[ build ]> ->
 	gulp.watch paths.package-json, <[ build-package-json ]>
+
+gulp.task \test ->
+	gulp.src paths.ls
+		.pipe ls!
+		.on \error -> throw it
 
 gulp.task \default <[ build ]>
