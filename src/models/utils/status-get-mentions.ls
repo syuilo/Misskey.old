@@ -7,7 +7,8 @@ require! {
 	'../../utils/is-null'
 }
 
-exports = (user-id, limit, since-id, max-id) ->
+# Number -> Number -> Number -> Number -> Promise [Status]
+exports = (user-id, limit, since-id, max-id) -->
 	resolve, reject <- new Promise!
 	
 	query = | all is-null, [since-id, max-id] => {user-id}
