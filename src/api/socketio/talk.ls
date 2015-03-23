@@ -37,7 +37,7 @@ exports = (io, session-store) ->
 										else socket.emit content
 								catch e
 									socket.emit content
-						..on \rea' (id) ->
+						..on \read (id) ->
 							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, JSON.stringify do
 								type: \read
 								value: id
