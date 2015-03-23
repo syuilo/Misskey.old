@@ -1,12 +1,9 @@
 import require \prelude-ls
 
 require! {
-	express
 	bcrypt
-	'../../models/access-token': AccessToken
 	'../../models/user': User
-	'../../models/notice': Notice
-	'../../config': config
+	'../../config'
 }
 
 exports = (req, screen-name, password, done, fail) ->
