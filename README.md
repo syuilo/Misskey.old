@@ -1,4 +1,4 @@
-# Misskey
+# Misskey [![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
 https://misskey.xyz/
 
 ## Requirement
