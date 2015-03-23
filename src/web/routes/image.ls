@@ -52,13 +52,13 @@ module.exports = (app) ->
 			if user-image?
 				image-buffer = if user-image[image-property-name] != null
 					then user-image[image-property-name]
-					else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
+					else fs.read-file-sync path.resolve "#__dirname/../resources/images/#{image-property-name}_default.jpg"
 				if (req.headers[\accept].index-of \text) == 0
 					display-image do
 						req
 						res
 						image-buffer
-						'https://misskey.xyz/img/' + image-property-name + '/' + id-or-sn
+						"https://misskey.xyz/img/#image-property-name/#id-or-sn"
 						user.screen-name
 				else
 					send-image req, res, image-buffer
@@ -88,13 +88,13 @@ module.exports = (app) ->
 			| status-image? =>
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
-					if (req.headers[\accept].index-of 'text') == 0
+					if (req.headers[\accept].index-of \text) == 0
 						User.find-by-id status.user-id, (, user) ->
 							display-image do
 								req
 								res
 								image-buffer
-								'https://misskey.xyz/img/post/' + id
+								"https://misskey.xyz/img/post/#id"
 								status.created-at + '.jpg'
 								user
 					else
@@ -114,13 +114,13 @@ module.exports = (app) ->
 						| _ => null
 					if err == null
 						image-buffer = talkmessage-image.image;
-						if (req.headers[\accept].index-of 'text') == 0
+						if (req.headers[\accept].index-of \text) == 0
 							User.find-by-id talkmessage.user-id, (, user) ->
 								display-image do
 									req
 									res
 									image-buffer
-									'https://misskey.xyz/img/talk-message/' + id
+									"https://misskey.xyz/img/talk-message/#id"
 									talkmessage.created-at + '.jpg'
 									user
 						else
