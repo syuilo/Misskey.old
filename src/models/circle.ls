@@ -23,8 +23,8 @@ circle-member-schema = new mongoose.Schema do
 circle-schema = new mongooes.Schema do
 	created-at: { type: Date, default: Date.now }
 	description: { type: String }
-	join-requests: {[circle-join-request-schema]}
-	members: {[circle-member-schema]}
+	join-requests: [circle-join-request-schema]
+	members: [circle-member-schema]
 	name: { type: String, required: yes }
 	screen-name: { type: String, required: yes }
 	user-id: { type: Number, required: yes }
