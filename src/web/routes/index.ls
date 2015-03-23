@@ -15,7 +15,7 @@ module.exports = (app) ->
 		..param
 			.. 'userSn' (req, res, next, screen-name) ->
 				User.find-one {screen-name} (, user) ->
-					if user != null
+					if user?
 						req.root-user = req.data.root-user = user
 						next!
 					else
