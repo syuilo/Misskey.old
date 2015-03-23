@@ -25,7 +25,7 @@ exports = (req, res) ->
 				callback result
 
 	talk-get-talk me.id, otherparty.id, 32messages, null, null, (messages) ->
-		user-following-check otherparty-id, me.id, (following-me) ->
+		user-following-check otherparty-id, me.id .then (following-me) ->
 			messages.for-each (message) ->
 				if message.user-id == otherparty.id
 					TalkMessage.update do
