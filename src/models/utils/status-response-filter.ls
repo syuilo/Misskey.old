@@ -38,10 +38,10 @@ exports = (source-status, callback) ->
 					Status.find-by-id status.in-reply-to-status-id, (, replyfrom) ->
 						| replyfrom? =>
 							replyfrom.is-reply = replyfrom.in-reply-to-status-id == 0 or replyfrom.in-reply-to-status-id == null
-								User.find-by-id replyfrom.user-id, (, replyfromauthor) ->
-									user-response-filter replyfromauthor, (replyfromauthor) ->
-										replyfrom.user = replyfromauthor
-										next null replyfrom
+							User.find-by-id replyfrom.user-id, (, replyfromauthor) ->
+								user-response-filter replyfromauthor, (replyfromauthor) ->
+									replyfrom.user = replyfromauthor
+									next null replyfrom
 						| _ => next null null
 				| _ => next null null
 		]
