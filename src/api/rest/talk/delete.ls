@@ -11,13 +11,12 @@ exports = (req, res) -> authorize req, res, (user, app) ->
 		| talk-message.is-deleted => res.api-error 400 'This message has already been deleted.'
 		| _ => talk-message
 			..is-deleted = true
-			..save ->
-				filter-talk-message-for-response talk-message, (obj) ->
-					res.api-render obj
-					Streamer
-						..publish \talkStream: + talk-message.otherparty-id + \- + user.id, JSON.stringify do
-							type: \otherpartyMessageDelete
-							value: talk-message.id
-						..publish \talkStream: + user.id + \- + talk-message.otherparty-id, JSON.stringify do
-							type: \meMessageDelete
-							value: talk-message.id
+			..save -> filter-talk-message-for-response talk-message, (obj) ->
+				res.api-render obj
+				Streamer
+					..publish \talkStream: + talk-message.otherparty-id + \- + user.id, JSON.stringify do
+						type: \otherpartyMessageDelete
+						value: talk-message.id
+					..publish \talkStream: + user.id + \- + talk-message.otherparty-id, JSON.stringify do
+						type: \meMessageDelete
+						value: talk-message.id
