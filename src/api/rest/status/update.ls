@@ -6,10 +6,10 @@ require! {
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
 	'../../../models/utils/get-status-before-talk'
-	'../../../utils/streaming': Streamer
-	'../../../utils/status-response-filter'
+	'../../../models/utils/status-response-filter'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
+	'../../../utils/streaming': Streamer
 	'../../auth': authorize
 }
 
