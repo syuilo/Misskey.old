@@ -84,7 +84,7 @@ module.exports = (app) ->
 						..send 'User not found.'
 				
 	function display-status-image(req, res, id)
-		StatusImage.find id, (status-image) ->
+		StatusImage.find-one { status-id: id } (status-image) ->
 			| status-image? =>
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
