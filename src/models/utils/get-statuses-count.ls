@@ -2,4 +2,9 @@ require! {
 	'../status': Status
 }
 
-exports = (user-id, callback) -> Status.count { user-id }, (, count) -> callback count
+exports = (user-id) -> 
+	resove, reject <- new Promise!
+	err, count <- Status.count {user-id}
+	if err?
+		then reject err
+		else resolve count
