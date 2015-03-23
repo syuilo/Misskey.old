@@ -3,6 +3,7 @@ require! {
 	express
 	'../../models/access-token': AccessToken
 	'../../models/user': User
+	'../../models/status': Status
 	'../utils/login': do-login
 	'../../config': config
 	'./image': image-router
@@ -12,22 +13,22 @@ module.exports = (app) ->
 	
 	app
 		..param
-			.. 'userSn' (req, res, next, sn) ->
-				User.find-by-screen-name sn, (user) ->
+			.. 'userSn' (req, res, next, screen-name) ->
+				User.find-one {screen-name} (, user) ->
 					if user != null
 						req.root-user = req.data.root-user = user
 						next!
 					else
 						res.status 404
 					
-			.. 'postId' (req, res, next, post-id) ->
-				Post.find post-id, (post) ->
-					if post != null
-						req.root-post = req.data.root-post = post
+			.. 'statusId' (req, res, next, status-id) ->
+				Status.find-by-id status-id, (, status) ->
+					if status?
+						req.root-status = req.data.root-status = status
 						next!
 					else
 						res.status 404
-						res.display req, res, 'post-notFound', {}
+						res.display req, res, 'status-notFound' {}
 		..get
 			.. '/' (req, res, next) ->
 				if req.login
