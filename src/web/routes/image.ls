@@ -53,7 +53,7 @@ module.exports = (app) ->
 				image-buffer = if user-image[image-property-name] != null
 					then user-image[image-property-name]
 					else fs.read-file-sync path.resolve __dirname + '/../resources/images/' + image-property-name + '_default.jpg'
-				if req.headers[\accept].index-of \text == 0
+				if (req.headers[\accept].index-of \text) == 0
 					display-image do
 						req
 						res
@@ -88,7 +88,7 @@ module.exports = (app) ->
 			| status-image? =>
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
-					if req.headers[\accept].index-of 'text' == 0
+					if (req.headers[\accept].index-of 'text') == 0
 						User.find-by-id status.user-id, (, user) ->
 							display-image do
 								req
@@ -114,7 +114,7 @@ module.exports = (app) ->
 						| _ => null
 					if err == null
 						image-buffer = talkmessage-image.image;
-						if req.headers[\accept].index-of 'text' == 0
+						if (req.headers[\accept].index-of 'text') == 0
 							User.find-by-id talkmessage.user-id, (, user) ->
 								display-image do
 									req
