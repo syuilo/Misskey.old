@@ -1,5 +1,5 @@
 require! {
-	'../models/user-following': UserFollowing
+	'../user-following': UserFollowing
 }
 
 exports = (user-id, callback) -> UserFollowing.count { followee-id: user-id }, (, count) -> callback count

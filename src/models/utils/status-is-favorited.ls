@@ -1,5 +1,5 @@
 require! {
-	'../models/status-favorite': StatusFavorite
+	'../status-favorite': StatusFavorite
 }
 
 exports = (status-id, user-id, callback) ->

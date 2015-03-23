@@ -1,7 +1,7 @@
 import require './mongoose-query'
 
 require! {
-	'../models/user-following': UserFollowing
+	'../user-following': UserFollowing
 }
 
 # Number -> Number -> Promise Boolean

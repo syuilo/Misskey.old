@@ -1,7 +1,7 @@
 import require \prelude-ls
 
 require! {
-	'../models/status': Status
+	'../status': Status
 }
 
 # Number -> Promise [Status]

@@ -1,7 +1,7 @@
 import require './mongoose-query'
 
 require! {
-	'../models/status-favorite': StatusFavorite
+	'../status-favorite': StatusFavorite
 }
 
 # Number -> Number -> Promise Boolean

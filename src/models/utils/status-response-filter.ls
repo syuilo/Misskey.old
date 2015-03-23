@@ -1,10 +1,10 @@
 require! {
 	async
-	'../models/application': Application
-	'../models/user': User
-	'../models/status': Status
+	'../application': Application
+	'../user': User
+	'../status': Status
 	'./user-response-filter'
-	'../config'
+	'../../config'
 }
 exports = (source-status, callback) ->
 	status = {

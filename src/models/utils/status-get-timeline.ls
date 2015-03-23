@@ -1,7 +1,7 @@
 import require \prelude-ls
 
 require! {
-	'../models/user-following': UserFollowing
+	'../user-following': UserFollowing
 }
 
 exports = (user-id, limit, since-id, max-id, callback) ->

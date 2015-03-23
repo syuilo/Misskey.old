@@ -3,7 +3,7 @@ import require './mongoose-query'
 
 require! {
 	'./is-null'
-	'../models/talk-message': TalkMessage
+	'../talk-message': TalkMessage
 }
 
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]

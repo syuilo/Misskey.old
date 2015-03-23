@@ -1,7 +1,7 @@
 require! {
 	aync
-	'../models/application': Application
-	'../models/user': User
+	'../application': Application
+	'../user': User
 }
 exports = (src-talk-msg) -> 
 	talk-msg = {
