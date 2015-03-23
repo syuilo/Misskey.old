@@ -5,8 +5,8 @@ require! {
 	gm
 	'../../models/user': User
 	'../../models/user-image': UserImage
-	'../../models/post': Status
-	'../../models/post-image': StatusImage
+	'../../models/status': Status
+	'../../models/status-image': StatusImage
 	'../../models/talk-message': TalkMessage
 	'../../models/talk-message-image': TalkMessageImage
 	'../../models/webtheme': Webtheme
