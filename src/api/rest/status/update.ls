@@ -5,9 +5,9 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
+	'../../../models/utils/get-status-before-talk'
 	'../../../utils/streaming': Streamer
 	'../../../utils/status-response-filter'
-	'../../../utils/status-get-before-talk'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../auth': authorize
@@ -86,7 +86,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 					Streamer.publish 'userStream:' + reply-user.id, stream-mention-obj
 
 	function get-more-talk(status, callback)
-		status-get-before-talk status.in-reply-to-status-id, (more-talk) ->
+		get-status-before-talk status.in-reply-to-status-id, (more-talk) ->
 			async.map more-talk, (talk-post, map-next) ->
 				talk-post.is-reply = talk-post.in-reply-to-status-id != 0 && talk-post.in-reply-to-status-id != null
 				User.find-by-id talk-post.user-id, (, talk-post-user) ->
