@@ -50,9 +50,9 @@ module.exports = (app) ->
 			.. '/dev/usertheme/new' (req, res, next) -> (require '../controllers/dev-usertheme-new') req, res
 			.. '/login' (req, res) -> res.display req, res, 'login', {}
 		..post '.login' (req, res) ->
-			doLogin req, req.body.screen_name, req.body.password, (user, webAccessToken) ->
-				res.sendStatus200
-			, -> res.sendStatus 400
+			doLogin req, req.body.screen_name, req.body.password, (user) ->
+				res.send-status 200
+			, -> res.send-status 400
 		..get
 			.. '/logout' (reqy, res) ->
 				req.session.destroy (err) -> res.redirect '/'
