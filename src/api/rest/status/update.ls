@@ -35,7 +35,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 					yes
 					buffer
 					text
-					user.id
+					user
 	| _ => create do
 		req
 		res
@@ -44,15 +44,15 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 		no
 		null
 		text
-		user.id
+		user
 
-function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user-id)
+function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
 	Status.insert { 
 		app-id
 		in-reply-to-status-id
 		is-image-attached
 		text
-		user-id
+		user-id: user.id
 	} (, status) ->
 		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
 		| _ => send-response!
