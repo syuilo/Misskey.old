@@ -3,7 +3,9 @@ require! {
 	'../../../web/utils/login': do-login
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../models/user-image': UserImage
+	'../../../models/user-icon': UserIcon
+	'../../../models/user-header': UserHeader
+	'../../../models/user-wallpaper': UserWallpaper
 	'../../../models/utils/filter-user-for-response'
 	'../../../config'
 }
@@ -31,7 +33,11 @@ module.exports = (req, res) ->
 			User.insert { screen-name, password: hash-password, name, color } (err, created-user) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| !created-user? => res.api-error 500 'Sorry, register failed. please try again.'
-				| _ => UserImage.insert { user-id: created-user.id } (, user-image) ->
+				| _ =>
+					# Init user image documents
+					UserIcon.insert { user-id: created-user.id } (, user-image) ->
+					UserHeader.insert { user-id: created-user.id } (, user-image) ->
+					UserWallpaper.insert { user-id: created-user.id } (, user-image) ->
 					UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
 						UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
 							do-login req, created-user.screen-name, password, (user) ->
