@@ -1,5 +1,6 @@
 require! {
 	mongoose
+	mongoose-auto-increment
 	'../../config'
 }
 
@@ -30,5 +31,12 @@ user-schema = new mongoose.Schema do
 	tags:                   { type: [String], required: no,  default: null }
 	url:                    { type: String,   required: no,  default: null }
 	using-webtheme-id:      { type: Number,   required: no,  default: null }
+
+# Virtual duplicate _id property 
+user-schema.virtual 'id' .get ->
+	this._id
+
+# Auto increment
+user-schema.plugin mongoose-auto-increment.plugin, { model: \User, field: '_id' }
 
 exports = db.model \User user-schema
