@@ -19,7 +19,7 @@ status-schema = new mongoose.Schema do
 	user-id:               { type: Number,  required: yes }
 	
 # Virtual access _id property 
-status-schema.virtual 'id' .get -> (@_id)
+status-schema.virtual \id .get -> (@_id)
 
 # Auto increment
 status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: '_id' }
