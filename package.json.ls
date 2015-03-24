@@ -17,6 +17,7 @@ scripts:
 	test: 'gulp test'
 
 dependencies:
+	LiveScript: '^1.3.1'
 	async: '^0.9.0'
 	bcrypt: '^0.8.0'
 	'body-parser': '^1.10.1'
@@ -35,10 +36,10 @@ dependencies:
 	jade: '^1.9.1'
 	'js-yaml': '^3.2.6'
 	less: '^2.4.0'
-	LiveScript: '^1.3.1'
 	marked: '^0.3.3'
 	moment: '^2.9.0'
 	mongoose: '^3.9.7'
+	'mongoose-auto-increment': '^3.2.0'
 	multer: '^0.1.7'
 	'prelude-ls': '^1.1.1'
 	redis: '^0.12.1'
