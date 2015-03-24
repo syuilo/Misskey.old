@@ -66,6 +66,7 @@ module.exports = (app) ->
 					send-image req, res, image-buffer
 		
 		function routing-image(user)
+			switch
 			| user? =>
 				| image-property-name == \icon =>
 					UserIcon.find-one { user-id: user.id } (, user-image) ->
