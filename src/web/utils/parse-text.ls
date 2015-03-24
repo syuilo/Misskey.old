@@ -1,7 +1,7 @@
 require! 'escape-html'
 
 # String -> String
-exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
+module.exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
 
 function parse-url text
 	text.replace /https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g (url) ->

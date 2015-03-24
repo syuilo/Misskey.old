@@ -10,4 +10,4 @@ status-favorite-schema = new mongoose.Schema do
 	status-id: { type: Number, required: yes }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \StatusFavorite status-favorite-schema
+module.exports = db.model \StatusFavorite status-favorite-schema

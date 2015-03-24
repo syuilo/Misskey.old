@@ -4,7 +4,7 @@ require! {
 	'../../models/post-favorite': PostFavorite
 	'../../models/user': User
 }
-exports = (req, res) ->
+module.exports = (req, res) ->
 	async.series [
 		(callback) -> ost.get-before-talk req.root-post.id, (posts) ->
 			async.map posts, (post, next) ->

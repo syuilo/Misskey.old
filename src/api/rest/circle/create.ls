@@ -4,7 +4,7 @@ require! {
 	'../../../utils/circle-exist-screen-name'
 }
 
-exports = ({body:{name, screen-name, description}}: req, res) -> authorize req, res, ->
+module.exports = ({body:{name, screen-name, description}}: req, res) -> authorize req, res, ->
 	| !name? => res.api-error 400 'name parameter is required :('
 	| !screen-name? => res.api-error 400 'screen-name parameter is required :('
 	| !description? => res.api-error 400 'description parameter is required :('

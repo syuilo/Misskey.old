@@ -5,7 +5,7 @@ require! {
 	'../../models/utils/get-status-before-talk'
 }
 
-exports = (status, callback) ->
+module.exports = (status, callback) ->
 	get-status-before-talk status.in-reply-to-status-id, (talk) ->
 		async.map do
 			talk

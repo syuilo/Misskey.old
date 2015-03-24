@@ -29,4 +29,4 @@ circle-schema = new mongooes.Schema do
 	screen-name:   { type: String, required: yes }
 	user-id:       { type: Number, required: yes }
 
-exports = db.model \Circle circle-schema
+module.exports = db.model \Circle circle-schema

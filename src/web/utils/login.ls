@@ -6,7 +6,7 @@ require! {
 	'../../config'
 }
 
-exports = (req, screen-name, password, done, fail) ->
+module.exports = (req, screen-name, password, done, fail) ->
 	| any empty, [screen-name, password] => fail!
 	| _ => User.find-one {screen-name} (, user) ->
 		| !user? => fail!

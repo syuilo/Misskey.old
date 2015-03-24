@@ -23,4 +23,4 @@ article-schema.virtual \id .get -> (@_id)
 # Auto increment
 article-schema.plugin mongoose-auto-increment.plugin, { model: \Article, field: \_id }
 
-exports = db.model \Article article-schema
+module.exports = db.model \Article article-schema

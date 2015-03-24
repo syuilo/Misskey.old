@@ -5,7 +5,7 @@ require! {
 }
 
 # Number -> Promise [Status]
-exports = fix (get-status-before-talk, id) -->
+module.exports = fix (get-status-before-talk, id) -->
 	resolve, reject <- new Promise!
 	err, status <- Status.find-by-id id
 	switch

@@ -10,7 +10,7 @@ require! {
 	'../../config'
 }
 
-exports = (app) ->
+module.exports = (app) ->
 	function compile-less (less-css, style-user, callback)
 		color = if style-user? && style-user.color.match /#[a-fA-F0-9]{6}/
 			then style-user.color

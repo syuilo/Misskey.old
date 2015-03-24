@@ -9,4 +9,4 @@ user-wallpaper-schema = new mongoose.Schema do
 	image: { type: Buffer, default: null }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \UserWallpaper user-wallpaper-schema
+module.exports = db.model \UserWallpaper user-wallpaper-schema

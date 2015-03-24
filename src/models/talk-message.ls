@@ -24,4 +24,4 @@ talk-message-schema.virtual 'id' .get ->
 # Auto increment
 talk-message-schema.plugin mongoose-auto-increment.plugin, { model: \TalkMessage, field: '_id' }
 
-exports = db.model \TalkMessage talk-message-schema
+module.exports = db.model \TalkMessage talk-message-schema

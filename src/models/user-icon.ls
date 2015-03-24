@@ -9,4 +9,4 @@ user-icon-schema = new mongoose.Schema do
 	image: { type: Buffer, default: null }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \UserIcon user-icon-schema
+module.exports = db.model \UserIcon user-icon-schema

@@ -5,7 +5,7 @@ require! {
 	'../../../models/utils/filter-talk-message-for-response'
 }
 
-exports = (req, res) -> authorize req, res, (user,) ->
+module.exports = (req, res) -> authorize req, res, (user,) ->
 	| !(text = req.body.text)? => res.api-error 400 'text parameter is required :('
 	| !(message-id = req.body.message_id)? => res.api-error 400 'message_id parameter is required :('
 	| _ => TalkMessage.find-by-id message-id, (, talk-message) ->

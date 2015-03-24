@@ -3,7 +3,7 @@ require! {
 	redis
 	'../../config'
 }
-exports = (io, session-store) ->
+module.exports = (io, session-store) ->
 	socket <- io.of '/streaming/home' .on \connection
 	cookies = cookie.parse socket.handshake.headers.cookie
 	sid = cookies[config.session-key]

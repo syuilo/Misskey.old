@@ -3,7 +3,7 @@ require! {
 	'../models/application': Application
 	'../models/user': User
 }
-exports = (req, res) ->
+module.exports = (req, res) ->
 	login = req.session? && req.session.user-id?
 	request-token = req.query.request_token
 	switch

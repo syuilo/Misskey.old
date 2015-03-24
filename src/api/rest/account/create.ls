@@ -8,7 +8,7 @@ require! {
 	'../../../config'
 }
 
-exports = (req, res) ->
+module.exports = (req, res) ->
 	screen-name = req.body.screen_name
 	name = req.body.name
 	password = req.body.password

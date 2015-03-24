@@ -5,7 +5,7 @@ require! {
 }
 
 # Number -> Number -> Promise Boolean
-exports = (user-id, status-id) ->
+module.exports = (user-id, status-id) ->
 	resolve, reject <- new Promise!
 	
 	err, status <- Status

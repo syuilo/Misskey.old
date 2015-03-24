@@ -48,7 +48,7 @@ routing =
 		[\all /\/teapot\/coffee(\..+)?$/       './rest/teapot/coffee']
 
 
-exports = (app) ->
+module.exports = (app) ->
 	app
 		..all '*' (req, res, next) ->
 			filename = req.url.match /.+\/(.+?)([\?#;].*)?$/

@@ -9,4 +9,4 @@ status-image-schema = new mongoose.Schema do
 	image: { type: Buffer, default: null }
 	status-id: { type: Number, required: yes }
 
-exports = db.model \StatusImage status-image-schema
+module.exports = db.model \StatusImage status-image-schema

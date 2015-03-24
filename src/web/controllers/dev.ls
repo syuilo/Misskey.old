@@ -3,7 +3,7 @@ require! {
 	'../../models/application': Application
 	'../../models/webtheme': WebTheme
 }
-exports = (req, res) ->
+module.exports = (req, res) ->
 	async.series [
 		(callback) -> Application.find-by-user-id req.me.id, callback null _
 		(callback) -> WebTheme.find-by-user-id req.me.id, callback null _

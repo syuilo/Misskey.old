@@ -8,7 +8,7 @@ require! {
 	'../models/user': User
 }
 
-exports = (req, res, success) ->
+module.exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
 	get-params = get-express-params req
 	[consumer-key, access-token] = get-params <[ consumer_key access_token ]>

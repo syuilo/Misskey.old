@@ -10,4 +10,4 @@ sauth-pincode-schema = new mongoose.Schema do
 	code: { type: String }
 	user-id: { type: Number, required: true }
 
-exports = db.model \SAuthPincode sauth-pincode-schema
+module.exports = db.model \SAuthPincode sauth-pincode-schema

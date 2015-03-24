@@ -12,4 +12,4 @@ notice-schema = new mongoose.Schema do
 	type: { type: String }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \Notice notice-schema
+module.exports = db.model \Notice notice-schema

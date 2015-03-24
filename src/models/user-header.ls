@@ -9,4 +9,4 @@ user-header-schema = new mongoose.Schema do
 	image: { type: Buffer, default: null }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \UserHeader user-header-schema
+module.exports = db.model \UserHeader user-header-schema

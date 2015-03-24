@@ -1,1 +1,1 @@
-exports = (req, res) -> res.display req, res, 'new', {}
+module.exports = (req, res) -> res.display req, res, 'new', {}

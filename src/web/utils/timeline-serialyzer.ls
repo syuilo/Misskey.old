@@ -10,7 +10,7 @@ require! {
 	'../../config': config
 }
 
-exports = (statuses, me, callback) ->
+module.exports = (statuses, me, callback) ->
 	function get-app(status)
 		(next) ->
 			Application.find-by-id status.app-id, (, app) ->

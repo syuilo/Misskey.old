@@ -8,7 +8,7 @@ require! {
 	'../utils/user-following-check'
 }
 
-exports = (req, res) ->
+module.exports = (req, res) ->
 	me = req.me
 	otherparty = req.root-user
 	

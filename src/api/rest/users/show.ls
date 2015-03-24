@@ -3,7 +3,7 @@ require! {
 	'../../../models/user': User
 }
 
-exports = (req, res) ->
+module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		user-id = req.body.user_id
 		switch

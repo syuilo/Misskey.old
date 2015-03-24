@@ -8,7 +8,7 @@ require! {
 }
 
 # Number -> Number -> Number -> Number -> Promise [Status]
-exports = (user-id, limit, since-id, max-id) -->
+module.exports = (user-id, limit, since-id, max-id) -->
 	resolve, reject <- new Promise!
 	
 	query = | all is-null, [since-id, max-id] => {user-id}

@@ -6,7 +6,7 @@ require! {
 	'../models/user': User 
 	'../web/utils/login': do-login
 }
-exports = (req, res, server) ->
+module.exports = (req, res, server) ->
 	login = req.session? && req.session.user-id?
 	
 	request-token = req.query.request_token ? null

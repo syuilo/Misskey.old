@@ -12,4 +12,4 @@ webtheme-schema = new mongoose.Schema do
 	style: {}
 	user-id: { type: Number, required: yes }
 	
-exports = db.model \Webtheme webtheme-schema
+module.exports = db.model \Webtheme webtheme-schema

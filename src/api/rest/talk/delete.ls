@@ -3,7 +3,7 @@ require! {
 	'../../../models/talk-message': TalkMessage
 	'../../../utils/filter-talk-message-for-response'
 }
-exports = (req, res) -> authorize req, res, (user, app) ->
+module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| !(message-id = req.body.message_id)? => res.api-error 400 'message_id parameter is required :('
 	| _ => TalkMessage.find-by-id message-id, (, talk-message) ->
 		| !talk-message? => res.api-error 404 'Message not found.'

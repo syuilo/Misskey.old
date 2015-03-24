@@ -9,4 +9,4 @@ status-mention-schema = new mongoose.Schema do
 	status-id: { type: Number, required: true }
 	user-id: { type: Number, required: true }
 
-exports = db.model \StatusMention status-mention-schema
+module.exports = db.model \StatusMention status-mention-schema

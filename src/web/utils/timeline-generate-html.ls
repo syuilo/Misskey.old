@@ -5,7 +5,7 @@ require! {
 	'../../config': config
 }
 
-exports = (statuses, viewer, callback) ->
+module.exports = (statuses, viewer, callback) ->
 	compiler = jade.compile-file "#__dirname/../views/templates/timeline.jade"
 	if statuses?
 		serialyzer statuses, viewrer, (timeline) ->

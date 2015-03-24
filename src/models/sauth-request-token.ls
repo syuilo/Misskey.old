@@ -10,4 +10,4 @@ sauth-request-token-schema = new mongoose.Schema do
 	in-invalid: { type: Boolean, default: false }
 	token: { type: String }
 
-exports = db.model \SAuthRequestToken sauth-request-token-schema
+module.exports = db.model \SAuthRequestToken sauth-request-token-schema

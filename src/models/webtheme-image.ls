@@ -9,4 +9,4 @@ webtheme-thumbnail-schema = new mongoose.Schema do
 	thumbnail: { type: Buffer, default: null }
 	webtheme-id: { type: Number, required: yes }
 	
-exports = db.model \WebthemeThumbnail webtheme-thumbnail-schema
+module.exports = db.model \WebthemeThumbnail webtheme-thumbnail-schema

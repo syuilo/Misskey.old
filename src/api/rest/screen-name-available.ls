@@ -1,7 +1,7 @@
 require! {
 	'../../models/user': User
 }
-exports = (req, res) ->
+module.exports = (req, res) ->
 	screen-name = req.query.screen_name ? null
 	if screen-name == null || screen_name == ''
 		res.api-error 400 'screen_name parameter is required :('

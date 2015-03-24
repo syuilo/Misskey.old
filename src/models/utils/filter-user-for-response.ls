@@ -1,6 +1,6 @@
 require! '../../utils/filter-key'
 
-exports = filter-key <[
+module.exports = filter-key <[
 	color
 	comment
 	created-at

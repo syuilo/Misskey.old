@@ -7,7 +7,7 @@ require! {
 }
 
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]
-exports = (me-id, otherparty-id, limit, since-id, max-id) ->
+module.exports = (me-id, otherparty-id, limit, since-id, max-id) ->
 	resolve, reject <- new Promise!
 	
 	base-query = ({user-id: me-id} `$and` {otherparty-id}) `$or` ({user-id: otherparty-id} `$and` {otherparty-id: me-id})

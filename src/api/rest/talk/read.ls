@@ -2,7 +2,7 @@ require! {
 	'../../../models/talk-message': TalkMessage
 	'../../auth': authorize
 }
-exports = (req, res) -> authorize req, res, (user, app) ->
+module.exports = (req, res) -> authorize req, res, (user, app) ->
 	msg-id = req.body.message_id
 	switch
 	| !msg-id? => res.api-error 400 'message_id parameter is required :('

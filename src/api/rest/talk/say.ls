@@ -9,7 +9,7 @@ require! {
 	'../../../models/user-following': UserFollowing
 }
 
-exports = (req, res) ->
+module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
 		text = req.body.text ? ''
 		otherparty-id = req.body.otherparty_id

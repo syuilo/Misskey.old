@@ -38,4 +38,4 @@ user-schema.virtual \id .get -> (@_id)
 # Auto increment
 user-schema.plugin mongoose-auto-increment.plugin, { model: \User, field: \_id }
 
-exports = db.model \User user-schema
+module.exports = db.model \User user-schema

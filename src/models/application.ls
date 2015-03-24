@@ -16,4 +16,4 @@ application-schema = new mongoose.Schema do
 	developer-website: { type: String }
 	is-suspended: { type: Boolean }
 
-exports = db.model \Application application-schema
+module.exports = db.model \Application application-schema

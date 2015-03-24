@@ -6,7 +6,7 @@ require! {
 	'./user-response-filter'
 	'../../config'
 }
-exports = (source-status, callback) ->
+module.exports = (source-status, callback) ->
 	status = {
 		app-id: source-status.app-id
 		created-at: source-status.created-at

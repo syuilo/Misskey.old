@@ -8,7 +8,7 @@ require! {
 	'../../config'
 }
 
-exports = (req, res, page = \home) ->
+module.exports = (req, res, page = \home) ->
 	user = req.root-user
 	me = if req.login then req.me else null
 	async.series do

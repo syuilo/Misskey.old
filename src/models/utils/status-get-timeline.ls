@@ -4,7 +4,7 @@ require! {
 	'../user-following': UserFollowing
 }
 
-exports = (user-id, limit, since-id, max-id, callback) ->
+module.exports = (user-id, limit, since-id, max-id, callback) ->
 	function query-callback(, statuses)
 		callback statuses
 	UserFollowing.find { follower-id: user-id }, (, followings) ->

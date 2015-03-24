@@ -10,4 +10,4 @@ access-token-schema = new mongooes.Schema do
 	token: { type: String, required: yes }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \AccessToken access-token-schema
+module.exports = db.model \AccessToken access-token-schema
