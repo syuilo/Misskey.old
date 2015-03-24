@@ -1,3 +1,7 @@
+#
+# Maintenance page HTTP server
+#
+
 require! {
 	jade
 	express
