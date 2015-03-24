@@ -19,10 +19,12 @@ require! {
 	'./routes/index': index-router
 }
 
+# Init session store
 RedisStore = connect-redis session
 
 session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
 
+# Create server
 web-server = express!
 	..disable 'x-powered-by'
 	..locals.compile-debug = off
