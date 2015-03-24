@@ -33,9 +33,9 @@ user-schema = new mongoose.Schema do
 	using-webtheme-id:      { type: Number,   required: no,  default: null }
 
 # Virtual access _id property 
-user-schema.virtual 'id' .get -> (@_id)
+user-schema.virtual \id .get -> (@_id)
 
 # Auto increment
-user-schema.plugin mongoose-auto-increment.plugin, { model: \User, field: '_id' }
+user-schema.plugin mongoose-auto-increment.plugin, { model: \User, field: \_id }
 
 exports = db.model \User user-schema
