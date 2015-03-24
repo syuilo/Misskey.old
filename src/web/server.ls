@@ -90,6 +90,24 @@ web-server = express!
 	..get '/manifest.json', (, res,) ->
 		res.send-file path.resolve "#__dirname/resources/manifest.json"
 
+# CORS middleware
+#
+# see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
+allow-cross-domain = (req, res, next) ->
+    res
+		..header 'Access-Control-Allow-Origin' '*'
+		..header 'Access-Control-Allow-Methods' 'POST'
+		..header 'Access-Control-Allow-Headers' 'Content-Type, Authorization'
+
+    # intercept OPTIONS method
+    if req.method == \OPTIONS
+        res.send 204
+    else
+        next!
+
+# CORS
+web-server.use allow-cross-domain
+
 # Resources rooting
 resources-router web-server
 
