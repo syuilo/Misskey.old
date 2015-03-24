@@ -6,6 +6,8 @@ require! {
 
 db = mongoose.connect config.mongo.uri, config.mongo.options
 
+mongoose-auto-increment.initialize db
+
 talk-message-schema = new mongoose.Schema do
 	app-id:            { type: Number,  required: yes }
 	created-at:        { type: Date,    required: yes, default: Date.now }
