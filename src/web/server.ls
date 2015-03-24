@@ -58,6 +58,8 @@ web-server = express!
 		.. compression!
 		.. minify!
 
+	# セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
+	# セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
 	..init-session = (req, res, callback) ->
 		req
 			..login = req.session? && req.session.user-id?
@@ -70,6 +72,7 @@ web-server = express!
 		# Renderer function
 		res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
 
+		# Check logged in, set user instance
 		if req.login
 			user-id = req.session.user-id
 			User.find-by-id user-id, (, user) ->
