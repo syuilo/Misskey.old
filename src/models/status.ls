@@ -22,6 +22,6 @@ status-schema = new mongoose.Schema do
 status-schema.virtual \id .get -> (@_id)
 
 # Auto increment
-status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: '_id' }
+status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: \_id }
 
 exports = db.model \Status status-schema
