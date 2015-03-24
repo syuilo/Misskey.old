@@ -1,7 +1,7 @@
 require! {
 	mongoose
-	mongoose-auto-increment
-	'../../config'
+	'mongoose-auto-increment'
+	'../config'
 }
 
 db = mongoose.connect config.mongo.uri, config.mongo.options

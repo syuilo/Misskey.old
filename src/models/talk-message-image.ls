@@ -1,6 +1,6 @@
 require! {
 	mongoose
-	'../../config'
+	'../config'
 }
 
 db = mongoose.connect config.mongo.uri, config.mongo.options
