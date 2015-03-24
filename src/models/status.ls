@@ -18,9 +18,8 @@ status-schema = new mongoose.Schema do
 	text:                  { type: String,  required: yes }
 	user-id:               { type: Number,  required: yes }
 	
-# Virtual duplicate _id property 
-status-schema.virtual 'id' .get ->
-	this._id
+# Virtual access _id property 
+status-schema.virtual 'id' .get -> (@_id)
 
 # Auto increment
 status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: '_id' }
