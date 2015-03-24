@@ -53,7 +53,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		is-image-attached
 		text
 		user-id
-	} (status) ->
+	} (, status) ->
 		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
 		| _ => send-response!
 
