@@ -95,10 +95,10 @@ allow-cross-domain = (req, res, next) ->
 		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
 
     # intercept OPTIONS method
-    if req.method == \OPTIONS
-        res.send 204
-    else
-        next!
+	if req.method == \OPTIONS
+		res.send 204
+	else
+		next!
 
 # CORS
 web-server.use allow-cross-domain
