@@ -25,6 +25,7 @@ web-server = express!
 	..set
 		.. 'view engine' \jade
 		.. \views "#__dirname/views"
+		.. 'X-Frame-Options': \SAMEORIGIN
 	
 	..use body-parser.urlencoded {+extended}
 	..use cookie-parser config.cookie_pass
@@ -52,9 +53,6 @@ web-server = express!
 		.. minify!
 
 	..init-session = (req, res, callback) ->
-		res.set do
-			'X-Frame-Options': \SAMEORIGIN
-
 		req
 			..login = req.session? && req.session.user-id?
 			..data = # Render datas
