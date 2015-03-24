@@ -33,13 +33,13 @@ web-server = express!
 	..use session do
 		key: config.session-key
 		secret: config.session-secret
-		resave: no
-		save-uninitialized: yes
+		resave: off
+		save-uninitialized: on
 		cookie:
 			path: '.'
 			domain: ".#{config.public-config.domain}"
-			http-only: no
-			secure: no
+			http-only: off
+			secure: off
 			expires: new Date Date.now! + session-expires
 			max-age: session-expires
 		store: new RedisStore do
