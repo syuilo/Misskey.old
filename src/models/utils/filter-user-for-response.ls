@@ -1,6 +1,6 @@
-import require \prelude-ls
+require! '../../utils/filter-key'
 
-allowed = <[
+exports = filter-key <[
 	color
 	comment
 	created-at
@@ -14,6 +14,4 @@ allowed = <[
 	screen-name
 	tags
 	url
-]> |> map camelize
-
-exports = (user) -> user |> obj-to-pairs |> filter ([name, ]) -> name in allowed |> pairs-to-obj
+]>
