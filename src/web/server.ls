@@ -36,8 +36,8 @@ web-server = express!
 		resave: no
 		save-uninitialized: yes
 		cookie:
-			path: '/'
-			domain: '.' + config.public-config.domain
+			path: '.'
+			domain: ".#{config.public-config.domain}"
 			http-only: no
 			secure: no
 			expires: new Date Date.now! + session-expires
@@ -85,10 +85,10 @@ web-server = express!
 
 	# Statics
 	..get '/favicon.ico' (, res,) ->
-		res.sendFile path.resolve __dirname + '/resources/favicon.ico'
+		res.send-file path.resolve "#__dirname/resources/favicon.ico"
 	
 	..get '/manifest.json', (, res,) ->
-		res.send-file path.resolve __dirname + '/resources/manifest.json'
+		res.send-file path.resolve "#__dirname/resources/manifest.json"
 
 # Resources rooting
 resources-router web-server
