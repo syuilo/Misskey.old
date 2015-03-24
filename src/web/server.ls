@@ -88,7 +88,7 @@ web-server = express!
 #
 # see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
 allow-cross-domain = (req, res, next) ->
-    res
+	res
 		..header 'Access-Control-Allow-Credentials' yes
 		..header 'Access-Control-Allow-Origin' config.public-config.url
 		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
