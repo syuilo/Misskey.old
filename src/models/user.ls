@@ -32,9 +32,8 @@ user-schema = new mongoose.Schema do
 	url:                    { type: String,   required: no,  default: null }
 	using-webtheme-id:      { type: Number,   required: no,  default: null }
 
-# Virtual duplicate _id property 
-user-schema.virtual 'id' .get ->
-	this._id
+# Virtual access _id property 
+user-schema.virtual 'id' .get -> (@_id)
 
 # Auto increment
 user-schema.plugin mongoose-auto-increment.plugin, { model: \User, field: '_id' }
