@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
 
 # Misskey
-https://misskey.xyz/
+A mystery SNS: https://misskey.xyz/
 
 ## Requirement
 * [Node.js](https://nodejs.org)
