@@ -1,4 +1,4 @@
-require! '../../utils/filter-key'
+require! '../../util/filter-key'
 
 exports = filter-key <[
 	color
