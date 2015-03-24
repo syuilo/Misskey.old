@@ -6,6 +6,8 @@ require! {
 
 db = mongoose.connect config.mongo.uri, config.mongo.options
 
+mongoose-auto-increment.initialize db
+
 user-schema = new mongoose.Schema do
 	bio:                    { type: String,   required: no,  default: null }
 	birthday:               { type: String,   required: no,  default: null }
