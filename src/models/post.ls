@@ -18,8 +18,7 @@ article-schema = new mongoose.Schema do
 	user-id: { type: Number, required: yes }
 
 # Virtual access _id property 
-article-schema.virtual 'id' .get ->
-	this._id
+article-schema.virtual \id .get -> (@_id)
 
 # Auto increment
 article-schema.plugin mongoose-auto-increment.plugin, { model: \Article, field: '_id' }
