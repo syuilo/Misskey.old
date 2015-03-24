@@ -3,7 +3,7 @@ require! {
 	'../config'
 }
 
-db = mongoose.connect config.mongo.uri, config.mongo.options
+db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 circle-join-request-schema = new mongoose.Schema do
 	created-at: { type: Date,   required: yes, default: Date.now }

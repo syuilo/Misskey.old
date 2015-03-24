@@ -3,7 +3,7 @@ require! {
 	'../config'
 }
 
-db = mongoose.connect config.mongo.uri, config.mongo.options
+db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 user-icon-schema = new mongoose.Schema do
 	image: { type: Buffer, default: null }

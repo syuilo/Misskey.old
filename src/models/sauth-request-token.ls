@@ -3,7 +3,7 @@ require! {
 	'../config'
 }
 
-db = mongoose.connect config.mongo.uri, config.mongo.options
+db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 sauth-request-token-schema = new mongoose.Schema do
 	app-id: { type: Number, required: true }

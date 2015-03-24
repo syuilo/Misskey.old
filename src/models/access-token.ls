@@ -3,7 +3,7 @@ require! {
 	'../config'
 }
 
-db = mongoose.connect config.mongo.uri, config.mongo.options
+db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 access-token-schema = new mongooes.Schema do
 	app-id: { type: Number, required: yes }

@@ -3,7 +3,7 @@ require! {
 	'../config'
 }
 
-db = mongoose.connect config.mongo.uri, config.mongo.options
+db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 user-following-schema = new mongoose.Schema do
 	created-at: { type: Date, default: Date.now }
