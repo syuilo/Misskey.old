@@ -1,3 +1,7 @@
+#
+# Unstatic images router
+#
+
 require! {
 	fs
 	path
@@ -16,6 +20,7 @@ require! {
 }
 
 module.exports = (app) ->
+	# Direct access (display image viewer page)
 	function display-image(req, res, image-buffer, img-url, file-name, author)
 		img = gm image-buffer
 		img.size (err, val) ->
