@@ -1,5 +1,6 @@
 require! {
 	mongoose
+	mongoose-auto-increment
 	'../../config'
 }
 
@@ -16,5 +17,12 @@ status-schema = new mongoose.Schema do
 	repost-from-status-id: { type: Number,  default: null }
 	text:                  { type: String,  required: yes }
 	user-id:               { type: Number,  required: yes }
+	
+# Virtual duplicate _id property 
+status-schema.virtual 'id' .get ->
+	this._id
+
+# Auto increment
+status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: '_id' }
 
 exports = db.model \Status status-schema
