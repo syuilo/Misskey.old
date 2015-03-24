@@ -1,3 +1,7 @@
+#
+# Resources router
+#
+
 require! {
 	fs
 	path
@@ -21,6 +25,7 @@ module.exports = (app) ->
 			(, output) ->
 				callback output.css
 		
+		# Analyze variable
 		function pre-compile(less-css, style-user, color)
 			less-css
 				.replace do
