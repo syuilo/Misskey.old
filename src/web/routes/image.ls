@@ -4,7 +4,9 @@ require! {
 	express
 	gm
 	'../../models/user': User
-	'../../models/user-image': UserImage
+	'../../models/user-icon': UserIcon
+	'../../models/user-header': UserHeader
+	'../../models/user-wallpaper': UserWallpaper
 	'../../models/status': Status
 	'../../models/status-image': StatusImage
 	'../../models/talk-message': TalkMessage
@@ -50,8 +52,8 @@ module.exports = (app) ->
 	function display-user-image(req, res, id-or-sn, image-property-name)
 		function display(user, user-image)
 			if user-image?
-				image-buffer = if user-image[image-property-name] != null
-					then user-image[image-property-name]
+				image-buffer = if user-image.image != null
+					then user-image.image
 					else fs.read-file-sync path.resolve "#__dirname/../resources/images/#{image-property-name}_default.jpg"
 				if (req.headers[\accept].index-of \text) == 0
 					display-image do
@@ -63,25 +65,25 @@ module.exports = (app) ->
 				else
 					send-image req, res, image-buffer
 		
+		function routing-image(user)
+			| user? =>
+				| image-property-name == \icon =>
+					UserIcon.find-one { user-id: user.id } (, user-image) ->
+						display user, user-image
+				| image-property-name == \header =>
+					UserHeader.find-one { user-id: user.id } (, user-image) ->
+						display user, user-image
+				| image-property-name == \wallpaper =>
+					UserWallpaper.find-one { user-id: user.id } (, user-image) ->
+						display user, user-image
+			| _ =>
+				res
+					..status 404
+					..send 'User not found.'
+		
 		switch
-		| id-or-sn.match /^[0-9]+$/ =>
-			User.find-by-id id-or-sn, (, user) ->
-				| user? =>
-					UserImage.find-one { user-id: Number id-or-sn } (, user-image) ->
-						display user, user-image
-				| _ =>
-					res
-						..status 404
-						..send 'User not found.'
-		| _ =>
-			User.find-one { screen-name: id-or-sn } (, user) ->
-				| user? =>
-					UserImage.find-one { user-id: user.id } (, user-image) ->
-						display user, user-image
-				| _ =>
-					res
-						..status 404
-						..send 'User not found.'
+		| id-or-sn.match /^[0-9]+$/ => User.find-by-id id-or-sn, (, user) -> routing-image user
+		| _ => User.find-one { screen-name: id-or-sn } (, user) -> routing-image user
 				
 	function display-status-image(req, res, id)
 		StatusImage.find-one { status-id: id } (, status-image) ->
