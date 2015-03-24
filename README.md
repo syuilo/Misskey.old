@@ -2,10 +2,10 @@
 https://misskey.xyz/
 
 ## Requirement
-* Node.js
-* MongoDB
-* Redis
-* GraphicsMagick
+* [Node.js](https://nodejs.org)
+* [MongoDB](https://www.mongodb.org)
+* [Redis](http://redis.io)
+* [GraphicsMagick](http://www.graphicsmagick.org)
 
 ## How to build
 1. `git clone git://github.com/syuilo/Misskey.git`
