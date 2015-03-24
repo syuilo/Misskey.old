@@ -1,12 +1,11 @@
 require! {
 	bcrypt
-	'../../../models/access-token': AccessToken
-	'../../../config': config
 	'../../../web/utils/login': do-login
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/user-image': UserImage
 	'../../../models/utils/filter-user-for-response'
+	'../../../config'
 }
 
 exports = (req, res) ->
