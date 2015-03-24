@@ -33,10 +33,9 @@ exports = (req, res) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| !created-user? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ => UserImage.insert { user-id: created-user.id } (, user-image) ->
-					AccessToken.insert { app-id: config.web-client-id, user-id: created-user.id} (, access-token) ->
-						UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
-							UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
-								do-login req, created-user.screen-name, password, (user, web-access-token) ->
-									res.api-render filter-user-for-response created-user
-								, ->
-									res.send-status 500
+					UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
+						UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
+							do-login req, created-user.screen-name, password, (user) ->
+								res.api-render filter-user-for-response created-user
+							, ->
+								res.send-status 500
