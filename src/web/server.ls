@@ -53,9 +53,6 @@ web-server = express!
 
 	..init-session = (req, res, callback) ->
 		res.set do
-			'Access-Control-Allow-Origin': config.public-config.url
-			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
 			'Access-Control-Allow-Credentials': yes
 			'X-Frame-Options': \SAMEORIGIN
 
@@ -95,9 +92,9 @@ web-server = express!
 # see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
 allow-cross-domain = (req, res, next) ->
     res
-		..header 'Access-Control-Allow-Origin' '*'
-		..header 'Access-Control-Allow-Methods' 'POST'
-		..header 'Access-Control-Allow-Headers' 'Content-Type, Authorization'
+		..header 'Access-Control-Allow-Origin' config.public-config.url
+		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
+		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
 
     # intercept OPTIONS method
     if req.method == \OPTIONS
