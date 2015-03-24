@@ -1,6 +1,6 @@
 require! {
 	mongoose
-	mongoose-auto-increment
+	'mongoose-auto-increment'
 	'../../config'
 }
 
