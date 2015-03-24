@@ -1,5 +1,6 @@
 require! {
 	mongoose
+	mongoose-auto-increment
 	'../../config'
 }
 
@@ -10,10 +11,17 @@ comment-schema = new mongoose.Schema do
 	created-at: { type: Date, required: yes }
 	user-id: { type: Number, required: yes }
 
-post-schema = new mongoose.Schema do
+article-schema = new mongoose.Schema do
 	comments: [comment-schema]
 	content: { type: String, required: yes }
 	created-at: { type: Date, default: Date.now, required: yes }
 	user-id: { type: Number, required: yes }
 
-exports = db.model \Post post-schema
+# Virtual access _id property 
+article-schema.virtual 'id' .get ->
+	this._id
+
+# Auto increment
+article-schema.plugin mongoose-auto-increment.plugin, { model: \Article, field: '_id' }
+
+exports = db.model \Article article-schema
