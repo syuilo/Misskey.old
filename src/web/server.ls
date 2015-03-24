@@ -1,3 +1,7 @@
+#
+# Official web client HTTP server (https://misskey.xyz)
+#
+
 require! {
 	fs
 	path
