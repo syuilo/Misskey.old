@@ -15,7 +15,7 @@ module.exports = (req, res) -> authorize req, res, (user,) ->
 		| _ => talk-message
 			..text = text
 			..is-modified = yes
-			..save ->
+			..save (err) ->
 				obj <- filter-talk-message-for-response talk-message
 				res.api-render obj
 				publish-redis-streaming "talkStream:#{talk-message.otherparty-id}-#{user.id}" JSON.stringify do
