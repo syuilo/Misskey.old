@@ -20,7 +20,7 @@ circle-member-schema = new mongoose.Schema do
 	can-create-thread:       { type: Boolean, required: no,  default: no }
 	can-create-note:         { type: Boolean, required: no,  default: no }
 
-circle-schema = new mongooes.Schema do
+circle-schema = new mongoose.Schema do
 	created-at:    { type: Date,   required: no, default: Date.now }
 	description:   { type: String, required: no, default: null }
 	join-requests: [circle-join-request-schema]
