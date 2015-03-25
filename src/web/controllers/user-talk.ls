@@ -1,11 +1,11 @@
 require! {
 	async
-	'../models/application': Application
-	'../models/user': User
-	'../models/user-following': UserFollowing
-	'../models/talk-message': TalkMessage
-	'../utils/talk-get-talk'
-	'../utils/user-following-check'
+	'../../models/application': Application
+	'../../models/user': User
+	'../../models/user-following': UserFollowing
+	'../../models/talk-message': TalkMessage
+	'../../models/utils/talk-get-talk'
+	'../../models/utils/user-following-check'
 }
 
 module.exports = (req, res) ->
