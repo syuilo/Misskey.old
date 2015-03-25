@@ -28,7 +28,7 @@ session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
 web-server = express!
 	..disable 'x-powered-by'
 	..locals.compile-debug = off
-	..set
+	..set do
 		'view engine': \jade
 		'views': "#__dirname/views"
 		'X-Frame-Options': \SAMEORIGIN
