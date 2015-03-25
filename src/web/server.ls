@@ -54,9 +54,8 @@ web-server = express!
 			prefix: 'misskey-session:'
 
 	# Compressing settings
-	..use
-		.. compression!
-		.. minify!
+	..use compression!
+	..use minify!
 
 	# セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
 	# セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
