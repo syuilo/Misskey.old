@@ -11,8 +11,10 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| (status-id = req.body.status_id) == null => res.api-error 400 'status_id parameter is required :('
 	| _ => Status.find-by-id status-id, (, target-status) ->
 			| !target-status? => res.api-error 404 'Post not found...'
-			| !target-status.repost-from-status-id? => favorite-step req, res, app, user, target-status
-			| _ => Status.find-by-id target-status.repost-from-status-id, (, true-target-status) -> favorite-step req, res, app, user, true-target-status
+			| target-status.repost-from-status-id? => # Repostなら対象をRepost元に差し替え
+				Status.find-by-id target-status.repost-from-status-id, (, true-target-status) ->
+					favorite-step req, res, app, user, true-target-status
+			| _ => favorite-step req, res, app, user, target-status
 
 function favorite-step req, res, app, user, target-status
 	status-check-favorited target-status.id, user.id, (is-favorited) ->
