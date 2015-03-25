@@ -1,6 +1,6 @@
 require! {
 	'../../auth': authorize
-	'../../../utils/streaming': Streamer
+	'../../../utils/publish-redis-streaming'
 	'../../../models/talk-message': TalkMessage
 	'../../../models/utils/filter-talk-message-for-response'
 }
@@ -14,14 +14,13 @@ module.exports = (req, res) -> authorize req, res, (user,) ->
 		| talk-message.is-deleted => res.api-error 400 'This message has already been deleted.'
 		| _ => talk-message
 			..text = text
-			..is-modified = true
+			..is-modified = yes
 			..save ->
 				obj <- filter-talk-message-for-response talk-message
 				res.api-render obj
-				Streamer
-					..publish "talkStream:#{talk-message.otherparty-id}-#{user.id}" JSON.stringify do
-						type: \otherpartyMessageUpdate
-						value: obj
-					..publish "talkStream:#{user.id}-#{talk-message.otherparty-id}" JSON.stringify do
-						type: \meMessageUpdate
-						value: obj
+				publish-redis-streaming "talkStream:#{talk-message.otherparty-id}-#{user.id}" JSON.stringify do
+					type: \otherpartyMessageUpdate
+					value: obj
+				publish-redis-streaming "talkStream:#{user.id}-#{talk-message.otherparty-id}" JSON.stringify do
+					type: \meMessageUpdate
+					value: obj
