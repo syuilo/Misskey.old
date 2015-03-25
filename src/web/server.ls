@@ -29,9 +29,9 @@ web-server = express!
 	..disable 'x-powered-by'
 	..locals.compile-debug = off
 	..set
-		.. 'view engine' \jade
-		.. \views "#__dirname/views"
-		.. 'X-Frame-Options': \SAMEORIGIN
+		'view engine': \jade
+		'views': "#__dirname/views"
+		'X-Frame-Options': \SAMEORIGIN
 	
 	..use body-parser.urlencoded {+extended}
 	..use cookie-parser config.cookie_pass
