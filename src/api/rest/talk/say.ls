@@ -1,12 +1,13 @@
 require! {
-	'../../auth': authorize
-	'../../../config'
 	fs
 	gm
-	'../../../utils/streaming': Streamer
+	'../../auth': authorize
+	'../../../config'
+	'../../../utils/publish-redis-streaming'
 	'../../../models/talk-message': TalkMessage
 	'../../../models/talk-message-image': TalkMessageImage
 	'../../../models/user-following': UserFollowing
+	'../../../models/utils/user-following-check'
 }
 
 module.exports = (req, res) ->
@@ -15,13 +16,13 @@ module.exports = (req, res) ->
 		otherparty-id = req.body.otherparty_id
 		switch
 		| !otherparty-id? => res.api-error 400 'otherparty_id parameter is required :('
-		| _ => UserFollowing.is-following otherparty-id, user.id, (is-following) ->
+		| _ => user-following-check otherparty-id, user.id, (is-following) ->
 			| !is-following => res.api-error 400 'You are not followed from this user. To send a message, you need to have been followed from the other party.'
 			| _ => 
 				switch
 				| Object.keys req.files .length == 1 =>
 					path = req.files.image.path
-					image-quality = if user.is-premium then 80 else 60
+					image-quality = if user.is-premium then 70 else 50
 					gm path
 						..compress \jpeg
 						..quality image-quality
@@ -32,18 +33,22 @@ module.exports = (req, res) ->
 								create req, res, app.id, otherparty-id, buffer, true, text, user.id
 				| _ => create req, res, res, app.id, otherparty-id, null, false, text, user.id
 
-function create req, res, app-id, otherparty-id, image, is-image-attached, text, user-id
-	TalkMessage.create app-id, user-id, otherparty-id, text, is-attached, (talk-message) ->
+function create(req, res, app-id, otherparty-id, image, is-image-attached, text, user-id)
+	function send-response(obj)
+		res.api-render obj
+		publish-redis-streaming 'userStream:' + otherparty-id, JSON.stringify do
+			type: \talkMessage
+			value: obj
+		publish-redis-streaming 'talkStream:' + otherparty-id + '-' + user-id, JSON.stringify do
+			type: \otherpartyMessage
+			value: obj
+		publish-redis-streaming 'talkStream:' + user-id + '-' + otherparty-id, JSON.stringify do
+			type: \meMessage
+			value: obj
+	TalkMessage.insert { app-id, user-id, otherparty-id, text, is-image-attached } (talk-message) ->
 		if is-image-attached
-			TalkMessageImage.create talk-message.id, image, (talk-message-image) ->
-		TalkMessage.buildResponseObject talk-message, (obj) ->
-			res.api-render obj
-			Streamer.publish 'userStream:' + otherparty-id, JSON.stringify do
-				type: \talkMessage
-				value: obj
-			Streamer.publish 'talkStream:' + otherparty-id + '-' + user-id, JSON.stringify do
-				type: \otherpartyMessage
-				value: obj
-			Streamer.publish 'talkStream:' + user-id + '-' + otherparty-id, JSON.stringify do
-				type: \meMessage
-				value: obj
+			TalkMessageImage.insert { message-id: talk-message.id, image } (talk-message-image) ->
+				send-response talk-message
+		else
+			send-response talk-message
+
