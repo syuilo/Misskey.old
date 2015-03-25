@@ -1,12 +1,9 @@
 require! {
 	mongoose
-	'mongoose-auto-increment'
 	'../config'
 }
 
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
-
-mongoose-auto-increment.initialize db
 
 user-schema = new mongoose.Schema do
 	bio:                    { type: String,   required: no,  default: null }
@@ -36,8 +33,5 @@ user-schema = new mongoose.Schema do
 
 # Virtual access _id property 
 user-schema.virtual \id .get -> (@_id)
-
-# Auto increment
-user-schema.plugin mongoose-auto-increment.plugin, { model: \User, field: \_id }
 
 module.exports = db.model \User user-schema
