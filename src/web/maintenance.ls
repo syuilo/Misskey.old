@@ -26,5 +26,7 @@ web-server.all '*' (, res,) ->
 	res.status 503
 	res.send message
 
+console.log "port: #{config.port.web}"
+
 # Listen web port
 web-server.listen config.port.web
