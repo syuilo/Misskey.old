@@ -1,12 +1,12 @@
 require! {
-	'../circle': Circle
+	'../user': User
 }
 
 # String -> Promise Boolean
 module.exports = (screen-name) ->
 	resolve, reject <- new Promise!
 	
-	err, exist <- Circle
+	err, exist <- User
 		.find {screen-name}
 		.limit 1
 		.exec
