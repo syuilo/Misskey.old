@@ -1,4 +1,4 @@
-import require './mongoose-query'
+
 
 require! {
 	'../status': Status

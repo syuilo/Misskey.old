@@ -1,5 +1,5 @@
-import require \prelude-ls
-import require './mongoose-query'
+
+
 
 require! {
 	'../status': Status

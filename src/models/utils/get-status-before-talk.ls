@@ -1,4 +1,4 @@
-import require \prelude-ls
+
 
 require! {
 	'../status': Status

@@ -1,4 +1,4 @@
-import require \prelude-ls
+
 
 # [String] -> Object -> Object
 module.exports = (allowed, obj) -->
