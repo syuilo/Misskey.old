@@ -1,7 +1,7 @@
 require! {
 	'../../auth': authorize
 	'../../../models/circle': Circle
-	'../../../models/utils/circle-exist-screen-name'
+	'../../../models/utils/exist-circle-screen-name'
 }
 
 module.exports = ({body:{name, screen-name, description}}: req, res) -> authorize req, res, ->
