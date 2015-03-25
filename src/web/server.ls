@@ -27,12 +27,12 @@ session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
 # Create server
 web-server = express!
 
+# General settings
 web-server.disable 'x-powered-by'
 web-server.locals.compile-debug = off
-web-server.set do
-	'view engine': \jade
-	'views': "#__dirname/views"
-	'X-Frame-Options': \SAMEORIGIN
+web-server.set 'view engine' \jade
+web-server.set 'views' "#__dirname/views"
+web-server.set 'X-Frame-Options' \SAMEORIGIN
 
 web-server.use body-parser.urlencoded {+extended}
 web-server.use cookie-parser config.cookie_pass
