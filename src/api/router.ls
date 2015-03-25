@@ -44,7 +44,7 @@ routing =
 	
 	other:
 		[\get /\/search\/user(\..+)?$/         './rest/search/user']
-		[\get /\/screenname_available(\..+)?$/ './rest/screenname_available']
+		[\get /\/screenname_available(\..+)?$/ './rest/screenname-available']
 		[\all /\/teapot\/coffee(\..+)?$/       './rest/teapot/coffee']
 
 
