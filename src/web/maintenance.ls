@@ -10,6 +10,7 @@ require! {
 	'express-minify': minify
 }
 
+# Precompile
 message = jade.render-file "#{__dirname}/views/maintenance.jade"
 
 # Create server
