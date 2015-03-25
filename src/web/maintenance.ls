@@ -6,8 +6,8 @@ require! {
 	jade
 	express
 	compression
-	'../config'
 	'express-minify': minify
+	'../config'
 }
 
 # Precompile
