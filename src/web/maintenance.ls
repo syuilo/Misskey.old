@@ -21,8 +21,10 @@ web-server.disable 'x-powered-by'
 web-server.use compression!
 web-server.use minify!
 
+# Catch all requests
 web-server.all '*' (, res,) ->
 	res.status 503
 	res.send message
-		
+
+# Listen web port
 web-server.listen config.port.web
