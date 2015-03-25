@@ -2,7 +2,7 @@ import require \prelude-ls
 import require './mongoose-query'
 
 require! {
-	'./is-null'
+	'../../utils/is-null'
 	'../talk-message': TalkMessage
 }
 
