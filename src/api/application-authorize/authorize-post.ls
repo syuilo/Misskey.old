@@ -1,10 +1,10 @@
 require! {
-	'../models/access-token': AccessToken
-	'../models/sauth-request-token':SauthRequestToken
-	'../models/sauth-pincode': SauthPinCode
-	'../models/application': Application
-	'../models/user': User 
-	'../web/utils/login': do-login
+	'../../models/access-token': AccessToken
+	'../../models/sauth-request-token':SauthRequestToken
+	'../../models/sauth-pincode': SauthPinCode
+	'../../models/application': Application
+	'../../models/user': User 
+	'../../web/utils/login': do-login
 }
 module.exports = (req, res, server) ->
 	login = req.session? && req.session.user-id?

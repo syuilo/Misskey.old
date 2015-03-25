@@ -1,7 +1,7 @@
 require! {
-	'../models/sauth-request-token': SauthRequestToken
-	'../models/application': Application
-	'../models/user': User
+	'../../models/sauth-request-token': SauthRequestToken
+	'../../models/application': Application
+	'../../models/user': User
 }
 module.exports = (req, res) ->
 	login = req.session? && req.session.user-id?
