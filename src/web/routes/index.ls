@@ -25,7 +25,9 @@ module.exports = (app) ->
 						req.root-user = req.data.root-user = user
 						next!
 					else
-						res.status 404
+						res
+							..status 404
+							...display req, res, 'user-not-found' {}
 					
 			.. \statusId (req, res, next, status-id) ->
 				Status.find-by-id status-id, (, status) ->
@@ -33,8 +35,9 @@ module.exports = (app) ->
 						req.root-status = req.data.root-status = status
 						next!
 					else
-						res.status 404
-						res.display req, res, 'status-notFound' {}
+						res
+							..status 404
+							...display req, res, 'status-not-found' {}
 		..get
 			.. '/' (req, res, next) ->
 				if req.login
