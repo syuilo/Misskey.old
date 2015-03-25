@@ -1,8 +1,9 @@
 require! {
 	'../../auth': authorize
-	'../../../utils/streaming': Streamer
+	'../../../utils/publish-redis-streaming'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
+	'../../../models/utils/filter-user-for-response'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -16,6 +17,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 				| _ => UserFollowing.create target-user.id, user.id, (following) ->
 					stream-obj = 
 						type: 'followedMe'
-						value: user.filt!
-					Streamer.publish 'userStream:' + target-user.id, JSON.stringify stream-obj
-					res.api-render target-user.filt!
+						value: user
+					publish-redis-streaming 'userStream:' + target-user.id, JSON.stringify stream-obj
+					res.api-render filter-user-for-response target-user
