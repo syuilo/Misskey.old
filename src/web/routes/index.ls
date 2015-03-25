@@ -37,6 +37,7 @@ module.exports = (app) ->
 					..status 404
 					..display req, res, 'status-not-found' {}
 	app.get '/' (req, res, next) ->
+		console.log 'kyoppie'
 		if req.login
 			then (require '../controllers/home') req, res
 			else res.display req, res, 'entrance', {}
