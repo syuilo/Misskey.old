@@ -89,8 +89,7 @@ web-server = express!
 	# Statics
 	..get '/favicon.ico' (, res,) ->
 		res.send-file path.resolve "#__dirname/resources/favicon.ico"
-	
-	..get '/manifest.json', (, res,) ->
+	..get '/manifest.json' (, res,) ->
 		res.send-file path.resolve "#__dirname/resources/manifest.json"
 
 # CORS middleware
