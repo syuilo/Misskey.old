@@ -125,13 +125,13 @@ index-router web-server
 web-server.use (req, res,) ->
 	res
 		..status 404
-		..display req, res, 'not-found', {}
+		..display req, res, 'not-found' {}
 
 # Error handling
 web-server.use (err, req, res,) ->
 	res.status 500
 	if res.has-own-property \display
-		res.display req, res, \error, {err}
+		res.display req, res, \error {err}
 	else
 		console.log err
 		res.send!
