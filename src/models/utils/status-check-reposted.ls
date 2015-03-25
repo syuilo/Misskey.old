@@ -1,5 +1,3 @@
-
-
 require! {
 	'../status': Status
 }
