@@ -1,7 +1,7 @@
 require! {
 	'../../auth': authorize
 	'../../../models/circle': Circle
-	'../../../utils/circle-exist-screen-name'
+	'../../../models/utils/circle-exist-screen-name'
 }
 
 module.exports = ({body:{name, screen-name, description}}: req, res) -> authorize req, res, ->
@@ -10,4 +10,4 @@ module.exports = ({body:{name, screen-name, description}}: req, res) -> authoriz
 	| !description? => res.api-error 400 'description parameter is required :('
 	| _ => circle-exist-screen-name screen-name, (exist) ->
 		| exist => res.api-error 400 'That screen name is exist :('
-		| _ => Circle.insert {user-id: user.id, name, screen-name, description} (circle) -> res.api-render circle
+		| _ => Circle.insert {user-id: user.id, name, screen-name, description} (, circle) -> res.api-render circle
