@@ -125,7 +125,7 @@ index-router web-server
 web-server.use (req, res,) ->
 	res
 		..status 404
-		..display req, res, 'notFound', {}
+		..display req, res, 'not-found', {}
 
 # Error handling
 web-server.use (err, req, res,) ->
