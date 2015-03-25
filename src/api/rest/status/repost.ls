@@ -1,7 +1,6 @@
-required! {
+require! {
 	'../../../models/notice': Notice
 	'../../../models/status': Post
-	'../../../utils/steaming': Streamer
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../auth': authorize
