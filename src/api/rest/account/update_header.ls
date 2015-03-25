@@ -1,19 +1,18 @@
 require! {
 	fs
 	gm
-	'../../../models/user-image': UserImage
+	'../../../models/user-header': UserHeader
 	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	UserImage.find user.id, (user-image) ->
+	UserHeader.find-one { user-id: user.id } (, header) ->
 		if (Object.keys req.files).length == 1
 			path = req.files.image.path
 			gm path
-				.compress 'jpeg'
+				.compress \jpeg
 				.quality 80
-				.to-buffer 'jpeg' (error, buffer) ->
-					throw error if error
+				.to-buffer \jpeg (, buffer) ->
 					fs.unlink path
-					user-image
-						..header = buffer
-						..update -> res.api-render user.filt!
+					header
+						..image = buffer
+						..save (err) -> res.api-render 'success'
