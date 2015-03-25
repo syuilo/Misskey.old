@@ -17,7 +17,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 repost-step = (req, res, app, user, target-post) -> Post.is-reposted target-post.id, user.id, (is-reposted) ->
 	| is-reposted => res.api-error 400 'This post is already reposted :)'
 	| _ => User.find target-post.user-id, (target-post-user) -> Post.create target-post.user-id, (target-post-user) ->
-		Post.create app.id, null, null, 'RP @' + target-post-user.screen-name + ' ' + target-post.text, user.id, target-post.id, (post) ->
+		Post.create app.id, null, null, "RP @#{target-post-user.screen-name} #{target-post.text}", user.id, target-post.id, (post) ->
 			target-post
 				..reposts-count++
 				..update ->
