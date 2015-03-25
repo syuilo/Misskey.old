@@ -1,3 +1,7 @@
+#
+# Web index router
+#
+
 require! {
 	fs
 	express
@@ -8,11 +12,13 @@ require! {
 	'../../config': config
 	'./image': image-router
 }
+
 module.exports = (app) ->
+	# unstatic images
 	image-router app
 	
 	app
-		..param
+		..param # Preset
 			.. \userSn (req, res, next, screen-name) ->
 				User.find-one {screen-name} (, user) ->
 					if user?
