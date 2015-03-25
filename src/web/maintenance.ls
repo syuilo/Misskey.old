@@ -21,8 +21,7 @@ web-server.use compression!
 web-server.use minify!
 
 web-server.all '*' (, res,) ->
-	res
-		..status 503
-		..send message
+	res.status 503
+	res.send message
 		
 web-server.listen config.port.web
