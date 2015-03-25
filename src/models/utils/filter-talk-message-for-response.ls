@@ -1,5 +1,5 @@
 require! {
-	aync
+	async
 	'../application': Application
 	'../user': User
 }
