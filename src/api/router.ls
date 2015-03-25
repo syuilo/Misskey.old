@@ -1,5 +1,3 @@
-
-
 routing =
 	account:
 		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
@@ -58,8 +56,8 @@ module.exports = (app) ->
 			next!
 		
 		# Authorize
-		..get  '/authorize' require './authorize-get'
-		..post '/authorize' (req, res) -> (require './authorize-post') req, res, app
+		..get  '/authorize' require './application-authorize/authorize-get'
+		..post '/authorize' (req, res) -> (require './application-authorize/authorize-post') req, res, app
 		..get  /\/sauth\/get_request_token(\..+)?$/ require './rest/sauth/get_request_token'
 	
 	routing |> values |> concat |> each ([method, url, handler]) ->
