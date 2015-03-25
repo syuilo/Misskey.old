@@ -1,5 +1,3 @@
-
-
 require! {
 	'../user-following': UserFollowing
 }

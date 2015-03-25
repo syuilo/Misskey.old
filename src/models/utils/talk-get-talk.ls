@@ -1,6 +1,3 @@
-
-
-
 require! {
 	'../../utils/is-null'
 	'../talk-message': TalkMessage
