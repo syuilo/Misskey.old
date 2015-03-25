@@ -9,7 +9,7 @@ require! {
 	'../../../models/utils/status-response-filter'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../utils/streaming': Streamer
+	'../../../utils/publish-redis-streaming'
 	'../../auth': authorize
 }
 
@@ -73,7 +73,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 
 		UserFollowing.find { followee-id: user-id } (followings) ->
 			| followings? => followings.for-each (following) ->
-				Streamer.publish 'userStream:' + following.follower-id, stream-obj
+				publish-redis-streaming 'userStream:' + following.follower-id, stream-obj
 
 		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
@@ -83,7 +83,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 					stream-mention-obj = JSON.stringify do
 						type: \reply
 						value: obj
-					Streamer.publish 'userStream:' + reply-user.id, stream-mention-obj
+					publish-redis-streaming 'userStream:' + reply-user.id, stream-mention-obj
 
 	function get-more-talk(status, callback)
 		get-status-before-talk status.in-reply-to-status-id, (more-talk) ->
