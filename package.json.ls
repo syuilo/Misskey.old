@@ -10,7 +10,7 @@ repository:
 	type: 'git'
 	url: 'https://github.com/syuilo/Misskey.git'
 
-main: './src/'
+main: './'
 scripts:
 	build: 'gulp build'
 	watch: 'gulp watch'

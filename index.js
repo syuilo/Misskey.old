@@ -1,0 +1,2 @@
+require('LiveScript');
+require('./src/');
