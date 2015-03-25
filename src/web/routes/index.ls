@@ -17,27 +17,28 @@ module.exports = (app) ->
 	# unstatic images
 	image-router app
 	
+	# Preset
+	app.param 
+		.. \userSn (req, res, next, screen-name) ->
+			User.find-one {screen-name} (, user) ->
+				if user?
+					req.root-user = req.data.root-user = user
+					next!
+				else
+					res
+						..status 404
+						..display req, res, 'user-not-found' {}
+
+		.. \statusId (req, res, next, status-id) ->
+			Status.find-by-id status-id, (, status) ->
+				if status?
+					req.root-status = req.data.root-status = status
+					next!
+				else
+					res
+						..status 404
+						..display req, res, 'status-not-found' {}
 	app
-		..param # Preset
-			.. \userSn (req, res, next, screen-name) ->
-				User.find-one {screen-name} (, user) ->
-					if user?
-						req.root-user = req.data.root-user = user
-						next!
-					else
-						res
-							..status 404
-							..display req, res, 'user-not-found' {}
-					
-			.. \statusId (req, res, next, status-id) ->
-				Status.find-by-id status-id, (, status) ->
-					if status?
-						req.root-status = req.data.root-status = status
-						next!
-					else
-						res
-							..status 404
-							..display req, res, 'status-not-found' {}
 		..get
 			.. '/' (req, res, next) ->
 				if req.login

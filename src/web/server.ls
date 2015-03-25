@@ -26,70 +26,70 @@ session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
 
 # Create server
 web-server = express!
-web-server.disable 'x-powered-by'
-web-server.locals.compile-debug = off
-web-server.set do
-	'view engine': \jade
-	'views': "#__dirname/views"
-	'X-Frame-Options': \SAMEORIGIN
+	..disable 'x-powered-by'
+	..locals.compile-debug = off
+	..set do
+		'view engine': \jade
+		'views': "#__dirname/views"
+		'X-Frame-Options': \SAMEORIGIN
+	
+	..use body-parser.urlencoded {+extended}
+	..use cookie-parser config.cookie_pass
 
-web-server.use body-parser.urlencoded {+extended}
-web-server.use cookie-parser config.cookie_pass
+	# Session settings
+	..use session do
+		key: config.session-key
+		secret: config.session-secret
+		resave: off
+		save-uninitialized: on
+		cookie:
+			path: '.'
+			domain: ".#{config.public-config.domain}"
+			http-only: off
+			secure: off
+			expires: new Date Date.now! + session-expires
+			max-age: session-expires
+		store: new RedisStore do
+			db: 1
+			prefix: 'misskey-session:'
 
-# Session settings
-web-server.use session do
-	key: config.session-key
-	secret: config.session-secret
-	resave: off
-	save-uninitialized: on
-	cookie:
-		path: '.'
-		domain: ".#{config.public-config.domain}"
-		http-only: off
-		secure: off
-		expires: new Date Date.now! + session-expires
-		max-age: session-expires
-	store: new RedisStore do
-		db: 1
-		prefix: 'misskey-session:'
+	# Compressing settings
+	..use compression!
+	..use minify!
 
-# Compressing settings
-web-server.use compression!
-web-server.use minify!
-
-# セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
-# セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
-web-server.init-session = (req, res, callback) ->
-	req
-		..login = req.session? && req.session.user-id?
-		..data = # Render datas
-			config: config
-			url: config.public-config.url
-			api-url: config.public-config.api-url
-			login: req.login
-
-	# Renderer function
-	res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
-
-	# Check logged in, set user instance
-	if req.login
-		user-id = req.session.user-id
-		User.find-by-id user-id, (, user) ->
-			req
-				..data.me = user
-				..me = user
-			callback!
-	else
+	# セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
+	# セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
+	..init-session = (req, res, callback) ->
 		req
-			..data.me = null
-			..me = null
-		callback!
+			..login = req.session? && req.session.user-id?
+			..data = # Render datas
+				config: config
+				url: config.public-config.url
+				api-url: config.public-config.api-url
+				login: req.login
 
-# Statics
-web-server.get '/favicon.ico' (, res,) ->
-	res.send-file path.resolve "#__dirname/resources/favicon.ico"
-web-server.get '/manifest.json' (, res,) ->
-	res.send-file path.resolve "#__dirname/resources/manifest.json"
+		# Renderer function
+		res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
+
+		# Check logged in, set user instance
+		if req.login
+			user-id = req.session.user-id
+			User.find-by-id user-id, (, user) ->
+				req
+					..data.me = user
+					..me = user
+				callback!
+		else
+			req
+				..data.me = null
+				..me = null
+			callback!
+
+	# Statics
+	..get '/favicon.ico' (, res,) ->
+		res.send-file path.resolve "#__dirname/resources/favicon.ico"
+	..get '/manifest.json' (, res,) ->
+		res.send-file path.resolve "#__dirname/resources/manifest.json"
 
 # CORS middleware
 #
