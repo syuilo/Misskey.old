@@ -3,8 +3,8 @@ require! {
 	'../../../config'
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
-	'../../../utils/status-check-favorited'
-	'../../../utils/status-response-filter'
+	'../../../models/utils/status-check-favorited'
+	'../../../models/utils/status-response-filter'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
