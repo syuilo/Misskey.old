@@ -3,7 +3,7 @@ require! {
 	'../application': Application
 	'../user': User
 	'../status': Status
-	'./user-response-filter'
+	'./filter-user-for-response'
 	'../../config'
 }
 module.exports = (source-status, callback) ->
