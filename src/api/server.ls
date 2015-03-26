@@ -26,7 +26,7 @@ session-store = new RedisStore do
 api-server
 	..use body-parser.urlencoded {+extended}
 	..use multer!
-	..use cookie-parser config.cookie_pass
+	..use cookie-parser config.cookie-pass
 	..use session do
 		key: config.session-key
 		secret: config.session-secret
