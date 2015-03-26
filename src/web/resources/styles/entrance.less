@@ -229,13 +229,24 @@ main {
 			width: 300px;
 			height: 64px;
 			background: #fff;
+			box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+
+			&.fail {
+				font-weight: bold;
+				color: #ff4300;
+			}
+
+			&.done {
+				font-weight: bold;
+				color: @themeColor;
+			}
 
 			&:before {
 				content: "";
 				display: block;
 				position: absolute;
 				top: 16px;
-				right: -16px;
+				right: -32px;
 				border-top: solid 16px transparent;
 				border-right: solid 16px transparent;
 				border-bottom: solid 16px transparent;
