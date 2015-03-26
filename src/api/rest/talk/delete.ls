@@ -5,7 +5,7 @@ require! {
 	'../../../models/utils/filter-talk-message-for-response'
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	| !(message-id = req.body.message_id)? => res.api-error 400 'message_id parameter is required :('
+	| !(message-id = req.body.message-id)? => res.api-error 400 'messageId parameter is required :('
 	| _ => TalkMessage.find-by-id message-id, (, talk-message) ->
 		| !talk-message? => res.api-error 404 'Message not found.'
 		| talk-message.user-id != user.id => res.api-error 'Message that you have sent only can not be delete'
