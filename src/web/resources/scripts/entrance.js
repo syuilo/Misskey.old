@@ -179,6 +179,9 @@ function initRegisterForm() {
 				left: '-50%',
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
+			$('#registerForm .user-name').animate({
+				left: '-100%'
+			}, 500, 'easeOutQuint');
 			$('#registerForm .password').animate({
 				left: 0,
 				opacity: 1
