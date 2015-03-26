@@ -102,7 +102,7 @@ module.exports = (app) ->
 		| _ =>
 			switch
 			| req.path.match /\.css$/ =>
-				resource-path = path.resolve __dirname + '/..' + req.path.replace /\.css$/ '.less'
+				resource-path = path.resolve "#__dirname/..#{req.path.replace /\.css$/ '.less'}"
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
 						| req.query.user? =>
@@ -119,6 +119,6 @@ module.exports = (app) ->
 								resource-path
 								if req.login then req.me else null
 			| req.url.index-of '.less' == -1 =>
-				resource-path = path.resolve __dirname + '/..' + req.path
+				resource-path = path.resolve "#__dirname/..#{req.path}"
 				res.send-file resource-path
 			| _ => next!
