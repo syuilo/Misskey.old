@@ -111,6 +111,7 @@ function initRegisterForm() {
 
 		$nextButton.click(function() {
 			$('#registerForm .user-name').animate({
+				transform: "perspective(512px) rotateY(-45deg)",
 				left: '-50%',
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
