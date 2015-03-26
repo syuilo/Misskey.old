@@ -4,15 +4,15 @@ require! {
 	'./create/validate-arguments': validate-arguments
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-		name = typeof req.body.name !== 'undefined' ? req.body.name : null
-		callback-url = typeof req.body.callback_url !== 'undefined' ? req.body.callback_url : null
-		description = typeof req.body.description !== 'undefined' ? req.body.description : null
-		developer-name = typeof req.body.developer_name !== 'undefined' ? req.body.developer_name : null
-		developer-website = typeof req.body.developer_website !== 'undefined' ? req.body.developer_website : null
+		name = req.body.name ? null
+		callback-url = req.body.callback-url ? null
+		description = req.body.description ? null
+		developer-name = req.body.developer-name ? null
+		developer-website = req.body.developer-website ? null
 
 		err = validate-arguments app, name, callback-url, description, developer-name, developer-website
 
-		if err !== null
+		if err?
 			res.api-error err[0], err[1]
 		else if !user.is-premium
 			has-app-one-or-more (one-or-more) ->
