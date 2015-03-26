@@ -19,9 +19,6 @@ status-schema = new mongoose.Schema do
 	repost-from-status-id: { type: Schema.Types.ObjectId,  default: null }
 	text:                  { type: String,                 required: yes }
 	user-id:               { type: Schema.Types.ObjectId,  required: yes }
-	
-# Virtual access _id property 
-status-schema.virtual \id .get -> (@_id)
 
 # Auto increment
 status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: \_id }

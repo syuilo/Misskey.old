@@ -31,7 +31,4 @@ user-schema = new mongoose.Schema do
 	url:                    { type: String,   required: no,  default: null }
 	using-webtheme-id:      { type: Number,   required: no,  default: null }
 
-# Virtual access _id property 
-user-schema.virtual \id .get -> (@_id)
-
 module.exports = db.model \User user-schema
