@@ -50,6 +50,8 @@ main {
 			transform: perspective(512px);
 
 			label {
+				display: block;
+
 				&:hover, &:focus {
 					p.caption {
 						background: #29797f;
@@ -59,11 +61,10 @@ main {
 				p.caption {
 					display: inline-block;
 					box-sizing: border-box;
-					width: 128px;
+					width: 6em;
 					padding: 8px 8px;
 					margin: 8px 0;
 					font-size: 1.1em;
-					line-height: 1.2em;
 					color: #fff;
 					background: #5a7d7f;
 				}
@@ -80,10 +81,10 @@ main {
 					display: inline-block;
 					cursor: auto;
 					box-sizing: border-box;
-					padding: 8px 16px;
-					margin: 8px 0;
-					width: ~"calc(100% - 128px)";
-					font-size: 1.2em;
+					padding: 6px 16px;
+					margin: 9px 0 8px 0;
+					width: ~"calc(100% - 6em)";
+					font-size: 1.1em;
 					color: #000;
 					outline: none;
 					border: solid 1px #eee;
