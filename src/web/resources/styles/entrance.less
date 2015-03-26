@@ -52,7 +52,7 @@ main {
 			label {
 				display: block;
 				position: relative;
-				min-height: 1em;
+				min-height: ~"calc(1.1em + 16px)";
 
 				&:hover, &:focus {
 					p.caption {
@@ -68,7 +68,7 @@ main {
 					box-sizing: border-box;
 					width: 6em;
 					padding: 8px 8px;
-					margin: 8px 0;
+					margin: 0;
 					font-size: 1.1em;
 					font-weight: bold;
 					color: #fff;
@@ -90,26 +90,24 @@ main {
 					right: 0;
 					cursor: auto;
 					box-sizing: border-box;
-					padding: 7px 12px;
-					margin: 9px 0 8px 0;
+					padding: 8px 12px;
+					margin: 0;
 					width: ~"calc(100% - 6em)";
 					font-size: 1.1em;
 					color: #000;
 					outline: none;
-					border: solid 1px #eee;
+					border: none;
 					border-radius: 0;
 					box-shadow: none;
 					background: transparent;
 					transition: all .5s ease;
 
 					&:hover {
-						border: solid 1px @themeColor;
 						transition: all .2s ease;
 					}
 
 					&:focus {
 						width: 100%;
-						border: solid 1px @themeColor;
 						color: @themeColor;
 						transition: all .2s ease;
 					}
