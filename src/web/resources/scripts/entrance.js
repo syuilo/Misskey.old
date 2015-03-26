@@ -118,7 +118,7 @@ function initRegisterForm() {
 			$('#registerForm .nickname').animate({
 				left: 0,
 				opacity: 1
-			}, 500, 'easeOutElastic');
+			}, 1000, 'easeOutElastic');
 		});
 
 		$(userNameInputQuery).keyup(function() {
