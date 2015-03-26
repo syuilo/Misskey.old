@@ -13,4 +13,4 @@ module.exports = (screen-name) ->
 		
 	if err?
 		then reject err
-		else resolve exist != []
+		else resolve !empty exist
