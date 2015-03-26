@@ -39,7 +39,7 @@ function create(req, res, app-id, otherparty-id, image, is-image-attached, text,
 		publish-redis-streaming "userStream:#{otherparty-id}", to-json do
 			type: \talk-message
 			value: obj
-		publish-redis-streaming "talkStream:#{otherparty-id}" + '-' + user-id, to-json do
+		publish-redis-streaming "talkStream:#{otherparty-id}-#{user-id}", to-json do
 			type: \otherparty-message
 			value: obj
 		publish-redis-streaming "talkStream:#{user-id}-#{otherparty-id}", to-json do
