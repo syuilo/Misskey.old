@@ -151,7 +151,9 @@ function initUserNameValidater() {
 		hideMessage();
 		var klass = success == null ? '' : success ? 'done' : 'fail';
 		var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
-		$message.appendTo('#registerForm .user-name').hide().show('slide', { direction: 'left' }, 500);
+		$message.appendTo('#registerForm .user-name').hide().animate({ 
+			right: "calc(100% + -8px)"
+		}, 500, 'easeOutCubic');
 	}
 
 	function hideMessage() {
