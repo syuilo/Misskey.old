@@ -39,6 +39,6 @@ function showRegisterForm() {
 		display: 'block'
 	});
 	$('#registerForm .user-name').css({
-		left: 0
+		left: '0%'
 	});
 }
