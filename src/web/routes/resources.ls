@@ -95,7 +95,7 @@ module.exports = (app) ->
 	
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
-		| req.path.index-of '..' > -1 =>
+		| (req.path.index-of '..') > -1 =>
 			res
 				..status 400
 				..send 'invalid path'
