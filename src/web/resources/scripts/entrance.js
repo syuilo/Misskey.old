@@ -33,52 +33,9 @@ $(function() {
 		showRegisterForm();
 	});
 
-	var userNameQuery = '#registerForm .user-name .user-name-input';
+	InitUserNameValidater();
 
-	$(userNameQuery).keyup(function() {
-		$("#userNameAvailable").remove();
-		var sn = $(userNameQuery).val();
-
-		if (sn == '') {
-			return false;
-		}
-		if (sn.length < 4) {
-			$(userNameQuery).before('<p id="userNameAvailable" class="fail">4文字以上でお願いします</p>');
-			return false;
-		}
-		if (sn.match(/^[0-9]+$/)) {
-			$(userNameQuery).before('<p id="userNameAvailable" class="fail">すべての文字を数字にすることはできません</p>');
-			return false;
-		}
-		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			$(userNameQuery).before('<p id="userNameAvailable" class="fail">半角英数のみでお願いしますっ</p>');
-			return false;
-		}
-		if (sn.length > 20) {
-			$(userNameQuery).before('<p id="userNameAvailable" class="fail">20文字以内でお願いします</p>');
-			return false;
-		}
-
-		$(userNameQuery).before('<p id="screenNameAvailable">確認中...</p>');
-		$.ajax('https://api.misskey.xyz/screenname-available', {
-			type: 'get',
-			data: { 'screen-name': sn },
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
-		}).done(function(result) {
-			$("#userNameAvailable").remove();
-			if (result) {
-				$(userNameQuery).before('<p id="userNameAvailable" class="fail">このIDは既に使用されていますっ</p>');
-				screenNameOk = false;
-			} else {
-				$(userNameQuery).before('<p id="userNameAvailable" class="done">このIDは使用できますっ！</p>');
-				screenNameOk = true;
-			}
-		}).fail(function() {
-		});
-	});
+	
 
 	$('#name').keyup(function() {
 		$("#nameAvailable").remove();
@@ -143,6 +100,59 @@ $(function() {
 		});
 	});
 });
+
+function InitUserNameValidater() {
+	var userNameQuery = '#registerForm .user-name .user-name-input';
+
+	$(userNameQuery).keyup(function() {
+		var sn = $(userNameQuery).val();
+
+		if (sn == '') {
+			return false;
+		}
+		if (sn.length < 4) {
+			showUserNameMessage('4文字以上でお願いしますっ', false)
+			return false;
+		}
+		if (sn.match(/^[0-9]+$/)) {
+			showUserNameMessage('すべての文字を数字にすることはできませんっ', false)
+			return false;
+		}
+		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
+			showUserNameMessage('半角英数記号(_)のみでお願いしますっ', false)
+			return false;
+		}
+		if (sn.length > 20) {
+			showUserNameMessage('20文字以内でお願いします', false)
+			return false;
+		}
+
+		$(userNameQuery).before('<p id="screenNameAvailable">確認中...</p>');
+		$.ajax('https://api.misskey.xyz/screenname-available', {
+			type: 'get',
+			data: { 'screen-name': sn },
+			dataType: 'json',
+			xhrFields: {
+				withCredentials: true
+			}
+		}).done(function(result) {
+			if (result) {
+				showUserNameMessage('このIDは既に使用されていますっ', false)
+				screenNameOk = false;
+			} else {
+				showUserNameMessage('このIDは使用できますっ！', true)
+				screenNameOk = true;
+			}
+		}).fail(function() {
+		});
+	});
+
+	function showUserNameMessage(message, success) {
+		$('#userNameAvailable').remove();
+		var klass = success ? 'done' : 'fail';
+		$('body').append('<p id="userNameAvailable" class="' + klass + '">' + message + '</p>');
+	}
+}
 
 function showRegisterForm() {
 	$('#registerForm').css({
