@@ -112,7 +112,7 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$('#registerForm .user-name').css({
 				left: '-50%',
-				opacity: 1
+				opacity: 0
 			});
 			$('#registerForm .nickname').css({
 				left: 0,
