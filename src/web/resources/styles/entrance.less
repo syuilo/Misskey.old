@@ -51,6 +51,7 @@ main {
 
 			label {
 				display: block;
+				position: relative;
 
 				&:hover, &:focus {
 					p.caption {
@@ -60,6 +61,9 @@ main {
 
 				p.caption {
 					display: inline-block;
+					position: absolute;
+					top: 0;
+					left: 0;
 					box-sizing: border-box;
 					width: 6em;
 					padding: 8px 8px;
@@ -80,6 +84,9 @@ main {
 					-webkit-user-select: text;
 					-ms-user-select: text;
 					display: inline-block;
+					position: absolute;
+					top: 0;
+					right: 0;
 					cursor: auto;
 					box-sizing: border-box;
 					padding: 7px 12px;
@@ -100,6 +107,7 @@ main {
 					}
 
 					&:focus {
+						width: 100%;
 						border: solid 1px @themeColor;
 						color: @themeColor;
 						transition: all .2s ease;
