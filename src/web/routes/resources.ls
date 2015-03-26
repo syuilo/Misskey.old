@@ -65,7 +65,7 @@ module.exports = (app) ->
 				| theme == null => res.send!
 				| _ =>
 					try
-						theme-obj = JSON.parse theme.style
+						theme-obj = parse-json theme.style
 						if theme-obj[styleName]
 							compile-less theme-obj[styleName], user, (css) ->
 								res

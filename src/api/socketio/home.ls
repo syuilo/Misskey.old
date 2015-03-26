@@ -18,7 +18,7 @@ module.exports = (io, session-store) ->
 			..subscribe 'misskey:userStream:' + uid
 			..on \message (, content) ->
 			try
-				content = JSON.parse content
+				content = parse-json content
 				if content.type? && content.value?
 					then socket.emit content.type, content.value
 					else socket.emit content

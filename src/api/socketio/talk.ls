@@ -31,7 +31,7 @@ module.exports = (io, session-store) ->
 							socket.emit \inited
 							subscriber.on \message (channel, content) ->
 								try
-									content = JSON.parse content
+									content = parse-json content
 									if content.type? && content.value?
 										then socket.emit content.type, content.value
 										else socket.emit content

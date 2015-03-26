@@ -36,7 +36,7 @@ module.exports = (app) ->
 		switch
 		| req.query.blur? =>
 			try
-				options = JSON.parse req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
+				options = parse-json req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
 				gm image-buffer
 					..blur options.radius, options.sigma
 					..compress \jpeg
