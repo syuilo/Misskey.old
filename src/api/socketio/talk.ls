@@ -23,7 +23,7 @@ module.exports = (io, session-store) ->
 					socket
 						..emit \connected
 						..on \init (req) ->
-							otherparty-id = String req.otherparty_id
+							otherparty-id = String req.otherparty-id
 							socket.otherparty-id = otherparty-id
 							subscriber = redis.create-client!
 								..subscribe 'misskey:talkStream:' + uid + '-' + socket.otherparty-id
