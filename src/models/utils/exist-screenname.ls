@@ -6,11 +6,11 @@ require! {
 module.exports = (screen-name) ->
 	resolve, reject <- new Promise!
 	
-	err, exist <- User
+	err, users <- User
 		.find {screen-name}
 		.limit 1
 		.exec
 		
 	if err?
-		then reject err
-		else resolve !empty exist
+	then reject err
+	else resolve !empty users
