@@ -69,11 +69,11 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			type: \post
 			value: obj
 
-		Streamer.publish 'userStream:' + user-id stream-obj
+		Streamer.publish "userStream:${user-id stream-obj}"
 
 		UserFollowing.find { followee-id: user-id } (followings) ->
 			| followings? => followings.for-each (following) ->
-				publish-redis-streaming 'userStream:' + following.follower-id, stream-obj
+				publish-redis-streaming "userStream:#{following.follower-id}", stream-obj
 
 		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
@@ -83,7 +83,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 					stream-mention-obj = to-json do
 						type: \reply
 						value: obj
-					publish-redis-streaming 'userStream:' + reply-user.id, stream-mention-obj
+					publish-redis-streaming "userStream:#{reply-user.id}", stream-mention-obj
 
 	function get-more-talk(status, callback)
 		get-status-before-talk status.in-reply-to-status-id, (more-talk) ->
