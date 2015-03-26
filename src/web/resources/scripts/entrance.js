@@ -30,6 +30,10 @@ $(function() {
 			}, 500);
 		});
 	});
+
+	$('#new').click(function() {
+		showRegisterForm();
+	});
 });
 
 function showRegisterForm() {
@@ -40,7 +44,3 @@ function showRegisterForm() {
 		left: 0
 	});
 }
-
-$('#new').click(function() {
-	showRegisterForm();
-});
