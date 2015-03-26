@@ -34,7 +34,7 @@ api-server
 		save-uninitialized: yes
 		cookie:
 			path: '/'
-			domain: ".${config.public-config.domain}"
+			domain: ".#{config.public-config.domain}"
 			http-only: no
 			secure: no
 			max-age: null
