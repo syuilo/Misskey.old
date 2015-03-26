@@ -43,19 +43,19 @@ $(function() {
 			return false;
 		}
 		if (sn.length < 4) {
-			$(userNameQuery).before('<p id="screenNameAvailable" class="fail">4文字以上でお願いします</p>');
+			$(userNameQuery).before('<p id="userNameAvailable" class="fail">4文字以上でお願いします</p>');
 			return false;
 		}
 		if (sn.match(/^[0-9]+$/)) {
-			$(userNameQuery).before('<p id="screenNameAvailable" class="fail">すべての文字を数字にすることはできません</p>');
+			$(userNameQuery).before('<p id="userNameAvailable" class="fail">すべての文字を数字にすることはできません</p>');
 			return false;
 		}
 		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			$(userNameQuery).before('<p id="screenNameAvailable" class="fail">半角英数のみでお願いしますっ</p>');
+			$(userNameQuery).before('<p id="userNameAvailable" class="fail">半角英数のみでお願いしますっ</p>');
 			return false;
 		}
 		if (sn.length > 20) {
-			$(userNameQuery).before('<p id="screenNameAvailable" class="fail">20文字以内でお願いします</p>');
+			$(userNameQuery).before('<p id="userNameAvailable" class="fail">20文字以内でお願いします</p>');
 			return false;
 		}
 
@@ -68,12 +68,12 @@ $(function() {
 				withCredentials: true
 			}
 		}).done(function(result) {
-			$("#screenNameAvailable").remove();
+			$("#userNameAvailable").remove();
 			if (result) {
-				$(userNameQuery).before('<p id="screenNameAvailable" class="fail">このIDは既に使用されていますっ</p>');
+				$(userNameQuery).before('<p id="userNameAvailable" class="fail">このIDは既に使用されていますっ</p>');
 				screenNameOk = false;
 			} else {
-				$(userNameQuery).before('<p id="screenNameAvailable" class="done">このIDは使用できますっ！</p>');
+				$(userNameQuery).before('<p id="userNameAvailable" class="done">このIDは使用できますっ！</p>');
 				screenNameOk = true;
 			}
 		}).fail(function() {
