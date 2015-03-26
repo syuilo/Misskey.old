@@ -35,17 +35,6 @@ $(function() {
 
 	initRegisterForm();
 
-	
-
-	$('#name').keyup(function() {
-		$("#nameAvailable").remove();
-		var name = $('#name').val();
-		if (name.length == 0) {
-			return false;
-		}
-		$('#name').before('<p id="nameAvailable" class="done">Great!</p>');
-	});
-
 	$('#password').keyup(function() {
 		$("#passwordAvailable").remove();
 		var password = $('#password').val();
@@ -103,8 +92,10 @@ $(function() {
 
 function initRegisterForm() {
 	var userNameInputQuery = '#registerForm .user-name .user-name-input';
+	var nicknameInputQuery = '#registerForm .nickname .nickname-input';
 
 	initUserNameSection();
+	initNicknameSection();
 
 	function initUserNameSection() {
 		var $nextButton = $('#registerForm .user-name button.next')
@@ -176,6 +167,46 @@ function initRegisterForm() {
 
 		function hideMessage() {
 			$('#userNameAvailable').remove();
+		}
+	}
+
+	function initNicknameSection() {
+		var $nextButton = $('#registerForm .nickname button.next')
+
+		$nextButton.click(function() {
+			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
+			$('#registerForm .nickname').animate({
+				left: '-50%',
+				opacity: 0.2
+			}, 500, 'easeOutQuint');
+			$('#registerForm .password').animate({
+				left: 0,
+				opacity: 1
+			}, 1000, 'easeOutElastic');
+		});
+
+		$(nicknameInputQuery).keyup(function() {
+			hideMessage();
+			var name = $(nicknameInputQuery).val();
+			if (name.length == 0) {
+				return false;
+			}
+			showMessage('Great!', true);
+		});
+
+		function showMessage(message, success) {
+			hideMessage();
+			var klass = success == null ? '' : success ? 'done' : 'fail';
+			var $message = $('<p id="nicknameAvailable" class="message ' + klass + '">' + message + '</p>');
+			$message.css('top', $(nicknameInputQuery).position().top - 32 + ($(nicknameInputQuery).outerHeight() / 2));
+			$message.appendTo('#registerForm .nickname').animate({
+				'margin-right': 0,
+				opacity: 1
+			}, 500, 'easeOutCubic');
+		}
+
+		function hideMessage() {
+			$('#nicknameAvailable').remove();
 		}
 	}
 }
