@@ -35,7 +35,7 @@ web-server.set 'views' "#__dirname/views"
 web-server.set 'X-Frame-Options' \SAMEORIGIN
 
 web-server.use body-parser.urlencoded {+extended}
-web-server.use cookie-parser config.cookie_pass
+web-server.use cookie-parser config.cookie-pass
 
 # Session settings
 web-server.use session do
