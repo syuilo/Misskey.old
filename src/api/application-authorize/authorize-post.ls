@@ -34,7 +34,7 @@ module.exports = (req, res, server) ->
 		else
 			SauthPinCode.create app.id, user.id, (pincode) ->
 				| app.callback-url == '' => render-success!
-				| _ => res.redirect app.callback-url + '?pincode=' + pincode.code
+				| _ => res.redirect "#{app.callback-url}?pincode=#{pincode.code}"
 	
 	function render-confirmation
 		res.render '../web/views/authorize-confirm' {app, -login, -login-failed}
