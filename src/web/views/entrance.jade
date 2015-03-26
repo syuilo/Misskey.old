@@ -52,7 +52,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#screenName.ui-inputText(name='screen_name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
 						button.cancel キャンセル
-						button.next 次！
+						button.next(disabled) 次！
 					div.slide.nickname
 						label
 							h2.title ニックネーム。
@@ -61,7 +61,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#name.ui-inputText(name='name', type='text', required)
 						button.back 戻る
-						button.next 次！
+						button.next(disabled) 次！
 					div.slide.password
 						label
 							h2.title パスワード
@@ -70,7 +70,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#password.ui-inputPassword(name='password', type='password', required)
 						button.back 戻る
-						button.next 次！
+						button.next(disabled) 次！
 					div.password-retype
 						label
 							h2.title パスワード(再入力)
@@ -79,7 +79,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#passwordRetype.ui-inputPassword(name='retype_password', type='password', required)
 						button.back 戻る
-						button.next 次！
+						button.next(disabled) 次！
 					div.slide.user-color
 						label
 							h2.title ユーザーカラー
@@ -88,7 +88,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#color.ui-inputColor(name='color', type='color', required)
 						button.back 戻る
-						button.next 決定！
+						button.next(disabled) 決定！
 					div.slide.confirm
 						button.back 戻る
 						input.ui-inputSubmit(type='submit', value='アカウントを作成する')
