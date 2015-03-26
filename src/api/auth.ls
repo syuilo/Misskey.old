@@ -11,7 +11,7 @@ require! {
 module.exports = (req, res, success) ->
 	is-logged = req.session? && req.session.user-id?
 	get-params = get-express-params req
-	[consumer-key, access-token] = get-params <[ consumer_key access_token ]>
+	[consumer-key, access-token] = get-params <[ consumer-key access-token ]>
 	fail = res.api-error 401 _
 	referer = req.header \Referer
 	switch
