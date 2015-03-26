@@ -15,7 +15,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
 	text = if req.body.text? then req.body.text else ''
-	in-reply-to-status-id = if req.body.in_reply_to_status_id? then req.body.in_reply_to_status_id else null
+	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
 	text .= trim!
 	switch
 	| status? && text == status.text => res.api-error 400 'Duplicate content'
