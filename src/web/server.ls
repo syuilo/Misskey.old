@@ -5,7 +5,6 @@
 require! {
 	fs
 	path
-	async
 	express
 	compression
 	'../config'
