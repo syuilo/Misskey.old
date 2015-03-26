@@ -38,9 +38,9 @@ module.exports = (req, res) ->
 					UserIcon.insert { user-id: created-user.id } (, user-image) ->
 					UserHeader.insert { user-id: created-user.id } (, user-image) ->
 					UserWallpaper.insert { user-id: created-user.id } (, user-image) ->
-					UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
-						UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
-							do-login req, created-user.screen-name, password, (user) ->
-								res.api-render filter-user-for-response created-user
-							, ->
-								res.send-status 500
+					#UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
+					#UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
+					do-login req, created-user.screen-name, password, (user) ->
+						res.api-render filter-user-for-response created-user
+					, ->
+						res.send-status 500
