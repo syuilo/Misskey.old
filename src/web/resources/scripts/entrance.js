@@ -60,7 +60,7 @@ $(function() {
 		}
 
 		$(userNameQuery).before('<p id="screenNameAvailable">確認中...</p>');
-		$.ajax('https://api.misskey.xyz/screenname_available', {
+		$.ajax('https://api.misskey.xyz/screenname-available', {
 			type: 'get',
 			data: { 'screen_name': sn },
 			dataType: 'json',
