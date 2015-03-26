@@ -27,7 +27,7 @@ Many ways to contribute to Misskey
 * Review [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
 ## License
-The MIT License. (See [LICENSE](LICENSE).)
+The MIT License. (See [LICENSE](LICENSE))
 
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
