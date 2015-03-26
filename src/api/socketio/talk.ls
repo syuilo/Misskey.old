@@ -38,13 +38,13 @@ module.exports = (io, session-store) ->
 								catch e
 									socket.emit content
 						..on \read (id) ->
-							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, JSON.stringify do
+							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, to-json do
 								type: \read
 								value: id
 						..on \alive (req) ->
 							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, \alive
 						..on \type (text) ->
-							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, JSON.stringify do
+							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, to-json do
 								type: \type
 								value: text
 						.on \disconnect ->

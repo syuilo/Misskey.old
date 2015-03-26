@@ -37,7 +37,7 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 						..reposted-by-user = filter-user-for-response user
 						.. |> res.api-render
 
-					stream-obj = JSON.stringify do
+					stream-obj = to-json do
 						type: \repost
 						value: target-status-obj
 					publish-redis-streaming 'userStream:' + user.id, stream-obj

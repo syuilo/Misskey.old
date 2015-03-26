@@ -18,9 +18,9 @@ module.exports = (req, res) -> authorize req, res, (user,) ->
 			..save (err) ->
 				obj <- filter-talk-message-for-response talk-message
 				res.api-render obj
-				publish-redis-streaming "talkStream:#{talk-message.otherparty-id}-#{user.id}" JSON.stringify do
+				publish-redis-streaming "talkStream:#{talk-message.otherparty-id}-#{user.id}" to-json do
 					type: \otherpartyMessageUpdate
 					value: obj
-				publish-redis-streaming "talkStream:#{user.id}-#{talk-message.otherparty-id}" JSON.stringify do
+				publish-redis-streaming "talkStream:#{user.id}-#{talk-message.otherparty-id}" to-json do
 					type: \meMessageUpdate
 					value: obj

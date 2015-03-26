@@ -18,5 +18,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					stream-obj = 
 						type: 'followedMe'
 						value: user
-					publish-redis-streaming 'userStream:' + target-user.id, JSON.stringify stream-obj
+					publish-redis-streaming 'userStream:' + target-user.id, to-json stream-obj
 					res.api-render filter-user-for-response target-user

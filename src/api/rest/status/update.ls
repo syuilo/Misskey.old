@@ -65,7 +65,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 
 	function send(obj)
 		res.api-render obj
-		stream-obj = JSON.stringify do
+		stream-obj = to-json do
 			type: \post
 			value: obj
 
@@ -80,7 +80,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			mention-sn .= replace '@' ''
 			User.find-one { screen-name: mention-sn } (reply-user) ->
 				| reply-user? => StatusMention.insert { status-id: obj.id, user-id: reply-user.id } (,) ->
-					stream-mention-obj = JSON.stringify do
+					stream-mention-obj = to-json do
 						type: \reply
 						value: obj
 					publish-redis-streaming 'userStream:' + reply-user.id, stream-mention-obj

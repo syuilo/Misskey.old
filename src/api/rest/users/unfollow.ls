@@ -16,5 +16,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					stream-obj = 
 						type: 'unfollowedMe'
 						value: user
-					Streamer.publish 'userStream:' + target-user.id, JSON.stringify stream-obj
+					Streamer.publish 'userStream:' + target-user.id, to-json stream-obj
 					res.api-render filter-user-for-response target-user
