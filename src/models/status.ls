@@ -9,16 +9,16 @@ db = mongoose.create-connection config.mongo.uri, config.mongo.options
 mongoose-auto-increment.initialize db
 
 status-schema = new mongoose.Schema do
-	app-id:                { type: Number,  required: yes }
-	created-at:            { type: Date,    required: yes, default: Date.now }
-	favorites-count:       { type: Number,  default: 0 }
-	in-reply-to-status-id: { type: Number,  default: null }
-	is-image-attached:     { type: Boolean, default: false }
+	app-id:                { type: Schema.Types.ObjectId,  required: yes }
+	created-at:            { type: Date,                   required: yes, default: Date.now }
+	favorites-count:       { type: Number,                 default: 0 }
+	in-reply-to-status-id: { type: Schema.Types.ObjectId,  default: null }
+	is-image-attached:     { type: Boolean,                default: false }
 	replies:               [Number]
-	reposts-count:         { type: Number,  default: 0 }
-	repost-from-status-id: { type: Number,  default: null }
-	text:                  { type: String,  required: yes }
-	user-id:               { type: Number,  required: yes }
+	reposts-count:         { type: Number,                 default: 0 }
+	repost-from-status-id: { type: Schema.Types.ObjectId,  default: null }
+	text:                  { type: String,                 required: yes }
+	user-id:               { type: Schema.Types.ObjectId,  required: yes }
 	
 # Virtual access _id property 
 status-schema.virtual \id .get -> (@_id)
