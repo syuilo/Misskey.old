@@ -166,7 +166,7 @@ function initRegisterForm() {
 			hideMessage();
 			var klass = success == null ? '' : success ? 'done' : 'fail';
 			var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
-			$message.css('top', $(userNameInputQuery).position().top);
+			$message.css('top', $(userNameInputQuery).position().top - $(userNameInputQuery).outerHeight() + ($message.outerHeight() / 2));
 			$message.appendTo('#registerForm .user-name').animate({
 				'margin-right': 0,
 				opacity: 1
