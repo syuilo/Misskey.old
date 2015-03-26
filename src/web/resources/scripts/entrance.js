@@ -110,7 +110,7 @@ function initRegisterForm() {
 		var $nextButton = $('#registerForm .user-name button.next')
 
 		$nextButton.click(function() {
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
 			$('#registerForm .user-name').animate({
 				left: '-50%',
 				opacity: 0.2
