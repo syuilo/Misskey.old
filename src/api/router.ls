@@ -52,7 +52,7 @@ module.exports = (app) ->
 			filename = req.url.match /.+\/(.+?)([\?#;].*)?$/
 			if filename?
 				extension = filename.1.match /\.(.+)$/
-				req.format = extension.1 if extension != null
+				req.format = extension.1 if extension?
 			next!
 		
 		# Authorize
