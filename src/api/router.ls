@@ -3,12 +3,12 @@ routing =
 		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
 		[\get    /\/account\/show(\..+)?$/                 './rest/account/show']
 		[\put    /\/account\/update(\..+)?$/               './rest/account/update']
-		[\put    /\/account\/updateIcon(\..+)?$/          './rest/account/update-icon']
-		[\put    /\/account\/updateHeader(\..+)?$/        './rest/account/update-header']
-		[\put    /\/account\/updateWallpaper(\..+)?$/     './rest/account/update-wallpaper']
-		[\put    /\/account\/updateWebtheme(\..+)?$/      './rest/account/update-webtheme']
-		[\get    /\/account\/unreadalltalksCount(\..+)?$/ './rest/account/unreadalltalks-count']
-		[\delete /\/account\/resetWebtheme(\..+)?$/       './rest/account/reset-webtheme']
+		[\put    /\/account\/update-icon(\..+)?$/          './rest/account/update-icon']
+		[\put    /\/account\/update-header(\..+)?$/        './rest/account/update-header']
+		[\put    /\/account\/update-wallpaper(\..+)?$/     './rest/account/update-wallpaper']
+		[\put    /\/account\/update-webtheme(\..+)?$/      './rest/account/update-webtheme']
+		[\get    /\/account\/unreadalltalks-count(\..+)?$/ './rest/account/unreadalltalks-count']
+		[\delete /\/account\/reset-webtheme(\..+)?$/       './rest/account/reset-webtheme']
 	
 	application:
 		[\post /\/application\/create(\..+)?$/ './rest/application/create']
@@ -42,7 +42,7 @@ routing =
 	
 	other:
 		[\get /\/search\/user(\..+)?$/         './rest/search/user']
-		[\get /\/screenname_available(\..+)?$/ './rest/screenname-available']
+		[\get /\/screenname-available(\..+)?$/ './rest/screenname-available']
 		[\all /\/teapot\/coffee(\..+)?$/       './rest/teapot/coffee']
 
 
@@ -58,7 +58,7 @@ module.exports = (app) ->
 		# Authorize
 		..get  '/authorize' require './application-authorize/authorize-get'
 		..post '/authorize' (req, res) -> (require './application-authorize/authorize-post') req, res, app
-		..get  /\/sauth\/get_request_token(\..+)?$/ require './rest/sauth/get_request_token'
+		..get  /\/sauth\/get-request-token(\..+)?$/ require './rest/sauth/get_request_token'
 	
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
