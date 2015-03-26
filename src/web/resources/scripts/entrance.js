@@ -102,11 +102,23 @@ $(function() {
 });
 
 function initRegisterForm() {
+	var userNameQuery = '#registerForm .user-name .user-name-input';
+
 	initUserNameSection();
 
 	function initUserNameSection() {
-		var userNameQuery = '#registerForm .user-name .user-name-input';
 		var $nextButton = $('#registerForm .user-name button.next')
+
+		$nextButton.click(function() {
+			$('#registerForm .user-name').css({
+				left: '-50%',
+				opacity: 1
+			});
+			$('#registerForm .nickname').css({
+				left: 0,
+				opacity: 1
+			});
+		});
 
 		$(userNameQuery).keyup(function() {
 			$nextButton.attr('disabled', true);
