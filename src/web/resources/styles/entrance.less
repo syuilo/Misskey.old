@@ -58,6 +58,7 @@ main {
 
 				p.caption {
 					display: inline-block;
+					width: 128px;
 					padding: 8px 16px;
 					margin: 8px 0;
 					font-size: 1.2em;
@@ -74,11 +75,12 @@ main {
 					-moz-user-select: text;
 					-webkit-user-select: text;
 					-ms-user-select: text;
+					display: inline-block;
 					cursor: auto;
 					box-sizing: border-box;
 					padding: 8px 16px;
 					margin: 8px 0;
-					width: 100%;
+					width: ~"clac(100% - 128px)";
 					font-size: 1.2em;
 					color: #000;
 					outline: none;
