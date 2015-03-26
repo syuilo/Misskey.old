@@ -151,7 +151,7 @@ function initUserNameValidater() {
 	function showMessage(message, success) {
 		hideMessage();
 		var klass = success ? 'done' : 'fail';
-		$('body').append('<p id="userNameAvailable" class="' + klass + '">' + message + '</p>');
+		$('#registerForm .user-name').append('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
 	}
 
 	function hideMessage() {
@@ -165,7 +165,8 @@ function showRegisterForm() {
 	});
 	setTimeout(function() {
 		$('#registerForm .user-name').css({
-			left: 0
+			left: 0,
+			opacity: 1
 		});
 	}, 100);
 }
