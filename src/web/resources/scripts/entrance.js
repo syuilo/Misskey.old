@@ -38,7 +38,9 @@ function showRegisterForm() {
 	$('#registerForm').css({
 		display: 'block'
 	});
-	$('#registerForm .user-name').css({
-		left: '0%'
-	});
+	setTimeout(function() {
+		$('#registerForm .user-name').css({
+			left: 0
+		});
+	}, 1000);
 }
