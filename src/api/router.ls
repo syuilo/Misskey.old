@@ -16,7 +16,7 @@ routing =
 	
 	notice:
 		[\delete /\/notice\/delete(\..+)?$/    './rest/notice/delete']
-		[\delete /\/notice\/deleteall(\..+)?$/ './rest/notice/deleteall']
+		[\delete /\/notice\/delete-all(\..+)?$/ './rest/notice/delete-all']
 	
 	users:
 		[\get    /\/users\/show(\..+)?$/     './rest/users/show']
