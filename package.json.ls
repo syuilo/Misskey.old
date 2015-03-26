@@ -38,7 +38,7 @@ dependencies:
 	less: '^2.4.0'
 	marked: '^0.3.3'
 	moment: '^2.9.0'
-	mongoose: '^4.0.0'
+	mongoose: '^3.8.25'
 	'mongoose-auto-increment': '^3.2.0'
 	multer: '^0.1.8'
 	'prelude-ls': '^1.1.1'
