@@ -1,5 +1,5 @@
-short_name:  'Misskey'
+short-name:  'Misskey'
 name:  'Misskey'
-start_url:  'https://misskey.xyz'
-display: 'standalone'
-orientation: 'landscape'
+start-url:  'https://misskey.xyz'
+display: \standalone
+orientation: \landscape
