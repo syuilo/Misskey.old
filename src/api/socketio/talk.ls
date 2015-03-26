@@ -16,7 +16,7 @@ module.exports = (io, session-store) ->
 				console.log err.message
 			else
 				if !session?
-					console.log 'undefined: ' + sidkey
+					console.log "undefined: #sidkey"
 				else
 					uid = socket.user-id = session.user-id
 					publisher = redis.create-client!
@@ -26,8 +26,8 @@ module.exports = (io, session-store) ->
 							otherparty-id = String req.otherparty-id
 							socket.otherparty-id = otherparty-id
 							subscriber = redis.create-client!
-								..subscribe 'misskey:talkStream:' + uid + '-' + socket.otherparty-id
-							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, \otherpartyEnterTheTalk
+								..subscribe "misskey:talkStream:#{uid}-#{socket.otherparty-id}"
+							publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}", \otherpartyEnterTheTalk
 							socket.emit \inited
 							subscriber.on \message (channel, content) ->
 								try
@@ -38,14 +38,14 @@ module.exports = (io, session-store) ->
 								catch e
 									socket.emit content
 						..on \read (id) ->
-							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, to-json do
+							publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}", to-json do
 								type: \read
 								value: id
 						..on \alive (req) ->
-							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, \alive
+							publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}", \alive
 						..on \type (text) ->
-							publisher.publish 'misskey:talkStream:' + socket.otherparty-id + '-' + uid, to-json do
+							publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}", to-json do
 								type: \type
 								value: text
 						.on \disconnect ->
-						publisher.publish 'misskey:talkStream:' + socket.otherpartyId + '-' + uid, \otherpartyLeftTheTalk
+						publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}", \otherpartyLeftTheTalk
