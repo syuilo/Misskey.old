@@ -2,7 +2,7 @@ require! {
 	fs
 	cookie
 	redis
-	'../../config': config
+	'../../config'
 	'express-session': session
 }
 module.exports = (io, session-store) ->

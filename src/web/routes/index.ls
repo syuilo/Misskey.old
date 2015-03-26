@@ -9,7 +9,7 @@ require! {
 	'../../models/user': User
 	'../../models/status': Status
 	'../utils/login': do-login
-	'../../config': config
+	'../../config'
 	'./image': image-router
 }
 

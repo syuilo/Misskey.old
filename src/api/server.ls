@@ -7,7 +7,7 @@ require! {
 	'cookie-parser': cookie-parser
 	'express-session': session
 	'js-yaml': yaml
-	'../config': config
+	'../config'
 	'./router': router
 }
 

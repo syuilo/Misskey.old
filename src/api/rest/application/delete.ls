@@ -1,6 +1,6 @@
 require! {
 	'../../../models/application': Application
-	'../../../config': config
+	'../../../config'
 	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->

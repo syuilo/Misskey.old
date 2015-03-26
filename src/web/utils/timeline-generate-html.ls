@@ -2,7 +2,7 @@ require! {
 	jade
 	'./timeline-serialyzer': serialyzer
 	'./textparser': textparser
-	'../../config': config
+	'../../config'
 }
 
 module.exports = (statuses, viewer, callback) ->

@@ -7,7 +7,7 @@ require! {
 	'../../models/status-check-favorited'
 	'../../models/status-check-reposted'
 	'./timeline-serialize-more-talk': serialize-talk
-	'../../config': config
+	'../../config'
 }
 
 module.exports = (statuses, me, callback) ->
