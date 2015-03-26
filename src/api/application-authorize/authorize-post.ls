@@ -9,8 +9,8 @@ require! {
 module.exports = (req, res, server) ->
 	login = req.session? && req.session.user-id?
 	
-	request-token = req.query.request_token ? null
-	screen-name = req.body.screen_name ? null
+	request-token = req.query.request-token ? null
+	screen-name = req.body.screen-name ? null
 	password = req.body.password ? null
 	
 	if request-token?
