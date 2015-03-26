@@ -152,7 +152,7 @@ function initUserNameValidater() {
 		var klass = success == null ? '' : success ? 'done' : 'fail';
 		var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
 		$message.appendTo('#registerForm .user-name').animate({ 
-			right: "calc(100% + -8px)",
+			'margin-right': 0,
 			opacity: 1
 		}, 500, 'easeOutCubic');
 	}
