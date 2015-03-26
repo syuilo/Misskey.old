@@ -5,9 +5,9 @@ require! {
 }
 module.exports = (req, res) ->
 	login = req.session? && req.session.user-id?
-	request-token = req.query.request_token
+	request-token = req.query.request-token
 	switch
-	| request-token == null => res.api-error 400 'consumer_key parameter is required :('
+	| request-token == null => res.api-error 400 'consumerKey parameter is required :('
 	| _ => SauthRequestToken.find request-token, (request-token-instance) ->
 		| request-token-instance == null => res.render '../web/views/authorize-invalidToken' {}
 		| request-token-instance.is-invalid => res.render '../web/views/authorize-invalidToken' {}
