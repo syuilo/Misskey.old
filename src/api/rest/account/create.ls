@@ -7,6 +7,7 @@ require! {
 	'../../../models/user-header': UserHeader
 	'../../../models/user-wallpaper': UserWallpaper
 	'../../../models/utils/filter-user-for-response'
+	'../../../models/utils/exist-screenname'
 	'../../../config'
 }
 
@@ -25,14 +26,13 @@ module.exports = (req, res) ->
 	| password.length < 8 => res.api-error 400 'password invalid format'
 	| !color? => res.api-error 400 'color parameter is required :('
 	| !color.match /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
-	| _ => User.find-one {screen-name} (, user) ->
-		| !user? => res.api-error 500 'This screen name is already used.'
+	| _ => exist-screenname screen-name .then (exist) ->
+		| exist => res.api-error 500 'This screen name is already used.'
 		| _ =>
 			salt = bcrypt.gen-salt-sync 16
 			hash-password = bcrypt.hash-sync password, salt
 			User.insert { screen-name, password: hash-password, name, color } (err, created-user) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
-				| !created-user? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
 					# Init user image documents
 					UserIcon.insert { user-id: created-user.id } (, user-image) ->
