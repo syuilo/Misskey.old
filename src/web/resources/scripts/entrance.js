@@ -33,7 +33,7 @@ $(function() {
 		showRegisterForm();
 	});
 
-	InitUserNameValidater();
+	initUserNameValidater();
 
 	
 
@@ -101,29 +101,30 @@ $(function() {
 	});
 });
 
-function InitUserNameValidater() {
+function initUserNameValidater() {
 	var userNameQuery = '#registerForm .user-name .user-name-input';
 
 	$(userNameQuery).keyup(function() {
+		hideMessage();
 		var sn = $(userNameQuery).val();
 
 		if (sn == '') {
 			return false;
 		}
 		if (sn.length < 4) {
-			showUserNameMessage('4文字以上でお願いしますっ', false)
+			showMessage('4文字以上でお願いしますっ', false)
 			return false;
 		}
 		if (sn.match(/^[0-9]+$/)) {
-			showUserNameMessage('すべての文字を数字にすることはできませんっ', false)
+			showMessage('すべての文字を数字にすることはできませんっ', false)
 			return false;
 		}
 		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			showUserNameMessage('半角英数記号(_)のみでお願いしますっ', false)
+			showMessage('半角英数記号(_)のみでお願いしますっ', false)
 			return false;
 		}
 		if (sn.length > 20) {
-			showUserNameMessage('20文字以内でお願いします', false)
+			showMessage('20文字以内でお願いします', false)
 			return false;
 		}
 
@@ -137,20 +138,24 @@ function InitUserNameValidater() {
 			}
 		}).done(function(result) {
 			if (result) {
-				showUserNameMessage('このIDは既に使用されていますっ', false)
+				showMessage('このIDは既に使用されていますっ', false)
 				screenNameOk = false;
 			} else {
-				showUserNameMessage('このIDは使用できますっ！', true)
+				showMessage('このIDは使用できますっ！', true)
 				screenNameOk = true;
 			}
 		}).fail(function() {
 		});
 	});
 
-	function showUserNameMessage(message, success) {
-		$('#userNameAvailable').remove();
+	function showMessage(message, success) {
+		hideMessage();
 		var klass = success ? 'done' : 'fail';
 		$('body').append('<p id="userNameAvailable" class="' + klass + '">' + message + '</p>');
+	}
+
+	function hideMessage() {
+		$('#userNameAvailable').remove();
 	}
 }
 
