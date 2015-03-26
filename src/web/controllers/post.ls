@@ -18,11 +18,7 @@ module.exports = (req, res) ->
 		(callback) ->
 			| req.login => Post.is-reposted req.root-post.id, req.me.id, callback.bind null null
 			| _ => callback null null
-	], (err, results) ->
+	], (err, [before-talks, is-favorited, is-reposted]) ->
 		post = req.root-post
 		post.user = req.root-user
-		res.display req, res, 'post' do
-			post: post
-			before-talks: results.0
-			is-favorited: results.1
-			is-reposted: results.2
+		res.display req, res, 'post' {post, before-talks, is-favorited, is-reposted}
