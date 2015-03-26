@@ -21,13 +21,13 @@ A mystery SNS: https://misskey.xyz/
 ## Contribution
 Many ways to contribute to Misskey
 
-* Report any problems to [Issue](https://github.com/syuilo/Misskey/issues)
-* Discussion on [Issue](https://github.com/syuilo/Misskey/issues)
+* Report any problems to [New Issue](https://github.com/syuilo/Misskey/issues/new)
+* Discussion on [Issue (Discussion)](https://github.com/syuilo/Misskey/labels/Discussion)
 * Send [Pull Request](https://github.com/syuilo/Misskey/pulls)
 * Review [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
 ## License
-The MIT License. See [LICENSE](LICENSE).
+The MIT License. (See [LICENSE](LICENSE).)
 
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
