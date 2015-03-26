@@ -1,5 +1,6 @@
 require! {
 	bcrypt
+	'../../../utils/get-express-params'
 	'../../../web/utils/login': do-login
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
@@ -12,10 +13,7 @@ require! {
 }
 
 module.exports = (req, res) ->
-	screen-name = req.body.screen_name
-	name = req.body.name
-	password = req.body.password
-	color = req.body.color
+	[screen-name, name, password, color] = get-express-params req <[ screen-name name password color ]>
 
 	switch
 	| !screen-name? => res.api-error 400 'screen_name parameter is required :('
