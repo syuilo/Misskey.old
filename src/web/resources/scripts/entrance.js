@@ -42,5 +42,5 @@ function showRegisterForm() {
 		$('#registerForm .user-name').css({
 			left: 0
 		});
-	}, 1000);
+	}, 100);
 }
