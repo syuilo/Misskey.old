@@ -10,7 +10,9 @@ module.exports = (screen-name) ->
 		.find {screen-name}
 		.limit 1
 		.exec
-		
+	
+	console.log exist
+	
 	if err?
 		then reject err
-		else resolve exist?
+		else resolve exist
