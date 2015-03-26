@@ -3,9 +3,11 @@ require! {
 	'../config'
 }
 
+Schema = mongoose.Schema
+
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
-user-schema = new mongoose.Schema do
+user-schema = new Schema do
 	bio:                    { type: String,   required: no,  default: null }
 	birthday:               { type: String,   required: no,  default: null }
 	color:                  { type: String,   required: yes, default: '#ff005c' }
