@@ -33,7 +33,7 @@ $(function() {
 		showRegisterForm();
 	});
 
-	initUserNameValidater();
+	initRegisterForm();
 
 	
 
@@ -101,64 +101,68 @@ $(function() {
 	});
 });
 
-function initUserNameValidater() {
-	var userNameQuery = '#registerForm .user-name .user-name-input';
-	var $nextButton = $('#registerForm .user-name button.next')
+function initRegisterForm() {
+	initUserNameSection();
 
-	$(userNameQuery).keyup(function() {
-		$nextButton.attr('disabled', true);
-		hideMessage();
-		var sn = $(userNameQuery).val();
+	function initUserNameSection() {
+		var userNameQuery = '#registerForm .user-name .user-name-input';
+		var $nextButton = $('#registerForm .user-name button.next')
 
-		if (sn == '') {
-			return false;
-		}
-		if (sn.length < 4) {
-			showMessage('4文字以上でお願いしますっ', false)
-			return false;
-		}
-		if (sn.match(/^[0-9]+$/)) {
-			showMessage('すべてを数字にすることはできませんっ', false)
-			return false;
-		}
-		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-			showMessage('半角英数記号(_)のみでお願いしますっ', false)
-			return false;
-		}
-		if (sn.length > 20) {
-			showMessage('20文字以内でお願いします', false)
-			return false;
-		}
+		$(userNameQuery).keyup(function() {
+			$nextButton.attr('disabled', true);
+			hideMessage();
+			var sn = $(userNameQuery).val();
 
-		showMessage('確認中...', null);
-		$.ajax('https://api.misskey.xyz/screenname-available', {
-			type: 'get',
-			data: { 'screen-name': sn },
-			dataType: 'json',
-			xhrFields: { withCredentials: true }
-		}).done(function(result) {
-			if (result) {
-				showMessage('このIDは既に使用されていますっ', false)
-			} else {
-				showMessage('このIDは使用できますっ！', true)
-				$nextButton.attr('disabled', false);
+			if (sn == '') {
+				return false;
 			}
-		}).fail(function() {
+			if (sn.length < 4) {
+				showMessage('4文字以上でお願いしますっ', false)
+				return false;
+			}
+			if (sn.match(/^[0-9]+$/)) {
+				showMessage('すべてを数字にすることはできませんっ', false)
+				return false;
+			}
+			if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
+				showMessage('半角英数記号(_)のみでお願いしますっ', false)
+				return false;
+			}
+			if (sn.length > 20) {
+				showMessage('20文字以内でお願いします', false)
+				return false;
+			}
+
+			showMessage('確認中...', null);
+			$.ajax('https://api.misskey.xyz/screenname-available', {
+				type: 'get',
+				data: { 'screen-name': sn },
+				dataType: 'json',
+				xhrFields: { withCredentials: true }
+			}).done(function(result) {
+				if (result) {
+					showMessage('このIDは既に使用されていますっ', false)
+				} else {
+					showMessage('このIDは使用できますっ！', true)
+					$nextButton.attr('disabled', false);
+				}
+			}).fail(function() {
+			});
 		});
-	});
 
-	function showMessage(message, success) {
-		hideMessage();
-		var klass = success == null ? '' : success ? 'done' : 'fail';
-		var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
-		$message.appendTo('#registerForm .user-name').animate({ 
-			'margin-right': 0,
-			opacity: 1
-		}, 500, 'easeOutCubic');
-	}
+		function showMessage(message, success) {
+			hideMessage();
+			var klass = success == null ? '' : success ? 'done' : 'fail';
+			var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
+			$message.appendTo('#registerForm .user-name').animate({
+				'margin-right': 0,
+				opacity: 1
+			}, 500, 'easeOutCubic');
+		}
 
-	function hideMessage() {
-		$('#userNameAvailable').remove();
+		function hideMessage() {
+			$('#userNameAvailable').remove();
+		}
 	}
 }
 
