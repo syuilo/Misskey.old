@@ -6,9 +6,9 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	user-id = req.body.user_id
+	user-id = req.body\user-id
 	switch
-	| !user-id? => res.api-error 400 'user_id parameter is required :('
+	| !user-id? => res.api-error 400 'user-id parameter is required :('
 	| _ => UserFollowing.find-one { $and: [{ follower-id: user.id }, { followee-id: target-user-id }] } (, following) ->
 			| !following? => res.api-error 400 'This user is already not following :)'
 			| _ => User.find user-id, (target-user) ->
