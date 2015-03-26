@@ -34,7 +34,7 @@ io.use (socket, next) ->
 	handshake = socket.request
 	cookies = cookie.parse handshake.headers.cookie
 	switch
-	| handshake == null => fallthrough
+	| !handshake? => fallthrough
 	| !handshake.headers.cookie? => fallthrough
 	| !cookies[config.session-key]? => fallthrough
 	| !(cookies[config.session-key].match /s:(.+?)\./) => next new Error '[[error:not-authorized]]'
