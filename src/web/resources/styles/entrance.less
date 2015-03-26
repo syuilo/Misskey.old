@@ -60,6 +60,12 @@ main {
 					}
 				}
 
+				&:before {
+					content: "";
+					display: block;
+					clear: both;
+				}
+
 				&:first-child {
 					margin-bottom: 16px;
 				}
@@ -78,6 +84,7 @@ main {
 					font-weight: bold;
 					color: #fff;
 					background: #5a7d7f;
+					transition: all .2s ease;
 				}
 
 				input[type=text],
@@ -116,6 +123,11 @@ main {
 						width: 100%;
 						color: @themeColor;
 						transition: all .2s ease;
+
+						& + .caption {
+							width: 100%;
+							background: #29797f;
+						}
 					}
 				}
 			}
