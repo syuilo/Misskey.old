@@ -9,6 +9,4 @@ module.exports = (req, res) ->
 		res.api-error 400 'screen_name parameter is required :('
 	else
 		screen-name -= /^@/
-		exist-screenname screen-name .then (exist) ->
-			console.log exist
-			res.api-render exist?
+		exist-screenname screen-name .then (exist) -> res.api-render exist
