@@ -114,10 +114,10 @@ function initRegisterForm() {
 				left: '-50%',
 				opacity: 0
 			});
-			$('#registerForm .nickname').css({
+			$('#registerForm .nickname').animate({
 				left: 0,
 				opacity: 1
-			});
+			}, 500, 'easeOutElastic');
 		});
 
 		$(userNameQuery).keyup(function() {
