@@ -19,8 +19,6 @@ $(function() {
 			location.reload();
 		}).fail(function() {
 			$submitButton.attr("disabled", false);
-			$("#failed").remove();
-			$("#icon").after("<p style='text-align: center; font-size: 0.8em; color: #f00;' id='failed'>ログインに失敗しました。パスワードが間違っている可能性があります</p>");
 			setTimeout(function() {
 				$form.css({
 					"transform": "perspective(512px) scale(1)",
