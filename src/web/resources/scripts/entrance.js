@@ -118,7 +118,7 @@ function initUserNameValidater() {
 			return false;
 		}
 		if (sn.match(/^[0-9]+$/)) {
-			showMessage('すべての文字を数字にすることはできませんっ', false)
+			showMessage('すべてを数字にすることはできませんっ', false)
 			return false;
 		}
 		if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
