@@ -4,4 +4,4 @@ require! {
 }
 
 # String -> Promise Boolean
-module.exports = (screen-name) -> map-promise empty >> not, User.find {screen-name} .limit 1 .exec
+module.exports = (screen-name) -> map-promise (empty) >> (!), User.find {screen-name} .limit 1 .exec
