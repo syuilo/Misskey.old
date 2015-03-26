@@ -31,3 +31,13 @@ $(function() {
 		});
 	});
 });
+
+function showRegisterForm() {
+	$('#registerForm').css({
+		display: 'block'
+	});
+}
+
+$('#new').click(function() {
+	showRegisterForm();
+});
