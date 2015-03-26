@@ -59,7 +59,7 @@ module.exports = (app) ->
 			if user-image?
 				image-buffer = if user-image.image != null
 					then user-image.image
-					else fs.read-file-sync path.resolve "#__dirname/../resources/images/#{image-property-name}_default.jpg"
+					else fs.read-file-sync path.resolve "#__dirname/../resources/images/#{image-property-name}-default.jpg"
 				if (req.headers[\accept].index-of \text) == 0
 					display-image do
 						req
@@ -168,7 +168,7 @@ module.exports = (app) ->
 		display-talkmessage-image req, res, id
 		
 	# Webtheme thumbnail
-	app.get '/img/webtheme_thumbnail/:id' (req, res) ->
+	app.get '/img/webtheme-thumbnail/:id' (req, res) ->
 		id = req.params.id
 		Webtheme.find-by-id id, (, webtheme) ->
 			| webtheme? =>
