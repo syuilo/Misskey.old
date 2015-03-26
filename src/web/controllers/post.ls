@@ -6,7 +6,7 @@ require! {
 }
 module.exports = (req, res) ->
 	async.series [
-		(callback) -> ost.get-before-talk req.root-post.id, (posts) ->
+		(callback) -> Post.get-before-talk req.root-post.id, (posts) ->
 			async.map posts, (post, next) ->
 				User.find post.user-id, (user) ->
 					post.user = user
