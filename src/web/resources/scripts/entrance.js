@@ -110,10 +110,10 @@ function initRegisterForm() {
 		var $nextButton = $('#registerForm .user-name button.next')
 
 		$nextButton.click(function() {
-			$('#registerForm .user-name').css({
+			$('#registerForm .user-name').animate({
 				left: '-50%',
 				opacity: 0
-			});
+			}, 500, 'easeOutQuint');
 			$('#registerForm .nickname').animate({
 				left: 0,
 				opacity: 1
@@ -182,10 +182,8 @@ function showRegisterForm() {
 	$('#registerForm').css({
 		display: 'block'
 	});
-	setTimeout(function() {
-		$('#registerForm .user-name').css({
-			left: 0,
-			opacity: 1
-		});
-	}, 100);
+	$('#registerForm .user-name').animate({
+		left: 0,
+		opacity: 1
+	}, 500, 'easeOutQuint');
 }
