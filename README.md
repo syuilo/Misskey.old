@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
-[![Issue Stats](http://issuestats.com/github/syuilo/Misskey/badge/pr?style=flat)](http://issuestats.com/github/syuilo/Misskey)
+[![Pull Requst Stats](http://issuestats.com/github/syuilo/Misskey/badge/pr?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Issue Stats](http://issuestats.com/github/syuilo/Misskey/badge/issue?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
 [![MIT LICENSE](http://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
