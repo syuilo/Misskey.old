@@ -5,7 +5,7 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	since-id = if req.query.since_id != null then req.query.since_id else null
-	max-id = if req.query.max_id != null then req.query.max_id else null
+	since-id = req.query\since-id ? null
+	max-id = req.query\max-id ? null
 	status-get-timeline user.id, 30, since-id, max-id, (statuses) ->
 		res.api-render statuses
