@@ -53,6 +53,7 @@ main {
 				display: block;
 				position: relative;
 				min-height: ~"calc(1.5em + 16px)";
+				border: solid 1px #eee;
 
 				&:hover, &:focus {
 					p.caption {
@@ -113,7 +114,7 @@ main {
 					border: none;
 					border-radius: 0;
 					box-shadow: none;
-					background: rgba(255, 255, 255, 0.1);
+					background: rgba(255, 255, 255, 0);
 					transition: all .5s ease;
 
 					&:hover {
@@ -122,9 +123,9 @@ main {
 
 					&:focus {
 						width: 100%;
-						padding: 8px 12px 8px 16px;
+						padding: 8px 12px 8px 32px;
 						color: @themeColor;
-						background: rgba(255, 255, 255, 0.9);
+						background: rgba(255, 255, 255, 1.0);
 						transition: all .2s ease;
 
 						& + .caption {
