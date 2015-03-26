@@ -6,8 +6,8 @@
 # Misskey
 A mystery SNS: https://misskey.xyz/
 
-## External dependencies
-[![Node.js](https://img.shields.io/badge/Node-0.12.0-blue.svg)](https://nodejs.org)
+## Implicit dependencies
+[![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
 [![MongoDB](https://img.shields.io/badge/MongoDB-2.6.8-blue.svg)](https://www.mongodb.org)
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
 [![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
