@@ -103,8 +103,10 @@ $(function() {
 
 function initUserNameValidater() {
 	var userNameQuery = '#registerForm .user-name .user-name-input';
+	var $nextButton = $('#registerForm .user-name button.next')
 
 	$(userNameQuery).keyup(function() {
+		$nextButton.attr('disabled', true);
 		hideMessage();
 		var sn = $(userNameQuery).val();
 
@@ -128,21 +130,18 @@ function initUserNameValidater() {
 			return false;
 		}
 
-		$(userNameQuery).before('<p id="screenNameAvailable">確認中...</p>');
+		showMessage('確認中...', null);
 		$.ajax('https://api.misskey.xyz/screenname-available', {
 			type: 'get',
 			data: { 'screen-name': sn },
 			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
-			}
+			xhrFields: { withCredentials: true }
 		}).done(function(result) {
 			if (result) {
 				showMessage('このIDは既に使用されていますっ', false)
-				screenNameOk = false;
 			} else {
 				showMessage('このIDは使用できますっ！', true)
-				screenNameOk = true;
+				$nextButton.attr('disabled', false);
 			}
 		}).fail(function() {
 		});
@@ -150,7 +149,7 @@ function initUserNameValidater() {
 
 	function showMessage(message, success) {
 		hideMessage();
-		var klass = success ? 'done' : 'fail';
+		var klass = success == null ? '' : success ? 'done' : 'fail';
 		$('#registerForm .user-name').append('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
 	}
 
