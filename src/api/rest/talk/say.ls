@@ -34,20 +34,20 @@ module.exports = (req, res) ->
 				| _ => create req, res, res, app.id, otherparty-id, null, false, text, user.id
 
 function create(req, res, app-id, otherparty-id, image, is-image-attached, text, user-id)
-	function send-response(obj)
+	function send-response obj
 		res.api-render obj
-		publish-redis-streaming 'userStream:' + otherparty-id, to-json do
-			type: \talkMessage
+		publish-redis-streaming "userStream:#{otherparty-id}", to-json do
+			type: \talk-message
 			value: obj
-		publish-redis-streaming 'talkStream:' + otherparty-id + '-' + user-id, to-json do
-			type: \otherpartyMessage
+		publish-redis-streaming "talkStream:#{otherparty-id}" + '-' + user-id, to-json do
+			type: \otherparty-message
 			value: obj
-		publish-redis-streaming 'talkStream:' + user-id + '-' + otherparty-id, to-json do
+		publish-redis-streaming "talkStream:#{user-id}-#{otherparty-id}", to-json do
 			type: \meMessage
 			value: obj
-	TalkMessage.insert { app-id, user-id, otherparty-id, text, is-image-attached } (talk-message) ->
+	TalkMessage.insert {app-id, user-id, otherparty-id, text, is-image-attached} (talk-message) ->
 		if is-image-attached
-			TalkMessageImage.insert { message-id: talk-message.id, image } (talk-message-image) ->
+			TalkMessageImage.insert {message-id: talk-message.id, image} (talk-message-image) ->
 				send-response talk-message
 		else
 			send-response talk-message
