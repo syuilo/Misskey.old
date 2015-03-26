@@ -22,17 +22,21 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 			div#mainContainer
 				h1 Misskey
 				form#loginForm(action='/login', method='post')
-					input#id(name='screen_name'
-						type='text'
-						pattern='^[0-9A-Za-z_]+$'
-						placeholder='ユーザー名'
-						autocomplete='off'
-						autofocus
-						required)
-					input(name='password'
-						type='password'
-						placeholder='パスワード'
-						autocomplete='off'
-						required)
+					label
+						p.caption ユーザー名 @
+						input#id(name='screen_name'
+							type='text'
+							pattern='^[0-9A-Za-z_]+$'
+							placeholder='ユーザー名'
+							autocomplete='off'
+							autofocus
+							required)
+					label
+						p.caption パスワード
+						input(name='password'
+							type='password'
+							placeholder='パスワード'
+							autocomplete='off'
+							required)
 					input(type='submit', value='Login')
 				a#new(href='/new') 新しくアカウントを作成する
