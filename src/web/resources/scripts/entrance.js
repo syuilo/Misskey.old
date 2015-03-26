@@ -102,7 +102,7 @@ $(function() {
 });
 
 function initRegisterForm() {
-	var userNameQuery = '#registerForm .user-name .user-name-input';
+	var userNameInputQuery = '#registerForm .user-name .user-name-input';
 
 	initUserNameSection();
 
@@ -112,7 +112,7 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$('#registerForm .user-name').animate({
 				left: '-50%',
-				opacity: 0
+				opacity: 0.2
 			}, 500, 'easeOutQuint');
 			$('#registerForm .nickname').animate({
 				left: 0,
@@ -120,10 +120,10 @@ function initRegisterForm() {
 			}, 500, 'easeOutElastic');
 		});
 
-		$(userNameQuery).keyup(function() {
+		$(userNameInputQuery).keyup(function() {
 			$nextButton.attr('disabled', true);
 			hideMessage();
-			var sn = $(userNameQuery).val();
+			var sn = $(userNameInputQuery).val();
 
 			if (sn == '') {
 				return false;
@@ -166,6 +166,7 @@ function initRegisterForm() {
 			hideMessage();
 			var klass = success == null ? '' : success ? 'done' : 'fail';
 			var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
+			$message.css('top', $(userNameInputQuery).offset().top);
 			$message.appendTo('#registerForm .user-name').animate({
 				'margin-right': 0,
 				opacity: 1
