@@ -18,11 +18,14 @@ A mystery SNS: https://misskey.xyz/
 3. `npm install`
 4. `npm run build`
 
+## How to run test
+Run `npm test` after `npm install`.
+
 ## Contribution
 Many ways to contribute to Misskey
 
 * Report any problems to [New Issue](https://github.com/syuilo/Misskey/issues/new)
-* Discussion on [Issue (Discussion)](https://github.com/syuilo/Misskey/labels/Discussion)
+* Discuss on [Issue (Discussion)](https://github.com/syuilo/Misskey/labels/Discussion)
 * Send [Pull Request](https://github.com/syuilo/Misskey/pulls)
 * Review [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
