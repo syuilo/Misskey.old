@@ -33,4 +33,4 @@ The MIT License. (See [LICENSE](LICENSE).)
 古谷向日葵, 大室櫻子 (2014 June ~)
 
 ## Questions?
-If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues)
+If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
