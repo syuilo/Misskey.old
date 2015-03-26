@@ -57,13 +57,13 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
 		| _ => send-response!
 
-	function send-response()
+	function send-response
 		status-response-filter status, (obj) ->
 			get-more-talk obj.reply, (talk) ->
 				obj.more-talk = talk if obj.reply != null && obj.reply.is-reply
 				send obj
 
-	function send(obj)
+	function send obj
 		res.api-render obj
 		stream-obj = to-json do
 			type: \post
