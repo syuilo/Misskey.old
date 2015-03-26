@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
 
 # Misskey
-A mystery SNS: https://misskey.xyz/
+A mystery SNS. https://misskey.xyz/
 
 ## Implicit dependencies
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
