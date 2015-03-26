@@ -61,7 +61,6 @@ web-server.use minify!
 # セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
 # セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
 web-server.init-session = (req, res, callback) ->
-	console.log 'kyoppie!'
 	req
 		..login = req.session? && req.session.user-id?
 		..data = # Render datas
