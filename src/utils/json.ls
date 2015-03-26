@@ -1,5 +1,5 @@
 # Object -> String
-export to-json = to-json
+export to-json = JSON.stringify
 
 # String -> Object
-export parse-json = parse-json
+export parse-json = JSON.parse
