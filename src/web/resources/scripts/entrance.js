@@ -36,6 +36,9 @@ function showRegisterForm() {
 	$('#registerForm').css({
 		display: 'block'
 	});
+	$('#registerForm .user-name').css({
+		left: 0
+	});
 }
 
 $('#new').click(function() {
