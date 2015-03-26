@@ -110,7 +110,7 @@ module.exports = (app) ->
 									req
 									res
 									resource-path
-									if styleUser != null then styleUser else null
+									if style-user? then styleUser else null
 						| _ =>
 							read-file-send-less do
 								req
