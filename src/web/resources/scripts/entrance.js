@@ -2,11 +2,11 @@ $(function() {
 	swing($("#loginForm"), 50);
 
 	function swing($elem, angle) {
-		var t = 0;
+		var t = 1;
 		var timer = setInterval(update, 10);
 		function update() {
 			t++;
-			var pos = ((Math.sin(t / 25) * 10) / (t / 256));
+			var pos = ((Math.sin(t / 25) * 10) / (t / 64));
 			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 		}
 	}
