@@ -353,7 +353,7 @@ function initRegisterForm() {
 			}, 2000, 'easeOutElastic');
 		});
 
-		$(passwordInputQuery).keyup(function() {
+		$(passwordRetypeInputQuery).keyup(function() {
 			hideMessage();
 			$nextButton.attr('disabled', true);
 			var password = $(passwordInputQuery).val();
