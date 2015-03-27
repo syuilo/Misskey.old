@@ -8,7 +8,6 @@ $(function() {
 		var s = 0.1;
 		function update() {
 			t++;
-			s -= 0.01;
 			force -= s;
 			if (force <= 0) {
 				clearInterval(timer);
