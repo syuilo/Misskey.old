@@ -6,7 +6,7 @@ $(function() {
 		var timer = setInterval(update, 10);
 		function update() {
 			t++;
-			var pos = ((Math.sin(t / 25) * 20) / (t / 64));
+			var pos = ((Math.sin(t / 25) * 20) / (t / 128));
 			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 		}
 	}
