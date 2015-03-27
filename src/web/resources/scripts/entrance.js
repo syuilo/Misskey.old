@@ -13,7 +13,7 @@ $(function() {
 			if (force <= 0) {
 				clearInterval(timer);
 			}*/
-			pos = ((Math.sin(t / 25) * 50) / t);
+			pos = ((Math.sin(t / 25) * 50) / (t / 128));
 			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 		}
 	}
