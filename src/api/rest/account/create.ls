@@ -29,11 +29,16 @@ module.exports = (req, res) ->
 		| _ =>
 			salt = bcrypt.gen-salt-sync 16
 			hash-password = bcrypt.hash-sync password, salt
-			console.log 'try'
-			User.insert { screen-name, password: hash-password, name, color } (err, created-user) ->
+			
+			user = new User!
+				..screen-name = screen-name
+				..password = hash-password
+				..name = name
+				..color = color
+				
+			user.save (err, created-user) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
-					console.log 'created'
 					# Init user image documents
 					err, icon <- UserIcon.insert { user-id: created-user.id }
 					err, header <- UserHeader.insert { user-id: created-user.id }
