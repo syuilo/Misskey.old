@@ -53,8 +53,8 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input.user-name-input.ui-inputText(name='screen_name', type='text', pattern='^[a-zA-Z0-9_]+$')
 						div.nav
-							button.cancel キャンセル
-							button.next(disabled) 次！
+							button.cancel(type='button') キャンセル
+							button.next(type='button', disabled) 次！
 					div.slide.nickname
 						label
 							h2.title ニックネーム
@@ -63,7 +63,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input.nickname-input.ui-inputText(name='name', type='text')
 						div.nav
-							button.back 戻る
+							button.back(type='button') 戻る
 							button.next(disabled) 次！
 					div.slide.password
 						label
@@ -73,8 +73,8 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#password.ui-inputPassword(name='password', type='password')
 						div.nav
-							button.back 戻る
-							button.next(disabled) 次！
+							button.back(type='button') 戻る
+							button.next(type='button', disabled) 次！
 					div.slide.password-retype
 						label
 							h2.title パスワード(再入力)
@@ -93,9 +93,9 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input#color.ui-inputColor(name='color', type='color')
 						div.nav
-							button.back 戻る
-							button.next(disabled) 決定！
+							button.back(type='button') 戻る
+							button.next(type='button', disabled) 決定！
 					div.slide.confirm
 						div.nav
-							button.back 戻る
+							button.back(type='button') 戻る
 							input.ui-inputSubmit(type='submit', value='アカウントを作成する')
