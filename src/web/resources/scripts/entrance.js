@@ -8,12 +8,12 @@ $(function() {
 		var timer = setInterval(update, 10);
 		function update() {
 			t++;
-			s -= 0.0002;
+			/*s -= 0.0002;
 			force -= s;
-			if (s <= 0 || force <= 0) {
+			if (force <= 0) {
 				clearInterval(timer);
-			}
-			pos = (Math.sin(t / 25) * force);
+			}*/
+			pos = ((Math.sin(t / 25) * 50) / t);
 			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 		}
 	}
