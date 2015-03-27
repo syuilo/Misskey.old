@@ -189,6 +189,10 @@ function initRegisterForm() {
 				left: '100%',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$('#registerForm .nickname .title').animate({
+				left: '-64px',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
 		});
 
 		$nextButton.click(function() {
