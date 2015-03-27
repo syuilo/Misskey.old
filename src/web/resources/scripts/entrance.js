@@ -190,7 +190,7 @@ function initRegisterForm() {
 				opacity: 0
 			}, 1000, 'easeOutQuint');
 			$('#registerForm .nickname .title').animate({
-				left: '-64px',
+				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
 		});
