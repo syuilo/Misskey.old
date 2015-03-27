@@ -258,4 +258,5 @@ function showRegisterForm() {
 		left: 0,
 		opacity: 1
 	}, 1000, 'easeOutElastic');
+	$('#registerForm progress').attr('value', 1);
 }
