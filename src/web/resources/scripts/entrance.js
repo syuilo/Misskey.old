@@ -370,16 +370,16 @@ function initRegisterForm() {
 		function showMessage(message, success) {
 			hideMessage();
 			var klass = success == null ? '' : success ? 'done' : 'fail';
-			var $message = $('<p id="passwordAvailable" class="message ' + klass + '">' + message + '</p>');
+			var $message = $('<p id="passwordRetypeAvailable" class="message ' + klass + '">' + message + '</p>');
 			$message.css('top', $(passwordRetypeInputQuery).position().top - 32 + ($(passwordRetypeInputQuery).outerHeight() / 2));
-			$message.appendTo('#registerForm .password').animate({
+			$message.appendTo('#registerForm .password-retype').animate({
 				'margin-right': 0,
 				opacity: 1
 			}, 500, 'easeOutCubic');
 		}
 
 		function hideMessage() {
-			$('#passwordAvailable').remove();
+			$('#passwordRetypeAvailable').remove();
 		}
 	}
 }
