@@ -246,4 +246,8 @@ function showRegisterForm() {
 		left: 0,
 		opacity: 1
 	}, 500, 'easeOutQuint');
+	$('#registerForm .user-name .title').animate({
+		top: 0,
+		opacity: 1
+	}, 1000, 'easeOutElastic');
 }
