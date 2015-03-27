@@ -4,11 +4,13 @@ $(function() {
 	function swing($elem, force) {
 		var pos = force;
 		var t = 0;
+		var s = 0.1;
 		var timer = setInterval(update, 10);
 		function update() {
 			t++;
-			force -= (1 / (t / 16));
-			if (force <= 0) {
+			s -= 0.0001;
+			force -= s;
+			if (s <= 0 || force <= 0) {
 				clearInterval(timer);
 			}
 			pos = (Math.sin(t / 25) * force);
