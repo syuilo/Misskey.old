@@ -87,6 +87,7 @@ function initRegisterForm() {
 		});
 
 		$(userNameInputQuery).keyup(function() {
+			right = false;
 			$nextButton.attr('disabled', true);
 			hideMessage();
 			var sn = $(userNameInputQuery).val();
@@ -119,12 +120,15 @@ function initRegisterForm() {
 				xhrFields: { withCredentials: true }
 			}).done(function(result) {
 				if (result) {
+					right = false;
 					showMessage('このIDは既に使用されていますっ', false)
 				} else {
+					right = true;
 					showMessage('このIDは使用できますっ！', true)
 					$nextButton.attr('disabled', false);
 				}
 			}).fail(function() {
+				showMessage('確認に失敗しました;;', null);
 			});
 		});
 
