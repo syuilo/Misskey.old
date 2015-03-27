@@ -91,6 +91,7 @@ $(function() {
 });
 
 function initRegisterForm() {
+	var $progress = $('#registerForm progress');
 	var userNameInputQuery = '#registerForm .user-name .user-name-input';
 	var nicknameInputQuery = '#registerForm .nickname .nickname-input';
 
@@ -102,6 +103,7 @@ function initRegisterForm() {
 		var $nextButton = $('#registerForm .user-name button.next')
 
 		$nextButton.click(function() {
+			$progress.attr('value', 2);
 			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
 			$('#registerForm .user-name').animate({
 				left: '-50%',
@@ -180,6 +182,7 @@ function initRegisterForm() {
 		var $nextButton = $('#registerForm .nickname button.next')
 
 		$backButton.click(function() {
+			$progress.attr('value', 1);
 			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-0) translateZ(0)');
 			$('#registerForm .user-name').animate({
 				left: 0,
@@ -196,6 +199,7 @@ function initRegisterForm() {
 		});
 
 		$nextButton.click(function() {
+			$progress.attr('value', 3);
 			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
 			$('#registerForm .nickname').animate({
 				left: '-50%',
