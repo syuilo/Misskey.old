@@ -1,5 +1,3 @@
-
-
 require! {
 	bcrypt
 	'../../models/user': User
@@ -9,8 +7,9 @@ require! {
 module.exports = (req, screen-name, password, done, fail) ->
 	| any empty, [screen-name, password] => fail!
 	| _ => User.find-one {screen-name} (, user) ->
-		| !user? => fail!
+		| empty user => fail!
 		| _ =>
+			user = user.0
 			db-password = user.password.replace '$2y$' '$2a$'
 			bcrypt.compare password, db-password, (err, same) ->
 				| err => fail!
