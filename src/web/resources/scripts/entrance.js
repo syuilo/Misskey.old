@@ -1,4 +1,20 @@
 $(function() {
+	swing($("#loginForm"), 100);
+	function swing($elem, force) {
+		var baseForce = force;
+		var pos = force;
+		var t = 0;
+		var time = setInterval(function() {
+			t++;
+			force -= 0.1;
+			if (force =< 0) {
+				time.stop();
+			}
+			pos = (Math.sin(t) / (baseForce - force));
+			$elem.css('transform', 'rotateX(' + pos + 'deg)');
+		}, 10);
+	}
+
 	$("#loginForm").submit(function(event) {
 		event.preventDefault();
 		var $form = $(this);

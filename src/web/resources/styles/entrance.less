@@ -47,8 +47,9 @@ main {
 			padding: 32px 32px 0 32px;
 			background: #fff;
 			box-shadow: 0 0 128px rgba(0, 0, 0, 0.9);
+			transform-origin: center top;
 			transform: perspective(512px);
-
+			
 			label {
 				display: block;
 				position: relative;
@@ -231,6 +232,7 @@ main {
 		height: 100%;
 		background: #fff;
 		opacity: 0;
+		//transform-origin: center top;
 		transform: perspective(512px);
 		transition: transform 0.5s cubic-bezier(0,.7,.3,1);
 
