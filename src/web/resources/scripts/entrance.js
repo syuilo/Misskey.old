@@ -35,20 +35,6 @@ $(function() {
 
 	initRegisterForm();
 
-	$('#passwordRetype').keyup(function() {
-		$("#passwordRetypeAvailable").remove();
-		var password = $('#password').val();
-		var passwordRetype = $('#passwordRetype').val();
-		if (passwordRetype.length == 0) {
-			return false;
-		}
-		if (passwordRetype != password) {
-			$('#passwordRetype').before('<p id="passwordRetypeAvailable" class="fail">一致していませんっ</p>');
-			return false;
-		}
-		$('#passwordRetype').before('<p id="passwordRetypeAvailable" class="done">Okay!</p>');
-	});
-
 	$('#color').change(function() {
 		$("#colorAvailable").remove();
 		var color = $('#color').val();
@@ -82,10 +68,12 @@ function initRegisterForm() {
 	var userNameInputQuery = '#registerForm .user-name .user-name-input';
 	var nicknameInputQuery = '#registerForm .nickname .nickname-input';
 	var passwordInputQuery = '#registerForm .password .password-input';
+	var passwordRetypeInputQuery = '#registerForm .password-retype .password-retype-input';
 
 	initUserNameSection();
 	initNicknameSection();
 	initPasswordSection();
+	initPasswordRetypeSection();
 
 	function initUserNameSection() {
 		var $cancelButton = $('#registerForm .user-name button.cancel')
@@ -93,11 +81,12 @@ function initRegisterForm() {
 
 		$nextButton.click(function() {
 			$progress.attr('value', 2);
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
+
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-300px) translateZ(-100px)');
 			$('#registerForm .user-name').animate({
-				left: '-50%',
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
+
 			$('#registerForm .nickname').animate({
 				left: 0,
 				opacity: 1
@@ -173,9 +162,8 @@ function initRegisterForm() {
 		$backButton.click(function() {
 			$progress.attr('value', 1);
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-0) translateZ(0)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(0) translateZ(0)');
 			$('#registerForm .user-name').animate({
-				left: 0,
 				opacity: 1
 			}, 500, 'easeOutQuint');
 
@@ -192,15 +180,12 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$progress.attr('value', 3);
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-300px) translateZ(-100px)');
 			$('#registerForm .nickname').animate({
-				left: '-50%',
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').animate({
-				left: '-100%'
-			}, 500, 'easeOutQuint');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-600px) translateZ(-100px)');
 
 			$('#registerForm .password').animate({
 				left: 0,
@@ -246,15 +231,13 @@ function initRegisterForm() {
 		$backButton.click(function() {
 			$progress.attr('value', 2);
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-0) translateZ(0)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(0) translateX(0) translateZ(0)');
 			$('#registerForm .nickname').animate({
 				left: 0,
 				opacity: 1
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').animate({
-				left: '-50%'
-			}, 500, 'easeOutQuint');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(-300px) translateZ(0)');
 
 			$('#registerForm .password').animate({
 				left: '100%',
@@ -269,19 +252,14 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$progress.attr('value', 4);
 
-			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
+			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-300px) translateZ(-100px)');
 			$('#registerForm .password').animate({
-				left: '-50%',
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').animate({
-				left: '-150%'
-			}, 500, 'easeOutQuint');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(-900px) translateZ(0)');
 
-			$('#registerForm .nickname').animate({
-				left: '-100%'
-			}, 500, 'easeOutQuint');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(0) translateX(-600px) translateZ(0)');
 
 			$('#registerForm .password-retype').animate({
 				left: 0,
@@ -313,6 +291,89 @@ function initRegisterForm() {
 			var klass = success == null ? '' : success ? 'done' : 'fail';
 			var $message = $('<p id="passwordAvailable" class="message ' + klass + '">' + message + '</p>');
 			$message.css('top', $(passwordInputQuery).position().top - 32 + ($(passwordInputQuery).outerHeight() / 2));
+			$message.appendTo('#registerForm .password').animate({
+				'margin-right': 0,
+				opacity: 1
+			}, 500, 'easeOutCubic');
+		}
+
+		function hideMessage() {
+			$('#passwordAvailable').remove();
+		}
+	}
+
+	function initPasswordRetypeSection() {
+		var $backButton = $('#registerForm .password-retype button.back')
+		var $nextButton = $('#registerForm .password-retype button.next')
+
+		$backButton.click(function() {
+			$progress.attr('value', 3);
+
+			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(0) translateX(0) translateZ(0)');
+			$('#registerForm .password').animate({
+				left: 0,
+				opacity: 1
+			}, 500, 'easeOutQuint');
+
+			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(0) translateX(-300px) translateZ(0)');
+
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(-600px) translateZ(0)');
+
+			$('#registerForm .password-retype').animate({
+				left: '100%',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+			$('#registerForm .password-retype .title').animate({
+				left: '64px',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+		});
+
+		$nextButton.click(function() {
+			$progress.attr('value', 5);
+
+			$('#registerForm .password-retype').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-300px) translateZ(-100px)');
+			$('#registerForm .password-retype').animate({
+				opacity: 0.2
+			}, 500, 'easeOutQuint');
+
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-1200px) translateZ(-100px)');
+
+			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-900px) translateZ(-100px)');
+
+			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(-45deg) translateX(-600px) translateZ(-100px)');
+
+			$('#registerForm .user-color').animate({
+				left: 0,
+				opacity: 1
+			}, 1000, 'easeOutElastic');
+			$('#registerForm .user-color .title').animate({
+				left: 0,
+				opacity: 1
+			}, 2000, 'easeOutElastic');
+		});
+
+		$(passwordInputQuery).keyup(function() {
+			hideMessage();
+			$nextButton.attr('disabled', true);
+			var password = $(passwordInputQuery).val();
+			var passwordRetype = $(passwordRetypeInputQuery).val();
+			if (passwordRetype.length == 0) {
+				return false;
+			}
+			if (passwordRetype != password) {
+				showMessage('一致していませんっ！', false);
+				return false;
+			}
+			showMessage('Okay!', true);
+			$nextButton.attr('disabled', false);
+		});
+
+		function showMessage(message, success) {
+			hideMessage();
+			var klass = success == null ? '' : success ? 'done' : 'fail';
+			var $message = $('<p id="passwordAvailable" class="message ' + klass + '">' + message + '</p>');
+			$message.css('top', $(passwordRetypeInputQuery).position().top - 32 + ($(passwordRetypeInputQuery).outerHeight() / 2));
 			$message.appendTo('#registerForm .password').animate({
 				'margin-right': 0,
 				opacity: 1
