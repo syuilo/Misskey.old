@@ -52,7 +52,7 @@ author:
 
 contributors:
 	{ name: 'syuilo', email: 'syuilotan@yahoo.co.jp', url: 'https://github.com/syuilo' }
-	{ name: 'Afuafu', url: 'https://github.com/afuafu55' }
+	{ name: 'afuafu', email: 'noodle117117@yahoo.co.jp', url: 'https://github.com/afuafu55' }
 	{ name: 'まりはち', email: 'marihachi0620@gmail.com', url: 'https://github.com/marihachi' }
 	{ name: 'Aya Morisawa', url: 'https://github.com/AyaMorisawa' }
 	{ name: 'はらだい', email: 'mail@haradai.net', url: 'https://github.com/ha-dai' }
