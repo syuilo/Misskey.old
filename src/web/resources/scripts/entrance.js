@@ -98,6 +98,7 @@ function initRegisterForm() {
 	initNicknameSection();
 
 	function initUserNameSection() {
+		var $cancelButton = $('#registerForm .user-name button.cancel')
 		var $nextButton = $('#registerForm .user-name button.next')
 
 		$nextButton.click(function() {
@@ -108,6 +109,10 @@ function initRegisterForm() {
 			}, 500, 'easeOutQuint');
 			$('#registerForm .nickname').animate({
 				left: 0,
+				opacity: 1
+			}, 1000, 'easeOutElastic');
+			$('#registerForm .nickname .title').animate({
+				top: 0,
 				opacity: 1
 			}, 1000, 'easeOutElastic');
 		});
@@ -171,7 +176,20 @@ function initRegisterForm() {
 	}
 
 	function initNicknameSection() {
+		var $backButton = $('#registerForm .nickname button.back')
 		var $nextButton = $('#registerForm .nickname button.next')
+
+		$backButton.click(function() {
+			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-0) translateZ(0)');
+			$('#registerForm .user-name').animate({
+				left: 0,
+				opacity: 1
+			}, 500, 'easeOutQuint');
+			$('#registerForm .nickname').animate({
+				left: '100%',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+		});
 
 		$nextButton.click(function() {
 			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-45deg) translateZ(-100px)');
@@ -184,6 +202,10 @@ function initRegisterForm() {
 			}, 500, 'easeOutQuint');
 			$('#registerForm .password').animate({
 				left: 0,
+				opacity: 1
+			}, 1000, 'easeOutElastic');
+			$('#registerForm .password .title').animate({
+				top: 0,
 				opacity: 1
 			}, 1000, 'easeOutElastic');
 		});
