@@ -137,6 +137,7 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$('#registerForm progress').css('height', 0);
 			$('#registerForm progress').attr('value', 0);
 
 			setTimeout(function() {
@@ -631,5 +632,6 @@ function showRegisterForm() {
 		opacity: 1
 	}, 1000, 'easeOutElastic');
 	$('#registerForm progress').attr('value', 1);
+	$('#registerForm progress').css('height', '8px');
 	$('#registerForm .user-name .user-name-input').focus();
 }
