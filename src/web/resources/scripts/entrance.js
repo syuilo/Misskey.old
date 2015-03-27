@@ -232,7 +232,7 @@ function initRegisterForm() {
 				opacity: 1
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(0) rotateY(-45deg)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
 
 			$('#registerForm .password').animate({
 				left: '100%',
