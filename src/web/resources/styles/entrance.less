@@ -205,13 +205,19 @@ main {
 		appearance: none;
 		display: block;
 		position: absolute;
+		z-index: 2;
 		top: -16px;
 		margin: 0;
 		width: 100%;
 		height: 16px;
 
 		&::-webkit-progress-value {
+			background-color: @themeColor;
 			transition: all 1s ease;
+		}
+
+		&::-webkit-progress-bar {
+			background-color: #fff;
 		}
 	}
 
