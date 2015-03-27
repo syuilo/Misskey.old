@@ -70,6 +70,24 @@ function initRegisterForm() {
 		var $cancelButton = $('#registerForm .user-name button.cancel')
 		var $nextButton = $('#registerForm .user-name button.next')
 
+		$cancelButton.click(function() {
+			$('#registerForm .user-name').animate({
+				left: '100%',
+				opacity: 0
+			}, 500, 'easeOutQuint');
+			$('#registerForm .user-name .title').animate({
+				left: '64px',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+			$('#registerForm progress').attr('value', 0);
+
+			setTimeout(function() {
+				$('#registerForm').css({
+					display: 'none'
+				});
+			}, 500);
+		});
+
 		$nextButton.click(function() {
 			$progress.attr('value', 2);
 
