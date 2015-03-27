@@ -1,5 +1,5 @@
 $(function() {
-	swing($("#loginForm"), 40);
+	swing($("#loginForm"), 30);
 
 	function swing($elem, force) {
 		var baseForce = force;
@@ -13,8 +13,9 @@ $(function() {
 			if (force <= 0) {
 				clearInterval(timer);
 			}
-			pos = ((Math.sin(t / 20) * 50) / (baseForce - force));
-			$elem.css('transform', 'perspective(700px) rotateX(' + pos + 'deg)');
+			pos = (Math.sin(t / 20) / (baseForce - force));
+			pos *= 10;
+			$elem.css('transform', 'perspective(800px) rotateX(' + pos + 'deg)');
 		}
 	}
 
