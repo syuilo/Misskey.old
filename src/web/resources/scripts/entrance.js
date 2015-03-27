@@ -8,11 +8,11 @@ $(function() {
 
 		function update() {
 			t++;
-			force -= (2 / (t / 3));
+			force -= (1 / (t / 2));
 			if (force <= 0) {
 				clearInterval(timer);
 			}
-			pos = (Math.sin(t / 30) * force);
+			pos = (Math.sin(t / 25) * force);
 			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 		}
 	}
