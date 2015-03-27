@@ -1,5 +1,6 @@
 $(function() {
 	swing($("#loginForm"), 100);
+
 	function swing($elem, force) {
 		var baseForce = force;
 		var pos = force;
@@ -7,7 +8,7 @@ $(function() {
 		var time = setInterval(function() {
 			t++;
 			force -= 0.1;
-			if (force =< 0) {
+			if (force <= 0) {
 				time.stop();
 			}
 			pos = (Math.sin(t) / (baseForce - force));
