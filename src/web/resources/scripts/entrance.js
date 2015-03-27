@@ -82,7 +82,7 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$progress.attr('value', 2);
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-300px) translateZ(-100px)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
 			$('#registerForm .user-name').animate({
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
@@ -162,7 +162,7 @@ function initRegisterForm() {
 		$backButton.click(function() {
 			$progress.attr('value', 1);
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(0) translateZ(0)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
 			$('#registerForm .user-name').animate({
 				opacity: 1
 			}, 500, 'easeOutQuint');
@@ -180,12 +180,12 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$progress.attr('value', 3);
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-300px) translateZ(-100px)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
 			$('#registerForm .nickname').animate({
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-600px) translateZ(-100px)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
 
 			$('#registerForm .password').animate({
 				left: 0,
@@ -231,13 +231,12 @@ function initRegisterForm() {
 		$backButton.click(function() {
 			$progress.attr('value', 2);
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(0) translateX(0) translateZ(0)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
 			$('#registerForm .nickname').animate({
-				left: 0,
 				opacity: 1
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(-300px) translateZ(0)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(0) rotateY(-45deg)');
 
 			$('#registerForm .password').animate({
 				left: '100%',
@@ -252,14 +251,14 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$progress.attr('value', 4);
 
-			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-300px) translateZ(-100px)');
+			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
 			$('#registerForm .password').animate({
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(-900px) translateZ(0)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-900px) translateZ(0) rotateY(0)');
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(0) translateX(-600px) translateZ(0)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-600px) translateZ(0) rotateY(0)');
 
 			$('#registerForm .password-retype').animate({
 				left: 0,
@@ -309,15 +308,14 @@ function initRegisterForm() {
 		$backButton.click(function() {
 			$progress.attr('value', 3);
 
-			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(0) translateX(0) translateZ(0)');
+			$('#registerForm .password').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
 			$('#registerForm .password').animate({
-				left: 0,
 				opacity: 1
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(0) translateX(-300px) translateZ(0)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-300px) translateZ(0) rotateY(-45deg)');
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(0) translateX(-600px) translateZ(0)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-600px) translateZ(0) rotateY(-45deg)');
 
 			$('#registerForm .password-retype').animate({
 				left: '100%',
@@ -332,16 +330,16 @@ function initRegisterForm() {
 		$nextButton.click(function() {
 			$progress.attr('value', 5);
 
-			$('#registerForm .password-retype').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-300px) translateZ(-100px)');
+			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
 			$('#registerForm .password-retype').animate({
 				opacity: 0.2
 			}, 500, 'easeOutQuint');
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-1200px) translateZ(-100px)');
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-1200px) translateZ(-100px) rotateY(-45deg)');
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-900px) translateZ(-100px)');
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-900px) translateZ(-100px) rotateY(-45deg)');
 
-			$('#registerForm .password').css('transform', 'perspective(512px) rotateY(-11.25deg) translateX(-600px) translateZ(-100px)');
+			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
 
 			$('#registerForm .user-color').animate({
 				left: 0,
