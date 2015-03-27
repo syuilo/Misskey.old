@@ -5,15 +5,15 @@ $(function() {
 		var baseForce = force;
 		var pos = force;
 		var t = 0;
-		var timeer = setInterval(update, 10);
+		var timer = setInterval(update, 10);
 
 		function update() {
 			t++;
-			force -= 0.1;
+			force -= 0.01;
 			if (force <= 0) {
 				clearInterval(timer);
 			}
-			pos = (Math.sin(t) / (baseForce - force));
+			pos = ((Math.sin(t) * 100) / (baseForce - force));
 			$elem.css('transform', 'rotateX(' + pos + 'deg)');
 		}
 	}
