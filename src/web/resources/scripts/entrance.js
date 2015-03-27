@@ -67,6 +67,7 @@ function initRegisterForm() {
 	});
 
 	function initUserNameSection() {
+		var right = false;
 		var $cancelButton = $('#registerForm .user-name button.cancel')
 		var $nextButton = $('#registerForm .user-name button.next')
 
@@ -76,7 +77,9 @@ function initRegisterForm() {
 
 		$(userNameInputQuery).on('keypress', function(event) {
 			if (event.which == 13) {
-				next();
+				if (right) {
+					next();
+				}
 				return false;
 			} else {
 				return true;
@@ -159,6 +162,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
+			$(nicknameInputQuery).focus();
 		}
 
 		function showMessage(message, success) {
@@ -178,6 +182,7 @@ function initRegisterForm() {
 	}
 
 	function initNicknameSection() {
+		var right = false;
 		var $backButton = $('#registerForm .nickname button.back')
 		var $nextButton = $('#registerForm .nickname button.next')
 
@@ -187,7 +192,9 @@ function initRegisterForm() {
 
 		$(nicknameInputQuery).on('keypress', function(event) {
 			if (event.which == 13) {
-				next();
+				if (right) {
+					next();
+				}
 				return false;
 			} else {
 				return true;
@@ -195,12 +202,14 @@ function initRegisterForm() {
 		});
 
 		$(nicknameInputQuery).keyup(function() {
+			right = false;
 			hideMessage();
 			$nextButton.attr('disabled', true);
 			var name = $(nicknameInputQuery).val();
 			if (name.length == 0) {
 				return false;
 			}
+			right = true;
 			showMessage('Great!', true);
 			$nextButton.attr('disabled', false);
 		});
@@ -221,6 +230,7 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$(userNameInputQuery).focus();
 		}
 
 		function next() {
@@ -241,6 +251,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
+			$(passwordInputQuery).focus();
 		}
 
 		function showMessage(message, success) {
@@ -260,6 +271,7 @@ function initRegisterForm() {
 	}
 
 	function initPasswordSection() {
+		var right = false;
 		var $backButton = $('#registerForm .password button.back')
 		var $nextButton = $('#registerForm .password button.next')
 
@@ -269,7 +281,9 @@ function initRegisterForm() {
 
 		$(passwordInputQuery).on('keypress', function(event) {
 			if (event.which == 13) {
-				next();
+				if (right) {
+					next();
+				}
 				return false;
 			} else {
 				return true;
@@ -277,6 +291,7 @@ function initRegisterForm() {
 		});
 
 		$(passwordInputQuery).keyup(function() {
+			right = false;
 			hideMessage();
 			$nextButton.attr('disabled', true);
 			var password = $(passwordInputQuery).val();
@@ -289,6 +304,7 @@ function initRegisterForm() {
 			}
 			showMessage('Nice!', true);
 			$nextButton.attr('disabled', false);
+			right = true;
 		});
 
 		function back() {
@@ -309,6 +325,7 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$(nicknameInputQuery).focus();
 		}
 
 		function next() {
@@ -331,6 +348,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
+			$(passwordRetypeInputQuery).focus();
 		}
 
 		function showMessage(message, success) {
@@ -350,6 +368,7 @@ function initRegisterForm() {
 	}
 
 	function initPasswordRetypeSection() {
+		var right = false;
 		var $backButton = $('#registerForm .password-retype button.back')
 		var $nextButton = $('#registerForm .password-retype button.next')
 
@@ -359,7 +378,9 @@ function initRegisterForm() {
 
 		$(passwordRetypeInputQuery).on('keypress', function(event) {
 			if (event.which == 13) {
-				next();
+				if (right) {
+					next();
+				}
 				return false;
 			} else {
 				return true;
@@ -367,6 +388,7 @@ function initRegisterForm() {
 		});
 
 		$(passwordRetypeInputQuery).keyup(function() {
+			right = false;
 			hideMessage();
 			$nextButton.attr('disabled', true);
 			var password = $(passwordInputQuery).val();
@@ -378,6 +400,7 @@ function initRegisterForm() {
 				showMessage('一致していませんっ！', false);
 				return false;
 			}
+			right = true;
 			showMessage('Okay!', true);
 			$nextButton.attr('disabled', false);
 		});
@@ -402,6 +425,7 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$(passwordInputQuery).focus();
 		}
 
 		function next() {
@@ -426,6 +450,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
+			$(userColorInputQuery).focus();
 		}
 
 		function showMessage(message, success) {
@@ -445,6 +470,7 @@ function initRegisterForm() {
 	}
 
 	function initUserColorSection() {
+		var right = false;
 		var $backButton = $('#registerForm .user-color button.back')
 		var $nextButton = $('#registerForm .user-color button.next')
 
@@ -455,6 +481,7 @@ function initRegisterForm() {
 		$(userColorInputQuery).change(function() {
 			hideMessage();
 			var color = $(userColorInputQuery).val();
+			right = true;
 			showMessage('Good!', true);
 			$nextButton.attr('disabled', false);
 		});
@@ -481,6 +508,7 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$(passwordRetypeInputQuery).focus();
 		}
 
 		function next() {
@@ -557,6 +585,7 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
+			$(userColorInputQuery).focus();
 		}
 
 		function submit() {
@@ -602,4 +631,5 @@ function showRegisterForm() {
 		opacity: 1
 	}, 1000, 'easeOutElastic');
 	$('#registerForm progress').attr('value', 1);
+	$('#registerForm .user-name .user-name-input').focus();
 }
