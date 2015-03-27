@@ -1,19 +1,12 @@
 $(function() {
 	swing($("#loginForm"), 50);
 
-	function swing($elem, force) {
-		var pos = force;
+	function swing($elem, angle) {
 		var t = 0;
-		var s = 0.1;
 		var timer = setInterval(update, 10);
 		function update() {
 			t++;
-			/*s -= 0.0002;
-			force -= s;
-			if (force <= 0) {
-				clearInterval(timer);
-			}*/
-			pos = ((Math.sin(t / 25) * 30) / (t / 128));
+			var pos = ((Math.sin(t / 25) * 10) / (t / 128));
 			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 		}
 	}
