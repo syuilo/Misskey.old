@@ -70,40 +70,17 @@ function initRegisterForm() {
 		var $cancelButton = $('#registerForm .user-name button.cancel')
 		var $nextButton = $('#registerForm .user-name button.next')
 
-		$cancelButton.click(function() {
-			$('#registerForm .user-name').animate({
-				left: '100%',
-				opacity: 0
-			}, 500, 'easeOutQuint');
-			$('#registerForm .user-name .title').animate({
-				left: '64px',
-				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm progress').attr('value', 0);
+		$cancelButton.click(cancel);
 
-			setTimeout(function() {
-				$('#registerForm').css({
-					display: 'none'
-				});
-			}, 500);
-		});
+		$nextButton.click(next);
 
-		$nextButton.click(function() {
-			$progress.attr('value', 2);
-
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .user-name').animate({
-				opacity: 0.2
-			}, 500, 'easeOutQuint');
-
-			$('#registerForm .nickname').animate({
-				left: 0,
-				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .nickname .title').animate({
-				left: 0,
-				opacity: 1
-			}, 2000, 'easeOutElastic');
+		$(userNameInputQuery).on('keypress', function(event) {
+			if (event.which == 13) {
+				next();
+				return false;
+			} else {
+				return true;
+			}
 		});
 
 		$(userNameInputQuery).keyup(function() {
@@ -148,6 +125,42 @@ function initRegisterForm() {
 			});
 		});
 
+		function cancel() {
+			$('#registerForm .user-name').animate({
+				left: '100%',
+				opacity: 0
+			}, 500, 'easeOutQuint');
+			$('#registerForm .user-name .title').animate({
+				left: '64px',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+			$('#registerForm progress').attr('value', 0);
+
+			setTimeout(function() {
+				$('#registerForm').css({
+					display: 'none'
+				});
+			}, 500);
+		}
+
+		function next() {
+			$progress.attr('value', 2);
+
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+			$('#registerForm .user-name').animate({
+				opacity: 0.2
+			}, 500, 'easeOutQuint');
+
+			$('#registerForm .nickname').animate({
+				left: 0,
+				opacity: 1
+			}, 1000, 'easeOutElastic');
+			$('#registerForm .nickname .title').animate({
+				left: 0,
+				opacity: 1
+			}, 2000, 'easeOutElastic');
+		}
+
 		function showMessage(message, success) {
 			hideMessage();
 			var klass = success == null ? '' : success ? 'done' : 'fail';
@@ -168,7 +181,31 @@ function initRegisterForm() {
 		var $backButton = $('#registerForm .nickname button.back')
 		var $nextButton = $('#registerForm .nickname button.next')
 
-		$backButton.click(function() {
+		$backButton.click(back);
+
+		$nextButton.click(next);
+
+		$(nicknameInputQuery).on('keypress', function(event) {
+			if (event.which == 13) {
+				next();
+				return false;
+			} else {
+				return true;
+			}
+		});
+
+		$(nicknameInputQuery).keyup(function() {
+			hideMessage();
+			$nextButton.attr('disabled', true);
+			var name = $(nicknameInputQuery).val();
+			if (name.length == 0) {
+				return false;
+			}
+			showMessage('Great!', true);
+			$nextButton.attr('disabled', false);
+		});
+
+		function back() {
 			$progress.attr('value', 1);
 
 			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
@@ -184,9 +221,9 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
-		});
+		}
 
-		$nextButton.click(function() {
+		function next() {
 			$progress.attr('value', 3);
 
 			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
@@ -204,18 +241,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
-		});
-
-		$(nicknameInputQuery).keyup(function() {
-			hideMessage();
-			$nextButton.attr('disabled', true);
-			var name = $(nicknameInputQuery).val();
-			if (name.length == 0) {
-				return false;
-			}
-			showMessage('Great!', true);
-			$nextButton.attr('disabled', false);
-		});
+		}
 
 		function showMessage(message, success) {
 			hideMessage();
@@ -237,7 +263,35 @@ function initRegisterForm() {
 		var $backButton = $('#registerForm .password button.back')
 		var $nextButton = $('#registerForm .password button.next')
 
-		$backButton.click(function() {
+		$backButton.click(back);
+
+		$nextButton.click(next);
+
+		$(passwordInputQuery).on('keypress', function(event) {
+			if (event.which == 13) {
+				next();
+				return false;
+			} else {
+				return true;
+			}
+		});
+
+		$(passwordInputQuery).keyup(function() {
+			hideMessage();
+			$nextButton.attr('disabled', true);
+			var password = $(passwordInputQuery).val();
+			if (password.length == 0) {
+				return false;
+			}
+			if (password.length < 8) {
+				showMessage('8文字以上でお願いします', false);
+				return false;
+			}
+			showMessage('Nice!', true);
+			$nextButton.attr('disabled', false);
+		});
+
+		function back() {
 			$progress.attr('value', 2);
 
 			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
@@ -255,9 +309,9 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
-		});
+		}
 
-		$nextButton.click(function() {
+		function next() {
 			$progress.attr('value', 4);
 
 			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
@@ -277,22 +331,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
-		});
-
-		$(passwordInputQuery).keyup(function() {
-			hideMessage();
-			$nextButton.attr('disabled', true);
-			var password = $(passwordInputQuery).val();
-			if (password.length == 0) {
-				return false;
-			}
-			if (password.length < 8) {
-				showMessage('8文字以上でお願いします', false);
-				return false;
-			}
-			showMessage('Nice!', true);
-			$nextButton.attr('disabled', false);
-		});
+		}
 
 		function showMessage(message, success) {
 			hideMessage();
@@ -314,7 +353,36 @@ function initRegisterForm() {
 		var $backButton = $('#registerForm .password-retype button.back')
 		var $nextButton = $('#registerForm .password-retype button.next')
 
-		$backButton.click(function() {
+		$backButton.click(back);
+
+		$nextButton.click(next);
+
+		$(passwordRetypeInputQuery).on('keypress', function(event) {
+			if (event.which == 13) {
+				next();
+				return false;
+			} else {
+				return true;
+			}
+		});
+
+		$(passwordRetypeInputQuery).keyup(function() {
+			hideMessage();
+			$nextButton.attr('disabled', true);
+			var password = $(passwordInputQuery).val();
+			var passwordRetype = $(passwordRetypeInputQuery).val();
+			if (passwordRetype.length == 0) {
+				return false;
+			}
+			if (passwordRetype != password) {
+				showMessage('一致していませんっ！', false);
+				return false;
+			}
+			showMessage('Okay!', true);
+			$nextButton.attr('disabled', false);
+		});
+
+		function back() {
 			$progress.attr('value', 3);
 
 			$('#registerForm .password').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
@@ -334,9 +402,9 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
-		});
+		}
 
-		$nextButton.click(function() {
+		function next() {
 			$progress.attr('value', 5);
 
 			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
@@ -358,23 +426,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
-		});
-
-		$(passwordRetypeInputQuery).keyup(function() {
-			hideMessage();
-			$nextButton.attr('disabled', true);
-			var password = $(passwordInputQuery).val();
-			var passwordRetype = $(passwordRetypeInputQuery).val();
-			if (passwordRetype.length == 0) {
-				return false;
-			}
-			if (passwordRetype != password) {
-				showMessage('一致していませんっ！', false);
-				return false;
-			}
-			showMessage('Okay!', true);
-			$nextButton.attr('disabled', false);
-		});
+		}
 
 		function showMessage(message, success) {
 			hideMessage();
@@ -396,7 +448,18 @@ function initRegisterForm() {
 		var $backButton = $('#registerForm .user-color button.back')
 		var $nextButton = $('#registerForm .user-color button.next')
 
-		$backButton.click(function() {
+		$backButton.click(back);
+
+		$nextButton.click(next);
+
+		$(userColorInputQuery).change(function() {
+			hideMessage();
+			var color = $(userColorInputQuery).val();
+			showMessage('Good!', true);
+			$nextButton.attr('disabled', false);
+		});
+
+		function back() {
 			$progress.attr('value', 4);
 
 			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
@@ -418,9 +481,9 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
-		});
+		}
 
-		$nextButton.click(function() {
+		function next() {
 			$progress.attr('value', 6);
 
 			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
@@ -444,14 +507,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
-		});
-
-		$(userColorInputQuery).change(function() {
-			hideMessage();
-			var color = $(userColorInputQuery).val();
-			showMessage('Good!', true);
-			$nextButton.attr('disabled', false);
-		});
+		}
 
 		function showMessage(message, success) {
 			hideMessage();
@@ -473,7 +529,11 @@ function initRegisterForm() {
 		var $backButton = $('#registerForm .confirm button.back')
 		var $submitButton = $('#registerForm .confirm button.submit')
 
-		$backButton.click(function() {
+		$backButton.click(back);
+
+		$submitButton.click(submit);
+
+		function back() {
 			$progress.attr('value', 5);
 
 			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
@@ -497,9 +557,9 @@ function initRegisterForm() {
 				left: '64px',
 				opacity: 0
 			}, 1000, 'easeOutQuint');
-		});
+		}
 
-		$submitButton.click(function() {
+		function submit() {
 			$progress.attr('value', 7);
 
 			$('#registerForm .confirm').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
@@ -525,7 +585,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
-		});
+		}
 	}
 }
 
