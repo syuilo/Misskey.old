@@ -26,7 +26,7 @@ user-schema = new Schema do
 	location:               { type: String,   required: no,  default: null }
 	name:                   { type: String,   required: yes }
 	password:               { type: String,   required: yes }
-	screen-name:            { type: String,   required: yes }
+	screen-name:            { type: String,   required: yes, unique: yes }
 	statuses-count:         { type: Number,   required: no,  default: 0 }
 	status-favorites-count: { type: Number,   required: no,  default: 0 }
 	tags:                   { type: [String], required: no,  default: null }

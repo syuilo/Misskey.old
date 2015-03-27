@@ -26,7 +26,7 @@ circle-schema = new mongoose.Schema do
 	join-requests: [circle-join-request-schema]
 	members:       [circle-member-schema]
 	name:          { type: String, required: yes }
-	screen-name:   { type: String, required: yes }
+	screen-name:   { type: String, required: yes, unique: yes }
 	user-id:       { type: Number, required: yes }
 
 module.exports = db.model \Circle circle-schema
