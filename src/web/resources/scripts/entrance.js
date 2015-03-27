@@ -7,7 +7,7 @@ $(function() {
 		var timer = setInterval(update, 10);
 		function update() {
 			t++;
-			force -= (1 - (t / 16));
+			force -= (1 / (t / 16));
 			if (force <= 0) {
 				clearInterval(timer);
 			}
