@@ -5,10 +5,9 @@ $(function() {
 		var pos = force;
 		var t = 0;
 		var timer = setInterval(update, 10);
-		var s = 0.1;
 		function update() {
 			t++;
-			force -= s;
+			force -= (1 / (t / 32));
 			if (force <= 0) {
 				clearInterval(timer);
 			}
