@@ -114,7 +114,7 @@ function initRegisterForm() {
 			$('#registerForm .nickname .title').animate({
 				top: 0,
 				opacity: 1
-			}, 1000, 'easeOutElastic');
+			}, 2000, 'easeOutElastic');
 		});
 
 		$(userNameInputQuery).keyup(function() {
@@ -207,7 +207,7 @@ function initRegisterForm() {
 			$('#registerForm .password .title').animate({
 				top: 0,
 				opacity: 1
-			}, 1000, 'easeOutElastic');
+			}, 2000, 'easeOutElastic');
 		});
 
 		$(nicknameInputQuery).keyup(function() {
