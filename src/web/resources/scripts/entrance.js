@@ -34,27 +34,6 @@ $(function() {
 	});
 
 	initRegisterForm();
-
-	$('#form').submit(function(event) {
-		event.preventDefault();
-		var $form = $(this);
-		var $submitButton = $form.find('[type=submit]');
-
-		$submitButton.attr('disabled', true);
-		$submitButton.val('少々お待ちください...');
-
-		$.ajax('https://api.misskey.xyz/account/create', {
-			type: 'post',
-			data: $form.serialize(),
-			dataType: 'json',
-			xhrFields: { withCredentials: true }
-		}).done(function(data) {
-			location.href = 'https://misskey.xyz';
-		}).fail(function(data) {
-			$submitButton.attr('disabled', false);
-			$submitButton.text('失敗しました :(');
-		});
-	});
 });
 
 function initRegisterForm() {
@@ -70,6 +49,22 @@ function initRegisterForm() {
 	initPasswordSection();
 	initPasswordRetypeSection();
 	initUserColorSection();
+	initConfirmSection();
+
+	$('#registerForm form').submit(function(event) {
+		event.preventDefault();
+		var $form = $(this);
+
+		$.ajax('https://api.misskey.xyz/account/create', {
+			type: 'post',
+			data: $form.serialize(),
+			dataType: 'json',
+			xhrFields: { withCredentials: true }
+		}).done(function(data) {
+			location.href = 'https://misskey.xyz';
+		}).fail(function(data) {
+		});
+	});
 
 	function initUserNameSection() {
 		var $cancelButton = $('#registerForm .user-name button.cancel')
@@ -454,6 +449,65 @@ function initRegisterForm() {
 		function hideMessage() {
 			$('#userColorAvailable').remove();
 		}
+	}
+
+	function initConfirmSection() {
+		var $backButton = $('#registerForm .confirm button.back')
+		var $submitButton = $('#registerForm .confirm button.submit')
+
+		$backButton.click(function() {
+			$progress.attr('value', 5);
+
+			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
+			$('#registerForm .user-color').animate({
+				opacity: 1
+			}, 500, 'easeOutQuint');
+
+			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .confirm').animate({
+				left: '100%',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+			$('#registerForm .confirm .title').animate({
+				left: '64px',
+				opacity: 0
+			}, 1000, 'easeOutQuint');
+		});
+
+		$nextButton.click(function() {
+			$progress.attr('value', 7);
+
+			$('#registerForm .confirm').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+			$('#registerForm .confirm').animate({
+				opacity: 0.2
+			}, 500, 'easeOutQuint');
+
+			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-800px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+
+			$('#registerForm .complete').animate({
+				left: 0,
+				opacity: 1
+			}, 1000, 'easeOutElastic');
+			$('#registerForm .complete .title').animate({
+				left: 0,
+				opacity: 1
+			}, 2000, 'easeOutElastic');
+		});
 	}
 }
 
