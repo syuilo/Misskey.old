@@ -71,7 +71,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							p.caption
 								| 8文字以上の強固なパスワード。
 							div.content
-								input#password-input.ui-inputPassword(name='password', type='password')
+								input.password-input.ui-inputPassword(name='password', type='password')
 						div.nav
 							button.back(type='button') 戻る
 							button.next(type='button', disabled) 次！
@@ -81,7 +81,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							p.caption
 								| 確認のため、もう一度同じパスワードを入力してください。
 							div.content
-								input#passwordRetype.ui-inputPassword(name='retype_password', type='password')
+								input.password-retype-input.ui-inputPassword(name='retype_password', type='password')
 						div.nav
 							button.back(type='button') 戻る
 							button.next(type='button', disabled) 次！
@@ -91,7 +91,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							p.caption
 								| あなたのイメージカラー。
 							div.content
-								input#color.ui-inputColor(name='color', type='color')
+								input.user-color-input.ui-inputColor(name='color', type='color')
 						div.nav
 							button.back(type='button') 戻る
 							button.next(type='button', disabled) 決定！
