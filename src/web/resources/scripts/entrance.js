@@ -190,11 +190,13 @@ function initRegisterForm() {
 
 		$(nicknameInputQuery).keyup(function() {
 			hideMessage();
+			$nextButton.attr('disabled', true);
 			var name = $(nicknameInputQuery).val();
 			if (name.length == 0) {
 				return false;
 			}
 			showMessage('Great!', true);
+			$nextButton.attr('disabled', false);
 		});
 
 		function showMessage(message, success) {
