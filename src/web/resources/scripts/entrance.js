@@ -13,8 +13,8 @@ $(function() {
 			if (force <= 0) {
 				clearInterval(timer);
 			}
-			pos = ((Math.sin(t / 10) * 100) / (baseForce - force));
-			$elem.css('transform', 'rotateX(' + pos + 'deg)');
+			pos = ((Math.sin(t / 20) * 100) / (baseForce - force));
+			$elem.css('transform', 'perspective(512px) rotateX(' + pos + 'deg)');
 		}
 	}
 
