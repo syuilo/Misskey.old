@@ -13,7 +13,7 @@ require! {
 }
 
 module.exports = (req, res) ->
-	[screen-name, name, password, color] = get-express-params req <[ screen-name name password color ]>
+	[screen-name, name, password, color] = get-express-params req, <[ screen-name name password color ]>
 
 	switch
 	| !screen-name? => res.api-error 400 'screenName parameter is required :('
