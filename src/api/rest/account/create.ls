@@ -40,9 +40,15 @@ module.exports = (req, res) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
 					# Init user image documents
-					err, icon <- UserIcon.insert { user-id: created-user.id }
-					err, header <- UserHeader.insert { user-id: created-user.id }
-					err, wallpaper <- UserWallpaper.insert { user-id: created-user.id }
+					icon = new UserIcon!
+						..user-id = created-user.id
+					header = new UserHeader!
+						..user-id = created-user.id
+					wallpaper = new UserWallpaper!
+						..user-id = created-user.id
+					err, icon-instance <- icon.save
+					err, header-instance <- header.save
+					err, wallpaper-instance <- wallpaper.save
 					#UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
 					#UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
 					do-login req, created-user.screen-name, password, (user) ->
