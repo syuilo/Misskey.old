@@ -41,10 +41,13 @@ module.exports = (req, res) ->
 				| _ =>
 					# Init user image documents
 					icon = new UserIcon!
+						.._id = created-user.id
 						..user-id = created-user.id
 					header = new UserHeader!
+						.._id = created-user.id
 						..user-id = created-user.id
 					wallpaper = new UserWallpaper!
+						.._id = created-user.id
 						..user-id = created-user.id
 					err, icon-instance <- icon.save
 					err, header-instance <- header.save
