@@ -295,6 +295,7 @@ function initRegisterForm() {
 
 		$(passwordInputQuery).keyup(function() {
 			hideMessage();
+			$nextButton.attr('disabled', true);
 			var password = $(passwordInputQuery).val();
 			if (password.length == 0) {
 				return false;
@@ -304,6 +305,7 @@ function initRegisterForm() {
 				return false;
 			}
 			showMessage('Nice!', true);
+			$nextButton.attr('disabled', false);
 		});
 
 		function showMessage(message, success) {
