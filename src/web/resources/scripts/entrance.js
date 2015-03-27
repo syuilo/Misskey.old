@@ -481,7 +481,7 @@ function initRegisterForm() {
 			}, 1000, 'easeOutQuint');
 		});
 
-		$nextButton.click(function() {
+		$submitButton.click(function() {
 			$progress.attr('value', 7);
 
 			$('#registerForm .confirm').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
