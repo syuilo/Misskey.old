@@ -112,7 +112,7 @@ function initRegisterForm() {
 				opacity: 1
 			}, 1000, 'easeOutElastic');
 			$('#registerForm .nickname .title').animate({
-				top: 0,
+				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
 		});
@@ -205,7 +205,7 @@ function initRegisterForm() {
 				opacity: 1
 			}, 1000, 'easeOutElastic');
 			$('#registerForm .password .title').animate({
-				top: 0,
+				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
 		});
@@ -247,7 +247,7 @@ function showRegisterForm() {
 		opacity: 1
 	}, 500, 'easeOutQuint');
 	$('#registerForm .user-name .title').animate({
-		top: 0,
+		left: 0,
 		opacity: 1
 	}, 1000, 'easeOutElastic');
 }
