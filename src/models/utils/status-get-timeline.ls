@@ -1,4 +1,5 @@
 require! {
+	'../status': Status
 	'../user-following': UserFollowing
 }
 
