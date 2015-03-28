@@ -10,7 +10,7 @@ require! {
 	'../config'
 	'body-parser'
 	'cookie-parser'
-	'connect-redis'
+	'connect-redis': connect-redis
 	'express-minify': minify
 	'express-session': session
 	'../models/user': User
