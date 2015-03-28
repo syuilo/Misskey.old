@@ -30,18 +30,20 @@ main {
 		box-sizing: border-box;
 		width: 100%;
 		margin: 0;
+		padding-top: 8px;
 
-		#postFormContainer {
+		#post-form-container {
 			box-sizing: border-box;
 			width: 100%;
 
-			#postForm {
+			#post-form {
 				box-sizing: border-box;
 				width: 100%;
 				max-width: 700px;
 				margin: 0 auto;
-				padding: 16px 16px 12px 16px;
+				padding: 16px 32px 12px 32px;
 				background: #fff;
+				box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 
 				&:after {
 					content: "";
@@ -49,112 +51,129 @@ main {
 					clear: both;
 				}
 
-				textarea {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					box-sizing: border-box;
-					width: 100%;
-					min-width: 100%;
-					max-width: 100%;
-					margin: 0;
-					padding: 8px;
-					font-size: 1.2em;
-					color: #000;
-					outline: none;
-					border: solid 1px #eee;
-					border-radius: 0;
-					box-shadow: none;
-					transition: all 0.2s ease;
-
-					&:hover {
-						border: solid 1px @themeColor;
-					}
-
-					&:focus {
-						color: @themeColor;
-						outline: none;
-						border: solid 1px @themeColor;
-					}
+				.icon {
+					display: block;
+					float: left;
+					max-width: 64px;
+					max-height: 64px;
+					margin: 0 16px;
+					padding: 0;
+					vertical-align: bottom;
+					border-radius: 32px;
 				}
 
-				.imageAttacher {
-					box-sizing: border-box;
-					display: inline-block;
-					position: relative;
-					float: right;
-					margin: 2px 8px;
-					padding: 8px 16px;
-					vertical-align: top;
-					line-height: 1.2em;
-					outline: dashed 2px #ccc;
+				.main {
+					display: block;
+					float: left;
+					width: ~"calc(100% - 96px)";
 
-					&:hover {
-						outline: dashed 2px #777;
-					}
-
-					input[type=file] {
-						display: inline;
-						position: absolute;
-						top: 0;
-						left: 0;
+					textarea {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						box-sizing: border-box;
 						width: 100%;
-						height: 100%;
-						overflow: hidden;
-						opacity: 0;
-					}
-
-					p {
-						margin: 0;
-						padding: 0;
-						color: #777;
-						line-height: 1.2em;
-						font-size: 1em;
-					}
-
-					img {
+						min-width: 100%;
 						max-width: 100%;
-						max-height: 128px;
-					}
-				}
+						margin: 0;
+						padding: 8px;
+						font-size: 1.2em;
+						color: #000;
+						outline: none;
+						border: solid 1px #eee;
+						border-radius: 0;
+						box-shadow: none;
+						transition: all 0.2s ease;
 
-				input[type=submit] {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-					display: inline-block;
-					float: right;
-					box-sizing: border-box;
-					margin: 0;
-					padding: 8px 16px;
-					min-width: 5em;
-					cursor: pointer;
-					line-height: 1.2em;
-					font-size: 1.2em;
-					font-weight: normal;
-					text-decoration: none;
-					color: #fff;
-					background: @themeColor;
-					outline: none;
-					border: none;
-					border-radius: 2px;
-					box-shadow: none;
-					transition: background 0.1s ease;
-					font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ÉqÉâÉMÉmäpÉS ProN W3','Meiryo UI','Meiryo, ÉÅÉCÉäÉI','sans-serif';
+						&:hover {
+							border: solid 1px @themeColor;
+						}
 
-					&:hover {
-						background: lighten(@themeColor, 10%);
+						&:focus {
+							color: @themeColor;
+							outline: none;
+							border: solid 1px @themeColor;
+						}
 					}
 
-					&:active {
-						background: darken(@themeColor, 10%);
+					.image-attacher {
+						box-sizing: border-box;
+						display: inline-block;
+						position: relative;
+						float: right;
+						margin: 2px 8px;
+						padding: 8px 16px;
+						vertical-align: top;
+						line-height: 1.2em;
+						outline: dashed 2px #ccc;
+
+						&:hover {
+							outline: dashed 2px #777;
+						}
+
+						input[type=file] {
+							display: inline;
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							overflow: hidden;
+							opacity: 0;
+						}
+
+						p {
+							margin: 0;
+							padding: 0;
+							color: #777;
+							line-height: 1.2em;
+							font-size: 1em;
+						}
+
+						img {
+							max-width: 100%;
+							max-height: 128px;
+						}
+					}
+
+					input[type=submit] {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: inline-block;
+						float: right;
+						box-sizing: border-box;
+						margin: 0;
+						padding: 8px 16px;
+						min-width: 5em;
+						cursor: pointer;
+						line-height: 1.2em;
+						font-size: 1.2em;
+						font-weight: normal;
+						text-decoration: none;
+						color: #fff;
+						background: @themeColor;
+						outline: none;
+						border: none;
+						border-radius: 2px;
+						box-shadow: none;
+						transition: background 0.1s ease;
+						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ÉqÉâÉMÉmäpÉS ProN W3','Meiryo UI','Meiryo, ÉÅÉCÉäÉI','sans-serif';
+
+						&:hover {
+							background: lighten(@themeColor, 10%);
+						}
+
+						&:active {
+							background: darken(@themeColor, 10%);
+						}
 					}
 				}
 			}
 		}
 
-		.timelineContainer {
-			.timelineMain {
+		.timeline-container {
+			.timeline-main {
 				box-sizing: border-box;
 				width: 100%;
 				max-width: 764px;

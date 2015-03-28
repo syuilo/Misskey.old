@@ -12,14 +12,16 @@ block assets
 
 block content
 	div#timeline
-		div#postFormContainer
-			form#postForm(enctype='multipart/form-data')
-				textarea(name='text', placeholder='What\'s up?')
-				input(type='submit', value!='Update &#xf1d8;')
-				div.imageAttacher
-					p
-						i.fa.fa-picture-o
-					input(name='image', type='file', accept='image/*')
+		div#post-form-container
+			form#post-form(enctype='multipart/form-data')
+				img.icon(src='/img/icon/' + me.screenName, alt='icon')
+				div.form
+					textarea(name='text', placeholder='What\'s up?')
+					input(type='submit', value!='Update &#xf1d8;')
+					div.image-attacher
+						p
+							i.fa.fa-picture-o
+						input(name='image', type='file', accept='image/*')
 			
-		div.timelineContainer
-			div.timelineMain!= timelineHtml
+		div.timeline-container
+			div.timeline-main!= timelineHtml
