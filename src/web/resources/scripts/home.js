@@ -117,7 +117,7 @@ $(function() {
 		$submitButton.attr('disabled', true);
 		$submitButton.text('Updating...');
 
-		$.ajax('https://api.misskey.xyz/post/create', {
+		$.ajax('https://api.misskey.xyz/status/update', {
 			type: 'post',
 			processData: false,
 			contentType: false,
@@ -150,7 +150,7 @@ $(function() {
 		$.cookie('post-autosave', text, { path: '/', expires: 365 });
 	});
 
-	$('#timeline .loadMore').click(function() {
+	$('#timeline .load-more').click(function() {
 		$button = $(this);
 		$button.attr('disabled', true);
 		$button.text('Loading...');
