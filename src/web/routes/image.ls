@@ -56,19 +56,18 @@ module.exports = (app) ->
 
 	function display-user-image(req, res, id-or-sn, image-property-name)
 		function display(user, user-image)
-			if user-image?
-				image-buffer = if user-image.image?
-					then user-image.image
-					else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}.jpg"
-				if (req.headers[\accept].index-of \text) == 0
-					display-image do
-						req
-						res
-						image-buffer
-						"https://misskey.xyz/img/#image-property-name/#id-or-sn"
-						user.screen-name
-				else
-					send-image req, res, image-buffer
+			image-buffer = if user-image.image?
+				then user-image.image
+				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}.jpg"
+			if (req.headers[\accept].index-of \text) == 0
+				display-image do
+					req
+					res
+					image-buffer
+					"https://misskey.xyz/img/#image-property-name/#id-or-sn"
+					user.screen-name
+			else
+				send-image req, res, image-buffer
 		
 		function routing-image(user)
 			switch
@@ -82,6 +81,10 @@ module.exports = (app) ->
 				| image-property-name == \wallpaper =>
 					UserWallpaper.find-by-id user.id, (, user-image) ->
 						display user, user-image
+				| _ =>
+					res
+						..status 500
+						..send "Invalid type: #image-property-name"
 			| _ =>
 				res
 					..status 404
