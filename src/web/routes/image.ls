@@ -74,13 +74,13 @@ module.exports = (app) ->
 			switch
 			| user? =>
 				| image-property-name == \icon =>
-					UserIcon.find-one { user-id: user.id } (, user-image) ->
+					UserIcon.find-by-id user.id, (, user-image) ->
 						display user, user-image
 				| image-property-name == \header =>
-					UserHeader.find-one { user-id: user.id } (, user-image) ->
+					UserHeader.find-by-id user.id, (, user-image) ->
 						display user, user-image
 				| image-property-name == \wallpaper =>
-					UserWallpaper.find-one { user-id: user.id } (, user-image) ->
+					UserWallpaper.find-by-id user.id, (, user-image) ->
 						display user, user-image
 			| _ =>
 				res
@@ -143,18 +143,18 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
-	app.get '/img/icon/:idOrSn' (req, res) ->
-		id-or-sn = req.params.idOrSn
+	app.get '/img/icon/:id-or-sn' (req, res) ->
+		id-or-sn = req.params.id-or-sn
 		display-user-image req, res, id-or-sn, \icon
 
 	# User header
-	app.get '/img/header/:idOrSn' (req, res) ->
-		id-or-sn = req.params.idOrSn
+	app.get '/img/header/:id-or-sn' (req, res) ->
+		id-or-sn = req.params.id-or-sn
 		display-user-image req, res, id-or-sn, \header
 
 	# User wallpaper
-	app.get '/img/wallpaper/:idOrSn' (req, res) ->
-		id-or-sn = req.params.idOrSn
+	app.get '/img/wallpaper/:id-or-sn' (req, res) ->
+		id-or-sn = req.params.id-or-sn
 		display-user-image req, res, id-or-sn, \wallpaper
 
 	# Status
