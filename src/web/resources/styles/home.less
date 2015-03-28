@@ -8,145 +8,24 @@ html, body {
 html {
 	color: #000;
 	background-color: #fff;
-	/*
-	background-image: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url(@wallpaperUrl);
+	
+	background-image: url(@wallpaperUrl);
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
-	*/
 }
 
 .timeline>.posts>.post {
 	padding: 16px 24px !important;
 }
 
-body {
-	> nav {
-		display: block;
-		position: fixed;
-		width: 300px;
-		min-height: 100%;
-		text-align: center;
-		background: #fff;
-
-		> #me {
-			#meIconAnchor {
-				display: block;
-				max-width: 128px;
-				max-height: 128px;
-				margin: 8px auto;
-				padding: 0;
-				vertical-align: bottom;
-				border-radius: 64px;
-
-				#meIcon {
-					display: block;
-					max-width: 128px;
-					max-height: 128px;
-					margin: 0;
-					padding: 0;
-					vertical-align: bottom;
-					border-radius: 64px;
-				}
-			}
-
-			#meScreenName {
-				margin: 0 8px;
-				color: rgba(0, 0, 0, 0.5);
-			}
-		}
-
-		> ul {
-			width: 100%;
-			margin: 16px 0;
-			padding: 0;
-			list-style: none;
-
-			> li {
-				text-align: left;
-				background: #fff;
-				border-top: solid 1px #eee;
-
-				&:first-child {
-					border-top: none;
-				}
-
-				a {
-					display: block;
-					padding: 10px 16px 10px 64px;
-					background-image: url("/resources/images/allow.svg");
-					background-repeat: no-repeat;
-					background-position: ~"calc(100% - 8px)" center;
-					text-decoration: none;
-					color: #111;
-					font-size: 1.1em;
-					transition: none;
-
-					&:hover {
-						background-color: @themeColor;
-						color: #fff;
-					}
-
-					i {
-						margin: 0 8px;
-					}
-				}
-			}
-		}
-	}
-}
-
-#me-status {
-	width: 100%;
-	border-collapse: collapse;
-	border-radius: 4px;
-
-	a {
-		text-decoration: none;
-		color: @themeColor;
-
-		&:hover {
-			border-bottom: dashed 1px @themeColor;
-		}
-	}
-
-	th {
-		margin-left: 16px;
-		color: #333;
-	}
-
-	td {
-		margin-right: 16px;
-	}
-
-	th,
-	td {
-		display: inline-block;
-		box-sizing: border-box;
-		width: ~"calc(50% - 16px)";
-		padding: 8px;
-		line-height: 1.3em;
-		border-top: solid 1px #eee;
-	}
-
-	tr:first-child th,
-	tr:first-child td {
-		margin-top: 8px;
-		border-top: none;
-	}
-
-	tr:last-child th,
-	tr:last-child td {
-		margin-bottom: 8px;
-	}
-}
-
 main {
 	display: block;
-	position: absolute;
-	left: 300px;
-	width: ~"calc(100% - 300px)";
+	position: relative;
+	width: 100%;
+	max-width: 1024px;
+	margin: 0 auto;
 
 	#timeline {
 		box-sizing: border-box;
@@ -156,7 +35,6 @@ main {
 		#postFormContainer {
 			box-sizing: border-box;
 			width: 100%;
-			background: rgba(0, 0, 0, 0.01);
 
 			#postForm {
 				box-sizing: border-box;
