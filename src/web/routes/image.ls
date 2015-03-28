@@ -21,7 +21,7 @@ require! {
 
 module.exports = (app) ->
 	# Direct access (display image viewer page)
-	function display-image(req, res, image-buffer, img-url, file-name, author)
+	function display-image(req, res, image-buffer, img-url, author)
 		img = gm image-buffer
 		img.size (err, val) ->
 			res.display req, res, 'image' {
