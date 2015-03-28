@@ -1,0 +1,6 @@
+div.timeline
+	if statuses != null && statuses.length > 0
+		ol.statuses
+			each status in statuses
+				li!= status
+		button.loadMore(role='button') Read more!
