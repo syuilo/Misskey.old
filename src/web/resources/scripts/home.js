@@ -104,7 +104,7 @@ $(function() {
 		}
 	});
 	
-	$('#postForm').submit(function(event) {
+	$('#post-form').submit(function(event) {
 		event.preventDefault();
 
 		post($(this));
@@ -129,8 +129,8 @@ $(function() {
 		}).done(function(data) {
 			$form[0].reset();
 			$form.find('textarea').focus();
-			$form.find('.imageAttacher').find('p, img').remove();
-			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
+			$form.find('.image-attacher').find('p, img').remove();
+			$form.find('.image-attacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
 			$submitButton.text('Update');
 			$.removeCookie('post-autosave');
@@ -143,8 +143,8 @@ $(function() {
 		});
 	}
 
-	$('#postForm textarea').bind('input', function() {
-		var text = $('#postForm textarea').val();
+	$('#post-form textarea').bind('input', function() {
+		var text = $('#post-form textarea').val();
 
 		// オートセーブ
 		$.cookie('post-autosave', text, { path: '/', expires: 365 });
