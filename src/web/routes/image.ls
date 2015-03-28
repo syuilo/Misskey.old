@@ -72,13 +72,14 @@ module.exports = (app) ->
 		function routing-image(user)
 			switch
 			| user? =>
-				| image-property-name == \icon =>
+				switch image-property-name
+				| \icon =>
 					UserIcon.find-by-id user.id, (, user-image) ->
 						display user, user-image
-				| image-property-name == \header =>
+				| \header =>
 					UserHeader.find-by-id user.id, (, user-image) ->
 						display user, user-image
-				| image-property-name == \wallpaper =>
+				| \wallpaper =>
 					UserWallpaper.find-by-id user.id, (, user-image) ->
 						display user, user-image
 				| _ =>
