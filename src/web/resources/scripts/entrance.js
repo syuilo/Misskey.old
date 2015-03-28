@@ -1,5 +1,6 @@
 $(function() {
 	swing($("#loginForm"), 50);
+	swing($("#new"), 50);
 
 	function swing($elem, angle) {
 		var t = 1;

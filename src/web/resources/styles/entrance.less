@@ -49,7 +49,7 @@ main {
 			box-shadow: 0 0 128px rgba(0, 0, 0, 0.9);
 			transform-origin: center top;
 			transform: perspective(512px);
-			
+
 			label {
 				display: block;
 				position: relative;
@@ -174,9 +174,43 @@ main {
 		}
 
 		#new {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			cursor: pointer;
 			display: inline-block;
-			position: relative;
+			top: 0;
+			left: 0;
+			box-sizing: border-box;
+			width: 6rem;
 			padding: 8px 16px;
+			margin: 16px;
+			line-height: 1.5rem;
+			font-size: 0.9em;
+			font-weight: bold;
+			color: #fff;
+			background: #5a7d7f;
+			border: none;
+			outline: none;
+			transition: all .2s ease;
+
+			&:disabled {
+				background: #ddd !important;
+			}
+
+			&:hover {
+				background: #29797f;
+				transition: all .1s ease;
+			}
+
+			&:active {
+				background: #09596f;
+				transition: all .1s ease;
+			}
+
+			&:focus {
+				text-shadow: 0 0 8px #fff;
+			}
 		}
 	}
 }
