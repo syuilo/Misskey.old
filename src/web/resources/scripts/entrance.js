@@ -632,6 +632,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
+			swing($("#registerForm .complete"), 1);
 		}
 	}
 }
