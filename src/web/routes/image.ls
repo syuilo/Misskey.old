@@ -65,7 +65,7 @@ module.exports = (app) ->
 					res
 					image-buffer
 					"https://misskey.xyz/img/#image-property-name/#id-or-sn"
-					user.screen-name
+					user
 			else
 				send-image req, res, image-buffer
 		
