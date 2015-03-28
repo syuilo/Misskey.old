@@ -4,8 +4,8 @@ require! {
 	'../../models/user': User
 	'../../models/status': Status
 	'../../models/status-favorite': StatusFavorite
-	'../../models/status-check-favorited'
-	'../../models/status-check-reposted'
+	'../../models/utils/status-check-favorited'
+	'../../models/utils/status-check-reposted'
 	'./timeline-serialize-more-talk': serialize-talk
 	'../../config'
 }
