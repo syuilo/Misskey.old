@@ -5,8 +5,8 @@ div.timeline
 				- var post = status;
 				li.status.post(title!= '#{post.createdAt}&#x0A;via #{post.app.name}'
 						style= post.isReply ? 'border-color: ' + post.reply.user.color + ';' : ''
-						data-id= post.isRepostToPost ? post.source.id : post.id
-						data-source-id= post.isRepostToPost ? post.id : null
+						data-id= post.isRepostToStatus ? post.source.id : post.id
+						data-source-id= post.isRepostToStatus ? post.id : null
 						data-user-id= post.user.id
 						data-user-color= post.user.color
 						data-user-verified!= post.user.isPremium.toString()
@@ -14,8 +14,8 @@ div.timeline
 						data-is-talk!= (post.moreTalk != null).toString()
 						data-is-favorited!= login ? post.isFavorited.toString() : null
 						data-is-reposted!= login ? post.isReposted.toString() : null
-						data-is-repostpost!= post.isRepostToPost.toString()
-						data-repost-by-user-id!= post.isRepostToPost ? post.repostedByUser.id : null)
+						data-is-repostpost!= post.isRepostToStatus.toString()
+						data-repost-by-user-id!= post.isRepostToStatus ? post.repostedByUser.id : null)
 					if post.moreTalk != null
 						div.moreTalk
 							i.fa.fa-ellipsis-v
@@ -35,10 +35,10 @@ div.timeline
 												span.screenName= '@' + talkPost.user.screenName
 												a(href=url + '/' + talkPost.user.screenName + '/post/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
 											div.main
-												p.text!= (talkPost.isReply ? '<a href="' + url + '/post/' + talkPost.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
+												p.text!= (talkPost.isReply ? '<a href="' + url + '/post/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
 												if talkPost.isImageAttached
 													img.image(src=url + '/img/post/' + talkPost.id, alt='image')
-					if post.isRepostToPost
+					if post.isRepostToStatus
 						div.repostInformation
 							p.info
 								a.iconAnchor(href=url + '/' + post.repostedByUser.screenName + '/talk?noheader=true', title= post.repostedByUser.comment != null ? post.repostedByUser.comment : '@' + post.repostedByUser.screenName)
@@ -61,7 +61,7 @@ div.timeline
 									span.screenName= '@' + post.reply.user.screenName
 									a(href=url + '/' + post.reply.user.screenName + '/post/' + post.reply.id): time(datetime=post.reply.createdAt)= post.reply.createdAt
 								div.main
-									p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
+									p.text!= (post.reply.isReply ? '<a href="' + url + '/post/' + post.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.reply.text)
 									if post.reply.isImageAttached
 										img.image(src=url + '/img/post/' + post.reply.id, alt='image')
 					article
@@ -73,7 +73,7 @@ div.timeline
 							span.screenName= '@' + post.user.screenName
 							a(href=url + '/' + post.user.screenName + '/post/' + post.id): time(datetime=post.createdAt)= post.createdAt
 						div.main
-							p.text!= (post.isReply ? '<a href="' + url + '/post/' + post.inReplyToPostId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.text)
+							p.text!= (post.isReply ? '<a href="' + url + '/post/' + post.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(post.text)
 							if post.isImageAttached
 								img.image(src=url + '/img/post/' + post.id, alt='image')
 						footer

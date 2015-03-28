@@ -1,7 +1,7 @@
 require! {
 	jade
 	'./timeline-serialyzer': serialyzer
-	'./textparser': textparser
+	'./parse-text'
 	'../../config'
 }
 
@@ -13,12 +13,12 @@ module.exports = (statuses, viewer, callback) ->
 				statuses: timeline
 				url: config.publicConfig.url
 				login: viewer?
-				parseText: textparser
+				text-parser: parse-text
 			callback html
 	else
 		html = compiler do
 			statuses: null
 			url: config.publicConfig.url
 			login: viewer?
-			parseText: textparser
+			text-parser: parse-text
 		callback html
