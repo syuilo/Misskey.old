@@ -16,9 +16,9 @@ user-schema = new Schema do
 	emailaddress:           { type: String,   required: no,  default: null }
 	first-name:             { type: String,   required: no,  default: null }
 	followers-count:        { type: Number,   required: no,  default: 0 }
-	friends-count:          { type: Number,   required: no,  default: 0 }
+	followings-count:       { type: Number,   required: no,  default: 0 }
 	gender:                 { type: String,   required: no,  default: null }
-	is-plused:              { type: Boolean,  required: no,  default: no }
+	is-plus:                { type: Boolean,  required: no,  default: no }
 	is-suspended:           { type: Boolean,  required: no,  default: no }
 	lang:                   { type: String,   required: yes, default: 'ja' }
 	last-name:              { type: String,   required: no,  default: null }

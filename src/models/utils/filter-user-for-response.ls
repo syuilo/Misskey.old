@@ -6,7 +6,7 @@ module.exports = filter-key <[
 	created-at
 	first-name
 	followers-count
-	friends-count
+	followings-count
 	id
 	lang
 	last-name
