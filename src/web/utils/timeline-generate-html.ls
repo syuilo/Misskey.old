@@ -9,7 +9,7 @@ module.exports = (statuses, viewer, callback) ->
 	status-compiler = jade.compile-file "#__dirname/../views/templates/status/status.jade"
 	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade"
 	if statuses?
-		serialyzer statuses, viewrer, (timeline) ->
+		serialyzer statuses, viewer, (timeline) ->
 			statuses-htmls = map ((status) -> status-compiler do
 				status: status
 				login: viewer?
