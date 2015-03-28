@@ -71,6 +71,7 @@ main {
 						-webkit-appearance: none;
 						-moz-appearance: none;
 						appearance: none;
+						position: relative;
 						box-sizing: border-box;
 						width: 100%;
 						min-width: 100%;
@@ -87,12 +88,48 @@ main {
 
 						&:hover {
 							border: solid 1px @themeColor;
+
+							&:before {
+								border-right: solid 8px @themeColor;
+							}
 						}
 
 						&:focus {
 							color: @themeColor;
 							outline: none;
 							border: solid 1px @themeColor;
+
+							&:before {
+								border-right: solid 8px @themeColor;
+							}
+						}
+
+						&:before {
+							content: "";
+							display: block;
+							position: absolute;
+							top: 8px;
+							left: -16px;
+							font-size: 0;
+							line-height: 0;
+							border-top: solid 8px transparent;
+							border-right: solid 8px #eee;
+							border-bottom: solid 8px transparent;
+							border-left: solid 8px transparent;
+						}
+
+						&:after {
+							content: "";
+							display: block;
+							position: absolute;
+							top: 9px;
+							left: -15px;
+							font-size: 0;
+							line-height: 0;
+							border-top: solid 6px transparent;
+							border-right: solid 6px #fff;
+							border-bottom: solid 6px transparent;
+							border-left: solid 6px transparent;
 						}
 					}
 
