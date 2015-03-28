@@ -3,7 +3,7 @@ require! {
 }
 
 module.exports = (user-id) ->
-	resove, reject <- new Promise!
+	resolve, reject <- new Promise!
 	err, count <- UserFollowing.count {followee-id: user-id}
 	if err?
 		then reject err
