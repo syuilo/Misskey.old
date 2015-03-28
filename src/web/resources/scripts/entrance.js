@@ -1,16 +1,16 @@
+function swing($elem, force) {
+	var t = 1;
+	var timer = setInterval(update, 10);
+	function update() {
+		t++;
+		var pos = ((Math.sin(t / 20) * force) / ((t / 512) / 3));
+		$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
+	}
+}
+
 $(function() {
 	swing($('#loginForm'), 1);
 	swing($('#new'), 2);
-
-	function swing($elem, force) {
-		var t = 1;
-		var timer = setInterval(update, 10);
-		function update() {
-			t++;
-			var pos = ((Math.sin(t / 20) * force) / ((t / 512) / 3));
-			$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
-		}
-	}
 
 	$('#loginForm').submit(function(event) {
 		event.preventDefault();
