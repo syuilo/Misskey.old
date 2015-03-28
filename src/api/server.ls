@@ -53,6 +53,7 @@ api-server.oauth = oauth2-server do
   model: {}
   grants: []
   debug: true
+  access-token-lifetime: null
 
 api-server.use (req, res, next) ->
 	sent = (data) -> switch req.format
