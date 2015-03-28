@@ -179,10 +179,7 @@ main {
 			appearance: none;
 			cursor: pointer;
 			display: inline-block;
-			top: 0;
-			left: 0;
 			box-sizing: border-box;
-			width: 6rem;
 			padding: 8px 16px;
 			margin: 16px;
 			line-height: 1.5rem;
@@ -192,7 +189,8 @@ main {
 			background: #5a7d7f;
 			border: none;
 			outline: none;
-			transition: all .2s ease;
+			transform-origin: center top;
+			transition: background .2s ease;
 
 			&:disabled {
 				background: #ddd !important;
@@ -200,12 +198,12 @@ main {
 
 			&:hover {
 				background: #29797f;
-				transition: all .1s ease;
+				transition: background .1s ease;
 			}
 
 			&:active {
 				background: #09596f;
-				transition: all .1s ease;
+				transition: background .1s ease;
 			}
 
 			&:focus {
