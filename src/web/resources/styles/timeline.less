@@ -2,7 +2,7 @@
 
 /* Timeline
  * ---------------------------------------------------------------- */
-.timeline-verifiedIcon {
+.timeline-verified-icon {
 	content: '';
 	display: inline-block;
 	vertical-align: text-bottom;
@@ -13,7 +13,7 @@
 	background-size: 1.1em 1.1em;
 }
 
-.timeline-replyArticle {
+.timeline-reply-article {
 	position: relative;
 	padding: 8px;
 
@@ -69,7 +69,7 @@
 			font-weight: bold;
 		}
 
-		> .screenName {
+		> .screen-name {
 			text-align: left;
 			margin: 0 0 0 8px;
 			color: rgba(0, 0, 0, 0.5);
@@ -133,7 +133,7 @@
 				}
 			}
 
-			.screenName {
+			.screen-name {
 				color: @themeColor;
 				text-decoration: none;
 				transition: text-shadow 0.2s ease;
@@ -170,7 +170,7 @@
 		padding: 0;
 		list-style: none;
 
-		> .status.post {
+		> .status.article {
 			position: relative;
 			padding: 16px 24px;
 			border-left: solid 3px transparent;
@@ -212,7 +212,7 @@
 				}
 			}
 
-			> .moreTalk {
+			> .more-talk {
 				text-align: center;
 
 				> i {
@@ -248,14 +248,14 @@
 						}
 
 						> article {
-							.timeline-replyArticle;
+							.timeline-reply-article;
 						}
 					}
 
 						> .post[data-user-verified='true'] {
 							> article > header > h2 > a {
 								&:before {
-									.timeline-verifiedIcon;
+									.timeline-verified-icon;
 								}
 							}
 						}
@@ -266,7 +266,7 @@
 				}
 			}
 
-			> .repostInformation {
+			> .repost-information {
 				padding: 0 8px;
 				color: #57B800;
 
@@ -351,7 +351,7 @@
 						font-weight: bold;
 					}
 
-					> .screenName {
+					> .screen-name {
 						text-align: left;
 						margin: 0 0 0 8px;
 						color: rgba(0, 0, 0, 0.5);
@@ -415,7 +415,7 @@
 							}
 						}
 
-						.screenName {
+						.screen-name {
 							color: @themeColor;
 							text-decoration: none;
 							transition: text-shadow 0.2s ease;
@@ -495,7 +495,7 @@
 				}
 			}
 
-			> .replyTo {
+			> .reply-to {
 				display: inline-block;
 				position: relative;
 				width: 100%;
@@ -536,7 +536,7 @@
 				}
 			}
 
-				> .replyTo[data-user-verified='true'] {
+				> .reply-to[data-user-verified='true'] {
 					> article > header > h2 > a {
 						&:before {
 							.timeline-verifiedIcon;
@@ -548,7 +548,7 @@
 				display: none;
 				padding: 4px 16px;
 
-				> .replyForm {
+				> .reply-form {
 
 					> textarea {
 						-webkit-appearance: none;
@@ -611,7 +611,7 @@
 						}
 					}
 
-					> .imageAttacher {
+					> .image-attacher {
 						box-sizing: border-box;
 						display: inline-block;
 						position: relative;
@@ -650,7 +650,7 @@
 			}
 		}
 
-			> .status.post[data-is-reply='true'] {
+			> .status.article[data-is-reply='true'] {
 				> article {
 					&:before {
 						content: "";
@@ -666,8 +666,8 @@
 				}
 			}
 
-			> .status.post[data-is-talk='true'] {
-				> .replyTo {
+			> .status.article[data-is-talk='true'] {
+				> .reply-to {
 					&:before {
 						top: 0;
 						height: 100%;
@@ -675,11 +675,11 @@
 				}
 			}
 
-			> .status.post[data-is-repostpost='true'] {
+			> .status.article[data-is-repostpost='true'] {
 				background: rgba(128, 255, 0, 0.1);
 			}
 
-			> .status.post[data-is-favorited='true'] > article > footer > .actions > .favorite {
+			> .status.article[data-is-favorited='true'] > article > footer > .actions > .favorite {
 				> button {
 					color: @themeColor;
 
@@ -689,7 +689,7 @@
 				}
 			}
 
-			> .status.post[data-is-reposted='true'] > article > footer > .actions > .repost {
+			> .status.article[data-is-reposted='true'] > article > footer > .actions > .repost {
 				> button {
 					color: @themeColor;
 
@@ -699,7 +699,7 @@
 				}
 			}
 
-			> .status.post[data-user-verified='true'] {
+			> .status.article[data-user-verified='true'] {
 				> article > header > h2 > a {
 					&:before {
 						.timeline-verifiedIcon;
@@ -708,7 +708,7 @@
 			}
 	}
 
-	> .loadMore {
+	> .load-more {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;

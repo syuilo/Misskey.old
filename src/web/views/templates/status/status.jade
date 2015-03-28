@@ -1,4 +1,4 @@
-div.status(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
+div.status.article(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
 		style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : ''
 		data-id= status.isRepostToStatus ? status.source.id : status.id
 		data-source-id= status.isRepostToStatus ? status.id : null
@@ -12,7 +12,7 @@ div.status(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
 		data-is-repostpost!= status.isRepostToStatus.toString()
 		data-repost-by-user-id!= status.isRepostToStatus ? status.repostedByUser.id : null)
 	if status.moreTalk != null
-		div.moreTalk
+		div.more-talk
 			i.fa.fa-ellipsis-v
 			ol.talk
 				each talkPost in status.moreTalk
@@ -22,50 +22,50 @@ div.status(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
 						data-user-color= talkPost.user.color
 						data-user-verified!= talkPost.user.isPremium.toString())
 						article
-							a.iconAnchor(href= url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
+							a.icon-anchor(href= url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 								img.icon(src=url + '/img/icon/' + talkPost.user.screenName, alt='icon')
 							header
 								h2
 									a(href=url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
-								span.screenName= '@' + talkPost.user.screenName
+								span.screen-name= '@' + talkPost.user.screenName
 								a(href=url + '/' + talkPost.user.screenName + '/post/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
 							div.main
 								p.text!= (talkPost.isReply ? '<a href="' + url + '/post/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
 								if talkPost.isImageAttached
 									img.image(src=url + '/img/post/' + talkPost.id, alt='image')
 	if status.isRepostToStatus
-		div.repostInformation
+		div.repost-information
 			p.info
-				a.iconAnchor(href=url + '/' + status.repostedByUser.screenName + '/talk?noheader=true', title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
+				a.icon-anchor(href=url + '/' + status.repostedByUser.screenName + '/talk?noheader=true', title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
 					img.icon(src=url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
 				i.fa.fa-retweet
 				a.name(href=url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
 				| によってRepost
 	if status.isReply
-		div.replyTo(title!= '#{post.reply.createdAt}&#x0A;'
+		div.reply-to(title!= '#{post.reply.createdAt}&#x0A;'
 			data-id= status.reply.id
 			data-user-id= status.reply.user.id
 			data-user-color= status.reply.user.color
 			data-user-verified!= status.reply.user.isPlustoString())
 			article
-				a.iconAnchor(href=url + '/' + status.reply.user.screenName + '/talk?noheader=true', title= status.reply.user.comment != null ? status.reply.user.comment : '@' + status.reply.user.screenName)
+				a.icon-anchor(href=url + '/' + status.reply.user.screenName + '/talk?noheader=true', title= status.reply.user.comment != null ? status.reply.user.comment : '@' + status.reply.user.screenName)
 					img.icon(src=url + '/img/icon/' + status.reply.user.screenName, alt='icon')
 				header
 					h2
 						a(href=url + '/' + status.reply.user.screenName, target='_blank')= status.reply.user.name
-					span.screenName= '@' + status.reply.user.screenName
+					span.screen-name= '@' + status.reply.user.screenName
 					a(href=url + '/' + status.reply.user.screenName + '/post/' + status.reply.id): time(datetime=status.reply.createdAt)= status.reply.createdAt
 				div.main
 					p.text!= (status.reply.isReply ? '<a href="' + url + '/post/' + status.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.reply.text)
 					if status.reply.isImageAttached
 						img.image(src=url + '/img/post/' + status.reply.id, alt='image')
 	article
-		a.iconAnchor(href=url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+		a.icon-anchor(href=url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
 			img.icon(src=url + '/img/icon/' + status.user.screenName, alt='icon')
 		header
 			h2
 				a(href=url + '/' + status.user.screenName, target='_blank')= status.user.name
-			span.screenName= '@' + status.user.screenName
+			span.screen-name= '@' + status.user.screenName
 			a(href=url + '/' + status.user.screenName + '/post/' + status.id): time(datetime=status.createdAt)= status.createdAt
 		div.main
 			p.text!= (status.isReply ? '<a href="' + url + '/post/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.text)
@@ -75,20 +75,20 @@ div.status(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
 			if login
 				div.actions
 					div.repost
-						button.repostButton(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+						button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
 							i.fa.fa-retweet
 						a(href=url + '/' + status.user.screenName + '/post/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
 					div.favorite
-						button.favoriteButton(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+						button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
 							i.fa.fa-star
 						a(href=url + '/' + status.user.screenName + '/post/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 	footer
 		if login
-			form.replyForm
+			form.reply-form
 				textarea(name='text')= '@' + status.user.screenName + ' '
 				input(name='in_reply_to_post_id', type='hidden', value=status.id)
 				input(type='submit', value!='&#xf112; Reply')
-				div.imageAttacher
+				div.image-attacher
 					p
 						i.fa.fa-picture-o
 					input(name='image', type='file', accept='image/*')
