@@ -6,19 +6,20 @@ require! {
 }
 
 module.exports = (statuses, viewer, callback) ->
-	compiler = jade.compile-file "#__dirname/../views/templates/timeline.jade"
+	status-compiler = jade.compile-file "#__dirname/../views/templates/status/status.jade"
+	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade"
 	if statuses?
 		serialyzer statuses, viewrer, (timeline) ->
-			html = compiler do
-				statuses: timeline
-				url: config.publicConfig.url
+			statuses-htmls = map ((status) -> status-compiler do
+				status: status
 				login: viewer?
-				text-parser: parse-text
+				text-parser: parse-text), timeline
+			html = timeline-compiler do
+				statuses: statuses-htmls
+				login: viewer?
 			callback html
 	else
-		html = compiler do
+		html = timeline-compiler do
 			statuses: null
-			url: config.publicConfig.url
 			login: viewer?
-			text-parser: parse-text
 		callback html
