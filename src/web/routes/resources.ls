@@ -22,7 +22,8 @@ module.exports = (app) ->
 		less.render do
 			pre-compile less-css, style-user, color
 			{ +compress }
-			(, output) ->
+			(err, output) ->
+				if err then throw err
 				callback output.css
 		
 		# Analyze variable
