@@ -59,7 +59,7 @@ module.exports = (app) ->
 			if user-image?
 				image-buffer = if user-image.image != null
 					then user-image.image
-					else fs.read-file-sync path.resolve "#__dirname/../resources/images/#{image-property-name}-default.jpg"
+					else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}-default.jpg"
 				if (req.headers[\accept].index-of \text) == 0
 					display-image do
 						req
