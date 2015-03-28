@@ -1,6 +1,6 @@
 $(function() {
-	swing($("#loginForm"), 1);
-	swing($("#new"), 2);
+	swing($('#loginForm'), 1);
+	swing($('#new'), 2);
 
 	function swing($elem, force) {
 		var t = 1;
@@ -12,7 +12,7 @@ $(function() {
 		}
 	}
 
-	$("#loginForm").submit(function(event) {
+	$('#loginForm').submit(function(event) {
 		event.preventDefault();
 		var $form = $(this);
 		var $submitButton = $form.find("[type=submit]");
@@ -632,7 +632,7 @@ function initRegisterForm() {
 				left: 0,
 				opacity: 1
 			}, 2000, 'easeOutElastic');
-			swing($("#registerForm .complete"), 1);
+			swing($('#registerForm .complete'), 1);
 		}
 	}
 }
