@@ -13,6 +13,6 @@ module.exports = (req, screen-name, password, done, fail) ->
 			bcrypt.compare password, db-password, (err, same) ->
 				| err => fail!
 				| !same => fail!
-				| _ => req.session
-							..user-id = user.id
-							..save -> done user
+				| _ =>
+					req.session.user-id = user.id
+					req.session.save -> done user
