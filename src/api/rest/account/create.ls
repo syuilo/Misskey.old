@@ -55,6 +55,7 @@ module.exports = (req, res) ->
 					#UserFollowing.insert { followee: 1, follower: created-user.id } (, user-following) ->
 					#UserFollowing.insert { followee: created-user.id, follower: 1} (, user-following) ->
 					do-login req, created-user.screen-name, password, (user) ->
+						console.log filter-user-for-response created-user
 						res.api-render filter-user-for-response created-user
 					, ->
 						res.send-status 500
