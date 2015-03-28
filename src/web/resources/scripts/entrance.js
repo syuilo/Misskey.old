@@ -624,14 +624,14 @@ function initRegisterForm() {
 
 			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
 
-			$('#registerForm .complete').animate({
+			$('#registerForm .complete').css({
 				left: 0,
 				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .complete .title').animate({
+			});
+			$('#registerForm .complete .title').css({
 				left: 0,
 				opacity: 1
-			}, 2000, 'easeOutElastic');
+			});
 			swing($('#registerForm .complete'), 1);
 		}
 	}
