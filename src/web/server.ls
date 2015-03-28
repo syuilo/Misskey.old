@@ -43,7 +43,7 @@ web-server.use session do
 	resave: off
 	save-uninitialized: on
 	cookie:
-		path: '.'
+		path: '/'
 		domain: ".#{config.public-config.domain}"
 		http-only: off
 		secure: off
