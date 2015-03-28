@@ -4,14 +4,18 @@ module.exports = filter-key <[
 	color
 	comment
 	created-at
-	is-plus
-	is-suspended
+	first-name
+	followers-count
+	friends-count
+	id
 	lang
 	last-name
 	link
 	location
 	name
 	screen-name
+	statuses-count
+	status-favorites-count
 	tags
 	url
 ]>
