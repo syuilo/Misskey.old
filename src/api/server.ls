@@ -51,7 +51,7 @@ api-server
 # OAuth2 settings
 api-server.oauth = oauth2-server do
   model: {}
-  grants: ['kyppie']
+  grants: []
   debug: true
 
 api-server.use (req, res, next) ->
