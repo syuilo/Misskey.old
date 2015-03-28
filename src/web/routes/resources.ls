@@ -56,9 +56,22 @@ module.exports = (app) ->
 	
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
-		style-name = req.params.0
-		theme-id = user.web-theme-id
+		| req.query.user? =>
+			User.find-one { screen-name: req.query.user } (, theme-user) ->
+				| theme-user? =>
+					send-theme-style(theme-user);
+				| _ =>
+					res
+						..status(404)
+						..send 'User not found.'
+		| _ =>
+			app.init-session req, res, ->
+				| req.login => send-theme-style req.me
+				| _ => res.send
+		
 		function send-theme-style(user)
+			style-name = req.params.0
+			theme-id = user.web-theme-id
 			switch
 			| theme-id == null => res.send!
 			| _ => Webtheme.find-by-id theme-id, (, theme) ->
