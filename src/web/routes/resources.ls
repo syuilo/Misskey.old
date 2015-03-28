@@ -66,8 +66,8 @@ module.exports = (app) ->
 				| _ =>
 					try
 						theme-obj = parse-json theme.style
-						if theme-obj[styleName]
-							compile-less theme-obj[styleName], user, (css) ->
+						if theme-obj[style-name]
+							compile-less theme-obj[style-name], user, (css) ->
 								res
 									..header 'Content-type' 'text/css'
 									..send css
@@ -111,7 +111,7 @@ module.exports = (app) ->
 									req
 									res
 									resource-path
-									if style-user? then styleUser else null
+									if style-user? then style-user else null
 						| _ =>
 							read-file-send-less do
 								req
