@@ -56,7 +56,7 @@ main {
 					float: left;
 					max-width: 64px;
 					max-height: 64px;
-					margin: 0 16px;
+					margin: 0 16px 0 0;
 					padding: 0;
 					vertical-align: bottom;
 					border-radius: 32px;
@@ -65,7 +65,7 @@ main {
 				.form {
 					display: block;
 					float: left;
-					width: ~"calc(100% - 96px)";
+					width: ~"calc(100% - 80px)";
 
 					textarea {
 						-webkit-appearance: none;
@@ -83,7 +83,7 @@ main {
 						border: solid 1px #eee;
 						border-radius: 0;
 						box-shadow: none;
-						transition: all 0.2s ease;
+						transition: border 0.2s ease, color 0.2s ease;
 
 						&:hover {
 							border: solid 1px @themeColor;
