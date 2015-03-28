@@ -41,7 +41,7 @@ dependencies:
 	mongoose: '3.8.25'
 	'mongoose-auto-increment': '3.2.2'
 	multer: '0.1.8'
-	'oauth2-server': '2.2.1'
+	'oauth2-server': '2.4.0'
 	'prelude-ls': '1.1.1'
 	redis: '0.12.1'
 	'socket.io': '1.3.5'
