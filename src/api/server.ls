@@ -1,3 +1,7 @@
+#
+# Misskey API server
+#
+
 require! {
 	express
 	cookie
@@ -6,13 +10,17 @@ require! {
 	'body-parser': body-parser
 	'cookie-parser': cookie-parser
 	'express-session': session
+	'connect-redis': connect-redis
 	'js-yaml': yaml
+	'oauth2-server'
 	'../config'
 	'./router': router
 }
 
-RedisStore = (require 'connect-redis') session
+# Init session store
+RedisStore = connect-redis session
 
+# Create server
 api-server = express!
 	..disable 'x-powered-by'
 
@@ -39,6 +47,12 @@ api-server
 			secure: no
 			max-age: null
 		store: session-store
+
+# OAuth2 settings
+api-server.oauth = oauth2-server do
+  model: {}
+  grants: ['kyppie']
+  debug: true
 
 api-server.use (req, res, next) ->
 	sent = (data) -> switch req.format
