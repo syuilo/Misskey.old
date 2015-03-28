@@ -107,7 +107,6 @@ module.exports = (app) ->
 								res
 								image-buffer
 								"https://misskey.xyz/img/post/#id"
-								status.created-at + '.jpg'
 								user
 					else
 						send-image req, res, image-buffer
@@ -133,7 +132,6 @@ module.exports = (app) ->
 									res
 									image-buffer
 									"https://misskey.xyz/img/talk-message/#id"
-									talkmessage.created-at + '.jpg'
 									user
 						else
 							send-image req, res, image-buffer
