@@ -143,18 +143,18 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
-	app.get '/img/icon/:id-or-sn' (req, res) ->
-		id-or-sn = req.params.id-or-sn
+	app.get '/img/icon/:idorsn' (req, res) ->
+		id-or-sn = req.params.idorsn
 		display-user-image req, res, id-or-sn, \icon
 
 	# User header
-	app.get '/img/header/:id-or-sn' (req, res) ->
-		id-or-sn = req.params.id-or-sn
+	app.get '/img/header/:idorsn' (req, res) ->
+		id-or-sn = req.params.idorsn
 		display-user-image req, res, id-or-sn, \header
 
 	# User wallpaper
-	app.get '/img/wallpaper/:id-or-sn' (req, res) ->
-		id-or-sn = req.params.id-or-sn
+	app.get '/img/wallpaper/:idorsn' (req, res) ->
+		id-or-sn = req.params.idorsn
 		display-user-image req, res, id-or-sn, \wallpaper
 
 	# Status
