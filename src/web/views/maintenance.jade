@@ -23,6 +23,7 @@ html
 			}
 			
 			html {
+				overflow: hidden;
 				color: #fff;
 				background: #006699;
 			}
@@ -49,12 +50,12 @@ html
 				var timer = setInterval(update, 10);
 				function update() {
 					t++;
-					var pos = ((Math.sin(t / 20) * force) / ((t / 512) / 3));
+					var pos = ((Math.sin(t / 20) * force) / ((t / 512) / 4));
 					$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
 				}
 			}
 			$(function() {
-				swing($('main'), 1);
+				swing($('main'), 2);
 			});
 
 	body
