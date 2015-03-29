@@ -51,10 +51,10 @@ api-server
 
 # OAuth2 settings
 api-server.oauth = oauth2-server do
-  model: oauth-model
-  grants: []
-  debug: true
-  access-token-lifetime: null
+	model: oauth-model
+	grants: []
+	debug: true
+	access-token-lifetime: null
 
 api-server.use (req, res, next) ->
 	sent = (data) -> switch req.format
