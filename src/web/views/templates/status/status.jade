@@ -31,7 +31,7 @@ div.status.article(
 								span.screen-name= '@' + talkPost.user.screenName
 								a(href=url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
 							div.main
-								p.text!= (talkPost.isReply ? '<a href="' + url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
+								p.text!= (talkPost.isReply ? '<a href="' + url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
 								if talkPost.isImageAttached
 									img.image(src=url + '/img/status/' + talkPost.id, alt='image')
 	if status.isRepostToStatus
@@ -57,7 +57,7 @@ div.status.article(
 					span.screen-name= '@' + status.reply.user.screenName
 					a(href=url + '/' + status.reply.user.screenName + '/status/' + status.reply.id): time(datetime=status.reply.createdAt)= status.reply.createdAt
 				div.main
-					p.text!= (status.reply.isReply ? '<a href="' + url + '/status/' + status.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.reply.text)
+					p.text!= (status.reply.isReply ? '<a href="' + url + '/status/' + status.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.reply.text)
 					if status.reply.isImageAttached
 						img.image(src=url + '/img/status/' + status.reply.id, alt='image')
 	article
@@ -69,7 +69,7 @@ div.status.article(
 			span.screen-name= '@' + status.user.screenName
 			a(href=url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt)= status.createdAt
 		div.main
-			p.text!= (status.isReply ? '<a href="' + url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.text)
+			p.text!= (status.isReply ? '<a href="' + url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 			if status.isImageAttached
 				img.image(src=url + '/img/status/' + status.id, alt='image')
 		footer
