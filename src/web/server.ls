@@ -131,7 +131,7 @@ web-server.use (err, req, res, next) ->
 	if res.has-own-property \display
 		res.display req, res, \error {err}
 	else
-		res.send!
+		res.send err
 
 # Listen
 web-server.listen config.port.web
