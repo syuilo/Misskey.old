@@ -13,8 +13,9 @@ require! {
 	'connect-redis': connect-redis
 	'js-yaml': yaml
 	'oauth2-server'
-	'../config'
 	'./router': router
+	'../models/oauth/oauth': oauth-model
+	'../config'
 }
 
 # Init session store
@@ -50,7 +51,7 @@ api-server
 
 # OAuth2 settings
 api-server.oauth = oauth2-server do
-  model: {}
+  model: oauth-model
   grants: []
   debug: true
   access-token-lifetime: null
