@@ -30,7 +30,7 @@ module.exports = (source-status, callback) ->
 			# Get author
 			(next) ->
 				(, user) <- User.find-by-id status.user-id
-				next null user-response-filter user
+				next null filter-user-for-response user
 			
 			# Get reply from
 			(next) ->
@@ -39,7 +39,7 @@ module.exports = (source-status, callback) ->
 						| replyfrom? =>
 							replyfrom.is-reply = replyfrom.in-reply-to-status-id == 0 or replyfrom.in-reply-to-status-id == null
 							User.find-by-id replyfrom.user-id, (, replyfromauthor) ->
-								user-response-filter replyfromauthor, (replyfromauthor) ->
+								filter-user-for-response replyfromauthor, (replyfromauthor) ->
 									replyfrom.user = replyfromauthor
 									next null replyfrom
 						| _ => next null null
