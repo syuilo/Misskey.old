@@ -15,7 +15,7 @@ module.exports = (user-id, limit, since-id, max-id, callback) ->
 				| max-id? => { $and: [ user-id: { $in: followings-ids }, id: { $lt: max-id } ] }
 			Status
 				.find query
-				.sort \-created-at # Desc
+				.sort \-createdAt # Desc
 				.limit limit
 				.exec query-callback
 		| _ => callback null
