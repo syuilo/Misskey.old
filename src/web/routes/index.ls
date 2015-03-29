@@ -57,7 +57,7 @@ module.exports = (app) ->
 	app.get '/dev/usertheme' (req, res) -> (require '../controllers/dev-usertheme') req, res
 	app.get '/dev/usertheme/new' (req, res) -> (require '../controllers/dev-usertheme-new') req, res
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
-	app.post '.login' (req, res) ->
+	app.post '/login' (req, res) ->
 		do-login req, req.body.screen-name, req.body.password, (user) ->
 			res.send-status 200
 		, -> res.send-status 400
