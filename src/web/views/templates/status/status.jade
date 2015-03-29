@@ -20,7 +20,7 @@ div.status.article(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
 						data-id= talkPost.id
 						data-user-id= talkPost.user.id
 						data-user-color= talkPost.user.color
-						data-user-verified!= talkPost.user.isPremium.toString())
+						data-user-verified!= talkPost.user.isPlus.toString())
 						article
 							a.icon-anchor(href= url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 								img.icon(src=url + '/img/icon/' + talkPost.user.screenName, alt='icon')
