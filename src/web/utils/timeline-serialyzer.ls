@@ -65,16 +65,16 @@ module.exports = (statuses, me, callback) ->
 				Status.find-by-id status.repost-from-status-id, (, repost-from-post) ->
 					| repost-from-post? =>
 						_repost-from-post = repost-from-post
-							..is-repost-to-post = yes
+							..is-repost-to-status = yes
 							..source = status
 						User.find-by-id post.user-id, (, reposted-by-user) ->
 							_repost-from-post.reposted-by-user = reposted-by-user
 							map-next null, _repost-from-post
 					| _ =>
-						status.is-repost-to-post = no
+						status.is-repost-to-status = no
 						map-next null, status
 			| _ =>
-				status.is-repost-to-post = no
+				status.is-repost-to-status = no
 				map-next null, status
 		(err, timeline-statuses) ->
 			async.map do
