@@ -97,8 +97,8 @@ module.exports = (statuses, me, callback) ->
 							#status.is-reposted = results.3
 							status.is-favorited = no
 							status.is-reposted = no
+							console.log status
 							map-next null, status
 				(err, results) ->
-					console.log err
 					console.log results
 					callback results
