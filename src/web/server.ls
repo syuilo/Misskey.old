@@ -119,7 +119,7 @@ web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next
 index-router web-server
 
 # Not found handling
-web-server.use (req, res, next) ->
+web-server.use (req, res) ->
 	res
 		..status 404
 		..display req, res, 'not-found' {}
