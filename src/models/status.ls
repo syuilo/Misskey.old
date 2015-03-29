@@ -22,6 +22,9 @@ status-schema = new Schema do
 	text:                  { type: String,                 required: yes }
 	user-id:               { type: Schema.Types.ObjectId,  required: yes }
 
+status-schema.options.to-object.transform = (doc, ret, options) ->
+	ret.id = doc.id
+
 # Auto increment
 status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: \_id }
 

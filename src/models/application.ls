@@ -16,4 +16,7 @@ application-schema = new mongoose.Schema do
 	developer-website: { type: String }
 	is-suspended: { type: Boolean }
 
+application-schema.options.to-object.transform = (doc, ret, options) ->
+	ret.id = doc.id
+
 module.exports = db.model \Application application-schema

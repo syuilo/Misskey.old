@@ -33,4 +33,7 @@ user-schema = new Schema do
 	url:                    { type: String,   required: no,  default: null }
 	using-webtheme-id:      { type: Number,   required: no,  default: null }
 
+user-schema.options.to-object.transform = (doc, ret, options) ->
+	ret.id = doc.id
+
 module.exports = db.model \User user-schema
