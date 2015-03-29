@@ -14,7 +14,7 @@ require! {
 }
 
 module.exports = (app) ->
-	# unstatic images
+	# Unstatic images
 	image-router app
 	
 	# Preset
@@ -36,6 +36,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'status-not-found' {}
+	
 	app.get '/' (req, res) ->
 		if req.login
 			then (require '../controllers/home') req, res
