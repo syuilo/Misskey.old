@@ -293,7 +293,6 @@
 
 			> article {
 				position: relative;
-				padding: 20px 12px;
 
 				&:after {
 					content: "";
@@ -318,14 +317,30 @@
 
 				> .article-main {
 					box-sizing: border-box;
+					position: relative;
 					float: left;
-					padding: 16px;
+					padding: 16px 18px;
 					width: ~"calc(100% - 70px)";
 					background: #fff;
 					border-left: solid 3px transparent;
+					box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+
+					&:before {
+						content: "";
+						display: block;
+						position: absolute;
+						top: 8px;
+						left: -8px;
+						font-size: 0;
+						line-height: 0;
+						border-top: solid 8px transparent;
+						border-right: solid 8px #fff;
+						border-bottom: solid 8px transparent;
+						border-left: solid 8px transparent;
+					}
 
 					> header {
-						margin-bottom: 2px;
+						margin-bottom: 4px;
 						white-space: nowrap;
 						overflow: hidden;
 
