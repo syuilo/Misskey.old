@@ -59,7 +59,7 @@ module.exports = (statuses, me, callback) ->
 	async.map do
 		statuses
 		(status, map-next) -> # Analyze repost
-			| status.repost-from-status-id? && status.repost-from-status-id != 0 =>
+			| status.repost-from-status-id? =>
 				Status.find-by-id status.repost-from-status-id, (, repost-from-post) ->
 					| repost-from-post? =>
 						_repost-from-post = repost-from-post
