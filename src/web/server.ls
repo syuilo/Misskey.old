@@ -107,7 +107,7 @@ allow-cross-domain = (req, res, next) ->
 		next!
 
 # CORS
-web-server.use allow-cross-domain
+#web-server.use allow-cross-domain
 
 # Resources rooting
 resources-router web-server
