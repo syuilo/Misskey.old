@@ -13,4 +13,4 @@ module.exports = (user-id, status-id) ->
 		
 	if err?
 		then reject err
-		else resolve favorite?
+		else resolve !empty favorite
