@@ -115,8 +115,6 @@ resources-router web-server
 # Init session
 web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next!
 
-web-server.all '*' (req, res, next) -> throw new Error 'kyoppie'
-
 # General rooting
 index-router web-server
 
