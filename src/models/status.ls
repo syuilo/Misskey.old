@@ -22,6 +22,7 @@ status-schema = new Schema do
 	text:                  { type: String,                 required: yes }
 	user-id:               { type: Schema.Types.ObjectId,  required: yes }
 
+if !status-schema.options.to-object then status-schema.options.to-object = {}
 status-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 

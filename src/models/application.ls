@@ -16,6 +16,7 @@ application-schema = new mongoose.Schema do
 	developer-website: { type: String }
 	is-suspended: { type: Boolean }
 
+if !application-schema.options.to-object then application-schema.options.to-object = {}
 application-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 

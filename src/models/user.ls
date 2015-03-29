@@ -33,6 +33,7 @@ user-schema = new Schema do
 	url:                    { type: String,   required: no,  default: null }
 	using-webtheme-id:      { type: Number,   required: no,  default: null }
 
+if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 
