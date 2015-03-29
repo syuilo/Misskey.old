@@ -170,7 +170,7 @@
 		padding: 0;
 		list-style: none;
 
-		> .status.article {
+		.status.article {
 			position: relative;
 			padding: 16px 24px;
 			border-left: solid 3px transparent;
@@ -650,7 +650,7 @@
 			}
 		}
 
-			> .status.article[data-is-reply='true'] {
+			.status.article[data-is-reply='true'] {
 				> article {
 					&:before {
 						content: "";
@@ -666,7 +666,7 @@
 				}
 			}
 
-			> .status.article[data-is-talk='true'] {
+			.status.article[data-is-talk='true'] {
 				> .reply-to {
 					&:before {
 						top: 0;
@@ -675,11 +675,11 @@
 				}
 			}
 
-			> .status.article[data-is-repostpost='true'] {
+			.status.article[data-is-repostpost='true'] {
 				background: rgba(128, 255, 0, 0.1);
 			}
 
-			> .status.article[data-is-favorited='true'] > article > footer > .actions > .favorite {
+			.status.article[data-is-favorited='true'] > article > footer > .actions > .favorite {
 				> button {
 					color: @themeColor;
 
@@ -689,7 +689,7 @@
 				}
 			}
 
-			> .status.article[data-is-reposted='true'] > article > footer > .actions > .repost {
+			.status.article[data-is-reposted='true'] > article > footer > .actions > .repost {
 				> button {
 					color: @themeColor;
 
@@ -699,7 +699,7 @@
 				}
 			}
 
-			> .status.article[data-user-verified='true'] {
+			.status.article[data-user-verified='true'] {
 				> article > header > h2 > a {
 					&:before {
 						.timeline-verified-icon;
