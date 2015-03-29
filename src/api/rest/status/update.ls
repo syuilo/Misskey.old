@@ -47,14 +47,19 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 		user
 
 function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
-	Status.insert { 
+	status = new Status do
 		app-id
 		in-reply-to-status-id
 		is-image-attached
 		text
 		user-id: user.id
-	} (, status) ->
-		| is-image-attached => StatusImage.insert { status-id: status.id, image } send-response
+		
+	status.save (, status) ->
+		| is-image-attached =>
+			status-image = new StatusImage do
+				status-id: status.id
+				image
+			status-image.save send-response
 		| _ => send-response!
 
 	function send-response
@@ -71,19 +76,23 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 
 		publish-redis-streaming "userStream:${user-id}" stream-obj
 
-		UserFollowing.find { followee-id: user-id } (followings) ->
-			| followings? => followings.for-each (following) ->
+		UserFollowing.find { followee-id: user-id } (, followings) ->
+			| !empty followings => followings.for-each (following) ->
 				publish-redis-streaming "userStream:#{following.follower-id}" stream-obj
 
 		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
 			mention-sn .= replace '@' ''
-			User.find-one { screen-name: mention-sn } (reply-user) ->
-				| reply-user? => StatusMention.insert { status-id: obj.id, user-id: reply-user.id } (,) ->
-					stream-mention-obj = to-json do
-						type: \reply
-						value: obj
-					publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+			User.find-one { screen-name: mention-sn } (, reply-user) ->
+				| reply-user? =>
+					status-mention = new StatusMention do
+						status-id: obj.id
+						user-id: reply-user.id
+					status-mention.save ->
+						stream-mention-obj = to-json do
+							type: \reply
+							value: obj
+						publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
 	function get-more-talk(status, callback)
 		get-status-before-talk status.in-reply-to-status-id, (more-talk) ->
