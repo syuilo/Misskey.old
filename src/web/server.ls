@@ -119,13 +119,13 @@ web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next
 index-router web-server
 
 # Not found handling
-web-server.use (req, res,) ->
+web-server.use (req, res) ->
 	res
 		..status 404
 		..display req, res, 'not-found' {}
 
 # Error handling
-web-server.use (err, req, res,) ->
+web-server.use (err, req, res, next) ->
 	console.log err
 	res.status 500
 	if res.has-own-property \display
