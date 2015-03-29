@@ -10,10 +10,14 @@ module.exports = (statuses, viewer, callback) ->
 	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade"
 	if statuses?
 		serialyzer statuses, viewer, (timeline) ->
-			statuses-htmls = map ((status) -> status-compiler do
-				status: status
-				login: viewer?
-				text-parser: parse-text), timeline
+			statuses-htmls = map do
+				(status) ->
+					console.log status
+					status-compiler do
+						status: status
+						login: viewer?
+						text-parser: parse-text
+				timeline
 			html = timeline-compiler do
 				statuses: statuses-htmls
 				login: viewer?
