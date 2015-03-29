@@ -48,7 +48,7 @@ module.exports = (statuses, me, callback) ->
 						status.is-reply = no
 						next null, null
 					| _ =>
-						reply-status.is-reply = reply-status.in-reply-to-status-id != 0 && reply-status.in-reply-to-status-id != null
+						reply-status.is-reply = reply-status.in-reply-to-status-id?
 						status.reply = reply-status
 						User.find-by-id reply-status.user-id, (, reply-user) ->
 							status.reply.user = reply-user
@@ -81,7 +81,7 @@ module.exports = (statuses, me, callback) ->
 			async.map do
 				timeline-statuses
 				(status, map-next) -> # Serialize post
-					status.is-reply = status.in-reply-to-status-id != 0 && status.in-reply-to-status-id != null
+					status.is-reply = status.in-reply-to-status-id?
 					async.series do
 						[
 							get-app status
