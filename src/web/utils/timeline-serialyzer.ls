@@ -91,6 +91,7 @@ module.exports = (statuses, me, callback) ->
 								get-reply status, next
 						]
 						(err, results) ->
+							status = status.to-object()
 							status.app = results.0
 							status.user = results.1
 							#status.is-favorited = results.2
@@ -99,5 +100,4 @@ module.exports = (statuses, me, callback) ->
 							status.is-reposted = no
 							map-next null, status
 				(err, results) ->
-					console.log results
 					callback results
