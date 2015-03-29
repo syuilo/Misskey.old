@@ -41,6 +41,22 @@ html
 				font-weight: normal;
 				font-size: 2.5em;
 			}
+		
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+		script.
+			function swing($elem, force) {
+				var t = 1;
+				var timer = setInterval(update, 10);
+				function update() {
+					t++;
+					var pos = ((Math.sin(t / 20) * force) / ((t / 512) / 3));
+					$elem.css('transform', 'perspective(1024px) rotateX(' + pos + 'deg)');
+				}
+			}
+			$(function() {
+				swing($('main'), 1);
+			});
+
 	body
 		main
 			h1 Misskeyを新しくしています
