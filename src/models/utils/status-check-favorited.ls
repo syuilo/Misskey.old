@@ -1,5 +1,6 @@
 require! {
 	'../status-favorite': StatusFavorite
+	'../../utils/map-promise'
 }
 
 # Number -> Number -> Promise Boolean

@@ -1,5 +1,6 @@
 require! {
 	'../status': Status
+	'../../utils/map-promise'
 }
 
 # Number -> Number -> Promise Boolean
