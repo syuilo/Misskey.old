@@ -59,6 +59,8 @@ module.exports = (statuses, me, callback) ->
 	async.map do
 		statuses
 		(status, map-next) -> # Analyze repost
+			status = status.to-object!
+			switch
 			| status.repost-from-status-id? =>
 				Status.find-by-id status.repost-from-status-id, (, repost-from-post) ->
 					| repost-from-post? =>
@@ -91,7 +93,6 @@ module.exports = (statuses, me, callback) ->
 								get-reply status, next
 						]
 						(err, results) ->
-							status = status.to-object!
 							status.app = results.0.to-object!
 							status.user = results.1.to-object!
 							#status.is-favorited = results.2
