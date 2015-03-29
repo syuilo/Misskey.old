@@ -36,25 +36,25 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'status-not-found' {}
-	app.get '/' (req, res, next) ->
+	app.get '/' (req, res) ->
 		if req.login
 			then (require '../controllers/home') req, res
 			else res.display req, res, 'entrance', {}
-	app.get '/config' (req, res, next) ->
+	app.get '/config' (req, res) ->
 		res.set 'Content-Type' 'application/javascript'
 		res.send "var conf = #{to-json config.public-config};"
-	app.get '/new' (req, res, next) -> (require '../controllers/new') req, res
-	app.get '/i/mention' (req, res, next) -> (require '../controllers/i-mention') req, res
-	app.get '/i/mentions' (req, res, next) -> (require '../controllers/i-mention') req, res
-	app.get '/i/talk' (req, res, next) -> (require '../controllers/i-talks') req, res
-	app.get '/i/talks' (req, res, next) -> (require '../controllers/i-talks') req, res
-	app.get '/i/setting' (req, res, next) -> (require '../controllers/i-setting') req, res
-	app.get '/i/settings' (req, res, next) -> (require '../controllers/i-setting') req, res
-	app.get '/dev' (req, res, next) -> (require '../controllers/dev') req, res
-	app.get '/dev/myapp' (req, res, next) -> (require '../controllers/dev-myapp') req, res
-	app.get '/dev/myapp/new' (req, res, next) -> (require '../controllers/dev-myapp-new') req, res
-	app.get '/dev/usertheme' (req, res, next) -> (require '../controllers/dev-usertheme') req, res
-	app.get '/dev/usertheme/new' (req, res, next) -> (require '../controllers/dev-usertheme-new') req, res
+	app.get '/new' (req, res) -> (require '../controllers/new') req, res
+	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
+	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res
+	app.get '/i/talk' (req, res) -> (require '../controllers/i-talks') req, res
+	app.get '/i/talks' (req, res) -> (require '../controllers/i-talks') req, res
+	app.get '/i/setting' (req, res) -> (require '../controllers/i-setting') req, res
+	app.get '/i/settings' (req, res) -> (require '../controllers/i-setting') req, res
+	app.get '/dev' (req, res) -> (require '../controllers/dev') req, res
+	app.get '/dev/myapp' (req, res) -> (require '../controllers/dev-myapp') req, res
+	app.get '/dev/myapp/new' (req, res) -> (require '../controllers/dev-myapp-new') req, res
+	app.get '/dev/usertheme' (req, res) -> (require '../controllers/dev-usertheme') req, res
+	app.get '/dev/usertheme/new' (req, res) -> (require '../controllers/dev-usertheme-new') req, res
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
 	app.post '.login' (req, res) ->
 		do-login req, req.body.screen-name, req.body.password, (user) ->
@@ -62,9 +62,9 @@ module.exports = (app) ->
 		, -> res.send-status 400
 	app.get '/logout' (reqy, res) ->
 		req.session.destroy (err) -> res.redirect '/'
-	app.get '/:userSn' (req, res, next) -> (require '../controllers/user') req, res, \home
-	app.get '/:userSn/followings' (req, res, next) -> (require '../controllers/user') req, res, \followings
-	app.get '/:userSn/followers' (req, res, next) -> (require '../controllers/user') req, res, \followers
+	app.get '/:userSn' (req, res) -> (require '../controllers/user') req, res, \home
+	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
+	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	app.get '/:userSn/talk' require '../controllers/user-talk'
-	app.get '/:userSn/:postId(\\d+)' (req, res, next) -> (require '../controllers/post') req, res
-	app.get '/:userSn/post/:postId(\\d+)' (req, res, next) -> (require '../controllers/post') req, res
+	app.get '/:userSn/:postId(\\d+)' (req, res) -> (require '../controllers/post') req, res
+	app.get '/:userSn/post/:postId(\\d+)' (req, res) -> (require '../controllers/post') req, res
