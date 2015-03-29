@@ -7,7 +7,7 @@ $(function() {
 
 	// オートセーブがあるなら復元
 	if ($.cookie('post-autosave')) {
-		$('#postForm textarea').val($.cookie('post-autosave'));
+		$('#post-form textarea').val($.cookie('post-autosave'));
 	}
 
 	socket = io.connect('https://api.misskey.xyz:1207/streaming/home', { port: 1207 });
