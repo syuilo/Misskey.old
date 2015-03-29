@@ -386,7 +386,7 @@ TIMELINE.setEventPost = function($post) {
 }
 
 $(function() {
-	$('.timeline .post').each(function() {
+	$('.timeline .status').each(function() {
 		TIMELINE.setEventPost($(this));
 	});
 });
