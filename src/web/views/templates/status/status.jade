@@ -1,16 +1,17 @@
-div.status.article(title= status.createdAt
-		style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : ''
-		data-id= status.isRepostToStatus ? status.source.id : status.id
-		data-source-id= status.isRepostToStatus ? status.id : null
-		data-user-id= status.user.id
-		data-user-color= status.user.color
-		data-user-verified!= status.user.isPlus.toString()
-		data-is-reply!= status.isReply.toString()
-		data-is-talk!= (status.moreTalk != null).toString()
-		data-is-favorited!= login ? status.isFavorited.toString() : null
-		data-is-reposted!= login ? status.isReposted.toString() : null
-		data-is-repostpost!= status.isRepostToStatus.toString()
-		data-repost-by-user-id!= status.isRepostToStatus ? status.repostedByUser.id : null)
+div.status.article(
+		title                   = status.createdAt
+		style                   = status.isReply ? 'border-color: ' + status.reply.user.color + ';' : ''
+		data-id                 = status.isRepostToStatus ? status.source.id : status.id
+		data-source-id          = status.isRepostToStatus ? status.id : null
+		data-user-id            = status.user.id
+		data-user-color         = status.user.color
+		data-user-verified     != status.user.isPlus.toString()
+		data-is-reply          != status.isReply.toString()
+		data-is-talk           != (status.moreTalk != null).toString()
+		data-is-favorited      != login ? status.isFavorited.toString() : null
+		data-is-reposted       != login ? status.isReposted.toString() : null
+		data-is-repostpost     != status.isRepostToStatus.toString()
+		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null)
 	//-
 		if status.moreTalk != null
 			div.more-talk
