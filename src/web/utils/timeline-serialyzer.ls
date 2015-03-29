@@ -20,7 +20,7 @@ module.exports = (statuses, me, callback) ->
 	
 	function get-user(status)
 		(next) ->
-			User.find-by-id status.user-id (, user) ->
+			User.find-by-id status.user-id, (, user) ->
 				next null, user
 	
 	function get-is-favorited(status, me)
