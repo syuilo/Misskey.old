@@ -12,7 +12,6 @@ module.exports = (statuses, viewer, callback) ->
 		serialyzer statuses, viewer, (timeline) ->
 			statuses-htmls = map do
 				(status) ->
-					console.log status
 					status-compiler do
 						status: status
 						login: viewer?
