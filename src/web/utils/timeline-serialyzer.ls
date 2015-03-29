@@ -13,8 +13,8 @@ require! {
 module.exports = (statuses, me, callback) ->
 	function get-app(status, next)
 		Application.find-by-id status.app-id, (, app) ->
-			delete app.consumer-key
-			delete app.callback-url
+			#delete app.consumer-key
+			#delete app.callback-url
 			next null, app
 	
 	function get-user(status, next)
