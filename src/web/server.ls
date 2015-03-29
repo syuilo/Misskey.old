@@ -126,11 +126,11 @@ web-server.use (req, res,) ->
 
 # Error handling
 web-server.use (err, req, res,) ->
+	console.log err
 	res.status 500
 	if res.has-own-property \display
 		res.display req, res, \error {err}
 	else
-		console.log err
 		res.send!
 
 # Listen
