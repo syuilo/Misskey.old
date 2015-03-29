@@ -11,54 +11,50 @@ require! {
 }
 
 module.exports = (statuses, me, callback) ->
-	function get-app(status)
-		(next) ->
-			Application.find-by-id status.app-id, (, app) ->
-				delete app.consumer-key
-				delete app.callback-url
-				next null, app
+	function get-app(status, next)
+		Application.find-by-id status.app-id, (, app) ->
+			delete app.consumer-key
+			delete app.callback-url
+			next null, app
 	
-	function get-user(status)
-		(next) ->
-			User.find-by-id status.user-id, (, user) ->
-				next null, user
+	function get-user(status, next)
+		User.find-by-id status.user-id, (, user) ->
+			next null, user
 	
-	function get-is-favorited(status, me)
-		(next) ->
-			if me?
-				status-check-favorited me.id, status.id .then (is-favorited) ->
-					console.log 'is-favorited:' + is-favorited
-					next null, is-favorited
-			else
-				next null, null
+	function get-is-favorited(status, me, next)
+		if me?
+			status-check-favorited me.id, status.id .then (is-favorited) ->
+				console.log 'is-favorited:' + is-favorited
+				next null, is-favorited
+		else
+			next null, null
 	
-	function get-is-reposted(status, me)
-		(next) ->
-			if me?
-				status-check-reposted me.id, status.id .then (is-reposted) ->
-					next null, is-reposted
-			else
-				next null, null
+	function get-is-reposted(status, me, next)
+		if me?
+			status-check-reposted me.id, status.id .then (is-reposted) ->
+				next null, is-reposted
+		else
+			next null, null
 	
-	function get-reply(status)
-		(next) ->
-			| !status.is-reply => next null, null
-			| _ =>
-				Status.find-by-id status.in-reply-to-status-id, (, reply-status) ->
-					| !reply-status? =>
-						status.is-reply = no
-						next null, null
-					| _ =>
-						reply-status.is-reply = reply-status.in-reply-to-status-id?
-						status.reply = reply-status
-						User.find-by-id reply-status.user-id, (, reply-user) ->
-							status.reply.user = reply-user
-							if reply-status.is-reply
-								serialize-talk reply-status, (talk) ->
-									status.more-talk = talk
-									next null, null
-							else
+	function get-reply(status, next)
+		switch
+		| !status.is-reply => next null, null
+		| _ =>
+			Status.find-by-id status.in-reply-to-status-id, (, reply-status) ->
+				| !reply-status? =>
+					status.is-reply = no
+					next null, null
+				| _ =>
+					reply-status.is-reply = reply-status.in-reply-to-status-id?
+					status.reply = reply-status
+					User.find-by-id reply-status.user-id, (, reply-user) ->
+						status.reply.user = reply-user
+						if reply-status.is-reply
+							serialize-talk reply-status, (talk) ->
+								status.more-talk = talk
 								next null, null
+						else
+							next null, null
 	
 	async.map do
 		statuses
@@ -85,11 +81,14 @@ module.exports = (statuses, me, callback) ->
 					status.is-reply = status.in-reply-to-status-id?
 					async.series do
 						[
-							do get-app status
-							do get-user status
+							(next) ->
+								get-app status, next
+							(next) ->
+								get-user status, next
 							#do get-is-favorited status, me
 							#do get-is-reposted status, me
-							do get-reply status
+							(next) ->
+								get-reply status, next
 						]
 						(err, results) ->
 							status.app = results.0
