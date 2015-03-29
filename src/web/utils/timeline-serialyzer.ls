@@ -100,4 +100,5 @@ module.exports = (statuses, me, callback) ->
 							status.is-reposted = no
 							map-next null, status
 				(err, results) ->
+					console.log results
 					callback results
