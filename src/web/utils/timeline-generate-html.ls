@@ -16,6 +16,7 @@ module.exports = (statuses, viewer, callback) ->
 						status: status
 						login: viewer?
 						text-parser: parse-text
+						config: config.public-config
 				timeline
 			html = timeline-compiler do
 				statuses: statuses-htmls
