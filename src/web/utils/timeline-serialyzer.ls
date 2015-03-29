@@ -20,7 +20,7 @@ module.exports = (statuses, me, callback) ->
 	
 	function get-user(status)
 		(next) ->
-			User.find-by-id status.user-id (user) ->
+			User.find-by-id status.user-id (, user) ->
 				next null, user
 	
 	function get-is-favorited(status, me)
@@ -63,7 +63,7 @@ module.exports = (statuses, me, callback) ->
 		statuses
 		(status, map-next) -> # Analyze repost
 			| status.repost-from-status-id? && status.repost-from-status-id != 0 =>
-				Status.find status.repost-from-status-id, (repost-from-post) ->
+				Status.find-by-id status.repost-from-status-id, (, repost-from-post) ->
 					| repost-from-post? =>
 						_repost-from-post = repost-from-post
 							..is-repost-to-post = yes
