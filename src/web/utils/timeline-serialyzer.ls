@@ -87,15 +87,17 @@ module.exports = (statuses, me, callback) ->
 						[
 							get-app status
 							get-user status
-							get-is-favorited status, me
-							get-is-reposted status, me
+							//get-is-favorited status, me
+							//get-is-reposted status, me
 							get-reply status
 						]
 						(err, results) ->
 							status.app = results.0
 							status.user = results.1
-							status.is-favorited = results.2
-							status.is-reposted = results.3
+							//status.is-favorited = results.2
+							//status.is-reposted = results.3
+							status.is-favorited = no
+							status.is-reposted = no
 							map-next null, status
 				(err, results) ->
 					callback results
