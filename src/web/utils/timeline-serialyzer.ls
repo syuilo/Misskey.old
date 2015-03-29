@@ -85,11 +85,11 @@ module.exports = (statuses, me, callback) ->
 					status.is-reply = status.in-reply-to-status-id?
 					async.series do
 						[
-							get-app status
-							get-user status
-							#get-is-favorited status, me
-							#get-is-reposted status, me
-							get-reply status
+							do get-app status
+							do get-user status
+							#do get-is-favorited status, me
+							#do get-is-reposted status, me
+							do get-reply status
 						]
 						(err, results) ->
 							status.app = results.0
