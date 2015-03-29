@@ -48,21 +48,21 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 
 function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
 	status = new Status do
-	{
+		{
 		app-id
 		in-reply-to-status-id
 		is-image-attached
 		text
 		user-id: user.id
-	}
+		}
 		
 	status.save (, status) ->
 		| is-image-attached =>
 			status-image = new StatusImage do
-			{
+				{
 				status-id: status.id
 				image
-			}
+				}
 			status-image.save send-response
 		| _ => send-response!
 
@@ -90,10 +90,10 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			User.find-one { screen-name: mention-sn } (, reply-user) ->
 				| reply-user? =>
 					status-mention = new StatusMention do
-					{
+						{
 						status-id: obj.id
 						user-id: reply-user.id
-					}
+						}
 					status-mention.save ->
 						stream-mention-obj = to-json do
 							type: \reply
