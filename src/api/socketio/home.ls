@@ -28,7 +28,7 @@ module.exports = (io, session-store) ->
 					switch content.type
 					| \status =>
 						status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
-						timeline-serialyzer content.value, socket.user, (timeline-status)
+						timeline-serialyzer content.value, socket.user, (timeline-status) ->
 							html = status-compiler do
 								status: timeline-status
 								login: yes
