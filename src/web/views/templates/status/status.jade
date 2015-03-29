@@ -1,4 +1,4 @@
-div.status.article(title= 'status.createdAt'
+div.status.article(title= status.createdAt
 		style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : ''
 		data-id= status.isRepostToStatus ? status.source.id : status.id
 		data-source-id= status.isRepostToStatus ? status.id : null
@@ -28,11 +28,11 @@ div.status.article(title= 'status.createdAt'
 								h2
 									a(href=url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
 								span.screen-name= '@' + talkPost.user.screenName
-								a(href=url + '/' + talkPost.user.screenName + '/post/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
+								a(href=url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
 							div.main
-								p.text!= (talkPost.isReply ? '<a href="' + url + '/post/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
+								p.text!= (talkPost.isReply ? '<a href="' + url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(talkPost.text)
 								if talkPost.isImageAttached
-									img.image(src=url + '/img/post/' + talkPost.id, alt='image')
+									img.image(src=url + '/img/status/' + talkPost.id, alt='image')
 	if status.isRepostToStatus
 		div.repost-information
 			p.info
@@ -54,11 +54,11 @@ div.status.article(title= 'status.createdAt'
 					h2
 						a(href=url + '/' + status.reply.user.screenName, target='_blank')= status.reply.user.name
 					span.screen-name= '@' + status.reply.user.screenName
-					a(href=url + '/' + status.reply.user.screenName + '/post/' + status.reply.id): time(datetime=status.reply.createdAt)= status.reply.createdAt
+					a(href=url + '/' + status.reply.user.screenName + '/status/' + status.reply.id): time(datetime=status.reply.createdAt)= status.reply.createdAt
 				div.main
-					p.text!= (status.reply.isReply ? '<a href="' + url + '/post/' + status.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.reply.text)
+					p.text!= (status.reply.isReply ? '<a href="' + url + '/status/' + status.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.reply.text)
 					if status.reply.isImageAttached
-						img.image(src=url + '/img/post/' + status.reply.id, alt='image')
+						img.image(src=url + '/img/status/' + status.reply.id, alt='image')
 	article
 		a.icon-anchor(href=url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
 			img.icon(src=url + '/img/icon/' + status.user.screenName, alt='icon')
@@ -66,27 +66,27 @@ div.status.article(title= 'status.createdAt'
 			h2
 				a(href=url + '/' + status.user.screenName, target='_blank')= status.user.name
 			span.screen-name= '@' + status.user.screenName
-			a(href=url + '/' + status.user.screenName + '/post/' + status.id): time(datetime=status.createdAt)= status.createdAt
+			a(href=url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt)= status.createdAt
 		div.main
-			p.text!= (status.isReply ? '<a href="' + url + '/post/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.text)
+			p.text!= (status.isReply ? '<a href="' + url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + parseText(status.text)
 			if status.isImageAttached
-				img.image(src=url + '/img/post/' + status.id, alt='image')
+				img.image(src=url + '/img/status/' + status.id, alt='image')
 		footer
 			if login
 				div.actions
 					div.repost
 						button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
 							i.fa.fa-retweet
-						a(href=url + '/' + status.user.screenName + '/post/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
+						a(href=url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
 					div.favorite
 						button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
 							i.fa.fa-star
-						a(href=url + '/' + status.user.screenName + '/post/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
+						a(href=url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 	footer
 		if login
 			form.reply-form
 				textarea(name='text')= '@' + status.user.screenName + ' '
-				input(name='in_reply_to_post_id', type='hidden', value=status.id)
+				input(name='in-reply-to-status-id', type='hidden', value=status.id)
 				input(type='submit', value!='&#xf112; Reply')
 				div.image-attacher
 					p
