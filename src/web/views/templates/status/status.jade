@@ -1,6 +1,5 @@
 div.status.article(
 		title                   = status.createdAt
-		style                   = status.isReply ? 'border-color: ' + status.reply.user.color + ';' : ''
 		data-id                 = status.isRepostToStatus ? status.source.id : status.id
 		data-source-id          = status.isRepostToStatus ? status.id : null
 		data-user-id            = status.user.id
@@ -61,28 +60,30 @@ div.status.article(
 					if status.reply.isImageAttached
 						img.image(src=config.url + '/img/status/' + status.reply.id, alt='image')
 	article
-		a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
-			img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
-		header
-			h2
-				a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
-			span.screen-name= '@' + status.user.screenName
-			a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt)= status.createdAt
-		div.main
-			p.text!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
-			if status.isImageAttached
-				img.image(src=config.url + '/img/status/' + status.id, alt='image')
-		footer
-			if login
-				div.actions
-					div.repost
-						button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
-							i.fa.fa-retweet
-						a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
-					div.favorite
-						button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
-							i.fa.fa-star
-						a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
+		div.icon-area
+			a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+				img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+		div.article-main(style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : '')
+			header
+				h2
+					a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
+				span.screen-name= '@' + status.user.screenName
+				a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt)= status.createdAt
+			div.main
+				p.text!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+				if status.isImageAttached
+					img.image(src=config.url + '/img/status/' + status.id, alt='image')
+			footer
+				if login
+					div.actions
+						div.repost
+							button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+								i.fa.fa-retweet
+							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
+						div.favorite
+							button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+								i.fa.fa-star
+							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 	footer
 		if login
 			form.reply-form
