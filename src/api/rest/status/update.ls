@@ -81,8 +81,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		publish-redis-streaming "userStream:${user-id}" stream-obj
 
 		UserFollowing.find { followee-id: user-id } (, followings) ->
-			| !empty followings => followings.for-each (following) ->
-				publish-redis-streaming "userStream:#{following.follower-id}" stream-obj
+			| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
 
 		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
