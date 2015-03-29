@@ -36,5 +36,6 @@ user-schema = new Schema do
 if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
+	ret
 
 module.exports = db.model \User user-schema

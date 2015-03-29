@@ -25,6 +25,7 @@ status-schema = new Schema do
 if !status-schema.options.to-object then status-schema.options.to-object = {}
 status-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
+	ret
 
 # Auto increment
 status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: \_id }

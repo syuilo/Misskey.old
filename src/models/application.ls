@@ -19,5 +19,6 @@ application-schema = new mongoose.Schema do
 if !application-schema.options.to-object then application-schema.options.to-object = {}
 application-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
+	ret
 
 module.exports = db.model \Application application-schema
