@@ -27,6 +27,7 @@ module.exports = (statuses, me, callback) ->
 		(next) ->
 			if me?
 				status-check-favorited me.id, status.id .then (is-favorited) ->
+					console.log 'is-favorited:' + is-favorited
 					next null, is-favorited
 			else
 				next null, null
