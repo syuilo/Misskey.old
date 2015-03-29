@@ -1,4 +1,4 @@
-div.status.article(title!= '#{status.createdAt}&#x0A;via #{status.app.name}'
+div.status.article(title= status.createdAt
 		style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : ''
 		data-id= status.isRepostToStatus ? status.source.id : status.id
 		data-source-id= status.isRepostToStatus ? status.id : null
