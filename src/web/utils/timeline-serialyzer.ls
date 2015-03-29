@@ -92,8 +92,8 @@ module.exports = (statuses, me, callback) ->
 						]
 						(err, results) ->
 							status = status.to-object!
-							status.app = results.0
-							status.user = results.1
+							status.app = results.0.to-object!
+							status.user = results.1.to-object!
 							#status.is-favorited = results.2
 							#status.is-reposted = results.3
 							status.is-favorited = no
