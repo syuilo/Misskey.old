@@ -91,7 +91,7 @@ module.exports = (statuses, me, callback) ->
 								get-reply status, next
 						]
 						(err, results) ->
-							status = status.to-object()
+							status = status.to-object!
 							status.app = results.0
 							status.user = results.1
 							#status.is-favorited = results.2
