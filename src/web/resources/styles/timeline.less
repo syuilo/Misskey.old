@@ -630,6 +630,10 @@
 										-webkit-appearance: none;
 										-moz-appearance: none;
 										appearance: none;
+										user-select: text;
+										-moz-user-select: text;
+										-webkit-user-select: text;
+										-ms-user-select: text;
 										box-sizing: border-box;
 										width: 100%;
 										max-width: 100%;
@@ -706,12 +710,17 @@
 									}
 
 									> .tag {
+										user-select: text;
+										-moz-user-select: text;
+										-webkit-user-select: text;
+										-ms-user-select: text;
 										display: block;
 										float: left;
 										overflow: auto;
 										padding: 1px 5px;
 										margin-left: inherit; /* usually we don't want the regular ul margins. */
 										margin-right: inherit;
+										cursor: text;
 										list-style: none;
 
 										li {
