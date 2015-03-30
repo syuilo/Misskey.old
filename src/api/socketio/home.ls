@@ -2,6 +2,7 @@ require! {
 	cookie
 	redis
 	'../../models/user': User
+	'../../models/status': Status
 	'../../models/utils/serialize-status'
 	'../../web/utils/parse-text'
 	'../../config'
@@ -40,10 +41,11 @@ module.exports = (io, session-store) ->
 					if content.type? && content.value?
 						socket.emit content.type, switch content.type
 						| \status =>
+							# Find status
+							err, status <- Status.find-by-id content.value
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
-							serialize-status content.value, (serialized-status) ->
-								console.log serialized-status
+							serialize-status status, (serialized-status) ->
 								status-compiler do
 									status: serialized-status
 									login: yes

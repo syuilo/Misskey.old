@@ -67,6 +67,15 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		| _ => send-response created-status
 
 	function send-response status
+		stream-obj = to-json do
+			type: \status
+			value: { id:status.id }
+
+		publish-redis-streaming "userStream:#{user.id}" stream-obj
+
+		UserFollowing.find { followee-id: user.id } (, followings) ->
+			| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
+
 		serialize-status status, (obj) ->
 			| obj.reply? =>
 				switch
@@ -79,15 +88,6 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 
 	function send obj
 		res.api-render obj
-		stream-obj = to-json do
-			type: \status
-			value: obj
-
-		publish-redis-streaming "userStream:#{user.id}" stream-obj
-
-		UserFollowing.find { followee-id: user.id } (, followings) ->
-			| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
-
 		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
 			mention-sn .= replace '@' ''
