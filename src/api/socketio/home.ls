@@ -48,6 +48,7 @@ module.exports = (io, session-store) ->
 									socket.emit content.type, status-compiler do
 										status: serialized-status
 										login: yes
+										me: socket.user
 										text-parser: parse-text
 										config: config.public-config
 							| _ => socket.emit content.type, content.value

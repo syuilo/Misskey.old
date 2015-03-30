@@ -89,12 +89,15 @@ div.status.article(
 			footer
 				if login
 					form.reply-form
-						textarea(name='text')= '@' + status.user.screenName + ' '
-						input(name='in-reply-to-status-id', type='hidden', value=status.id)
-						input(type='submit', value!='&#xf112; Reply')
-						div.image-attacher
-							p
-								i.fa.fa-picture-o
-							input(name='image', type='file', accept='image/*')
+						img.me-icon(src=config.url + '/img/icon/' + me.screenName, alt='icon')
+						div.form
+							textarea(name='text')= '@' + status.user.screenName + ' '
+							div.design-allow
+							input(name='in-reply-to-status-id', type='hidden', value=status.id)
+							input(type='submit', value!='&#xf112; Reply')
+							div.image-attacher
+								p
+									i.fa.fa-picture-o
+								input(name='image', type='file', accept='image/*')
 				else
 					p この投稿に返信するにはログインしてください。
