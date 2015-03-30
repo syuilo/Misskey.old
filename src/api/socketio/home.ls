@@ -2,7 +2,7 @@ require! {
 	cookie
 	redis
 	'../../models/user': User
-	'../../web/utils/timeline-serialyzer'
+	'../../web/utils/status-serialyzer'
 	'../../web/utils/parse-text'
 	'../../config'
 }
@@ -40,9 +40,9 @@ module.exports = (io, session-store) ->
 						| \status =>
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
-							timeline-serialyzer content.value, socket.user, (timeline-status) ->
+							status-serialyzer content.value, socket.user, (serialized-status) ->
 								status-compiler do
-									status: timeline-status
+									status: serialized-status
 									login: yes
 									text-parser: parse-text
 									config: config.public-config
