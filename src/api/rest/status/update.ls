@@ -56,21 +56,26 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		user-id: user.id
 		}
 		
-	status.save (, status) ->
+	status.save (, created-status) ->
 		| is-image-attached =>
 			status-image = new StatusImage do
 				{
-				status-id: status.id
+				status-id: created-status.id
 				image
 				}
-			status-image.save send-response
-		| _ => send-response!
+			status-image.save send-response created-status
+		| _ => send-response created-status
 
-	function send-response
+	function send-response status
 		status-response-filter status, (obj) ->
-			get-more-talk obj.reply, (talk) ->
-				obj.more-talk = talk if obj.reply != null && obj.reply.is-reply
-				send obj
+			| obj.reply? =>
+				switch
+				| obj.reply.is-reply =>
+					get-more-talk obj.reply, (talk) ->
+						obj.more-talk = talk
+						send obj
+				| _ => send obj
+			| _ => send obj
 
 	function send obj
 		res.api-render obj
