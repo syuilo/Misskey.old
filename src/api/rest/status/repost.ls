@@ -3,7 +3,7 @@ require! {
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/utils/status-check-reposted'
-	'../../../models/utils/status-response-filter'
+	'../../../models/utils/serialize-status'
 	'../../../models/utils/filter-user-for-response'
 	'../../../utils/publish-redis-streaming'
 	'../../auth': authorize
@@ -31,16 +31,15 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 				target-status
 					..reposts-count++
 					..save (err) ->
-				status-response-filter target-status, (target-status-obj) ->
-					target-status-obj
-						..is-repost-to-status = true
-						..reposted-by-user = filter-user-for-response user
-						.. |> res.api-render
-
-					stream-obj = to-json do
-						type: \repost
-						value: target-status-obj
-					publish-redis-streaming "userStream:#{user.id}", stream-obj
-					UserFollowing.find { followee-id: user.id } (, user-followings) ->
-						| user-followings? => user-followings.for-each (user-following) ->
-							publish-redis-streaming "userStream:#{user-following.follower-id}", stream-obj
+						serialize-status target-status, (target-status-obj) ->
+							target-status-obj
+								..is-repost-to-status = true
+								..reposted-by-user = filter-user-for-response user
+								.. |> res.api-render
+							stream-obj = to-json do
+								type: \repost
+								value: target-status-obj
+							publish-redis-streaming "userStream:#{user.id}", stream-obj
+							UserFollowing.find { followee-id: user.id } (, user-followings) ->
+								| user-followings? => user-followings.for-each (user-following) ->
+									publish-redis-streaming "userStream:#{user-following.follower-id}", stream-obj

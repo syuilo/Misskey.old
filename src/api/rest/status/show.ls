@@ -1,15 +1,15 @@
 require! {
-	'../../../models/status': Post
+	'../../../models/status': Status
+	'../../../models/utils/serialize-status'
 	'../../auth': authorize
 }
-module.exports = (req, res) ->
-	authorize req, res, (user, app) ->
-		post-id = req.query\post-id
-		if post-id == null
-			res.api-error 400 'post_id parameter is required :('
-		else
-			Post.find post-id, (post) ->
-				if post == null
-					res.api-error 404 'Not found that post :('
-				else
-					Post.build-response-object post, (obj) -> res.api-render obj
+module.exports = (req, res) -> authorize req, res, (user, app) ->
+	status-id = req.query\status-id
+	if status-id == null
+		res.api-error 400 'status-id parameter is required :('
+	else
+		Status.find-by-id status-id, (, status) ->
+			if status == null
+				res.api-error 404 'Not found that post :('
+			else
+				serialize-status status, res.api-render

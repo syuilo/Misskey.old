@@ -4,7 +4,7 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
 	'../../../models/utils/status-check-favorited'
-	'../../../models/utils/status-response-filter'
+	'../../../models/utils/serialize-status'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -23,4 +23,4 @@ function favorite-step req, res, app, user, target-status
 			target-status
 				..favorites-count++
 				..save (err) ->
-			status-response-filter target-post, res.api-render
+					serialize-status target-post, res.api-render
