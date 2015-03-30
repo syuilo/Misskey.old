@@ -1,6 +1,7 @@
 div.status.article(
 		title                   = status.createdAt
 		data-id                 = status.isRepostToStatus ? status.source.id : status.id
+		data-cursor             = status.cursor
 		data-source-id          = status.isRepostToStatus ? status.id : null
 		data-user-id            = status.user.id
 		data-user-color         = status.user.color
