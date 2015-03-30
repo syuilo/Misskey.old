@@ -10,8 +10,6 @@ module.exports = (io, session-store) ->
 	# Listen connect event
 	socket <- io.of '/streaming/web/home' .on \connection
 	
-	console.log socket.handshake.headers.cookie
-	
 	# Get cookies
 	cookies = cookie.parse socket.handshake.headers.cookie
 	
@@ -30,6 +28,7 @@ module.exports = (io, session-store) ->
 		# Get session user
 		err, user <- User.find-by-id uid
 		socket.user = user
+		console.log user
 		
 		# Subscribe Home stream channel
 		pubsub = redis.create-client!
