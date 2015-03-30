@@ -38,11 +38,9 @@ module.exports = (io, session-store) ->
 					if content.type? && content.value?
 						socket.emit content.type, switch content.type
 						| \status =>
-							console.log 'statys'
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
 							timeline-serialyzer content.value, socket.user, (timeline-status) ->
-								console.log timeline-status
 								status-compiler do
 									status: timeline-status
 									login: yes
