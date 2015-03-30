@@ -28,6 +28,7 @@ module.exports = (status, callback) ->
 					status.is-reply = no
 					callback status
 				| _ =>
+					reply-status .= to-object!
 					reply-status.is-reply = reply-status.in-reply-to-status-id?
 					status.reply = reply-status
 					User.find-by-id reply-status.user-id, (, reply-user) ->
