@@ -83,7 +83,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			type: \status
 			value: obj
 
-		publish-redis-streaming "userStream:${user.id}" stream-obj
+		publish-redis-streaming "userStream:#{user.id}" stream-obj
 
 		UserFollowing.find { followee-id: user.id } (, followings) ->
 			| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
