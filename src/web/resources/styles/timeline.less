@@ -701,12 +701,80 @@
 										}
 									}
 
+									input.tagit-hidden-field {
+										display: none;
+									}
+
 									> .tag {
 										display: block;
 										float: left;
-										margin: 0;
-										padding: 0;
+										overflow: auto;
+										padding: 1px 5px;
+										margin-left: inherit; /* usually we don't want the regular ul margins. */
+										margin-right: inherit;
 										list-style: none;
+
+										li {
+											display: block;
+											float: left;
+											margin: 2px 5px 2px 0;
+										}
+
+											li.tagit-choice {
+												position: relative;
+												line-height: inherit;
+											}
+
+											li.tagit-choice-read-only {
+												padding: .2em .5em .2em .5em;
+											}
+
+											li.tagit-choice-editable {
+												padding: .2em 18px .2em .5em;
+											}
+
+											li.tagit-new {
+												padding: .25em 4px .25em 0;
+											}
+
+											li.tagit-choice a.tagit-label {
+												cursor: pointer;
+												text-decoration: none;
+											}
+
+											li.tagit-choice .tagit-close {
+												cursor: pointer;
+												position: absolute;
+												right: .1em;
+												top: 50%;
+												margin-top: -8px;
+												line-height: 17px;
+											}
+												/* used for some custom themes that don't need image icons */
+												li.tagit-choice .tagit-close .text-icon {
+													display: none;
+												}
+
+											li.tagit-choice input {
+												display: block;
+												float: left;
+												margin: 2px 5px 2px 0;
+											}
+
+										input[type="text"] {
+											-moz-box-sizing: border-box;
+											-webkit-box-sizing: border-box;
+											box-sizing: border-box;
+											-moz-box-shadow: none;
+											-webkit-box-shadow: none;
+											box-shadow: none;
+											border: none;
+											margin: 0;
+											padding: 0;
+											width: inherit;
+											background-color: inherit;
+											outline: none;
+										}
 									}
 
 									> input[type=submit] {
