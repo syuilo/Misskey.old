@@ -217,7 +217,7 @@
 						color: @themeColor;
 					}
 
-					> article > .icon-area > .icon-anchor > .icon {
+					> article > .article-main > .main > .icon-area > .icon-anchor > .icon {
 						filter: saturate(200%);
 						-webkit-filter: saturate(200%);
 						-moz-filter: saturate(200%);
@@ -235,28 +235,11 @@
 						clear: both;
 					}
 
-					> .icon-area {
-						float: left;
-						width: 70px;
-
-						a > .icon {
-							min-width: 54px;
-							min-height: 54px;
-							max-width: 54px;
-							max-height: 54px;
-							margin: 14px 12px 4px 0;
-							border-radius: 8px;
-							box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-							transition: all 0.1s ease;
-						}
-					}
-
 					> .article-main {
 						box-sizing: border-box;
 						position: relative;
-						float: left;
 						padding: 0;
-						width: ~"calc(100% - 70px)";
+						width: 100%;
 						background: #fff;
 						border-right: solid 4px transparent;
 						box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
@@ -264,23 +247,9 @@
 						&:hover {
 							background: #f8f8f8;
 
-							&:before {
+							> .main:before {
 								border-right: solid 12px #f8f8f8;
 							}
-						}
-
-						&:before {
-							content: "";
-							display: block;
-							position: absolute;
-							top: 32px;
-							left: -24px;
-							font-size: 0;
-							line-height: 0;
-							border-top: solid 12px transparent;
-							border-right: solid 12px #fff;
-							border-bottom: solid 12px transparent;
-							border-left: solid 12px transparent;
 						}
 
 						&:after {
@@ -417,6 +386,37 @@
 						> .main {
 							position: relative;
 							padding: 20px 26px 20px 26px;
+
+							&:before {
+								content: "";
+								display: block;
+								position: absolute;
+								top: 32px;
+								left: -24px;
+								font-size: 0;
+								line-height: 0;
+								border-top: solid 12px transparent;
+								border-right: solid 12px #fff;
+								border-bottom: solid 12px transparent;
+								border-left: solid 12px transparent;
+							}
+
+							> .icon-area {
+								position: absolute;
+								top: 0;
+								left: -70px;
+
+								a > .icon {
+									min-width: 54px;
+									min-height: 54px;
+									max-width: 54px;
+									max-height: 54px;
+									margin: 14px 12px 4px 0;
+									border-radius: 8px;
+									box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+									transition: all 0.1s ease;
+								}
+							}
 
 							> header {
 								margin-bottom: 4px;

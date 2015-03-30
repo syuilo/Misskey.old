@@ -13,9 +13,6 @@ div.status.article(
 		data-is-repostpost     != status.isRepostToStatus.toString()
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null)
 	article
-		div.icon-area
-			a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
-				img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 		div.article-main(style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : '')
 			if status.moreTalk != null
 				aside.talk
@@ -66,6 +63,9 @@ div.status.article(
 							if status.reply.isImageAttached
 								img.image(src=config.url + '/img/status/' + status.reply.id, alt='image')
 			div.main
+				div.icon-area
+					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 				header.header
 					h2
 						a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
