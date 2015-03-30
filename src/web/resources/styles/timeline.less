@@ -258,8 +258,7 @@
 						padding: 0;
 						width: ~"calc(100% - 70px)";
 						background: #fff;
-						border-right: solid 3px transparent;
-						border-bottom: solid 1px #eee;
+						border-right: solid 4px transparent;
 						box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 
 						&:hover {
@@ -282,6 +281,16 @@
 							border-right: solid 12px #fff;
 							border-bottom: solid 12px transparent;
 							border-left: solid 12px transparent;
+						}
+
+						&:after {
+							content: "";
+							display: block;
+							width: 100%;
+							height: 1px;
+							font-size: 0;
+							line-height: 0;
+							background: #eee;
 						}
 
 						> .talk {
