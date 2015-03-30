@@ -38,21 +38,19 @@ module.exports = (io, session-store) ->
 				try
 					content = parse-json content
 					if content.type? && content.value?
-						send-content = switch content.type
+						switch content.type
 							| \status =>
 								# Find status
 								err, status <- Status.find-by-id content.value.id
 								# Send timeline status HTML
 								status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
 								serialize-timeline-status status, socket.user, (serialized-status) ->
-									status-compiler do
+									socket.emit content.type, status-compiler do
 										status: serialized-status
 										login: yes
 										text-parser: parse-text
 										config: config.public-config
-							| _ => content.value
-						console.log send-content
-						socket.emit content.type, send-content
+							| _ => socket.emit content.type, content.value
 					else
 						socket.emit content
 				catch e
