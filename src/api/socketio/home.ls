@@ -35,6 +35,7 @@ module.exports = (io, session-store) ->
 			..on \message (, content) ->
 				try
 					content = parse-json content
+					console.log content
 					if content.type? && content.value?
 						switch content.type
 						| \status =>
