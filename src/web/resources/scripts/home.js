@@ -12,7 +12,7 @@ $(function() {
 
 	socket = io.connect('https://api.misskey.xyz:1207/streaming/web/home', { port: 1207 });
 
-	socket.on('connected', function() {
+	socket.on('connect', function() {
 		console.log('Connected');
 	});
 
