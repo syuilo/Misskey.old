@@ -102,7 +102,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 	function get-more-talk(status, callback)
 		get-status-before-talk status.in-reply-to-status-id, (more-talk) ->
 			async.map more-talk, (talk-post, map-next) ->
-				talk-post.is-reply = talk-post.in-reply-to-status-id != 0 && talk-post.in-reply-to-status-id != null
+				talk-post.is-reply = talk-post.in-reply-to-status-id?
 				User.find-by-id talk-post.user-id, (, talk-post-user) ->
 					talk-post.user = talk-post-user
 					map-next null talk-post
