@@ -15,7 +15,7 @@ TIMELINE.setEventPost = function($post) {
 		var $submitButton = $form.find('[type=submit]');
 		$submitButton.attr('disabled', true);
 		$.ajax({
-			url: 'https://api.misskey.xyz/post/create',
+			url: 'https://api.misskey.xyz/status/update',
 			type: 'post',
 			data: new FormData($form[0]),
 			processData: false,
@@ -51,9 +51,9 @@ TIMELINE.setEventPost = function($post) {
 
 		if ($post.attr('data-is-favorited') == 'true') {
 			$post.attr('data-is-favorited', 'false')
-			$.ajax('https://api.misskey.xyz/post/unfavorite', {
+			$.ajax('https://api.misskey.xyz/status/unfavorite', {
 				type: 'delete',
-				data: { 'post_id': $post.attr('data-id') },
+				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
 				xhrFields: { withCredentials: true }
 			}).done(function() {
@@ -64,9 +64,9 @@ TIMELINE.setEventPost = function($post) {
 			});
 		} else {
 			$post.attr('data-is-favorited', 'true')
-			$.ajax('https://api.misskey.xyz/post/favorite', {
+			$.ajax('https://api.misskey.xyz/status/favorite', {
 				type: 'post',
-				data: { 'post_id': $post.attr('data-id') },
+				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
 				xhrFields: { withCredentials: true }
 			}).done(function() {
@@ -83,9 +83,9 @@ TIMELINE.setEventPost = function($post) {
 		$button.attr('disabled', true);
 
 		if ($post.attr('data-is-reposted') == 'true') {
-			$.ajax('https://api.misskey.xyz/post/unrepost', {
+			$.ajax('https://api.misskey.xyz/status/unrepost', {
 				type: 'delete',
-				data: { 'post_id': $post.attr('data-id') },
+				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
 				xhrFields: { withCredentials: true }
 			}).done(function() {
@@ -95,9 +95,9 @@ TIMELINE.setEventPost = function($post) {
 				$button.attr('disabled', false);
 			});
 		} else {
-			$.ajax('https://api.misskey.xyz/post/repost', {
+			$.ajax('https://api.misskey.xyz/status/repost', {
 				type: 'post',
-				data: { 'post_id': $post.attr('data-id') },
+				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
 				xhrFields: { withCredentials: true }
 			}).done(function() {
