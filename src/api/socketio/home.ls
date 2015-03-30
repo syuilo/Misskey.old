@@ -36,13 +36,11 @@ module.exports = (io, session-store) ->
 			..on \message (, content) ->
 				try
 					content = parse-json content
-					console.log content.value
-					console.log socket.user
 					if content.type? && content.value?
 						socket.emit content.type, switch content.type
 						| \status =>
 							# Find status
-							err, status <- Status.find-by-id content.value
+							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
 							serialize-status status, (serialized-status) ->
