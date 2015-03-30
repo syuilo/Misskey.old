@@ -603,6 +603,12 @@
 							padding: 4px 16px;
 
 							> .reply-form {
+								&:after {
+									content: "";
+									display: block;
+									clear: both;
+								}
+
 								> .me-icon {
 									display: block;
 									float: left;
@@ -631,7 +637,7 @@
 										min-height: 64px;
 										vertical-align: bottom;
 										margin: 0;
-										padding: 8px;
+										padding: 8px 12px;
 										outline: 0;
 										border: solid 1px #eee;
 										border-radius: 0;
