@@ -5,7 +5,7 @@ require! {
 	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	UserIcon.find-one { user-id: user.id } (, icon) ->
+	UserIcon.find-by-id user.id, (, icon) ->
 		if (Object.keys req.files).length == 1
 			path = req.files.image.path
 			gm path
