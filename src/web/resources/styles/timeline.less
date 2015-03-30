@@ -400,17 +400,6 @@
 								}
 							}
 
-							&:before {
-								content: "";
-								display: block;
-								position: absolute;
-								top: 50%;
-								left: 31px;
-								width: 2px;
-								height: 50%;
-								background: rgba(0, 0, 0, 0.1);
-							}
-
 							&[data-user-verified='true'] {
 								> article > header > h2 > a {
 									&:before {
@@ -713,31 +702,6 @@
 							}
 						}
 					}
-				}
-			}
-		}
-
-		.status > .status.article[data-is-reply='true'] {
-			> article {
-				&:before {
-					content: "";
-					display: block;
-					position: absolute;
-					z-index: -1;
-					top: -4px;
-					left: 31px;
-					width: 2px;
-					height: 50%;
-					background: rgba(0, 0, 0, 0.1);
-				}
-			}
-		}
-
-		.status > .status.article[data-is-talk='true'] {
-			> article > .article-main > .reply-to {
-				&:before {
-					top: 0;
-					height: 100%;
 				}
 			}
 		}
