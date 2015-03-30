@@ -1,8 +1,8 @@
 require! {
 	async
-	'../../models/user': User
-	'../../models/status': Status
-	'../../models/utils/get-status-before-talk'
+	'../user': User
+	'../status': Status
+	'./status-get-before-talk'
 }
 
 module.exports = (status, callback) ->

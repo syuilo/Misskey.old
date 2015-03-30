@@ -1,15 +1,12 @@
 require! {
-	'../../models/application': Application
-	'../../models/user': User
-	'../../models/status': Status
-	'../../models/status-favorite': StatusFavorite
-	'../../models/utils/status-check-favorited'
-	'../../models/utils/status-check-reposted'
-	'./timeline-serialize-more-talk': serialize-talk
+	'../application': Application
+	'../user': User
+	'../status': Status
+	'./status-get-talk': serialize-talk
 	'../../config'
 }
 
-module.exports = (status, me, callback) ->
+module.exports = (status, callback) ->
 	function get-app(status, callback)
 		Application.find-by-id status.app-id, (, app) ->
 			#delete app.consumer-key
@@ -21,21 +18,6 @@ module.exports = (status, me, callback) ->
 		User.find-by-id status.user-id, (, user) ->
 			status.user = user.to-object!
 			callback status
-	
-	function get-is-favorited(status, me, callback)
-		if me?
-			status-check-favorited me.id, status.id .then (is-favorited) ->
-				console.log 'is-favorited:' + is-favorited
-				callback is-favorited
-		else
-			callback null
-	
-	function get-is-reposted(status, me, callback)
-		if me?
-			status-check-reposted me.id, status.id .then (is-reposted) ->
-				next null, is-reposted
-		else
-			callback null
 	
 	function get-reply(status, callback)
 		switch
@@ -81,7 +63,5 @@ module.exports = (status, me, callback) ->
 	status <- get-app status
 	status <- get-user status
 	status <- get-reply status
-	status.is-favorited = no
-	status.is-reposted = no
 	callback status
 	

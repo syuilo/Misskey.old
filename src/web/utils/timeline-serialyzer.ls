@@ -6,8 +6,7 @@ require! {
 	'../../models/status-favorite': StatusFavorite
 	'../../models/utils/status-check-favorited'
 	'../../models/utils/status-check-reposted'
-	'./timeline-serialize-more-talk': serialize-talk
-	'./status-serialyzer'
+	'../../models/utils/serialize-status'
 	'../../config'
 }
 

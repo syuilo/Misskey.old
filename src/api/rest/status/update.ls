@@ -6,7 +6,7 @@ require! {
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
 	'../../../models/utils/get-status-before-talk'
-	'../../../models/utils/status-response-filter'
+	'../../../models/utils/serialize-status'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../utils/publish-redis-streaming'
@@ -67,7 +67,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		| _ => send-response created-status
 
 	function send-response status
-		status-response-filter status, (obj) ->
+		serialize-status status, (obj) ->
 			| obj.reply? =>
 				switch
 				| obj.reply.is-reply =>
