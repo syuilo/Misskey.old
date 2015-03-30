@@ -38,7 +38,8 @@ module.exports = (io, session-store) ->
 				try
 					content = parse-json content
 					if content.type? && content.value?
-						socket.emit content.type, switch content.type
+						socket.emit \status 'kyoppie'
+						socket.emit content.type, html = switch content.type
 						| \status =>
 							# Find status
 							err, status <- Status.find-by-id content.value.id
@@ -51,6 +52,7 @@ module.exports = (io, session-store) ->
 									text-parser: parse-text
 									config: config.public-config
 						| _ => content.value
+						console.log html
 					else
 						socket.emit content
 				catch e
