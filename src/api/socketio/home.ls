@@ -21,7 +21,7 @@ module.exports = (io, session-store) ->
 	err, session <- session-store.get sidkey
 	switch
 	| err => console.log err.message
-	| !session? => console.log "undefined: ${sidkey}"
+	| !session? => console.log "undefined: #{sidkey}"
 	| _ =>
 		uid = socket.user-id = session.user-id
 		
