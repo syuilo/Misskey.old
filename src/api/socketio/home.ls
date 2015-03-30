@@ -28,7 +28,6 @@ module.exports = (io, session-store) ->
 		# Get session user
 		err, user <- User.find-by-id uid
 		socket.user = user
-		console.log user
 		
 		# Subscribe Home stream channel
 		pubsub = redis.create-client!
