@@ -96,13 +96,13 @@ $(function() {
 	});
 
 	$("#iconEditForm").submit(function(event) {
-		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_icon');
+		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update-icon');
 	});
 	$("#wallpaperEditForm").submit(function(event) {
-		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_wallpaper');
+		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update-wallpaper');
 	});
 	$("#headerEditForm").submit(function(event) {
-		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update_header');
+		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update-header');
 	});
 
 	$('#webtheme .theme').hover(function() {
