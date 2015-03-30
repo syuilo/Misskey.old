@@ -10,6 +10,8 @@ module.exports = (io, session-store) ->
 	# Listen connect event
 	socket <- io.of '/streaming/web/home' .on \connection
 	
+	console.log socket.handshake.headers.cookie
+	
 	# Get cookies
 	cookies = cookie.parse socket.handshake.headers.cookie
 	
