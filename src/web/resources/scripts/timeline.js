@@ -117,26 +117,26 @@ TIMELINE.setEventPost = function($post) {
 		$(event.target).is('time') ||
 		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
-			if ($(this).children('footer').css('display') === 'none') {
-				$('.timeline > .statuses > .status > .status.article > .more-talk > i').each(function() {
+			if ($(this).find('article > .article-main > footer').css('display') === 'none') {
+				$('.timeline > .statuses > .status > .status.article > .talk > i').each(function() {
 					$(this).show(200);
 				});
-				$('.timeline > .statuses > .status > .status.article > .more-talk > .talk').each(function() {
+				$('.timeline > .statuses > .status > .status.article > .talk > .statuses').each(function() {
 					$(this).hide(200);
 				});
-				$('.timeline > .statuses > .status > .status.article > footer').each(function() {
+				$('.timeline > .statuses > .status > .status.article > .article-main > footer').each(function() {
 					$(this).hide(200);
 				});
-				$(this).children('.more-talk').children('i').hide(200);
-				$(this).children('.more-talk').children('.talk').show(200);
-				$(this).children('footer').show(200);
-				var text = $(this).find('footer .reply-form textarea').val();
-				$(this).find('footer .reply-form textarea').val('');
-				$(this).find('footer .reply-form textarea').focus().val(text);
+				$(this).find('article > .article-main > .talk > i').hide(200);
+				$(this).find('article > .article-main > .talk > .statuses').show(200);
+				$(this).find('article > .article-main > footer').show(200);
+				var text = $(this).find('article > .article-main > footer .reply-form textarea').val();
+				$(this).find('article > .article-main > footer .reply-form textarea').val('');
+				$(this).find('article > .article-main > footer .reply-form textarea').focus().val(text);
 			} else {
-				$(this).children('.more-talk').children('i').show(200);
-				$(this).children('.more-talk').children('.talk').hide(200);
-				$(this).children('footer').hide(200);
+				$(this).find('article > .article-main > .talk').children('i').show(200);
+				$(this).find('article > .article-main > .talk').children('.statuses').hide(200);
+				$(this).find('article > .article-main > footer').hide(200);
 			}
 		}
 	});
