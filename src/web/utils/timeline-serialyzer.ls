@@ -16,6 +16,6 @@ module.exports = (statuses, me, callback) ->
 		statuses
 		(status, next) ->
 			status-serialyzer status, me (serialized-status) ->
-			map-next null, serialized-status
+			next null, serialized-status
 		(err, results) ->
 			callback results
