@@ -188,11 +188,23 @@
 				background: rgba(0, 0, 0, 0.025);
 			}
 
-			&:first-child:before {
-				content: "";
-				display: none;
-				width: 0;
-				height: 0;
+			&:first-child {
+				&:before {
+					content: "";
+					display: none;
+					width: 0;
+					height: 0;
+				}
+
+				> article > .article-main {
+					border-radius: 8px 8px 0 0;
+				}
+			}
+
+			&:last-child {
+				> article > .article-main {
+					border-radius: 0 0 8px 8px;
+				}
 			}
 
 			&:hover {
