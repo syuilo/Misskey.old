@@ -19,8 +19,8 @@ $(function() {
 	socket.on('disconnect', function(client) {
 	});
 
-	socket.on('post', function(post) {
-		console.log('post', post);
+	socket.on('status', function(post) {
+		console.log('status', post);
 		var currentPath = location.pathname;
 		currentPath = currentPath.indexOf('/') == 0 ? currentPath : '/' + currentPath;
 		if (currentPath != "/i/mention") {
