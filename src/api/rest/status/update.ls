@@ -5,7 +5,7 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
-	'../../../models/utils/get-status-before-talk'
+	'../../../models/utils/status-get-before-talk'
 	'../../../models/utils/serialize-status'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
