@@ -1,6 +1,7 @@
 require! {
 	cookie
 	redis
+	jade
 	'../../models/user': User
 	'../../models/status': Status
 	'../../models/utils/serialize-status'
