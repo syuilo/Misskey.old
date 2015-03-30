@@ -14,7 +14,7 @@ module.exports = (statuses, me, callback) ->
 	async.map do
 		statuses
 		(status, next) ->
-			serialize-status status, me, (serialized-status) ->
+			serialize-status status, (serialized-status) ->
 				next null, serialized-status
 		(err, results) ->
 			callback results
