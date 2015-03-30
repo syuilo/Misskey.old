@@ -63,8 +63,8 @@ $(function() {
 		}
 	});
 
-	socket.on('talkMessage', function(message) {
-		console.log('talkMessage', message);
+	socket.on('talk-message', function(message) {
+		console.log('talk-message', message);
 		var windowId = 'misskey-window-talk-' + message.user.id;
 		if ($('#' + windowId)[0]) {
 			return;
@@ -85,15 +85,15 @@ $(function() {
 		};
 	});
 
-	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
+	$('#post-form').find('.image-attacher input[name=image]').change(function() {
 		var $input = $(this);
 		var file = $(this).prop('files')[0];
 		if (!file.type.match('image.*')) return;
 		var reader = new FileReader();
 		reader.onload = function() {
 			var $img = $('<img>').attr('src', reader.result);
-			$input.parent('.imageAttacher').find('p, img').remove();
-			$input.parent('.imageAttacher').append($img);
+			$input.parent('.image-attacher').find('p, img').remove();
+			$input.parent('.image-attacher').append($img);
 		};
 		reader.readAsDataURL(file);
 	});

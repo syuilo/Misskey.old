@@ -118,7 +118,6 @@ TIMELINE.setEventPost = function($post) {
 		$(event.target).is('a')) return;
 		if (document.getSelection().toString() == '') {
 			if ($(this).find('article > .article-main > footer').css('display') === 'none') {
-			/*
 				$('.timeline > .statuses > .status > .status.article > .talk > i').each(function() {
 					$(this).show(200);
 				});
@@ -128,7 +127,6 @@ TIMELINE.setEventPost = function($post) {
 				$('.timeline > .statuses > .status > .status.article > .article-main > footer').each(function() {
 					$(this).hide(200);
 				});
-			*/
 				$(this).find('article > .article-main > .talk > i').hide(200);
 				$(this).find('article > .article-main > .talk > .statuses').show(200);
 				$(this).find('article > .article-main > footer').show(200);
@@ -153,7 +151,7 @@ TIMELINE.setEventPost = function($post) {
 }
 
 $(function() {
-	$('.timeline .status').each(function() {
+	$('.timeline .status .status.article').each(function() {
 		TIMELINE.setEventPost($(this));
 	});
 });
