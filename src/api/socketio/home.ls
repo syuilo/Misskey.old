@@ -33,9 +33,9 @@ module.exports = (io, session-store) ->
 		pubsub = redis.create-client!
 			..subscribe "misskey:userStream:#{uid}"
 			..on \message (, content) ->
+				console.log content
 				try
 					content = parse-json content
-					console.log content
 					if content.type? && content.value?
 						switch content.type
 						| \status =>
