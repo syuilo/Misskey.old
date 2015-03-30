@@ -52,7 +52,7 @@ div.status.article(
 					data-id= status.reply.id
 					data-user-id= status.reply.user.id
 					data-user-color= status.reply.user.color
-					data-user-verified!= status.reply.user.isPlustoString())
+					data-user-verified!= status.reply.user.isPlus.toString())
 					article
 						a.icon-anchor(href=config.url + '/' + status.reply.user.screenName + '/talk?noheader=true', title= status.reply.user.comment != null ? status.reply.user.comment : '@' + status.reply.user.screenName)
 							img.icon(src=config.url + '/img/icon/' + status.reply.user.screenName, alt='icon')
