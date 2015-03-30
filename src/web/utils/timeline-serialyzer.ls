@@ -6,7 +6,7 @@ require! {
 	'../../models/status-favorite': StatusFavorite
 	'../../models/utils/status-check-favorited'
 	'../../models/utils/status-check-reposted'
-	'../../models/utils/serialize-status'
+	'./serialize-timeline-status'
 	'../../config'
 }
 
@@ -14,9 +14,7 @@ module.exports = (statuses, me, callback) ->
 	async.map do
 		statuses
 		(status, next) ->
-			serialize-status status, (serialized-status) ->
-				serialized-status.is-favorited = no
-				serialized-status.is-reposted = no
+			serialize-timeline-status status, me, (serialized-status) ->
 				next null, serialized-status
 		(err, results) ->
 			callback results

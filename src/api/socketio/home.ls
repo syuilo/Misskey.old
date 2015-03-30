@@ -4,7 +4,7 @@ require! {
 	jade
 	'../../models/user': User
 	'../../models/status': Status
-	'../../models/utils/serialize-status'
+	'../../web/utils/serialize-timeline-status'
 	'../../web/utils/parse-text'
 	'../../config'
 }
@@ -44,7 +44,7 @@ module.exports = (io, session-store) ->
 							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
-							serialize-status status, (serialized-status) ->
+							serialize-timeline-status status, socket.user, (serialized-status) ->
 								status-compiler do
 									status: serialized-status
 									login: yes
