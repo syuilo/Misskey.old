@@ -48,7 +48,7 @@ div.status.article(
 						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
 						| によってRepost
 			if status.isReply
-				div.reply-to(title!= '#{post.reply.createdAt}&#x0A;'
+				div.reply-to(title!= '#{status.reply.createdAt}&#x0A;'
 					data-id= status.reply.id
 					data-user-id= status.reply.user.id
 					data-user-color= status.reply.user.color
