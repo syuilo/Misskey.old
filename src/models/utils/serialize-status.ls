@@ -32,6 +32,7 @@ module.exports = (status, callback) ->
 					reply-status.is-reply = reply-status.in-reply-to-status-id?
 					status.reply = reply-status
 					User.find-by-id reply-status.user-id, (, reply-user) ->
+						reply-user .= to-object!
 						status.reply.user = reply-user
 						if reply-status.is-reply
 							serialize-talk reply-status, (talk) ->
