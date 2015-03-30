@@ -94,6 +94,7 @@ div.status.article(
 							textarea(name='text')= '@' + status.user.screenName + ' '
 							div.design-allow
 							input(name='in-reply-to-status-id', type='hidden', value=status.id)
+							ul.tag
 							input(type='submit', value!='&#xf112; Reply')
 							div.image-attacher
 								p
