@@ -2,7 +2,7 @@ require! {
 	cookie
 	redis
 	'../../models/user': User
-	'../../web/utils/status-serialyzer'
+	'../../web/utils/serialyze-status'
 	'../../web/utils/parse-text'
 	'../../config'
 }
