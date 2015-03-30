@@ -44,7 +44,12 @@ module.exports = (io, session-store) ->
 							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/views/templates/status/status.jade"
+							console.log '-----'
+							console.log status
+							console.log '---'
 							serialize-timeline-status status, socket.user, (serialized-status) ->
+								console.log serialized-status
+								console.log '-----'
 								status-compiler do
 									status: serialized-status
 									login: yes
