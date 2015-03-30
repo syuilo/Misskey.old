@@ -14,6 +14,7 @@ mongoose-auto-increment.initialize db
 status-schema = new Schema do
 	app-id:                { type: Schema.Types.ObjectId,  required: yes }
 	created-at:            { type: Date,                   required: yes, default: Date.now }
+	cursor:                { type: Number }
 	favorites-count:       { type: Number,                 default: 0 }
 	in-reply-to-status-id: { type: Schema.Types.ObjectId,  default: null }
 	is-image-attached:     { type: Boolean,                default: false }
@@ -30,6 +31,6 @@ status-schema.options.to-object.transform = (doc, ret, options) ->
 	ret
 
 # Auto increment
-status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: \_id }
+status-schema.plugin mongoose-auto-increment.plugin, { model: \Status, field: \_cursor }
 
 module.exports = db.model \Status status-schema
