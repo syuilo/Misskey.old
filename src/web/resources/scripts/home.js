@@ -19,15 +19,15 @@ $(function() {
 	socket.on('disconnect', function(client) {
 	});
 
-	socket.on('status', function(post) {
-		console.log('status', post);
+	socket.on('status', function(status) {
+		console.log('status', status);
 		var currentPath = location.pathname;
 		currentPath = currentPath.indexOf('/') == 0 ? currentPath : '/' + currentPath;
 		if (currentPath != "/i/mention") {
 			new Audio('/resources/sounds/pop.mp3').play();
-			var $post = TIMELINE.generatePostElement(post, conf).hide();
-			TIMELINE.setEventPost($post);
-			$post.prependTo($('#timeline .timeline > .statuses')).show(200);
+			var $status = $('<li class="status">').append($(status)).hide();
+			TIMELINE.setEventPost($status);
+			$status.prependTo($('#timeline .timeline > .statuses')).show(200);
 		}
 	});
 
