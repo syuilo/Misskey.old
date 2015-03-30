@@ -15,6 +15,8 @@ module.exports = (statuses, me, callback) ->
 		statuses
 		(status, next) ->
 			serialize-status status, (serialized-status) ->
+				serialized-status.is-favorited = no
+				serialized-status.is-reposted = no
 				next null, serialized-status
 		(err, results) ->
 			callback results
