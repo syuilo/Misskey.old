@@ -724,9 +724,14 @@
 										list-style: none;
 
 										li {
+											user-select: text;
+											-moz-user-select: text;
+											-webkit-user-select: text;
+											-ms-user-select: text;
 											display: block;
 											float: left;
 											margin: 2px 5px 2px 0;
+											cursor: text;
 										}
 
 											li.tagit-choice {
@@ -765,12 +770,21 @@
 												}
 
 											li.tagit-choice input {
+												user-select: text;
+												-moz-user-select: text;
+												-webkit-user-select: text;
+												-ms-user-select: text;
 												display: block;
 												float: left;
 												margin: 2px 5px 2px 0;
+												cursor: text;
 											}
 
 										input[type="text"] {
+											user-select: text;
+											-moz-user-select: text;
+											-webkit-user-select: text;
+											-ms-user-select: text;
 											-moz-box-sizing: border-box;
 											-webkit-box-sizing: border-box;
 											box-sizing: border-box;
@@ -781,6 +795,7 @@
 											margin: 0;
 											padding: 0;
 											width: inherit;
+											cursor: text;
 											background-color: inherit;
 											outline: none;
 										}
