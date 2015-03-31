@@ -280,8 +280,42 @@ main {
 					.name {
 						margin: 0;
 					}
+
+					button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						cursor: pointer;
+						display: inline-block;
+						box-sizing: border-box;
+						padding: 4px 6px;
+						margin: 0;
+						font-size: 0.8em;
+						color: #fff;
+						background: #5a7d7f;
+						border: none;
+						outline: none;
+						transition: background .2s ease;
+
+						&:disabled {
+							background: #ddd !important;
+						}
+
+						&:hover {
+							background: #29797f;
+							transition: background .1s ease;
+						}
+
+						&:active {
+							background: #09596f;
+							transition: background .1s ease;
+						}
+
+						&:focus {
+							text-shadow: 0 0 8px #fff;
+						}
+					}
 				}
 			}
 		}
 	}
-}
