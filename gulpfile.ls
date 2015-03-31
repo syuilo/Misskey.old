@@ -1,6 +1,7 @@
 require! {
 	gulp
 	'gulp-plumber': plumber
+	'gulp-lint-ls': lint-ls
 	'gulp-livescript': ls
 }
 
@@ -20,9 +21,13 @@ gulp.task \build <[ build-package-json ]>
 gulp.task \watch <[ build ]> ->
 	gulp.watch paths.package-json, <[ build-package-json ]>
 
-gulp.task \test ->
+gulp.task \test <[ lint build ]> ->
 	gulp.src paths.ls
 		.pipe ls!
 		.on \error -> throw it
+
+gulp.task \lint ->
+	gulp.src './**/*.ls'
+		.pipe lint-ls {+allow-case, +allow-null, +allow-void, +allow-this}
 
 gulp.task \default <[ build ]>

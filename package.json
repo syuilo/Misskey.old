@@ -32,6 +32,7 @@
     "gm": "1.17.0",
     "gulp": "3.8.11",
     "gulp-livescript": "2.3.0",
+    "gulp-lint-ls": "0.0.1",
     "gulp-plumber": "1.0.0",
     "jade": "1.9.2",
     "js-yaml": "3.2.7",
@@ -58,7 +59,8 @@
       "url": "https://github.com/syuilo"
     },
     {
-      "name": "Afuafu",
+      "name": "afuafu",
+      "email": "noodle117117@yahoo.co.jp",
       "url": "https://github.com/afuafu55"
     },
     {
