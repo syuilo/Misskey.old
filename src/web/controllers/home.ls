@@ -14,6 +14,8 @@ status-gets =
 
 module.exports = (req, res, content = \home) ->
 	me = req.me
+	get-new-users 5 .then (users) ->
+		console.log users
 	async.series [
 		(next) -> get-statuses-count me.id .then (count) -> next null, count
 		(next) -> get-followings-count me.id .then (count) -> next null, count
