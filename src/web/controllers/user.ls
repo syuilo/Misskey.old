@@ -35,7 +35,7 @@ module.exports = (req, res, page = \home) ->
 					.sort { created-at: \desc }
 					.limit 30status
 					.exec (, statuses) ->
-						timeline-generate-html statuses, req.me (html) ->
+						timeline-generate-html statuses, req.me, (html) ->
 							next null html
 			
 			# Get is following
