@@ -21,22 +21,18 @@ $(function() {
 
 	socket.on('status', function(status) {
 		console.log('status', status);
-		var currentPath = location.pathname;
-		currentPath = currentPath.indexOf('/') == 0 ? currentPath : '/' + currentPath;
-		if (currentPath != "/i/mention") {
-			new Audio('/resources/sounds/pop.mp3').play();
-			var $status = $('<li class="status">').append($(status)).hide();
-			TIMELINE.setEventPost($status);
-			$status.prependTo($('#timeline .timeline > .statuses')).show(200);
-		}
+		new Audio('/resources/sounds/pop.mp3').play();
+		var $status = $('<li class="status">').append($(status)).hide();
+		TIMELINE.setEventPost($status);
+		$status.prependTo($('#timeline .timeline > .statuses')).show(200);
 	});
 
-	socket.on('repost', function(post) {
-		console.log('repost', post);
+	socket.on('repost', function(status) {
+		console.log('repost', status);
 		new Audio('/resources/sounds/pop.mp3').play();
-		var $post = TIMELINE.generatePostElement(post, conf).hide();
-		TIMELINE.setEventPost($post);
-		$post.prependTo($('#timeline .timeline > .statuses')).show(200);
+		var $status = $('<li class="status">').append($(status)).hide();
+		TIMELINE.setEventPost($status);
+		$status.prependTo($('#timeline .timeline > .statuses')).show(200);
 	});
 
 	socket.on('reply', function(post) {
@@ -97,21 +93,20 @@ $(function() {
 		};
 		reader.readAsDataURL(file);
 	});
-	
+
 	$(window).keypress(function(e) {
 		if (e.charCode == 13 && e.ctrlKey) {
 			post($('#postForm textarea'));
 		}
 	});
-	
+
 	$('#post-form').submit(function(event) {
 		event.preventDefault();
 
 		post($(this));
 	});
-	
-	function post($form)
-	{
+
+	function post($form) {
 		var $submitButton = $form.find('[type=submit]');
 
 		$submitButton.attr('disabled', true);
