@@ -69,7 +69,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 	function send-response status
 		stream-obj = to-json do
 			type: \status
-			value: { id:status.id }
+			value: { id: status.id }
 
 		publish-redis-streaming "userStream:#{user.id}" stream-obj
 
