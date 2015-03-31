@@ -14,5 +14,5 @@ function fn(id)
 		fn status.in-reply-to-status-id .then (next-statuses) ->
 			resolve next-statuses ++ [status]
 
-module.exports = function
+module.exports = fn
 	
