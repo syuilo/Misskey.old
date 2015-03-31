@@ -4,11 +4,13 @@ require! {
 }
 
 # Number -> Promise [Status]
-module.exports = fix (get-status-before-talk, id) -->
+module.exports = (id) ->
 	resolve, reject <- new Promise!
 	err, status <- Status.find-by-id id
 	switch
 	| err? => reject err
-	| status.in-reply-to-status-id? =>
+	| !status.in-reply-to-status-id? =>
 		resolve [status]
-	| _ => status-get-before-talk status.in-reply-to-status-id .then (next-statuses) -> resolve next-statuses ++ [status]
+	| _ =>
+		status-get-before-talk status.in-reply-to-status-id .then (next-statuses) ->
+			resolve next-statuses ++ [status]
