@@ -231,6 +231,13 @@
 					> article > .article-main {
 						border-bottom-left-radius: 8px;
 						border-bottom-right-radius: 8px;
+
+						&:after {
+							content: "";
+							display: none;
+							width: 0;
+							height: 0;
+						}
 					}
 				}
 
@@ -922,7 +929,7 @@
 			> article > .article-main {
 				border-radius: 8px;
 
-				&:before {
+				&:after {
 					content: "";
 					display: none;
 					width: 0;

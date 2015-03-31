@@ -136,8 +136,8 @@ TIMELINE.setEventPost = function($post) {
 					$(this).hide(200);
 				});
 				$(this).attr('data-display-html-is-active', 'true');
-				$(this).parent().prev().addClass('display-html-active-status-prev');
-				$(this).parent().next().addClass('display-html-active-status-next');
+				$(this).parent().prev().find('.status.article').addClass('display-html-active-status-prev');
+				$(this).parent().next().find('.status.article').addClass('display-html-active-status-next');
 				$(this).find('article > .article-main > .talk > i').hide(200);
 				$(this).find('article > .article-main > .talk > .statuses').show(200);
 				$(this).find('article > .article-main > footer').show(200);
@@ -146,8 +146,8 @@ TIMELINE.setEventPost = function($post) {
 				$(this).find('article > .article-main > footer .reply-form textarea').focus().val(text);
 			} else {
 				$(this).attr('data-display-html-is-active', 'false');
-				$(this).parent().prev().removeClass('display-html-active-status-prev');
-				$(this).parent().next().removeClass('display-html-active-status-next');
+				$(this).parent().prev().find('.status.article').removeClass('display-html-active-status-prev');
+				$(this).parent().next().find('.status.article').removeClass('display-html-active-status-next');
 				$(this).find('article > .article-main > .talk > i').show(200);
 				$(this).find('article > .article-main > .talk > .statuses').hide(200);
 				$(this).find('article > .article-main > footer').hide(200);
