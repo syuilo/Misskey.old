@@ -24,6 +24,18 @@ block content
 						p
 							i.fa.fa-picture-o
 						input(name='image', type='file', accept='image/*')
-			
 		div.timeline-container
 			div.timeline-main!= timelineHtml
+	
+	div#right-contents
+		div#recommendation-users
+			ol.users
+				each user in recommendation-users
+					li.user
+						div.icon-area
+							a.icon-anchor(href='/' + user.screenName)
+								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+						div.main
+							a.name-anchor(href='/' + user.screenName)
+								p.name= user.name
+							button.follow-button フォロー
