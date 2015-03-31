@@ -39,7 +39,7 @@ module.exports = (io, session-store) ->
 					content = parse-json content
 					if content.type? && content.value?
 						switch content.type
-							| \status =>
+							| \status, \repost =>
 								# Find status
 								err, status <- Status.find-by-id content.value.id
 								# Send timeline status HTML
