@@ -105,7 +105,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 						publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
 	function get-more-talk(status, callback)
-		get-status-before-talk status.in-reply-to-status-id, (more-talk) ->
+		get-status-before-talk status.in-reply-to-status-id .then (more-talk) ->
 			async.map more-talk, (talk-post, map-next) ->
 				talk-post.is-reply = talk-post.in-reply-to-status-id?
 				User.find-by-id talk-post.user-id, (, talk-post-user) ->
