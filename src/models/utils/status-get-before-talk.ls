@@ -1,5 +1,6 @@
 require! {
 	'../status': Status
+	'./status-get-before-talk'
 }
 
 # Number -> Promise [Status]
@@ -10,4 +11,4 @@ module.exports = fix (get-status-before-talk, id) -->
 	| err? => reject err
 	| status.in-reply-to-status-id? =>
 		resolve [status]
-	| _ => get-status-before-talk status.in-reply-to-status-id .then (next-statuses) -> resolve next-statuses ++ [status]
+	| _ => status-get-before-talk status.in-reply-to-status-id .then (next-statuses) -> resolve next-statuses ++ [status]
