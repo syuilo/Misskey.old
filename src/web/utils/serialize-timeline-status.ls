@@ -7,6 +7,8 @@ require! {
 
 module.exports = (status, me, callback) ->
 	serialize-status status, (serialized-status) ->
+		status-check-favorited me.id, serialized-status.id .then (bool) ->
+			console.log '######' + bool.to-string!
 		serialized-status.is-favorited <- status-check-favorited me.id, serialized-status.id .then
 		serialized-status.is-reposted <- status-check-reposted me.id, serialized-status.id .then
 		callback serialized-status
