@@ -6,7 +6,7 @@ require! {
 }
 
 module.exports = (status, callback) ->
-	get-status-before-talk status.in-reply-to-status-id, (talk) ->
+	status-get-before-talk status.in-reply-to-status-id, (talk) ->
 		async.map do
 			talk
 			(talk-status, next) ->
