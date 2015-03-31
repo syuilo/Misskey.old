@@ -10,7 +10,7 @@ module.exports = (status, callback) ->
 		async.map do
 			talk
 			(talk-status, next) ->
-				talk-status.is-reply = talk-status.in-reply-to-status-id != 0 && talk-status.in-reply-to-status-id != null
+				talk-status.is-reply = talk-status.in-reply-to-status-id?
 				User.find-by-id talk-status.user-id, (, talk-status-user) ->
 					talk-status.user = talk-status-user
 					next null, talk-status
