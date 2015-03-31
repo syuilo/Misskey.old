@@ -1,5 +1,3 @@
-
-
 require! {
 	'../status': Status
 }
@@ -10,6 +8,6 @@ module.exports = fix (get-status-before-talk, id) -->
 	err, status <- Status.find-by-id id
 	switch
 	| err? => reject err
-	| status.in-reply-to-status-id? or status.in-reply-to-status-id == 0 =>
+	| status.in-reply-to-status-id? =>
 		resolve [status]
 	| _ => get-status-before-talk status.in-reply-to-status-id .then (next-statuses) -> resolve next-statuses ++ [status]
