@@ -113,11 +113,13 @@ web-server.use allow-cross-domain
 web-server.all '*' (req, res, next) ->
 	set-timeout do
 		->
-			res.status 500
-			if res.has-own-property \display
-				res.display req, res, \timeout {}
-			else
-				res.send 'Sorry, processing timed out ><'
+			try
+				res.status 500
+				if res.has-own-property \display
+					res.display req, res, \timeout {}
+				else
+					res.send 'Sorry, processing timed out ><'
+			catch
 		3000ms
 	next!
 
