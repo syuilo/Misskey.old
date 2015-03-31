@@ -48,7 +48,7 @@ TIMELINE.setEventPost = function($post) {
 	$post.find('article > .article-main > footer .reply-form .tag')
 		.tagit({ placeholderText: "タグ", fieldName: "tags[]" });
 
-	$post.find('article > footer > .actions > .favorite > .favorite-button').click(function() {
+	$post.find('article > .article-main > .main > .footer > .actions > .favorite > .favorite-button').click(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
@@ -81,7 +81,7 @@ TIMELINE.setEventPost = function($post) {
 		}
 	});
 
-	$post.find('article > footer > .actions > .repost > .repost-button').click(function() {
+	$post.find('article > .article-main > .main > .footer > .actions > .repost > .repost-button').click(function() {
 		var $button = $(this);
 		$button.attr('disabled', true);
 
