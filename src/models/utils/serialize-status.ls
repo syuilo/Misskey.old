@@ -46,10 +46,11 @@ module.exports = (status, callback) ->
 		| status.repost-from-status-id? =>
 			Status.find-by-id status.repost-from-status-id, (, repost-from-status) ->
 				| repost-from-status? =>
-					_repost-from-status = repost-from-status
+					_repost-from-status = repost-from-status.to-object!
 						..is-repost-to-status = yes
 						..source = status
 					User.find-by-id status.user-id, (, reposted-by-user) ->
+						reposted-by-user .= to-object!
 						_repost-from-status.reposted-by-user = reposted-by-user
 						callback _repost-from-status
 				| _ =>
