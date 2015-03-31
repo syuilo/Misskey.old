@@ -123,6 +123,8 @@ TIMELINE.setEventPost = function($post) {
 			if ($(this).find('article > .article-main > footer').css('display') === 'none') {
 				$('.timeline > .statuses > .status > .status.article').each(function() {
 					$(this).attr('data-display-html-is-active', 'false');
+					$(this).removeClass('display-html-active-status-prev');
+					$(this).removeClass('display-html-active-status-next');
 				});
 				$('.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i').each(function() {
 					$(this).show(200);
@@ -134,6 +136,8 @@ TIMELINE.setEventPost = function($post) {
 					$(this).hide(200);
 				});
 				$(this).attr('data-display-html-is-active', 'true');
+				$(this).parent().prev().addClass('display-html-active-status-prev');
+				$(this).parent().next().addClass('display-html-active-status-next');
 				$(this).find('article > .article-main > .talk > i').hide(200);
 				$(this).find('article > .article-main > .talk > .statuses').show(200);
 				$(this).find('article > .article-main > footer').show(200);
@@ -142,6 +146,8 @@ TIMELINE.setEventPost = function($post) {
 				$(this).find('article > .article-main > footer .reply-form textarea').focus().val(text);
 			} else {
 				$(this).attr('data-display-html-is-active', 'false');
+				$(this).parent().prev().removeClass('display-html-active-status-prev');
+				$(this).parent().next().removeClass('display-html-active-status-next');
 				$(this).find('article > .article-main > .talk > i').show(200);
 				$(this).find('article > .article-main > .talk > .statuses').hide(200);
 				$(this).find('article > .article-main > footer').hide(200);
