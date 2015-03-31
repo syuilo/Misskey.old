@@ -244,6 +244,7 @@
 						background: #fff;
 						border-right: solid 5px transparent;
 						box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+						transition: border-radius 0.2s ease;
 
 						&:hover {
 							background: #f8f8f8;
@@ -903,6 +904,10 @@
 
 		.status > .status.article[data-display-html-is-active='true'] {
 			margin: 8px 0 8px auto;
+
+			> article > .article-main {
+				border-radius: 8px;
+			}
 		}
 	}
 
