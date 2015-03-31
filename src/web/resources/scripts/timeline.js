@@ -165,7 +165,7 @@ TIMELINE.setEventPost = function($post) {
 }
 
 $(function() {
-	$('.timeline .status .status.article').each(function() {
+	$('.timeline .statuses .status .status.article').each(function() {
 		TIMELINE.setEventPost($(this));
 	});
 });
