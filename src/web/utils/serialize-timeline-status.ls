@@ -1,8 +1,4 @@
 require! {
-	async
-	'../../models/user': User
-	'../../models/status': Status
-	'../../models/status-favorite': StatusFavorite
 	'../../models/utils/status-check-favorited'
 	'../../models/utils/status-check-reposted'
 	'../../models/utils/serialize-status'
