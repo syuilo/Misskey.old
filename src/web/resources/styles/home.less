@@ -19,13 +19,13 @@ main {
 	display: block;
 	position: relative;
 	width: 100%;
-	max-width: 1024px;
 	margin: 0 auto;
 
 	#timeline {
 		box-sizing: border-box;
+		float: left;
 		max-width: 630px;
-		margin: 0 auto;
+		margin: 0;
 
 		#post-form-container {
 			box-sizing: border-box;
@@ -224,6 +224,57 @@ main {
 				max-width: 764px;
 				margin: 0 auto;
 				padding: 0 16px 16px 16px;
+			}
+		}
+	}
+
+	#right-contents {
+		box-sizing: border-box;
+		float: left;
+		max-width: 250px;
+		margin: 0;
+	}
+
+	#recommendation-users {
+		background: #fff;
+		border-radius: 8px;
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+		> .users {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			> .user {
+				&:after {
+					content: "";
+					display: block;
+					clear: both;
+				}
+
+				.icon-area {
+					float: left;
+					width: 32px;
+
+					.icon {
+						min-width: 32px;
+						min-height: 32px;
+						max-width: 32px;
+						max-height: 32px;
+						margin: 0 12px 4px 0;
+						border-radius: 6px;
+					}
+				}
+
+				.main {
+					float: left;
+					width: ~"calc(100% - 32px)";
+					text-align: center;
+
+					.name {
+						margin: 0;
+					}
+				}
 			}
 		}
 	}
