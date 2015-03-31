@@ -1,10 +1,9 @@
 require! {
 	'../status': Status
-	'./status-get-before-talk'
 }
 
 # Number -> Promise [Status]
-module.exports = (id) ->
+function fn(id)
 	resolve, reject <- new Promise!
 	err, status <- Status.find-by-id id
 	switch
@@ -12,5 +11,8 @@ module.exports = (id) ->
 	| !status.in-reply-to-status-id? =>
 		resolve [status]
 	| _ =>
-		status-get-before-talk status.in-reply-to-status-id .then (next-statuses) ->
+		fn status.in-reply-to-status-id .then (next-statuses) ->
 			resolve next-statuses ++ [status]
+
+module.exports = function
+	
