@@ -44,14 +44,14 @@ module.exports = (status, callback) ->
 	function serialyze-repost(status, callback)
 		switch
 		| status.repost-from-status-id? =>
-			Status.find-by-id status.repost-from-status-id, (, repost-from-post) ->
-				| repost-from-post? =>
-					_repost-from-post = repost-from-post
+			Status.find-by-id status.repost-from-status-id, (, repost-from-status) ->
+				| repost-from-status? =>
+					_repost-from-status = repost-from-status
 						..is-repost-to-status = yes
 						..source = status
-					User.find-by-id post.user-id, (, reposted-by-user) ->
-						_repost-from-post.reposted-by-user = reposted-by-user
-						callback _repost-from-post
+					User.find-by-id status.user-id, (, reposted-by-user) ->
+						_repost-from-status.reposted-by-user = reposted-by-user
+						callback _repost-from-status
 				| _ =>
 					status.is-repost-to-status = no
 					callback status
