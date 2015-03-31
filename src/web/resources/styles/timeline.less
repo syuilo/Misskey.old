@@ -282,7 +282,7 @@
 							height: 1px;
 							font-size: 0;
 							line-height: 0;
-							background: #eee;
+							background: rgba(0, 0, 0, 0.05);
 						}
 
 						> .talk {
@@ -892,7 +892,21 @@
 		}
 
 		.status > .status.article[data-is-repostpost='true'] {
-			background: rgba(128, 255, 0, 0.1);
+			> article > .article-main {
+				background: #ebf7de;
+
+				&:hover {
+					background: #e4efd7;
+
+					> .main:before {
+						border-right: solid 12px #e4efd7;
+					}
+				}
+
+				> .main:before {
+					border-right: solid 12px #ebf7de;
+				}
+			}
 		}
 
 		.status > .status.article[data-is-favorited='true'] > article > .article-main > .main > .footer > .actions > .favorite {
