@@ -111,15 +111,14 @@ web-server.use allow-cross-domain
 
 # Timeout timer
 web-server.all '*' (req, res, next) ->
-	err = 'Sorry, processing timed out ><'
 	set-timeout do
 		->
 			res.status 500
 			if res.has-own-property \display
-				res.display req, res, \error {err}
+				res.display req, res, \timeout {}
 			else
-				res.send err
-		5000ms
+				res.send 'Sorry, processing timed out ><'
+		3000ms
 	next!
 
 # Resources rooting
