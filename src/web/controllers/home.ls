@@ -14,15 +14,13 @@ status-gets =
 
 module.exports = (req, res, content = \home) ->
 	me = req.me
-	get-new-users 5 .then (users) ->
-		console.log users
 	async.series [
 		(next) -> get-statuses-count me.id .then (count) -> next null, count
 		(next) -> get-followings-count me.id .then (count) -> next null, count
 		(next) -> get-followers-count me.id .then (count) -> next null, count
 		(next) -> status-gets[content] me.id, 30statuses, null, null, (statuses) ->
 			timeline-generate-html statuses, me, (timeline-html) -> next null, timeline-html
-		(next) -> get-new-users 5 .then (users) -> next null, map ((user) -> user.to-object!) users
+		(next) -> get-new-users 5 .then (users) -> next null, users
 	], (, results) -> res.display req, res, 'home' do
 		statuses-count: results.0
 		followings-count: results.1
