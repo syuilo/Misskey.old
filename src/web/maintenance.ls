@@ -1,30 +1,13 @@
-#
-# Maintenance page HTTP server
-#
-
 require! {
 	jade
-	express
-	compression
-	'express-minify': minify
+	'../utils/create-server'
 	'../config'
 }
 
-# Precompile
 message = jade.render-file "#{__dirname}/views/maintenance.jade"
 
-# Create server
-web-server = express!
-
-# General settings
-web-server.disable 'x-powered-by'
-web-server.use compression!
-web-server.use minify!
-
-# Catch all requests
-web-server.all '*' (, res,) ->
+server = create-server!
+server.all '*' (req, res) ->
 	res.status 503
 	res.send message
-
-# Listen web port
-web-server.listen config.port.web
+server.listen config.port.web
