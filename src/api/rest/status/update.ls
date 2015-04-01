@@ -47,18 +47,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 		user
 
 function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
-	status = new Status do
-		{
-		app-id
-		in-reply-to-status-id
-		is-image-attached
-		text
-		user-id: user.id
-		}
+	status = new Status {app-id, in-reply-to-status-id, is-image-attached,text, user-id: user.id}
 		
 	status.save (, created-status) ->
 		user.statuses-count++
-		err <- user.save!
+		err <- user.save
 		if status.in-reply-to-status-id?
 			Status.find-by-id status.in-reply-to-status-id, (, reply-to-status) ->
 				if reply-to-status?
@@ -67,13 +60,8 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 						..save!
 		switch
 		| is-image-attached =>
-			status-image = new StatusImage do
-				{
-				status-id: created-status.id
-				image
-				}
-			status-image.save ->
-				send-response created-status
+			status-image = new StatusImage {status-id: created-status.id, image}
+			status-image.save -> send-response created-status
 		| _ => send-response created-status
 
 	function send-response status
@@ -104,10 +92,8 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			User.find-one { screen-name: mention-sn } (, reply-user) ->
 				| reply-user? =>
 					status-mention = new StatusMention do
-						{
 						status-id: obj.id
 						user-id: reply-user.id
-						}
 					status-mention.save ->
 						stream-mention-obj = to-json do
 							type: \reply
