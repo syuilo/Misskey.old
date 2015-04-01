@@ -53,25 +53,22 @@ api-server
 api-server.oauth = oauth2-server do
 	model: oauth-model
 	grants: []
-	debug: true
+	debug: on
 	access-token-lifetime: null
 
 api-server.use (req, res, next) ->
-	sent = (data) -> switch req.format
+	res.api-render = (data) ->
+		switch req.format
 		| \json => res.json data
 		| \yaml =>
 			res
 				..header 'Content-Type' 'text/x-yaml'
 				..send yaml.safe-dump data
 		| _ => res.json data
-	
-	res.api-render = (data) -> sent data
 
 	res.api-error = (code, message) ->
 		res.status code
-		sent do
-			error:
-				message: message
+		res.api-render {error: {message}}
 	next!
 
 api-server.all '*' (req, res, next) ->
