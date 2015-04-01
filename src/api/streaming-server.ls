@@ -37,7 +37,7 @@ io.use (socket, next) ->
 	| !handshake? => fallthrough
 	| !handshake.headers.cookie? => fallthrough
 	| !cookies[config.session-key]? => fallthrough
-	| !(cookies[config.session-key].match /s:(.+?)\./) => next new Error '[[error:not-authorized]]'
+	| cookies[config.session-key] != /s:(.+?)\./ => next new Error '[[error:not-authorized]]'
 	| _ => next!
 
 # Home stream
