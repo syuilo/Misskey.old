@@ -92,7 +92,7 @@ module.exports = (app) ->
 					..send 'User not found.'
 		
 		switch
-		| id-or-sn.match /^[0-9]+$/ => User.find-by-id id-or-sn, (, user) -> routing-image user
+		| id-or-sn == /^[0-9]+$/ => User.find-by-id id-or-sn, (, user) -> routing-image user
 		| _ => User.find-one { screen-name: id-or-sn } (, user) -> routing-image user
 				
 	function display-status-image(req, res, id)
