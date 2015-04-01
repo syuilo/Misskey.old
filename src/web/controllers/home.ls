@@ -25,14 +25,12 @@ module.exports = (req, res, content = \home) ->
 		(next) -> get-new-users 5 .then (users) ->
 			Promise.all (users |> map (user) ->
 				new Promise (on-fulfilled, on-rejected) ->
-					console.log user.name
 					user .= to-object!
-					user-following-check me.id, user.id .then (is-following) ->
-						user.is-following = is-following
-						console.log is-following
-						on-fulfilled user)
+					user-following-check me.id, user.id, (is-following-promise) ->
+						is-following-promise.then (is-following) ->
+							user.is-following = is-following
+							on-fulfilled user)
 				.then (res) ->
-					console.log res
 					next null, res
 	], (, results) -> res.display req, res, 'home' do
 		statuses-count: results.0
