@@ -1,6 +1,6 @@
 require! {
 	express
-	comperssion
+	compression
 	'express-minify'
 }
 
