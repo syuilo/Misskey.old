@@ -27,7 +27,7 @@ module.exports = (req, res) ->
 	| _ => exist-screenname screen-name .then (exist) ->
 		| exist => res.api-error 500 'This screen name is already used.'
 		| _ =>
-			salt = bcrypt.gen-salt-sync 16
+			salt = bcrypt.gen-salt-sync 14
 			hash-password = bcrypt.hash-sync password, salt
 			
 			user = new User!
