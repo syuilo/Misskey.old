@@ -14,7 +14,7 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[text, otherparty-id] = get-express-params req, <[ text otherparty-id ]>
 	
-	match
+	switch
 	| empty otherparty-id => res.api-error 400 'otherparty-id is required :('
 	| _ => user-following-check otherparty-id , user.id, (is-following) ->
 		| !is-following => res.api-error 400 'You are not followed from this user. To send a message, you need to have been followed from the other party.'
