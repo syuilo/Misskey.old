@@ -32,7 +32,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		
 		if created-app?
 			then res.api-render created-app
-			else res.api-error 500 'Sorry, register failed :(';
+			else res.api-error 500 'Sorry, register failed :('
 
 	has-app-one-or-more = ->
 		resolve, reject <- new Promise!
