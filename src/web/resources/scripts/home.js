@@ -170,7 +170,7 @@ $(function() {
 
 	$('#recommendation-users > .users > .user').each(function() {
 		var $user = $(this);
-		$('.follow-button').click(function() {
+		$user.find('.follow-button').click(function() {
 			var $button = $(this);
 			$button.attr('disabled', true);
 
