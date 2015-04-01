@@ -38,4 +38,7 @@ block content
 						div.main
 							a.name-anchor(href='/' + user.screenName)
 								p.name= user.name
-							button.follow-button フォロー
+							if user.isFollowing
+								button.follow-button フォロー解除
+							else
+								button.follow-button フォロー
