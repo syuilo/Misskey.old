@@ -20,9 +20,9 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| !(10 <= description.length <= 400) => [400 'description cannot be less than 10 charactors and more than 400 charactors']
 	| _ => null
 
-	match
+	switch
 	| err? => res.api-error err.0, err.1
-	| !user.is-plus => has-app-one-or-more.then (one-or-more) ->
+	| not user.is-plus => has-app-one-or-more.then (one-or-more) ->
 		| one-or-more => res.api-error 403 'Cannot create application at twon or more. You need PlusAccount to do so :('
 		| _ => create!
 	| _ => create!
