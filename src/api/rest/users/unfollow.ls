@@ -6,15 +6,22 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	user-id = req.body\user-id
-	switch
-	| !user-id? => res.api-error 400 'user-id parameter is required :('
-	| _ => UserFollowing.find-one ({follower-id: user.id} `$and` {followee-id: target-user-id}) (, following) ->
+	| !(target-user-id = req.body\user-id)? => res.api-error 400 'user-id parameter is required :('
+	| target-user-id == user.id => res.api-error 400 'This user is you'
+	| _ => UserFollowing.find-one {follower-id: user.id} `$and` {followee-id: target-user-id} (, following) ->
 			| !following? => res.api-error 400 'This user is already not following :)'
-			| _ => User.find user-id, (target-user) ->
-				UserFollowing.remove { $and: [{ follower-id: user.id }, { followee-id: target-user-id }] } (err) ->
-					stream-obj = 
-						type: \unfollowed-me
-						value: user
-					Streamer.publish "userStream:#{target-user.id}", to-json stream-obj
-					res.api-render filter-user-for-response target-user
+			| _ => User.find-by-id target-user-id, (, target-user) ->
+					| !target-user? => res.api-error 404 'User not found...'
+					| _ =>
+						UserFollowing.remove { follower-id: user.id } `$and` { followee-id: target-user-id } (err) ->
+							user
+								..followings-count--
+								..save
+							target-user
+								..followers-count--
+								..save
+							stream-obj = 
+								type: \unfollowed-me
+								value: user
+							Streamer.publish "userStream:#{target-user.id}", to-json stream-obj
+							res.api-render filter-user-for-response target-user

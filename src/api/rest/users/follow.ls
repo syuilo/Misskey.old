@@ -18,6 +18,9 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 							follower-id: user.id
 							followee-id: target-user.id
 						following.save (, created-following) ->
+							user
+								..followings-count++
+								..save
 							target-user
 								..followers-count++
 								..save
