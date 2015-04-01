@@ -21,7 +21,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 	| status? && text == status.text => res.api-error 400 'Duplicate content'
 	| (Object.keys req.files).length == 1 =>
 		path = req.files.image.path
-		image-quality = user.is-premium ? 80 : 60
+		image-quality = if user.is-plus then 80 else 60
 		gm path
 			.compress \jpeg
 			.quality image-quality
