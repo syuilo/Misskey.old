@@ -69,12 +69,12 @@ module.exports = (status, callback) ->
 					new Promise (resolve, reject) ->
 						if reply?
 							User.find-by-id reply.user-id, (, reply-user) ->
-								reply.user = reply-user
+								reply .= to-object!
+								reply.user = reply-user.to-object!
 								resolve reply
 						else
 							resolve null)
 					.then (replies) ->
-						console.log replies
 						status.replies = replies
 						callback status
 	
