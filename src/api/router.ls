@@ -16,7 +16,7 @@ routing =
 		[\post /\/application\/delete(\..+)?$/ './rest/application/delete']
 	
 	notice:
-		[\delete /\/notice\/delete(\..+)?$/    './rest/notice/delete']
+		[\delete /\/notice\/delete(\..+)?$/     './rest/notice/delete']
 		[\delete /\/notice\/delete-all(\..+)?$/ './rest/notice/delete-all']
 	
 	users:
