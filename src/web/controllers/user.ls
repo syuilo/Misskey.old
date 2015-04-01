@@ -28,6 +28,16 @@ module.exports = (req, res, page = \home) ->
 				UserFollowing.count { followee-id: user.id } (, count) ->
 					next null count
 			
+			# Get statuses timeline
+			(next) ->
+				Status
+					.find { user-id: user.id }
+					.sort { created-at: \desc }
+					.limit 30status
+					.exec (, statuses) ->
+						timeline-generate-html statuses, req.me, (html) ->
+							next null html
+			
 			# Get is following
 			(next) ->
 				| !req.login => next null null
@@ -41,20 +51,9 @@ module.exports = (req, res, page = \home) ->
 				| _ =>
 					UserFollowing.find-one { followee-id: me.id, follower-id: user.id } (, following) ->
 						next null following?
-						
-			# Get statuses timeline (home page only)
-			(next) ->
-				Status
-					.find { user-id: user.id }
-					.sort { created-at: \desc }
-					.limit 30status
-					.exec (, statuses) ->
-						timeline-generate-html statuses, req.me, (html) ->
-							next null html
 			
-			# Compile bio markdown to html (home page only)
+			# Compile bio markdown to html
 			(next) ->
-				| page != \home => next null null
 				| !user.bio? => next null null
 				| _ => next null marked user.bio
 			
@@ -105,9 +104,9 @@ module.exports = (req, res, page = \home) ->
 					statuses-count: results.0
 					followings-count: results.1
 					followers-count: results.2
-					is-following: results.3
-					is-follow-me: results.4
-					timeline-html: results.5
+					timeline-html: results.3
+					is-following: results.4
+					is-follow-me: results.5
 					bio: results.6
 					followings: results.7
 					followers: results.8

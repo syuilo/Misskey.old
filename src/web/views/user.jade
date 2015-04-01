@@ -6,11 +6,8 @@ block title
 block content
 	if page == 'home'
 		div#timeline!= timelineHtml
-		section#bioSection
-			h2 自己紹介
-			div#bio!= bio
 	if page == 'followings'
-		section#followingsSection
+		div#followingsSection
 			h2 Followings
 			div.usersList
 				ol
@@ -24,7 +21,7 @@ block content
 							if user.comment != null
 								p.comment= user.comment
 	if page == 'followers'
-		section#followersSection
+		div#followersSection
 			h2 Followers
 			div.usersList
 				ol
