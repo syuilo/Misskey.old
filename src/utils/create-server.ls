@@ -1,7 +1,7 @@
 require! {
 	express
 	compression
-	'express-minify': express-minify
+	'express-minify'
 }
 
 create-server = ->
