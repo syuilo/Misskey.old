@@ -70,6 +70,7 @@ module.exports = (status, callback) ->
 						if reply?
 							User.find-by-id reply.user-id, (, reply-user) ->
 								reply .= to-object!
+								reply.is-reply = reply.in-reply-to-status-id?
 								reply.user = reply-user.to-object!
 								resolve reply
 						else
