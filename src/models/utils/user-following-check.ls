@@ -5,4 +5,7 @@ require! {
 
 # Number -> Number -> Promise Boolean
 module.exports = (follower-id, followee-id) ->
-	UserFollowing.find {follower-id} `$and` {followee-id} .limit 1 .exec! |> map-promise (empty) >> (!)
+	UserFollowing.find-one {followee-id} `$and` {follower-id} (err, following) ->
+		new Promise (on-fulfilled, on-rejected) ->
+			if err then on-rejected err
+			on-fulfilled following?
