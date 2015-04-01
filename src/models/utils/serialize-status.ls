@@ -74,6 +74,7 @@ module.exports = (status, callback) ->
 						else
 							resolve null)
 					.then (replies) ->
+						console.log replies
 						status.replies = replies
 						callback status
 	
