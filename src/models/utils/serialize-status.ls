@@ -71,7 +71,7 @@ module.exports = (status, callback) ->
 							reply.user = reply-user
 							resolve reply)
 					.then (replies) ->
-						status.replies = replies |> reject is-null
+						status.replies = replies
 						callback status
 	
 	status .= to-object!
