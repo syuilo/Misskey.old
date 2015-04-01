@@ -1,9 +1,11 @@
 div.status.article(
 		title                   = status.createdAt
 		data-id                 = status.isRepostToStatus ? status.source.id : status.id
+		data-created-at         = status.createdAt
 		data-cursor             = status.cursor
 		data-source-id          = status.isRepostToStatus ? status.id : null
 		data-user-id            = status.user.id
+		data-user-screen-name   = status.user.screenName
 		data-user-color         = status.user.color
 		data-user-verified     != status.user.isPlus.toString()
 		data-is-reply          != status.isReply.toString()
