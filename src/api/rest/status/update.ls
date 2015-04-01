@@ -55,9 +55,11 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		if status.in-reply-to-status-id?
 			Status.find-by-id status.in-reply-to-status-id, (, reply-to-status) ->
 				if reply-to-status?
-					reply-to-status
-						..replies.push created-status._id
-						..save!
+					if reply-to-status.replies?
+						reply-to-status.replies = [created-status._id]
+					else
+						reply-to-status.replies.push created-status._id
+					reply-to-status.save!
 		switch
 		| is-image-attached =>
 			status-image = new StatusImage {status-id: created-status.id, image}
