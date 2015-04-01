@@ -22,7 +22,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 
 	match
 	| err? => res.api-error err.0, err.1
-	| not user.is-premium => has-app-one-or-more.then (one-or-more) ->
+	| not user.is-plus => has-app-one-or-more.then (one-or-more) ->
 		| one-or-more => res.api-error 403 'Cannot create application at twon or more. You need PlusAccount to do so :('
 		| _ => create!
 	| _ => create!
