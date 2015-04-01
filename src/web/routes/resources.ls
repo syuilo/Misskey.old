@@ -16,7 +16,7 @@ require! {
 
 module.exports = (app) ->
 	function compile-less (less-css, style-user, callback)
-		color = if style-user? && style-user.color.match /#[a-fA-F0-9]{6}/
+		color = if style-user? && style-user.color == /#[a-fA-F0-9]{6}/
 			then style-user.color
 			else config.theme-color
 		less.render do
