@@ -104,7 +104,7 @@ div.status.article(
 								input(name='image', type='file', accept='image/*')
 				else
 					p この投稿に返信するにはログインしてください。
-				if status.replies.length > 0
+				if status.replies.length > 0 && status.replies[0] != null
 					div.replies
 						ol.statuses
 							each reply in status.replies
