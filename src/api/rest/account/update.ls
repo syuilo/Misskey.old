@@ -16,4 +16,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		..bio = bio
 		..tag = tag
 		..color = if color == /#[a-fA-F0-9]{6}/ then color else user.color
-		..save! -> res.api-render filter-user-for-response user
+		..save ->
+			res.api-render filter-user-for-response user
