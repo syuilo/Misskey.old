@@ -115,7 +115,7 @@ module.exports = (app) ->
 				..send 'invalid path'
 		| _ =>
 			switch
-			| req.path.match /\.css$/ =>
+			| req.path == /\.css$/ =>
 				resource-path = path.resolve "#__dirname/..#{req.path.replace /\.css$/ '.less'}"
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
