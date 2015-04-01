@@ -5,25 +5,23 @@ require! {
 	'../../models/application': Application
 	'../../models/user': User 
 	'../../web/utils/login': do-login
+	'../../utils/get-express-params'
 }
+
 module.exports = (req, res, server) ->
 	login = req.session? && req.session.user-id?
+	[request-token, screen-name, password] = get-express-params req, <[ request-token screen-name password ]>
 	
-	request-token = req.query.request-token ? null
-	screen-name = req.body.screen-name ? null
-	password = req.body.password ? null
-	
-	if request-token?
-		SauthRequestToken.find request-token, (request-token-instance) ->
-			if request-token-instance? && !request-token-instance.is-invalid
-				Application.find request-token-instance.app-id, (app) ->
-					| screen-name? && password? =>
-						do-login server, screen-name, password, (user, web-access-token) ->
-							validate request-token-instance, user, app
-						, render-confirmation
-					| login => User.find req.session.user-id, (user) ->
+	if empty request-token
+		request-token-instance <- SauthRequestToken.find request-token
+		if request-token-instance? && !request-token-instance.is-invalid
+			Application.find request-token-instance.app-id, (app) ->
+				| screen-name? && password? =>
+					do-login server, screen-name, password, (user, web-access-token) ->
 						validate request-token-instance, user, app
-					| _ => render-confirmation!
+					, render-confirmation
+				| login => User.find req.session.user-id, validate request-token-instance, _, app
+				| _ => render-confirmation!
 	
 	function validate(request-token-instance, user, app)
 		if req.body.cancel != null
@@ -33,7 +31,7 @@ module.exports = (req, res, server) ->
 			render-cancel!
 		else
 			SauthPinCode.create app.id, user.id, (pincode) ->
-				| app.callback-url == '' => render-success!
+				| empty app.callback-url => render-success!
 				| _ => res.redirect "#{app.callback-url}?pincode=#{pincode.code}"
 	
 	function render-confirmation
