@@ -5,7 +5,7 @@ require! {
 	'../config'
 	'body-parser'
 	'cookie-parser'
-	'connect-redis': connect-redis
+	'connect-redis'
 	'express-session': session
 	'../models/user': User
 	'./routes/resources': resources-router
