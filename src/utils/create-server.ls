@@ -7,7 +7,7 @@ require! {
 create-server = ->
 	server = express!
 	server.disable 'x-powered-by'
-	server.use comperssion
+	server.use compression
 	server.use express-minify
 	server
 
