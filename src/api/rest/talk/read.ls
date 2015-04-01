@@ -11,5 +11,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		| msg.otherparty-id != user.id => res.api-error 400 'Send Message opponent can only be to read.'
 		| _ =>
 			msg
-				..is-read = true
+				..is-read = yes
 				..update -> TalkMessage.build-response-object msg, res.api-render
