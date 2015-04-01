@@ -6,8 +6,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[name, comment, badge, url, location, bio, tag, color] = get-express-params req, <[ name comment badge url location bio tag color ]>
-	color = user.color if color == /#[a-fA-F0-9]{6}/
-	
+
 	user
 		..name = name
 		..comment = comment
@@ -16,5 +15,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		..location = location
 		..bio = bio
 		..tag = tag
-		..color = color
+		..color = if color == /#[a-fA-F0-9]{6}/ then color else user.color
 		..save! -> res.api-render filter-user-for-response user
