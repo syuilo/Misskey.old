@@ -167,4 +167,48 @@ $(function() {
 			$button.text('Failed...');
 		});
 	});
+
+	$('#recommendation-users > .users > .user').each(function() {
+		var $user = $(this);
+		$('.follow-button').click(function() {
+			var $button = $(this);
+			$button.attr('disabled', true);
+
+			if ($user.attr('data-is-following') == 'true') {
+				$.ajax('https://api.misskey.xyz/users/unfollow', {
+					type: 'delete',
+					data: { 'user-id': $user.attr('data-user-id') },
+					dataType: 'json',
+					xhrFields: {
+						withCredentials: true
+					}
+				}).done(function() {
+					$button.attr('disabled', false);
+					$button.removeClass('following');
+					$button.addClass('notFollowing');
+					$button.text('フォロー');
+					$user.attr('data-is-following', 'false')
+				}).fail(function() {
+					$button.attr('disabled', false);
+				});
+			} else {
+				$.ajax('https://api.misskey.xyz/users/follow', {
+					type: 'post',
+					data: { 'user-id': $user.attr('data-user-id') },
+					dataType: 'json',
+					xhrFields: {
+						withCredentials: true
+					}
+				}).done(function() {
+					$button.attr('disabled', false);
+					$button.removeClass('notFollowing');
+					$button.addClass('following');
+					$button.text('フォロー解除');
+					$user.attr('data-is-following', 'true')
+				}).fail(function() {
+					$button.attr('disabled', false);
+				});
+			}
+		});
+	});
 });
