@@ -1,44 +1,33 @@
-#
-# Official web client HTTP server (https://misskey.xyz)
-#
-
 require! {
 	fs
 	path
-	express
-	compression
+	'../utils/create-server'
 	'../config'
 	'body-parser'
 	'cookie-parser'
-	'connect-redis': connect-redis
-	'express-minify': minify
+	'connect-redis'
 	'express-session': session
 	'../models/user': User
 	'./routes/resources': resources-router
 	'./routes/index': index-router
 }
 
-# Init session store
 RedisStore = connect-redis session
 
-session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days # one year
+session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
 
-# Create server
-web-server = express!
+server = create-server!
+server.locals.compile-debug = off
+server.locals.pretty = '  '
+server.set 'view engine' \jade
+server.set 'views' "#__dirname/views"
+server.set 'X-Frame-Options' \SAMEORIGIN
 
-# General settings
-web-server.disable 'x-powered-by'
-web-server.locals.compile-debug = off
-web-server.locals.pretty = '  '
-web-server.set 'view engine' \jade
-web-server.set 'views' "#__dirname/views"
-web-server.set 'X-Frame-Options' \SAMEORIGIN
-
-web-server.use body-parser.urlencoded {+extended}
-web-server.use cookie-parser config.cookie-pass
+server.use body-parser.urlencoded {+extended}
+server.use cookie-parser config.cookie-pass
 
 # Session settings
-web-server.use session do
+server.use session do
 	key: config.session-key
 	secret: config.session-secret
 	resave: off
@@ -54,13 +43,9 @@ web-server.use session do
 		db: 1
 		prefix: 'misskey-session:'
 
-# Compressing settings
-web-server.use compression!
-web-server.use minify!
-
 # セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
 # セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
-web-server.init-session = (req, res, callback) ->
+server.init-session = (req, res, callback) ->
 	req.login = req.session? && req.session.user-id?
 	req.data = # Render datas
 		config: config
@@ -86,10 +71,8 @@ web-server.init-session = (req, res, callback) ->
 		callback!
 
 # Statics
-web-server.get '/favicon.ico' (, res,) ->
-	res.send-file path.resolve "#__dirname/resources/favicon.ico"
-web-server.get '/manifest.json' (, res,) ->
-	res.send-file path.resolve "#__dirname/resources/manifest.json"
+server.get '/favicon.ico' (req, res) -> res.send-file path.resolve "#__dirname/resources/favicon.ico"
+server.get '/manifest.json' (req, res) -> res.send-file path.resolve "#__dirname/resources/manifest.json"
 
 # CORS middleware
 #
@@ -108,10 +91,10 @@ allow-cross-domain = (req, res, next) ->
 		next!
 
 # CORS
-web-server.use allow-cross-domain
+server.use allow-cross-domain
 
 # Timeout timer
-web-server.all '*' (req, res, next) ->
+server.all '*' (req, res, next) ->
 	if req.url != '/login'
 		set-timeout do
 			->
@@ -128,24 +111,27 @@ web-server.all '*' (req, res, next) ->
 		next!
 
 # Resources rooting
-resources-router web-server
+resources-router server
 
 # Init session
-web-server.all '*' (req, res, next) -> web-server.init-session req, res, -> next!
+server.all '*' (req, res, next) -> server.init-session req, res, -> next!
 
 # General rooting
-index-router web-server
+index-router server
 
 # Not found handling
-web-server.use (req, res) ->
+server.use (req, res) ->
 	res
 		..status 404
 		..display req, res, 'not-found' {}
 
 # Error handling
-web-server.use (err, req, res, next) ->
+server.use (err, req, res, next) ->
 	console.error err
-	display-err = "#{err.stack}\r\n--------------------------------\r\n#{req.method} #{req.url} [#{new Date!}]"
+	display-err = '''
+#{err.stack}
+#{repeat 32 '-'}
+#{req.method} #{req.url} [#{new Date!}]'''
 	if (req.has-own-property \login) && req.login
 		display-err += "\r\n#{req.me.id}"
 	res.status 500
@@ -155,4 +141,4 @@ web-server.use (err, req, res, next) ->
 		res.send err
 
 # Listen
-web-server.listen config.port.web
+server.listen config.port.web
