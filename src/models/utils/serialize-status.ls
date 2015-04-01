@@ -66,10 +66,10 @@ module.exports = (status, callback) ->
 			| !replies? => callback status
 			| _ => 
 				Promise.all (replies |> map (reply) ->
-					resolve, reject <- new Promise
-					User.find-by-id reply.user-id, (, reply-user) ->
-						reply.user = reply-user
-						resolve reply)
+					new Promise (resolve, reject) ->
+						User.find-by-id reply.user-id, (, reply-user) ->
+							reply.user = reply-user
+							resolve reply)
 					.then (replies) ->
 						status.replies = replies |> reject is-null
 						callback status
