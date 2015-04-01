@@ -42,7 +42,6 @@ routing =
 		[\put  /\/circle\/update(\..+)?$/ './rest/circle/update']
 	
 	other:
-		[\get /\/search\/user(\..+)?$/         './rest/search/user']
 		[\get /\/screenname-available(\..+)?$/ './rest/screenname-available']
 		[\all /\/teapot\/coffee(\..+)?$/       './rest/teapot/coffee']
 
