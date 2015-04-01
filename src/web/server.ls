@@ -105,7 +105,7 @@ server.all '*' (req, res, next) ->
 					else
 						res.send 'Sorry, processing timed out ><'
 				catch
-			5000ms
+			3000ms
 		next!
 	else
 		next!
