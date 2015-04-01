@@ -104,24 +104,25 @@ div.status.article(
 								input(name='image', type='file', accept='image/*')
 				else
 					p この投稿に返信するにはログインしてください。
-				if status.replies.length > 0
-					div.replies
-						ol.statuses
-							each reply in status.replies
-								li.status(title!= '#{reply.createdAt}&#x0A;'
-									data-id= reply.id
-									data-user-id= reply.user.id
-									data-user-color= reply.user.color
-									data-user-verified!= reply.user.isPlus.toString())
-									article
-										a.icon-anchor(href= config.url + '/' + reply.user.screenName + '/talk?noheader=true', title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
-											img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
-										header
-											h2
-												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
-											span.screen-name= '@' + reply.user.screenName
-											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt)= reply.createdAt
-										div.main
-											p.text!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
-											if reply.isImageAttached
-												img.image(src=config.url + '/img/status/' + reply.id, alt='image')
+				//-
+					if status.replies.length > 0
+						div.replies
+							ol.statuses
+								each reply in status.replies
+									li.status(title!= '#{reply.createdAt}&#x0A;'
+										data-id= reply.id
+										data-user-id= reply.user.id
+										data-user-color= reply.user.color
+										data-user-verified!= reply.user.isPlus.toString())
+										article
+											a.icon-anchor(href= config.url + '/' + reply.user.screenName + '/talk?noheader=true', title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
+												img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
+											header
+												h2
+													a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
+												span.screen-name= '@' + reply.user.screenName
+												a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt)= reply.createdAt
+											div.main
+												p.text!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
+												if reply.isImageAttached
+													img.image(src=config.url + '/img/status/' + reply.id, alt='image')

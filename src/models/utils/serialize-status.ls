@@ -76,7 +76,6 @@ module.exports = (status, callback) ->
 							resolve null)
 					.then (replies) ->
 						status.replies = replies
-						console.log status
 						callback status
 	
 	status .= to-object!
@@ -86,7 +85,5 @@ module.exports = (status, callback) ->
 	status <- get-user status
 	status <- get-reply-spurce status
 	status <- get-replies status
-	console.log '###########'
-	console.log status
 	callback status
 	
