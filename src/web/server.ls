@@ -29,6 +29,7 @@ web-server = express!
 # General settings
 web-server.disable 'x-powered-by'
 web-server.locals.compile-debug = off
+web-server.locals.pretty = '  '
 web-server.set 'view engine' \jade
 web-server.set 'views' "#__dirname/views"
 web-server.set 'X-Frame-Options' \SAMEORIGIN
