@@ -7,6 +7,6 @@ require! {
 module.exports = (limit = 5) ->
 	User
 		.find {}
-		.sort \-createdAd
+		.sort \-createdAt
 		.limit limit
 		.exec!
