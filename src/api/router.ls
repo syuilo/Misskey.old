@@ -6,6 +6,7 @@ routing =
 		[\put    /\/account\/update-icon(\..+)?$/          './rest/account/update-icon']
 		[\put    /\/account\/update-header(\..+)?$/        './rest/account/update-header']
 		[\put    /\/account\/update-wallpaper(\..+)?$/     './rest/account/update-wallpaper']
+		[\delete /\/account\/delete-wallpaper(\..+)?$/     './rest/account/delete-wallpaper']
 		[\put    /\/account\/update-webtheme(\..+)?$/      './rest/account/update-webtheme']
 		[\get    /\/account\/unreadalltalks-count(\..+)?$/ './rest/account/unreadalltalks-count']
 		[\delete /\/account\/reset-webtheme(\..+)?$/       './rest/account/reset-webtheme']
