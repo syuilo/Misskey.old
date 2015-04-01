@@ -106,7 +106,7 @@ module.exports = (app) ->
 								req
 								res
 								image-buffer
-								"https://misskey.xyz/img/post/#id"
+								"https://misskey.xyz/img/status/#id"
 								user
 					else
 						send-image req, res, image-buffer
