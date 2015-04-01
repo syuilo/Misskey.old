@@ -28,9 +28,9 @@ module.exports = (req, res, content = \home) ->
 					user .= to-object!
 					user-following-check me.id, user.id .then (is-following) ->
 						user.is-following = is-following
-						on-fulfilled user
+						on-fulfilled user)
 				.then (res) ->
-					next null, res)
+					next null, res
 	], (, results) -> res.display req, res, 'home' do
 		statuses-count: results.0
 		followings-count: results.1
