@@ -16,14 +16,13 @@ module.exports = (req, res) ->
 	[screen-name, name, password, color] = get-express-params req, <[ screen-name name password color ]>
 
 	switch
-	| !screen-name? => res.api-error 400 'screenName parameter is required :('
-	| screen-name.match /^[0-9]+$/ || !screen-name.match /^[a-zA-Z0-9_]{4,20}$/ => res.api-error 400 'screenName invalid format'
-	| !name? => res.api-error 400 'name parameter is required :('
-	| name == '' => res.api-error 400 'name parameter is required :('
-	| !password? => res.api-error 400 'password parameter is required :('
+	| empty screen-name => res.api-error 400 'screen-name is required :('
+	| screen-name == /^[0-9]+$/ || screen-name != /^[a-zA-Z0-9_]{4,20}$/ => res.api-error 400 'screen-name invalid format'
+	| empty name => res.api-error 400 'name is required :('
+	| empty password => res.api-error 400 'password is required :('
 	| password.length < 8 => res.api-error 400 'password invalid format'
-	| !color? => res.api-error 400 'color parameter is required :('
-	| !color.match /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
+	| empty color => res.api-error 400 'color is required :('
+	| color != /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
 	| _ => exist-screenname screen-name .then (exist) ->
 		| exist => res.api-error 500 'This screen name is already used.'
 		| _ =>
