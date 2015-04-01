@@ -111,17 +111,20 @@ web-server.use allow-cross-domain
 
 # Timeout timer
 web-server.all '*' (req, res, next) ->
-	set-timeout do
-		->
-			try
-				res.status 500
-				if res.has-own-property \display
-					res.display req, res, \timeout {}
-				else
-					res.send 'Sorry, processing timed out ><'
-			catch
-		3000ms
-	next!
+	if req.url != '/login'
+		set-timeout do
+			->
+				try
+					res.status 500
+					if res.has-own-property \display
+						res.display req, res, \timeout {}
+					else
+						res.send 'Sorry, processing timed out ><'
+				catch
+			3000ms
+		next!
+	else
+		next!
 
 # Resources rooting
 resources-router web-server
