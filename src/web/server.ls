@@ -140,10 +140,10 @@ web-server.use (req, res) ->
 
 # Error handling
 web-server.use (err, req, res, next) ->
-	console.log err
+	console.error err
 	res.status 500
 	if res.has-own-property \display
-		res.display req, res, \error {err}
+		res.display req, res, \error { err: err + err.stack}
 	else
 		res.send err
 
