@@ -23,10 +23,14 @@ module.exports = (req, res, content = \home) ->
 		(next) -> status-gets[content] me.id, 30statuses, null, null, (statuses) ->
 			timeline-generate-html statuses, me, (timeline-html) -> next null, timeline-html
 		(next) -> get-new-users 5 .then (users) ->
-			next null, users |> map (user) ->
-				user .= to-object!
-				user-following-check me.id, user.id .then (is-following) ->
-					user.is-following = is-following
+			Promise.all users |> map (user) ->
+				new Promise (on-fulfilled, on-rejected) ->
+					user .= to-object!
+					user-following-check me.id, user.id .then (is-following) ->
+						user.is-following = is-following
+						on-fulfilled user
+				.then (res) ->
+					next null, res
 	], (, results) -> res.display req, res, 'home' do
 		statuses-count: results.0
 		followings-count: results.1
