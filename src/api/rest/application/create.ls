@@ -9,7 +9,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[name, callback-url, description, developer-name, developer-website] =
 		get-express-params <[ name callback-url description developer-name developer-website ]>
 	
-	err =
+	err = switch
 	| app.id != config.web-client-id => [403 'Your application has no permission']
 	| empty name => [400 'name cannot be empty :(']
 	| empty callback-url => [400 'callback_url cannot be empty :(']
