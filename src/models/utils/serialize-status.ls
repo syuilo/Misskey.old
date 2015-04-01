@@ -65,6 +65,7 @@ module.exports = (status, callback) ->
 		status-get-replies status .then (replies) ->
 			console.log '#####'
 			console.log replies
+			swicth
 			| !replies? => callback status
 			| _ => 
 				Promise.all (replies |> map (reply) ->
