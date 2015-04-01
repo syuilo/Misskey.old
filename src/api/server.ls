@@ -7,10 +7,10 @@ require! {
 	cookie
 	multer
 	redis
-	'body-parser': body-parser
-	'cookie-parser': cookie-parser
+	'body-parser'
+	'cookie-parser'
 	'express-session': session
-	'connect-redis': connect-redis
+	'connect-redis'
 	'js-yaml': yaml
 	'oauth2-server'
 	'./router': router
