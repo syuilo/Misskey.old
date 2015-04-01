@@ -250,8 +250,24 @@ main {
 	}
 
 
-	#content {
+	#contents {
 		margin: 8px;
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		> *:first-child {
+			float: left;
+			width: ~"calc(100% - 250px)";
+		}
+
+		#side {
+			float: left;
+			width: 250px;
+		}
 
 		#timeline {
 			margin: 8px;
