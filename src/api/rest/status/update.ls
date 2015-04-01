@@ -57,6 +57,15 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		}
 		
 	status.save (, created-status) ->
+		user.statuses-count++
+		err <- user.save
+		if status.in-reply-to-status-id?
+			Status.find-by-id status.in-reply-to-status-id, (, reply-to-status) ->
+				if reply-to-status?
+					reply-to-status
+						..replies.push created-status._id
+						..save
+		switch
 		| is-image-attached =>
 			status-image = new StatusImage do
 				{
