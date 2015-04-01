@@ -142,7 +142,7 @@ web-server.use (req, res) ->
 web-server.use (err, req, res, next) ->
 	console.error err
 	display-err = "--------------------------------\r\n#{err.stack}\r\n#{req.method} #{req.url} [#{new Date!}]"
-	if (req.has-own-property /login) && req.login
+	if (req.has-own-property \login) && req.login
 		display-err += "\r\n#{req.user.id}"
 	res.status 500
 	if res.has-own-property \display
