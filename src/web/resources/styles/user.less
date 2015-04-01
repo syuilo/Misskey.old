@@ -25,7 +25,7 @@ main {
 	max-width: 900px;
 	margin: 0 auto;
 	padding: 0;
-	background: #fff;
+	overflow: hidden;
 
 	&:after {
 		content: "";
@@ -36,20 +36,21 @@ main {
 	> header {
 		display: block;
 		position: relative;
-		width: 100%;
-		margin: 0;
+		width: ~"calc(100% - 16px)";
+		margin: 8px;
 		padding: 0;
 		border-radius: 8px;
 
 		> #headerMain {
 			position: relative;
 			width: 100%;
-			height: 350px;
+			height: 320px;
 			// Background Image
 			background-image: url(@headerImageUrl);
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
+			border-radius: 8px 8px 0 0;
 
 			> #headerUserMenu {
 				position: absolute;
@@ -111,13 +112,14 @@ main {
 				color: #fff;
 				text-shadow: 0 0 16px rgba(0,0,0,0.7);
 				box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+				border-radius: 8px 0 0 0;
 
 				> #headerUserAreaBackground {
 					position: absolute;
 					top: 0;
 					left: 0;
 					width: 100%;
-					height: 350px;
+					height: 320px;
 					background-image: url(@headerBlurImageUrl);
 					background-repeat: no-repeat;
 					background-position: center center;
@@ -182,6 +184,7 @@ main {
 			margin: 0;
 			padding: 0;
 			background: #fff;
+			border-radius: 0 0 8px 8px;
 
 			> #headerNavBackground {
 				/*
