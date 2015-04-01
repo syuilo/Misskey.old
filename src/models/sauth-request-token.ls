@@ -6,7 +6,7 @@ require! {
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 sauth-request-token-schema = new mongoose.Schema do
-	app-id: { type: Number, required: true }
+	app-id: { type: Number, required: yes }
 	in-invalid: { type: Boolean, default: false }
 	token: { type: String }
 
