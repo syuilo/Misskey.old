@@ -10,10 +10,12 @@ require! {
 	'socket.io': SocketIO
 }
 
+read-file = (path) -> fs.read-file-sync path .to-string!
+
 server = https.create-server do
-	key: (fs.read-file-sync '../../../../certs/server.key').to-string!
-	cert: (fs.read-file-sync '../../../../certs/startssl.crt').to-string!
-	ca: (fs.read-file-sync '../../../../certs/sub.class1.server.ca.pem').to-string!
+	key: read-file '../../../../certs/server.key'
+	cert: read-file '../../../../certs/startssl.crt'
+	ca: read-file '../../../../certs/sub.class1.server.ca.pem'
 	
 	(req, res) ->
 		res
