@@ -97,7 +97,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 
 	function send obj
 		res.api-render obj
-		mentions = obj.text.match /@[a-zA-Z0-9_]+/g
+		mentions = obj.text == /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
 			mention-sn .= replace '@' ''
 			User.find-one { screen-name: mention-sn } (, reply-user) ->
