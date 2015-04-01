@@ -20,8 +20,7 @@ talk-message-schema = new mongoose.Schema do
 	user-id:           { type: Number,  required: yes }
 
 # Virtual duplicate _id property 
-talk-message-schema.virtual 'id' .get ->
-	this._id
+talk-message-schema.virtual 'id' .get -> @_id
 
 # Auto increment
 talk-message-schema.plugin mongoose-auto-increment.plugin, { model: \TalkMessage, field: '_id' }
