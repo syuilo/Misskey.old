@@ -11,8 +11,8 @@ module.exports = (user-id, limit, since-id, max-id, callback) ->
 			followings-ids = [user-id] ++ (followings |> map (following) -> following.followee-id.to-string!)
 			query = switch
 				| !since-id? and !max-id? => { user-id: { $in: followings-ids } }
-				| since-id? => { $and: [ user-id: { $in: followings-ids }, id: { $gt: since-id } ] }
-				| max-id? => { $and: [ user-id: { $in: followings-ids }, id: { $lt: max-id } ] }
+				| since-id? => (user-id: {$in: followings-ids}) `$and` (id: {$gt: since-id})
+				| max-id? => (user-id: {$in: followings-ids}) `$and` (id: {$lt: max-id})
 			Status
 				.find query
 				.sort \-createdAt # Desc
