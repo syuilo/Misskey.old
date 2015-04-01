@@ -254,6 +254,80 @@ main {
 				padding: 12px 16px;
 				border-bottom: solid 1px #eee;
 
+				&[data-is-following='false'] {
+					button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						cursor: pointer;
+						display: inline-block;
+						box-sizing: border-box;
+						padding: 4px 8px;
+						margin: 0;
+						font-size: 0.8em;
+						color: #fff;
+						background: #bbb;
+						border: none;
+						outline: none;
+						transition: background .2s ease;
+
+						&:disabled {
+							background: #ddd !important;
+						}
+
+						&:hover {
+							background: #aaa;
+							transition: background .1s ease;
+						}
+
+						&:active {
+							background: #ccc;
+							transition: background .1s ease;
+						}
+
+						&:focus {
+							text-shadow: 0 0 8px #fff;
+						}
+					}
+				}
+
+				&[data-is-following='true'] {
+					button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						cursor: pointer;
+						display: inline-block;
+						box-sizing: border-box;
+						padding: 4px 8px;
+						margin: 0;
+						font-size: 0.8em;
+						color: contrast(@themeColor);
+						background: @themeColor;
+						border: none;
+						outline: none;
+						transition: background .2s ease;
+
+						&:disabled {
+							background: #ddd !important;
+						}
+
+						&:hover {
+							background: lighten(@themeColor, 10%);
+							transition: background .1s ease;
+						}
+
+						&:active {
+							background: darken(@themeColor, 10%);
+							transition: background .1s ease;
+						}
+
+						&:focus {
+							text-shadow: 0 0 8px #fff;
+						}
+					}
+				}
+
 				&:last-child {
 					border-bottom: none;
 				}
