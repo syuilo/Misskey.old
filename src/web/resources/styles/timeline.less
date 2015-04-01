@@ -305,11 +305,6 @@
 								> .status {
 									position: relative;
 
-									&:first-child:before {
-										top: 50%;
-										height: 50%;
-									}
-
 									> article {
 										.timeline-reply-article;
 									}
@@ -885,6 +880,34 @@
 									}
 								}
 							}
+
+							> .replies {
+							text-align: center;
+
+							> .statuses {
+								display: none;
+								margin: 0;
+								padding: 8px 0 0 0;
+								list-style: none;
+								text-align: left;
+
+								> .status {
+									position: relative;
+
+									> article {
+										.timeline-reply-article;
+									}
+								}
+
+									> .status[data-user-verified='true'] {
+										> article > header > h2 > a {
+											&:before {
+												.timeline-verified-icon;
+											}
+										}
+									}
+							}
+						}
 						}
 					}
 				}
