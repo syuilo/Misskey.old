@@ -25,7 +25,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| not user.is-premium => has-app-one-or-more.then (one-or-more) ->
 		| one-or-more => res.api-error 403 'Cannot create application at twon or more. You need PlusAccount to do so :('
 		| _ => create!
-	| create!
+	| _ => create!
 
 	create = ->
 		created-app <- Application.create name, user.id, callback-url, description, developer-name, developer-website
