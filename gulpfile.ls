@@ -23,7 +23,6 @@ gulp.task \watch <[ build ]> ->
 gulp.task \test <[ lint build ]> ->
 	gulp.src paths.ls
 		.pipe ls!
-		.on \error -> throw it
 
 gulp.task \lint ->
 	gulp.src './**/*.ls'
