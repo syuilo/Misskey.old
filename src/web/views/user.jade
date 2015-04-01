@@ -5,6 +5,7 @@ block title
 
 block content
 	if page == 'home'
+		div#timeline!= timelineHtml
 		section#bioSection
 			h2 自己紹介
 			div#bio!= bio
