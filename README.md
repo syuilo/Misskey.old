@@ -6,6 +6,11 @@
 
 A mystery SNS. https://misskey.xyz/
 
+## What's?
+**Misskeyは謎のTwitter風ソーシャル・ネットワーキング・サービスです。**[Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)サーバー上で動作します。
+
+**Misskey is a mystery Twitter Like social networking services.** run on [Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg) server.
+
 ## Implicit dependencies
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
 [![MongoDB](https://img.shields.io/badge/MongoDB-2.6.9-blue.svg)](https://www.mongodb.org)
