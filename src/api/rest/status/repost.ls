@@ -1,16 +1,18 @@
 require! {
+	'../../auth': authorize
+	'../../../utils/get-express-params'
+	'../../../utils/publish-redis-streaming'
+	'../../../models/utils/filter-user-for-response'
+	'../../../models/utils/serialize-status'
 	'../../../models/status': Status
+	'../../../models/utils/status-check-reposted'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../models/utils/status-check-reposted'
-	'../../../models/utils/serialize-status'
-	'../../../models/utils/filter-user-for-response'
-	'../../../utils/publish-redis-streaming'
-	'../../auth': authorize
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) ->
-	| !(status-id = req.body\status-id)? => res.api-error 400 'status-id parameter is required :('
+module.exports = (req, res) -> authorize req, res, (user, app) -> 
+	[ status-id ] = get-express-params req, <[ status-id ]>
+	| empty status-id => res.api-error 400 'status-id parameter is required :('
 	| _ => Status.find-by-id status-id, (, target-status) ->
 		| !target-status? => res.api-error 404 'Post not found...'
 		| target-status.user-id.to-string! == user.id => res.api-error 400 'This post is your post!!!'
