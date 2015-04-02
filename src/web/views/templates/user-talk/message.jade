@@ -6,8 +6,8 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 		data-user-id= message.user.id
 		data-user-color= message.user.color)
 	article
-		a.icon-anchor(href= url + '/' + message.user.screenName, title= message.user.comment)
-			img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
+		a.icon-anchor(href= config.url + '/' + message.user.screenName, title= message.user.comment)
+			img.icon(src= config.url + '/img/icon/' + message.user.screenName, alt='icon')
 		div.content-container
 			if !message.isDeleted && (message.userId == me.id)
 				if message.isReaded
@@ -18,7 +18,7 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 				if !message.isDeleted
 					p.text!= textParser(message.text)
 					if message.isImageAttached
-						img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+						img.image(src= config.url + '/img/talk-message/' + message.id, alt='image')
 				else
 					p.isDeleted このメッセージは削除されました
-			time(datetime=message.createdAt)= message.createdAt
+			time(datetime= message.createdAt)= message.createdAt
