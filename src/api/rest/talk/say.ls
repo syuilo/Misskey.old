@@ -41,12 +41,13 @@ function create(req, res, app-id, otherparty-id, image, is-image-attached, text,
 	| _ =>
 		send-response created-talk-message
 
-function send-response obj
-	res.api-render obj
+function send-response message
+	message .= to-object!
+	res.api-render message
 	
 	[
 		["userStream:#{otherparty-id}" \talk-message]
 		["talkStream:#{otherparty-id}-#{user-id}" \otherparty-message]
 		["talkStream:#{user-id}-#{otherparty-id}" \me-message]
 	] |> each ([channel, type]) ->
-		publish-redis-streaming channel, to-json {type, value: obj}
+		publish-redis-streaming channel, to-json {type, value: {id: message.id}}
