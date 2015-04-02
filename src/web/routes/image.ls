@@ -54,7 +54,7 @@ module.exports = (app) ->
 				..set 'Content-Type' 'image/jpeg'
 				..send image-buffer
 
-	function display-user-image(req, res, id-or-sn, image-property-name)
+	function display-user-image(req, res, sn, image-property-name)
 		function display(user, user-image)
 			image-buffer = if user-image.image?
 				then user-image.image
@@ -91,9 +91,7 @@ module.exports = (app) ->
 					..status 404
 					..send 'User not found.'
 		
-		switch
-		| id-or-sn == /^[0-9]+$/ => User.find-by-id id-or-sn, (, user) -> routing-image user
-		| _ => User.find-one {screen-name: id-or-sn} (, user) -> routing-image user
+		User.find-one {screen-name: sn} (, user) -> routing-image user
 				
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
@@ -145,19 +143,19 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
-	app.get '/img/icon/:idorsn' (req, res) ->
-		id-or-sn = req.params.idorsn
-		display-user-image req, res, id-or-sn, \icon
+	app.get '/img/icon/:sn' (req, res) ->
+		sn = req.params.sn
+		display-user-image req, res, sn, \icon
 
 	# User header
-	app.get '/img/header/:idorsn' (req, res) ->
-		id-or-sn = req.params.idorsn
-		display-user-image req, res, id-or-sn, \header
+	app.get '/img/header/:sn' (req, res) ->
+		isn = req.params.sn
+		display-user-image req, res, sn, \header
 
 	# User wallpaper
-	app.get '/img/wallpaper/:idorsn' (req, res) ->
-		id-or-sn = req.params.idorsn
-		display-user-image req, res, id-or-sn, \wallpaper
+	app.get '/img/wallpaper/:sn' (req, res) ->
+		sn = req.params.sn
+		display-user-image req, res, sn, \wallpaper
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
