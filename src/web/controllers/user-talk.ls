@@ -32,7 +32,7 @@ module.exports = (req, res) ->
 						{id: message.id}
 						{$set: {is-readed: true}}
 						{upsert: false, multi: false}
-						(, ) ->
+						->
 				
 				serialize-stream-object messages, (messages) ->
 					res.display req, res, \user-talk {
