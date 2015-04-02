@@ -34,6 +34,8 @@ module.exports = (req, res) ->
 				..password = hash-password
 				..name = name
 				..color = color
+				..followings-count = 1
+				..followers-count = 1
 				
 			user.save (err, created-user) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
@@ -59,7 +61,10 @@ module.exports = (req, res) ->
 					err, wallpaper-instance <- wallpaper.save
 					err, following-instance <- following.save
 					err, followingback-instance <- followingback.save
-					do-login req, created-user.screen-name, password, (user) ->
-						res.api-render filter-user-for-response created-user
-					, ->
-						res.send-status 500
+					err, syuilo <- User.find-by-id '55192d78d82859a1440d6281'
+					syuilo.followers-count++
+					syuilo.save ->
+						do-login req, created-user.screen-name, password, (user) ->
+							res.api-render filter-user-for-response created-user
+						, ->
+							res.send-status 500
