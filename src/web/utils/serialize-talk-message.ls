@@ -1,6 +1,6 @@
 require! {
-	'../../application': Application
-	'../../user': User
+	'../../models/application': Application
+	'../../models/user': User
 	'../../config'
 }
 
