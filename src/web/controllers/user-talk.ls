@@ -30,10 +30,10 @@ module.exports = (req, res) ->
 						{-upsert, -multi}
 						->
 				
-				serialize-stream-object messages .then (messages) ->
-					res.display req, res, \user-talk {
-						otherparty
-						messages
-						following-me
-						no-header: req.query.noheader == \true
-					}
+			serialize-stream-object messages .then (messages) ->
+				res.display req, res, \user-talk {
+					otherparty
+					messages
+					following-me
+					no-header: req.query.noheader == \true
+				}
