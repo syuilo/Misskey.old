@@ -50,10 +50,10 @@ module.exports = (status, callback) ->
 				| _ =>
 					reply-status .= to-object!
 					reply-status.is-reply = reply-status.in-reply-to-status-id?
-					status.reply = reply-status
+					status.reply-source = reply-status
 					User.find-by-id reply-status.user-id, (, reply-user) ->
 						reply-user .= to-object!
-						status.reply.user = reply-user
+						status.reply-source.user = reply-user
 						if reply-status.is-reply
 							status-get-talk reply-status, (talk) ->
 								status.more-talk = talk

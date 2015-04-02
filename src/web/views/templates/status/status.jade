@@ -15,7 +15,7 @@ div.status.article(
 		data-is-repostpost     != status.isRepostToStatus.toString()
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null)
 	article
-		div.article-main(style= status.isReply ? 'border-color: ' + status.reply.user.color + ';' : '')
+		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
 			if status.moreTalk != null
 				aside.talk
 					i.fa.fa-ellipsis-v
@@ -47,23 +47,23 @@ div.status.article(
 						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
 						| によってRepost
 			if status.isReply
-				div.reply-to(title!= '#{status.reply.createdAt}&#x0A;'
-					data-id= status.reply.id
-					data-user-id= status.reply.user.id
-					data-user-color= status.reply.user.color
-					data-user-verified!= status.reply.user.isPlus.toString())
+				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
+					data-id= status.replySource.id
+					data-user-id= status.replySource.user.id
+					data-user-color= status.replySource.user.color
+					data-user-verified!= status.replySource.user.isPlus.toString())
 					article
-						a.icon-anchor(href=config.url + '/' + status.reply.user.screenName + '/talk?noheader=true', title= status.reply.user.comment != null ? status.reply.user.comment : '@' + status.reply.user.screenName)
-							img.icon(src=config.url + '/img/icon/' + status.reply.user.screenName, alt='icon')
+						a.icon-anchor(href=config.url + '/' + status.replySource.user.screenName + '/talk?noheader=true', title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
+							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
 						header
 							h2
-								a(href=config.url + '/' + status.reply.user.screenName, target='_blank')= status.reply.user.name
-							span.screen-name= '@' + status.reply.user.screenName
-							a(href=config.url + '/' + status.reply.user.screenName + '/status/' + status.reply.id): time(datetime=status.reply.createdAt)= status.reply.createdAt
+								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
+							span.screen-name= '@' + status.replySource.user.screenName
+							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt)= status.replySource.createdAt
 						div.main
-							p.text!= (status.reply.isReply ? '<a href="' + config.url + '/status/' + status.reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.reply.text)
-							if status.reply.isImageAttached
-								img.image(src=config.url + '/img/status/' + status.reply.id, alt='image')
+							p.text!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+							if status.replySource.isImageAttached
+								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
 			div.main
 				div.icon-area
 					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
