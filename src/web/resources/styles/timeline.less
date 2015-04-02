@@ -148,7 +148,12 @@
 				transition: text-shadow 0.2s ease;
 
 				&:hover {
+					color: darken(@themeColor, 10%);
 					text-shadow: 0 0 4px fade(@themeColor, 30%);
+				}
+
+				&:active {
+					color: darken(@themeColor, 20%);
 				}
 			}
 
@@ -622,7 +627,12 @@
 										transition: text-shadow 0.2s ease;
 
 										&:hover {
+											color: darken(@themeColor, 10%);
 											text-shadow: 0 0 4px fade(@themeColor, 30%);
+										}
+
+										&:active {
+											color: darken(@themeColor, 20%);
 										}
 									}
 
