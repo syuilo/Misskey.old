@@ -245,7 +245,7 @@ main {
 		width: ~"calc(100% - 16px)";
 		height: 140px;
 		margin: 8px;
-		background: #fff;
+		background: transparent;
 		border-radius: 8px;
 
 		header {
@@ -256,6 +256,7 @@ main {
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
+			border-radius: 8px 8px 0 0;
 		}
 
 		nav {
@@ -267,13 +268,37 @@ main {
 			.icon {
 				display: block;
 				position: absolute;
-				top: -20px;
-				max-width: 40px;
-				max-height: 40px;
+				top: -24px;
+				left: 12px;
+				max-width: 48px;
+				max-height: 48px;
 				margin: 0;
 				padding: 0;
 				vertical-align: bottom;
 				border-radius: 8px;
+			}
+
+			.status {
+				margin-left: 68px;
+
+				tr {
+					th, td {
+						min-width: 3em;
+						padding: 0;
+						margin: 0;
+					}
+
+					th {
+						text-align: left;
+						font-size: 0.8em;
+						font-weight: normal;
+						color: rgba(0, 0, 0, 0.5);
+					}
+
+					td {
+						font-size: 1em;
+					}
+				}
 			}
 		}
 	}
