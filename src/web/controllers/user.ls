@@ -29,7 +29,7 @@ module.exports = (req, res, page = \home) ->
 					next null count
 			
 			# Get statuses timeline
-			(next) -> 
+			(next) ->
 				Status
 					.find {user-id: user.id}
 					.sort {created-at: \desc}
