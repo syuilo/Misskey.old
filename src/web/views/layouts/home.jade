@@ -17,6 +17,20 @@ html(lang='ja', dir='ltr')
 			div#main-contents
 				block content
 			div#right-contents
+				div#me
+					header
+					nav(role='navigation')
+						a.icon-anchor(href='/' + me.screenName)
+							img.icon(src='/img/icon/' + me.screenName, alt='icon')
+						table.status
+							tr
+								th 投稿
+								th フォロー
+								th フォロワー
+							tr
+								td: a(href='/' + me.screenName)= me.statusesCount
+								td: a(href='/' + me.screenName + '/followings')= me.followingsCount
+								td: a(href='/' + me.screenName + '/followers')= me.followersCount
 				div#recommendation-users
 					ol.users
 						each user in recommendationUsers

@@ -1,4 +1,5 @@
 @themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
 @wallpaperUrl: <%wallpaperUrl%>;
 
 html, body {
@@ -236,6 +237,46 @@ main {
 		float: left;
 		width: 250px;
 		margin: 0;
+	}
+
+	#me {
+		display: block;
+		box-sizing: border-box;
+		width: ~"calc(100% - 16px)";
+		height: 140px;
+		margin: 8px;
+		background: #fff;
+		border-radius: 8px;
+
+		header {
+			display: block;
+			width: 100%;
+			height: ~"calc(100% - 40px)";
+			background-image: url(@headerImageUrl);
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+		}
+
+		nav {
+			display: block;
+			position: relative;
+			height: 40px;
+			background: #fff;
+
+			.icon {
+				display: block;
+				position: absolute;
+				top: -20px;
+				max-width: 40px;
+				max-height: 40px;
+				margin: 0;
+				padding: 0;
+				vertical-align: bottom;
+				border-radius: 8px;
+			}
+		}
 	}
 
 	#recommendation-users {
