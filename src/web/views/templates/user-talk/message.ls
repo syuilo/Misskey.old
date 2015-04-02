@@ -16,7 +16,7 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 					img(src='/resources/images/destroy.png', alt='Delete')
 			div.content
 				if !message.isDeleted
-					p.text!= parseText(message.text)
+					p.text!= textParser(message.text)
 					if message.isImageAttached
 						img.image(src=url + '/img/talk-message/' + message.id, alt='image')
 				else
