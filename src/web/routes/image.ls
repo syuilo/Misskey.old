@@ -58,6 +58,7 @@ module.exports = (app) ->
 		image-type = camelize image-type
 		
 		function display(user, user-image)
+			console.log image-type
 			image-buffer = if user-image[image-type]?
 				then user-image[image-type]
 				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
