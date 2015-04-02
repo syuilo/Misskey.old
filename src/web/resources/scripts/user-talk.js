@@ -100,7 +100,9 @@ $(function() {
 		if ($('#otherparty-status #otherparty-typing')[0]) {
 			$('#otherparty-status #otherparty-typing').remove();
 		}
-		appendMessage(message);
+		var $message = $('<li class="message">').append($(message)).hide();
+		TIMELINE.setEvent($message.children('.message'));
+		$status.prependTo($('#stream .messages')).show(200);
 		$.ajax('https://api.misskey.xyz/talk/read', {
 			type: 'post',
 			data: { 'message-id': message.id },
@@ -114,7 +116,9 @@ $(function() {
 	socket.on('me-message', function(message) {
 		console.log('me-message', message);
 		new Audio('/resources/sounds/talk-message.mp3').play();
-		appendMessage(message);
+		var $message = $('<li class="message">').append($(message)).hide();
+		TIMELINE.setEvent($message.children('.message'));
+		$status.prependTo($('#stream .messages')).show(200);
 	});
 
 	socket.on('otherparty-message-update', function(message) {
