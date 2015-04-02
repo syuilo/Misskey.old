@@ -6,7 +6,7 @@ require! {
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	(, header) <- UserHeader.find-by-id user.id
-	if req.files.length == 1
+	if (Object.keys req.files).length == 1
 		path = req.files.image.path
 		(, image) <- gm path
 			.compress \jpeg

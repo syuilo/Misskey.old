@@ -17,7 +17,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| !otherparty-id? => res.api-error 400 'otherparty-id is required :('
 	| _ => user-following-check otherparty-id, user.id .then (is-following) ->
 		| !is-following => res.api-error 400 'You are not followed from this user. To send a message, you need to have been followed from the other party.'
-		| req.files.length == 1 =>
+		| (Object.keys req.files).length == 1 =>
 			path = req.files.image.path
 			image-quality = if user.is-plus then 70 else 50
 			gm path
