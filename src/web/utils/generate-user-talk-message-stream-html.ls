@@ -9,7 +9,7 @@ module.exports = (messages, me) ->
 	resolve, reject <- new Promise!
 	console.log 'xxxxxxxxxxxxxxxxx'
 	console.log messages
-	if not empty messages and messages?
+	if messages?
 		console.log '############=======#########'
 		message-compiler = jade.compile-file "#__dirname/../views/templates/user-talk/message.jade" {pretty: '  '}
 		resolve (messages |> map (message) ->
@@ -19,5 +19,5 @@ module.exports = (messages, me) ->
 				text-parser: parse-text
 				config: config.public-config)
 	else
-		console.log '#####################'
+		console.log 'aaaaaaaaaaaaaaaaaaaaaaaaaa'
 		resolve null
