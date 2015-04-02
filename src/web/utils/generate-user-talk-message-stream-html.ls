@@ -8,7 +8,7 @@ module.exports = (messages, me) ->
 	console.log 'yyyyyyyyyyyyyyyyy'
 	resolve, reject <- new Promise!
 	console.log 'xxxxxxxxxxxxxxxxx'
-	if !empty messages and messages?
+	if not empty messages and messages?
 		console.log '############=======#########'
 		message-compiler = jade.compile-file "#__dirname/../views/templates/user-talk/message.jade" {pretty: '  '}
 		resolve (messages |> map (message) ->
