@@ -61,7 +61,7 @@ module.exports = (app) ->
 		do-login req, req.body.\screen-name, req.body.password, (user) ->
 			res.send-status 200
 		, -> res.send-status 400
-	app.get '/logout' (reqy, res) ->
+	app.get '/logout' (req, res) ->
 		req.session.destroy (err) -> res.redirect '/'
 	app.get '/:userSn' (req, res) -> (require '../controllers/user') req, res, \home
 	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
