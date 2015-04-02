@@ -5,4 +5,9 @@ require! {
 
 # Number -> Number -> Promise Boolean
 module.exports = (user-id, status-id) ->
-	StatusFavorite.find {user-id} `$and` {status-id} .limit 1 .exec! |> map-promise (empty) >> (!)
+	promise = StatusFavorite.find {user-id} `$and` {status-id} .limit 1 .exec!
+	console.log '#####################'
+	console.log promise
+	promise = map-promise ((empty) >> (!)) promise
+	console.log '***********************'
+	console.log promise
