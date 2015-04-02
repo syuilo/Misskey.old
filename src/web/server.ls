@@ -128,10 +128,7 @@ server.use (req, res) ->
 # Error handling
 server.use (err, req, res, next) ->
 	console.error err
-	display-err = '''
-#{err.stack}
-#{repeat 32 '-'}
-#{req.method} #{req.url} [#{new Date!}]'''
+	display-err = "#{err.stack}\r\n#{repeat 32 '-'}\r\n#{req.method} #{req.url} [#{new Date!}]"
 	if (req.has-own-property \login) && req.login
 		display-err += "\r\n#{req.me.id}"
 	res.status 500
