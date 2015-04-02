@@ -20,9 +20,9 @@ module.exports = (req, res) ->
 				message.otherparty = if message.user-id == me.id then otherparty else me
 				resolve message)
 
-	talk-get-talk me.id, otherparty.id, 32messages, null, null, (messages) ->
+	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
 		user-following-check otherparty-id, me.id .then (following-me) ->
-			messages.for-each (message) ->
+			messages |> each (message) ->
 				if message.user-id == otherparty.id
 					TalkMessage.update do
 						{id: message.id}
@@ -30,7 +30,7 @@ module.exports = (req, res) ->
 						{-upsert, -multi}
 						->
 				
-				serialize-stream-object messages, (messages) ->
+				serialize-stream-object messages .then (messages) ->
 					res.display req, res, \user-talk {
 						otherparty
 						messages
