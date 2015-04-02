@@ -24,7 +24,9 @@ module.exports = (req, res) ->
 					resolve message)
 
 	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
+		console.log '======================'
 		user-following-check otherparty-id, me.id .then (following-me) ->
+			console.log following-me
 			messages |> each (message) ->
 				if message.user-id == otherparty.id
 					TalkMessage.update do
