@@ -515,6 +515,17 @@
 										font-weight: bold;
 										text-decoration: none;
 										transition: all 0.1s ease;
+
+										&:hover {
+											text-decoration: underline;
+											transition: all 0s ease;
+										}
+
+										&:active {
+											text-decoration: underline;
+											color: darken(@themeColor, 10%);
+											transition: all 0s ease;
+										}
 									}
 								}
 
