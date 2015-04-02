@@ -26,6 +26,7 @@ module.exports = (req, res) ->
 						->
 			
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
+				console.log messages
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
 					res.display req, res, \user-talk {
 						otherparty
