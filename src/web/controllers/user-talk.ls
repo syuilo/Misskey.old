@@ -33,8 +33,9 @@ module.exports = (req, res) ->
 						{-upsert, -multi}
 						->
 				
+			console.log messages
 			serialize-stream-object messages .then (messages) ->
-				console.log messages
+				console.log '##################'
 				res.display req, res, \user-talk {
 					otherparty
 					messages
