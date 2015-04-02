@@ -10,8 +10,8 @@ require! {
 }
 
 module.exports = (req, res) ->
-	me = req.me
-	otherparty = req.root-user
+	me = req.me.to-object!
+	otherparty = req.root-user.to-object!
 	
 	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
 		user-following-check otherparty.id, me.id .then (following-me) ->
@@ -27,7 +27,6 @@ module.exports = (req, res) ->
 			
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
-					console.log message-htmls
 					res.display req, res, \user-talk {
 						otherparty
 						messages: message-htmls
