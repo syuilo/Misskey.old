@@ -9,9 +9,9 @@ db = mongoose.create-connection config.mongo.uri, config.mongo.options
 mongoose-auto-increment.initialize db
 
 comment-schema = new mongoose.Schema do
-	content: {type: String, required: yes}
+	content:    {type: String, required: yes}
 	created-at: {type: Date, required: yes}
-	user-id: {type: Number, required: yes}
+	user-id:    {type: Number, required: yes}
 
 article-schema = new mongoose.Schema do
 	comments: [comment-schema]
