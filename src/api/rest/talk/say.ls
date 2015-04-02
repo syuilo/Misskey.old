@@ -32,7 +32,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 
 function create(req, res, app-id, otherparty-id, image, is-image-attached, text, user-id)
 	talk-message = new TalkMessage {app-id, user-id, otherparty-id, text, is-image-attached}
-	created-talk-message <- talk-message.save!
+	created-talk-message <- talk-message.save
 	switch
 	| is-image-attached =>
 		talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
