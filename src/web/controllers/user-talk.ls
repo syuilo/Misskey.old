@@ -29,10 +29,10 @@ module.exports = (req, res) ->
 			messages.for-each (message) ->
 				if message.user-id == otherparty.id
 					TalkMessage.update do
-						{ id: message.id }
-						{ $set: { is-readed: true } }
-						{ upsert: false, multi: false }
-						(,) ->
+						{id: message.id}
+						{$set: {is-readed: true}}
+						{upsert: false, multi: false}
+						(, ) ->
 				
 				serialize-stream-object messages, (messages) ->
 					res.display req, res, \user-talk {

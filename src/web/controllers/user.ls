@@ -15,24 +15,24 @@ module.exports = (req, res, page = \home) ->
 		[
 			# Get statuses count
 			(next) ->
-				Status.count { user-id: user.id } (, count) ->
+				Status.count {user-id: user.id} (, count) ->
 					next null count
 			
 			# Get Followings count
 			(next) ->
-				UserFollowing.count { follower-id: user.id } (, count) ->
+				UserFollowing.count {follower-id: user.id} (, count) ->
 					next null count
 			
 			# Get Followers count
 			(next) ->
-				UserFollowing.count { followee-id: user.id } (, count) ->
+				UserFollowing.count {followee-id: user.id} (, count) ->
 					next null count
 			
 			# Get statuses timeline
-			(next) ->
+			(next) -> 
 				Status
-					.find { user-id: user.id }
-					.sort { created-at: \desc }
+					.find {user-id: user.id}
+					.sort {created-at: \desc}
 					.limit 30status
 					.exec (, statuses) ->
 						timeline-generate-html statuses, req.me, (html) ->
@@ -42,14 +42,14 @@ module.exports = (req, res, page = \home) ->
 			(next) ->
 				| !req.login => next null null
 				| _ =>
-					UserFollowing.find-one { followee-id: user.id, follower-id: me.id } (, following) ->
+					UserFollowing.find-one {followee-id: user.id, follower-id: me.id} (, following) ->
 						next null following?
 			
 			# Get is followme
 			(next) ->
 				| !req.login => next null null
 				| _ =>
-					UserFollowing.find-one { followee-id: me.id, follower-id: user.id } (, following) ->
+					UserFollowing.find-one {followee-id: me.id, follower-id: user.id} (, following) ->
 						next null following?
 			
 			# Compile bio markdown to html
@@ -62,8 +62,8 @@ module.exports = (req, res, page = \home) ->
 				| page != \followings => next null null
 				| _ =>
 					UserFollowing
-						.find { follower-id: user.id }
-						.sort { created-at: \desc }
+						.find {follower-id: user.id}
+						.sort {created-at: \desc}
 						.limit 50users
 						.exec (, followings) ->
 							| !followings? => next null null
@@ -71,7 +71,7 @@ module.exports = (req, res, page = \home) ->
 								async.map do
 									followings
 									(following, map-next) ->
-										User.find-one { id: following.followee-id } (, user) ->
+										User.find-one {id: following.followee-id} (, user) ->
 											map-next null user
 									(, users) ->
 										next null users
@@ -81,8 +81,8 @@ module.exports = (req, res, page = \home) ->
 				| page != \followers => next null null
 				| _ =>
 					UserFollowing
-						.find { followee-id: user.id }
-						.sort { created-at: \desc }
+						.find {followee-id: user.id}
+						.sort {created-at: \desc}
 						.limit 50users
 						.exec (, followers) ->
 							| !followers? => next null null
@@ -90,7 +90,7 @@ module.exports = (req, res, page = \home) ->
 								async.map do
 									followers
 									(follower, map-next) ->
-										User.find-one { id: follower.follower-id } (, user) ->
+										User.find-one {id: follower.follower-id} (, user) ->
 											map-next null user
 									(, users) ->
 										next null users
