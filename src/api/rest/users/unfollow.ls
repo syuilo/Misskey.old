@@ -15,11 +15,13 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					| !target-user? => res.api-error 404 'User not found...'
 					| _ =>
 						UserFollowing.remove {follower-id: user.id} `$and` {followee-id: target-user-id} (err) ->
+							(, count) <- UserFollowing.count {follower-id: user.id}
 							user
-								..followings-count--
+								..followings-count = count
 								..save
+							(, count) <- UserFollowing.count {followee-id: target-user.id}
 							target-user
-								..followers-count--
+								..followers-count = count
 								..save
 							stream-obj = 
 								type: \unfollowed-me
