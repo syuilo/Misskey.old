@@ -4,7 +4,7 @@ require! {
 	'../../../utils/get-express-params'
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	[ circle-id ] = get-express-params req, <[ circle-id ]>
+	[circle-id] = get-express-params req, <[ circle-id ]>
 	switch
 	| empty circle-id => res.api-error 400 'circle-id is required :('
 	| _ => Circle.find-by-id circle-id, (, circle) ->
