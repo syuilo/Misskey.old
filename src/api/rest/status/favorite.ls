@@ -8,7 +8,7 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	| (status-id = req.body\status-id) == null => res.api-error 400 'status-id parameter is required :('
+	| !(status-id = req.body\status-id)? => res.api-error 400 'status-id parameter is required :('
 	| _ => Status.find-by-id status-id, (, target-status) ->
 			| !target-status? => res.api-error 404 'Post not found...'
 			| target-status.repost-from-status-id? => # Repostなら対象をRepost元に差し替え
