@@ -33,32 +33,14 @@ module.exports = (app) ->
 			}
 	
 	function send-image(req, res, image-buffer)
-		switch
-		| req.query.blur? =>
-			try
-				options = parse-json req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
-				gm image-buffer
-					..blur options.radius, options.sigma
-					..compress \jpeg
-					..quality 80
-					..to-buffer \jpeg (, buffer) ->
-						res
-							..set 'Content-Type' 'image/jpeg'
-							..send buffer
-			catch e
-				res
-					..status 400
-					..send e
-		| _ =>
-			res
-				..set 'Content-Type' 'image/jpeg'
-				..send image-buffer
+		res
+			..set 'Content-Type' 'image/jpeg'
+			..send image-buffer
 
 	function display-user-image(req, res, sn, image-property-name, image-type = 'image')
 		image-type = camelize image-type
 		
 		function display(user, user-image)
-			console.log image-type
 			image-buffer = if user-image[image-type]?
 				then user-image[image-type]
 				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
