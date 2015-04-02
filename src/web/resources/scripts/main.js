@@ -15,7 +15,7 @@ $(function() {
 
 	setInterval(function() {
 		updateRelativeTimes();
-	}, 100);
+	}, 1000);
 
 	function updateRelativeTimes() {
 		var now = new Date();
