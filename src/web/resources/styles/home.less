@@ -34,7 +34,7 @@ main {
 				box-sizing: border-box;
 				width: ~"calc(100% - 70px)";
 				margin: 0 0 0 auto;
-				padding: 8px 16px;
+				padding: 8px 16px 0 16px;
 
 				#post-form {
 					box-sizing: border-box;
@@ -43,7 +43,7 @@ main {
 					margin: 0 auto;
 					padding: 16px 32px 12px 32px;
 					background: lighten(@themeColor, 45%);
-					border-radius: 8px;
+					border-radius: 8px 8px 0 0;
 					//box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 					&:after {
 						content: "";
@@ -227,6 +227,23 @@ main {
 					max-width: 764px;
 					margin: 0 auto;
 					padding: 0 16px 16px 16px;
+
+					.timeline {
+						.statuses {
+							.status {
+								&:first-child {
+									.status.article {
+										article {
+											.article-main {
+												border-top-left-radius: 0 !important;
+												border-top-right-radius: 0 !important;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
