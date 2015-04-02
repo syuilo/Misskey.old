@@ -19,8 +19,12 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 function favorite-step req, res, app, user, target-status
 	status-check-favorited target-status.id, user.id, (is-favorited) ->
 		| is-favorited => res.api-error 400 'This post is already favorited :('
-		| _ => StatusFavorite.insert {status-id: target-status.id, user-id: user.id} (, favorite) ->
-			target-status
-				..favorites-count++
-				..save (err) ->
-					serialize-status target-post, res.api-render
+		| _ => 
+			favorite = new StatusFavorite do
+				status-id: target-status.id
+				user-id: user.id
+			favorite.save ->
+				target-status
+					..favorites-count++
+					..save (err) ->
+						serialize-status target-status, res.api-render
