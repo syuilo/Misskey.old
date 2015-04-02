@@ -31,12 +31,9 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		| _ => create req, res, res, app.id, otherparty-id, null, false, text, user.id
 
 function create(req, res, app-id, otherparty-id, image, is-image-attached, text, user-id)
-	console.log 'wwwwwwwwwww'
 	talk-message = new TalkMessage {app-id, user-id, otherparty-id, text, is-image-attached}
+	console.log talk-message
 	err, created-talk-message <- talk-message.save
-	if err then console.err err
-	console.log '##########'
-	console.log created-talk-message
 	switch
 	| is-image-attached =>
 		talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
