@@ -28,11 +28,10 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					| _ => 
 						fs.unlink path
 						create req, res, app.id, otherparty-id, buffer, true, text, user.id
-		| _ => create req, res, res, app.id, otherparty-id, null, false, text, user.id
+		| _ => create req, res, app.id, otherparty-id, null, false, text, user.id
 
 function create(req, res, app-id, otherparty-id, image, is-image-attached, text, user-id)
 	talk-message = new TalkMessage {app-id, user-id, otherparty-id, text, is-image-attached}
-	console.log talk-message
 	err, created-talk-message <- talk-message.save
 	switch
 	| is-image-attached =>
