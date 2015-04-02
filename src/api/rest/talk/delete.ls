@@ -14,9 +14,9 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			..is-deleted = yes
 			..save (err) -> filter-talk-message-for-response talk-message, (obj) ->
 				res.api-render obj
-				publish-redis-streaming \talkStream: + talk-message.otherparty-id + \- + user.id, to-json do
+				publish-redis-streaming "talkStream:#{talk-message.otherparty-id}-#{user.id}", to-json do
 					type: \otherpartyMessageDelete
 					value: talk-message.id
-				publish-redis-streaming \talkStream: + user.id + \- + talk-message.otherparty-id, to-json do
+				publish-redis-streaming "talkStream:#{user.id}-#{talk-message.otherparty-id}", to-json do
 					type: \meMessageDelete
 					value: talk-message.id
