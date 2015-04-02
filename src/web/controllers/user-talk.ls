@@ -5,6 +5,7 @@ require! {
 	'../../models/talk-message': TalkMessage
 	'../../models/utils/talk-get-talk'
 	'../../models/utils/user-following-check'
+	'../utils/generate-user-talk-message-stream-html'
 }
 
 module.exports = (req, res) ->
@@ -32,12 +33,12 @@ module.exports = (req, res) ->
 						{$set: {+is-readed}}
 						{-upsert, -multi}
 						->
-				
-			console.log messages
+			
 			serialize-stream-object messages .then (messages) ->
-				res.display req, res, \user-talk {
-					otherparty
-					messages
-					following-me
-					no-header: req.query.noheader == \true
-				}
+				generate-user-talk-message-stream-html messages, me (message-htmls) ->
+					res.display req, res, \user-talk {
+						otherparty
+						messages: message-htmls
+						following-me
+						no-header: req.query.noheader == \true
+					}
