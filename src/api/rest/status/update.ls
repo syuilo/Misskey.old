@@ -55,7 +55,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 		if status.in-reply-to-status-id?
 			Status.find-by-id status.in-reply-to-status-id, (, reply-to-status) ->
 				if reply-to-status?
-					if reply-to-status.replies?
+					if !reply-to-status.replies? or !reply-to-status.replies.0?
 						reply-to-status.replies = [created-status._id]
 					else
 						reply-to-status.replies.push created-status._id
