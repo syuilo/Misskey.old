@@ -13,21 +13,6 @@ module.exports = (req, res, page = \home) ->
 	me = if req.login then req.me else null
 	async.series do
 		[
-			# Get statuses count
-			(next) ->
-				Status.count {user-id: user.id} (, count) ->
-					next null count
-			
-			# Get Followings count
-			(next) ->
-				UserFollowing.count {follower-id: user.id} (, count) ->
-					next null count
-			
-			# Get Followers count
-			(next) ->
-				UserFollowing.count {followee-id: user.id} (, count) ->
-					next null count
-			
 			# Get statuses timeline
 			(next) ->
 				Status
@@ -101,15 +86,12 @@ module.exports = (req, res, page = \home) ->
 				res
 				\user
 				{
-					statuses-count: results.0
-					followings-count: results.1
-					followers-count: results.2
-					timeline-html: results.3
-					is-following: results.4
-					is-follow-me: results.5
-					bio: results.6
-					followings: results.7
-					followers: results.8
+					timeline-html: results.0
+					is-following: results.1
+					is-follow-me: results.2
+					bio: results.3
+					followings: results.4
+					followers: results.5
 					user
 					tags: user.tags
 					page

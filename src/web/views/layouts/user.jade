@@ -60,9 +60,9 @@ html(lang='ja'
 								th フォロー
 								th フォロワー
 							tr
-								td: a(href='/' + user.screenName)= postsCount
-								td: a(href='/' + user.screenName + '/followings')= followingsCount
-								td: a(href='/' + user.screenName + '/followers')= followersCount
+								td: a(href='/' + user.screenName)= user.statusesCount
+								td: a(href='/' + user.screenName + '/followings')= user.followingsCount
+								td: a(href='/' + user.screenName + '/followers')= user.followersCount
 						if login
 							if me.id != user.id
 								if isFollowMe
