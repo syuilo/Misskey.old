@@ -58,7 +58,6 @@ module.exports = (app) ->
 		# Authorize
 		..get  '/authorize' require './application-authorize/authorize-get'
 		..post '/authorize' (req, res) -> (require './application-authorize/authorize-post') req, res, app
-		..get  /\/sauth\/get-request-token(\..+)?$/ require './rest/sauth/get-request-token'
 	
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
