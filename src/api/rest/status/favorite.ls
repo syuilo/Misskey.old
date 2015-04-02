@@ -17,7 +17,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			| _ => favorite-step req, res, app, user, target-status
 
 function favorite-step req, res, app, user, target-status
-	status-check-favorited target-status.id, user.id, (is-favorited) ->
+	status-check-favorited target-status.id, user.id .then (is-favorited) ->
 		| is-favorited => res.api-error 400 'This post is already favorited :('
 		| _ => 
 			favorite = new StatusFavorite do
