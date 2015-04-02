@@ -37,13 +37,12 @@ module.exports = (app) ->
 			..set 'Content-Type' 'image/jpeg'
 			..send image-buffer
 
-	function display-user-image(req, res, sn, image-property-name, image-type = 'image')
-		image-type = camelize image-type
-		
+	function display-user-image(req, res, sn, image-property-name, image-type = 'image')		
 		function display(user, user-image)
-			image-buffer = if user-image[image-type]?
-				then user-image['blurredImage']
-				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
+			camelized-image-type = camelize image-type
+			image-buffer = if user-image[camelized-image-type]?
+				then user-image[camelized-image-type]
+				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{camelized-image-type}].jpg"
 			if (req.headers[\accept].index-of \text) == 0
 				display-image do
 					req
