@@ -10,7 +10,6 @@ require! {
 
 module.exports = (req, res, page = \home) ->
 	user = req.root-user
-	console.log user
 	me = if req.login then req.me else null
 	async.series do
 		[

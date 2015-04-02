@@ -18,11 +18,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 							(, count) <- UserFollowing.count {follower-id: user.id}
 							user
 								..followings-count = count
-								..save
+								..save!
 							(, count) <- UserFollowing.count {followee-id: target-user.id}
 							target-user
 								..followers-count = count
-								..save
+								..save!
 							stream-obj = 
 								type: \unfollowed-me
 								value: user
