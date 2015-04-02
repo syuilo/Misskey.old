@@ -30,8 +30,8 @@ module.exports = (req, res) ->
 				if message.user-id == otherparty.id
 					TalkMessage.update do
 						{id: message.id}
-						{$set: {is-readed: true}}
-						{upsert: false, multi: false}
+						{$set: {+is-readed}
+						{-upsert, -multi}
 						->
 				
 				serialize-stream-object messages, (messages) ->
