@@ -5,7 +5,7 @@ require! {
 	'../../models/talk-message': TalkMessage
 	'../../models/utils/talk-get-talk'
 	'../../models/utils/user-following-check'
-	'../../models/utils/serialize-talk-message'
+	'../utils/serialize-talk-messages'
 	'../utils/generate-user-talk-message-stream-html'
 }
 
@@ -25,7 +25,7 @@ module.exports = (req, res) ->
 						{-upsert, -multi}
 						->
 			
-			serialize-talk-message messages, me, otherparty .then (messages) ->
+			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
 					res.display req, res, \user-talk {
 						otherparty

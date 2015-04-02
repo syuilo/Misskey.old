@@ -5,7 +5,7 @@ require! {
 	jade
 	'../../models/user': User
 	'../../models/talk-message': TalkMessage
-	'../../web/utils/serialize-timeline-status'
+	'../../web/utils/serialize-talk-message'
 	'../../web/utils/parse-text'
 	'../../config'
 	'express-session': session
