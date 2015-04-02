@@ -20,10 +20,9 @@ module.exports = (req, res, content = \home) ->
 			Promise.all (users |> map (user) ->
 				new Promise (on-fulfilled, on-rejected) ->
 					user .= to-object!
-					user-following-check me.id, user.id, (is-following-promise) ->
-						is-following-promise.then (is-following) ->
-							user.is-following = is-following
-							on-fulfilled user)
+					user-following-check me.id, user.id .then (is-following) ->
+						user.is-following = is-following
+						on-fulfilled user)
 				.then (res) ->
 					next null, res
 	], (, results) -> res.display req, res, 'home' do
