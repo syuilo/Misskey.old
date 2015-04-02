@@ -1,6 +1,5 @@
 require! {
 	'./serialize-talk-message'
-	'../../config'
 }
 
 # [TalkMessage] -> User -> User -> Promise [TalkMessage]
