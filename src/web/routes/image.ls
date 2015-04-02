@@ -54,10 +54,10 @@ module.exports = (app) ->
 				..set 'Content-Type' 'image/jpeg'
 				..send image-buffer
 
-	function display-user-image(req, res, sn, image-property-name)
+	function display-user-image(req, res, sn, image-property-name, image-type = 'image')
 		function display(user, user-image)
 			image-buffer = if user-image.image?
-				then user-image.image
+				then user-image[image-type]
 				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}.jpg"
 			if (req.headers[\accept].index-of \text) == 0
 				display-image do
@@ -144,18 +144,23 @@ module.exports = (app) ->
 	
 	# User icon
 	app.get '/img/icon/:sn' (req, res) ->
-		sn = req.params.sn
-		display-user-image req, res, sn, \icon
+		display-user-image req, res, req.params.sn, \icon
 
 	# User header
 	app.get '/img/header/:sn' (req, res) ->
-		isn = req.params.sn
-		display-user-image req, res, sn, \header
+		display-user-image req, res, req.params.sn, \header
+		
+	# User header (Blur)
+	app.get '/img/header/:sn/blur' (req, res) ->
+		display-user-image req, res, req.params.sn, \header \blurred-image
 
 	# User wallpaper
 	app.get '/img/wallpaper/:sn' (req, res) ->
-		sn = req.params.sn
-		display-user-image req, res, sn, \wallpaper
+		display-user-image req, res, req.params.sn, \wallpaper
+		
+	# User wallpaper (Blur)
+	app.get '/img/wallpaper/:sn/blur' (req, res) ->
+		display-user-image req, res, req.params.sn, \wallpaper \blurred-image
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
