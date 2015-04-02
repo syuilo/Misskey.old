@@ -26,7 +26,7 @@ module.exports = (app) ->
 		img.size (err, val) ->
 			res.display req, res, 'image' {
 				image-url
-				file-name: author.screen-name + '.jpg'
+				file-name: "#{author.screen-name}.jpg"
 				author
 				width: val.width
 				height: val.height
