@@ -24,7 +24,7 @@ module.exports = (req, res, server) ->
 				| _ => render-confirmation!
 	
 	function validate(request-token-instance, user, app)
-		if req.body.cancel != null
+		if req.body.cancel?
 			request-token-instance
 				..is-invalid = true
 				..update!
