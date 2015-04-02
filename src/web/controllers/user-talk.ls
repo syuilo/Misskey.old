@@ -16,6 +16,9 @@ module.exports = (req, res) ->
 	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
 		user-following-check otherparty.id, me.id .then (following-me) ->
 			
+			console.log '####fffffffffff#'
+			console.log messages
+			
 			# 既読にする
 			messages |> each (message) ->
 				if message.user-id == otherparty.id
@@ -26,6 +29,8 @@ module.exports = (req, res) ->
 						->
 			
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
+				console.log '###########'
+				console.log messages
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
 					res.display req, res, \user-talk {
 						otherparty
