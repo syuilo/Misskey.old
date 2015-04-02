@@ -1,6 +1,5 @@
 require! {
 	jade
-	'./timeline-serialyzer': serialyzer
 	'./parse-text'
 	'../../config'
 }
@@ -15,4 +14,4 @@ module.exports = (messages, me, callback) ->
 				text-parser: parse-text
 				config: config.public-config)
 	else
-		callback mull
+		callback null
