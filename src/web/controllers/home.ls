@@ -26,5 +26,5 @@ module.exports = (req, res, content = \home) ->
 				.then (res) ->
 					next null, res
 	], (, results) -> res.display req, res, 'home' do
-		timeline-html: results.3
-		recommendation-users: results.4
+		timeline-html: results.0
+		recommendation-users: results.1
