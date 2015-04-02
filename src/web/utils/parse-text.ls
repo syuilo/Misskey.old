@@ -9,7 +9,7 @@ function parse-url text
 
 function parse-reply text
 	text.replace /@([a-zA-Z0-9_]+)/g (, screen-name) ->
-		"<a href='https://misskey.xyz/#{screen-name}' target='_blank' class='screenName'>@#{screen-name}</a>"
+		"<a href='https://misskey.xyz/#{screen-name}' target='_blank' class='screen-name'>@#{screen-name}</a>"
 
 function parse-bold text
 	text.replace /\*\*(.+?)\*\*/g (, word) ->
