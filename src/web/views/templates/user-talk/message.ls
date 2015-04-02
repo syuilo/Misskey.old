@@ -6,13 +6,13 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 		data-user-id= message.user.id
 		data-user-color= message.user.color)
 	article
-		a.iconAnchor(href= url + '/' + message.user.screenName, title= message.user.comment)
+		a.icon-anchor(href= url + '/' + message.user.screenName, title= message.user.comment)
 			img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
-		div.contentContainer
+		div.content-container
 			if !message.isDeleted && (message.userId == me.id)
 				if message.isReaded
 					p.readed 既読
-				button.deleteButton(role='button', title='メッセージを削除')
+				button.delete-button(role='button', title='メッセージを削除')
 					img(src='/resources/images/destroy.png', alt='Delete')
 			div.content
 				if !message.isDeleted

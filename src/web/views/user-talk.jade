@@ -13,11 +13,11 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 			include templates/header
 		main
 			div#timeline
-				div.timelineContainer
-					div.timelineMain
-						div.talkStream#stream
+				div.timeline-container
+					div.timeline-main
+						div.talk-stream#stream
 							if messages == null || messages.length == 0
-								p#emptyStream
+								p#empty-stream
 									i.fa.fa-info-circle
 									| このユーザーとまだ会話したことがありませんっ
 									br
@@ -27,17 +27,17 @@ html(lang='ja', dir='ltr', data-me-id= me.id, data-otherparty-id= otherparty.id)
 									each message in messages
 										li.message!= message
 							if !followingMe
-								p#noFollowingMe
+								p#no-following-me
 									i.fa.fa-exclamation-circle
 									| このユーザーからフォローされていないためメッセージを送れませんっ！
-							div#otherpartyStatus
+							div#otherparty-status
 				if followingMe
-					div#postFormContainer
-						form#postForm(enctype='multipart/form-data')
+					div#post-form-container
+						form#post-form(enctype='multipart/form-data')
 							textarea(name='text', placeholder='Message...')
-							input(name='otherparty_id', type='hidden', value=otherparty.id)
+							input(name='otherparty-id', type='hidden', value=otherparty.id)
 							input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
-							div.imageAttacher(title='メッセージに画像を添付')
+							div.image-attacher(title='メッセージに画像を添付')
 								p
 									i(class='fa fa-picture-o')
 								input(name='image', type='file', accept='image/*')

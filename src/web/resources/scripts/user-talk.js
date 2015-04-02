@@ -21,7 +21,7 @@ TALKSTREAM.setEvent = function($message) {
 				$textarea.replaceWith($textp);
 				$.ajax('https://api.misskey.xyz/talk/fix', {
 					type: 'put',
-					data: { message_id: id, text: text },
+					data: { 'message-id': id, text: text },
 					dataType: 'json',
 					xhrFields: { withCredentials: true }
 				}).done(function(data) {
@@ -34,12 +34,12 @@ TALKSTREAM.setEvent = function($message) {
 			});
 		});
 
-		$message.find('.deleteButton').click(function() {
+		$message.find('.delete-button').click(function() {
 			$button = $(this);
 			$button.attr('disabled', true);
 			$.ajax('https://api.misskey.xyz/talk/delete', {
 				type: 'delete',
-				data: { message_id: id },
+				data: { 'message-id': id },
 				dataType: 'json',
 				xhrFields: { withCredentials: true }
 			}).done(function(data) {
@@ -58,10 +58,10 @@ $(function() {
 
 	// オートセーブがあるなら復元
 	if ($.cookie('talk-autosave-' + otherpartyId)) {
-		$('#postForm textarea').val($.cookie('talk-autosave-' + otherpartyId));
+		$('#post-form textarea').val($.cookie('talk-autosave-' + otherpartyId));
 	}
 
-	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+	$("body").css("margin-bottom", $("#post-form-container").outerHeight() + "px");
 	scroll(0, $('html').outerHeight())
 
 	socket = io.connect('https://api.misskey.xyz:1207/streaming/talk', { port: 1207 });
@@ -69,7 +69,7 @@ $(function() {
 	socket.on('connected', function() {
 		console.log('Connected');
 		socket.json.emit('init', {
-			'otherparty_id': otherpartyId
+			'otherparty-id': otherpartyId
 		});
 	});
 
@@ -85,25 +85,25 @@ $(function() {
 		console.log('Disconnected');
 	});
 
-	socket.on('otherpartyEnterTheTalk', function(client) {
+	socket.on('otherparty-enter-the-talk', function(client) {
 		console.log('相手が入室しました');
 	});
 
-	socket.on('otherpartyLeftTheTalk', function(client) {
+	socket.on('otherparty-left-the-talk', function(client) {
 		console.log('相手が退室しました');
 	});
 
-	socket.on('otherpartyMessage', function(message) {
-		console.log('otherpartyMessage', message);
+	socket.on('otherparty-message', function(message) {
+		console.log('otherparty-message', message);
 		socket.emit('read', message.id);
 		new Audio('/resources/sounds/talk-message.mp3').play();
-		if ($('#otherpartyStatus #otherpartyTyping')[0]) {
-			$('#otherpartyStatus #otherpartyTyping').remove();
+		if ($('#otherparty-status #otherparty-typing')[0]) {
+			$('#otherparty-status #otherparty-typing').remove();
 		}
 		appendMessage(message);
 		$.ajax('https://api.misskey.xyz/talk/read', {
 			type: 'post',
-			data: { message_id: message.id },
+			data: { 'message-id': message.id },
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
@@ -111,43 +111,43 @@ $(function() {
 		});
 	});
 
-	socket.on('meMessage', function(message) {
-		console.log('meMessage', message);
+	socket.on('me-message', function(message) {
+		console.log('me-message', message);
 		new Audio('/resources/sounds/talk-message.mp3').play();
 		appendMessage(message);
 	});
 
-	socket.on('otherpartyMessageUpdate', function(message) {
-		console.log('otherpartyMessageUpdate', message);
+	socket.on('otherparty-message-update', function(message) {
+		console.log('otherparty-message-update', message);
 		var $message = $('#stream > .messages').find('.message[data-id=' + message.id + ']');
 		if ($message != null) {
 			$message.find('.text').text(message.text);
 		}
 	});
 
-	socket.on('meMessageUpdate', function(message) {
-		console.log('meMessageUpdate', message);
+	socket.on('me-message-update', function(message) {
+		console.log('me-message-update', message);
 		var $message = $('#stream > .messages').find('.message[data-id=' + message.id + ']');
 		if ($message != null) {
 			$message.find('.text').text(message.text);
 		}
 	});
 
-	socket.on('otherpartyMessageDelete', function(id) {
-		console.log('otherpartyMessageDelete', id);
+	socket.on('otherparty-message-delete', function(id) {
+		console.log('otherparty-message-delete', id);
 		var $message = $('#stream > .messages').find('.message[data-id=' + id + ']');
 		if ($message != null) {
 			$message.find('.content').empty();
-			$message.find('.content').append('<p class="isDeleted">このメッセージは削除されました</p>');
+			$message.find('.content').append('<p class="is-deleted">このメッセージは削除されました</p>');
 		}
 	});
 
-	socket.on('meMessageDelete', function(id) {
-		console.log('otherpartyMessageDelete', id);
+	socket.on('me-message-delete', function(id) {
+		console.log('otherparty-message-delete', id);
 		var $message = $('#stream > .messages').find('.message[data-id=' + id + ']');
 		if ($message != null) {
 			$message.find('.content').empty();
-			$message.find('.content').append('<p class="isDeleted">このメッセージは削除されました</p>');
+			$message.find('.content').append('<p class="is-deleted">このメッセージは削除されました</p>');
 		}
 	});
 
@@ -157,7 +157,7 @@ $(function() {
 		if ($message != null) {
 			if ($message.attr('data-is-readed') == 'false') {
 				$message.attr('data-is-readed', 'true');
-				$message.find('.contentContainer').prepend($('<p class="readed">').text('既読'));
+				$message.find('.content-container').prepend($('<p class="readed">').text('既読'));
 			}
 		}
 	});
@@ -165,12 +165,12 @@ $(function() {
 	socket.on('alive', function() {
 		console.log('alive');
 		var $status = $('<img src="/img/icon/' + otherpartyId + '" alt="icon" id="alive">');
-		if ($('#otherpartyStatus #alive')[0]) {
-			$('#otherpartyStatus #alive').remove();
+		if ($('#otherparty-status #alive')[0]) {
+			$('#otherparty-status #alive').remove();
 		} else {
 			$status.addClass('opening');
 		}
-		$('#otherpartyStatus').prepend($status);
+		$('#otherparty-status').prepend($status);
 		scroll(0, $('html').outerHeight());
 		setTimeout(function() {
 			$status.addClass('normal');
@@ -186,14 +186,14 @@ $(function() {
 
 	socket.on('type', function(type) {
 		console.log('type', type);
-		if ($('#otherpartyStatus #otherpartyTyping')[0]) {
-			$('#otherpartyStatus #otherpartyTyping').remove();
+		if ($('#otherparty-status #otherparty-typing')[0]) {
+			$('#otherparty-status #otherparty-typing').remove();
 		}
 		if (type == '') {
 			return;
 		}
-		var $typing = $('<p id="otherpartyTyping">' + escapeHTML(type) + '</p>');
-		$typing.appendTo($('#otherpartyStatus')).animate({
+		var $typing = $('<p id="otherparty-typing">' + escapeHTML(type) + '</p>');
+		$typing.appendTo($('#otherparty-status')).animate({
 			opacity: 0
 		}, 5000);
 		scroll(0, $('html').outerHeight());
@@ -206,8 +206,8 @@ $(function() {
 		socket.emit('alive');
 	}, 2000);
 
-	$('#postForm textarea').bind('input', function() {
-		var text = $('#postForm textarea').val();
+	$('#post-form textarea').bind('input', function() {
+		var text = $('#post-form textarea').val();
 
 		// オートセーブ
 		$.cookie('talk-autosave-' + otherpartyId, text, { expires: 365 });
@@ -215,20 +215,20 @@ $(function() {
 		socket.emit('type', text);
 	});
 
-	$('#postForm').find('.imageAttacher input[name=image]').change(function() {
+	$('#post-form').find('.image-attacher input[name=image]').change(function() {
 		var $input = $(this);
 		var file = $(this).prop('files')[0];
 		if (!file.type.match('image.*')) return;
 		var reader = new FileReader();
 		reader.onload = function() {
 			var $img = $('<img>').attr('src', reader.result);
-			$input.parent('.imageAttacher').find('p, img').remove();
-			$input.parent('.imageAttacher').append($img);
+			$input.parent('.image-attacher').find('p, img').remove();
+			$input.parent('.image-attacher').append($img);
 		};
 		reader.readAsDataURL(file);
 	});
 
-	$('#postForm').submit(function(event) {
+	$('#post-form').submit(function(event) {
 		event.preventDefault();
 		var $form = $(this);
 		var $submitButton = $form.find('[type=submit]');
@@ -247,8 +247,8 @@ $(function() {
 		}).done(function(data) {
 			$form[0].reset();
 			$form.find('textarea').focus();
-			$form.find('.imageAttacher').find('p, img').remove();
-			$form.find('.imageAttacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
+			$form.find('.image-attacher').find('p, img').remove();
+			$form.find('.image-attacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
 			$submitButton.attr('disabled', false);
 			$.removeCookie('talk-autosave-' + otherpartyId);
 		}).fail(function(data) {
@@ -273,12 +273,12 @@ $(function() {
 });
 
 $(window).load(function() {
-	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+	$("body").css("margin-bottom", $("#post-form-container").outerHeight() + "px");
 	scroll(0, document.body.clientHeight)
 });
 
 $(window).resize(function() {
-	$("body").css("margin-bottom", $("#postFormContainer").outerHeight() + "px");
+	$("body").css("margin-bottom", $("#post-form-container").outerHeight() + "px");
 });
 
 $(function() {
