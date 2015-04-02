@@ -54,7 +54,9 @@ TALKSTREAM.setEvent = function($message) {
 
 $(function() {
 	var meId = $("html").attr("data-me-id");
+	var meSn = $("html").attr("data-me-screen-name");
 	var otherpartyId = $("html").attr("data-otherparty-id");
+	var otherpartySn = $("html").attr("data-otherparty-screen-name");
 
 	// オートセーブがあるなら復元
 	if ($.cookie('talk-autosave-' + otherpartyId)) {
@@ -168,7 +170,7 @@ $(function() {
 
 	socket.on('alive', function() {
 		console.log('alive');
-		var $status = $('<img src="/img/icon/' + otherpartyId + '" alt="icon" id="alive">');
+		var $status = $('<img src="/img/icon/' + otherpartySn + '" alt="icon" id="alive">');
 		if ($('#otherparty-status #alive')[0]) {
 			$('#otherparty-status #alive').remove();
 		} else {
