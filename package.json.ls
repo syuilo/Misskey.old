@@ -1,7 +1,7 @@
 name: 'misskey'
 description: 'Misskey'
 version: '0.0.6'
-private: true
+private: yes
 license: 'MIT'
 
 homepage: 'https://github.com/syuilo/Misskey.git'
