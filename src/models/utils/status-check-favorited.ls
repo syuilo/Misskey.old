@@ -11,3 +11,4 @@ module.exports = (user-id, status-id) ->
 	promise = map-promise ((empty) >> (!)), promise
 	console.log '***********************'
 	console.log promise
+	promise.then (x) -> console.log x
