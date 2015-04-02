@@ -22,3 +22,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			..image = image
 			..blurred-image = blurred-image
 			..save -> res.api-render 'success'
+	else
+		res.api-error 400 'Not attached image'
