@@ -24,9 +24,7 @@ module.exports = (req, res) ->
 					resolve message)
 
 	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
-		console.log '======================'
-		user-following-check otherparty-id, me.id .then (following-me) ->
-			console.log following-me
+		user-following-check otherparty.id, me.id .then (following-me) ->
 			messages |> each (message) ->
 				if message.user-id == otherparty.id
 					TalkMessage.update do
@@ -37,7 +35,6 @@ module.exports = (req, res) ->
 				
 			console.log messages
 			serialize-stream-object messages .then (messages) ->
-				console.log '##################'
 				res.display req, res, \user-talk {
 					otherparty
 					messages
