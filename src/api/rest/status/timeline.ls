@@ -1,5 +1,6 @@
 require! {
 	'../../auth': authorize
+	'../../../utils/get-express-params'
 	'../../../models/status': Status
 	'../../../models/utils/status-get-timeline'
 }
