@@ -56,6 +56,7 @@ module.exports = (app) ->
 
 	function display-user-image(req, res, sn, image-property-name, image-type = 'image')
 		image-type = camelize image-type
+		
 		function display(user, user-image)
 			image-buffer = if user-image.image?
 				then
