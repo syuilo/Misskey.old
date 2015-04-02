@@ -1,8 +1,5 @@
 require! {
 	async
-	'../../models/utils/get-followings-count'
-	'../../models/utils/get-followers-count'
-	'../../models/utils/get-statuses-count'
 	'../../models/utils/status-get-timeline'
 	'../../models/utils/status-get-mentions'
 	'../../models/utils/get-new-users'
