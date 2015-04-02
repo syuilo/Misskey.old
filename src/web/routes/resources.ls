@@ -93,7 +93,7 @@ module.exports = (app) ->
 							..send 'Theme parse failed.'
 		
 		if req.query.user?
-			User.find-one { screem-name: req.query.user } (, theme-user) ->
+			User.find-one {screem-name: req.query.user} (, theme-user) ->
 				if theme-user?
 					send-theme-style theme-user
 				else
@@ -120,7 +120,7 @@ module.exports = (app) ->
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
 						| req.query.user? =>
-							User.find-one { screen-name: req.query.user } (, style-user) ->
+							User.find-one {screen-name: req.query.user} (, style-user) ->
 								read-file-send-less do
 									req
 									res

@@ -136,7 +136,7 @@ server.use (err, req, res, next) ->
 		display-err += "\r\n#{req.me.id}"
 	res.status 500
 	if res.has-own-property \display
-		res.display req, res, \error { err: display-err }
+		res.display req, res, \error {err: display-err}
 	else
 		res.send err
 

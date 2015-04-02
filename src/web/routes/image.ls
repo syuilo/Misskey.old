@@ -93,10 +93,10 @@ module.exports = (app) ->
 		
 		switch
 		| id-or-sn == /^[0-9]+$/ => User.find-by-id id-or-sn, (, user) -> routing-image user
-		| _ => User.find-one { screen-name: id-or-sn } (, user) -> routing-image user
+		| _ => User.find-one {screen-name: id-or-sn} (, user) -> routing-image user
 				
 	function display-status-image(req, res, id)
-		StatusImage.find-one { status-id: id } (, status-image) ->
+		StatusImage.find-one {status-id: id} (, status-image) ->
 			| status-image? =>
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
@@ -116,7 +116,7 @@ module.exports = (app) ->
 					..send 'Image not found.'
 
 	function display-talkmessage-image(req, res, id)
-		TalkMessageImage.find-one { message-id: id } (, talkmessage-image) ->
+		TalkMessageImage.find-one {message-id: id} (, talkmessage-image) ->
 			| talkmessage-image? =>
 				TalkMessage.find-by-id talkmessage-image.message-id, (, talkmessage) ->
 					err = switch
