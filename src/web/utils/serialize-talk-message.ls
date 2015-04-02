@@ -6,7 +6,7 @@ require! {
 
 # TalkMessage -> User -> User -> Promise TalkMessage
 module.exports = (message, me, otherparty) ->
-	resolve, reject <- new Promise
+	resolve, reject <- new Promise!
 	message .= to-object!
 	(, app) <- Application.find-by-id message.app-id
 	message.app = app
