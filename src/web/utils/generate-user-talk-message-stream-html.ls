@@ -6,10 +6,9 @@ require! {
 
 module.exports = (messages, me) ->
 	resolve, reject <- new Promise!
-	console.log '#####################'
-	console.log messages
-	message-compiler = jade.compile-file "#__dirname/../views/templates/user-talk/message.jade" {pretty: '  '}
-	if !empty messages
+	if !empty messages and !messages?
+		console.log '############=======#########'
+		message-compiler = jade.compile-file "#__dirname/../views/templates/user-talk/message.jade" {pretty: '  '}
 		resolve (messages |> map (message) ->
 			message-compiler do
 				message: message
@@ -17,4 +16,5 @@ module.exports = (messages, me) ->
 				text-parser: parse-text
 				config: config.public-config)
 	else
+		console.log '#####################'
 		resolve null

@@ -36,6 +36,7 @@ module.exports = (req, res) ->
 			
 			serialize-stream-object messages .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
+					console.log '#wwwwwwwwwwwwwwwwwwwwww#'
 					res.display req, res, \user-talk {
 						otherparty
 						messages: message-htmls
