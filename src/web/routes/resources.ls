@@ -45,7 +45,7 @@ module.exports = (app) ->
 				.replace do
 					/<%headerBlurImageUrl%>/g
 					if style-user?
-						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}?blur={radius: 64, sigma: 20}\""
+						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}?blur={radius:64,sigma:20}\""
 						else ''
 	
 	function read-file-send-less(req, res, path, style-user)
