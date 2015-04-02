@@ -107,7 +107,7 @@ module.exports = (app) ->
 						| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
 						| _ => null
 					if !err?
-						image-buffer = talkmessage-image.image;
+						image-buffer = talkmessage-image.image
 						if (req.headers[\accept].index-of \text) == 0
 							User.find-by-id talkmessage.user-id, (, user) ->
 								display-image do
