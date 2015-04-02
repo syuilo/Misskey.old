@@ -55,9 +55,5 @@ module.exports = (app) ->
 				req.format = extension.1 if extension?
 			next!
 		
-		# Authorize
-		..get  '/authorize' require './application-authorize/authorize-get'
-		..post '/authorize' (req, res) -> (require './application-authorize/authorize-post') req, res, app
-	
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
