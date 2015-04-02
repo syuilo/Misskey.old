@@ -32,6 +32,6 @@ status-schema.options.to-object.transform = (doc, ret, options) ->
 	ret
 
 # Auto increment
-status-schema.plugin mongoose-auto-increment.plugin, {model: \Statuses, field: \cursor}
+status-schema.plugin mongoose-auto-increment.plugin, {model: \Status, field: \cursor}
 
-module.exports = db.model \Statuses status-schema
+module.exports = db.model \Status status-schema
