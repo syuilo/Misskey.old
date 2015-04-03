@@ -1,4 +1,7 @@
 @themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
 
@@ -100,7 +103,12 @@ textarea {
 		height: 0;
 		overflow: hidden;
 		color: contrast(@themeColor);
-		background: @themeColor;
+		background: linear-gradient(fade(@themeColor, 50%), fade(@themeColor, 50%)), url(@blurredWallpaperUrl);
+		background-color: transparent;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
 		transition: all 0.5s cubic-bezier(0,0,0,1);
 
 		&:after {
