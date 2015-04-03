@@ -79,20 +79,20 @@ module.exports = (status, callback) ->
 						status.replies = replies
 						callback status
 	
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status .= to-object!
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status <- serialyze-repost status
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status.is-reply = status.in-reply-to-status-id?
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status <- get-app status
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status <- get-user status
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status <- get-reply-source status
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	status <- get-replies status
-	console.log "- #{user.screen-name} #{new Date!}"
+	console.log "- #{status.id} #{new Date!}"
 	callback status
 	
