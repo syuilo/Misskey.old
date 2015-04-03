@@ -3,6 +3,10 @@
 @headerImageUrl: <%headerImageUrl%>;
 @blurredHeaderImageUrl: <%blurredHeaderImageUrl%>;
 
+.shadow {
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 html, body {
 	height: 100%;
 }
@@ -40,6 +44,7 @@ main {
 		margin: 8px;
 		padding: 0;
 		border-radius: 8px;
+		.shadow;
 
 		> #headerMain {
 			position: relative;
@@ -291,6 +296,7 @@ main {
 			background: #fff;
 			border-radius: 8px;
 			font-size: 1em;
+			.shadow;
 		}
 
 		.usersList {
