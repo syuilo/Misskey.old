@@ -20,7 +20,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		fs.unlink path
 		header
 			..image = image
-			..blurred-image = blurred-image
+			..blur = blurred-image
 			..save -> res.api-render 'success'
 	else
 		res.api-error 400 'Not attached image'

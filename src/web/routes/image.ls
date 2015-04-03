@@ -37,18 +37,17 @@ module.exports = (app) ->
 			..set 'Content-Type' 'image/jpeg'
 			..send image-buffer
 
-	function display-user-image(req, res, sn, image-property-name, image-type = 'image')		
+	function display-user-image(req, res, sn, image-property-name, image-type = \image)		
 		function display(user, user-image)
-			camelized-image-type = camelize image-type
-			image-buffer = if user-image[camelized-image-type]?
-				then user-image[camelized-image-type]
-				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{camelized-image-type}].jpg"
+			image-buffer = if user-image[image-type]?
+				then user-image[image-type]
+				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
 			if (req.headers[\accept].index-of \text) == 0
 				display-image do
 					req
 					res
 					image-buffer
-					"https://misskey.xyz/img/#image-property-name/#sn"
+					if image-type == \image then "https://misskey.xyz/img/#image-property-name/#sn" else "https://misskey.xyz/img/#image-property-name/#sn/#image-type"
 					user
 			else
 				send-image req, res, image-buffer
@@ -136,7 +135,7 @@ module.exports = (app) ->
 		
 	# User header (Blur)
 	app.get '/img/header/:sn/blur' (req, res) ->
-		display-user-image req, res, req.params.sn, \header \blurred-image
+		display-user-image req, res, req.params.sn, \header \blur
 
 	# User wallpaper
 	app.get '/img/wallpaper/:sn' (req, res) ->
@@ -144,7 +143,7 @@ module.exports = (app) ->
 		
 	# User wallpaper (Blur)
 	app.get '/img/wallpaper/:sn/blur' (req, res) ->
-		display-user-image req, res, req.params.sn, \wallpaper \blurred-image
+		display-user-image req, res, req.params.sn, \wallpaper \blur
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
