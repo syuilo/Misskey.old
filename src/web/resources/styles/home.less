@@ -2,6 +2,7 @@
 @headerImageUrl: <%headerImageUrl%>;
 @wallpaperUrl: <%wallpaperUrl%>;
 @blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+@fadeThemeColor: fade(@themeColor, 80%);
 
 html, body {
 	height: 100%;
@@ -43,7 +44,8 @@ main {
 					max-width: 650px;
 					margin: 0 auto;
 					padding: 16px 32px 12px 32px;
-					background: linear-gradient(fade(@themeColor, 80%), fade(@themeColor, 80%)), url(@blurredWallpaperUrl) background-color: transparent;
+					background: linear-gradient(@fadeThemeColor, @fadeThemeColor), url(@blurredWallpaperUrl);
+					background-color: transparent;
 					background-attachment: fixed;
 					background-repeat: no-repeat;
 					background-position: center center;
