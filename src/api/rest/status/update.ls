@@ -16,7 +16,6 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
 	[text, in-reply-to-status-id] = get-express-params req, <[ text, in-reply-to-status-id ]>
-	text = if !empty text then text else ''
 	in-reply-to-status-id = if !empty in-reply-to-status-id then in-reply-to-status-id else null
 	text .= trim!
 	switch
