@@ -15,7 +15,8 @@ A mystery SNS. https://misskey.xyz/
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
 [![MongoDB](https://img.shields.io/badge/MongoDB-2.6.9-blue.svg)](https://www.mongodb.org)
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
-[![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
+([![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org) or [![ImageMagick](https://img.shields.io/badge/ImageMagick-6.9.1-blue.svg)](http://www.imagemagick.org))
+
 
 ## How to build
 1. `git clone git://github.com/syuilo/Misskey.git`
