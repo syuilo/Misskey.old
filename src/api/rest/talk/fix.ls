@@ -17,7 +17,7 @@ module.exports = (req, res) -> authorize req, res, (user,) ->
 		| talk-message.is-deleted => res.api-error 400 'This message has already been deleted.'
 		| _ => talk-message
 			..text = text
-			..is-modified = yes
+			..is-edited = yes
 			..save (err) ->
 				obj <- filter-talk-message-for-response talk-message
 				res.api-render obj

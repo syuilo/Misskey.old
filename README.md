@@ -1,10 +1,15 @@
+# Misskey [![MIT LICENSE](http://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
 [![Pull Requst Stats](http://issuestats.com/github/syuilo/Misskey/badge/pr?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Issue Stats](http://issuestats.com/github/syuilo/Misskey/badge/issue?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
 
-# Misskey
 A mystery SNS. https://misskey.xyz/
+
+## What's?
+**Misskeyは謎のTwitter風ソーシャル・ネットワーキング・サービスです。**[Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)サーバー上で動作します。
+
+**Misskey is a mystery Twitter Like social networking services.** run on [Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg) server.
 
 ## Implicit dependencies
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)

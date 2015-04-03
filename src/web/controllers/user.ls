@@ -4,6 +4,7 @@ require! {
 	'../../models/user': User
 	'../../models/user-following': UserFollowing
 	'../../models/status': Status
+	'../../models/utils/user-following-check'
 	'../utils/timeline-generate-html'
 	'../../config'
 }
@@ -26,16 +27,14 @@ module.exports = (req, res, page = \home) ->
 			# Get is following
 			(next) ->
 				| !req.login => next null null
-				| _ =>
-					UserFollowing.find-one {followee-id: user.id, follower-id: me.id} (, following) ->
-						next null following?
+				| _ => user-following-check me.id, user.id .then (is-following) ->
+						next null is-following
 			
 			# Get is followme
 			(next) ->
 				| !req.login => next null null
-				| _ =>
-					UserFollowing.find-one {followee-id: me.id, follower-id: user.id} (, following) ->
-						next null following?
+				| _ => user-following-check user.id, me.id .then (is-following) ->
+						next null is-following
 			
 			# Compile bio markdown to html
 			(next) ->

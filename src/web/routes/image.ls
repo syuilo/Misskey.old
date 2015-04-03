@@ -33,39 +33,21 @@ module.exports = (app) ->
 			}
 	
 	function send-image(req, res, image-buffer)
-		[blur] = get-express-params req, <[ blur ]>
-		switch
-		| !empty blur =>
-			try
-				options = parse-json blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
-				gm image-buffer
-					..blur options.radius, options.sigma
-					..compress \jpeg
-					..quality 80
-					..to-buffer \jpeg (, buffer) ->
-						res
-							..set 'Content-Type' 'image/jpeg'
-							..send buffer
-			catch e
-				res
-					..status 400
-					..send e
-		| _ =>
-			res
-				..set 'Content-Type' 'image/jpeg'
-				..send image-buffer
+		res
+			..set 'Content-Type' 'image/jpeg'
+			..send image-buffer
 
-	function display-user-image(req, res, id-or-sn, image-property-name)
+	function display-user-image(req, res, sn, image-property-name, image-type = \image)		
 		function display(user, user-image)
-			image-buffer = if user-image.image?
-				then user-image.image
-				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}.jpg"
+			image-buffer = if user-image[image-type]?
+				then user-image[image-type]
+				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
 			if (req.headers[\accept].index-of \text) == 0
 				display-image do
 					req
 					res
 					image-buffer
-					"https://misskey.xyz/img/#image-property-name/#id-or-sn"
+					if image-type == \image then "https://misskey.xyz/img/#image-property-name/#sn" else "https://misskey.xyz/img/#image-property-name/#sn/#image-type"
 					user
 			else
 				send-image req, res, image-buffer
@@ -92,9 +74,7 @@ module.exports = (app) ->
 					..status 404
 					..send 'User not found.'
 		
-		switch
-		| id-or-sn == /^[0-9]+$/ => User.find-by-id id-or-sn, (, user) -> routing-image user
-		| _ => User.find-one {screen-name: id-or-sn} (, user) -> routing-image user
+		User.find-one {screen-name: sn} (, user) -> routing-image user
 				
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
@@ -125,7 +105,7 @@ module.exports = (app) ->
 						| req.me.id != talkmessage.user-id && req.me.id != talkmessage.otherparty-id => [403 'Access denied.']
 						| _ => null
 					if !err?
-						image-buffer = talkmessage-image.image;
+						image-buffer = talkmessage-image.image
 						if (req.headers[\accept].index-of \text) == 0
 							User.find-by-id talkmessage.user-id, (, user) ->
 								display-image do
@@ -146,6 +126,7 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
+<<<<<<< HEAD
 	app.get '/img/icon/:idorsn' (req, res) ->
 		[id-or-sn] = get-express-params req, <[ idorsn ]>
 		display-user-image req, res, id-or-sn, \icon
@@ -159,6 +140,11 @@ module.exports = (app) ->
 	app.get '/img/wallpaper/:idorsn' (req, res) ->
 		[id-or-sn] = get-express-params req, <[ idorsn ]>
 		display-user-image req, res, id-or-sn, \wallpaper
+		
+	# User wallpaper (Blur)
+	app.get '/img/wallpaper/:sn/blur' (req, res) ->
+		[sn] = get-express-params req, <[ sn ]>
+		display-user-image req, res, sn, \wallpaper \blur
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->

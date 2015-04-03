@@ -57,6 +57,11 @@
 				&:hover {
 					text-decoration: underline;
 				}
+
+				&:active {
+					color: rgba(0, 0, 0, 0.6);
+					text-decoration: underline;
+				}
 			}
 		}
 
@@ -143,7 +148,12 @@
 				transition: text-shadow 0.2s ease;
 
 				&:hover {
+					color: darken(@themeColor, 10%);
 					text-shadow: 0 0 4px fade(@themeColor, 30%);
+				}
+
+				&:active {
+					color: darken(@themeColor, 20%);
 				}
 			}
 
@@ -510,6 +520,17 @@
 										font-weight: bold;
 										text-decoration: none;
 										transition: all 0.1s ease;
+
+										&:hover {
+											text-decoration: underline;
+											transition: all 0s ease;
+										}
+
+										&:active {
+											text-decoration: underline;
+											color: darken(@themeColor, 10%);
+											transition: all 0s ease;
+										}
 									}
 								}
 
@@ -524,6 +545,11 @@
 										font-size: small;
 
 										&:hover {
+											text-decoration: underline;
+										}
+
+										&:active {
+											color: rgba(0, 0, 0, 0.8);
 											text-decoration: underline;
 										}
 									}
@@ -545,7 +571,7 @@
 								> .screen-name {
 									text-align: left;
 									margin: 0 0 0 8px;
-									color: rgba(0, 0, 0, 0.5);
+									color: rgba(0, 0, 0, 0.4);
 								}
 							}
 
@@ -601,7 +627,12 @@
 										transition: text-shadow 0.2s ease;
 
 										&:hover {
+											color: darken(@themeColor, 10%);
 											text-shadow: 0 0 4px fade(@themeColor, 30%);
+										}
+
+										&:active {
+											color: darken(@themeColor, 20%);
 										}
 									}
 
@@ -657,6 +688,10 @@
 												color: rgba(0, 0, 0, 0.7);
 											}
 
+											&:active {
+												color: rgba(0, 0, 0, 0.9);
+											}
+
 											> i {
 												cursor: pointer;
 											}
@@ -665,6 +700,7 @@
 										> a {
 											color: rgba(0, 0, 0, 0.5);
 											text-decoration: none;
+											font-size: 0.8em;
 
 											&:hover {
 												text-decoration: underline;
@@ -908,6 +944,7 @@
 
 										&:active {
 											background: darken(@themeColor, 10%);
+											transition: background 0s ease;
 										}
 									}
 

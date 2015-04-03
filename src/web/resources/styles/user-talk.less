@@ -10,7 +10,7 @@ html {
 	max-width: 100%;
 	margin: 0 auto;
 
-	#emptyStream, #noFollowingMe {
+	#empty-stream, #no-following-me {
 		box-sizing: border-box;
 		width: 100%;
 		margin: 0;
@@ -23,15 +23,15 @@ html {
 		}
 	}
 
-	#emptyStream {
+	#empty-stream {
 		padding: 16px 8px 8px 8px;
 	}
 
-	#noFollowingMe {
+	#no-following-me {
 		padding: 8px;
 	}
 
-	#otherpartyStatus {
+	#otherparty-status {
 		text-align: center;
 		margin: 0;
 		padding: 0 0 4px 0;
@@ -70,7 +70,7 @@ html {
 			}
 		}
 
-		#otherpartyTyping {
+		#otherparty-typing {
 			display: inline-block;
 			position: relative;
 			line-height: 26px;
@@ -98,7 +98,7 @@ html {
 	}
 }
 
-#postFormContainer {
+#post-form-container {
 	position: fixed;
 	z-index: 2;
 	bottom: 0;
@@ -162,7 +162,7 @@ html {
 			}
 		}
 
-		.imageAttacher {
+		.image-attacher {
 			float: right;
 			margin: 0;
 			padding: 10px 20px;
@@ -180,7 +180,7 @@ html {
 	}
 }
 
-.talkStream {
+.talk-stream {
 
 	> .messages {
 		margin: 0;
@@ -188,298 +188,300 @@ html {
 		list-style: none;
 
 		> .message {
-			position: relative;
-			padding: 0;
-			background-color: transparent;
-
-			&:last-child {
-				> article {
-					padding: 20px 12px 0 12px;
-				}
-			}
-
-			> article {
-				display: block;
+			> .message {
 				position: relative;
-				padding: 20px 12px;
+				padding: 0;
+				background-color: transparent;
 
-				&:after {
-					content: "";
-					display: block;
-					clear: both;
+				&:last-child {
+					> article {
+						padding: 20px 12px 0 12px;
+					}
 				}
 
-				a > .icon {
-					min-width: 54px;
-					min-height: 54px;
-					max-width: 54px;
-					max-height: 54px;
-					margin: 0;
-					border-radius: 8px;
-					transition: all 0.1s ease;
-				}
-
-				> .contentContainer {
+				> article {
 					display: block;
-					box-sizing: border-box;
 					position: relative;
-					margin: 0 12px;
-					padding: 0;
-					max-width: ~"calc(100% - 78px)";
+					padding: 20px 12px;
 
-					&:hover {
-						> .deleteButton {
-							display: block;
-						}
-					}
-
-					> .readed {
+					&:after {
+						content: "";
 						display: block;
-						position: absolute;
-						z-index: 1;
-						bottom: 16px;
-						left: -12px;
-						margin: 0;
-						color: rgba(0, 0, 0, 0.5);
-						font-size: 0.7em;
+						clear: both;
 					}
 
-					> .deleteButton {
-						-webkit-appearance: none;
-						-moz-appearance: none;
-						appearance: none;
-						display: none;
-						position: absolute;
-						z-index: 1;
-						top: -4px;
-						right: -4px;
+					a > .icon {
+						min-width: 54px;
+						min-height: 54px;
+						max-width: 54px;
+						max-height: 54px;
 						margin: 0;
-						padding: 0;
-						cursor: pointer;
-						outline: none;
-						border: none;
-						border-radius: 0;
-						box-shadow: none;
-						background: transparent;
-
-						> img {
-							vertical-align: bottom;
-							width: 16px;
-							height: 16px;
-							cursor: pointer;
-						}
+						border-radius: 8px;
+						transition: all 0.1s ease;
 					}
 
-					> .content {
+					> .content-container {
 						display: block;
-						float: inherit;
 						box-sizing: border-box;
 						position: relative;
-						margin: 0;
-						padding: 8px 16px;
-						max-width: 100%;
-						min-height: 2.1em;
-						line-height: 1.3em;
-						border-radius: 16px;
+						margin: 0 12px;
+						padding: 0;
+						max-width: ~"calc(100% - 78px)";
 
-						&:before {
-							content: "";
-							pointer-events: none;
+						&:hover {
+							> .deleteButton {
+								display: block;
+							}
+						}
+
+						> .readed {
 							display: block;
 							position: absolute;
-							top: ~"calc(((1.3em + (8px * 2)) / 2) - 8px)";
-						}
-
-						> p.isDeleted {
-							display: block;
+							z-index: 1;
+							bottom: 16px;
+							left: -12px;
 							margin: 0;
-							padding: 0;
-							overflow: hidden;
-							word-wrap: break-word;
-							font-size: 1.1em;
 							color: rgba(0, 0, 0, 0.5);
+							font-size: 0.7em;
 						}
 
-						> p.text {
-							user-select: text;
-							-moz-user-select: text;
-							-webkit-user-select: text;
-							-ms-user-select: text;
-							cursor: default;
-							display: block;
-							margin: 0;
-							padding: 0;
-							overflow: hidden;
-							word-wrap: break-word;
-							font-size: 1.1em;
-							color: rgba(0, 0, 0, 0.8);
-
-							.url {
-								color: #1bb3b3;
-								text-decoration: none;
-
-								&:hover {
-									text-decoration: underline;
-								}
-
-								&:after {
-									content: "\f14c";
-									display: inline-block;
-									padding-left: 2px;
-									font-family: FontAwesome;
-									font-size: 0.9em;
-									font-weight: normal;
-									font-style: normal;
-								}
-							}
-
-							.screenName {
-								color: @themeColor;
-								text-decoration: none;
-								transition: text-shadow 0.2s ease;
-
-								&:hover {
-									text-shadow: 0 0 4px fade(@themeColor, 30%);
-								}
-							}
-
-							b {
-								font-weight: bold;
-							}
-
-							small {
-								margin: 0 4px;
-								font-size: 0.8em;
-								color: rgba(0, 0, 0, 0.6);
-							}
-						}
-
-						> textarea.text {
+						> .delete-button {
 							-webkit-appearance: none;
 							-moz-appearance: none;
 							appearance: none;
-							user-select: text;
-							-moz-user-select: text;
-							-webkit-user-select: text;
-							-ms-user-select: text;
-							cursor: default;
-							display: block;
+							display: none;
+							position: absolute;
+							z-index: 1;
+							top: -4px;
+							right: -4px;
 							margin: 0;
 							padding: 0;
-							overflow: hidden;
-							word-wrap: break-word;
-							font-size: 1.1em;
-							color: #fff;
-							border: none;
+							cursor: pointer;
 							outline: none;
-							background: rgba(255, 255, 255, 0.1);
+							border: none;
+							border-radius: 0;
+							box-shadow: none;
+							background: transparent;
+
+							> img {
+								vertical-align: bottom;
+								width: 16px;
+								height: 16px;
+								cursor: pointer;
+							}
 						}
-
-						> .image {
-							display: block;
-							max-width: 100%;
-							max-height: 512px;
-							border-radius: 2px;
-						}
-					}
-
-					> time {
-						display: block;
-						clear: both;
-						margin: 0;
-						padding: 2px;
-						font-size: 0.65em;
-						color: rgba(0, 0, 0, 0.4);
-					}
-				}
-			}
-		}
-
-			> .message.me {
-				> article {
-					a > .icon {
-						float: right;
-					}
-
-					> .contentContainer {
-						float: right;
 
 						> .content {
-							background: #33B623;
+							display: block;
+							float: inherit;
+							box-sizing: border-box;
+							position: relative;
+							margin: 0;
+							padding: 8px 16px;
+							max-width: 100%;
+							min-height: 2.1em;
+							line-height: 1.3em;
+							border-radius: 16px;
 
 							&:before {
-								right: -14px;
-								border-top: solid 8px transparent;
-								border-right: solid 8px transparent;
-								border-bottom: solid 8px transparent;
-								border-left: solid 8px #33B623;
+								content: "";
+								pointer-events: none;
+								display: block;
+								position: absolute;
+								top: ~"calc(((1.3em + (8px * 2)) / 2) - 8px)";
 							}
 
-							> p.isDeleted {
-								color: rgba(255, 255, 255, 0.5);
+							> p.is-deleted {
+								display: block;
+								margin: 0;
+								padding: 0;
+								overflow: hidden;
+								word-wrap: break-word;
+								font-size: 1.1em;
+								color: rgba(0, 0, 0, 0.5);
 							}
 
 							> p.text {
-								color: #fff;
+								user-select: text;
+								-moz-user-select: text;
+								-webkit-user-select: text;
+								-ms-user-select: text;
+								cursor: default;
+								display: block;
+								margin: 0;
+								padding: 0;
+								overflow: hidden;
+								word-wrap: break-word;
+								font-size: 1.1em;
+								color: rgba(0, 0, 0, 0.8);
 
-								> .url {
-									color: #fff;
+								.url {
+									color: #1bb3b3;
+									text-decoration: none;
+
+									&:hover {
+										text-decoration: underline;
+									}
+
+									&:after {
+										content: "\f14c";
+										display: inline-block;
+										padding-left: 2px;
+										font-family: FontAwesome;
+										font-size: 0.9em;
+										font-weight: normal;
+										font-style: normal;
+									}
+								}
+
+								.screen-name {
+									color: @themeColor;
+									text-decoration: none;
+									transition: text-shadow 0.2s ease;
+
+									&:hover {
+										text-shadow: 0 0 4px fade(@themeColor, 30%);
+									}
+								}
+
+								b {
+									font-weight: bold;
+								}
+
+								small {
+									margin: 0 4px;
+									font-size: 0.8em;
+									color: rgba(0, 0, 0, 0.6);
 								}
 							}
+
+							> textarea.text {
+								-webkit-appearance: none;
+								-moz-appearance: none;
+								appearance: none;
+								user-select: text;
+								-moz-user-select: text;
+								-webkit-user-select: text;
+								-ms-user-select: text;
+								cursor: default;
+								display: block;
+								margin: 0;
+								padding: 0;
+								overflow: hidden;
+								word-wrap: break-word;
+								font-size: 1.1em;
+								color: #fff;
+								border: none;
+								outline: none;
+								background: rgba(255, 255, 255, 0.1);
+							}
+
+							> .image {
+								display: block;
+								max-width: 100%;
+								max-height: 512px;
+								border-radius: 2px;
+							}
 						}
 
 						> time {
-							text-align: right;
+							display: block;
+							clear: both;
+							margin: 0;
+							padding: 2px;
+							font-size: 0.65em;
+							color: rgba(0, 0, 0, 0.4);
 						}
 					}
 				}
 			}
 
-				> .message.me[data-is-deleted='true'] {
+				> .message.me {
 					> article {
-						> .contentContainer {
-							opacity: 0.5;
+						a > .icon {
+							float: right;
 						}
-					}
-				}
 
-			> .message.otherparty {
-				> article {
-					a > .icon {
-						float: left;
-					}
+						> .content-container {
+							float: right;
 
-					> .contentContainer {
-						float: left;
+							> .content {
+								background: #33B623;
 
-						> .content {
-							background: #fff;
+								&:before {
+									right: -14px;
+									border-top: solid 8px transparent;
+									border-right: solid 8px transparent;
+									border-bottom: solid 8px transparent;
+									border-left: solid 8px #33B623;
+								}
 
-							&:before {
-								left: -14px;
-								border-top: solid 8px transparent;
-								border-right: solid 8px #fff;
-								border-bottom: solid 8px transparent;
-								border-left: solid 8px transparent;
+								> p.is-deleted {
+									color: rgba(255, 255, 255, 0.5);
+								}
+
+								> p.text {
+									color: #fff;
+
+									> .url {
+										color: #fff;
+									}
+								}
 							}
 
-							> .text {
+							> time {
+								text-align: right;
 							}
 						}
-
-						> time {
-							text-align: left;
-						}
 					}
 				}
-			}
 
-				> .message.otherparty[data-is-deleted='true'] {
+					> .message.me[data-is-deleted='true'] {
+						> article {
+							> .content-container {
+								opacity: 0.5;
+							}
+						}
+					}
+
+				> .message.otherparty {
 					> article {
-						> .contentContainer {
-							opacity: 0.5;
+						a > .icon {
+							float: left;
+						}
+
+						> .content-container {
+							float: left;
+
+							> .content {
+								background: #fff;
+
+								&:before {
+									left: -14px;
+									border-top: solid 8px transparent;
+									border-right: solid 8px #fff;
+									border-bottom: solid 8px transparent;
+									border-left: solid 8px transparent;
+								}
+
+								> .text {
+								}
+							}
+
+							> time {
+								text-align: left;
+							}
 						}
 					}
 				}
+
+					> .message.otherparty[data-is-deleted='true'] {
+						> article {
+							> .content-container {
+								opacity: 0.5;
+							}
+						}
+					}
+		}
 	}
 }
