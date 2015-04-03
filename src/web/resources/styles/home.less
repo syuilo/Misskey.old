@@ -43,7 +43,11 @@ main {
 					max-width: 650px;
 					margin: 0 auto;
 					padding: 16px 32px 12px 32px;
-					background: lighten(@themeColor, 45%);
+					background: linear-gradient(fade(@themeColor, 80%), fade(@themeColor, 80%)), url(@blurredWallpaperUrl) background-color: transparent;
+					background-attachment: fixed;
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: cover;
 					border-radius: 8px 8px 0 0;
 					//box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 					transition: border-radius 0.2s ease;
