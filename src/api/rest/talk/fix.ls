@@ -8,6 +8,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user,) ->
 	[text, message-id] = get-express-params req, <[ text message-id ]>
+	switch
 	| empty text => res.api-error 400 'text parameter is required :('
 	| empty message-id => res.api-error 400 'messageId parameter is required :('
 	| _ => TalkMessage.find-by-id message-id, (, talk-message) ->

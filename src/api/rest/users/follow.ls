@@ -9,6 +9,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[target-user-id] = get-express-params req, <[ target-user-id ]>
+	switch
 	| empty target-user-id => res.api-error 400 'user-id parameter is required :('
 	| target-user-id == user.id => res.api-error 400 'This user is you'
 	| _ => UserFollowing.find-one {follower-id: user.id} `$and` {followee-id: target-user-id} (, following) ->

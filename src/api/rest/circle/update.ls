@@ -8,6 +8,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[circle-id, name, description] = get-express-params req, <[ circle-id name description ]>
+	switch
 	| empty circle-id => res.api-error 400, 'circle_id parameter is required :('
 	| _ => Circle.find circle-id, (circle) ->
 		| !circle? => res.api-error 404 'Not found that circle :('
