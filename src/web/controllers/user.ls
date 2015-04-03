@@ -55,8 +55,8 @@ module.exports = (req, res, page = \home) ->
 								async.map do
 									followings
 									(following, map-next) ->
-										User.find-one {id: following.followee-id} (, user) ->
-											map-next null user
+										User.find-by-id following.followee-id, (, user) ->
+											map-next null user.to-object!
 									(, users) ->
 										next null users
 			
@@ -74,8 +74,8 @@ module.exports = (req, res, page = \home) ->
 								async.map do
 									followers
 									(follower, map-next) ->
-										User.find-one {id: follower.follower-id} (, user) ->
-											map-next null user
+										User.find-by-id follower.follower-id, (, user) ->
+											map-next null user.to-object!
 									(, users) ->
 										next null users
 		]
