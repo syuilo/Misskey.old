@@ -64,6 +64,7 @@ module.exports = (app) ->
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
 		[user] = get-express-params req, <[ user ]>
+		switch
 		| !empty user =>
 			User.find-one { screen-name: req.query.user } (, theme-user) ->
 				| theme-user? =>
