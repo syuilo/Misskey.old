@@ -14,6 +14,7 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
+	console.log "#{user.screen-name} #{new Date!}"
 	text = if req.body.text? then req.body.text else ''
 	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
 	text .= trim!
@@ -49,6 +50,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
 	status = new Status {app-id, in-reply-to-status-id, is-image-attached, text, user-id: user.id}
 	status.save (, created-status) ->
+		console.log "#{user.screen-name} #{new Date!}"
 		user.statuses-count++
 		err <- user.save
 		if status.in-reply-to-status-id?
@@ -70,11 +72,13 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			type: \status
 			value: { id: status.id }
 
+		console.log "#{user.screen-name} #{new Date!}"
 		publish-redis-streaming "userStream:#{user.id}" stream-obj
 
 		UserFollowing.find { followee-id: user.id } (, followings) ->
 			| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
 
+		console.log "#{user.screen-name} #{new Date!}"
 		serialize-status status, (obj) ->
 			| obj.reply? =>
 				switch
@@ -86,6 +90,7 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 			| _ => send obj
 
 	function send obj
+		console.log "#{user.screen-name} #{new Date!}"
 		res.api-render obj
 		mentions = obj.text == /@[a-zA-Z0-9_]+/g
 		if mentions? then mentions.for-each (mention-sn) ->
