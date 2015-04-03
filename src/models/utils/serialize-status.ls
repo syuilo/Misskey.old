@@ -39,7 +39,7 @@ module.exports = (status, callback) ->
 			status.user = user.to-object!
 			callback status
 	
-	function get-reply-spurce(status, callback)
+	function get-reply-source(status, callback)
 		switch
 		| !status.is-reply => callback status
 		| _ =>
@@ -84,7 +84,7 @@ module.exports = (status, callback) ->
 	status.is-reply = status.in-reply-to-status-id?
 	status <- get-app status
 	status <- get-user status
-	status <- get-reply-spurce status
+	status <- get-reply-source status
 	status <- get-replies status
 	callback status
 	
