@@ -38,7 +38,7 @@ module.exports = (app) ->
 						then "\"#{config.public-config.url}/img/wallpaper/#{style-user.screen-name}\""
 						else ''
 				.replace do
-					/<%wallpaperBlurImageUrl%>/g
+					/<%blurredWallpaperUrl%>/g
 					if style-user?
 						then "\"#{config.public-config.url}/img/wallpaper/#{style-user.screen-name}/blur\""
 						else ''
@@ -48,7 +48,7 @@ module.exports = (app) ->
 						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}\""
 						else ''
 				.replace do
-					/<%headerBlurImageUrl%>/g
+					/<%blurredHeaderImageUrl%>/g
 					if style-user?
 						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}/blur\""
 						else ''
