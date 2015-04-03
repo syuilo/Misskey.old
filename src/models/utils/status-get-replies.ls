@@ -5,7 +5,7 @@ require! {
 
 # Status -> Promise Statuses
 module.exports = (status) ->
-	| !status.replies? => new Promise((resolve) -> resolve null)
+	| !status.replies? or empty status.replies => new Promise((resolve) -> resolve null)
 	| _ => Promise.all (status.replies |> map (reply-status-id) ->
 		new Promise (resolve, reject) ->
 			Status.find-by-id reply-status-id, (, reply-status) ->
