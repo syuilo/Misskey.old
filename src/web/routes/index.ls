@@ -6,11 +6,12 @@ require! {
 	fs
 	express
 	'../../models/access-token': AccessToken
+	'../../config'
+	'../utils/login': do-login
+	'../../utils/get-express-params'
+	'./image': image-router
 	'../../models/user': User
 	'../../models/status': Status
-	'../utils/login': do-login
-	'../../config'
-	'./image': image-router
 }
 
 module.exports = (app) ->
@@ -57,8 +58,9 @@ module.exports = (app) ->
 	app.get '/dev/usertheme' (req, res) -> (require '../controllers/dev-usertheme') req, res
 	app.get '/dev/usertheme/new' (req, res) -> (require '../controllers/dev-usertheme-new') req, res
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
-	app.post '/login' (req, res) ->
-		do-login req, req.body.\screen-name, req.body.password, (user) ->
+	app.post '/login' (req, res) -> 
+		[screen-name, password] = get-express-params req <[ screen-name, password ]>
+		do-login res, screen-name, password, (user) -> 
 			res.send-status 200
 		, -> res.send-status 400
 	app.get '/logout' (req, res) ->

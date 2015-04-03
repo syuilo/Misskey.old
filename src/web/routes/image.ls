@@ -126,38 +126,38 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
-	app.get '/img/icon/:sn' (req, res) ->
-		display-user-image req, res, req.params.sn, \icon
+	app.get '/img/icon/:idorsn' (req, res) ->
+		[id-or-sn] = get-express-params req, <[ idorsn ]>
+		display-user-image req, res, id-or-sn, \icon
 
 	# User header
-	app.get '/img/header/:sn' (req, res) ->
-		display-user-image req, res, req.params.sn, \header
-		
-	# User header (Blur)
-	app.get '/img/header/:sn/blur' (req, res) ->
-		display-user-image req, res, req.params.sn, \header \blur
+	app.get '/img/header/:idorsn' (req, res) ->
+		[id-or-sn] = get-express-params req, <[ idorsn ]>
+		display-user-image req, res, id-or-sn, \header
 
 	# User wallpaper
-	app.get '/img/wallpaper/:sn' (req, res) ->
-		display-user-image req, res, req.params.sn, \wallpaper
+	app.get '/img/wallpaper/:idorsn' (req, res) ->
+		[id-or-sn] = get-express-params req, <[ idorsn ]>
+		display-user-image req, res, id-or-sn, \wallpaper
 		
 	# User wallpaper (Blur)
 	app.get '/img/wallpaper/:sn/blur' (req, res) ->
-		display-user-image req, res, req.params.sn, \wallpaper \blur
+		[sn] = get-express-params req, <[ sn ]>
+		display-user-image req, res, sn, \wallpaper \blur
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
-		id = req.params.id
+		[id] = get-express-params req, <[ id ]>
 		display-status-image req, res, id
 
 	# Talk message
 	app.get '/img/talk-message/:id' (req, res) ->
-		id = req.params.id
+		[id] = get-express-params req, <[ id ]>
 		display-talkmessage-image req, res, id
 		
 	# Webtheme thumbnail
 	app.get '/img/webtheme-thumbnail/:id' (req, res) ->
-		id = req.params.id
+		[id] = get-express-params req, <[ id ]>
 		Webtheme.find-by-id id, (, webtheme) ->
 			| webtheme? =>
 				image-buffer = webtheme.thumbnail

@@ -9,9 +9,10 @@ require! {
 	gm
 	compression
 	less
+	'../../config'
+	'../../utils/get-express-params'
 	'../../models/user': User
 	'../../models/webtheme': Webtheme
-	'../../config'
 }
 
 module.exports = (app) ->
@@ -62,7 +63,9 @@ module.exports = (app) ->
 	
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
-		| req.query.user? =>
+		[user] = get-express-params req, <[ user ]>
+		switch
+		| !empty user =>
 			User.find-one { screen-name: req.query.user } (, theme-user) ->
 				| theme-user? =>
 					send-theme-style(theme-user);
@@ -76,7 +79,7 @@ module.exports = (app) ->
 				| _ => res.send
 		
 		function send-theme-style(user)
-			style-name = req.params.0
+			[style-name] = get-express-params req, <[ 0 ]>
 			theme-id = user.web-theme-id
 			switch
 			| theme-id == null => res.send!
@@ -97,8 +100,9 @@ module.exports = (app) ->
 							..status 500
 							..send 'Theme parse failed.'
 		
-		if req.query.user?
-			User.find-one {screem-name: req.query.user} (, theme-user) ->
+		[user] = get-express-params req, <[ user ]>
+		if !empty user
+			User.find-one {screem-name: user} (, theme-user) ->
 				if theme-user?
 					send-theme-style theme-user
 				else
@@ -124,8 +128,10 @@ module.exports = (app) ->
 				resource-path = path.resolve "#__dirname/..#{req.path.replace /\.css$/ '.less'}"
 				if fs.exists-sync resource-path
 					app.init-session req, res, ->
-						| req.query.user? =>
-							User.find-one {screen-name: req.query.user} (, style-user) ->
+						[user] = get-express-params req, <[ user ]>
+						switch
+						| !empty user
+							User.find-one {screen-name: user} (, style-user) ->
 								read-file-send-less do
 									req
 									res

@@ -2,20 +2,21 @@ require! {
 	async
 	fs
 	gm
+	'../../auth': authorize
+	'../../../utils/get-express-params'
+	'../../../utils/publish-redis-streaming'
+	'../../../models/utils/serialize-status'
 	'../../../models/status': Status
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
 	'../../../models/utils/status-get-before-talk'
-	'../../../models/utils/serialize-status'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../utils/publish-redis-streaming'
-	'../../auth': authorize
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
-	text = if req.body.text? then req.body.text else ''
-	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
+	[text, in-reply-to-status-id] = get-express-params req, <[ text, in-reply-to-status-id ]>
+	in-reply-to-status-id = if !empty in-reply-to-status-id then in-reply-to-status-id else null
 	text .= trim!
 	switch
 	| status? && text == status.text => res.api-error 400 'Duplicate content'

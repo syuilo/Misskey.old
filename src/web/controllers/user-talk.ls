@@ -24,12 +24,12 @@ module.exports = (req, res) ->
 						{$set: {+is-readed}}
 						{-upsert, -multi}
 						->
-			
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
+					[no-header] =  get-express-params req, <[ noheader ]>
 					res.display req, res, \user-talk {
 						otherparty
 						messages: message-htmls
 						following-me
-						no-header: req.query.noheader == \true
+						no-header: no-header == \true
 					}
