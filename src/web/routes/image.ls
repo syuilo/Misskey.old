@@ -126,7 +126,6 @@ module.exports = (app) ->
 					..send 'Image not found.'
 	
 	# User icon
-<<<<<<< HEAD
 	app.get '/img/icon/:idorsn' (req, res) ->
 		[id-or-sn] = get-express-params req, <[ idorsn ]>
 		display-user-image req, res, id-or-sn, \icon
