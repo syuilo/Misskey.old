@@ -1,11 +1,12 @@
 require! {
 	'../../auth': authorize
+	'../../../utils/get-express-params'
 	'../../../models/user': User
 }
 
 module.exports = (req, res) ->
 	authorize req, res, (user, app) ->
-		user-id = req.body.user_id
+		[user-id] = get-express-params req, <[ user_id ]>
 		switch
 		| !user-id? => res.api-error 400 'user_id parameter is required :('
 		| _ => User.find user-id, (target-user) ->

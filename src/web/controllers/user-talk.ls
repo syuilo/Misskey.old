@@ -35,9 +35,10 @@ module.exports = (req, res) ->
 						->
 				
 				serialize-stream-object messages, (messages) ->
+					[noheader] = get-express-params req, <[ noheader ]>
 					res.display req, res, \user-talk {
 						otherparty
 						messages
 						following-me
-						no-header: req.query.noheader == \true
+						no-header: noheader == \true
 					}

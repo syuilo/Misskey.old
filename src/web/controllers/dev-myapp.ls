@@ -1,8 +1,11 @@
 require! {
 	async
 	'../../models/application': Application
+	'../../utils/get-express-params'
 }
 module.exports = (req, res) ->
 	async.series [
-		(callback: any) -> Application.find req.query.q, (app) -> callback null app
+		(callback) -> 
+			[p] = get-express-params req, <[ p ]>
+			Application.find q, (app) -> callback null app
 	], (err, results) -> res.display req, res, 'dev-myapp', app: results.0
