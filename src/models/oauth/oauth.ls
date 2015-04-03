@@ -25,11 +25,5 @@ model.get-client = (app-id, client-secret, callback) ->
 	| _ => Application.find-by-id app-id, callback
 
 model.save-access-token = (token, app-id, expires, user-id, callback) ->
-	access-token = new OAuthAccessToken do
-		{
-		token
-		app-id
-		user-id
-		expires
-		}
+	access-token = new OAuthAccessToken {token, app-id, user-id, expires}
 	access-token.save callback
