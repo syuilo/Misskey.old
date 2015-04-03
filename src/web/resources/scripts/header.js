@@ -1,7 +1,7 @@
 var musicCenterOpen = false;
 
 function updateStatuses() {
-	$.ajax('https://api.misskey.xyz/account/unreadalltalks_count', {
+	$.ajax('https://api.misskey.xyz/account/unreadalltalks-count', {
 		type: 'get',
 		dataType: 'json',
 		xhrFields: { withCredentials: true }
