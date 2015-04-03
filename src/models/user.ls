@@ -21,7 +21,7 @@ user-schema = new Schema do
 	gender:                 {type: String,   required: no,  default: null}
 	is-plus:                {type: Boolean,  required: no,  default: no}
 	is-suspended:           {type: Boolean,  required: no,  default: no}
-	lang:                   {type: String,   required: no, default: \ja}
+	lang:                   {type: String,   required: no,  default: \ja}
 	last-name:              {type: String,   required: no,  default: null}
 	links:                  {type: [String], required: no,  default: null}
 	location:               {type: String,   required: no,  default: null}
