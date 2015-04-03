@@ -12,7 +12,7 @@ block content
 			div.usersList
 				ol
 					each user in followings
-						li(data-user-verified!= user.isPremium.toString())
+						li(data-user-verified!= user.isPlus.toString())
 							a(href= '/' + user.screenName)
 								img.icon(src='/img/icon/' + user.screenName, alt='icon')
 							h2
