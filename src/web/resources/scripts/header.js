@@ -18,8 +18,8 @@ function updateStatuses() {
 }
 
 $(function() {
-	updateStatuses();
-	setInterval(updateStatuses, 5000);
+	//updateStatuses();
+	//setInterval(updateStatuses, 5000);
 
 	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
 		if (musicCenterOpen) {
