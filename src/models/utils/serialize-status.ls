@@ -63,7 +63,7 @@ module.exports = (status, callback) ->
 	
 	function get-replies(status, callback)
 		status-get-replies status .then (replies) ->
-			| !replies? => callback status
+			| !replies? or empty replies => callback status
 			| _ => 
 				Promise.all (replies |> map (reply) ->
 					new Promise (resolve, reject) ->
