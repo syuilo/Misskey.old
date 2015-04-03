@@ -3,13 +3,15 @@ require! {
 	'../config'
 }
 
+Schema = mongoose.Schema
+
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
-webtheme-schema = new mongoose.Schema do
-	created-at:  {type: Date, default: Date.now}
-	description: {type: String}
-	name:        {type: String, required: yes}
+webtheme-schema = new Schema do
+	created-at:  {type: Date,                  required: yes, default: Date.now}
+	description: {type: String,                required: yes}
+	name:        {type: String,                required: yes}
 	style:       {}
-	user-id:     {type: Number, required: yes}
+	user-id:     {type: Schema.Types.ObjectId, required: yes}
 	
 module.exports = db.model \Webtheme webtheme-schema
