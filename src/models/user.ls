@@ -23,14 +23,14 @@ user-schema = new Schema do
 	is-suspended:           {type: Boolean,  required: no,  default: no}
 	lang:                   {type: String,   required: no,  default: \ja}
 	last-name:              {type: String,   required: no,  default: null}
-	links:                  {type: [String], required: no,  default: null}
+	links:                  {type: [String], required: no,  default: []}
 	location:               {type: String,   required: no,  default: null}
 	name:                   {type: String,   required: yes}
 	password:               {type: String,   required: yes}
 	screen-name:            {type: String,   required: yes, unique: yes}
 	statuses-count:         {type: Number,   required: no,  default: 0}
 	status-favorites-count: {type: Number,   required: no,  default: 0}
-	tags:                   {type: [String], required: no,  default: null}
+	tags:                   {type: [String], required: no,  default: []}
 	url:                    {type: String,   required: no,  default: null}
 	using-webtheme-id:      {type: Number,   required: no,  default: null}
 

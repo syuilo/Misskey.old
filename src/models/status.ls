@@ -18,10 +18,10 @@ status-schema = new Schema do
 	favorites-count:       {type: Number,                  default: 0}
 	in-reply-to-status-id: {type: Schema.Types.ObjectId,   default: null}
 	is-image-attached:     {type: Boolean,                 default: false}
-	replies:               {type: [Schema.Types.ObjectId], default: null}
+	replies:               {type: [Schema.Types.ObjectId], default: []}
 	reposts-count:         {type: Number,                  default: 0}
 	repost-from-status-id: {type: Schema.Types.ObjectId,   default: null}
-	tags:                  {type: [String]                 default: null}
+	tags:                  {type: [String]                 default: []}
 	text:                  {type: String,                  required: yes}
 	user-id:               {type: Schema.Types.ObjectId,   required: yes}
 
