@@ -33,10 +33,11 @@ module.exports = (app) ->
 			}
 	
 	function send-image(req, res, image-buffer)
+		[blur] = get-express-params req, <[ blur ]>
 		switch
-		| req.query.blur? =>
+		| !empty blur =>
 			try
-				options = parse-json req.query.blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
+				options = parse-json blur.replace /([a-zA-Z]+)\s?:\s?([^,}"]+)/g '"$1":$2'
 				gm image-buffer
 					..blur options.radius, options.sigma
 					..compress \jpeg
@@ -146,32 +147,32 @@ module.exports = (app) ->
 	
 	# User icon
 	app.get '/img/icon/:idorsn' (req, res) ->
-		id-or-sn = req.params.idorsn
+		[id-or-sn] = get-express-params req, <[ idorsn ]>
 		display-user-image req, res, id-or-sn, \icon
 
 	# User header
 	app.get '/img/header/:idorsn' (req, res) ->
-		id-or-sn = req.params.idorsn
+		[id-or-sn] = get-express-params req, <[ idorsn ]>
 		display-user-image req, res, id-or-sn, \header
 
 	# User wallpaper
 	app.get '/img/wallpaper/:idorsn' (req, res) ->
-		id-or-sn = req.params.idorsn
+		[id-or-sn] = get-express-params req, <[ idorsn ]>
 		display-user-image req, res, id-or-sn, \wallpaper
 
 	# Status
 	app.get '/img/status/:id' (req, res) ->
-		id = req.params.id
+		[id] = get-express-params req, <[ id ]>
 		display-status-image req, res, id
 
 	# Talk message
 	app.get '/img/talk-message/:id' (req, res) ->
-		id = req.params.id
+		[id] = get-express-params req, <[ id ]>
 		display-talkmessage-image req, res, id
 		
 	# Webtheme thumbnail
 	app.get '/img/webtheme-thumbnail/:id' (req, res) ->
-		id = req.params.id
+		[id] = get-express-params req, <[ id ]>
 		Webtheme.find-by-id id, (, webtheme) ->
 			| webtheme? =>
 				image-buffer = webtheme.thumbnail

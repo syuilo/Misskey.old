@@ -8,7 +8,7 @@ require! {
 	'../../models/access-token': AccessToken
 	'../../config'
 	'../utils/login': do-login
-	'../utils/get-express-params'
+	'../../utils/get-express-params'
 	'./image': image-router
 	'../../models/user': User
 	'../../models/status': Status

@@ -9,9 +9,10 @@ require! {
 	gm
 	compression
 	less
+	'../../config'
+	'../../utils/get-express-params'
 	'../../models/user': User
 	'../../models/webtheme': Webtheme
-	'../../config'
 }
 
 module.exports = (app) ->
