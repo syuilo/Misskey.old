@@ -7,7 +7,7 @@ block content
 	if page == 'home'
 		div#timeline!= timelineHtml
 	if page == 'followings'
-		div#followingsSection
+		div#followings-list
 			h2 Followings
 			div.usersList
 				ol
@@ -21,7 +21,7 @@ block content
 							if user.comment != null
 								p.comment= user.comment
 	if page == 'followers'
-		div#followersSection
+		div#followers-list
 			h2 Followers
 			div.usersList
 				ol
