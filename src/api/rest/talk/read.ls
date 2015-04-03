@@ -1,9 +1,10 @@
 require! {
-	'../../../models/talk-message': TalkMessage
 	'../../auth': authorize
+	'../../../utils/get-express-params'
+	'../../../models/talk-message': TalkMessage
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	msg-id = req.body.message-id
+[msg-id] = get-express-params req, <[ message-id ]>
 	switch
 	| !msg-id? => res.api-error 400 'messageId parameter is required :('
 	| _ => TalkMessage.find msg-id, (msg) ->
