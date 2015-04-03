@@ -47,8 +47,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 		user
 
 function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
-	status = new Status {app-id, in-reply-to-status-id, is-image-attached,text, user-id: user.id}
-		
+	status = new Status {app-id, in-reply-to-status-id, is-image-attached, text, user-id: user.id}
 	status.save (, created-status) ->
 		user.statuses-count++
 		err <- user.save
