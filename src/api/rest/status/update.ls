@@ -11,7 +11,6 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, recent-status) ->
-	console.log "#{user.screen-name} #{new Date!}"
 	text = if req.body.text? then req.body.text else ''
 	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
 	text .= trim!
@@ -31,7 +30,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 	function create(is-image-attached, image)
 		status = new Status {app-id: app.id, in-reply-to-status-id, is-image-attached, text, user-id: user.id}
 		err, created-status <- status.save
-		console.log "#{user.screen-name} #{new Date!}"
 		user.statuses-count++
 		user.save ->
 			if created-status.in-reply-to-status-id?
