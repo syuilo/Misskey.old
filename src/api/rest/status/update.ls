@@ -4,7 +4,6 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-image': StatusImage
 	'../../../models/status-mention': StatusMention
-	'../../../models/utils/serialize-status'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../utils/publish-redis-streaming'
@@ -50,31 +49,27 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			| _ => send-response created-status
 
 		function send-response status
+			res.api-render status.to-object!
+			
 			stream-obj = to-json do
 				type: \status
 				value: { id: status.id }
 
-			console.log "#{user.screen-name} #{new Date!}"
 			publish-redis-streaming "userStream:#{user.id}" stream-obj
 
 			UserFollowing.find { followee-id: user.id } (, followings) ->
 				| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
-
-			console.log "#{user.screen-name} #{new Date!}"
-			serialize-status status, (obj) ->
-				console.log "#{user.screen-name} #{new Date!}"
-				res.api-render obj
-
-				mentions = obj.text == /@[a-zA-Z0-9_]+/g
-				if mentions? then mentions.for-each (mention-sn) ->
-					mention-sn .= replace '@' ''
-					User.find-one { screen-name: mention-sn } (, reply-user) ->
-						| reply-user? =>
-							status-mention = new StatusMention do
-								status-id: obj.id
-								user-id: reply-user.id
-							status-mention.save ->
-								stream-mention-obj = to-json do
-									type: \reply
-									value: obj
-								publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+			
+			mentions = status.text == /@[a-zA-Z0-9_]+/g
+			if mentions? then mentions.for-each (mention-sn) ->
+				mention-sn .= replace '@' ''
+				User.find-one { screen-name: mention-sn } (, reply-user) ->
+					| reply-user? =>
+						status-mention = new StatusMention do
+							status-id: status.id
+							user-id: reply-user.id
+						status-mention.save ->
+							stream-mention-obj = to-json do
+								type: \reply
+								value: { id: status.id }
+							publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
