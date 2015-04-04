@@ -8,7 +8,7 @@ module.exports = (user-id, limit, since-cursor, max-cursor) ->
 	resolve, reject <- new Promise!
 	
 	UserFollowing.find {follower-id: user-id} (, followings) ->
-		| followings? or empty followings =>
+		| followings? or not empty followings =>
 			following-ids = [user-id] ++ (followings |> map (following) -> following.followee-id.to-string!)
 			query = | !since-id? and !max-id? => {user-id: {$in: following-ids}}
 				| since-id? => (user-id: {$in: following-ids}) `$and` (cursor: {$gt: since-cursor})
