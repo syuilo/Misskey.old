@@ -280,13 +280,18 @@ main {
 		#followings-list, #followers-list {
 			box-sizing: border-box;
 			padding: 16px;
-			background: #fff;
+			background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(@blurredWallpaperUrl);
+			background-color: transparent;
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
 			border-radius: 8px;
 
 			> h2 {
 				padding: 8px 16px;
 				margin: 0;
-				color: #444;
+				color: rgba(0, 0, 0, 0.8);
 				border-bottom: solid 1px #eee;
 			}
 		}
