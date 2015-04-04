@@ -28,71 +28,55 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			.quality image-quality
 			.to-buffer \jpeg (, buffer) ->
 				fs.unlink path
-				create do
-					req
-					res
-					app.id
-					in-reply-to-status-id
-					yes
-					buffer
-					text
-					user
-	| _ => create do
-		req
-		res
-		app.id
-		in-reply-to-status-id
-		no
-		null
-		text
-		user
+				create yes, buffer
+	| _ => create no, null
 
-function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
-	status = new Status {app-id, in-reply-to-status-id, is-image-attached, text, user-id: user.id}
-	err, created-status <- status.save
-	console.log "#{user.screen-name} #{new Date!}"
-	user.statuses-count++
-	user.save ->
-		if created-status.in-reply-to-status-id?
-			Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
-				if reply-to-status?
-					if !reply-to-status.replies? or !reply-to-status.replies.0?
-						reply-to-status.replies = [created-status._id]
-					else
-						reply-to-status.replies.push created-status._id
-					reply-to-status.save!
-		switch
-		| is-image-attached =>
-			status-image = new StatusImage {status-id: created-status.id, image}
-			status-image.save -> send-response created-status
-		| _ => send-response created-status
-
-	function send-response status
-		stream-obj = to-json do
-			type: \status
-			value: { id: status.id }
-
+	function create(is-image-attached, image)
+		status = new Status {app-id: app.id, in-reply-to-status-id, is-image-attached, text, user-id: user.id}
+		err, created-status <- status.save
 		console.log "#{user.screen-name} #{new Date!}"
-		publish-redis-streaming "userStream:#{user.id}" stream-obj
+		user.statuses-count++
+		user.save ->
+			if created-status.in-reply-to-status-id?
+				Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
+					if reply-to-status?
+						if !reply-to-status.replies? or !reply-to-status.replies.0?
+							reply-to-status.replies = [created-status._id]
+						else
+							reply-to-status.replies.push created-status._id
+						reply-to-status.save!
+			switch
+			| is-image-attached =>
+				status-image = new StatusImage {status-id: created-status.id, image}
+				status-image.save -> send-response created-status
+			| _ => send-response created-status
 
-		UserFollowing.find { followee-id: user.id } (, followings) ->
-			| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
+		function send-response status
+			stream-obj = to-json do
+				type: \status
+				value: { id: status.id }
 
-		console.log "#{user.screen-name} #{new Date!}"
-		serialize-status status, (obj) ->
 			console.log "#{user.screen-name} #{new Date!}"
-			res.api-render obj
-			
-			mentions = obj.text == /@[a-zA-Z0-9_]+/g
-			if mentions? then mentions.for-each (mention-sn) ->
-				mention-sn .= replace '@' ''
-				User.find-one { screen-name: mention-sn } (, reply-user) ->
-					| reply-user? =>
-						status-mention = new StatusMention do
-							status-id: obj.id
-							user-id: reply-user.id
-						status-mention.save ->
-							stream-mention-obj = to-json do
-								type: \reply
-								value: obj
-							publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+			publish-redis-streaming "userStream:#{user.id}" stream-obj
+
+			UserFollowing.find { followee-id: user.id } (, followings) ->
+				| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
+
+			console.log "#{user.screen-name} #{new Date!}"
+			serialize-status status, (obj) ->
+				console.log "#{user.screen-name} #{new Date!}"
+				res.api-render obj
+
+				mentions = obj.text == /@[a-zA-Z0-9_]+/g
+				if mentions? then mentions.for-each (mention-sn) ->
+					mention-sn .= replace '@' ''
+					User.find-one { screen-name: mention-sn } (, reply-user) ->
+						| reply-user? =>
+							status-mention = new StatusMention do
+								status-id: obj.id
+								user-id: reply-user.id
+							status-mention.save ->
+								stream-mention-obj = to-json do
+									type: \reply
+									value: obj
+								publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
