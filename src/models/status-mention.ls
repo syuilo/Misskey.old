@@ -13,6 +13,6 @@ status-mention-schema = new Schema do
 	user-id:   {type: Schema.Types.ObjectId, required: yes}
 	
 # Auto increment
-status-schema.plugin mongoose-auto-increment.plugin, {model: \StatusMention, field: \cursor}
+status-mention-schema.plugin mongoose-auto-increment.plugin, {model: \StatusMention, field: \cursor}
 
 module.exports = db.model \StatusMention status-mention-schema
