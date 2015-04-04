@@ -11,13 +11,13 @@ require! {
 	'../../auth': authorize
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, status) ->
+module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, recent-status) ->
 	console.log "#{user.screen-name} #{new Date!}"
 	text = if req.body.text? then req.body.text else ''
 	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
 	text .= trim!
 	switch
-	| status? && text == status.text => res.api-error 400 'Duplicate content'
+	| recent-status? && text == recent-status.text => res.api-error 400 'Duplicate content'
 	| (Object.keys req.files).length == 1 =>
 		path = req.files.image.path
 		image-quality = if user.is-plus then 80 else 60
