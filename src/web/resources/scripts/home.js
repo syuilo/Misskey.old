@@ -31,7 +31,7 @@ $(function() {
 		console.log('repost', status);
 		new Audio('/resources/sounds/pop.mp3').play();
 		var $status = $('<li class="status">').append($(status)).hide();
-		TIMELINE.setEventPost($status);
+		TIMELINE.setEventPost($status.children('.status.article'));
 		$status.prependTo($('#timeline .timeline > .statuses')).show(200);
 	});
 
