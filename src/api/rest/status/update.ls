@@ -58,7 +58,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			publish-redis-streaming "userStream:#{user.id}" stream-obj
 
 			UserFollowing.find { followee-id: user.id } (, followings) ->
-				| !empty followings => each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj), followings
+				| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
 			
 			mentions = status.text == /@[a-zA-Z0-9_]+/g
 			if mentions? then mentions.for-each (mention-sn) ->
