@@ -34,7 +34,7 @@ module.exports = (io, session-store) ->
 		
 		# Subscribe Home stream channel
 		pubsub = redis.create-client!
-			..subscribe "misskey:userStream:#{uid}"
+			..subscribe "misskey:userStream:#{socket.user-id}"
 			..on \message (, content) ->
 				try
 					content = parse-json content
