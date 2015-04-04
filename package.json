@@ -36,7 +36,7 @@
     "gulp-plumber": "1.0.0",
     "jade": "1.9.2",
     "js-yaml": "3.2.7",
-    "less": "2.4.0",
+    "less": "2.5.0",
     "marked": "0.3.3",
     "moment": "2.9.0",
     "mongoose": "3.8.25",
