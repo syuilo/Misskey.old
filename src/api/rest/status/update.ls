@@ -49,12 +49,12 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 
 function create(req, res, app-id, in-reply-to-status-id, is-image-attached, image, text, user)
 	status = new Status {app-id, in-reply-to-status-id, is-image-attached, text, user-id: user.id}
-	status.save (, created-status) ->
-		console.log "#{user.screen-name} #{new Date!}"
-		user.statuses-count++
-		err <- user.save
-		if status.in-reply-to-status-id?
-			Status.find-by-id status.in-reply-to-status-id, (, reply-to-status) ->
+	err, created-status <- status.save
+	console.log "#{user.screen-name} #{new Date!}"
+	user.statuses-count++
+	user.save ->
+		if created-status.in-reply-to-status-id?
+			Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
 				if reply-to-status?
 					if !reply-to-status.replies? or !reply-to-status.replies.0?
 						reply-to-status.replies = [created-status._id]
