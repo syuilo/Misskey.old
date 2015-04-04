@@ -25,10 +25,11 @@ module.exports = (io, session-store) ->
 	| err => console.log err.message
 	| !session? => console.log "undefined: #{sidkey}"
 	| _ =>
-		uid = socket.user-id = session.user-id
+		# Set user id
+		socket.user-id = session.user-id
 		
-		# Get session user
-		err, user <- User.find-by-id uid
+		# Get and set session user
+		err, user <- User.find-by-id socket.user-id
 		socket.user = user
 		
 		# Subscribe Home stream channel
