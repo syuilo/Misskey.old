@@ -17,5 +17,5 @@ module.exports = (user-id, limit, since-cursor, max-cursor) ->
 				.find query
 				.sort \-createdAt # Desc
 				.limit limit
-				.exec (statuses) -> resolve statuses
+				.exec (, statuses) -> resolve statuses
 		| _ => resolve null
