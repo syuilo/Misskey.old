@@ -28,7 +28,7 @@ dependencies:
 	'escape-html': '1.0.1'
 	express: '4.12.3'
 	'express-minify': '0.1.3'
-	'express-session': '1.10.3'
+	'express-session': '1.10.4'
 	gm: '1.17.0'
 	gulp: '3.8.11'
 	'gulp-livescript': '2.3.0'
