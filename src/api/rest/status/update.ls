@@ -61,10 +61,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 				| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
 			
 			mentions = status.text == /@[a-zA-Z0-9_]+/g
-			if mentions? then mentions.for-each (mention-sn) ->
-				mention-sn .= replace '@' ''
-				User.find-one { screen-name: mention-sn } (, reply-user) ->
-					| reply-user? =>
+			if mentions?
+				mentions |> each (mention-sn) ->
+					mention-sn .= replace '@' ''
+					(, reply-user) <- User.find-one { screen-name: mention-sn }
+					if reply-user?
 						status-mention = new StatusMention do
 							status-id: status.id
 							user-id: reply-user.id
