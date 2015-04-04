@@ -4,8 +4,8 @@ require! {
 	'../../utils/is-null'
 }
 
-# Number -> Number -> Number -> Number -> Promise [Status]
-module.exports = (user-id, limit, since-cursor, max-cursor) -->
+# ID -> Number -> Number -> Number -> Promise [Status]
+module.exports = (user-id, limit, since-cursor, max-cursor) ->
 	resolve, reject <- new Promise!
 	
 	query = | all is-null, [since-cursor, max-cursor] => {user-id}

@@ -14,7 +14,7 @@ status-gets =
 module.exports = (req, res, content = \home) ->
 	me = req.me
 	async.series [
-		(next) -> status-gets[content] me.id, 30statuses, null, null, (statuses) ->
+		(next) -> status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
 			timeline-generate-html statuses, me, (timeline-html) -> next null, timeline-html
 		(next) -> get-new-users 5 .then (users) ->
 			Promise.all (users |> map (user) ->
