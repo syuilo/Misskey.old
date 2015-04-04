@@ -80,38 +80,19 @@ function create(req, res, app-id, in-reply-to-status-id, is-image-attached, imag
 
 		console.log "#{user.screen-name} #{new Date!}"
 		serialize-status status, (obj) ->
-			| obj.reply? =>
-				switch
-				| obj.reply.is-reply =>
-					get-more-talk obj.reply, (talk) ->
-						obj.more-talk = talk
-						send obj
-				| _ => send obj
-			| _ => send obj
-
-	function send obj
-		console.log "#{user.screen-name} #{new Date!}"
-		res.api-render obj
-		mentions = obj.text == /@[a-zA-Z0-9_]+/g
-		if mentions? then mentions.for-each (mention-sn) ->
-			mention-sn .= replace '@' ''
-			User.find-one { screen-name: mention-sn } (, reply-user) ->
-				| reply-user? =>
-					status-mention = new StatusMention do
-						status-id: obj.id
-						user-id: reply-user.id
-					status-mention.save ->
-						stream-mention-obj = to-json do
-							type: \reply
-							value: obj
-						publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
-
-	function get-more-talk(status, callback)
-		status-get-before-talk status.in-reply-to-status-id .then (more-talk) ->
-			async.map more-talk, (talk-post, map-next) ->
-				talk-post.is-reply = talk-post.in-reply-to-status-id?
-				User.find-by-id talk-post.user-id, (, talk-post-user) ->
-					talk-post.user = talk-post-user
-					map-next null talk-post
-			, (, more-talk-posts) ->
-				callback more-talk-posts
+			console.log "#{user.screen-name} #{new Date!}"
+			res.api-render obj
+			
+			mentions = obj.text == /@[a-zA-Z0-9_]+/g
+			if mentions? then mentions.for-each (mention-sn) ->
+				mention-sn .= replace '@' ''
+				User.find-one { screen-name: mention-sn } (, reply-user) ->
+					| reply-user? =>
+						status-mention = new StatusMention do
+							status-id: obj.id
+							user-id: reply-user.id
+						status-mention.save ->
+							stream-mention-obj = to-json do
+								type: \reply
+								value: obj
+							publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
