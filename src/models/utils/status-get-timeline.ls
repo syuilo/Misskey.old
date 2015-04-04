@@ -5,6 +5,8 @@ require! {
 
 # ID -> Number -> Number -> Number -> Promise [Status]
 module.exports = (user-id, limit, since-cursor, max-cursor) ->
+	resolve, reject <- new Promise!
+	
 	UserFollowing.find {follower-id: user-id} (, followings) ->
 		| followings? or empty followings =>
 			following-ids = [user-id] ++ (followings |> map (following) -> following.followee-id.to-string!)
@@ -15,5 +17,5 @@ module.exports = (user-id, limit, since-cursor, max-cursor) ->
 				.find query
 				.sort \-createdAt # Desc
 				.limit limit
-				.exec!
-		| _ => new Promise (resolve) -> resolve null
+				.exec (statuses) -> resolve statuses
+		| _ => resolve null
