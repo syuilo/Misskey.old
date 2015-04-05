@@ -43,7 +43,7 @@ dependencies:
 	'socket.io': '1.3.5'
 
 dev-dependencies:
-	LiveScript: '1.3.1'
+	livescript: '1.3.1'
 	gulp: '3.8.11'
 	'gulp-livescript': '2.3.0'
 	'gulp-lint-ls': '0.1.0'
