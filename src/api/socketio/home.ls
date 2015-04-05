@@ -51,7 +51,6 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 									me: socket.user
 									text-parser: parse-text
 									config: config.public-config
-							, "#{status.id} の #{socket.user.screen-name} へのストリーム"
 						| _ => socket.emit content.type, content.value
 				else
 					socket.emit content

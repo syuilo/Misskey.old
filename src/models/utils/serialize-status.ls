@@ -7,7 +7,7 @@ require! {
 	'../../config'
 }
 
-module.exports = (status, callback, callsource = '未設定') ->
+module.exports = (status, callback) ->
 	id = Math.random!
 	
 	function serialyze-repost(status, callback)
@@ -81,20 +81,12 @@ module.exports = (status, callback, callsource = '未設定') ->
 						status.replies = replies
 						callback status
 	
-	console.log "#{callsource} #{id} 1- #{status.id} #{new Date!}"
 	status .= to-object!
-	console.log "#{callsource} #{id} 2- #{status.id} #{new Date!}"
 	status <- serialyze-repost status
-	console.log "#{callsource} #{id} 3- #{status.id} #{new Date!}"
 	status.is-reply = status.in-reply-to-status-id?
-	console.log "#{callsource} #{id} 4- #{status.id} #{new Date!}"
 	status <- get-app status
-	console.log "#{callsource} #{id} 5- #{status.id} #{new Date!}"
 	status <- get-user status
-	console.log "#{callsource} #{id} 6- #{status.id} #{new Date!}"
 	status <- get-reply-source status
-	console.log "#{callsource} #{id} 7- #{status.id} #{new Date!}"
 	status <- get-replies status
-	console.log "#{callsource} #{id} 8- #{status.id} #{new Date!}"
 	callback status
 	
