@@ -50,17 +50,9 @@ module.exports = (req, res) ->
 					wallpaper = new UserWallpaper!
 						.._id = created-user.id
 						..user-id = created-user.id
-					following = new UserFollowing!
-						..follower-id = created-user.id
-						..followee-id = '55192d78d82859a1440d6281'
-					followingback = new UserFollowing!
-						..follower-id = '55192d78d82859a1440d6281'
-						..followee-id = created-user.id
 					err, icon-instance <- icon.save
 					err, header-instance <- header.save
 					err, wallpaper-instance <- wallpaper.save
-					err, following-instance <- following.save
-					err, followingback-instance <- followingback.save
 					err, syuilo <- User.find-by-id '55192d78d82859a1440d6281'
 					syuilo.followers-count++
 					syuilo.followings-count++
