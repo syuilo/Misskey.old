@@ -14,15 +14,17 @@ module.exports = (req, res, page = \home) ->
 	me = if req.login then req.me else null
 	async.series do
 		[
-			# Get statuses timeline
+			# Get statuses timeline (home page only)
 			(next) ->
-				Status
-					.find {user-id: user.id}
-					.sort {created-at: \desc}
-					.limit 30status
-					.exec (, statuses) ->
-						timeline-generate-html statuses, req.me, (html) ->
-							next null html
+				| page != \home => next null null
+				| _ =>
+					Status
+						.find {user-id: user.id}
+						.sort {created-at: \desc}
+						.limit 30status
+						.exec (, statuses) ->
+							timeline-generate-html statuses, req.me, (html) ->
+								next null html
 			
 			# Get is following
 			(next) ->
