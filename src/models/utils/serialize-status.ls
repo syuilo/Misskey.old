@@ -84,7 +84,7 @@ module.exports = (status, callback) ->
 	status .= to-object!
 	status <- serialyze-repost status
 	status.is-reply = status.in-reply-to-status-id?
-	status <- get-app status
+	#status <- get-app status
 	status <- get-user status
 	status <- get-reply-source status
 	status <- get-replies status
