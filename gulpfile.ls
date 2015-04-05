@@ -1,28 +1,26 @@
 require! {
 	gulp
-	'gulp-plumber': plumber
 	'gulp-lint-ls': lint-ls
 	'gulp-livescript': ls
 }
 
-paths =
-	ls: './src/**/*.ls'
-	package-json: './package.json.ls'
+gulp.task \build <[ build-package-json build-ls build-copy ]>
 
 gulp.task \build-package-json ->
-	gulp.src paths.package-json
-		.pipe plumber!
+	gulp.src './package.json.ls'
 		.pipe ls!
 		.pipe gulp.dest './'
 
-gulp.task \build <[ build-package-json ]>
-
-gulp.task \watch <[ build ]> ->
-	gulp.watch paths.package-json, <[ build-package-json ]>
-
-gulp.task \test <[ lint build ]> ->
-	gulp.src paths.ls
+gulp.task \build-ls ->
+	gulp.src './src/**/*.ls' ->
 		.pipe ls!
+		.pipe gulp.dest './lib/'
+
+gulp.task \build-copy ->
+	gulp.src <[ ./src/**/* !./src/**/*.ls ]>
+		.pipe gulp.dest './lib/'
+
+gulp.task \test <[ build lint ]>
 
 gulp.task \lint ->
 	gulp.src './**/*.ls'

@@ -1,2 +1,1 @@
-require('LiveScript');
-require('./src/');
+require('./lib/');

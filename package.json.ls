@@ -13,7 +13,6 @@ repository:
 main: './'
 scripts:
 	build: 'gulp build'
-	watch: 'gulp watch'
 	test: 'gulp test'
 
 dependencies:
