@@ -57,10 +57,12 @@ html(lang='ja'
 						table
 							tr
 								th 投稿
+								th お気に入り
 								th フォロー
 								th フォロワー
 							tr
 								td: a(href='/' + user.screenName)= user.statusesCount
+								td: a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
 								td: a(href='/' + user.screenName + '/followings')= user.followingsCount
 								td: a(href='/' + user.screenName + '/followers')= user.followersCount
 						if login
