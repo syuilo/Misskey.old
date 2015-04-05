@@ -12,6 +12,7 @@ repository:
 
 main: './'
 scripts:
+	install: 'gulp build'
 	build: 'gulp build'
 	test: 'gulp test'
 
