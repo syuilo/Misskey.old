@@ -26,6 +26,6 @@ gulp.task \test <[ lint build ]> ->
 
 gulp.task \lint ->
 	gulp.src './**/*.ls'
-		.pipe lint-ls {+allow-case, +allow-null, +allow-void, +allow-this, +allow-throw, +allow-delete}
+		.pipe lint-ls {+allow-case, +allow-null, +allow-void, +allow-this, +allow-new, +allow-throw, +allow-delete}
 
 gulp.task \default <[ build ]>
