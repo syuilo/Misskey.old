@@ -8,8 +8,6 @@ require! {
 }
 
 module.exports = (status, callback) ->
-	id = Math.random!
-	
 	function serialyze-repost(status, callback)
 		switch
 		| status.repost-from-status-id? =>
