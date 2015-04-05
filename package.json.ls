@@ -57,5 +57,5 @@ contributors:
 	{ name: 'afuafu', email: 'noodle117117@yahoo.co.jp', url: 'https://github.com/afuafu55' }
 	{ name: 'まりはち', email: 'marihachi0620@gmail.com', url: 'https://github.com/marihachi' }
 	{ name: 'Aya Morisawa', url: 'https://github.com/AyaMorisawa' }
-	{ name: 'はらだい', email: 'mail@haradai.net', url: 'https://github.com/ha-dai' }
+	{ name: 'haradai', email: 'contact@haradai.net', url: 'https://github.com/ha-dai' }
 	{ name: 'シトリン', url: 'https://github.com/Citringo' }
