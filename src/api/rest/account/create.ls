@@ -53,11 +53,7 @@ module.exports = (req, res) ->
 					err, icon-instance <- icon.save
 					err, header-instance <- header.save
 					err, wallpaper-instance <- wallpaper.save
-					err, syuilo <- User.find-by-id '55192d78d82859a1440d6281'
-					syuilo.followers-count++
-					syuilo.followings-count++
-					syuilo.save ->
-						do-login req, created-user.screen-name, password, (user) ->
-							res.api-render filter-user-for-response created-user
-						, ->
-							res.send-status 500
+					do-login req, created-user.screen-name, password, (user) ->
+						res.api-render filter-user-for-response created-user
+					, ->
+						res.send-status 500
