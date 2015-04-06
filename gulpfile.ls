@@ -4,26 +4,30 @@ require! {
 	'gulp-livescript': ls
 }
 
-gulp.task \build <[ build-package-json build-ls build-copy ]>
+task = gulp~task
+src = gulp~src
+dest = gulp~src
 
-gulp.task \build-package-json ->
-	gulp.src './package.json.ls'
+task \build <[ build-package-json build-ls build-copy ]>
+
+task \build-package-json ->
+	src './package.json.ls'
 		.pipe ls!
-		.pipe gulp.dest './'
+		.pipe dest './'
 
-gulp.task \build-ls ->
-	gulp.src './src/**/*.ls' ->
+task \build-ls ->
+	src './src/**/*.ls' ->
 		.pipe ls!
-		.pipe gulp.dest './lib/'
+		.pipe dest './lib/'
 
-gulp.task \build-copy ->
-	gulp.src <[ ./src/**/* !./src/**/*.ls ]>
-		.pipe gulp.dest './lib/'
+task \build-copy ->
+	src <[ ./src/**/* !./src/**/*.ls ]>
+		.pipe dest './lib/'
 
-gulp.task \test <[ build lint ]>
+task \test <[ build lint ]>
 
-gulp.task \lint ->
-	gulp.src './**/*.ls'
+task \lint ->
+	src './**/*.ls'
 		.pipe lint-ls {+allow-case, +allow-null, +allow-void, +allow-this, +allow-new, +allow-throw, +allow-delete}
 
-gulp.task \default <[ build ]>
+task \default <[ build ]>
