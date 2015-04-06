@@ -8,15 +8,12 @@ require! {
 }
 
 module.exports = (req, res, success) ->
-	is-logged = req.session? && req.session.user-id?
-	
-	fail = res.api-error 401 _
-	referer = req.header \Referer
-	
-	switch
-	| empty referer => fail 'refer is empty'
-	| !(referer == //^#{config.public-config.url}// && is-logged) => fail 'not logged'
+	| empty referer => res.api-error 401 'refer is empty'
+	| is-logged req => res.api-error 401 'not logged'
 	| _ =>
 		(, user) <- User.find-by-id req.session.user-id
 		(, application) <- Application.find-by-id config.webappid
 		success user, application
+
+is-logged = (req) ->
+	req.session? && req.session.user-id? && (req.header\Referer == //^#{config.public-config.url}//)
