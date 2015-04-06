@@ -41,8 +41,6 @@ dependencies:
 	'prelude-ls': '1.1.1'
 	redis: '0.12.1'
 	'socket.io': '1.3.5'
-
-dev-dependencies:
 	LiveScript: '1.3.1'
 	gulp: '3.8.11'
 	'gulp-livescript': '2.3.0'
