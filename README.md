@@ -1,4 +1,6 @@
 # Misskey [![MIT LICENSE](http://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+
+[![Join the chat at https://gitter.im/syuilo/Misskey](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/syuilo/Misskey?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
 [![Pull Requst Stats](http://issuestats.com/github/syuilo/Misskey/badge/pr?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Issue Stats](http://issuestats.com/github/syuilo/Misskey/badge/issue?style=flat)](http://issuestats.com/github/syuilo/Misskey)
