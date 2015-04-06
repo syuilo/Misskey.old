@@ -14,6 +14,7 @@ main: './'
 scripts:
 	install: 'gulp build'
 	build: 'gulp build'
+	lint: 'gulp lint'
 	test: 'gulp test'
 
 dependencies:
