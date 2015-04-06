@@ -10,7 +10,7 @@ require! {
 	'../../auth': authorize
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id }, (, recent-status) ->
+module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id } .sort \-createdAt .exec (, recent-status) ->
 	text = if req.body.text? then req.body.text else ''
 	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
 	text .= trim!
