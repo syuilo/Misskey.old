@@ -10,7 +10,7 @@ require! {
 module.exports = (req, res) ->
 	async.series [
 		(callback) -> 
-			before-talks = status-get-before-talk req.root-post.id
+			before-talks = status-get-before-talk req.root-status.id
 			async.map before-talks, (before-talk, next) ->
 				User.find-by-id before-talk.user-id, (, user) ->
 					post.user = user
