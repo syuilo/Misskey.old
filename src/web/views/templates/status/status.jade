@@ -1,4 +1,5 @@
 div.status.article(
+		class                   = status.isRepostToStatus ? 'repost' : 'normal'
 		title                   = status.createdAt
 		data-id                 = status.isRepostToStatus ? status.source.id : status.id
 		data-created-at         = status.createdAt
