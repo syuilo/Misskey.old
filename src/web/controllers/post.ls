@@ -1,22 +1,26 @@
 require! {
 	async
-	'../../models/post': Post
-	'../../models/post-favorite': PostFavorite
+	'../../models/status': Status
+	'../../models/utils/status-check-favorited'
+	'../../models/utils/status-check-reposted'
+	'../../models/status-favorite': StatusFavorite
+	'../../models/utils/status-get-before-talk'
 	'../../models/user': User
 }
 module.exports = (req, res) ->
 	async.series [
-		(callback) -> Post.get-before-talk req.root-post.id, (posts) ->
-			async.map posts, (post, next) ->
-				User.find post.user-id, (user) ->
+		(callback) -> 
+			before-talks = status-get-before-talk req.root-status.id
+			async.map before-talks, (before-talk, next) ->
+				User.find-by-id before-talk.user-id, (, user) ->
 					post.user = user
 					next null user
 			, (err, results) -> callback null results
 		(callback) ->
-			| req.login => PostFavorite.is-favorited req.root-post.id, req.me.id, callback.bind null null
+			| req.login => callback null, status-check-favorited req.root-post.id, req.me.id
 			| _ => callback null null
 		(callback) ->
-			| req.login => Post.is-reposted req.root-post.id, req.me.id, callback.bind null null
+			| req.login => callback null, status-check-reposted req.root-post.id, req.me.id
 			| _ => callback null null
 	], (err, [before-talks, is-favorited, is-reposted]) ->
 		post = req.root-post
