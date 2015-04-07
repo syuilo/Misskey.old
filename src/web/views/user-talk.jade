@@ -1,0 +1,49 @@
+doctype html
+
+html(
+		lang='ja'
+		dir='ltr'
+		data-me-id= me.id
+		data-me-screen-name= me.screenName
+		data-otherparty-id= otherparty.id
+		data-otherparty-screen-name= otherparty.screenName)
+	head
+		include templates/head
+		title= 'トーク: ' + otherparty.name
+		link(rel='stylesheet', href='/resources/styles/user-talk.css')
+		script(src=apiUrl + ':1207/socket.io/socket.io.js')
+		script(src='/resources/scripts/user-talk.js')
+		
+	body
+		if !noHeader
+			include templates/header
+		main
+			div#timeline
+				div.timeline-container
+					div.timeline-main
+						div.talk-stream#stream
+							if messages == null || messages.length == 0
+								p#empty-stream
+									i.fa.fa-info-circle
+									| このユーザーとまだ会話したことがありませんっ
+									br
+									a(href='http://syuilo.com/447', target='_blank') 使い方を見る
+							ol.messages
+								if messages != null
+									each message in messages
+										li.message!= message
+							if !followingMe
+								p#no-following-me
+									i.fa.fa-exclamation-circle
+									| このユーザーからフォローされていないためメッセージを送れませんっ！
+							div#otherparty-status
+				if followingMe
+					div#post-form-container
+						form#post-form(enctype='multipart/form-data')
+							textarea(name='text', placeholder='Message...')
+							input(name='otherparty-id', type='hidden', value=otherparty.id)
+							input.fa.fa-paper-plane(type='submit', value!='&#xf1d8;', title='メッセージを送信')
+							div.image-attacher(title='メッセージに画像を添付')
+								p
+									i(class='fa fa-picture-o')
+								input(name='image', type='file', accept='image/*')

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="256px"
+	 height="256px" viewBox="0 0 256 256" enable-background="new 0 0 256 256" xml:space="preserve">
+<pattern  width="12" height="128" patternUnits="userSpaceOnUse" id="新規パターンスウォッチ_2" viewBox="0 -128 12 128" overflow="visible">
+	<g>
+		<polygon fill="none" points="0,0 12,0 12,-128 0,-128 		"/>
+		<polygon fill="#FFFFFF" points="4,0 0,0 0,-128 4,-128 		"/>
+		<polygon fill="#E61E67" points="12,0 4,0 4,-128 12,-128 		"/>
+	</g>
+</pattern>
+<g id="レイヤー_1">
+	<rect fill="#E61E67" width="256" height="256"/>
+</g>
+<g id="レイヤー_2">
+	
+		<pattern  id="SVGID_1_" xlink:href="#譁ｰ隕上ヱ繧ｿ繝ｼ繝ｳ繧ｹ繧ｦ繧ｩ繝メ_2" patternTransform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -8235.6807 -19149.8145)">
+	</pattern>
+	<rect x="64" y="64" fill="url(#SVGID_1_)" width="128" height="128"/>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+	<g>
+	</g>
+</g>
+</svg>

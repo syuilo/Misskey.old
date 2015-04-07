@@ -1,0 +1,28 @@
+extends ./layouts/home
+
+block title
+	title Misskey ホーム
+
+block assets
+	link(rel='stylesheet', href='/resources/styles/timeline.css')
+	link(rel='stylesheet', href='/resources/styles/theme/timeline.css')
+	script(src=apiUrl + ':1207/socket.io/socket.io.js')
+	script(src='/resources/scripts/timeline.js')
+	script(src='/resources/scripts/home.js')
+
+block content
+	div#timeline
+		div#post-form-container
+			form#post-form(enctype='multipart/form-data')
+				img.icon(src='/img/icon/' + me.screenName, alt='icon')
+				div.form
+					textarea(name='text', placeholder='What\'s up?')
+					div.design-allow
+					input(type='submit', value!='Update &#xf1d8;')
+					ul.tag.ui-taginput
+					div.image-attacher
+						p
+							i.fa.fa-picture-o
+						input(name='image', type='file', accept='image/*')
+		div.timeline-container
+			div.timeline-main!= timelineHtml

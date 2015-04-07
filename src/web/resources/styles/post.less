@@ -1,0 +1,221 @@
+@themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+
+html, body {
+	height: 100%;
+}
+
+main {
+	display: block;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+
+	> #post {
+		padding: 32px 0;
+
+		> article {
+			position: relative;
+			padding: 16px 0;
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			> .sub {
+				box-sizing: border-box;
+				float: left;
+				width: 120px;
+				text-align: center;
+
+				> .icon {
+					min-width: 54px;
+					min-height: 54px;
+					max-width: 54px;
+					max-height: 54px;
+					margin: 0;
+					border-radius: 6px;
+				}
+			}
+
+			> .main {
+				box-sizing: border-box;
+				float: left;
+				width: ~"calc(100% - 120px)";
+
+				> header {
+					p {
+						display: inline;
+						margin: 0;
+						padding: 0;
+					}
+
+					.name {
+					}
+
+					.screenName {
+						margin: 0 8px;
+						color: rgba(0, 0, 0, 0.5);
+					}
+				}
+
+				> .contents {
+					> .text {
+						padding: 8px 0;
+						font-size: 1.5em;
+					}
+				}
+
+				> .actions {
+					position: absolute;
+					bottom: 0;
+					right: 0;
+
+					> .repost, > .favorite {
+						display: inline-block;
+						padding: 0 16px;
+
+						> button {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							display: inline-block;
+							box-sizing: border-box;
+							margin: 0;
+							padding: 8px;
+							cursor: pointer;
+							font-size: 1em;
+							font-weight: normal;
+							text-decoration: none;
+							color: rgba(0, 0, 0, 0.5);
+							outline: none;
+							border: none;
+							border-radius: 0;
+							box-shadow: none;
+							background: transparent;
+
+							&:hover {
+								color: rgba(0, 0, 0, 0.7);
+							}
+
+							> i {
+								cursor: pointer;
+							}
+						}
+
+						> a {
+							color: rgba(0, 0, 0, 0.5);
+							text-decoration: none;
+
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		> #replyForm {
+
+			> textarea {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				box-sizing: border-box;
+				width: 100%;
+				max-width: 100%;
+				height: 64px;
+				min-height: 64px;
+				vertical-align: bottom;
+				margin: 0;
+				padding: 8px;
+				outline: 0;
+				border: solid 1px #eee;
+				border-radius: 0;
+				font-size: 1.1em;
+				transition: all 0.2s ease;
+
+				&:hover {
+					border: solid 1px @themeColor;
+				}
+
+				&:focus {
+					color: @themeColor;
+					outline: none;
+					border: solid 1px @themeColor;
+				}
+			}
+
+			> input[type=submit] {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: inline-block;
+				box-sizing: border-box;
+				margin: 0;
+				padding: 8px 16px;
+				min-width: 5em;
+				cursor: pointer;
+				line-height: 1.2em;
+				font-size: 1.2em;
+				font-weight: normal;
+				text-decoration: none;
+				color: #fff;
+				background: @themeColor;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				transition: background 0.1s ease;
+				font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ƒqƒ‰ƒMƒmŠpƒS ProN W3','Meiryo UI','Meiryo, ƒƒCƒŠƒI','sans-serif';
+
+				&:hover {
+					background: lighten(@themeColor, 10%);
+				}
+
+				&:active {
+					background: darken(@themeColor, 10%);
+				}
+			}
+
+			> .imageAttacher {
+				box-sizing: border-box;
+				display: inline-block;
+				position: relative;
+				margin: 5px 9px;
+				padding: 7px 16px;
+				vertical-align: top;
+				outline: dashed 2px #ccc;
+
+				&:hover {
+					outline: dashed 2px #777;
+				}
+
+				input[type=file] {
+					display: inline;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+					opacity: 0;
+				}
+
+				p {
+					margin: 0;
+					color: #777;
+					font-size: 1em;
+				}
+
+				img {
+					max-width: 100%;
+					max-height: 128px;
+				}
+			}
+		}
+	}
+}

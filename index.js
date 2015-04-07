@@ -1,1 +1,2 @@
-module.exports = require('./app/lib/index');
+require('LiveScript');
+require('./src/');

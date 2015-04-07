@@ -1,0 +1,36 @@
+extends ./layouts/user
+
+block title
+	title= user.name
+
+block content
+	if page == 'home'
+		div#timeline!= timelineHtml
+	if page == 'followings'
+		div#followings-list
+			h2 Followings
+			div.usersList
+				ol
+					each user in followings
+						li(data-user-verified!= user.isPlus.toString())
+							a(href= '/' + user.screenName)
+								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+							h2
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment
+	if page == 'followers'
+		div#followers-list
+			h2 Followers
+			div.usersList
+				ol
+					each user in followers
+						li(data-user-verified!= user.isPlus.toString())
+							a(href= '/' + user.screenName)
+								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+							h2
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment

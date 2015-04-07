@@ -1,0 +1,2 @@
+# a -> Boolean
+module.exports = (?) >> (!)

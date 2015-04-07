@@ -1,0 +1,1308 @@
+@themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+
+::selection {
+	background: @themeColor;
+	color: #fff;
+}
+
+* {
+	font-family: 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
+}
+
+	*::-webkit-scrollbar {
+		width: 5px;
+		background: transparent;
+
+		&:horizontal {
+			height: 5px;
+		}
+	}
+
+	*::-webkit-scrollbar-button {
+		width: 0;
+		height: 0;
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+	*::-webkit-scrollbar-piece {
+		background: transparent;
+
+		&:start {
+			background: transparent;
+		}
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background: rgba(0, 0, 0, 0.2);
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.4);
+		}
+
+		&:active {
+			background: @themeColor;
+		}
+	}
+
+	*::-webkit-scrollbar-corner {
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	scroll-behavior: smooth;
+}
+
+a {
+	text-decoration: none;
+	color: @themeColor;
+	transition: color 0.1s ease;
+	cursor: pointer;
+
+	&:hover {
+		color: darken(@themeColor, 10%);
+	}
+
+	* {
+		cursor: pointer;
+	}
+}
+
+textarea {
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	cursor: auto;
+}
+
+/* UI
+ * ---------------------------------------------------------------- */
+#misskey-main-header {
+	position: fixed;
+	top: 0;
+	z-index: 1024;
+	width: 100%;
+
+	> .informationCenter {
+		display: block;
+		height: 0;
+		overflow: hidden;
+		color: contrast(@themeColor, #000, #fff, 70%);
+		background: linear-gradient(fade(@themeColor, 50%), fade(@themeColor, 50%)), url(@blurredWallpaperUrl);
+		background-color: transparent;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		transition: all 0.5s cubic-bezier(0,0,0,1);
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		> .informationCenterContainer {
+			width: 100%;
+			max-width: 1300px;
+			margin: 0 auto;
+
+			> .info {
+				display: block;
+				float: left;
+				width: 330px;
+				height: 200px;
+
+				img {
+					height: 100%;
+					width: 100%;
+				}
+			}
+
+			> .p {
+				display: block;
+				float: left;
+				box-sizing: border-box;
+				width: ~"calc(100% - 330px)";
+				margin: 0;
+				padding: 8px 16px;
+				font-size: 1.2em;
+			}
+
+			> .nav {
+				display: block;
+				float: left;
+				box-sizing: border-box;
+				width: ~"calc(100% - 330px)";
+				padding: 16px;
+
+				> ul {
+					display: block;
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					> li {
+						display: block;
+						float: left;
+						box-sizing: border-box;
+						width: 200px;
+						padding: 0 16px;
+						border-right: dashed 1px contrast(@themeColor, #000, #fff, 70%);
+
+						> h2 {
+							margin: 0;
+							padding: 0;
+							font-size: 1.1em;
+							font-weight: bold;
+						}
+
+						> ul {
+							display: block;
+							margin: 0;
+							padding: 0;
+							list-style: none;
+
+							> li {
+								font-size: 0.9em;
+								font-weight: bold;
+
+								> a {
+									color: contrast(@themeColor, #000, #fff, 70%);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	> .info {
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 2px 0;
+		text-align: center;
+		font-size: 0.8em;
+		color: #000;
+		background: orange;
+	}
+
+	> .main {
+		max-height: 48px;
+		margin: 0;
+		padding: 0;
+		background-color: #fff;
+		//background-image: url("/resources/images/misskey-icon-lightdark.svg");
+		//background-repeat: no-repeat;
+		//background-position: center center;
+		//background-size: 32px 32px;
+		box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		> .mainContentsContainer {
+			width: 100%;
+			max-width: 1300px;
+			margin: 0 auto;
+
+			> .left {
+				float: left;
+				height: 48px;
+
+				> nav {
+					> .mainNav {
+						display: inline-block;
+						margin: 0 8px;
+						padding: 0;
+						line-height: 48px;
+						vertical-align: top;
+
+						> .misskey {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							display: inline-block;
+							font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+							margin: 0 10px;
+							padding: 0;
+							line-height: 3rem;
+							font-size: 1.5em;
+							color: rgba(0, 0, 0, 0.5);
+							border: none;
+							outline: none;
+							background: transparent;
+							transition: all 0.2s ease;
+
+							&:hover {
+								color: @themeColor;
+							}
+						}
+
+						> ul {
+							display: inline-block;
+							margin: 0;
+							padding: 0;
+							vertical-align: top;
+							line-height: 3rem;
+							list-style: none;
+
+							> li {
+								display: inline-block;
+
+								> a {
+									display: inline-block;
+									height: 100%;
+									padding: 0 16px;
+									font-size: 1em;
+									color: rgba(0, 0, 0, 0.5);
+									transition: all 0.2s ease;
+
+									&:hover {
+										color: @themeColor;
+									}
+
+									&:active {
+										color: darken(@themeColor, 10%);
+									}
+
+									> i {
+										margin-right: 8px;
+									}
+
+									> .unreadCount {
+										display: inline;
+										margin-left: 8px;
+										padding: 2px 4px;
+										font-size: 0.8em;
+										color: contrast(@themeColor);
+										background: @themeColor;
+										border-radius: 2px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			> .right {
+				float: right;
+				height: 48px;
+
+				> .search {
+					display: inline-block;
+					position: relative;
+					margin-right: 8px;
+
+					> input {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+						cursor: auto;
+						box-sizing: border-box;
+						margin: 6px 0;
+						padding: 6px 10px;
+						width: 14em;
+						height: ~"calc(48px - 12px)";
+						font-size: 1em;
+						line-height: ~"calc(48px - 12px)";
+						color: #000;
+						outline: none;
+						//border: solid 1px #ddd;
+						border: solid 1px transparent;
+						border-radius: 0;
+						box-shadow: none;
+						transition: color 0.5s ease, border 0.5s ease;
+						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
+
+						&:hover {
+							border: solid 1px @themeColor;
+							transition: border 0.2s ease, box-shadow 0.1s ease;
+						}
+
+						&:focus {
+							color: @themeColor;
+							border: solid 1px @themeColor;
+							transition: color 0, border 0.5s ease;
+						}
+					}
+
+					> .result {
+						display: block;
+						position: absolute;
+						top: auto;
+						right: 0;
+						z-index: 3;
+						width: 340px;
+						margin: 0;
+						padding: 0;
+						background: #fff;
+						box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+
+						> ol.users {
+							margin: 0;
+							padding: 0;
+							list-style: none;
+
+							li {
+								a {
+									display: inline-block;
+									box-sizing: border-box;
+									width: 100%;
+									padding: 8px 22px;
+									vertical-align: top;
+									white-space: nowrap;
+									overflow: hidden;
+									color: rgba(0, 0, 0, 0.8);
+									transition: none;
+
+									&:hover {
+										color: #fff;
+										background: @themeColor;
+
+										.name {
+											color: #fff;
+										}
+
+										.screenName {
+											color: #fff;
+										}
+									}
+
+									&:active {
+										color: #fff;
+										background: darken(@themeColor, 10%);
+
+										.name {
+											color: #fff;
+										}
+
+										.screenName {
+											color: #fff;
+										}
+									}
+
+									.icon {
+										vertical-align: middle;
+										min-width: 32px;
+										min-height: 32px;
+										max-width: 32px;
+										max-height: 32px;
+										margin: 0 8px 0 0;
+										border-radius: 6px;
+									}
+
+									.name {
+										margin: 0 8px 0 0;
+										/*font-weight: bold;*/
+										font-weight: normal;
+										color: rgba(0, 0, 0, 0.8);
+									}
+
+									.screenName {
+										font-weight: normal;
+										color: rgba(0, 0, 0, 0.3);
+									}
+								}
+							}
+						}
+					}
+				}
+
+				> .notice {
+					display: inline-block;
+					vertical-align: top;
+					height: 100%;
+
+					> .dropdown {
+						display: inline-block;
+						position: relative;
+						overflow: visible;
+						clear: both;
+						float: right;
+						height: 100%;
+
+						&:hover {
+							> .i {
+								background: #eee;
+							}
+
+							> .dropdownContainer {
+								visibility: visible;
+								opacity: 1;
+								transform: scale(1);
+								transition: opacity 0.1s linear;
+							}
+						}
+
+						> .i {
+							display: inline-block;
+							box-sizing: border-box;
+							min-width: 48px;
+							height: 100%;
+							padding: 0 8px;
+							text-align: center;
+
+							> i {
+								display: inline-block;
+								font-size: 1.2em;
+								line-height: 48px;
+								color: rgba(0,0,0,0.5);
+							}
+						}
+
+						> .dropdownContainer {
+							visibility: hidden;
+							opacity: 0;
+							display: block;
+							position: absolute;
+							top: ~"calc(48px + 16px)";
+							right: -8px;
+							z-index: 3;
+							margin: 0;
+							padding: 16px;
+							background: #fff;
+							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+							transform: scale(0.9);
+							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+
+							&:before {
+								content: "";
+								display: block;
+								position: absolute;
+								top: -32px;
+								right: 16px;
+								width: 0;
+								height: 0;
+								border-top: solid 16px transparent;
+								border-right: solid 16px transparent;
+								border-bottom: solid 16px #fff;
+								border-left: solid 16px transparent;
+							}
+
+							> .allDeleteButton {
+								-webkit-appearance: none;
+								-moz-appearance: none;
+								appearance: none;
+								display: block;
+								position: absolute;
+								top: 0;
+								left: 0;
+								z-index: 1;
+								margin: 0;
+								padding: 0;
+								cursor: pointer;
+								outline: none;
+								border: none;
+								border-radius: 0;
+								box-shadow: none;
+								background: transparent;
+
+								&:hover {
+									background: @themeColor;
+								}
+
+								&:active {
+									background: darken(@themeColor, 10%);
+								}
+
+								> i {
+									padding: 8px;
+									font-size: 1rem;
+									cursor: pointer;
+									color: rgba(0, 0, 0, 0.5);
+								}
+							}
+
+							> .dropdownContent {
+								box-sizing: border-box;
+								width: 350px;
+								height: 450px;
+								overflow-x: auto;
+								overflow-y: scroll;
+								font-size: 1rem;
+
+								> .empty {
+									display: inline-block;
+									box-sizing: border-box;
+									width: 100%;
+									margin: 0;
+									padding: 24px;
+									text-align: center;
+									color: rgba(0, 0, 0, 0.5);
+								}
+
+								> ol {
+									margin: 0;
+									padding: 0;
+									list-style: none;
+									font-size: 1.2em;
+
+									> li {
+										display: block;
+										position: relative;
+										box-sizing: border-box;
+										width: 100%;
+										padding: 24px 16px;
+										background: #fff;
+										border-bottom: solid 1px #eee;
+
+										&:hover {
+											> .deleteButton {
+												display: block;
+											}
+										}
+
+										> time {
+											position: absolute;
+											top: 0;
+											left: 0;
+											padding: 8px;
+											font-size: 0.5em;
+											color: rgba(0, 0, 0, 0.5);
+										}
+
+										> .appName {
+											position: absolute;
+											bottom: 0;
+											right: 0;
+											padding: 8px;
+											font-size: 0.5em;
+											color: rgba(0, 0, 0, 0.5);
+										}
+
+										> .deleteButton {
+											-webkit-appearance: none;
+											-moz-appearance: none;
+											appearance: none;
+											display: none;
+											position: absolute;
+											top: 6px;
+											right: 6px;
+											margin: 0;
+											padding: 0;
+											cursor: pointer;
+											outline: none;
+											border: none;
+											border-radius: 0;
+											box-shadow: none;
+											background: transparent;
+
+											> img {
+												vertical-align: bottom;
+												width: 16px;
+												height: 16px;
+												cursor: pointer;
+											}
+										}
+
+										> .content {
+											font-size: 0.8em;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				> .account {
+					display: inline-block;
+					vertical-align: top;
+
+					> .screenNameAnchor {
+						/*display: inline-block;*/
+						display: none;
+
+						&:hover {
+							> .screenName {
+								color: @themeColor;
+							}
+						}
+
+						> .screenName {
+							display: inline-block;
+							margin: 0 16px;
+							max-width: 16em;
+							line-height: 48px;
+							font-weight: bold;
+							text-decoration: none;
+							color: rgba(0, 0, 0, 0.5);
+							transition: all 0.2s ease;
+						}
+					}
+
+					> .dropdown {
+						display: inline-block;
+						position: relative;
+						overflow: visible;
+						clear: both;
+						float: right;
+
+						&:hover {
+							> .dropdownContent {
+								visibility: visible;
+								opacity: 1;
+								transform: scale(1);
+								transition: opacity 0.1s linear;
+							}
+						}
+
+						> .iconAnchor {
+							display: block;
+
+							> .icon {
+								display: block;
+								box-sizing: border-box;
+								min-width: 48px;
+								max-width: 48px;
+								min-height: 48px;
+								max-height: 48px;
+							}
+						}
+
+						> .dropdownContent {
+							visibility: hidden;
+							opacity: 0;
+							display: block;
+							position: absolute;
+							top: auto;
+							right: 0;
+							z-index: 3;
+							width: 270px;
+							margin: 0;
+							padding: 0;
+							background: #fff;
+							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+							transform: scale(0.9);
+							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+
+							> ul {
+								margin: 0;
+								padding: 0;
+								list-style: none;
+								font-size: 1.2em;
+
+								> li {
+									display: inline-block;
+									width: 100%;
+
+									> a {
+										display: inline-block;
+										box-sizing: border-box;
+										width: 100%;
+										padding: 10px 20px;
+										text-decoration: none;
+										color: #555;
+										background-color: #fff;
+										background-image: url("/resources/images/allow.svg");
+										background-repeat: no-repeat;
+										background-position: calc(100% - 8px) center;
+										transition: none;
+
+										&:hover {
+											color: #fff;
+											background-color: @themeColor;
+										}
+
+										&:active {
+											color: #fff;
+											background-color: darken(@themeColor, 10%);
+										}
+
+										> i {
+											width: 2em;
+											text-align: center;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#misskey-musicCenter {
+	position: fixed;
+	z-index: 1023;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("/resources/images/sakurako.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	transition: top 0.5s cubic-bezier(0,0,0,1);
+}
+
+/* General UI
+ * ---------------------------------------------------------------- */
+
+.ui-inputText,
+.ui-inputEmail,
+.ui-inputPassword,
+.ui-textarea,
+.ui-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	box-sizing: border-box;
+	cursor: auto;
+	margin: 0;
+	padding: 8px 16px;
+	width: 19em;
+	font-size: 1em;
+	line-height: 24px;
+	color: #000;
+	outline: none;
+	border: solid 2px #ddd;
+	border-radius: 0;
+	box-shadow: none;
+	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
+
+	&:hover {
+		border: solid 2px @themeColor;
+		//box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
+		transition: border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	&:focus {
+		color: @themeColor;
+		border: solid 2px @themeColor;
+		//box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset;
+		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
+	}
+
+	&::-webkit-input-placeholder {
+		color: rgb(169, 169, 169);
+	}
+
+	&:-ms-input-placeholder {
+		color: rgb(169, 169, 169);
+	}
+
+	&:-moz-placeholder {
+		color: rgb(169, 169, 169);
+	}
+}
+
+.ui-radio,
+.ui-checkbox {
+}
+
+.ui-radioLabel,
+.ui-checkboxLabel {
+	transition: all 0.2s ease;
+}
+
+	.ui-radioLabel:hover,
+	.ui-checkboxLabel:hover {
+		color: @themeColor;
+	}
+
+.ui-inputSubmit,
+.ui-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 6px 0;
+	padding: 8px 16px;
+	min-width: 5em;
+	cursor: pointer;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #444;
+	background: #f9f9f9;
+	outline: none;
+	border: solid 1px #CCC;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+	transition: border 0.5s ease;
+}
+
+	.ui-inputSubmit:hover,
+	.ui-button:hover {
+		background: #fff;
+		/*color: $main_color;*/
+		/*border: solid 1px @themeColor;*/
+		transition: border 0s ease;
+	}
+
+	.ui-inputSubmit:focus,
+	.ui-button:focus {
+		border: solid 1px @themeColor;
+		transition: border 0s ease;
+	}
+
+	.ui-inputSubmit:active,
+	.ui-button:active {
+		padding: 9px 16px 7px 16px;
+		background: #eee;
+		border: solid 1px @themeColor;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
+		transition: border 0s ease;
+	}
+
+.ui-textarea {
+	height: 6em;
+	max-width: 100%;
+}
+
+.ui-attachImage {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	margin: 6px 8px;
+	padding: 4px 16px;
+	vertical-align: bottom;
+	border-radius: 3px;
+	border: dashed 2px #ccc;
+	color: #777;
+	font-size: 1em;
+}
+
+	.ui-attachImage:hover {
+		border: dashed 2px #777;
+	}
+
+	.ui-attachImage input[type=file] {
+		display: inline;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
+
+	.ui-attachImage img {
+		max-width: 100%;
+		max-height: 128px;
+	}
+
+.ui-dialog {
+	display: block;
+	position: fixed;
+	z-index: 1024;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 512px;
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.8);
+	transition: top 1s ease;
+}
+
+	.ui-dialog p {
+		margin: 0;
+		text-align: center;
+	}
+
+.ui-userIcon {
+	display: inline-block;
+	position: relative;
+}
+
+	.ui-userIcon .icon {
+		min-width: 32px;
+		max-width: 32px;
+		min-height: 32px;
+		max-height: 32px;
+		vertical-align: bottom;
+	}
+
+	.ui-userIcon .balloon {
+		display: inline-block;
+		pointer-events: none;
+		position: absolute;
+		top: -2.5em;
+		left: 0;
+		z-index: 1;
+		margin: 0;
+		padding: 6px 12px;
+		line-height: 1em;
+		white-space: nowrap;
+		font-size: 0.9em;
+		color: #fff;
+		background: rgba(0, 0, 0, 0.7);
+		border-radius: 4px;
+		opacity: 0;
+		transition: opacity 0.1s linear;
+	}
+
+	.ui-userIcon:hover .balloon {
+		opacity: 1;
+	}
+
+	.ui-userIcon .balloon:before {
+		content: "";
+		position: absolute;
+		bottom: -8px;
+		left: ~"calc(50% - 4px)";
+		border-top: solid 4px rgba(0, 0, 0, 0.7);
+		border-right: solid 4px transparent;
+		border-bottom: solid 4px transparent;
+		border-left: solid 4px transparent;
+	}
+
+.image-attacher {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	margin: 2px 8px;
+	padding: 8px 16px;
+	vertical-align: top;
+	line-height: 1.2em;
+	outline: dashed 2px #ccc;
+
+	&:hover {
+		outline: dashed 2px #777;
+	}
+
+	input[type=file] {
+		display: inline;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		opacity: 0;
+	}
+
+	p {
+		pointer-events: none;
+		margin: 0;
+		padding: 0;
+		color: #777;
+		line-height: 1.2em;
+		font-size: 1em;
+	}
+
+	img {
+		pointer-events: none;
+		max-width: 100%;
+		max-height: 128px;
+	}
+}
+
+/* Window
+ * ---------------------------------------------------------------- */
+.window {
+	position: fixed;
+	z-index: 4096;
+	bottom: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0px 0px 16px -6px @themeColor;
+	/*border: solid 1px rgba(0, 0, 0, 0.2);*/
+	border: solid 1px @themeColor;
+	opacity: 0;
+	/*transform: scale(0.8);*/
+	transform-origin: 50% 100%;
+
+	> header {
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		width: 100%;
+		height: 32px;
+		cursor: move;
+		background: #fff;
+
+		h1, i {
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			cursor: move;
+		}
+
+		> h1 {
+			display: inline-block;
+			overflow: hidden;
+			margin: 0 0 0 8px;
+			line-height: 32px;
+			max-width: ~"calc(100% - 48px)";
+			font-size: 1em;
+			font-weight: bold;
+			color: #777;
+
+			i {
+				margin: 0 8px;
+			}
+		}
+
+		> .buttons {
+			float: right;
+			font-size: 0;
+
+			> button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: inline-block;
+				vertical-align: bottom;
+				padding: 0;
+				background: transparent;
+				border: none;
+				outline: none;
+				cursor: pointer;
+
+				&:hover {
+					background: #eee;
+					outline: none;
+				}
+
+				&:focus {
+					background: #ddd;
+					outline: none;
+				}
+
+				&:active {
+					background: #ddd;
+					outline: none;
+				}
+
+				img {
+					pointer-events: none;
+					min-width: 32px;
+					max-width: 32px;
+					min-height: 32px;
+					max-height: 32px;
+					vertical-align: bottom;
+				}
+			}
+
+			> .close {
+			}
+		}
+	}
+
+	> .content {
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: ~"calc(100% - 32px)";
+		overflow: hidden;
+		background: #fff;
+
+		> iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+	}
+}
+
+/* FollowButton
+ * ---------------------------------------------------------------- */
+.ui-followButton {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 10px 16px;
+	min-width: 8em;
+	cursor: pointer;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	box-shadow: none;
+	transition: background 0.1s ease;
+
+	&.following {
+		color: #fff;
+		background: @themeColor;
+
+		&:before {
+			content: "\f007";
+			font-family: FontAwesome;
+			margin-right: 8px;
+		}
+
+		&:hover {
+			content: "フォロー解除";
+			background: #f20;
+
+			&:before {
+				content: "\f235";
+				font-family: FontAwesome;
+				margin-right: 8px;
+			}
+		}
+
+		&:active {
+			content: "フォロー解除";
+			background: #700;
+		}
+	}
+
+	&.notFollowing {
+		color: #000;
+		background: #eee;
+
+		&:before {
+			content: "\f007";
+			font-family: FontAwesome;
+			margin-right: 8px;
+		}
+
+		&:hover {
+			background: @themeColor;
+
+			&:before {
+				content: "\f234";
+				font-family: FontAwesome;
+				margin-right: 8px;
+			}
+		}
+	}
+}
+
+/* Tag input
+ * ---------------------------------------------------------------- */
+input.tagit-hidden-field {
+	display: none;
+}
+
+.ui-taginput {
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	display: block;
+	float: left;
+	overflow: auto;
+	padding: 1px 5px;
+	margin-left: inherit; /* usually we don't want the regular ul margins. */
+	margin-right: inherit;
+	cursor: text;
+	list-style: none;
+
+	li {
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		display: block;
+		float: left;
+		margin: 2px 5px 2px 0;
+		cursor: text;
+	}
+
+		li.tagit-choice {
+			position: relative;
+			line-height: inherit;
+		}
+
+		li.tagit-choice-read-only {
+			padding: 0;
+		}
+
+		li.tagit-choice-editable {
+			padding: 0 18px 0 0;
+		}
+
+		li.tagit-new {
+			padding: 0;
+		}
+
+		li.tagit-choice a.tagit-label {
+			cursor: pointer;
+			text-decoration: none;
+		}
+
+		li.tagit-choice .tagit-close {
+			cursor: pointer;
+			position: absolute;
+			right: .1em;
+			top: 50%;
+			margin-top: -8px;
+			line-height: 17px;
+		}
+			/* used for some custom themes that don't need image icons */
+			li.tagit-choice .tagit-close .text-icon {
+				display: none;
+			}
+
+		li.tagit-choice input {
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			display: block;
+			float: left;
+			margin: 2px 5px 2px 0;
+			cursor: text;
+		}
+
+	input[type="text"] {
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		border: none;
+		margin: 0;
+		padding: 4px;
+		width: inherit;
+		cursor: text;
+		background-color: inherit;
+		outline: none;
+	}
+}

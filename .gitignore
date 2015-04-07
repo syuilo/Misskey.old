@@ -1,10 +1,12 @@
+﻿# npm
 npm-debug.log
-/node_modules
+/node_modules/
 
-/typings
+# After Effects
+/resource-projects/Adobe After Effects 自動保存/
 
-/app
+# Mac
+.DS_Store
 
-/src/lib/*.js
-/src/lib/*.js.map
-/src/lib/*.d.ts
+# Windows
+Thumbs.db

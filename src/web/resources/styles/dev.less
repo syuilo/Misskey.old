@@ -1,0 +1,284 @@
+@themeColor: <%themeColor%>;
+
+@import url(https://mplus-fonts.sourceforge.jp/webfonts/mplus_webfonts.css);
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand);
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Patrick Hand','Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo','メイリオ','sans-serif';
+}
+
+html, body {
+	height: 100%;
+}
+
+html {
+	color: #000;
+	background-color: #fff;
+	background-image: url('/resources/images/grid.png');
+	background-repeat: repeat;
+}
+
+body {
+	color: #fff;
+	font-family: "mplus-1c-light", sans-serif !important;
+
+	a {
+		color: rgba(152, 186, 220, 1);
+		text-decoration: none;
+
+		&:hover {
+			color: rgba(152, 186, 220, 0.7);
+		}
+	}
+
+	> header {
+		background: #ff005c;
+	}
+
+	header {
+
+		#titlelogo {
+			box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
+
+			h1 {
+				display: inline-block;
+				padding: 8px 64px;
+				color: #fff;
+				font-size: 2em;
+				font-weight: 100;
+
+				i {
+					margin-right: 16px;
+				}
+			}
+
+			p {
+				color: #fff;
+				font-size: 20px;
+			}
+		}
+	}
+
+	#loading {
+
+		#loading-container {
+			text-align: center;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			margin-left: -32px;
+			margin-top: -30px;
+
+			#loading-icon {
+			}
+
+			#loading-text {
+				color: #000;
+			}
+		}
+	}
+
+	#contents {
+		height: 100%;
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		nav {
+			display: block;
+			float: left;
+			height: 100%;
+			min-height: 512px;
+			width: 300px;
+			padding: 0;
+			background-color: #333;
+
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				li {
+					padding: 0;
+					font-size: 19px;
+					white-space: nowrap;
+
+					i {
+						margin-right: 8px;
+					}
+
+					h1 {
+						font-size: 25px;
+						border-left: 8px solid #222;
+						margin-top: 0;
+						vertical-align: middle;
+						padding: 8px 8px;
+						font-weight: 100;
+						cursor: pointer;
+
+						&:hover {
+							background: rgba(255, 255, 255, 0.2);
+						}
+					}
+
+					ul {
+						margin: 0;
+						padding-left: 16px;
+						list-style: none;
+
+						li {
+							cursor: pointer;
+
+							&:hover {
+								background: rgba(255, 255, 255, 0.2);
+							}
+
+							h2 {
+								&:hover {
+									background-color: #333;
+								}
+							}
+
+							ul {
+								margin: 0;
+								padding-left: 16px;
+								list-style: none;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		main {
+			display: block;
+			float: left;
+			width: ~"calc(100% - 300px)";
+
+			article {
+				color: #000;
+				font-size: 19px;
+				font-weight: 100;
+				margin: 20px 30px;
+
+				ul {
+					margin: 10px 20px;
+				}
+
+				h1 {
+					font-size: 3em;
+					margin: 10px 0;
+					font-weight: 600;
+				}
+
+				h2 {
+					font-size: 2em;
+					margin: 10px 0;
+					font-weight: 600;
+				}
+
+				h3 {
+					font-size: 1.5em;
+					margin: 10px 0;
+					font-weight: 600;
+				}
+
+				table {
+					box-sizing: border-box;
+					margin: 0 16px;
+					border-collapse: collapse;
+					border: solid 1px #eee;
+					background: #fff;
+
+					th,
+					td {
+						padding: 8px 16px;
+						border: solid 1px #eee;
+					}
+
+					th {
+						font-weight: normal;
+						font-size: 1.1em;
+						color: #555;
+						background: #eee;
+					}
+
+					td {
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+						cursor: auto;
+					}
+				}
+			}
+		}
+	}
+
+	footer {
+		text-align: center;
+		color: rgba(180, 180, 180, 1);
+		padding: 2px 0 6px 0;
+		margin: 5px;
+	}
+
+	input {
+		font-size: 22px;
+		cursor: auto;
+		margin: 0px;
+		padding: 8px 10px;
+		-moz-appearance: none;
+		-moz-user-select: text;
+		line-height: 24px;
+		color: rgb(255, 255, 255);
+		outline: medium none;
+		border: 1px solid rgb(221, 221, 221);
+		border-radius: 0px;
+		box-shadow: none;
+		transition: color 0.5s ease 0s, border 0.5s ease 0s, box-shadow 0.1s ease 0s;
+		background-color: transparent;
+	}
+
+	input[type="text"] {
+		border: 1px solid rgba(255, 255, 255, 0.5);
+		width: 100%;
+		min-width: 200px;
+		box-sizing: border-box;
+	}
+
+	input[type="submit"] {
+		-moz-appearance: none;
+		display: inline-block;
+		box-sizing: border-box;
+		margin: 6px 0px;
+		padding: 8px 16px;
+		min-width: 5em;
+		cursor: pointer;
+		font-size: 1.2em;
+		font-weight: bold;
+		text-decoration: none;
+		color: rgb(68, 68, 68);
+		background: none repeat scroll 0% 0% rgb(249, 249, 249);
+		outline: medium none;
+		border: 1px solid rgb(204, 204, 204);
+		border-radius: 2px;
+		box-shadow: 0px 0px 0px 1px rgb(255, 255, 255) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
+		transition: border 0.5s ease 0s;
+	}
+
+	input[type=file] {
+		font-size: 20px;
+	}
+
+	label {
+		display: block;
+		max-width: 512px;
+		width: ~"calc(100% - 128px)";
+		margin: 10px 0;
+	}
+}
