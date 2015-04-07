@@ -149,9 +149,9 @@ $(function() {
 		$button = $(this);
 		$button.attr('disabled', true);
 		$button.text('Loading...');
-		$.ajax('https://api.misskey.xyz/post/timeline', {
+		$.ajax('https://api.misskey.xyz/status/timeline', {
 			type: 'get',
-			data: { max_id: $('#timeline .timeline .statuses > .status:last-child').attr('data-id') },
+			data: { 'max-id': $('#timeline .timeline .statuses > .status:last-child').attr('data-id') },
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
