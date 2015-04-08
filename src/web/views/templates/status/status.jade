@@ -1,6 +1,9 @@
 div.status.article(
 		class                   = status.isRepostToStatus ? 'repost' : 'normal'
+		lang                    = status.user.lang
 		title                   = status.createdAt
+		itemscope
+		itemtype                = 'http://schema.org/BlogPosting'
 		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
 		data-status-id          = status.id
 		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
@@ -39,7 +42,7 @@ div.status.article(
 										h2
 											a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
 										span.screen-name= '@' + talkPost.user.screenName
-										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
+										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt, pubdate)= talkPost.createdAt
 									div.main
 										div.text
 											p!= (talkPost.isReply ? '<a href="' + config.url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
@@ -66,7 +69,7 @@ div.status.article(
 							h2
 								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
 							span.screen-name= '@' + status.replySource.user.screenName
-							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt)= status.replySource.createdAt
+							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate)= status.replySource.createdAt
 						div.main
 							div.text
 								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
@@ -77,11 +80,12 @@ div.status.article(
 					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
 						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 				header.header
-					h2
-						a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
-					span.screen-name= '@' + status.user.screenName
-					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt)= status.createdAt
-				div.content
+					div.author(itemprop="author")
+						h2
+							a(href=config.url + '/' + status.user.screenName, target='_blank', rel="author")= status.user.name
+						span.screen-name= '@' + status.user.screenName
+					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop="url"): time(datetime=status.createdAt, pubdate)= status.createdAt
+				div.content(itemprop="articleBody")
 					div.text
 						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 					if status.isImageAttached
@@ -129,7 +133,7 @@ div.status.article(
 											h2
 												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
 											span.screen-name= '@' + reply.user.screenName
-											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt)= reply.createdAt
+											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate)= reply.createdAt
 										div.main
 											div.text
 												p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)

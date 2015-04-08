@@ -517,30 +517,51 @@
 								white-space: nowrap;
 								overflow: hidden;
 
-								> h2 {
-									text-align: left;
-									display: inline;
-									margin: 0;
-									padding: 0;
-									font-weight: normal;
-									font-size: 1em;
-
-									> a {
-										color: #444;
+								> .author {
+									> .badge {
+										text-align: left;
+										display: inline;
+										font-size: .7em;
+										margin-right: 4px;
+										padding: 2px 6px;
+										vertical-align: middle;
+										background-color: #1bb3b3;
+										border-radius: 2px;
+										color: #fff;
 										font-weight: bold;
-										text-decoration: none;
-										transition: all 0.1s ease;
+									}
 
-										&:hover {
-											text-decoration: underline;
-											transition: all 0s ease;
-										}
+									> h2 {
+										text-align: left;
+										display: inline;
+										margin: 0;
+										padding: 0;
+										font-weight: normal;
+										font-size: 1em;
 
-										&:active {
-											text-decoration: underline;
-											color: darken(@themeColor, 10%);
-											transition: all 0s ease;
+										> a {
+											color: #444;
+											font-weight: bold;
+											text-decoration: none;
+											transition: all 0.1s ease;
+
+											&:hover {
+												text-decoration: underline;
+												transition: all 0s ease;
+											}
+
+											&:active {
+												text-decoration: underline;
+												color: darken(@themeColor, 10%);
+												transition: all 0s ease;
+											}
 										}
+									}
+
+									> .screen-name {
+										text-align: left;
+										margin: 0 0 0 8px;
+										color: rgba(0, 0, 0, 0.4);
 									}
 								}
 
@@ -563,25 +584,6 @@
 											text-decoration: underline;
 										}
 									}
-								}
-
-								> .badge {
-									text-align: left;
-									display: inline;
-									font-size: .7em;
-									margin-right: 4px;
-									padding: 2px 6px;
-									vertical-align: middle;
-									background-color: #1bb3b3;
-									border-radius: 2px;
-									color: #fff;
-									font-weight: bold;
-								}
-
-								> .screen-name {
-									text-align: left;
-									margin: 0 0 0 8px;
-									color: rgba(0, 0, 0, 0.4);
 								}
 							}
 
