@@ -77,15 +77,15 @@ div.status.article(
 								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
 			div.main
 				div.icon-area
-					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 				header.header
-					div.author(itemprop="author")
+					div.author(itemprop='author')
 						h2
-							a(href=config.url + '/' + status.user.screenName, target='_blank', rel="author")= status.user.name
+							a(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
 						span.screen-name= '@' + status.user.screenName
-					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop="url"): time(datetime=status.createdAt, pubdate)= status.createdAt
-				div.content(itemprop="articleBody")
+					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, pubdate)= status.createdAt
+				div.content(itemprop='articleBody')
 					div.text
 						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 					if status.isImageAttached
