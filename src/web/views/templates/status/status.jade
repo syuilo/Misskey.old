@@ -3,9 +3,12 @@ div.status.article(
 		title                   = status.createdAt
 		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
 		data-status-id          = status.id
-		data-id                 = status.isRepostToStatus ? status.source.id : status.id
+		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
+		data-id                 = status.id
 		data-created-at         = status.createdAt
 		data-cursor             = status.cursor
+		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
+		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
 		data-source-id          = status.isRepostToStatus ? status.id : null
 		data-user-id            = status.user.id
 		data-user-screen-name   = status.user.screenName
