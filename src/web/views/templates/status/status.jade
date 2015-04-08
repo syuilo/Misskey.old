@@ -1,6 +1,8 @@
 div.status.article(
 		class                   = status.isRepostToStatus ? 'repost' : 'normal'
 		title                   = status.createdAt
+		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
+		data-status-id          = status.id
 		data-id                 = status.isRepostToStatus ? status.source.id : status.id
 		data-created-at         = status.createdAt
 		data-cursor             = status.cursor
