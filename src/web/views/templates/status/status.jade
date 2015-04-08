@@ -88,6 +88,11 @@ div.status.article(
 				div.content(itemprop='articleBody')
 					div.text
 						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+					div.tag
+						if status.tag != null
+							ol(itemprop='keywords')
+								each tag in status.tag
+									li= tag
 					if status.isImageAttached
 						img.image(src=config.url + '/img/status/' + status.id, alt='image')
 				aside.footer
