@@ -23,7 +23,7 @@ div.status.article(
 		data-is-reposted       != login ? status.isReposted.toString() : null
 		data-is-repostpost     != status.isRepostToStatus.toString()
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null)
-	article
+	article(role='article')
 		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
 			if status.moreTalk != null
 				aside.talk
