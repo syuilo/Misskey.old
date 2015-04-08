@@ -42,6 +42,6 @@ html(lang='ja', dir='ltr', data-user-id= me.id)
 									a.name-anchor(href='/' + user.screenName)
 										p.name= user.name
 									if user.isFollowing
-										button.follow-button フォロー解除
+										button.follow-button(role='button') フォロー解除
 									else
-										button.follow-button フォロー
+										button.follow-button(role='button') フォロー
