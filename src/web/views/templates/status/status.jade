@@ -108,13 +108,13 @@ div.status.article(
 								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 			footer
 				if login
-					form.reply-form
+					form.reply-form(role='form')
 						img.me-icon(src=config.url + '/img/icon/' + me.screenName, alt='icon')
 						div.form
 							textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 							div.design-allow(role='presentation')
 							input(name='in-reply-to-status-id', type='hidden', value=status.id)
-							input(type='submit', value!='&#xf112; Reply')
+							input(type='submit', value!='&#xf112; Reply', role='button')
 							ul.tag
 							div.image-attacher
 								p
