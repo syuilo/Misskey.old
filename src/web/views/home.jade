@@ -13,12 +13,12 @@ block assets
 block content
 	div#timeline
 		div#post-form-container
-			form#post-form(enctype='multipart/form-data')
+			form#post-form(enctype='multipart/form-data', role='form')
 				img.icon(src='/img/icon/' + me.screenName, alt='icon')
 				div.form
 					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 					div.design-allow(role='presentation')
-					input(type='submit', value!='Update &#xf1d8;')
+					input(type='submit', value!='Update &#xf1d8;', role='button')
 					ul.tag.ui-taginput
 					div.image-attacher
 						p
