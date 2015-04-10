@@ -47,7 +47,7 @@ module.exports = (app) ->
 					req
 					res
 					image-buffer
-					if image-type == \image then "https://misskey.xyz/img/#image-property-name/#sn" else "https://misskey.xyz/img/#image-property-name/#sn/#image-type"
+					if image-type == \image then "#{config.public-config.url}/img/#image-property-name/#sn" else "#{config.public-config.url}/img/#image-property-name/#sn/#image-type"
 					user
 			else
 				send-image req, res, image-buffer
@@ -87,7 +87,7 @@ module.exports = (app) ->
 								req
 								res
 								image-buffer
-								"https://misskey.xyz/img/status/#id"
+								"#{config.public-config.url}/img/status/#id"
 								user
 					else
 						send-image req, res, image-buffer
@@ -112,7 +112,7 @@ module.exports = (app) ->
 									req
 									res
 									image-buffer
-									"https://misskey.xyz/img/talk-message/#id"
+									"#{config.public-config.url}/img/talk-message/#id"
 									user
 						else
 							send-image req, res, image-buffer
