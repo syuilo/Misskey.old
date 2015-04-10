@@ -2,7 +2,7 @@ require! {
 	'../status': Status
 }
 
-module.exports = (user-id) -> 
+module.exports = (user-id) ->
 	resolve, reject <- new Promise!
 	err, count <- Status.count {user-id}
 	if err?

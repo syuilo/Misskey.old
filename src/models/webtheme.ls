@@ -13,5 +13,5 @@ webtheme-schema = new Schema do
 	name:        {type: String,                required: yes}
 	style:       {}
 	user-id:     {type: Schema.Types.ObjectId, required: yes}
-	
+
 module.exports = db.model \Webtheme webtheme-schema

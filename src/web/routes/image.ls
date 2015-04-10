@@ -31,13 +31,13 @@ module.exports = (app) ->
 				width: val.width
 				height: val.height
 			}
-	
+
 	function send-image(req, res, image-buffer)
 		res
 			..set 'Content-Type' 'image/jpeg'
 			..send image-buffer
 
-	function display-user-image(req, res, sn, image-property-name, image-type = \image)		
+	function display-user-image(req, res, sn, image-property-name, image-type = \image)
 		function display(user, user-image)
 			image-buffer = if user-image[image-type]?
 				then user-image[image-type]
@@ -51,7 +51,7 @@ module.exports = (app) ->
 					user
 			else
 				send-image req, res, image-buffer
-		
+
 		function routing-image(user)
 			switch
 			| user? =>
@@ -73,9 +73,9 @@ module.exports = (app) ->
 				res
 					..status 404
 					..send 'User not found.'
-		
+
 		User.find-one {screen-name: sn} (, user) -> routing-image user
-				
+
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
 			| status-image? =>
@@ -124,7 +124,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..send 'Image not found.'
-	
+
 	# User icon
 	app.get '/img/icon/:sn' (req, res) ->
 		display-user-image req, res, req.params.sn, \icon
@@ -132,7 +132,7 @@ module.exports = (app) ->
 	# User header
 	app.get '/img/header/:sn' (req, res) ->
 		display-user-image req, res, req.params.sn, \header
-		
+
 	# User header (Blur)
 	app.get '/img/header/:sn/blur' (req, res) ->
 		display-user-image req, res, req.params.sn, \header \blur
@@ -140,7 +140,7 @@ module.exports = (app) ->
 	# User wallpaper
 	app.get '/img/wallpaper/:sn' (req, res) ->
 		display-user-image req, res, req.params.sn, \wallpaper
-		
+
 	# User wallpaper (Blur)
 	app.get '/img/wallpaper/:sn/blur' (req, res) ->
 		display-user-image req, res, req.params.sn, \wallpaper \blur
@@ -154,7 +154,7 @@ module.exports = (app) ->
 	app.get '/img/talk-message/:id' (req, res) ->
 		id = req.params.id
 		display-talkmessage-image req, res, id
-		
+
 	# Webtheme thumbnail
 	app.get '/img/webtheme-thumbnail/:id' (req, res) ->
 		id = req.params.id

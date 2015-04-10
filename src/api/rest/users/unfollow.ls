@@ -23,7 +23,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 							target-user
 								..followers-count = count
 								..save!
-							stream-obj = 
+							stream-obj =
 								type: \unfollowed-me
 								value: user
 							publish-redis-streaming "userStream:#{target-user.id}", to-json stream-obj

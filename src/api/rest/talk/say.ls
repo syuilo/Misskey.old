@@ -25,7 +25,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 				..quality image-quality
 				..to-buffer \jpeg (error, buffer) ->
 					| error => throw error
-					| _ => 
+					| _ =>
 						fs.unlink path
 						create req, res, app.id, otherparty-id, buffer, true, text, user.id
 		| _ => create req, res, app.id, otherparty-id, null, false, text, user.id
@@ -44,7 +44,7 @@ function create(req, res, app-id, otherparty-id, image, is-image-attached, text,
 function send-response message
 	message .= to-object!
 	res.api-render message
-	
+
 	[
 		["userStream:#{otherparty-id}" \talk-message]
 		["talkStream:#{otherparty-id}-#{user-id}" \otherparty-message]

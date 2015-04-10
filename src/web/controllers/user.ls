@@ -25,24 +25,24 @@ module.exports = (req, res, page = \home) ->
 						.exec (, statuses) ->
 							timeline-generate-html statuses, req.me, (html) ->
 								next null html
-			
+
 			# Get is following
 			(next) ->
 				| !req.login => next null null
 				| _ => user-following-check me.id, user.id .then (is-following) ->
 						next null is-following
-			
+
 			# Get is followme
 			(next) ->
 				| !req.login => next null null
 				| _ => user-following-check user.id, me.id .then (is-following) ->
 						next null is-following
-			
+
 			# Compile bio markdown to html
 			(next) ->
 				| !user.bio? => next null null
 				| _ => next null marked user.bio
-			
+
 			# Get followings (followings page only)
 			(next) ->
 				| page != \followings => next null null
@@ -61,7 +61,7 @@ module.exports = (req, res, page = \home) ->
 											map-next null user.to-object!
 									(, users) ->
 										next null users
-			
+
 			# Get followers (followers page only)
 			(next) ->
 				| page != \followers => next null null

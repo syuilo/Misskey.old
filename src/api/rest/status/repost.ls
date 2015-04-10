@@ -10,7 +10,7 @@ require! {
 	'../../../models/user-following': UserFollowing
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) -> 
+module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[status-id] = get-express-params req, <[ status-id ]>
 	switch
 	| empty status-id => res.api-error 400 'status-id parameter is required :('

@@ -48,7 +48,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 
 		function send-response status
 			res.api-render status.to-object!
-			
+
 			stream-obj = to-json do
 				type: \status
 				value: {id: status.id}
@@ -58,7 +58,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 
 			UserFollowing.find {followee-id: user.id} (, followings) ->
 				| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
-			
+
 			mentions = status.text == /@[a-zA-Z0-9_]+/g
 			if mentions?
 				mentions |> each (mention-sn) ->

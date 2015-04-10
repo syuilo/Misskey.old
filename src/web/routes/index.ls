@@ -16,7 +16,7 @@ require! {
 module.exports = (app) ->
 	# Unstatic images
 	image-router app
-	
+
 	# Preset
 	app.param \userSn (req, res, next, screen-name) ->
 		User.find-one {screen-name} (, user) ->
@@ -36,7 +36,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'status-not-found' {}
-	
+
 	app.get '/' (req, res) ->
 		if req.login
 			then (require '../controllers/home') req, res

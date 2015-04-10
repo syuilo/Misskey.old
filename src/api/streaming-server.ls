@@ -16,12 +16,12 @@ server = https.create-server do
 	key: read-file '../../../../certs/server.key'
 	cert: read-file '../../../../certs/startssl.crt'
 	ca: read-file '../../../../certs/sub.class1.server.ca.pem'
-	
+
 	(req, res) ->
 		res
 			..write-head 200 'Content-Type': 'text/plain'
 			..end 'kyoppie'
-	
+
 server.listen config.port.streaming
 
 io = SocketIO.listen server, origins: 'misskey.xyz:*'
