@@ -71,5 +71,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 						status-mention.save ->
 							stream-mention-obj = to-json do
 								type: \reply
-								value: {id: status.id}
+								value: {status.id}
 							publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
