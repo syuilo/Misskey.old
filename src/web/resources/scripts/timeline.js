@@ -15,7 +15,7 @@ TIMELINE.setEventPost = function($post) {
 		var $submitButton = $form.find('[type=submit]');
 		$submitButton.attr('disabled', true);
 		$.ajax({
-			url: 'https://api.misskey.xyz/status/update',
+			url: config.apiUrl + '/status/update',
 			type: 'post',
 			data: new FormData($form[0]),
 			processData: false,
@@ -54,7 +54,7 @@ TIMELINE.setEventPost = function($post) {
 
 		if ($post.attr('data-is-favorited') == 'true') {
 			$post.attr('data-is-favorited', 'false')
-			$.ajax('https://api.misskey.xyz/status/unfavorite', {
+			$.ajax(config.apiUrl + '/status/unfavorite', {
 				type: 'delete',
 				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
@@ -67,7 +67,7 @@ TIMELINE.setEventPost = function($post) {
 			});
 		} else {
 			$post.attr('data-is-favorited', 'true')
-			$.ajax('https://api.misskey.xyz/status/favorite', {
+			$.ajax(config.apiUrl + '/status/favorite', {
 				type: 'post',
 				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
@@ -86,7 +86,7 @@ TIMELINE.setEventPost = function($post) {
 		$button.attr('disabled', true);
 
 		if ($post.attr('data-is-reposted') == 'true') {
-			$.ajax('https://api.misskey.xyz/status/unrepost', {
+			$.ajax(config.apiUrl + '/status/unrepost', {
 				type: 'delete',
 				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
@@ -98,7 +98,7 @@ TIMELINE.setEventPost = function($post) {
 				$button.attr('disabled', false);
 			});
 		} else {
-			$.ajax('https://api.misskey.xyz/status/repost', {
+			$.ajax(config.apiUrl + '/status/repost', {
 				type: 'post',
 				data: { 'status-id': $post.attr('data-id') },
 				dataType: 'json',
