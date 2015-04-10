@@ -21,7 +21,7 @@ module.exports = (app) ->
 			else config.theme-color
 		less.render do
 			pre-compile less-css, style-user, color
-			{ +compress }
+			{+compress}
 			(err, output) ->
 				if err then throw err
 				callback output.css
@@ -63,7 +63,7 @@ module.exports = (app) ->
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
 		| req.query.user? =>
-			User.find-one { screen-name: req.query.user } (, theme-user) ->
+			User.find-one {screen-name: req.query.user} (, theme-user) ->
 				| theme-user? =>
 					send-theme-style(theme-user);
 				| _ =>

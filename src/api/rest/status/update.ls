@@ -10,7 +10,7 @@ require! {
 	'../../auth': authorize
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one { user-id: user.id } .sort \-createdAt .exec (, recent-status) ->
+module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-one {user-id: user.id} .sort \-createdAt .exec (, recent-status) ->
 	text = if req.body.text? then req.body.text else ''
 	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
 	text .= trim!
@@ -51,19 +51,19 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			
 			stream-obj = to-json do
 				type: \status
-				value: { id: status.id }
+				value: {id: status.id}
 
 			console.time status.id
 			publish-redis-streaming "userStream:#{user.id}" stream-obj
 
-			UserFollowing.find { followee-id: user.id } (, followings) ->
+			UserFollowing.find {followee-id: user.id} (, followings) ->
 				| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
 			
 			mentions = status.text == /@[a-zA-Z0-9_]+/g
 			if mentions?
 				mentions |> each (mention-sn) ->
 					mention-sn .= replace '@' ''
-					(, reply-user) <- User.find-one { screen-name: mention-sn }
+					(, reply-user) <- User.find-one {screen-name: mention-sn}
 					if reply-user?
 						status-mention = new StatusMention do
 							status-id: status.id
@@ -71,5 +71,5 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 						status-mention.save ->
 							stream-mention-obj = to-json do
 								type: \reply
-								value: { id: status.id }
+								value: {id: status.id}
 							publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
