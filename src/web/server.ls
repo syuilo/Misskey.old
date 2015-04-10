@@ -48,7 +48,7 @@ server.use session do
 server.init-session = (req, res, callback) ->
 	req.login = req.session? && req.session.user-id?
 	req.data = # Render datas
-		config: config
+		config: config.public-config
 		url: config.public-config.url
 		api-url: config.public-config.api-url
 		login: req.login
