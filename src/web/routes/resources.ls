@@ -79,9 +79,9 @@ module.exports = (app) ->
 			style-name = req.params.0
 			theme-id = user.web-theme-id
 			switch
-			| theme-id == null => res.send!
+			| !theme-id? => res.send!
 			| _ => Webtheme.find-by-id theme-id, (, theme) ->
-				| theme == null => res.send!
+				| !theme? => res.send!
 				| _ =>
 					try
 						theme-obj = parse-json theme.style
