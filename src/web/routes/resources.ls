@@ -25,7 +25,7 @@ module.exports = (app) ->
 			(err, output) ->
 				if err then throw err
 				callback output.css
-		
+
 		# Analyze variable
 		function pre-compile(less-css, style-user, color)
 			less-css
@@ -52,14 +52,14 @@ module.exports = (app) ->
 					if style-user?
 						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}/blur\""
 						else ''
-	
+
 	function read-file-send-less(req, res, path, style-user)
 		fs.read-file path, \utf8, (, less-css) ->
 			compile-less less-css, style-user, (css) ->
 				res
 					..header 'Content-type' 'text/css'
 					..send css
-	
+
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
 		| req.query.user? =>
@@ -74,7 +74,7 @@ module.exports = (app) ->
 			app.init-session req, res, ->
 				| req.login => send-theme-style req.me
 				| _ => res.send
-		
+
 		function send-theme-style(user)
 			style-name = req.params.0
 			theme-id = user.web-theme-id
@@ -96,7 +96,7 @@ module.exports = (app) ->
 						res
 							..status 500
 							..send 'Theme parse failed.'
-		
+
 		if req.query.user?
 			User.find-one {screem-name: req.query.user} (, theme-user) ->
 				if theme-user?
@@ -111,7 +111,7 @@ module.exports = (app) ->
 					send-theme-style req.me
 				else
 					res.send!
-	
+
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
 		| (req.path.index-of '..') > -1 =>
