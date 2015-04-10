@@ -24,7 +24,7 @@ server = https.create-server do
 
 server.listen config.port.streaming
 
-io = SocketIO.listen server, origins: 'misskey.xyz:*'
+io = SocketIO.listen server, origins: "#{config.public-config.domain}:*"
 
 RedisStore = (require \connect-redis) session
 session-store = new RedisStore do
