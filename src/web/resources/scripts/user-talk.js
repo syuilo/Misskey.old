@@ -105,7 +105,7 @@ $(function() {
 		var $message = $('<li class="message">').append($(message)).hide();
 		TIMELINE.setEvent($message.children('.message'));
 		$status.prependTo($('#stream .messages')).show(200);
-		$.ajax('https://api.misskey.xyz/talk/read', {
+		$.ajax(config.apiUrl + '/talk/read', {
 			type: 'post',
 			data: { 'message-id': message.id },
 			dataType: 'json',
