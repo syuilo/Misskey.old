@@ -1,7 +1,7 @@
 var musicCenterOpen = false;
 
 function updateStatuses() {
-	$.ajax('https://api.misskey.xyz/account/unreadalltalks-count', {
+	$.ajax(config.apiUrl + '/account/unreadalltalks-count', {
 		type: 'get',
 		dataType: 'json',
 		xhrFields: { withCredentials: true }
@@ -34,7 +34,7 @@ $(function() {
 	$('#misskey-main-header .notice .allDeleteButton').click(function() {
 		$button = $(this);
 		$button.attr('disabled', true);
-		$.ajax('https://api.misskey.xyz/notice/deleteall', {
+		$.ajax(config.apiUrl + '/notice/deleteall', {
 			type: 'delete',
 			data: {},
 			dataType: 'json',
@@ -63,7 +63,7 @@ $(function() {
 			$result.empty();
 			return;
 		}
-		$.ajax('https://api.misskey.xyz/search/user', {
+		$.ajax(config.apiUrl + '/search/user', {
 			type: 'get',
 			data: { 'query': $(this).val() },
 			dataType: 'json',
@@ -76,10 +76,10 @@ $(function() {
 					$result.find('ol').append(
 						$('<li>').append(
 							$('<a>').attr({
-								'href': 'https://misskey.xyz/' + user.screenName,
+								'href': config.url + '/' + user.screenName,
 								'title': user.comment,
 							}).append(
-								$('<img class="icon" alt="icon">').attr('src', 'https://misskey.xyz/img/icon/' + user.screenName)
+								$('<img class="icon" alt="icon">').attr('src', config.url + '/img/icon/' + user.screenName)
 							).append(
 								$('<span class="name">').text(user.name)
 							).append(
