@@ -44,5 +44,5 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 							value: { id: created-status.id }
 						publish-redis-streaming "userStream:#{user.id}", stream-obj
 						UserFollowing.find { followee-id: user.id } (, user-followings) ->
-							| !empty user-followings => user-followings.for-each (user-following) ->
+							| !empty user-followings => user-followings |> each (user-following) ->
 								publish-redis-streaming "userStream:#{user-following.follower-id}", stream-obj
