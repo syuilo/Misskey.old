@@ -10,7 +10,7 @@ $(function() {
 		$('#post-form textarea').val($.cookie('post-autosave'));
 	}
 
-	socket = io.connect('https://api.misskey.xyz:1207/streaming/web/home', { port: 1207 });
+	socket = io.connect(config.streamingUrl + '/streaming/web/home', { port: 1207 });
 
 	socket.on('connect', function() {
 		console.log('Connected');
@@ -75,7 +75,7 @@ $(function() {
 			}, 10000);
 		};
 		n.onclick = function() {
-			var url = 'https://misskey.xyz/' + message.user.screenName + '/talk?noheader=true';
+			var url = config.url + '/' + message.user.screenName + '/talk?noheader=true';
 			var $content = $("<iframe>").attr({ src: url, seamless: true });
 			openWindow(windowId, $content, '<i class="fa fa-comments"></i>' + escapeHTML(message.user.name), 300, 450, true, url);
 		};
@@ -112,7 +112,7 @@ $(function() {
 		$submitButton.attr('disabled', true);
 		$submitButton.text('Updating...');
 
-		$.ajax('https://api.misskey.xyz/status/update', {
+		$.ajax(config.apiUrl + '/status/update', {
 			type: 'post',
 			processData: false,
 			contentType: false,
@@ -149,7 +149,7 @@ $(function() {
 		$button = $(this);
 		$button.attr('disabled', true);
 		$button.text('Loading...');
-		$.ajax('https://api.misskey.xyz/status/timeline', {
+		$.ajax(config.apiUrl + '/status/timeline', {
 			type: 'get',
 			data: { 'max-id': $('#timeline .timeline .statuses > .status:last-child').attr('data-id') },
 			dataType: 'json',
@@ -175,7 +175,7 @@ $(function() {
 			$button.attr('disabled', true);
 
 			if ($user.attr('data-is-following') == 'true') {
-				$.ajax('https://api.misskey.xyz/users/unfollow', {
+				$.ajax(config.apiUrl + '/users/unfollow', {
 					type: 'delete',
 					data: { 'user-id': $user.attr('data-user-id') },
 					dataType: 'json',
@@ -192,7 +192,7 @@ $(function() {
 					$button.attr('disabled', false);
 				});
 			} else {
-				$.ajax('https://api.misskey.xyz/users/follow', {
+				$.ajax(config.apiUrl + '/users/follow', {
 					type: 'post',
 					data: { 'user-id': $user.attr('data-user-id') },
 					dataType: 'json',
