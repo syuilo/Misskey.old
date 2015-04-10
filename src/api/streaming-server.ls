@@ -4,8 +4,8 @@ require! {
 	cookie
 	redis
 	'../config'
-	'./socketio/home'
-	'./socketio/talk'
+	'./streaming/home'
+	'./streaming/talk'
 	'express-session': session
 	'socket.io': SocketIO
 }
