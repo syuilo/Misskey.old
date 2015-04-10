@@ -28,7 +28,7 @@ $(function() {
 		$button.attr('disabled', true);
 
 		if ($('html').attr('data-is-following') == 'true') {
-			$.ajax('https://api.misskey.xyz/users/unfollow', {
+			$.ajax(config.apiUrl + '/users/unfollow', {
 				type: 'delete',
 				data: { 'user-id': $('html').attr('data-user-id') },
 				dataType: 'json',
@@ -45,7 +45,7 @@ $(function() {
 				$button.attr('disabled', false);
 			});
 		} else {
-			$.ajax('https://api.misskey.xyz/users/follow', {
+			$.ajax(config.apiUrl + '/users/follow', {
 				type: 'post',
 				data: { 'user-id': $('html').attr('data-user-id') },
 				dataType: 'json',

@@ -68,13 +68,13 @@ function initRegisterForm() {
 		event.preventDefault();
 		var $form = $(this);
 
-		$.ajax('https://api.misskey.xyz/account/create', {
+		$.ajax(config.apiUrl + '/account/create', {
 			type: 'post',
 			data: $form.serialize(),
 			dataType: 'json',
 			xhrFields: { withCredentials: true }
 		}).done(function(data) {
-			location.href = 'https://misskey.xyz';
+			location.href = config.url;
 		}).fail(function(data) {
 		});
 	});
@@ -126,7 +126,7 @@ function initRegisterForm() {
 			}
 
 			showMessage('確認中...', null);
-			$.ajax('https://api.misskey.xyz/screenname-available', {
+			$.ajax(config.apiUrl + '/screenname-available', {
 				type: 'get',
 				data: { 'screen-name': sn },
 				dataType: 'json',

@@ -19,7 +19,7 @@ TALKSTREAM.setEvent = function($message) {
 				var text = $(this).val();
 				var $textp = $('<p class="text">').text(text);
 				$textarea.replaceWith($textp);
-				$.ajax('https://api.misskey.xyz/talk/fix', {
+				$.ajax(config.apiUrl + '/talk/fix', {
 					type: 'put',
 					data: { 'message-id': id, text: text },
 					dataType: 'json',
@@ -37,7 +37,7 @@ TALKSTREAM.setEvent = function($message) {
 		$message.find('.delete-button').click(function() {
 			$button = $(this);
 			$button.attr('disabled', true);
-			$.ajax('https://api.misskey.xyz/talk/delete', {
+			$.ajax(config.apiUrl + '/talk/delete', {
 				type: 'delete',
 				data: { 'message-id': id },
 				dataType: 'json',
@@ -66,7 +66,7 @@ $(function() {
 	$("body").css("margin-bottom", $("#post-form-container").outerHeight() + "px");
 	scroll(0, $('html').outerHeight())
 
-	socket = io.connect('https://api.misskey.xyz:1207/streaming/talk', { port: 1207 });
+	socket = io.connect(config.streamingUrl + '/streaming/talk', { port: 1207 });
 
 	socket.on('connected', function() {
 		console.log('Connected');
@@ -241,7 +241,7 @@ $(function() {
 
 		$submitButton.attr('disabled', true);
 
-		$.ajax('https://api.misskey.xyz/talk/say', {
+		$.ajax(config.apiUrl + '/talk/say', {
 			type: 'post',
 			processData: false,
 			contentType: false,
