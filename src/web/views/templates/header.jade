@@ -27,6 +27,11 @@ header#misskey-main-header(role='banner')
 								a(href='/syuilo') Contact
 							li
 								a(href='https://github.com/syuilo/Misskey/issues/new') Feedback
+	if config.env == 'development'
+		p.env-development-info
+			strong 開発チャンネルを利用しています。
+			| このチャンネルでは開発中の機能をいち早く利用できますが、不具合などが存在する可能性があります。
+			a(href= config.productionChannelUrl) 安定チャンネル
 	div.main
 		div.mainContentsContainer
 			if login
