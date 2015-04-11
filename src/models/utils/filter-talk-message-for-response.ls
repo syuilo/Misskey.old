@@ -1,5 +1,4 @@
 require! {
-	async
 	'../application': Application
 	'../user': User
 }
@@ -13,14 +12,12 @@ module.exports = (src-talk-msg) ->
 		text: src-talk-msg.text
 		user-id: src-talk-msg.user-id
 	}
-	async.series do
-		[
-			(next) -> Application.find-by-id src-talk-msg.app-id, (, application) ->
-				| app? => next null app
-				| _ => next null null
-			(next) -> User.find-by-id src-talk-msg.otherparty-id, (, otherparty) ->
-				next null otherparty
-			(next) -> User.find-by-id src-talk-msg.user-id, (, user) ->
-				next null user
-		]
-		(, [talk-msg.application, talk-msg.otherparty, talk-msg.user])　-> callback talk-msg
+	Promise.all [
+		new Promise (resolve, reject) -> Application.find-by-id src-talk-msg.app-id, (, application) ->
+			| app? => next null app
+			| _ => resolve null
+		new Promise (resolve, reject) -> User.find-by-id src-talk-msg.otherparty-id, (, otherparty) ->
+			resolve otherparty
+		new Promise (resolve, reject) -> User.find-by-id src-talk-msg.user-id, (, user) ->
+			resolve user
+	] .then ([talk-msg.application, talk-msg.otherparty, talk-msg.user])　-> callback talk-msg
