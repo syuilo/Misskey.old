@@ -30,10 +30,10 @@ header#misskey-main-header(role='banner')
 	if config.env == 'development'
 		p.env-development-info
 			strong
-				b 開発チャンネル
+				em 開発チャンネル
 				| を利用しています。
 			| このチャンネルでは開発中の機能をいち早く利用できますが、不具合などが存在する場合があります。
-			b: a(href= config.productionChannelUrl) 安定チャンネル
+			em: a(href= config.productionChannelUrl) 安定チャンネル
 	div.main
 		div.mainContentsContainer
 			if login
