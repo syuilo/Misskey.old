@@ -63,7 +63,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			if mentions?
 				mentions |> each (mention-sn) ->
 					mention-sn .= replace '@' ''
-					(, reply-user) <- User.find-one {screen-name: mention-sn}
+					(, reply-user) <- User.find-one {screen-name-lower: mention-sn.to-lower-case!}
 					if reply-user?
 						status-mention = new StatusMention do
 							status-id: status.id
