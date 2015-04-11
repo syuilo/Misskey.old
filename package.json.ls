@@ -17,7 +17,6 @@ scripts:
 	test: 'gulp test'
 
 dependencies:
-	async: '0.9.0'
 	bcrypt: '0.8.2'
 	'body-parser': '1.12.2'
 	compression: '1.4.3'
