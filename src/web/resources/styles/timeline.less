@@ -277,7 +277,6 @@
 						}
 					}
 				}
-
 				/*
 				&:before {
 					content: "";
@@ -290,7 +289,6 @@
 					background: rgba(0, 0, 0, 0.025);
 				}
 				*/
-
 				&:last-child {
 					&:after {
 						content: "";
@@ -357,8 +355,22 @@
 						&:hover {
 							background: #f8f8f8;
 
-							> .main:before {
-								border-right: solid 12px #f8f8f8;
+							> .main {
+								&:before {
+									border-right: solid 12px #f8f8f8;
+								}
+
+								> .footer > .actions {
+									> .repost, > .favorite {
+										> button {
+											color: rgba(0, 0, 0, 0.5);
+										}
+
+										> a {
+											color: rgba(0, 0, 0, 0.5);
+										}
+									}
+								}
 							}
 						}
 
@@ -696,7 +708,7 @@
 											font-size: 1em;
 											font-weight: normal;
 											text-decoration: none;
-											color: rgba(0, 0, 0, 0.5);
+											color: rgba(0, 0, 0, 0.2);
 											outline: none;
 											border: none;
 											border-radius: 0;
@@ -717,7 +729,7 @@
 										}
 
 										> a {
-											color: rgba(0, 0, 0, 0.5);
+											color: rgba(0, 0, 0, 0.2);
 											text-decoration: none;
 											font-size: 0.8em;
 
