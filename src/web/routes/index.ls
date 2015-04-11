@@ -50,11 +50,6 @@ module.exports = (app) ->
 	app.get '/i/talks' (req, res) -> (require '../controllers/i-talks') req, res
 	app.get '/i/setting' (req, res) -> (require '../controllers/i-setting') req, res
 	app.get '/i/settings' (req, res) -> (require '../controllers/i-setting') req, res
-	app.get '/dev' (req, res) -> (require '../controllers/dev') req, res
-	app.get '/dev/myapp' (req, res) -> (require '../controllers/dev-myapp') req, res
-	app.get '/dev/myapp/new' (req, res) -> (require '../controllers/dev-myapp-new') req, res
-	app.get '/dev/usertheme' (req, res) -> (require '../controllers/dev-usertheme') req, res
-	app.get '/dev/usertheme/new' (req, res) -> (require '../controllers/dev-usertheme-new') req, res
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
 	app.post '/login' (req, res) ->
 		do-login req, req.body.\screen-name, req.body.password, (user) ->
