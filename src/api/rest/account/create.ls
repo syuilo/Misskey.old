@@ -31,6 +31,7 @@ module.exports = (req, res) ->
 
 			user = new User!
 				..screen-name = screen-name
+				..screen-name-lower = screen-name.to-lower-case!
 				..password = hash-password
 				..name = name
 				..color = color
