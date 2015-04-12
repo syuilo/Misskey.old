@@ -114,7 +114,7 @@ div.status.article(
 							textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 							div.design-allow(role='presentation')
 							input(name='in-reply-to-status-id', type='hidden', value=status.id)
-							input(type='submit', value!='&#xf112; Reply', role='button')
+							input.submit-button(type='submit', value!='&#xf112; Reply', role='button')
 							ul.tag
 							div.image-attacher
 								p
