@@ -335,107 +335,98 @@ function init-register-form
 		function hide-message
 			$ '#passwordAvailable' .remove!
 
-	function initPasswordRetypeSection() {
-		var right = false;
-		var $backButton = $('#registerForm .password-retype button.back')
-		var $nextButton = $('#registerForm .password-retype button.next')
+	function init-password-retype-section
+		right = no
+		$back-button = $ '#registerForm .password-retype button.back'
+			..click back
+		$next-button = $ '#registerForm .password-retype button.next'
+			..click next
+		
+		$ password-retype-input-query .on \keypress (event) ->
+			if event.which == 13
+				if right then next!
+				false
+			else
+				true
 
-		$backButton.click(back);
+		$ password-retype-input-query .keyup ->
+			right = no
+			hide-message!
+			$next-button.attr \disabled on
+			password = $ password-input-query .val!
+			password-retype = $ password-retype-input-query .val!
+			if password-retype.length > 0chars
+				if password-retype != password
+					show-message '一致していませんっ！' no
+					false
+				else
+					right = yes
+					show-message 'Okay!' yes
+					$next-button.attr \disabled off
+			else
+				false
 
-		$nextButton.click(next);
+		function back
+			$progress.attr \value 3
 
-		$(passwordRetypeInputQuery).on('keypress', function(event) {
-			if (event.which == 13) {
-				if (right) {
-					next();
-				}
-				return false;
-			} else {
-				return true;
-			}
-		});
-
-		$(passwordRetypeInputQuery).keyup(function() {
-			right = false;
-			hideMessage();
-			$nextButton.attr('disabled', true);
-			var password = $(passwordInputQuery).val();
-			var passwordRetype = $(passwordRetypeInputQuery).val();
-			if (passwordRetype.length == 0) {
-				return false;
-			}
-			if (passwordRetype != password) {
-				showMessage('一致していませんっ！', false);
-				return false;
-			}
-			right = true;
-			showMessage('Okay!', true);
-			$nextButton.attr('disabled', false);
-		});
-
-		function back() {
-			$progress.attr('value', 3);
-
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
-			$('#registerForm .password').animate({
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#registerForm .password' .animate {
 				opacity: 1
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password-retype').animate({
-				left: '100%',
+			$ '#registerForm .password-retype' .animate {
+				left: '100%'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm .password-retype .title').animate({
-				left: '64px',
+			} 1000ms \easeOutQuint
+			$ '#registerForm .password-retype .title' .animate {
+				left: '64px'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$(passwordInputQuery).focus();
-		}
+			} 1000ms \easeOutQuint
+			$ password-input-query .focus!
 
-		function next() {
-			$progress.attr('value', 5);
+		function next
+			$progress.attr \value 5
 
-			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .password-retype').animate({
+			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#registerForm .password-retype' .animate {
 				opacity: 0.2
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .user-color').animate({
-				left: 0,
+			$ '#registerForm .user-color' .animate {
+				left: 0
 				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .user-color .title').animate({
-				left: 0,
+			} 1000ms \easeOutElastic
+			$ '#registerForm .user-color .title' .animate {
+				left: 0
 				opacity: 1
-			}, 2000, 'easeOutElastic');
-			$(userColorInputQuery).focus();
-		}
+			} 2000ms \easeOutElastic
+			$ user-color-input-query .focus!
 
-		function showMessage(message, success) {
-			hideMessage();
-			var klass = success == null ? '' : success ? 'done' : 'fail';
-			var $message = $('<p id="passwordRetypeAvailable" class="message ' + klass + '">' + message + '</p>');
-			$message.css('top', $(passwordRetypeInputQuery).position().top - 32 + ($(passwordRetypeInputQuery).outerHeight() / 2));
-			$message.appendTo('#registerForm .password-retype').animate({
-				'margin-right': 0,
+		function show-message(message, success)
+			hide-message!
+			klass = if success == null
+				then ''
+				else
+					if success then \done else \fail
+			$message = $ "<p id=\"passwordRetypeAvailable\" class=\"message #{klass}\">#{message}</p>"
+			$message.css \top  ($ password-retype-input-query .position!.top - 32px + ($ password-retype-input-query .outer-height! / 2))
+			$message.append-to '#registerForm .password-retype' .animate {
+				'margin-right': 0
 				opacity: 1
-			}, 500, 'easeOutCubic');
-		}
+			} 500ms \easeOutCubic
 
-		function hideMessage() {
-			$('#passwordRetypeAvailable').remove();
-		}
-	}
+		function hide-message
+			$ '#passwordRetypeAvailable' .remove!
 
 	function initUserColorSection() {
 		var right = false;
