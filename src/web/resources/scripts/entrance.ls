@@ -89,45 +89,33 @@ function init-register-form
 			hide-message!
 			sn = $ user-name-input-query .val!
 
-			if (sn == '') {
-				return false;
-			}
-			if (sn.length < 4) {
-				showMessage('4文字以上でお願いしますっ', false)
-				return false;
-			}
-			if (sn.match(/^[0-9]+$/)) {
-				showMessage('すべてを数字にすることはできませんっ', false)
-				return false;
-			}
-			if (!sn.match(/^[a-zA-Z0-9_]+$/)) {
-				showMessage('半角英数記号(_)のみでお願いしますっ', false)
-				return false;
-			}
-			if (sn.length > 20) {
-				showMessage('20文字以内でお願いします', false)
-				return false;
-			}
+			if not empty sn
+				err = switch
+					| sn.length < 4chars => ['4文字以上でお願いしますっ', no]
+					| sn.match /^[0-9]+$/ => ['すべてを数字にすることはできませんっ', no]
+					| not sn.match /^[a-zA-Z0-9_]+$/ => ['半角英数記号(_)のみでお願いしますっ', no]
+					| sn.length > 20chars => ['20文字以内でお願いします', no]
+					| _ => null
 
-			showMessage('確認中...', null);
-			$.ajax(config.apiUrl + '/screenname-available', {
-				type: 'get',
-				data: { 'screen-name': sn },
-				dataType: 'json',
-				xhrFields: { withCredentials: true }
-			}).done(function(result) {
-				if (result) {
-					right = false;
-					showMessage('このIDは既に使用されていますっ', false)
-				} else {
-					right = true;
-					showMessage('このIDは使用できますっ！', true)
-					$nextButton.attr('disabled', false);
-				}
-			}).fail(function() {
-				showMessage('確認に失敗しました;;', null);
-			});
-		});
+				if err
+					show-message err.0, err.1
+				else
+					show-message '確認中...' null
+					$.ajax "#{config.api-url}/screenname-available" {
+						type: \get
+						data: {'screen-name': sn}
+						data-type: \json
+						xhr-fields: {+withCredentials}}
+					.done (result) ->
+						if result
+							right = no
+							show-message 'このIDは既に使用されていますっ' no
+						else
+							right = yes
+							show-message 'このIDは使用できますっ！' yes
+							$next-button.attr \disabled off
+					.fail ->
+						show-message '確認に失敗しました;;' null
 
 		function cancel() {
 			$('#registerForm .user-name').animate({
