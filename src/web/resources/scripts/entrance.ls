@@ -91,14 +91,14 @@ function init-register-form
 
 			if not empty sn
 				err = switch
-					| sn.length < 4chars => ['4文字以上でお願いしますっ', no]
-					| sn.match /^[0-9]+$/ => ['すべてを数字にすることはできませんっ', no]
-					| not sn.match /^[a-zA-Z0-9_]+$/ => ['半角英数記号(_)のみでお願いしますっ', no]
-					| sn.length > 20chars => ['20文字以内でお願いします', no]
-					| _ => null
+					| sn.length < 4chars             => '4文字以上でお願いしますっ'
+					| sn.match /^[0-9]+$/            => 'すべてを数字にすることはできませんっ'
+					| not sn.match /^[a-zA-Z0-9_]+$/ => '半角英数記号(_)のみでお願いしますっ'
+					| sn.length > 20chars            => '20文字以内でお願いします'
+					| _                              => null
 
 				if err
-					show-message err.0, err.1
+					show-message err, no
 				else
 					show-message '確認中...' null
 					$.ajax "#{config.api-url}/screenname-available" {
