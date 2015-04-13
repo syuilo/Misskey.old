@@ -117,59 +117,55 @@ function init-register-form
 					.fail ->
 						show-message '確認に失敗しました;;' null
 
-		function cancel() {
-			$('#registerForm .user-name').animate({
-				left: '100%',
+		function cancel
+			$ '#registerForm .user-name' .animate {
+				left: '100%'
 				opacity: 0
-			}, 500, 'easeOutQuint');
-			$('#registerForm .user-name .title').animate({
-				left: '64px',
+			} 500ms \easeOutQuint
+			$ '#registerForm .user-name .title' .animate {
+				left: '64px'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm progress').css('height', 0);
-			$('#registerForm progress').attr('value', 0);
+			} 1000ms \easeOutQuint
+			$ '#registerForm progress' .css \height 0
+			$ '#registerForm progress' .attr \value 0
 
-			setTimeout(function() {
-				$('#registerForm').css({
-					display: 'none'
-				});
-			}, 500);
-		}
+			setTimeout ->
+				$ '#registerForm' .css {display: \none}
+			, 500ms
 
-		function next() {
-			$progress.attr('value', 2);
+		function next
+			$progress.attr \value 2
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .user-name').animate({
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#registerForm .user-name' .animate {
 				opacity: 0.2
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .nickname').animate({
-				left: 0,
+			$ '#registerForm .nickname' .animate {
+				left: 0
 				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .nickname .title').animate({
-				left: 0,
+			} 1000ms \easeOutElastic
+			$ '#registerForm .nickname .title' .animate {
+				left: 0
 				opacity: 1
-			}, 2000, 'easeOutElastic');
-			$(nicknameInputQuery).focus();
-		}
+			} 2000ms \easeOutElastic
+			$ nickname-input-query .focus!
 
-		function showMessage(message, success) {
-			hideMessage();
-			var klass = success == null ? '' : success ? 'done' : 'fail';
-			var $message = $('<p id="userNameAvailable" class="message ' + klass + '">' + message + '</p>');
-			$message.css('top', $(userNameInputQuery).position().top - 32 + ($(userNameInputQuery).outerHeight() / 2));
-			$message.appendTo('#registerForm .user-name').animate({
-				'margin-right': 0,
+		function show-message(message, success)
+			hide-message!
+			klass = if success == null
+				then ''
+				else
+					if success then \done else \fail
+			$message = $ "<p id=\"userNameAvailable\" class=\"message #{klass}\">#{message}</p>"
+			$message.css \top ($ user-name-input-query .position!.top - 32px + ($ user-name-input-query .outer-height! / 2))
+			$message.append-to '#registerForm .user-name' .animate {
+				'margin-right': 0
 				opacity: 1
-			}, 500, 'easeOutCubic');
-		}
+			} 500ms \easeOutCubic
 
-		function hideMessage() {
-			$('#userNameAvailable').remove();
-		}
-	}
+		function hide-message
+			$ '#userNameAvailable' .remove!
 
 	function initNicknameSection() {
 		var right = false;
