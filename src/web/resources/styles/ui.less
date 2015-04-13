@@ -17,9 +17,12 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: default;
-}
 
-	*::-webkit-scrollbar {
+	&:focus {
+		outline: solid 2px @themeColor;
+	}
+
+	&::-webkit-scrollbar {
 		width: 5px;
 		background: transparent;
 
@@ -28,13 +31,13 @@
 		}
 	}
 
-	*::-webkit-scrollbar-button {
+	&::-webkit-scrollbar-button {
 		width: 0;
 		height: 0;
 		background: rgba(0, 0, 0, 0.2);
 	}
 
-	*::-webkit-scrollbar-piece {
+	&::-webkit-scrollbar-piece {
 		background: transparent;
 
 		&:start {
@@ -42,7 +45,7 @@
 		}
 	}
 
-	*::-webkit-scrollbar-thumb {
+	&::-webkit-scrollbar-thumb {
 		background: rgba(0, 0, 0, 0.2);
 
 		&:hover {
@@ -54,9 +57,10 @@
 		}
 	}
 
-	*::-webkit-scrollbar-corner {
+	&::-webkit-scrollbar-corner {
 		background: rgba(0, 0, 0, 0.2);
 	}
+}
 
 html, body {
 	margin: 0;
@@ -434,7 +438,6 @@ textarea {
 						}
 					}
 				}
-
 				/*
 				> .notice {
 					display: inline-block;
@@ -633,7 +636,6 @@ textarea {
 					}
 				}
 				*/
-
 				> .account {
 					display: inline-block;
 					vertical-align: top;
