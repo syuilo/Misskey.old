@@ -428,169 +428,157 @@ function init-register-form
 		function hide-message
 			$ '#passwordRetypeAvailable' .remove!
 
-	function initUserColorSection() {
-		var right = false;
-		var $backButton = $('#registerForm .user-color button.back')
-		var $nextButton = $('#registerForm .user-color button.next')
+	function init-user-color-section
+		right = no
+		$back-button = $ '#registerForm .user-color button.back'
+			..click back
+		$next-button = $ '#registerForm .user-color button.next'
+			..click next
 
-		$backButton.click(back);
+		$ user-color-input-query .change ->
+			hide-message!
+			color = $ user-color-input-query .val!
+			right = yes
+			show-message 'Good!' yes
+			$next-button.attr \disabled off
 
-		$nextButton.click(next);
+		function back
+			$progress.attr \value 4
 
-		$(userColorInputQuery).change(function() {
-			hideMessage();
-			var color = $(userColorInputQuery).val();
-			right = true;
-			showMessage('Good!', true);
-			$nextButton.attr('disabled', false);
-		});
-
-		function back() {
-			$progress.attr('value', 4);
-
-			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
-			$('#registerForm .password-retype').animate({
+			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#registerForm .password-retype' .animate {
 				opacity: 1
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .user-color').animate({
-				left: '100%',
+			$ '#registerForm .user-color' .animate {
+				left: '100%'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm .user-color .title').animate({
-				left: '64px',
+			} 1000ms \easeOutQuint
+			$ '#registerForm .user-color .title' .animate {
+				left: '64px'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$(passwordRetypeInputQuery).focus();
-		}
+			} 1000ms \easeOutQuint
+			$ password-retype-input-query .focus!
 
-		function next() {
-			$progress.attr('value', 6);
+		function next
+			$progress.attr \value 6
 
-			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .user-color').animate({
+			$ '#registerForm .user-color' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#registerForm .user-color' .animate {
 				opacity: 0.2
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .confirm').animate({
-				left: 0,
+			$ '#registerForm .confirm' .animate {
+				left: 0
 				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .confirm .title').animate({
-				left: 0,
+			} 1000ms \easeOutElastic
+			$ '#registerForm .confirm .title' .animate {
+				left: 0
 				opacity: 1
-			}, 2000, 'easeOutElastic');
-		}
+			} 2000ms \easeOutElastic
 
-		function showMessage(message, success) {
-			hideMessage();
-			var klass = success == null ? '' : success ? 'done' : 'fail';
-			var $message = $('<p id="userColorAvailable" class="message ' + klass + '">' + message + '</p>');
-			$message.css('top', $(userColorInputQuery).position().top - 32 + ($(userColorInputQuery).outerHeight() / 2));
-			$message.appendTo('#registerForm .user-color').animate({
-				'margin-right': 0,
+		function show-message(message, success)
+			hide-message!
+			klass = if success == null
+				then ''
+				else
+					if success then \done else \fail
+			$message = $ "<p id=\"userColorAvailable\" class=\"message #{klass}\">#{message}</p>"
+			$message.css \top ($ user-color-input-query .position!.top - 32px + ($ user-color-input-query .outer-height! / 2))
+			$message.append-to '#registerForm .user-color' .animate {
+				'margin-right': 0
 				opacity: 1
-			}, 500, 'easeOutCubic');
-		}
+			} 500ms \easeOutCubic
 
-		function hideMessage() {
-			$('#userColorAvailable').remove();
-		}
-	}
+		function hide-message
+			$ '#userColorAvailable' .remove!
+	
+	function init-confirm-section()
+		$back-button = $ '#registerForm .confirm button.back'
+			..click back
+		$submit-button = $ '#registerForm .confirm button.submit'
+			..click submit
 
-	function initConfirmSection() {
-		var $backButton = $('#registerForm .confirm button.back')
-		var $submitButton = $('#registerForm .confirm button.submit')
+		function back
+			$progress.attr \value 5
 
-		$backButton.click(back);
-
-		$submitButton.click(submit);
-
-		function back() {
-			$progress.attr('value', 5);
-
-			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
-			$('#registerForm .user-color').animate({
+			$ '#registerForm .user-color' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#registerForm .user-color' .animate {
 				opacity: 1
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .confirm').animate({
-				left: '100%',
+			$ '#registerForm .confirm' .animate {
+				left: '100%'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm .confirm .title').animate({
-				left: '64px',
+			} 1000ms \easeOutQuint
+			$ '#registerForm .confirm .title' .animate {
+				left: '64px'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$(userColorInputQuery).focus();
-		}
+			} 1000ms \easeOutQuint
+			$ user-color-input-query .focus!
 
-		function submit() {
-			$progress.attr('value', 7);
+		function submit
+			$progress.attr \value 7
 
-			$('#registerForm .confirm').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .confirm').animate({
+			$ '#registerForm .confirm' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$('#registerForm .confirm').animate {
 				opacity: 0.2
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-800px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-800px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password-retype').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .user-color').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-color' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .complete').css({
-				left: 0,
+			$ '#registerForm .complete' .css {
+				left: 0
 				opacity: 1
-			});
-			$('#registerForm .complete .title').css({
-				left: 0,
+			}
+			$ '#registerForm .complete .title' .css {
+				left: 0
 				opacity: 1
-			});
-			swing($('#registerForm .complete'), 1);
-		}
+			}
+			swing ($ '#registerForm .complete'), 1
+
+function show-register-form
+	$ '#registerForm' .css {
+		display: \block
 	}
-}
-
-function showRegisterForm() {
-	$('#registerForm').css({
-		display: 'block'
-	});
-	$('#registerForm .user-name').animate({
-		left: 0,
+	$ '#registerForm .user-name' .animate {
+		left: 0
 		opacity: 1
-	}, 500, 'easeOutQuint');
-	$('#registerForm .user-name .title').animate({
-		left: 0,
+	} 500ms \easeOutQuint
+	$ '#registerForm .user-name .title' .animate {
+		left: 0
 		opacity: 1
-	}, 1000, 'easeOutElastic');
-	$('#registerForm progress').attr('value', 1);
-	$('#registerForm progress').css('height', '8px');
-	$('#registerForm .user-name .user-name-input').focus();
-}
+	} 1000ms \easeOutElastic
+	$ '#registerForm progress' .attr \value 1
+	$ '#registerForm progress' .css \height '8px'
+	$ '#registerForm .user-name .user-name-input' .focus!
