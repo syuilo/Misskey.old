@@ -245,102 +245,95 @@ function init-register-form
 		function hide-message
 			$ '#nicknameAvailable' .remove!
 
-	function initPasswordSection() {
-		var right = false;
-		var $backButton = $('#registerForm .password button.back')
-		var $nextButton = $('#registerForm .password button.next')
+	function init-password-section
+		right = no
+		$back-button = $ '#registerForm .password button.back'
+			..click back
+		$next-button = $ '#registerForm .password button.next'
+			..click next
+		
+		$ password-input-query .on \keypress (event) ->
+			if event.which == 13
+				if right then next!
+				false
+			else
+				true
 
-		$backButton.click(back);
+		$ password-input-query .keyup ->
+			right = no
+			hide-message!
+			$next-button.attr \disabled on
+			password = $ password-input-query .val!
+			if password.length > 0
+				err = swicth
+					| password.length < 8chars => '8文字以上でお願いします'
+					| _ => null
+				if err
+					show-message err, no
+				else
+					show-message 'Nice!' yes
+					$next-button.attr \disabled off
+					right = yes
+			else
+				false
 
-		$nextButton.click(next);
+		function back
+			$progress.attr \value 2
 
-		$(passwordInputQuery).on('keypress', function(event) {
-			if (event.which == 13) {
-				if (right) {
-					next();
-				}
-				return false;
-			} else {
-				return true;
-			}
-		});
-
-		$(passwordInputQuery).keyup(function() {
-			right = false;
-			hideMessage();
-			$nextButton.attr('disabled', true);
-			var password = $(passwordInputQuery).val();
-			if (password.length == 0) {
-				return false;
-			}
-			if (password.length < 8) {
-				showMessage('8文字以上でお願いします', false);
-				return false;
-			}
-			showMessage('Nice!', true);
-			$nextButton.attr('disabled', false);
-			right = true;
-		});
-
-		function back() {
-			$progress.attr('value', 2);
-
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
-			$('#registerForm .nickname').animate({
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#registerForm .nickname' .animate {
 				opacity: 1
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password').animate({
-				left: '100%',
+			$ '#registerForm .password' .animate {
+				left: '100%'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm .password .title').animate({
-				left: '64px',
+			} 1000ms \easeOutQuint
+			$ '#registerForm .password .title' .animate {
+				left: '64px'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$(nicknameInputQuery).focus();
-		}
+			} 1000ms \easeOutQuint
+			$ nickname-input-query .focus!
 
-		function next() {
-			$progress.attr('value', 4);
+		function next
+			$progress.attr \value 4
 
-			$('#registerForm .password').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .password').animate({
+			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#registerForm .password' .animate {
 				opacity: 0.2
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password-retype').animate({
-				left: 0,
+			$ '#registerForm .password-retype' .animate {
+				left: 0
 				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .password-retype .title').animate({
-				left: 0,
+			} 1000ms \easeOutElastic
+			$ '#registerForm .password-retype .title' .animate {
+				left: 0
 				opacity: 1
-			}, 2000, 'easeOutElastic');
-			$(passwordRetypeInputQuery).focus();
-		}
+			} 2000ms \easeOutElastic
+			$ password-retype-input-query .focus!
 
-		function showMessage(message, success) {
-			hideMessage();
-			var klass = success == null ? '' : success ? 'done' : 'fail';
-			var $message = $('<p id="passwordAvailable" class="message ' + klass + '">' + message + '</p>');
-			$message.css('top', $(passwordInputQuery).position().top - 32 + ($(passwordInputQuery).outerHeight() / 2));
-			$message.appendTo('#registerForm .password').animate({
-				'margin-right': 0,
+		function show-message(message, success)
+			hide-message!
+			klass = if success == null
+				then ''
+				else
+					if success then \done else \fail
+			$message = $ "<p id=\"passwordAvailable\" class=\"message #{klass}\">#{message}</p>"
+			$message.css \top ($ password-input-query .position!.top - 32px + ($ password-input-query .outer-height! / 2))
+			$message.append-to '#registerForm .password' .animate {
+				'margin-right': 0
 				opacity: 1
-			}, 500, 'easeOutCubic');
-		}
+			} 500ms \easeOutCubic
 
-		function hideMessage() {
-			$('#passwordAvailable').remove();
-		}
-	}
+		function hide-message
+			$ '#passwordAvailable' .remove!
 
 	function initPasswordRetypeSection() {
 		var right = false;
