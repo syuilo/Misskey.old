@@ -167,94 +167,83 @@ function init-register-form
 		function hide-message
 			$ '#userNameAvailable' .remove!
 
-	function initNicknameSection() {
-		var right = false;
-		var $backButton = $('#registerForm .nickname button.back')
-		var $nextButton = $('#registerForm .nickname button.next')
+	function init-nickname-section
+		right = no
+		$back-button = $ '#registerForm .nickname button.back'
+			..click back
+		$next-button = $ '#registerForm .nickname button.next'
+			..click next
+			
+		$(nickname-input-query).on \keypress (event) ->
+			if event.which == 13
+				if right then next!
+				false
+			else
+				true
 
-		$backButton.click(back);
+		$ nickname-input-query .keyup ->
+			right = no
+			hide-message!
+			$next-button.attr \disabled on
+			name = $ nickname-input-query .val!
+			if name.length > 0chars
+				right = yes
+				show-message 'Great!' yes
+				$next-button.attr \disabled off
 
-		$nextButton.click(next);
+		function back
+			$progress.attr \value 1
 
-		$(nicknameInputQuery).on('keypress', function(event) {
-			if (event.which == 13) {
-				if (right) {
-					next();
-				}
-				return false;
-			} else {
-				return true;
-			}
-		});
-
-		$(nicknameInputQuery).keyup(function() {
-			right = false;
-			hideMessage();
-			$nextButton.attr('disabled', true);
-			var name = $(nicknameInputQuery).val();
-			if (name.length == 0) {
-				return false;
-			}
-			right = true;
-			showMessage('Great!', true);
-			$nextButton.attr('disabled', false);
-		});
-
-		function back() {
-			$progress.attr('value', 1);
-
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(0) translateZ(0) rotateY(0)');
-			$('#registerForm .user-name').animate({
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#registerForm .user-name' .animate {
 				opacity: 1
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .nickname').animate({
-				left: '100%',
+			$ '#registerForm .nickname' .animate {
+				left: '100%'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$('#registerForm .nickname .title').animate({
-				left: '64px',
+			} 1000ms \easeOutQuint
+			$ '#registerForm .nickname .title' .animate {
+				left: '64px'
 				opacity: 0
-			}, 1000, 'easeOutQuint');
-			$(userNameInputQuery).focus();
-		}
+			} 1000ms \easeOutQuint
+			$ user-name-input-query .focus!
 
-		function next() {
-			$progress.attr('value', 3);
+		function next
+			$progress.attr \value 3
 
-			$('#registerForm .nickname').css('transform', 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)');
-			$('#registerForm .nickname').animate({
+			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#registerForm .nickname' .animate {
 				opacity: 0.2
-			}, 500, 'easeOutQuint');
+			} 500ms \easeOutQuint
 
-			$('#registerForm .user-name').css('transform', 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)');
+			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$('#registerForm .password').animate({
-				left: 0,
+			$ '#registerForm .password' .animate {
+				left: 0
 				opacity: 1
-			}, 1000, 'easeOutElastic');
-			$('#registerForm .password .title').animate({
-				left: 0,
+			} 1000ms \easeOutElastic
+			$ '#registerForm .password .title' .animate {
+				left: 0
 				opacity: 1
-			}, 2000, 'easeOutElastic');
-			$(passwordInputQuery).focus();
-		}
+			} 2000ms \easeOutElastic
+			$ password-input-query .focus!
 
-		function showMessage(message, success) {
-			hideMessage();
-			var klass = success == null ? '' : success ? 'done' : 'fail';
-			var $message = $('<p id="nicknameAvailable" class="message ' + klass + '">' + message + '</p>');
-			$message.css('top', $(nicknameInputQuery).position().top - 32 + ($(nicknameInputQuery).outerHeight() / 2));
-			$message.appendTo('#registerForm .nickname').animate({
-				'margin-right': 0,
+		function show-message(message, success)
+			hide-message!
+			klass = if success == null
+				then ''
+				else
+					if success then \done else \fail
+			$message = $ "<p id=\"nicknameAvailable\" class=\"message #{klass}\">#{message}</p>"
+			$message.css \top ($ nickname-input-query .position!.top - 32px + ($ nickname-input-query .outer-height! / 2))
+			$message.append-to '#registerForm .nickname' .animate {
+				'margin-right': 0
 				opacity: 1
-			}, 500, 'easeOutCubic');
-		}
+			} 500ms \easeOutCubic
 
-		function hideMessage() {
-			$('#nicknameAvailable').remove();
-		}
-	}
+		function hide-message
+			$ '#nicknameAvailable' .remove!
 
 	function initPasswordSection() {
 		var right = false;
