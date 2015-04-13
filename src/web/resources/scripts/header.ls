@@ -1,4 +1,4 @@
-var musicCenterOpen = false;
+music-center-open = no
 
 function updateStatuses() {
 	$.ajax(config.apiUrl + '/account/unreadalltalks-count', {
