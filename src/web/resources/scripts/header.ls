@@ -1,61 +1,30 @@
 music-center-open = no
 
-function updateStatuses() {
-	$.ajax(config.apiUrl + '/account/unreadalltalks-count', {
-		type: 'get',
-		dataType: 'json',
-		xhrFields: { withCredentials: true }
-	}).done(function(result) {
-		if ($("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount")[0]) {
-			$('#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount').remove();
-		}
-		if (result !== 0) {
-			$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a").append(
-				$('<span class="unreadCount">').text(result));
-		}
-	}).fail(function() {
-	});
-}
+function update-statuses
+	$.ajax "#{config.api-url}/account/unreadalltalks-count" {
+		type: \get
+		data-type: \json
+		xhr-fields: {+withCredentials}}
+	.done (result) ->
+		if $ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .0
+			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .remove!
+		if result != 0
+			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .append do
+				$ '<span class="unreadCount">' .text result
+	.fail ->
 
-$(function() {
-	//updateStatuses();
-	//setInterval(updateStatuses, 5000);
+$ ->
+	#update-statuses!
+	#set-interval update-statuses, 5000ms
 
-	$("#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey").click(function() {
-		if (musicCenterOpen) {
-			$("#misskey-main-header > .informationCenter").css('height', '0');
-		} else {
-			$("#misskey-main-header > .informationCenter").css('height', '200px');
-		}
-		musicCenterOpen = !musicCenterOpen;
-	});
-	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
-
-	$('#misskey-main-header .notice .allDeleteButton').click(function() {
-		$button = $(this);
-		$button.attr('disabled', true);
-		$.ajax(config.apiUrl + '/notice/deleteall', {
-			type: 'delete',
-			data: {},
-			dataType: 'json',
-			xhrFields: { withCredentials: true }
-		}).done(function() {
-			$button.attr('disabled', false);
-			$('#misskey-main-header .notice .notices .notice').each(function() {
-				var $notice = $(this);
-				$notice.css({
-					transition: 'all 0.2s ease-in',
-					transform: 'perspective(512px) translateY(20%) scale(0.8) rotateX(45deg)',
-					opacity: 0
-				});
-				setTimeout(function() {
-					$notice.remove();
-				}, 300);
-			});
-		}).fail(function() {
-			$button.attr('disabled', false);
-		});
-	});
+	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
+		if music-center-open
+			$ '#misskey-main-header > .informationCenter' .css \height '0'
+		else
+			$ '#misskey-main-header > .informationCenter' .css \height '200px'
+		music-center-open = !music-center-open
+	
+	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
 	$("#misskey-main-header .search input").bind('input', function() {
 		var $result = $("#misskey-main-header .search .result");
