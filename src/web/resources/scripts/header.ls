@@ -26,43 +26,35 @@ $ ->
 	
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
-	$("#misskey-main-header .search input").bind('input', function() {
-		var $result = $("#misskey-main-header .search .result");
-		if ($(this).val() == '') {
-			$result.empty();
-			return;
-		}
-		$.ajax(config.apiUrl + '/search/user', {
-			type: 'get',
-			data: { 'query': $(this).val() },
-			dataType: 'json',
-			xhrFields: { withCredentials: true }
-		}).done(function(result) {
-			$result.empty();
-			if (result.length > 0) {
-				$result.append($('<ol class="users">'));
-				result.forEach(function(user) {
-					$result.find('ol').append(
-						$('<li>').append(
-							$('<a>').attr({
-								'href': config.url + '/' + user.screenName,
-								'title': user.comment,
-							}).append(
-								$('<img class="icon" alt="icon">').attr('src', config.url + '/img/icon/' + user.screenName)
-							).append(
-								$('<span class="name">').text(user.name)
-							).append(
-								$('<span class="screenName">').text('@' + user.screenName)
-							)
-						)
-					);
-				});
-			}
-		}).fail(function() {
-		});
-	});
-});
+	$ '#misskey-main-header .search input' .bind \input ->
+		$result = $ '#misskey-main-header .search .result'
+		if $ @ .val! == ''
+			$result.empty!
+		else
+			$.ajax("#{config.api-url}/search/user" {
+				type: \get
+				data: {'query': $ @ .val!}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done (result) ->
+				$result.empty!
+				if result.length > 0
+					$result.append $ '<ol class="users">'
+					result.for-each((user) ->
+						$result.find \ol .append do
+							$ \<li> .append do
+								$ \<a> .attr {
+									'href': "#{config.url}/#{user.screen-name}"
+									'title': user.comment}
+								.append do
+									$ '<img class="icon" alt="icon">' .attr \src "#{config.url}/img/icon/#{user.screen-name}
+								.append do
+									$ '<span class="name">' .text user.name
+								.append do
+									$ '<span class="screenName">' .text "@#{user.screen-name}"
+								
+			.fail ->
 
-$(window).load(function() {
-	$("body").css("margin-top", $("body > #misskey-main-header").outerHeight() + "px");
-});
+$ window .load ->
+	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
+
