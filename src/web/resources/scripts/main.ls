@@ -21,7 +21,7 @@ $ ->
 				if n < 10 then \0 + n else n
 			date = new Date $ @ .attr \datetime
 			ago = ~~((now - date) / 1000)
-			time-text = swicth
+			time-text = switch
 				| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
 				| ago >= 2592000s  => ~~(ago / 2592000s) + 'ヶ月前'
 				| ago >= 604800s   => ~~(ago / 604800s) + '週間前'
@@ -33,10 +33,8 @@ $ ->
 				| _ => ''
 			$ @ .text time-text
 
-function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
-	var canPopout = canPopout === undefined ? false : canPopout;
-
-	var $window = $("\
+function open-window(id, $content, title, width, height, can-popout = false, popout-url = null)
+	$window = $("\
 		<div class=\"ui window\" id=\"" + id + "\">\
 			<header>\
 				<h1>"+ title + "</h1>\
