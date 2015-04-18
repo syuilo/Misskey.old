@@ -1,41 +1,37 @@
-$.fn.extend({
-	viewportOffset: function() {
-		$window = $(window);
-		p = this.offset();
-		return { left: p.left - $window.scrollLeft(), top: p.top - $window.scrollTop() };
-	}
-});
+$.fn.extend {
+	viewport-offset: ->
+		$window = $ window
+		p = @.offset!
+		{ left: p.left - $window.scroll-left!, top: p.top - $window.scroll-top! }
+}
 
-function escapeHTML(val) {
-	return $('<div />').text(val).html();
-};
+function escapeHTML(val)
+	$ '<div />' .text(val).html!
 
-$(function() {
-	updateRelativeTimes();
+$ ->
+	update-relative-times!
 
-	setInterval(function() {
-		updateRelativeTimes();
-	}, 1000);
+	# Update relative times
+	set-interval update-relative-times 1000ms
 
-	function updateRelativeTimes() {
-		var now = new Date();
-		$('time').each(function() {
-			function pad2(n) { return n < 10 ? '0' + n : n }
-			var date = new Date($(this).attr('datetime'));
-			var ago = ~~((now - date) / 1000);
-			var timeText =
-				ago >= 31536000 ? ~~(ago / 31536000) + "年前" :
-				ago >= 2592000 ? ~~(ago / 2592000) + "ヶ月前" :
-				ago >= 604800 ? ~~(ago / 604800) + "週間前" :
-				ago >= 86400 ? ~~(ago / 86400) + "日前" :
-				ago >= 3600 ? ~~(ago / 3600) + "時間前" :
-				ago >= 60 ? ~~(ago / 60) + "分前" :
-				ago >= 5 ? ~~(ago % 60) + "秒前" :
-				ago < 5 ? 'いま' : "";
-			$(this).text(timeText);
-		});
-	}
-});
+	function update-relative-times
+		now = new Date!
+		$ \time .each ->
+			function pad2(n)
+				if n < 10 then \0 + n else n
+			date = new Date $ @ .attr \datetime
+			ago = ~~((now - date) / 1000)
+			time-text = swicth
+				| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
+				| ago >= 2592000s  => ~~(ago / 2592000s) + 'ヶ月前'
+				| ago >= 604800s   => ~~(ago / 604800s) + '週間前'
+				| ago >= 86400s    => ~~(ago / 86400s) + '日前'
+				| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
+				| ago >= 60s       => ~~(ago / 60s) + '分前'
+				| ago >= 5s        => ~~(ago % 60s) + '秒前'
+				| ago <  5s        => 'たったいま'
+				| _ => ''
+			$ @ .text time-text
 
 function openWindow(id, $content, title, width, height, canPopout, popoutUrl) {
 	var canPopout = canPopout === undefined ? false : canPopout;
