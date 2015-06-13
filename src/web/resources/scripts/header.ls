@@ -4,7 +4,7 @@ function update-statuses
 	$.ajax "#{config.api-url}/account/unreadalltalks-count" {
 		type: \get
 		data-type: \json
-		xhr-fields: {+withCredentials}}
+		xhr-fields: {+with-credentials}}
 	.done (result) ->
 		if $ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .0
 			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .remove!
