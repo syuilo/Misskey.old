@@ -28,7 +28,7 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 		main
 			div#contents
 				div#main-contents(role='main')
-					// block content
+					block content
 				div#right-contents
 					div#me
 						header
@@ -44,17 +44,18 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									td: a(href='/' + me.screenName)= me.statusesCount
 									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
 									td: a(href='/' + me.screenName + '/followers')= me.followersCount
-					div#recommendation-users
-						ol.users
-							each user in recommendationUsers
-								li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
-									div.icon-area
-										a.icon-anchor(href='/' + user.screenName)
-											img.icon(src='/img/icon/' + user.screenName, alt='icon')
-									div.main
-										a.name-anchor(href='/' + user.screenName)
-											p.name= user.name
-										if user.isFollowing
-											button.follow-button(role='button') フォロー解除
-										else
-											button.follow-button(role='button') フォロー
+					//
+						div#recommendation-users
+							ol.users
+								each user in recommendationUsers
+									li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+										div.icon-area
+											a.icon-anchor(href='/' + user.screenName)
+												img.icon(src='/img/icon/' + user.screenName, alt='icon')
+										div.main
+											a.name-anchor(href='/' + user.screenName)
+												p.name= user.name
+											if user.isFollowing
+												button.follow-button(role='button') フォロー解除
+											else
+												button.follow-button(role='button') フォロー
