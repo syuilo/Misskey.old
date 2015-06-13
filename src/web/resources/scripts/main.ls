@@ -34,162 +34,154 @@ $ ->
 			$ @ .text time-text
 
 function open-window(id, $content, title, width, height, can-popout = false, popout-url = null)
-	$window = $("\
-		<div class=\"ui window\" id=\"" + id + "\">\
-			<header>\
-				<h1>"+ title + "</h1>\
-				<div class=\"buttons\">\
-					<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>\
-					<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>\
-				</div>\
-			</header>\
-			<div class=\"content\"></div>\
-		</div>\
-	").css({
-		width: width,
-		height: height
-	});
-	$window.find(".content").append($content);
-	$("body").prepend($window);
-
-	function top() {
-		var z = 0;
-		$(".window").each(function() {
-			if ($(this).css("z-index") > z)
-				z = Number($(this).css("z-index"));
-		});
-		$window.css("z-index", z + 1);
+	$window = $ '''
+		<div class=\"ui window\" id=\"" + id + "\">
+			<header>
+				<h1>"+ title + "</h1>
+				<div class=\"buttons\">
+					<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>
+					<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>
+				</div>
+			</header>
+			<div class=\"content\"></div>
+		</div>
+	''' .css {
+		width
+		height
 	}
+	$window.find \.content .append $content
+	$ \body .prepend $window
 
-	function popout() {
-		var openedWindow = window.open(popoutUrl, popoutUrl, 'width=' + width + ',height=' + height + ',menubar=no,toolbar=no,location=no,status=no');
-		close();
-	}
+	function top
+		z = 0
+		$ \.window .each ->
+			if ($ @ .css \z-index) > z
+				z = Number($ @ .css \z-index)
+		$window.css \z-index z + 1
 
-	function close() {
-		$window.css({
-			"transform": "perspective(512px) rotateX(22.5deg) scale(0.9)",
-			"opacity": "0",
-			"transition": "all ease-in 0.3s"
-		});
-		setTimeout(function() {
-			$window.remove();
-		}, 300);
-	}
+	function popout
+		opened-window = window.open do
+			popout-url
+			popout-url
+			"width=#{width},height=#{height},menubar=no,toolbar=no,location=no,status=no"
+		close!
 
-	$window.ready(function() {
-		top();
-
-		/*$window.css({
-			"top": ($(window).scrollTop() + (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64))) + "px",
-			"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
-		});*/
-		$window.css({
-			"bottom": (($(window).height() / 2) - ($window.height() / 2) + ((Math.random() * 128) - 64)) + "px",
-			"right": (($(window).width() / 2) - ($window.width() / 2) + ((Math.random() * 128) - 64)) + "px",
-		});
-		$window.animate({
-			"opacity": "1",
-			"transform": "scale(1)",
-		}, 200);
-	});
-
-	$window.find("header > .buttons > .popout").click(function() {
-		popout();
-	});
-
-	$window.find("header > .buttons > .close").click(function() {
-		close();
-	});
-
-	$window.mousedown(function() {
-		top();
-	});
-
-	$window.find("header").mousedown(function(e) {
-		if ($(e.target).is('button') ||
-		$(e.target).is('img')) return;
-
-		$window.find(".content").css({
-			'pointer-events': 'none',
-			'user-select': 'none'
-		});
-
-		var position = $window.position();
-
-		var clickX = e.clientX;
-		var clickY = e.clientY;
-		var moveBaseX = clickX - position.left;
-		var moveBaseY = clickY - position.top;
-		var browserWidth = $(window).width();
-		var browserHeight = $(window).height();
-		var windowWidth = $window.outerWidth();
-		var windowHeight = $window.outerHeight();
-
-		$("html").mousemove(function(me) {
-			var moveRight = browserWidth - ((windowWidth + me.clientX) - moveBaseX);
-			var moveBottom = browserHeight - ((windowHeight + me.clientY) - moveBaseY);
-			if (moveRight < 0) moveRight = 0;
-			if (moveBottom < 0) moveBottom = 0;
-			if (moveRight + windowWidth > browserWidth) moveRight = browserWidth - windowWidth;
-			if (moveBottom + windowHeight > browserHeight) moveBottom = browserHeight - windowHeight;
-
-			$window.css({
-				"right": moveRight + "px",
-				"bottom": moveBottom + "px",
-			});
-		});
-		$("html").mouseleave(function() {
-			$(this).unbind("mouseup mousemove mouseleave");
-			endMove();
-		});
-		$("html").mouseup(function() {
-			$(this).unbind("mouseup mousemove mouseleave");
-			endMove();
-		});
-		$("html").bind("dragstart", function(e) {
-			$(this).unbind("mouseup mousemove mouseleave");
-			endMove();
-		});
-		$("html").bind("dragend", function(e) {
-			$(this).unbind("mouseup mousemove mouseleave");
-			endMove();
-		});
-
-		function endMove() {
-			$window.find(".content").css({
-				'pointer-events': 'auto',
-				'user-select': 'auto'
-			});
+	function close
+		$window.css {
+			transform: 'perspective(512px) rotateX(22.5deg) scale(0.9)'
+			opacity: \0
+			transition: 'all ease-in 0.3s'
 		}
-	});
+		set-timeout $window.remove, 300
+	
+	function end-move
+		$window.find \.content .css {
+			'pointer-events': \auto
+			'user-select': \auto
+		}
 
-	$(window).resize(function() {
-		var position = $window.position();
-		var browserWidth = $(window).width();
-		var browserHeight = $(window).height();
-		var windowWidth = $window.outerWidth();
-		var windowHeight = $window.outerHeight();
+	$window.ready ->
+		top!
 
-		if (position.left < 0) {
-			$window.css({
-				"right": (browserWidth - windowWidth) + "px"
-			});
+		#$window.css({
+		#	"top": ($(window).scrollTop() + (($(window).height() / 2) - ($window.outerHeight() / 2) + ((Math.random() * 128) - 64))) + "px",
+		#	"left": (($(window).width() / 2) - ($window.outerWidth() / 2) + ((Math.random() * 128) - 64)) + "px",
+		#});
+		$window.css {
+			bottom: (($ window .height! / 2) - ($window.height! / 2) + ((Math.random! * 128) - 64)) + \px
+			right: (($ window .width! / 2) - ($window.width! / 2) + ((Math.random! * 128) - 64)) + \px
 		}
-		if (position.top < 0) {
-			$window.css({
-				"bottom": (browserHeight - windowHeight) + "px"
-			});
-		}
-		if (position.left + windowWidth > browserWidth) {
-			$window.css({
-				"right": "0px"
-			});
-		}
-		if (position.top + windowHeight > browserHeight) {
-			$window.css({
-				"bottom": "0px"
-			});
-		}
-	});
-}
+		$window.animate {
+			opacity: \1
+			transform: 'scale(1)'
+		}, 200
+
+	$window.find 'header > .buttons > .popout' .click popout
+
+	$window.find 'header > .buttons > .close' .click close
+
+	$window.mousedown top
+
+	$window.find \header .mousedown (e) ->
+		| $ e.target .is \button =>
+		| $ e.target .is \img =>
+		| _ =>
+			$window.find \.content .css {
+				'pointer-events': \none
+				'user-select': \none
+			}
+
+			position = $window.position!
+
+			click-x = e.client-x
+			click-y = e.client-y
+			move-base-x = click-x - position.left
+			move-base-y = click-y - position.top
+			browser-width = $ window .width!
+			browser-height = $ window .height!
+			window-width = $window.outer-width!
+			window-height = $window.outer-height!
+
+			$ \html .mousemove (me) ->
+				move-right = browser-width - ((window-width + me.client-x) - move-base-x)
+				move-bottom = browser-height - ((window-height + me.client-y) - move-base-y)
+				
+				if move-right < 0
+					move-right = 0
+					
+				if move-bottom < 0
+					move-bottom = 0
+					
+				if move-right + window-width > browser-width
+					move-right = browser-width - window-width
+					
+				if move-bottom + window-height > browser-height
+					move-bottom = browser-height - window-height
+
+				$window.css {
+					right: move-right + \px
+					bottom: move-bottom + \px
+				}
+
+			$ \html .mouseleave ->
+				$ @ .unbind 'mouseup mousemove mouseleave'
+				end-move!
+			
+			$ \html .mouseup ->
+				$ @ .unbind 'mouseup mousemove mouseleave'
+				end-move!
+
+			$ \html .bind \dragstart (e) ->
+				$ @ .unbind 'mouseup mousemove mouseleave'
+				end-move!
+
+			$ \html .bind \dragend (e) ->
+				$ @ .unbind 'mouseup mousemove mouseleave'
+				end-move!
+
+	$ window .resize ->
+		position = $window.position!
+		browser-width = $ window .width!
+		browser-height = $ window .height!
+		window-width = $window.outer-width!
+		window-height = $window.outer-height!
+
+		if position.left < 0
+			$window.css {
+				right: (browser-width - window-width) + \px
+			}
+		
+		if position.top < 0
+			$window.css {
+				bottom: (browser-height - window-height) + \px
+			}
+
+		if position.left + window-width > browser-width
+			$window.css {
+				right: '0px'
+			}
+		
+		if position.top + window-height > browser-height
+			$window.css {
+				bottom: '0px'
+			}
