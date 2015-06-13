@@ -63,7 +63,7 @@ function init-register-form
 			type: \post
 			data: $form.serialize!
 			data-type: \json
-			xhr-fields: {+withCredentials}
+			xhr-fields: {+withCredentials}}
 		.done ->
 			location.href = config.url
 		.fail ->
@@ -265,7 +265,7 @@ function init-register-form
 			$next-button.attr \disabled on
 			password = $ password-input-query .val!
 			if password.length > 0
-				err = swicth
+				err = switch
 					| password.length < 8chars => '8文字以上でお願いします'
 					| _ => null
 				if err
