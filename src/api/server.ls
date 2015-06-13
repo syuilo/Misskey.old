@@ -13,7 +13,10 @@ require! {
 	'connect-redis'
 	'js-yaml': yaml
 	'oauth2-server'
+	'socket.io': SocketIO
 	'./router': router
+	'./streaming/home'
+	'./streaming/talk'
 	'../models/oauth/oauth': oauth-model
 	'../config'
 }
@@ -92,4 +95,22 @@ router api-server
 api-server.use (req, res, next) ->
 	res.api-error 404 'API not found.'
 
-require './streaming-server'
+# Init SocketIO
+io = SocketIO.listen api-server, origins: "#{config.public-config.domain}:*"
+
+# Authorization
+io.use (socket, next) ->
+	handshake = socket.request
+	cookies = cookie.parse handshake.headers.cookie
+	switch
+	| !handshake? => fallthrough
+	| !handshake.headers.cookie? => fallthrough
+	| !cookies[config.session-key]? => fallthrough
+	| cookies[config.session-key] != /s:(.+?)\./ => next new Error '[[error:not-authorized]]'
+	| _ => next!
+
+# Home stream
+home io, session-store
+
+# Talk stream
+talk io, session-store
