@@ -63,7 +63,7 @@ function init-register-form
 			type: \post
 			data: $form.serialize!
 			data-type: \json
-			xhr-fields: {+withCredentials)}
+			xhr-fields: {+withCredentials}
 		.done ->
 			location.href = config.url
 		.fail ->
