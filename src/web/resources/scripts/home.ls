@@ -1,214 +1,181 @@
-$(function() {
-	try {
-		Notification.requestPermission();
-	} catch (e) {
+$ ->
+	Notification.request-permission!
 
-	}
+	# オートセーブがあるなら復元
+	if $.cookie \post-autosave
+		$ '#post-form textarea' .val $.cookie \post-autosave
 
-	// オートセーブがあるなら復元
-	if ($.cookie('post-autosave')) {
-		$('#post-form textarea').val($.cookie('post-autosave'));
-	}
+	socket = io.connect config.streaming-url + '/streaming/web/home', { port: 1207 }
 
-	socket = io.connect(config.streamingUrl + '/streaming/web/home', { port: 1207 });
+	socket.on \connect ->
+		console.log 'Connected'
 
-	socket.on('connect', function() {
-		console.log('Connected');
-	});
+	socket.on \disconnect (client) ->
 
-	socket.on('disconnect', function(client) {
-	});
+	socket.on \status (status) ->
+		console.log \status status
+		new Audio '/resources/sounds/pop.mp3' .play!
+		
+		$status = $ '<li class="status">' .append($ status).hide!
+		TIMELINE.set-event-post $status.children '.status.article'
+		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
 
-	socket.on('status', function(status) {
-		console.log('status', status);
-		new Audio('/resources/sounds/pop.mp3').play();
-		var $status = $('<li class="status">').append($(status)).hide();
-		TIMELINE.setEventPost($status.children('.status.article'));
-		$status.prependTo($('#timeline .timeline > .statuses')).show(200);
-	});
+	socket.on \repost (status) ->
+		console.log \repost status
+		new Audio '/resources/sounds/pop.mp3' .play!
+		
+		$status = $ '<li class="status">' .append($ status).hide!
+		TIMELINE.set-event-post $status.children '.status.article'
+		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
 
-	socket.on('repost', function(status) {
-		console.log('repost', status);
-		new Audio('/resources/sounds/pop.mp3').play();
-		var $status = $('<li class="status">').append($(status)).hide();
-		TIMELINE.setEventPost($status.children('.status.article'));
-		$status.prependTo($('#timeline .timeline > .statuses')).show(200);
-	});
-
-	socket.on('reply', function(post) {
-		console.log('reply', post);
-		var currentPath = location.pathname;
-		currentPath = currentPath.indexOf('/') == 0 ? currentPath : '/' + currentPath;
-		if (currentPath == "/i/mention") {
-			new Audio('/resources/sounds/pop.mp3').play();
-			var $post = TIMELINE.generatePostElement(post, conf).hide();
-			TIMELINE.setEventPost($post);
-			$post.prependTo($('#timeline .timeline > .statuses')).show(200);
-			var n = new Notification(post.user.name, {
-				body: post.text,
-				icon: conf.url + '/img/icon/' + post.user.screenName
-			});
-			n.onshow = function() {
-				setTimeout(function() {
-					n.close();
-				}, 10000);
-			};
-			n.onclick = function() {
-				window.open(conf.url + '/' + post.user.screenName + '/post/' + post.id);
-			};
+	socket.on \reply (status) ->
+		console.log \reply status
+		new Audio '/resources/sounds/pop.mp3' .play!
+		
+		$status = $ '<li class="status">' .append($ status).hide!
+		TIMELINE.set-event-post $status.children '.status.article'
+		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
+		n = new Notification post.user.name, {
+			body: post.text
+			icon: conf.url + '/img/icon/' + post.user.screen-name
 		}
-	});
+		n.onshow = ->
+			set-timeout n.close, 10000
+		n.onclick = ->
+			window.open conf.url + '/' + post.user.screenName + '/post/' + post.id
 
-	socket.on('talk-message', function(message) {
-		console.log('talk-message', message);
-		var windowId = 'misskey-window-talk-' + message.user.id;
-		if ($('#' + windowId)[0]) {
-			return;
-		}
-		var n = new Notification(message.user.name, {
+	socket.on \talk-message (message) ->
+		console.log \talk-message message
+		window-id = 'misskey-window-talk-' + message.user.id
+		if $('#' + window-id).0
+			return
+		n = new Notification message.user.name, {
 			body: message.text,
 			icon: conf.url + '/img/icon/' + message.user.screenName
-		});
-		n.onshow = function() {
-			setTimeout(function() {
-				n.close();
-			}, 10000);
-		};
-		n.onclick = function() {
-			var url = config.url + '/' + message.user.screenName + '/talk?noheader=true';
-			var $content = $("<iframe>").attr({ src: url, seamless: true });
-			openWindow(windowId, $content, '<i class="fa fa-comments"></i>' + escapeHTML(message.user.name), 300, 450, true, url);
-		};
-	});
-
-	$('#post-form').find('.image-attacher input[name=image]').change(function() {
-		var $input = $(this);
-		var file = $(this).prop('files')[0];
-		if (!file.type.match('image.*')) return;
-		var reader = new FileReader();
-		reader.onload = function() {
-			var $img = $('<img>').attr('src', reader.result);
-			$input.parent('.image-attacher').find('p, img').remove();
-			$input.parent('.image-attacher').append($img);
-		};
-		reader.readAsDataURL(file);
-	});
-
-	$(window).keypress(function(e) {
-		if (e.charCode == 13 && e.ctrlKey) {
-			post($('#postForm textarea'));
 		}
-	});
-
-	$('#post-form').submit(function(event) {
-		event.preventDefault();
-
-		post($(this));
-	});
-
-	function post($form) {
-		var $submitButton = $form.find('[type=submit]');
-
-		$submitButton.attr('disabled', true);
-		$submitButton.text('Updating...');
-
-		$.ajax(config.apiUrl + '/status/update', {
-			type: 'post',
-			processData: false,
-			contentType: false,
-			data: new FormData($form[0]),
-			dataType: 'json',
-			xhrFields: {
-				withCredentials: true
+		n.onshow = ->
+			set-timeout n.close, 10000
+		n.onclick = ->
+			url = config.url + '/' + message.user.screen-name + '/talk?noheader=true'
+			$content = $ '<iframe>' .attr {
+				src: url
+				+seamless
 			}
-		}).done(function(data) {
-			$form[0].reset();
-			$form.find('textarea').focus();
-			$form.find('.image-attacher').find('p, img').remove();
-			$form.find('.image-attacher').append($('<p><i class="fa fa-picture-o"></i></p>'));
-			$submitButton.attr('disabled', false);
-			$submitButton.text('Update');
-			$.removeCookie('post-autosave');
-		}).fail(function(data) {
-			$form[0].reset();
-			$form.find('textarea').focus();
+			open-window do
+				window-id
+				$content
+				'<i class="fa fa-comments"></i>' + escapeHTML message.user.name
+				300
+				450
+				true
+				url
+
+	$ \#post-form .find '.image-attacher input[name=image]' .change ->
+		$input = $ @
+		file = $input.prop(\files).0
+		if file.type.match 'image.*'
+			reader = new FileReader!
+			reader.onload = ->
+				$img = $ '<img>' .attr \src reader.result
+				$input.parent '.image-attacher' .find 'p, img' .remove!
+				$input.parent '.image-attacher' .append $img
+			reader.read-as-dataURL file
+
+	$ window .keypress (e) ->
+		if e.char-code == 13 && e.ctrl-key
+			post $ '#postForm textarea'
+
+	$ \#post-form .submit (event) ->
+		event.prevent-default!
+		post $ @
+
+	function post($form)
+		$submit-button = $form.find '[type=submit]'
+
+		$submit-button.attr \disabled yes
+		$submit-button.text 'Updating...'
+
+		$.ajax config.api-url + '/status/update' {
+			type: \post
+			-process-data
+			-content-type
+			data: new FormData $form.0
+			data-type: \json
+			xhr-fields: {+with-credentials}
+		} .done (data) ->
+			$form[0].reset!
+			$form.find \textarea .focus!
+			$form.find \.image-attacher .find 'p, img' .remove!
+			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
+			$submit-button.attr \disabled no
+			$submit-button.text 'Update'
+			$.remove-cookie \post-autosave
+		.fail (data) ->
+			$form[0].reset!
+			$form.find \textarea .focus!
 			/*alert('error');*/
-			$submitButton.attr('disabled', false);
-			$submitButton.text('Update');
-		});
-	}
+			$submit-button.attr \disabled no
+			$submit-button.text 'Update'
+	
+	$ '#post-form textarea' .bind \input ->
+		text = $ '#post-form textarea' .val!
 
-	$('#post-form textarea').bind('input', function() {
-		var text = $('#post-form textarea').val();
+		# オートセーブ
+		$.cookie \post-autosave text, { path: '/', expires: 365 }
 
-		// オートセーブ
-		$.cookie('post-autosave', text, { path: '/', expires: 365 });
-	});
-
-	$('#timeline .load-more').click(function() {
-		$button = $(this);
-		$button.attr('disabled', true);
-		$button.text('Loading...');
-		$.ajax(config.apiUrl + '/status/timeline', {
-			type: 'get',
-			data: { 'max-id': $('#timeline .timeline .statuses > .status:last-child').attr('data-id') },
-			dataType: 'json',
-			xhrFields: { withCredentials: true }
-		}).done(function(data) {
-			$button.attr('disabled', false);
-			$button.text('Read more!');
-			data.forEach(function(post) {
-				var $post = TIMELINE.generatePostElement(post, conf).hide();
-				TIMELINE.setEventPost($post);
-				$post.appendTo($('#timeline .timeline > .statuses')).show(200);
-			});
-		}).fail(function(data) {
-			$button.attr('disabled', false);
-			$button.text('Failed...');
-		});
-	});
-
-	$('#recommendation-users > .users > .user').each(function() {
-		var $user = $(this);
-		$user.find('.follow-button').click(function() {
-			var $button = $(this);
-			$button.attr('disabled', true);
-
-			if ($user.attr('data-is-following') == 'true') {
-				$.ajax(config.apiUrl + '/users/unfollow', {
-					type: 'delete',
-					data: { 'user-id': $user.attr('data-user-id') },
-					dataType: 'json',
-					xhrFields: {
-						withCredentials: true
-					}
-				}).done(function() {
-					$button.attr('disabled', false);
-					$button.removeClass('following');
-					$button.addClass('notFollowing');
-					$button.text('フォロー');
-					$user.attr('data-is-following', 'false')
-				}).fail(function() {
-					$button.attr('disabled', false);
-				});
-			} else {
-				$.ajax(config.apiUrl + '/users/follow', {
-					type: 'post',
-					data: { 'user-id': $user.attr('data-user-id') },
-					dataType: 'json',
-					xhrFields: {
-						withCredentials: true
-					}
-				}).done(function() {
-					$button.attr('disabled', false);
-					$button.removeClass('notFollowing');
-					$button.addClass('following');
-					$button.text('フォロー解除');
-					$user.attr('data-is-following', 'true')
-				}).fail(function() {
-					$button.attr('disabled', false);
-				});
+	$ '#timeline .load-more' .click ->
+		$button = $ @
+		$button.attr \disabled yes
+		$button.text 'Loading...'
+		$.ajax config.api-url + '/status/timeline' {
+			type: \get
+			data: {
+				'max-id': $ '#timeline .timeline .statuses > .status:last-child' .attr \data-id
 			}
-		});
-	});
-});
+			data-type: \json
+			xhr-fields: {+with-credentials}
+		} .done (data) ->
+			$button.attr \disabled no
+			$button.text 'Read more!'
+			data.for-each (status) ->
+				$status = $ '<li class="status">' .append($ status).hide!
+				TIMELINE.set-event-post $status.children '.status.article'
+				$status.append-to ($ '#timeline .timeline > .statuses') .show 200
+		.fail (data) ->
+			$button.attr \disabled no
+			$button.text 'Failed...'
+
+	$ '#recommendation-users > .users > .user' .each ->
+		$user = $ @
+		$user.find \.follow-button .click ->
+			$button = $ @
+			$button.attr \disabled yes
+
+			if ($user.attr \data-is-following) == \true
+				$.ajax config.api-url + '/users/unfollow' {
+					type: \delete
+					data: { 'user-id': $user.attr \data-user-id }
+					data-type: \json
+					xhr-fields: {+with-credentials}
+				} .done ->
+					$button.attr \disabled no
+					$button.remove-class \following
+					$button.add-class \notFollowing
+					$button.text 'フォロー'
+					$user.attr \data-is-following \false
+				.fail ->
+					$button.attr \disabled no
+			else
+				$.ajax config.api-url + '/users/follow' {
+					type: \post
+					data: { 'user-id': $user.attr \data-user-id }
+					data-type: \json
+					xhr-fields: {+with-credentials}
+				} .done ->
+					$button.attr \disabled no
+					$button.remove-class \notFollowing
+					$button.add-class \following
+					$button.text 'フォロー解除'
+					$user.attr \data-is-following \true
+				.fail ->
+					$button.attr \disabled no
