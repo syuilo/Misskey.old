@@ -12,7 +12,6 @@ status-gets =
 
 module.exports = (req, res, content = \home) ->
 	me = req.me
-	console.log me
 	Promise.all [
 		new Promise (resolve, reject) ->
 			status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
