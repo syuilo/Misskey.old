@@ -96,7 +96,7 @@ api-server.use (req, res, next) ->
 	res.api-error 404 'API not found.'
 
 # Init SocketIO
-io = SocketIO.listen api-server, origins: "#{config.public-config.domain}:*"
+io = SocketIO.listen server, origins: "#{config.public-config.domain}:*"
 
 # Authorization
 io.use (socket, next) ->
