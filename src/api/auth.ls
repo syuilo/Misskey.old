@@ -8,6 +8,8 @@ require! {
 }
 
 module.exports = (req, res, success) ->
+	referer = req.header \Referer
+	switch
 	| empty referer => res.api-error 401 'refer is empty'
 	| is-logged req => res.api-error 401 'not logged'
 	| _ =>
