@@ -19,7 +19,7 @@ $ ->
 		$ \time .each ->
 			function pad2(n)
 				if n < 10 then \0 + n else n
-			date = new Date $ @ .attr \datetime
+			date = new Date($ @ .attr \datetime)
 			ago = ~~((now - date) / 1000)
 			time-text = switch
 				| ago >= 31536000s => ~~(ago / 31536000s) + '年前'
