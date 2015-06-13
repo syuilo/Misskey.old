@@ -17,8 +17,6 @@ $ ->
 	function update-relative-times
 		now = new Date!
 		$ \time .each ->
-			function pad2(n)
-				if n < 10 then \0 + n else n
 			date = new Date($ @ .attr \datetime)
 			ago = ~~((now - date) / 1000)
 			time-text = switch
@@ -29,7 +27,7 @@ $ ->
 				| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
 				| ago >= 60s       => ~~(ago / 60s) + '分前'
 				| ago >= 5s        => ~~(ago % 60s) + '秒前'
-				| ago <  5s        => 'たったいま'
+				| ago <  5s        => 'いま'
 				| _ => ''
 			$ @ .text time-text
 
