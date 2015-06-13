@@ -19,7 +19,8 @@
 	cursor: default;
 
 	&:focus {
-		outline: solid 2px @themeColor;
+		/*outline: solid 2px @themeColor;*/
+		outline: none;
 	}
 
 	&::-webkit-scrollbar {
@@ -446,6 +447,11 @@ textarea {
 						}
 					}
 				}
+
+				> .notice {
+					display: none;
+				}
+
 				/*
 				> .notice {
 					display: inline-block;
