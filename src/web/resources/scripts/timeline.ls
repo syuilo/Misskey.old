@@ -51,7 +51,7 @@ STATUSTIMELINE = {}
 							$img = $ '<img>' .attr \src reader.result
 							$input.parent '.image-attacher' .find 'p, img' .remove!
 							$input.parent '.image-attacher' .append $img
-						..read-as-data-URL file
+						..readAsDataURL file
 
 			# Init tag input of reply-form
 			..find 'article > .article-main > footer .reply-form .tag'
