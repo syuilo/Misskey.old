@@ -19,4 +19,4 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			generate-timeline-status-html status, user .then (html) ->
 				resolve html)
 		.then (timeline-html) ->
-			res.api-render timeline-html
+			res.api-render timeline-html.join ''
