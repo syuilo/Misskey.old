@@ -139,9 +139,9 @@ $ ->
 			$button.text 'Read more!'
 			$statuses = $ data
 			$statuses.each ($status) ->
-				$status = $ '<li class="status">' .append($status).hide!
+				$status = $ '<li class="status">' .append $status
 				window.STATUSTIMELINE.set-event $status.children '.status.article'
-				$status.append-to ($ '#timeline .timeline > .statuses') .show 200
+				$status.append-to $ '#timeline .timeline > .statuses'
 		.fail (data) ->
 			$button.attr \disabled no
 			$button.text 'Failed...'
