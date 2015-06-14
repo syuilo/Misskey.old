@@ -7,7 +7,7 @@ require! {
 }
 
 module.exports = (statuses, viewer, callback) ->
-	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade" {pretty: '  '}
+	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade"
 	if statuses?
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
