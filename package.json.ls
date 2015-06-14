@@ -33,7 +33,7 @@ dependencies:
 	less: '2.5.1'
 	marked: '0.3.3'
 	moment: '2.10.3'
-	mongoose: '4.0.2'
+	mongoose: '4.0.5'
 	'mongoose-auto-increment': '3.2.3'
 	multer: '0.1.8'
 	'oauth2-server': '2.4.0'
