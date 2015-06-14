@@ -162,6 +162,7 @@ window.STATUSTIMELINE = {}
 							..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
 							..find 'article > .article-main > .talk > i' .show animation-speed
 							..find 'article > .article-main > .talk > .statuses' .hide animation-speed
+							..find 'article > .article-main > .reply-info' .show animation-speed
 							..find 'article > .article-main > footer' .hide animation-speed
 
 $ ->
