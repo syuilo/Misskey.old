@@ -11,8 +11,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	status-get-timeline do
 		user.id
 		30statuses
-		if !empty since-cursor then since-cursor else null
-		if !empty max-cursor then max-cursor else null
+		if !empty since-cursor then Number since-cursor else null
+		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
