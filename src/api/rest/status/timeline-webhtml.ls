@@ -14,9 +14,16 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty since-cursor then Number since-cursor else null
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
+		console.log '>-----'
+		console.time \initpromisestimer
 		promises = statuses |> map (status) ->
 			resolve, reject <- new Promise!
 			generate-timeline-status-html status, user .then (html) ->
 				resolve html
+		console.time-end \initpromisestimer
+		console.log '---'
+		console.time \promisetimer
 		Promise.all promises .then (timeline-html) ->
+			console.time-end \promisetimer
 			res.api-render timeline-html.join ''
+			console.log '<-----'
