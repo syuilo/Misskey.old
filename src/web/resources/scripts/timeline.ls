@@ -1,3 +1,5 @@
+prelude = require 'prelude-ls'
+
 window.STATUSTIMELINE = {}
 	..set-event = ($status) ->
 		function check-favorited
@@ -120,7 +122,7 @@ window.STATUSTIMELINE = {}
 				$clicked-status = $ @
 				
 				can-event = ! ((<[ input textarea button i time a ]>
-					|> each (element) -> $ event.target .is element)
+					|> prelude.each (element) -> $ event.target .is element)
 					.index-of yes) >= 0
 				
 				if document.get-selection!.to-string! != ''
