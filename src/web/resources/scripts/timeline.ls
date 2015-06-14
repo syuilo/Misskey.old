@@ -139,7 +139,7 @@ window.STATUSTIMELINE = {}
 								..remove-class \display-html-active-status-next
 						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i' .each ->
 							$ @ .show animation-speed
-						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .replies > i' .each ->
+						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .reply-info' .each ->
 							$ @ .show animation-speed
 						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
 							$ @ .hide animation-speed
@@ -151,7 +151,7 @@ window.STATUSTIMELINE = {}
 							..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
 							..find 'article > .article-main > .talk > i' .hide animation-speed
 							..find 'article > .article-main > .talk > .statuses' .show animation-speed
-							..find 'article > .article-main > .replies > i' .hide animation-speed
+							..find 'article > .article-main > .reply-info' .hide animation-speed
 							..find 'article > .article-main > footer' .show animation-speed
 							..find 'article > .article-main > footer .reply-form textarea' .val ''
 							..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
