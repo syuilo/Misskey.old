@@ -1,6 +1,6 @@
 require! {
 	jade
-	'./generate-timeline-status-html'
+	'./generate-timeline-status-html-callback'
 	'./parse-text'
 	'../../config'
 }
@@ -10,7 +10,7 @@ module.exports = (statuses, viewer, callback) ->
 	if statuses?
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
-			generate-timeline-status-html status, viewer .then (html) ->
+			generate-timeline-status-html-callback status, viewer, (html) ->
 				resolve html)
 		.then (statuses-htmls) ->
 			html = timeline-compiler do
