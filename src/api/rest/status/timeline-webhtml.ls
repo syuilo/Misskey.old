@@ -19,6 +19,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		promises = statuses |> map (status) ->
 			resolve, reject <- new Promise!
 			generate-timeline-status-html status, user .then (html) ->
+				console.log 'statushtml generated!'
 				resolve html
 		console.time-end \initpromisestimer
 		console.log '---'
