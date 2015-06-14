@@ -124,7 +124,8 @@ div.status.article(
 				else
 					p この投稿に返信するにはログインしてください。
 				if status.replies.length > 0 && status.replies[0] != null
-					div.replies(itemprop='comment')
+					aside.replies(itemprop='comment')
+						i.fa.fa-ellipsis-v
 						ol.statuses
 							each reply in status.replies
 								li.status(title!= '#{reply.createdAt}&#x0A;'
