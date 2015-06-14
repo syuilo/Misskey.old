@@ -63,7 +63,7 @@ module.exports = (app) ->
 	# Theme
 	app.get /^\/resources\/styles\/theme\/([a-zA-Z0-9_-]+).*/ (req, res, next) ->
 		| req.query.user? =>
-			User.find-one {screen-name: req.query.user} (, theme-user) ->
+			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
 				| theme-user? =>
 					send-theme-style(theme-user);
 				| _ =>
@@ -98,7 +98,7 @@ module.exports = (app) ->
 							..send 'Theme parse failed.'
 
 		if req.query.user?
-			User.find-one {screem-name: req.query.user} (, theme-user) ->
+			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
 				if theme-user?
 					send-theme-style theme-user
 				else

@@ -94,22 +94,22 @@ allow-cross-domain = (req, res, next) ->
 server.use allow-cross-domain
 
 # Timeout timer
-server.all '*' (req, res, next) ->
-	if req.url != '/login'
-		set-timeout do
-			->
-				if !res.status-code?
-					try
-						res.status 500
-						if res.has-own-property \display
-							res.display req, res, \timeout {}
-						else
-							res.send 'Sorry, processing timed out ><'
-					catch
-			3000ms
-		next!
-	else
-		next!
+#server.all '*' (req, res, next) ->
+#	if req.url != '/login'
+#		set-timeout do
+#			->
+#				if !res.status-code?
+#					try
+#						res.status 500
+#						if res.has-own-property \display
+#							res.display req, res, \timeout {}
+#						else
+#							res.send 'Sorry, processing timed out ><'
+#					catch
+#			3000ms
+#		next!
+#	else
+#		next!
 
 # Resources rooting
 resources-router server
