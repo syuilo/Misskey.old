@@ -1,10 +1,10 @@
 window.STATUSTIMELINE = {}
 	..set-event = ($status) ->
 		function check-favorited
-			$status.attr \data-is-favorited == \true
+			($status.attr \data-is-favorited) == \true
 		
 		function check-reposted
-			$status.attr \data-is-reposted == \true
+			($status.attr \data-is-reposted) == \true
 		
 		$status
 			# Set display talk window event 
@@ -125,6 +125,8 @@ window.STATUSTIMELINE = {}
 				
 				if document.get-selection!.to-string! != ''
 					can-event = no
+					
+				can-event = yes
 				
 				if can-event
 					animation-speed = 200ms
