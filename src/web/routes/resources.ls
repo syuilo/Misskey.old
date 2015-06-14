@@ -14,6 +14,11 @@ require! {
 	'../../config'
 }
 
+function send-empty-style(res)
+	res
+		..header \Content-type \text/css
+		..send '*{}'
+
 module.exports = (app) ->
 	function compile-less (less-css, style-user, callback)
 		color = if style-user? && style-user.color == /#[a-fA-F0-9]{6}/
@@ -65,23 +70,23 @@ module.exports = (app) ->
 		| req.query.user? =>
 			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
 				| theme-user? =>
-					send-theme-style(theme-user);
+					send-theme-style theme-user
 				| _ =>
 					res
-						..status(404)
+						..status 404
 						..send 'User not found.'
 		| _ =>
 			app.init-session req, res, ->
 				| req.login => send-theme-style req.me
-				| _ => res.send
+				| _ => send-empty-style res
 
 		function send-theme-style(user)
 			style-name = req.params.0
 			theme-id = user.web-theme-id
 			switch
-			| !theme-id? => res.send!
+			| !theme-id? => send-empty-style res
 			| _ => Webtheme.find-by-id theme-id, (, theme) ->
-				| !theme? => res.send!
+				| !theme? => send-empty-style res
 				| _ =>
 					try
 						theme-obj = parse-json theme.style
@@ -91,26 +96,11 @@ module.exports = (app) ->
 									..header 'Content-type' 'text/css'
 									..send css
 						else
-							res.send!
+							send-empty-style res
 					catch e
 						res
 							..status 500
 							..send 'Theme parse failed.'
-
-		if req.query.user?
-			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
-				if theme-user?
-					send-theme-style theme-user
-				else
-					res
-						..status 404
-						..send 'User not found.'
-		else
-			app.init-session req, res, ->
-				if req.login
-					send-theme-style req.me
-				else
-					res.send!
 
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
