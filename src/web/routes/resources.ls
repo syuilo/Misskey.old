@@ -73,7 +73,10 @@ module.exports = (app) ->
 		| _ =>
 			app.init-session req, res, ->
 				| req.login => send-theme-style req.me
-				| _ => res.send
+				| _ =>
+					res
+						..header 'Content-type' 'text/css'
+						..send '*{}'
 
 		function send-theme-style(user)
 			style-name = req.params.0
