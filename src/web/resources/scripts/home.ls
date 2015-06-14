@@ -137,11 +137,9 @@ $ ->
 		} .done (data) ->
 			$button.attr \disabled no
 			$button.text 'Read more!'
-			console.log data
 			$statuses = $ data
-			$statuses.each ($status) ->
-				console.log $status
-				$status = $ '<li class="status">' .append $status
+			$statuses.each ->
+				$status = $ '<li class="status">' .append $ @
 				window.STATUSTIMELINE.set-event $status.children '.status.article'
 				$status.append-to $ '#timeline .timeline > .statuses'
 		.fail (data) ->
