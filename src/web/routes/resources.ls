@@ -98,7 +98,7 @@ module.exports = (app) ->
 							..send 'Theme parse failed.'
 
 		if req.query.user?
-			User.find-one {screem-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
+			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
 				if theme-user?
 					send-theme-style theme-user
 				else
