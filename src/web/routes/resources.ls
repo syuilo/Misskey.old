@@ -115,7 +115,9 @@ module.exports = (app) ->
 				if req.login
 					send-theme-style req.me
 				else
-					res.send!
+					res
+						..header 'Content-type' 'text/css'
+						..send '*{}'
 
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
