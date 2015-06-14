@@ -15,4 +15,3 @@ function fn(id)
 			resolve next-statuses ++ [status]
 
 module.exports = fn
-	

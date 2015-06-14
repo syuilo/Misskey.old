@@ -10,37 +10,37 @@ routing =
 		[\put    /\/account\/update-webtheme(\..+)?$/      './rest/account/update-webtheme']
 		[\get    /\/account\/unreadalltalks-count(\..+)?$/ './rest/account/unreadalltalks-count']
 		[\delete /\/account\/reset-webtheme(\..+)?$/       './rest/account/reset-webtheme']
-	
+
 	application:
 		[\post /\/application\/create(\..+)?$/ './rest/application/create']
 		[\post /\/application\/delete(\..+)?$/ './rest/application/delete']
-	
+
 	notice:
 		[\delete /\/notice\/delete(\..+)?$/     './rest/notice/delete']
 		[\delete /\/notice\/delete-all(\..+)?$/ './rest/notice/delete-all']
-	
+
 	users:
 		[\get    /\/users\/show(\..+)?$/     './rest/users/show']
 		[\post   /\/users\/follow(\..+)?$/   './rest/users/follow']
 		[\delete /\/users\/unfollow(\..+)?$/ './rest/users/unfollow']
-	
+
 	status:
 		[\post /\/status\/update(\..+)?$/   './rest/status/update']
 		[\post /\/status\/favorite(\..+)?$/ './rest/status/favorite']
 		[\post /\/status\/repost(\..+)?$/   './rest/status/repost']
 		[\get  /\/status\/timeline(\..+)?$/ './rest/status/timeline']
-	
+
 	talk:
 		[\post   /\/talk\/say(\..+)?$/    './rest/talk/say']
 		[\put    /\/talk\/fix(\..+)?$/    './rest/talk/fix']
 		[\delete /\/talk\/delete(\..+)?$/ './rest/talk/delete']
 		[\post   /\/talk\/read(\..+)?$/   './rest/talk/read']
-	
+
 	circle:
 		[\post /\/circle\/create(\..+)?$/ './rest/circle/create']
 		[\get  /\/circle\/show(\..+)?$/   './rest/circle/show']
 		[\put  /\/circle\/update(\..+)?$/ './rest/circle/update']
-	
+
 	other:
 		[\get /\/screenname-available(\..+)?$/ './rest/screenname-available']
 		[\all /\/teapot\/coffee(\..+)?$/       './rest/teapot/coffee']
@@ -54,6 +54,6 @@ module.exports = (app) ->
 				extension = filename.1.match /\.(.+)$/
 				req.format = extension.1 if extension?
 			next!
-		
+
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler

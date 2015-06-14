@@ -8,7 +8,7 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[name, callback-url, description, developer-name, developer-website] =
 		get-express-params <[ name callback-url description developer-name developer-website ]>
-	
+
 	err = switch
 	| app.id != config.web-client-id => [403 'Your application has no permission']
 	| empty name => [400 'name cannot be empty :(']
@@ -29,7 +29,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 
 	create = ->
 		created-app <- Application.create name, user.id, callback-url, description, developer-name, developer-website
-		
+
 		if created-app?
 			then res.api-render created-app
 			else res.api-error 500 'Sorry, register failed :('

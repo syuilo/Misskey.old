@@ -1,5 +1,4 @@
 require! {
-	async
 	'../../models/utils/status-get-timeline'
 	'../../models/utils/status-get-mentions'
 	'../../models/utils/get-new-users'
@@ -13,18 +12,20 @@ status-gets =
 
 module.exports = (req, res, content = \home) ->
 	me = req.me
-	async.series [
-		(next) -> status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
-			timeline-generate-html statuses, me, (timeline-html) -> next null, timeline-html
-		(next) -> get-new-users 5 .then (users) ->
+	Promise.all [
+		new Promise (resolve, reject) ->
+			status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
+				timeline-generate-html statuses, me, (timeline-html) -> resolve timeline-html
+		new Promise (resolve, reject) ->
+			users <- get-new-users 5 .then
 			Promise.all (users |> map (user) ->
-				new Promise (on-fulfilled, on-rejected) ->
+				new Promise (resolve, reject) ->
 					user .= to-object!
 					user-following-check me.id, user.id .then (is-following) ->
 						user.is-following = is-following
-						on-fulfilled user)
+						resolve user)
 				.then (res) ->
-					next null, res
-	], (, results) -> res.display req, res, 'home' do
+					resolve res
+	] .then (results) -> res.display req, res, 'home' do
 		timeline-html: results.0
 		recommendation-users: results.1

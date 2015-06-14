@@ -1,10 +1,22 @@
 doctype html
 
-html(lang='ja', dir='ltr', data-user-id= me.id)
-	head
+html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
+	head(prefix='og: http://ogp.me/ns#')
 		include ../templates/head
 		meta(name='description', content='ママに咲いたカーネーション')
 		meta(name='keywords', content='Misskey')
+		meta(property='og:title', content='Misskey')
+		meta(property='og:type', content='article')
+		meta(property='og:description', content='Misskey')
+		meta(property='og:url', content=config.url)
+		meta(property='og:image', content='')
+		meta(property='og:site_name', content='Misskey')
+		meta(property='twitter:card', content='summary')
+		meta(property='twitter:site', content='@syuilo')
+		meta(property='twitter:title', content='Misskey')
+		meta(property='twitter:description', content='Misskey')
+		meta(property='twitter:image', content='')
+		meta(property='twitter:url', content=config.url)
 		block title
 		link(rel='stylesheet', href='/resources/styles/home.css')
 		link(rel='stylesheet', href='/resources/styles/theme/home.css')
@@ -14,34 +26,35 @@ html(lang='ja', dir='ltr', data-user-id= me.id)
 		include ../templates/header
 		
 		main
-			div#main-contents
-				block content
-			div#right-contents
-				div#me
-					header
-					nav(role='navigation')
-						a.icon-anchor(href='/' + me.screenName)
-							img.icon(src='/img/icon/' + me.screenName, alt='icon')
-						table.status
-							tr
-								th 投稿
-								th フォロー
-								th フォロワー
-							tr
-								td: a(href='/' + me.screenName)= me.statusesCount
-								td: a(href='/' + me.screenName + '/followings')= me.followingsCount
-								td: a(href='/' + me.screenName + '/followers')= me.followersCount
-				div#recommendation-users
-					ol.users
-						each user in recommendationUsers
-							li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
-								div.icon-area
-									a.icon-anchor(href='/' + user.screenName)
-										img.icon(src='/img/icon/' + user.screenName, alt='icon')
-								div.main
-									a.name-anchor(href='/' + user.screenName)
-										p.name= user.name
-									if user.isFollowing
-										button.follow-button フォロー解除
-									else
-										button.follow-button フォロー
+			div#contents
+				div#main-contents(role='main')
+					block content
+				div#right-contents
+					div#me
+						header
+						nav(role='navigation')
+							a.icon-anchor(href='/' + me.screenName)
+								img.icon(src='/img/icon/' + me.screenName, alt='icon')
+							table.status
+								tr
+									th 投稿
+									th フォロー
+									th フォロワー
+								tr
+									td: a(href='/' + me.screenName)= me.statusesCount
+									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
+									td: a(href='/' + me.screenName + '/followers')= me.followersCount
+					div#recommendation-users
+						ol.users
+							each user in recommendationUsers
+								li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+									div.icon-area
+										a.icon-anchor(href='/' + user.screenName)
+											img.icon(src='/img/icon/' + user.screenName, alt='icon')
+									div.main
+										a.name-anchor(href='/' + user.screenName)
+											p.name= user.name
+										if user.isFollowing
+											button.follow-button(role='button') フォロー解除
+										else
+											button.follow-button(role='button') フォロー

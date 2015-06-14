@@ -1,8 +1,17 @@
 div.status.article(
+		class                   = status.isRepostToStatus ? 'repost' : 'normal'
+		lang                    = status.user.lang
 		title                   = status.createdAt
-		data-id                 = status.isRepostToStatus ? status.source.id : status.id
+		itemscope
+		itemtype                = 'http://schema.org/BlogPosting'
+		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
+		data-status-id          = status.id
+		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
+		data-id                 = status.id
 		data-created-at         = status.createdAt
 		data-cursor             = status.cursor
+		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
+		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
 		data-source-id          = status.isRepostToStatus ? status.id : null
 		data-user-id            = status.user.id
 		data-user-screen-name   = status.user.screenName
@@ -13,8 +22,9 @@ div.status.article(
 		data-is-favorited      != login ? status.isFavorited.toString() : null
 		data-is-reposted       != login ? status.isReposted.toString() : null
 		data-is-repostpost     != status.isRepostToStatus.toString()
-		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null)
-	article
+		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
+		data-display-html-is-active='false')
+	article(role='article')
 		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
 			if status.moreTalk != null
 				aside.talk
@@ -33,7 +43,7 @@ div.status.article(
 										h2
 											a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
 										span.screen-name= '@' + talkPost.user.screenName
-										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt)= talkPost.createdAt
+										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt, pubdate)= talkPost.createdAt
 									div.main
 										div.text
 											p!= (talkPost.isReply ? '<a href="' + config.url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
@@ -60,7 +70,7 @@ div.status.article(
 							h2
 								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
 							span.screen-name= '@' + status.replySource.user.screenName
-							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt)= status.replySource.createdAt
+							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate)= status.replySource.createdAt
 						div.main
 							div.text
 								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
@@ -68,18 +78,24 @@ div.status.article(
 								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
 			div.main
 				div.icon-area
-					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 				header.header
-					h2
-						a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
-					span.screen-name= '@' + status.user.screenName
-					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt)= status.createdAt
-				div.content
+					div.author(itemprop='author')
+						h2
+							a(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+						span.screen-name= '@' + status.user.screenName
+					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate)= status.createdAt
+				div.content(itemprop='articleBody')
 					div.text
 						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+					div.tag
+						if status.tag != null
+							ol(itemprop='keywords')
+								each tag in status.tag
+									li= tag
 					if status.isImageAttached
-						img.image(src=config.url + '/img/status/' + status.id, alt='image')
+						img.image(src=config.url + '/img/status/' + status.id, alt='image', itemprop='image')
 				aside.footer
 					if login
 						div.actions
@@ -93,13 +109,13 @@ div.status.article(
 								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 			footer
 				if login
-					form.reply-form
+					form.reply-form(role='form')
 						img.me-icon(src=config.url + '/img/icon/' + me.screenName, alt='icon')
 						div.form
-							textarea(name='text', placeholder='この投稿に返信...')= '@' + status.user.screenName + ' '
-							div.design-allow
+							textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
+							div.design-allow(role='presentation')
 							input(name='in-reply-to-status-id', type='hidden', value=status.id)
-							input(type='submit', value!='&#xf112; Reply')
+							input.submit-button(type='submit', value!='&#xf112; Reply', role='button')
 							ul.tag
 							div.image-attacher
 								p
@@ -108,7 +124,7 @@ div.status.article(
 				else
 					p この投稿に返信するにはログインしてください。
 				if status.replies.length > 0 && status.replies[0] != null
-					div.replies
+					div.replies(itemprop='comment')
 						ol.statuses
 							each reply in status.replies
 								li.status(title!= '#{reply.createdAt}&#x0A;'
@@ -123,7 +139,7 @@ div.status.article(
 											h2
 												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
 											span.screen-name= '@' + reply.user.screenName
-											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt)= reply.createdAt
+											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate)= reply.createdAt
 										div.main
 											div.text
 												p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)

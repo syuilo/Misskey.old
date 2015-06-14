@@ -11,15 +11,19 @@
 }
 
 * {
-	font-family: 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+	font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	cursor: default;
-}
 
-	*::-webkit-scrollbar {
+	&:focus {
+		/*outline: solid 2px @themeColor;*/
+		outline: none;
+	}
+
+	&::-webkit-scrollbar {
 		width: 5px;
 		background: transparent;
 
@@ -28,13 +32,13 @@
 		}
 	}
 
-	*::-webkit-scrollbar-button {
+	&::-webkit-scrollbar-button {
 		width: 0;
 		height: 0;
 		background: rgba(0, 0, 0, 0.2);
 	}
 
-	*::-webkit-scrollbar-piece {
+	&::-webkit-scrollbar-piece {
 		background: transparent;
 
 		&:start {
@@ -42,7 +46,7 @@
 		}
 	}
 
-	*::-webkit-scrollbar-thumb {
+	&::-webkit-scrollbar-thumb {
 		background: rgba(0, 0, 0, 0.2);
 
 		&:hover {
@@ -54,9 +58,10 @@
 		}
 	}
 
-	*::-webkit-scrollbar-corner {
+	&::-webkit-scrollbar-corner {
 		background: rgba(0, 0, 0, 0.2);
 	}
+}
 
 html, body {
 	margin: 0;
@@ -97,6 +102,22 @@ textarea {
 	top: 0;
 	z-index: 1024;
 	width: 100%;
+
+	> .env-development-info {
+		margin: 0;
+		padding: 4px 16px;
+		font-size: 0.8em;
+		color: #fff;
+		background: rgba(0, 0, 0, 0.9);
+
+		.go-production-channel {
+			margin-left: 4px;
+
+			i {
+				margin-right: 2px;
+			}
+		}
+	}
 
 	> .informationCenter {
 		display: block;
@@ -213,7 +234,8 @@ textarea {
 		//background-repeat: no-repeat;
 		//background-position: center center;
 		//background-size: 32px 32px;
-		box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
+		//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
+		border-top: solid 3px @themeColor;
 
 		&:after {
 			content: "";
@@ -435,6 +457,10 @@ textarea {
 				}
 
 				> .notice {
+					display: none;
+				}
+				/*
+				> .notice {
 					display: inline-block;
 					vertical-align: top;
 					height: 100%;
@@ -630,14 +656,13 @@ textarea {
 						}
 					}
 				}
-
+				*/
 				> .account {
 					display: inline-block;
 					vertical-align: top;
 
 					> .screenNameAnchor {
-						/*display: inline-block;*/
-						display: none;
+						display: inline-block;
 
 						&:hover {
 							> .screenName {
@@ -800,7 +825,7 @@ textarea {
 	}
 
 	&:focus {
-		color: @themeColor;
+		color: darken(@themeColor, 20%);
 		border: solid 2px @themeColor;
 		//box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset;
 		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
@@ -830,7 +855,7 @@ textarea {
 
 	.ui-radioLabel:hover,
 	.ui-checkboxLabel:hover {
-		color: @themeColor;
+		color: darken(@themeColor, 20%);
 	}
 
 .ui-inputSubmit,

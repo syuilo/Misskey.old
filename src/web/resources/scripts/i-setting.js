@@ -38,7 +38,7 @@ $(function() {
 		$submitButton.attr("disabled", true);
 		$submitButton.attr("value", "保存中...");
 
-		$.ajax('https://api.misskey.xyz/account/update', {
+		$.ajax(config.apiUrl + '/account/update', {
 			type: 'PUT',
 			processData: false,
 			contentType: false,
@@ -96,13 +96,13 @@ $(function() {
 	});
 
 	$("#iconEditForm").submit(function(event) {
-		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update-icon');
+		imageUpload(event, $(this), config.apiUrl + '/account/update-icon');
 	});
 	$("#wallpaperEditForm").submit(function(event) {
-		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update-wallpaper');
+		imageUpload(event, $(this), config.apiUrl + '/account/update-wallpaper');
 	});
 	$("#headerEditForm").submit(function(event) {
-		imageUpload(event, $(this), 'https://api.misskey.xyz/account/update-header');
+		imageUpload(event, $(this), config.apiUrl + '/account/update-header');
 	});
 
 	$('#webtheme .theme').hover(function() {
@@ -124,7 +124,7 @@ $(function() {
 		$submitButton.attr("disabled", true);
 		$submitButton.attr("value", "インストール中...");
 
-		$.ajax('https://api.misskey.xyz/account/update_webtheme', {
+		$.ajax(config.apiUrl + '/account/update_webtheme', {
 			type: 'put',
 			data: $form.serialize(),
 			dataType: 'json',
@@ -144,7 +144,7 @@ $(function() {
 
 		$button.attr("disabled", true);
 
-		$.ajax('https://api.misskey.xyz/account/reset_webtheme', {
+		$.ajax(config.apiUrl + '/account/reset_webtheme', {
 			type: 'delete',
 			dataType: 'json',
 			xhrFields: {

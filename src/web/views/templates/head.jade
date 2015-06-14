@@ -1,11 +1,23 @@
 meta(charset='utf-8')
+meta(name='robots', content='all')
 meta(name='application-name', content='Misskey')
 meta(name='theme-color', content='#006f87')
 meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQOHvjxlvnm4')
+meta(name='msvalidate.01', content='48D10EEFFD5D1BD12088BC2081892F14')
 meta(name='dns-prefetch', content='//maxcdn.bootstrapcdn.com')
 meta(name='dns-prefetch', content='//ajax.googleapis.com')
+meta(name='coverage', content='worldwide')
+meta(name='viewport', content='width=1280, initial-scale=1')
+meta(name='support-rendering-engines', content='blink, webkit, gecko')
+meta(name='support-browsers', content='Google Chrome, Mozilla Firefox')
+meta(name='hostname', content= config.hostname)
+meta(name='user-login', content= login ? me.screenName : '')
 link(rel='shortcut icon', href='/favicon.ico')
+link(rel='icon', href='/favicon.ico')
+link(rel='fluid-icon', href='/fluid-icon', title='Misskey')
 link(rel='manifest', href='/manifest.json')
+link(rel='help', href='/help')
+link(rel='search', href='/search')
 link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
 if rootUser != null
 	link(rel='stylesheet', href='/resources/styles/ui.css?user=' + rootUser.screenName)
@@ -13,11 +25,13 @@ if rootUser != null
 else
 	link(rel='stylesheet', href='/resources/styles/ui.css')
 	link(rel='stylesheet', href='/resources/styles/theme/ui.css')
+script!= 'var config = conf = ' + JSON.stringify(config) + ';'
 script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
 script(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')
-script(src='/config')
+script(src='/resources/scripts/lib/jquery-cookie.js')
+script(src='/resources/scripts/lib/prelude-browser.js')
+script(src='/resources/scripts/lib/tag-it.js')
 script(src='/resources/scripts/main.js')
-script(src='/resources/scripts/tag-it.js')
 script.
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -27,7 +27,7 @@ main {
 	position: relative;
 	box-sizing: border-box;
 	width: 100%;
-	max-width: 900px;
+	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0;
 	overflow: hidden;
@@ -42,7 +42,8 @@ main {
 		display: block;
 		position: relative;
 		width: ~"calc(100% - 16px)";
-		margin: 8px;
+		max-width: 900px;
+		margin: 8px auto;
 		padding: 0;
 		border-radius: 8px;
 		.shadow;
@@ -190,7 +191,12 @@ main {
 			width: 100%;
 			margin: 0;
 			padding: 0;
-			background: #fff;
+			background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(@blurredWallpaperUrl);
+			background-color: transparent;
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
 			border-radius: 0 0 8px 8px;
 
 			> #headerNavBackground {
@@ -266,13 +272,13 @@ main {
 
 		> *:first-child {
 			float: left;
-			width: ~"calc(100% - 316px)";
+			width: ~"calc(100% - 336px)";
 			margin: 0 8px 8px 8px;
 		}
 
 		#side-contents {
 			float: left;
-			width: 292px;
+			width: 320px;
 		}
 
 		#timeline {

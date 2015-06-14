@@ -10,7 +10,7 @@ require! {
 	'../../../models/user-following': UserFollowing
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) -> 
+module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[status-id] = get-express-params req, <[ status-id ]>
 	switch
 	| empty status-id => res.api-error 400 'status-id parameter is required :('
@@ -41,8 +41,8 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 							.. |> res.api-render
 						stream-obj = to-json do
 							type: \repost
-							value: { id: created-status.id }
+							value: {created-status.id}
 						publish-redis-streaming "userStream:#{user.id}", stream-obj
-						UserFollowing.find { followee-id: user.id } (, user-followings) ->
-							| !empty user-followings => user-followings.for-each (user-following) ->
+						UserFollowing.find {followee-id: user.id} (, user-followings) ->
+							| !empty user-followings => user-followings |> each (user-following) ->
 								publish-redis-streaming "userStream:#{user-following.follower-id}", stream-obj

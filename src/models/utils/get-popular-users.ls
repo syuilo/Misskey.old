@@ -8,4 +8,3 @@ require! {
 
 # Number<user-id> -> Mongo Documents<users>
 module.exports = (user-id) ->
-	

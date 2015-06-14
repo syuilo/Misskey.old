@@ -48,7 +48,7 @@ server.use session do
 server.init-session = (req, res, callback) ->
 	req.login = req.session? && req.session.user-id?
 	req.data = # Render datas
-		config: config
+		config: config.public-config
 		url: config.public-config.url
 		api-url: config.public-config.api-url
 		login: req.login
@@ -98,13 +98,14 @@ server.all '*' (req, res, next) ->
 	if req.url != '/login'
 		set-timeout do
 			->
-				try
-					res.status 500
-					if res.has-own-property \display
-						res.display req, res, \timeout {}
-					else
-						res.send 'Sorry, processing timed out ><'
-				catch
+				if !res.status-code?
+					try
+						res.status 500
+						if res.has-own-property \display
+							res.display req, res, \timeout {}
+						else
+							res.send 'Sorry, processing timed out ><'
+					catch
 			3000ms
 		next!
 	else
@@ -130,7 +131,7 @@ server.use (err, req, res, next) ->
 	console.error err
 	display-err = "#{err.stack}\r\n#{repeat 32 '-'}\r\n#{req.method} #{req.url} [#{new Date!}]"
 	if (req.has-own-property \login) && req.login
-		display-err += "\r\n#{req.me.id}"
+		display-err += "\r\n#{req.me?id ? ''}"
 	res.status 500
 	if res.has-own-property \display
 		res.display req, res, \error {err: display-err}

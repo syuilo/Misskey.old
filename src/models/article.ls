@@ -19,7 +19,7 @@ article-schema = new mongoose.Schema do
 	created-at: {type: Date, default: Date.now}
 	user-id: {type: Number, required: yes}
 
-# Virtual access _id property 
+# Virtual access _id property
 article-schema.virtual \id .get -> (@_id)
 
 # Auto increment

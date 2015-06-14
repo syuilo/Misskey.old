@@ -1,20 +1,11 @@
 require! {
-	async
-	'../../models/application': Application
-	'../../models/user': User
-	'../../models/status': Status
-	'../../models/status-favorite': StatusFavorite
-	'../../models/utils/status-check-favorited'
-	'../../models/utils/status-check-reposted'
 	'./serialize-timeline-status'
 	'../../config'
 }
 
-module.exports = (statuses, me, callback) ->
-	async.map do
-		statuses
-		(status, next) ->
-			serialize-timeline-status status, me, (serialized-status) ->
-				next null, serialized-status
-		(err, results) ->
-			callback results
+# [Status] -> User -> Promise [Status]
+module.exports = (statuses, me) ->
+	Promise.all (statuses |> map (status) ->
+		resolve, reject <- new Promise!
+		serialize-timeline-status status, me, (serialized-status) ->
+			resolve serialized-status)

@@ -11,14 +11,14 @@ require! {
 module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connection (socket) ->
 	# Connect redis
 	subscriber = redis.create-client!
-	
+
 	# Get cookies
 	cookies = cookie.parse socket.handshake.headers.cookie
-	
+
 	# Get sesson key
 	sid = cookies[config.session-key]
 	sidkey = sid.match /s:(.+?)\./ .1
-	
+
 	# Resolve session
 	err, session <- session-store.get sidkey
 	switch
@@ -27,11 +27,11 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 	| _ =>
 		# Set user id
 		socket.user-id = session.user-id
-		
+
 		# Get and set session user
 		err, user <- User.find-by-id socket.user-id
 		socket.user = user
-		
+
 		# Subscribe Home stream channel
 		subscriber.subscribe "misskey:userStream:#{socket.user-id}"
 		subscriber.on \message (, content) ->
@@ -40,6 +40,7 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 				if content.type? && content.value?
 					switch content.type
 						| \status, \repost =>
+							console.time-end content.value.id
 							# Find status
 							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML

@@ -2,6 +2,9 @@
 npm-debug.log
 /node_modules/
 
+# Built
+/lib/
+
 # After Effects
 /resource-projects/Adobe After Effects 自動保存/
 

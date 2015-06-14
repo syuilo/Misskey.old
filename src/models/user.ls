@@ -28,6 +28,7 @@ user-schema = new Schema do
 	name:                   {type: String,   required: yes}
 	password:               {type: String,   required: yes}
 	screen-name:            {type: String,   required: yes, unique: yes}
+	screen-name-lower:      {type: String,   required: yes, unique: yes}
 	statuses-count:         {type: Number,   required: no,  default: 0}
 	status-favorites-count: {type: Number,   required: no,  default: 0}
 	tags:                   {type: [String], required: no,  default: []}
@@ -38,6 +39,8 @@ if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
+	delete ret._id
+	delete ret.__v
 	delete ret.password
 	delete ret.emailaddress
 	ret

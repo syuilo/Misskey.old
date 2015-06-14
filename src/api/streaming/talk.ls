@@ -13,14 +13,14 @@ require! {
 module.exports = (io, session-store) ->
 	# Listen connect event
 	socket <- io.of '/streaming/talk' .on \connection
-	
+
 	# Get cookies
 	cookies = cookie.parse socket.handshake.headers.cookie
-	
+
 	# Get sesson key
 	sid = cookies[config.session-key]
 	sidkey = sid.match /s:(.+?)\./ .1
-	
+
 	# Resolve session
 	err, session <- session-store.get sidkey
 	switch
@@ -28,13 +28,13 @@ module.exports = (io, session-store) ->
 	| !session? => console.log "undefined: #sidkey"
 	| _ =>
 		uid = socket.user-id = session.user-id
-		
+
 		# Get session user
 		err, user <- User.find-by-id uid
 		socket.user = user
-		
+
 		publisher = redis.create-client!
-		
+
 		socket
 			..emit \connected
 			..on \init (req) ->
@@ -47,7 +47,7 @@ module.exports = (io, session-store) ->
 				subscriber = redis.create-client!
 					..subscribe "misskey:talkStream:#{uid}-#{socket.otherparty-id}"
 				publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}" \otherparty-enter-the-talk
-				
+
 				socket.emit \inited
 				subscriber.on \message (channel, content) ->
 					try

@@ -6,19 +6,19 @@ block title
 block assets
 	link(rel='stylesheet', href='/resources/styles/timeline.css')
 	link(rel='stylesheet', href='/resources/styles/theme/timeline.css')
-	script(src=apiUrl + ':1207/socket.io/socket.io.js')
+	script(src=apiUrl + '/socket.io/socket.io.js')
 	script(src='/resources/scripts/timeline.js')
 	script(src='/resources/scripts/home.js')
 
 block content
 	div#timeline
 		div#post-form-container
-			form#post-form(enctype='multipart/form-data')
+			form#post-form(enctype='multipart/form-data', role='form')
 				img.icon(src='/img/icon/' + me.screenName, alt='icon')
 				div.form
-					textarea(name='text', placeholder='What\'s up?')
-					div.design-allow
-					input(type='submit', value!='Update &#xf1d8;')
+					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+					div.design-allow(role='presentation')
+					input(type='submit', value!='Update &#xf1d8;', role='button')
 					ul.tag.ui-taginput
 					div.image-attacher
 						p

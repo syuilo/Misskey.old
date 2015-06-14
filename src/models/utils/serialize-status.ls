@@ -26,19 +26,19 @@ module.exports = (status, callback) ->
 		| _ =>
 			status.is-repost-to-status = no
 			callback status
-	
+
 	function get-app(status, callback)
 		Application.find-by-id status.app-id, (, app) ->
 			#delete app.consumer-key
 			#delete app.callback-url
 			status.app = app.to-object!
 			callback status
-	
+
 	function get-user(status, callback)
 		User.find-by-id status.user-id, (, user) ->
 			status.user = user.to-object!
 			callback status
-	
+
 	function get-reply-source(status, callback)
 		switch
 		| !status.is-reply => callback status
@@ -55,16 +55,16 @@ module.exports = (status, callback) ->
 						reply-user .= to-object!
 						status.reply-source.user = reply-user
 						if reply-status.is-reply
-							status-get-talk reply-status, (talk) ->
+							status-get-talk reply-status .then (talk) ->
 								status.more-talk = talk
 								callback status
 						else
 							callback status
-	
+
 	function get-replies(status, callback)
 		status-get-replies status .then (replies) ->
 			| !replies? => callback status
-			| _ => 
+			| _ =>
 				Promise.all (replies |> map (reply) ->
 					new Promise (resolve, reject) ->
 						if reply?
@@ -78,7 +78,7 @@ module.exports = (status, callback) ->
 					.then (replies) ->
 						status.replies = replies
 						callback status
-	
+
 	status .= to-object!
 	status <- serialyze-repost status
 	status.is-reply = status.in-reply-to-status-id?
@@ -87,4 +87,3 @@ module.exports = (status, callback) ->
 	status <- get-reply-source status
 	status <- get-replies status
 	callback status
-	
