@@ -119,18 +119,16 @@ window.STATUSTIMELINE = {}
 			..click (event) ->
 				$clicked-status = $ @
 				
-				#can-event = ! ((<[ input textarea button i time a ]>
-				#	|> each (element) -> $ event.target .is element)
-				#	.index-of yes) >= 0
-				
-				can-event = yes
+				can-event = ! ((<[ input textarea button i time a ]>
+					|> each (element) -> $ event.target .is element)
+					.index-of yes) >= 0
 				
 				if document.get-selection!.to-string! != ''
 					can-event = no
 				
 				if can-event
 					animation-speed = 200ms
-					if $clicked-status.attr \data-display-html-is-active == \false
+					if ($clicked-status.attr \data-display-html-is-active) == \false
 						reply-form-text = $clicked-status.find 'article > .article-main > footer .reply-form textarea' .val!
 						$clicked-status
 							..attr \data-display-html-is-active \true
