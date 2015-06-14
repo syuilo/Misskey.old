@@ -51,6 +51,7 @@ server.init-session = (req, res, callback) ->
 		config: config.public-config
 		url: config.public-config.url
 		api-url: config.public-config.api-url
+		web-streaming-url: config.public-config.web-streaming-url
 		login: req.login
 
 	# Renderer function
