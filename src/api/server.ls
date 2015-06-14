@@ -74,14 +74,14 @@ api-server.use (req, res, next) ->
 		res.api-render {error: {message}}
 	next!
 
-#api-server.all '*' (req, res, next) ->
-#	res.set do
-#		'Access-Control-Allow-Origin': config.public-config.url
-#		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-#		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-#		'Access-Control-Allow-Credentials': yes
-#		'X-Frame-Options': \SAMEORIGIN
-#	next!
+api-server.all '*' (req, res, next) ->
+	res.set do
+		'Access-Control-Allow-Origin': config.public-config.url
+		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+		'Access-Control-Allow-Credentials': yes
+		'X-Frame-Options': \SAMEORIGIN
+	next!
 
 api-server.options '*' (req, res, next) ->
 	res
@@ -99,15 +99,15 @@ api-server.use (req, res, next) ->
 io = SocketIO.listen server, origins: "#{config.public-config.domain}:*"
 
 # Authorization
-#io.use (socket, next) ->
-#	handshake = socket.request
-#	cookies = cookie.parse handshake.headers.cookie
-#	switch
-#	| !handshake? => fallthrough
-#	| !handshake.headers.cookie? => fallthrough
-#	| !cookies[config.session-key]? => fallthrough
-#	| cookies[config.session-key] != /s:(.+?)\./ => next new Error '[[error:not-authorized]]'
-#	| _ => next!
+io.use (socket, next) ->
+	handshake = socket.request
+	cookies = cookie.parse handshake.headers.cookie
+	switch
+	| !handshake? => fallthrough
+	| !handshake.headers.cookie? => fallthrough
+	| !cookies[config.session-key]? => fallthrough
+	| cookies[config.session-key] != /s:(.+?)\./ => next new Error '[[error:not-authorized]]'
+	| _ => next!
 
 # Home stream
 home io, session-store
