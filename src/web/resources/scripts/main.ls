@@ -12,7 +12,7 @@ $ ->
 	update-relative-times!
 
 	# Update relative times
-	set-interval update-relative-times 1000ms
+	set-interval update-relative-times, 1000ms
 
 	function update-relative-times
 		now = new Date!
