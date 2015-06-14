@@ -17,7 +17,7 @@ $ ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 		
 		$status = $ '<li class="status">' .append($ status).hide!
-		TIMELINE.set-event-post $status.children '.status.article'
+		window.STATUSTIMELINE.set-event $status.children '.status.article'
 		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
 
 	socket.on \repost (status) ->
@@ -25,7 +25,7 @@ $ ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 		
 		$status = $ '<li class="status">' .append($ status).hide!
-		TIMELINE.set-event-post $status.children '.status.article'
+		window.STATUSTIMELINE.set-event $status.children '.status.article'
 		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
 
 	socket.on \reply (status) ->
@@ -33,7 +33,7 @@ $ ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 		
 		$status = $ '<li class="status">' .append($ status).hide!
-		TIMELINE.set-event-post $status.children '.status.article'
+		window.STATUSTIMELINE.set-event $status.children '.status.article'
 		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
 		n = new Notification post.user.name, {
 			body: post.text
@@ -139,7 +139,7 @@ $ ->
 			$button.text 'Read more!'
 			data.for-each (status) ->
 				$status = $ '<li class="status">' .append($ status).hide!
-				TIMELINE.set-event-post $status.children '.status.article'
+				window.STATUSTIMELINE.set-event $status.children '.status.article'
 				$status.append-to ($ '#timeline .timeline > .statuses') .show 200
 		.fail (data) ->
 			$button.attr \disabled no

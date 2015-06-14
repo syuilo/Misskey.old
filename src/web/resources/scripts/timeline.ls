@@ -1,4 +1,4 @@
-STATUSTIMELINE = {}
+window.STATUSTIMELINE = {}
 	..set-event = ($status) ->
 		function check-favorited
 			$status.attr \data-is-favorited == \true
@@ -161,4 +161,4 @@ STATUSTIMELINE = {}
 
 $ ->
 	$ '.timeline .statuses .status .status.article' .each ->
-		STATUSTIMELINE.set-event $ @
+		window.STATUSTIMELINE.set-event $ @
