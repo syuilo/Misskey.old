@@ -16,7 +16,7 @@ require! {
 
 function send-empty-style(res)
 	res
-		..header 'Content-type' 'text/css'
+		..header \Content-type \text/css
 		..send '*{}'
 
 module.exports = (app) ->
@@ -70,10 +70,10 @@ module.exports = (app) ->
 		| req.query.user? =>
 			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
 				| theme-user? =>
-					send-theme-style(theme-user);
+					send-theme-style theme-user
 				| _ =>
 					res
-						..status(404)
+						..status 404
 						..send 'User not found.'
 		| _ =>
 			app.init-session req, res, ->
