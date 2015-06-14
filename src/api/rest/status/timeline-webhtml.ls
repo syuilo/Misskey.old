@@ -3,7 +3,7 @@ require! {
 	'../../../utils/get-express-params'
 	'../../../models/status': Status
 	'../../../models/utils/status-get-timeline'
-	'../../../web/utils/generate-timeline-status-html'
+	'../../../web/utils/generate-timeline-status-html-callback'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -16,7 +16,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	.then (statuses) ->
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
-			generate-timeline-status-html status, user .then (html) ->
+			generate-timeline-status-html status, user, (html) ->
 				resolve html)
 		.then (timeline-html) ->
 			res.api-render timeline-html.join ''

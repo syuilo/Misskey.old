@@ -1,6 +1,5 @@
 require! {
 	jade
-	'./timeline-serialyzer'
 	'./generate-timeline-status-html'
 	'./parse-text'
 	'../../config'
