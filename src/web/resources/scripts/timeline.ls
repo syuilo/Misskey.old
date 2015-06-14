@@ -132,6 +132,11 @@ window.STATUSTIMELINE = {}
 					animation-speed = 200ms
 					if ($clicked-status.attr \data-display-html-is-active) == \false
 						reply-form-text = $clicked-status.find 'article > .article-main > footer .reply-form textarea' .val!
+						$ '.timeline > .statuses > .status > .status.article' .each ->
+							$ @
+								..attr \data-display-html-is-active \false
+								..remove-class \display-html-active-status-prev
+								..remove-class \display-html-active-status-next
 						$clicked-status
 							..attr \data-display-html-is-active \true
 							..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
@@ -141,11 +146,6 @@ window.STATUSTIMELINE = {}
 							..find 'article > .article-main > footer' .show animation-speed
 							..find 'article > .article-main > footer .reply-form textarea' .val ''
 							..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
-						$ '.timeline > .statuses > .status > .status.article' .each ->
-							$ @
-								..attr \data-display-html-is-active \false
-								..remove-class \display-html-active-status-prev
-								..remove-class \display-html-active-status-next
 						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i' .each ->
 							$ @ .show animation-speed
 						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
