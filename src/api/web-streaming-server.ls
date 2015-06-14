@@ -1,6 +1,6 @@
 require! {
 	fs
-	https
+	http
 	cookie
 	redis
 	'../config'
