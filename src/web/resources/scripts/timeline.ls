@@ -121,9 +121,9 @@ window.STATUSTIMELINE = {}
 			..click (event) ->
 				$clicked-status = $ @
 				
-				can-event = ! ((<[ input textarea button i time a ]>
+				can-event = ! (((<[ input textarea button i time a ]>
 					|> prelude.map (element) -> $ event.target .is element)
-					.index-of yes) >= 0
+					.index-of yes) >= 0)
 				
 				if document.get-selection!.to-string! != ''
 					can-event = no
