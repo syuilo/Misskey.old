@@ -4,9 +4,7 @@ require! {
 }
 
 # ID -> Number -> Number -> Number -> Promise [Status]
-module.exports = (user-id, limit, since-cursor, max-cursor) ->
-	resolve, reject <- new Promise!
-
+module.exports = (user-id, limit, since-cursor, max-cursor) -> new Promise (resolve, reject) ->
 	UserFollowing.find {follower-id: user-id} (, followings) ->
 		| followings? and not empty followings =>
 			following-ids = [user-id] ++ (followings |> map (following) -> following.followee-id.to-string!)
