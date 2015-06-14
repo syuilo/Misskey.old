@@ -127,7 +127,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text 'Loading...'
-		$.ajax config.api-url + '/status/timeline' {
+		$.ajax config.api-url + '/status/timeline-webhtml' {
 			type: \get
 			data: {
 				'max-id': $ '#timeline .timeline .statuses > .status:last-child' .attr \data-id
