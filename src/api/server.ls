@@ -74,14 +74,14 @@ api-server.use (req, res, next) ->
 		res.api-render {error: {message}}
 	next!
 
-api-server.all '*' (req, res, next) ->
-	res.set do
-		'Access-Control-Allow-Origin': config.public-config.url
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-		'Access-Control-Allow-Credentials': yes
-		'X-Frame-Options': \SAMEORIGIN
-	next!
+#api-server.all '*' (req, res, next) ->
+#	res.set do
+#		'Access-Control-Allow-Origin': config.public-config.url
+#		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+#		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+#		'Access-Control-Allow-Credentials': yes
+#		'X-Frame-Options': \SAMEORIGIN
+#	next!
 
 api-server.options '*' (req, res, next) ->
 	res
