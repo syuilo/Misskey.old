@@ -1,10 +1,12 @@
+prelude = require 'prelude-ls'
+
 window.STATUSTIMELINE = {}
 	..set-event = ($status) ->
 		function check-favorited
-			$status.attr \data-is-favorited == \true
+			($status.attr \data-is-favorited) == \true
 		
 		function check-reposted
-			$status.attr \data-is-reposted == \true
+			($status.attr \data-is-reposted) == \true
 		
 		$status
 			# Set display talk window event 
@@ -119,28 +121,17 @@ window.STATUSTIMELINE = {}
 			..click (event) ->
 				$clicked-status = $ @
 				
-				#can-event = ! ((<[ input textarea button i time a ]>
-				#	|> each (element) -> $ event.target .is element)
-				#	.index-of yes) >= 0
-				
-				can-event = yes
+				can-event = ! ((<[ input textarea button i time a ]>
+					|> prelude.each (element) -> $ event.target .is element)
+					.index-of yes) >= 0
 				
 				if document.get-selection!.to-string! != ''
 					can-event = no
-				
+					
 				if can-event
 					animation-speed = 200ms
-					if $clicked-status.attr \data-display-html-is-active == \false
+					if ($clicked-status.attr \data-display-html-is-active) == \false
 						reply-form-text = $clicked-status.find 'article > .article-main > footer .reply-form textarea' .val!
-						$clicked-status
-							..attr \data-display-html-is-active \true
-							..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
-							..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
-							..find 'article > .article-main > .talk > i' .hide animation-speed
-							..find 'article > .article-main > .talk > .statuses' .show animation-speed
-							..find 'article > .article-main > footer' .show animation-speed
-							..find 'article > .article-main > footer .reply-form textarea' .val ''
-							..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
 						$ '.timeline > .statuses > .status > .status.article' .each ->
 							$ @
 								..attr \data-display-html-is-active \false
@@ -152,6 +143,15 @@ window.STATUSTIMELINE = {}
 							$ @ .hide animation-speed
 						$ '.timeline > .statuses > .status > .status.article > article > .article-main > footer' .each ->
 							$ @ .hide animation-speed
+						$clicked-status
+							..attr \data-display-html-is-active \true
+							..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
+							..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
+							..find 'article > .article-main > .talk > i' .hide animation-speed
+							..find 'article > .article-main > .talk > .statuses' .show animation-speed
+							..find 'article > .article-main > footer' .show animation-speed
+							..find 'article > .article-main > footer .reply-form textarea' .val ''
+							..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
 					else
 						$clicked-status
 							..attr \data-display-html-is-active \false
