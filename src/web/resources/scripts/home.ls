@@ -5,7 +5,7 @@ $ ->
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
 
-	socket = io.connect config.web-streaming-url + '/streaming/web/home'
+	socket = io.connect config.api-url + '/streaming/web/home'
 
 	socket.on \connect ->
 		console.log 'Connected'
