@@ -137,7 +137,7 @@ $ ->
 		} .done (data) ->
 			$button.attr \disabled no
 			$button.text 'Read more!'
-			$statuses = $ status
+			$statuses = $ data
 			$statuses.for-each (status) ->
 				$status = $ '<li class="status">' .append($ status).hide!
 				window.STATUSTIMELINE.set-event $status.children '.status.article'
