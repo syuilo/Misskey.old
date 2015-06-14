@@ -14,6 +14,11 @@ require! {
 	'../../config'
 }
 
+function send-empty-style(res)
+	res
+		..header 'Content-type' 'text/css'
+		..send '*{}'
+
 module.exports = (app) ->
 	function compile-less (less-css, style-user, callback)
 		color = if style-user? && style-user.color == /#[a-fA-F0-9]{6}/
@@ -73,24 +78,15 @@ module.exports = (app) ->
 		| _ =>
 			app.init-session req, res, ->
 				| req.login => send-theme-style req.me
-				| _ =>
-					res
-						..header 'Content-type' 'text/css'
-						..send '*{}'
+				| _ => send-empty-style res
 
 		function send-theme-style(user)
 			style-name = req.params.0
 			theme-id = user.web-theme-id
 			switch
-			| !theme-id? =>
-				res
-					..header 'Content-type' 'text/css'
-					..send '*{}'
+			| !theme-id? => send-empty-style res
 			| _ => Webtheme.find-by-id theme-id, (, theme) ->
-				| !theme? =>
-					res
-						..header 'Content-type' 'text/css'
-						..send '*{}'
+				| !theme? => send-empty-style res
 				| _ =>
 					try
 						theme-obj = parse-json theme.style
@@ -100,9 +96,7 @@ module.exports = (app) ->
 									..header 'Content-type' 'text/css'
 									..send css
 						else
-							res
-								..header 'Content-type' 'text/css'
-								..send '*{}'
+							send-empty-style res
 					catch e
 						res
 							..status 500
@@ -121,9 +115,7 @@ module.exports = (app) ->
 				if req.login
 					send-theme-style req.me
 				else
-					res
-						..header 'Content-type' 'text/css'
-						..send '*{}'
+					send-empty-style res
 
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
