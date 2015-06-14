@@ -102,21 +102,6 @@ module.exports = (app) ->
 							..status 500
 							..send 'Theme parse failed.'
 
-		if req.query.user?
-			User.find-one {screen-name-lower: req.query.user.to-lower-case!} (, theme-user) ->
-				if theme-user?
-					send-theme-style theme-user
-				else
-					res
-						..status 404
-						..send 'User not found.'
-		else
-			app.init-session req, res, ->
-				if req.login
-					send-theme-style req.me
-				else
-					send-empty-style res
-
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
 		| (req.path.index-of '..') > -1 =>
