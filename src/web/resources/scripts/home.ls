@@ -130,7 +130,7 @@ $ ->
 		$.ajax config.api-url + '/status/timeline-webhtml' {
 			type: \get
 			data: {
-				'max-id': $ '#timeline .timeline .statuses > .status:last-child' .attr \data-id
+				'max-cursor': $ '#timeline .timeline .statuses > .status:last-child' .attr \data-timeline-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}

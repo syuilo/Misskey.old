@@ -7,12 +7,12 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	[since-id, max-id] = get-express-params req, <[ since-id, max-id ]>
+	[since-cursor, max-cursor] = get-express-params req, <[ since-cursor, max-cursor ]>
 	status-get-timeline do
 		user.id
 		30statuses
-		if !empty since-id then since-id else null
-		if !empty max-id then max-id else null
+		if !empty since-cursor then since-cursor else null
+		if !empty max-cursor then max-cursor else null
 	.then (statuses) ->
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
