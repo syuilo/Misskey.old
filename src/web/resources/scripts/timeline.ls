@@ -128,8 +128,6 @@ window.STATUSTIMELINE = {}
 				if document.get-selection!.to-string! != ''
 					can-event = no
 					
-				can-event = yes
-				
 				if can-event
 					animation-speed = 200ms
 					if ($clicked-status.attr \data-display-html-is-active) == \false
