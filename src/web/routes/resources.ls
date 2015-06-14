@@ -94,7 +94,9 @@ module.exports = (app) ->
 									..header 'Content-type' 'text/css'
 									..send css
 						else
-							res.send!
+							res
+								..header 'Content-type' 'text/css'
+								..send '*{}'
 					catch e
 						res
 							..status 500
