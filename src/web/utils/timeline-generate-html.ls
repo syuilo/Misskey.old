@@ -12,7 +12,7 @@ module.exports = (statuses, viewer, callback) ->
 		timeline-serialyzer statuses, viewer .then (timeline) ->
 			Promise.all (timeline |> map (status) ->
 				resolve, reject <- new Promise!
-				generate-timeline-status-html status, viewer, (html) ->
+				generate-timeline-status-html status, viewer .then (html) ->
 					resolve html)
 			.then (statuses-htmls) ->
 				html = timeline-compiler do
