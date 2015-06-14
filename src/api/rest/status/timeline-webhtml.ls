@@ -15,13 +15,13 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
 		console.log '>-----'
-		console.time \initpromisestimer
 		promises = statuses |> map (status) ->
-			resolve, reject <- new Promise!
-			generate-timeline-status-html status, user .then (html) ->
-				console.log 'statushtml generated!'
-				resolve html
-		console.time-end \initpromisestimer
+			console.time \initpromisestimer
+			promise = new Promise (resolve, reject) ->
+				generate-timeline-status-html status, user .then (html) ->
+					resolve html
+			console.time-end \initpromisestimer
+			promise
 		console.log '---'
 		console.time \promisetimer
 		Promise.all promises .then (timeline-html) ->
