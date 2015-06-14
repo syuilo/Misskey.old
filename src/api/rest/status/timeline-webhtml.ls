@@ -16,7 +16,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	.then (statuses) ->
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
-			generate-timeline-status-html status, user, (html) ->
+			generate-timeline-status-html-callback status, user, (html) ->
 				resolve html)
 		.then (timeline-html) ->
 			res.api-render timeline-html.join ''
