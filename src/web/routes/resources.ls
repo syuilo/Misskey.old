@@ -82,9 +82,15 @@ module.exports = (app) ->
 			style-name = req.params.0
 			theme-id = user.web-theme-id
 			switch
-			| !theme-id? => res.send!
+			| !theme-id? =>
+				res
+					..header 'Content-type' 'text/css'
+					..send '*{}'
 			| _ => Webtheme.find-by-id theme-id, (, theme) ->
-				| !theme? => res.send!
+				| !theme? =>
+					res
+						..header 'Content-type' 'text/css'
+						..send '*{}'
 				| _ =>
 					try
 						theme-obj = parse-json theme.style
