@@ -14,9 +14,9 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty since-cursor then Number since-cursor else null
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
-		Promise.all (statuses |> map (status) ->
+		promises = statuses |> map (status) ->
 			resolve, reject <- new Promise!
 			generate-timeline-status-html status, user .then (html) ->
-				resolve html)
-		.then (timeline-html) ->
+				resolve html
+		Promise.all promises .then (timeline-html) ->
 			res.api-render timeline-html.join ''
