@@ -40,7 +40,6 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 				if content.type? && content.value?
 					switch content.type
 						| \status, \repost =>
-							console.time-end content.value.id
 							# Find status
 							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML
