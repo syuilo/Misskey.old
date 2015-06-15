@@ -3,7 +3,9 @@ require! {
 	'../../../utils/get-express-params'
 	'../../../models/status': Status
 	'../../../models/utils/status-get-timeline'
-	'../../../web/utils/generate-timeline-status-html'
+	'../../../web/utils/timeline-serialyzer'
+	'../../../web/utils/parse-text'
+	'../../../config'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -14,13 +16,14 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty since-cursor then Number since-cursor else null
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
+		status-compiler = jade.compile-file "#__dirname/../../../web/views/templates/status/status.jade"
 		timeline-serialyzer statuses, viewer .then (timeline) ->
 			statuses-htmls = map do
 				(status) ->
 					status-compiler do
 						status: status
-						login: viewer?
-						me: viewer
+						login: yes
+						me: user
 						text-parser: parse-text
 						config: config.public-config
 				timeline
