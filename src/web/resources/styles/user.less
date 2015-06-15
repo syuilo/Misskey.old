@@ -47,7 +47,6 @@ main {
 		padding: 0;
 		border-radius: 8px 8px 0 0;
 		//.shadow;
-
 		> #headerMain {
 			position: relative;
 			width: 100%;
@@ -198,8 +197,6 @@ main {
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;*/
-			border-radius: 0 0 8px 8px;
-
 			> #headerNavBackground {
 				/*
 				position: absolute;
@@ -264,7 +261,12 @@ main {
 
 
 	#content {
-		background: #fff;
+		background-color: transparent;
+		background-image: url(@blurredWallpaperUrl);
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
 
 		&:after {
 			content: "";
@@ -273,6 +275,7 @@ main {
 		}
 
 		#timeline {
+			padding-left: 16px;
 		}
 
 		#followings-list, #followers-list {
