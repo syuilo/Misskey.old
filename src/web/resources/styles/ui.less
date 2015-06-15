@@ -1176,7 +1176,7 @@ textarea {
 	padding: 10px 16px;
 	min-width: 8em;
 	cursor: pointer;
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: bold;
 	text-decoration: none;
 	outline: none;
@@ -1189,25 +1189,11 @@ textarea {
 		color: #fff;
 		background: @themeColor;
 
-		&:before {
-			content: "\f007";
-			font-family: FontAwesome;
-			margin-right: 8px;
-		}
-
 		&:hover {
-			content: "フォロー解除";
 			background: #f20;
-
-			&:before {
-				content: "\f235";
-				font-family: FontAwesome;
-				margin-right: 8px;
-			}
 		}
 
 		&:active {
-			content: "フォロー解除";
 			background: #700;
 		}
 	}
@@ -1216,20 +1202,8 @@ textarea {
 		color: #000;
 		background: #eee;
 
-		&:before {
-			content: "\f007";
-			font-family: FontAwesome;
-			margin-right: 8px;
-		}
-
 		&:hover {
 			background: @themeColor;
-
-			&:before {
-				content: "\f234";
-				font-family: FontAwesome;
-				margin-right: 8px;
-			}
 		}
 	}
 }
