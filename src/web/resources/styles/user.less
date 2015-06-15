@@ -227,9 +227,16 @@ main {
 						margin: 0;
 						padding: 0;
 
+						&.active {
+							a {
+								border-bottom: solid 2px @themeColor;
+							}
+						}
+
 						a {
 							display: inline-block;
 							padding: 8px 16px;
+							border-bottom: solid 2px transparent;
 
 							i {
 								margin-right: 8px;
