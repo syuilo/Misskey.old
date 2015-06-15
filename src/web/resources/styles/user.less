@@ -214,11 +214,11 @@ main {
 
 			> #headerNavMain {
 				position: relative;
+				text-align: center;
 				//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
-
 				#main-nav {
-					display: block;
-					margin: 0 auto;
+					display: inline-block;
+					margin: 0;
 					padding: 0;
 					list-style: none;
 
@@ -229,14 +229,24 @@ main {
 
 						&.active {
 							a {
-								border-bottom: solid 2px @themeColor;
+								color: darken(@themeColor, 20%);
+								border-bottom: solid 3px @themeColor;
+
+								&:hover {
+									color: darken(@themeColor, 20%);
+								}
 							}
 						}
 
 						a {
 							display: inline-block;
-							padding: 8px 16px;
-							border-bottom: solid 2px transparent;
+							padding: 12px 24px;
+							color: #aaa;
+							border-bottom: solid 3px transparent;
+
+							&:hover {
+								color: #000;
+							}
 
 							i {
 								margin-right: 8px;
@@ -254,7 +264,7 @@ main {
 
 					tr {
 						th, td {
-							min-width: 5em;
+							min-width: 4em;
 							padding: 0;
 							margin: 0;
 						}
@@ -263,11 +273,19 @@ main {
 							text-align: left;
 							font-size: 0.8em;
 							font-weight: normal;
-							color: rgba(0, 0, 0, 0.5);
+							color: rgba(255, 255, 255, 0.5);
+							text-shadow: 0 0 16px rgba(0,0,0,0.7);
 						}
 
 						td {
-							font-size: 1.5em;
+							text-align: left;
+							font-weight: 100;
+							font-size: 1.3em;
+							text-shadow: 0 0 16px rgba(0,0,0,0.7);
+
+							a {
+								color: #fff;
+							}
 						}
 					}
 				}
