@@ -195,21 +195,29 @@
 		list-style: none;
 
 		> .status {
-			/*
 			&:first-child {
+				&[data-display-html-is-active="true"] {
+					margin: 0 0 8px auto;
+				}
+				/*
 				> .status.article > article > .article-main {
 					border-top-left-radius: 8px;
 					border-top-right-radius: 8px;
 				}
+				*/
 			}
 
 			&:last-child {
+				&[data-display-html-is-active="true"] {
+					margin: 8px 0 0 auto;
+				}
+				/*
 				> .status.article > article > .article-main {
 					border-bottom-left-radius: 8px;
 					border-bottom-right-radius: 8px;
 				}
+				*/
 			}
-			*/
 			.status.article {
 				position: relative;
 				width: ~"calc(100% - 70px)";
@@ -1058,11 +1066,11 @@
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
-		display: inline-block;
+		display: block;
 		box-sizing: border-box;
 		margin: 0 0 0 auto;
 		padding: 0;
-		width: calc(100% - 70px);
+		width: ~"calc(100% - 70px)";
 		height: 3em;
 		line-height: 3em;
 		font-size: 1.05em;
