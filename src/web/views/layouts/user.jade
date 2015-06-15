@@ -42,6 +42,10 @@ html(lang='ja'
 							li: a(href='/' + user.screenName + '/talk', title='このユーザーとトーク'): i.fa.fa-comments
 							li: button#sendNewReplyButton(title='このユーザーになんか言う'): i.fa.fa-pencil-square-o
 					div#headerUserArea
+						if login
+							if me.id != user.id
+								if isFollowMe
+									p#friend-status フォローされています
 						div#headerUserAreaBackground
 						div#headerUserAreaMain
 							a#iconAnchor
@@ -84,8 +88,6 @@ html(lang='ja'
 								td: a(href='/' + user.screenName + '/followers')= user.followersCount
 						if login
 							if me.id != user.id
-								if isFollowMe
-									p#friendStatus フォローされています
 								if isFollowing
 									button#followButton.ui-followButton.following フォロー中
 								else

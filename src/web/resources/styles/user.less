@@ -120,6 +120,18 @@ main {
 				//box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
 				border-radius: 8px 0 0 0;
 
+				> #friend-status {
+					position: absolute;
+					top: 0;
+					left: 0;
+					display: inline-block;
+					float: right;
+					margin: 0;
+					padding: 12px 33px;
+					font-size: 0.8em;
+					color: #fff;
+				}
+
 				> #headerUserAreaBackground {
 					position: absolute;
 					top: 0;
@@ -242,6 +254,7 @@ main {
 							display: inline-block;
 							padding: 12px 24px;
 							color: #aaa;
+							border-top: solid 3px transparent;
 							border-bottom: solid 3px transparent;
 
 							&:hover {
@@ -290,17 +303,8 @@ main {
 					}
 				}
 
-				> #friendStatus {
-					display: inline-block;
-					float: right;
-					margin: 0;
-					padding: 12px 33px;
-					color: rgba(0, 0, 0, 0.7);
-				}
-
 				> #followButton {
 					display: inline-block;
-					float: right;
 					margin: 0;
 				}
 			}
