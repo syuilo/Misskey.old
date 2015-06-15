@@ -14,7 +14,7 @@ window.STATUSTIMELINE = {}
 				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
 				url = $status.children \article .children \a .attr \href
 				$content = $ '<iframe>' .attr {src: url, +seamless}
-				open-window do
+				window.open-window do
 					window-id
 					$content
 					"<i class=\"fa fa-comments\"></i>#{$status.children \article .children \header .children \h2 .children \a .text!}"
@@ -63,7 +63,7 @@ window.STATUSTIMELINE = {}
 			..find 'article > .article-main > .main > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
 					..attr \disabled on
-				if check-favorited
+				if check-favorited!
 					$status.attr \data-is-favorited \false
 					$.ajax "#{config.api-url}/status/unfavorite" {
 						type: \delete
@@ -92,7 +92,7 @@ window.STATUSTIMELINE = {}
 			..find 'article > .article-main > .main > .footer > .actions > .repost > .repost-button' .click ->
 				$button = $ @
 					..attr \disabled on
-				if check-reposted
+				if check-reposted!
 					$status.attr \data-is-reposted \false
 					$.ajax "#{config.api-url}/status/unrepost" {
 						type: \delete

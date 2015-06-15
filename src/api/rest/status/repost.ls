@@ -42,7 +42,7 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 						stream-obj = to-json do
 							type: \repost
 							value: {created-status.id}
-						publish-redis-streaming "userStream:#{user.id}", stream-obj
+						publish-redis-streaming "userStream:#{user.id}" stream-obj
 						UserFollowing.find {followee-id: user.id} (, user-followings) ->
 							| !empty user-followings => user-followings |> each (user-following) ->
-								publish-redis-streaming "userStream:#{user-following.follower-id}", stream-obj
+								publish-redis-streaming "userStream:#{user-following.follower-id}" stream-obj

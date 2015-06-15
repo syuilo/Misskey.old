@@ -53,7 +53,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 				type: \status
 				value: {id: status.id}
 
-			console.time status.id
 			publish-redis-streaming "userStream:#{user.id}" stream-obj
 
 			UserFollowing.find {followee-id: user.id} (, followings) ->
