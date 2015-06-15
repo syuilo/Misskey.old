@@ -196,7 +196,7 @@
 
 		> .status {
 			&:first-child {
-				&[data-display-html-is-active="true"] {
+				> .status.article[data-display-html-is-active="true"] {
 					margin: 0 0 8px auto;
 				}
 				/*
@@ -208,7 +208,7 @@
 			}
 
 			&:last-child {
-				&[data-display-html-is-active="true"] {
+				> .status.article[data-display-html-is-active="true"] {
 					margin: 8px 0 0 auto;
 				}
 				/*
