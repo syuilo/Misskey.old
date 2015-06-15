@@ -54,6 +54,23 @@ html(lang='ja'
 				nav#headerNav(role='navigation')
 					div#headerNavBackground
 					div#headerNavMain
+						ul#main-nav
+							li(class= page == 'home' ? 'active' : '')
+								a(href='/' + user.screenName)
+									i.fa.fa-comment
+									| タイムライン
+							li(class= page == 'profile' ? 'active' : '')
+								a(href='/' + user.screenName + '/profile')
+									i.fa.fa-newspaper-o
+									| プロフィール
+							li(class= page == 'followings' ? 'active' : '')
+								a(href='/' + user.screenName + '/followings')
+									i.fa.fa-heart
+									| フォロー
+							li(class= page == 'followers' ? 'active' : '')
+								a(href='/' + user.screenName + '/followers')
+									i.fa.fa-users
+									| フォロワー
 						table
 							tr
 								th 投稿

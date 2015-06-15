@@ -27,7 +27,7 @@ main {
 	position: relative;
 	box-sizing: border-box;
 	width: 100%;
-	max-width: 900px;
+	max-width: 850px;
 	margin: 0 auto;
 	padding: 0;
 	overflow: hidden;
@@ -215,9 +215,35 @@ main {
 			> #headerNavMain {
 				position: relative;
 				//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
-				table {
-					padding: 6px 64px;
+
+				#main-nav {
+					display: block;
 					margin: 0 auto;
+					padding: 0;
+					list-style: none;
+
+					li {
+						display: inline-block;
+						margin: 0;
+						padding: 0;
+
+						a {
+							display: inline-block;
+							padding: 8px 16px;
+
+							i {
+								margin-right: 8px;
+							}
+						}
+					}
+				}
+
+				table {
+					position: absolute;
+					bottom: 100%;
+					right: 0;
+					padding: 8px;
+					margin: 0;
 
 					tr {
 						th, td {
@@ -240,9 +266,7 @@ main {
 				}
 
 				> #friendStatus {
-					position: absolute;
-					top: 0;
-					right: 0;
+					float: right;
 					margin: 0;
 					padding: 12px 33px;
 					color: rgba(0, 0, 0, 0.7);
@@ -250,9 +274,7 @@ main {
 
 				> #followButton {
 					display: block;
-					position: absolute;
-					bottom: 100%;
-					right: 0;
+					float: right;
 					margin: 16px;
 				}
 			}
@@ -275,7 +297,7 @@ main {
 		}
 
 		#timeline {
-			padding: 16px;
+			padding: 16px 64px;
 		}
 
 		#followings-list, #followers-list {
