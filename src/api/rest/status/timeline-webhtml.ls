@@ -17,7 +17,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
 		status-compiler = jade.compile-file "#__dirname/../../../web/views/templates/status/status.jade"
-		timeline-serialyzer statuses, viewer .then (timeline) ->
+		timeline-serialyzer statuses, user .then (timeline) ->
 			statuses-htmls = map do
 				(status) ->
 					status-compiler do
