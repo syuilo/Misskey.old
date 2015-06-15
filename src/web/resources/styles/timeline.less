@@ -196,19 +196,28 @@
 
 		> .status {
 			&:first-child {
+				> .status.article[data-display-html-is-active="true"] {
+					margin: 0 0 8px auto;
+				}
+				/*
 				> .status.article > article > .article-main {
 					border-top-left-radius: 8px;
 					border-top-right-radius: 8px;
 				}
+				*/
 			}
 
 			&:last-child {
+				> .status.article[data-display-html-is-active="true"] {
+					margin: 8px 0 0 auto;
+				}
+				/*
 				> .status.article > article > .article-main {
 					border-bottom-left-radius: 8px;
 					border-bottom-right-radius: 8px;
 				}
+				*/
 			}
-
 			.status.article {
 				position: relative;
 				width: ~"calc(100% - 70px)";
@@ -299,10 +308,6 @@
 				}
 
 				&:hover {
-					> article > .article-main > .main > header > h2 a {
-						color: @themeColor;
-					}
-
 					> article > .article-main > .main > .icon-area > .icon-anchor > .icon {
 						filter: saturate(200%);
 						-webkit-filter: saturate(200%);
@@ -460,10 +465,6 @@
 							color: rgba(0, 0, 0, 0.4);
 
 							&:hover {
-								> article > header > h2 a {
-									color: @themeColor;
-								}
-
 								> article > a > .icon {
 									filter: saturate(200%);
 									-webkit-filter: saturate(200%);
@@ -741,6 +742,14 @@
 									}
 								}
 							}
+						}
+
+						> .reply-info {
+							pointer-events: none;
+							position: absolute;
+							bottom: 8px;
+							left: 50%;
+							color: rgba(0,0,0,0.1);
 						}
 
 						> footer {
@@ -1057,10 +1066,11 @@
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
-		display: inline-block;
-		margin: 0;
+		display: block;
+		box-sizing: border-box;
+		margin: 0 0 0 auto;
 		padding: 0;
-		width: 100%;
+		width: ~"calc(100% - 70px)";
 		height: 3em;
 		line-height: 3em;
 		font-size: 1.05em;
@@ -1069,15 +1079,17 @@
 		background: #fff;
 		outline: none;
 		border: none;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
 
 		&:hover {
-			background: #eee;
-			color: @themeColor;
+			background: #f8f8f8;
+			//color: @themeColor;
 		}
 
 		&:active {
 			background: #ddd;
-			color: @themeColor;
+			//color: @themeColor;
 		}
 
 		&:disabled {

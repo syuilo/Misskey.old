@@ -127,20 +127,21 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text 'Loading...'
-		$.ajax config.api-url + '/status/timeline' {
+		$.ajax config.api-url + '/status/timeline-webhtml' {
 			type: \get
 			data: {
-				'max-id': $ '#timeline .timeline .statuses > .status:last-child' .attr \data-id
+				'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}
 		} .done (data) ->
 			$button.attr \disabled no
 			$button.text 'Read more!'
-			data.for-each (status) ->
-				$status = $ '<li class="status">' .append($ status).hide!
+			$statuses = $ data
+			$statuses.each ->
+				$status = $ '<li class="status">' .append $ @
 				window.STATUSTIMELINE.set-event $status.children '.status.article'
-				$status.append-to ($ '#timeline .timeline > .statuses') .show 200
+				$status.append-to $ '#timeline .timeline > .statuses'
 		.fail (data) ->
 			$button.attr \disabled no
 			$button.text 'Failed...'

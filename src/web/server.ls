@@ -18,7 +18,7 @@ session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
 
 server = create-server!
 server.locals.compile-debug = off
-server.locals.pretty = '  '
+#server.locals.pretty = '  '
 server.set 'view engine' \jade
 server.set 'views' "#__dirname/views"
 server.set 'X-Frame-Options' \SAMEORIGIN

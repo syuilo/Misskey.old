@@ -6,8 +6,8 @@ require! {
 }
 
 module.exports = (statuses, viewer, callback) ->
-	status-compiler = jade.compile-file "#__dirname/../views/templates/status/status.jade" {pretty: '  '}
-	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade" {pretty: '  '}
+	status-compiler = jade.compile-file "#__dirname/../views/templates/status/status.jade"
+	timeline-compiler = jade.compile-file "#__dirname/../views/templates/status/timeline.jade"
 	if statuses?
 		timeline-serialyzer statuses, viewer .then (timeline) ->
 			statuses-htmls = map do
