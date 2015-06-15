@@ -218,6 +218,7 @@
 				}
 				*/
 			}
+
 			.status.article {
 				position: relative;
 				width: ~"calc(100% - 70px)";
@@ -244,22 +245,34 @@
 					}
 				}
 
-				&[data-is-favorited='true'] > article > .article-main > .main > .footer > .actions > .favorite {
-					> button {
+				&[data-is-favorited='true'] > article > .article-main {
+					&:hover > .main > .footer > .actions > .favorite > button {
 						color: @themeColor;
+					}
 
-						&:hover {
-							color: darken(@themeColor, 10%);
+					> .main > .footer > .actions > .favorite {
+						> button {
+							color: @themeColor;
+
+							&:hover {
+								color: darken(@themeColor, 10%);
+							}
 						}
 					}
 				}
 
-				&[data-is-reposted='true'] > article > .article-main > .main > .footer > .actions > .repost {
-					> button {
+				&[data-is-reposted='true'] > article > .article-main {
+					&:hover > .main > .footer > .actions > .repost > button {
 						color: @themeColor;
+					}
 
-						&:hover {
-							color: darken(@themeColor, 10%);
+					> .main > .footer > .actions > .repost {
+						> button {
+							color: @themeColor;
+
+							&:hover {
+								color: darken(@themeColor, 10%);
+							}
 						}
 					}
 				}
