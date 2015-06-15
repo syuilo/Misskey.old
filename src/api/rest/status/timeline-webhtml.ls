@@ -14,9 +14,14 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty since-cursor then Number since-cursor else null
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
-		Promise.all (statuses |> map (status) ->
-			resolve, reject <- new Promise!
-			generate-timeline-status-html status, user .then (html) ->
-				resolve html)
-		.then (timeline-html) ->
-			res.api-render timeline-html.join ''
+		timeline-serialyzer statuses, viewer .then (timeline) ->
+			statuses-htmls = map do
+				(status) ->
+					status-compiler do
+						status: status
+						login: viewer?
+						me: viewer
+						text-parser: parse-text
+						config: config.public-config
+				timeline
+			res.api-render statuses-htmls.join ''
