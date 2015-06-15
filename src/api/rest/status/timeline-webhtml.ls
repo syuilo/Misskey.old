@@ -1,4 +1,5 @@
 require! {
+	jade
 	'../../auth': authorize
 	'../../../utils/get-express-params'
 	'../../../models/status': Status
