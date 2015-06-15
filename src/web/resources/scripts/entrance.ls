@@ -89,7 +89,7 @@ function init-register-form
 			hide-message!
 			sn = $ user-name-input-query .val!
 
-			if not empty sn
+			if sn != ''
 				err = switch
 					| sn.length < 4chars             => '4文字以上でお願いしますっ'
 					| sn.match /^[0-9]+$/            => 'すべてを数字にすることはできませんっ'
