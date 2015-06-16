@@ -15,7 +15,7 @@ $ ->
 	$ window .resize header-set-blur-image
 	
 	function check-follow
-		$ \html .attr \data-is-following == \true
+		($ \html .attr \data-is-following) == \true
 	
 	$ '#followButton' .click ->
 		$button = $ @
@@ -25,7 +25,7 @@ $ ->
 				type: \delete
 				data: {'user-id': $ \html .attr \data-user-id}
 				data-type: \json
-				xhr-fields: {+withCredentials}}
+				xhr-fields: {+with-credentials}}
 			.done ->
 				$button
 					..attr \disabled off
@@ -40,7 +40,7 @@ $ ->
 				type: \post
 				data: {'user-id': $ \html .attr \data-user-id}
 				data-type: \json
-				xhr-fields: {+withCredentials}}
+				xhr-fields: {+with-credentials}}
 			.done ->
 				$button
 					..attr \disabled off
