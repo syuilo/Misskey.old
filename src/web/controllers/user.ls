@@ -35,8 +35,9 @@ module.exports = (req, res, page = \home) ->
 			user-following-check user.id, me.id .then (is-following) ->
 				resolve is-following
 
-		# Compile bio markdown to html
+		# Compile bio markdown to html (profile page only)
 		new Promise (resolve, reject) ->
+			if page != \profile then resolve null
 			if !user.bio? then resolve null
 			resolve marked user.bio
 

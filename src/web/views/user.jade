@@ -6,6 +6,9 @@ block title
 block content
 	if page == 'home'
 		div#timeline!= timelineHtml
+	if page == 'profile'
+		div#profile
+			div#bio!= bio
 	if page == 'followings'
 		div#followings-list
 			h2 Followings
