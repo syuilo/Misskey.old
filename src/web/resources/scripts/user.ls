@@ -20,7 +20,7 @@ $ ->
 	$ '#followButton' .click ->
 		$button = $ @
 			..attr \disabled on
-		if check-follow
+		if check-follow!
 			$.ajax "#{config.api-url}/users/unfollow" {
 				type: \delete
 				data: {'user-id': $ \html .attr \data-user-id}
