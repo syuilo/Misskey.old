@@ -11,8 +11,10 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			if query == /^[a-zA-Z0-9_]+$/
 			then {screen-name: reg}
 			else {name: reg}
-		mongo-query = User.find db-query .sort {followers-count: -1} .limit 5users
-		mongo-query.exec (err, users) ->
+		User.find db-query
+		.sort {followers-count: -1}
+		.limit 5users
+		.exec (err, users) ->
 			users |> each (user) ->
 				user .= to-object!
 			res.api-render users
