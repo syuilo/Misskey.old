@@ -11,7 +11,7 @@ html(
 		include templates/head
 		title= 'トーク: ' + otherparty.name
 		link(rel='stylesheet', href='/resources/styles/user-talk.css')
-		script(src=apiUrl + ':1207/socket.io/socket.io.js')
+		script(src=webStreamingUrl + '/socket.io/socket.io.js')
 		script(src='/resources/scripts/user-talk.js')
 		
 	body
