@@ -12,12 +12,12 @@ window.STATUSTIMELINE = {}
 			# Set display talk window event 
 			..find \.icon-anchor .click ->
 				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
-				url = $status.children \article .children \a .attr \href
+				url = $status.find \.icon-anchor .attr \href
 				$content = $ '<iframe>' .attr {src: url, +seamless}
 				window.open-window do
 					window-id
 					$content
-					"<i class=\"fa fa-comments\"></i>#{$status.children \article .children \header .children \h2 .children \a .text!}"
+					"<i class=\"fa fa-comments\"></i>#{$status.find \.user-name .text!}"
 					300px
 					450px
 					yes
