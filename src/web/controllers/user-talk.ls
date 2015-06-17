@@ -10,10 +10,10 @@ require! {
 }
 
 module.exports = (req, res) ->
-	me = req.me
-	otherparty = req.root-user
+	me = req.me.to-object!
+	otherparty = req.root-user.to-object!
 	
-	talk-get-talk me._id, otherparty._id, 32messages, null, null .then (messages) ->
+	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
 		console.log messages
 		user-following-check otherparty.id, me.id .then (following-me) ->
 
@@ -25,9 +25,6 @@ module.exports = (req, res) ->
 						{$set: {+is-readed}}
 						{-upsert, -multi}
 						->
-			
-			me = req.me.to-object!
-			otherparty = req.root-user.to-object!
 
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
