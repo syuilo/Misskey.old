@@ -225,17 +225,6 @@ $ ->
 			/*alert('error');*/
 			$submit-button.attr \disabled no
 
-	function append-message(message)
-		$message = window.TALKSTREAM.generate-message-element message .hide!
-		$message.append-to $ '#stream > .messages' .show 200ms
-		window.TALKSTREAM.set-event $message
-		animate-timer = set-interval ->
-			scroll 0, ($ \html .outer-height!)
-		, 1ms
-		set-timeout ->
-			clear-interval animate-timer
-		, 210ms
-
 $ window .load ->
 	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
 	scroll 0, document.body.client-height
