@@ -56,6 +56,7 @@ module.exports = (io, session-store) ->
 							switch content.type
 							| \me-message, \otherparty-message =>
 								console.log 'message'
+								console.log content.value
 								# Find message
 								err, message <- TalkMessage.find-by-id content.value.id
 								console.log err
