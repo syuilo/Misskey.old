@@ -57,7 +57,7 @@ $ ->
 		$ '#post-form textarea' .val $.cookie "talk-autosave-#{otherparty-id}"
 
 	$ \body .css \margin-bottom ($ '#post-form-container' .outer-height! + \px)
-	scroll 0, $ \html .outer-height!
+	scroll 0, ($ \html .outer-height!)
 
 	socket = io.connect "#{config.web-streaming-url}/streaming/talk"
 
