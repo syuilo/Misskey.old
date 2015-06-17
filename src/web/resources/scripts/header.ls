@@ -38,7 +38,7 @@ $ ->
 				xhr-fields: {+with-credentials}}
 			.done (result) ->
 				$result.empty!
-				if result.length > 0
+				if (result.length > 0) && ($ @ .val! != '')
 					$result.append $ '<ol class="users">'
 					result.for-each (user) ->
 						$result.find \ol .append do
