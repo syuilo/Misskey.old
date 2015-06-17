@@ -18,7 +18,7 @@ module.exports = (req, res) ->
 
 			# 既読にする
 			messages |> each (message) ->
-				if message.user-id == otherparty.id
+				if message.user-id.to-string! == otherparty.id.to-string!
 					TalkMessage.update do
 						{id: message.id}
 						{$set: {+is-readed}}
