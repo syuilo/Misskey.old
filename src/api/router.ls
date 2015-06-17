@@ -17,6 +17,7 @@ routing =
 
 	search:
 		[\get /\/search\/user(\..+)?$/ './rest/search/user']
+		[\get /\/search\/kyoppie(\..+)?$/ './rest/search/user'] #dummy
 
 	notice:
 		[\delete /\/notice\/delete(\..+)?$/     './rest/notice/delete']
