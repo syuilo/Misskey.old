@@ -60,7 +60,7 @@ module.exports = (io, session-store) ->
 								# Send message HTML
 								message-compiler = jade.compile-file "#__dirname/../../web/views/templates/user-talk/message.jade"
 								serialize-talk-message message, socket.user, socket.otherparty .then (serialized-message) ->
-									socket.emit content.type, status-compiler do
+									socket.emit content.type, message-compiler do
 										message: serialized-message
 										me: socket.user
 										text-parser: parse-text

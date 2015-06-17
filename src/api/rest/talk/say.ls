@@ -27,27 +27,27 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					| error => throw error
 					| _ =>
 						fs.unlink path
-						create req, res, app.id, otherparty-id, buffer, true, text, user.id
-		| _ => create req, res, app.id, otherparty-id, null, false, text, user.id
+						create app.id, otherparty-id, buffer, true, text, user.id
+		| _ => create app.id, otherparty-id, null, false, text, user.id
 
-function create(req, res, app-id, otherparty-id, image, is-image-attached, text, user-id)
-	talk-message = new TalkMessage {app-id, user-id, otherparty-id, text, is-image-attached}
-	err, created-talk-message <- talk-message.save
-	switch
-	| is-image-attached =>
-		talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
-		talk-message-image.save ->
-			send-response created-talk-message
-	| _ =>
-		send-response created-talk-message
+	function create(app-id, otherparty-id, image, is-image-attached, text, user-id)
+		talk-message = new TalkMessage {app-id, user-id, otherparty-id, text, is-image-attached}
+		err, created-talk-message <- talk-message.save
+		switch
+		| is-image-attached =>
+			talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
+			talk-message-image.save ->
+				send-response created-talk-message, user-id, otherparty-id
+		| _ =>
+			send-response created-talk-message, user-id, otherparty-id
 
-function send-response message
-	message .= to-object!
-	res.api-render message
+	function send-response(message, user-id, otherparty-id)
+		message .= to-object!
+		res.api-render message
 
-	[
-		["userStream:#{otherparty-id}" \talk-message]
-		["talkStream:#{otherparty-id}-#{user-id}" \otherparty-message]
-		["talkStream:#{user-id}-#{otherparty-id}" \me-message]
-	] |> each ([channel, type]) ->
-		publish-redis-streaming channel, to-json {type, value: {id: message.id}}
+		[
+			["userStream:#{otherparty-id}" \talk-message]
+			["talkStream:#{otherparty-id}-#{user-id}" \otherparty-message]
+			["talkStream:#{user-id}-#{otherparty-id}" \me-message]
+		] |> each ([channel, type]) ->
+			publish-redis-streaming channel, to-json {type, value: {id: message.id}}

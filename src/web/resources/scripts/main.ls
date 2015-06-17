@@ -5,7 +5,7 @@ $.fn.extend {
 		{ left: p.left - $window.scroll-left!, top: p.top - $window.scroll-top! }
 }
 
-function escapeHTML(val)
+window.escapeHTML = (val) ->
 	$ '<div />' .text(val).html!
 
 $ ->
