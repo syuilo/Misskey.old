@@ -31,7 +31,7 @@ $ ->
 				| _ => ''
 			$ @ .text time-text
 
-function open-window(id, $content, title, width, height, can-popout = false, popout-url = null)
+window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
 	$window = $ '''
 		<div class=\"ui window\" id=\"" + id + "\">
 			<header>

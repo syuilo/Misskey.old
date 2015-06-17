@@ -15,6 +15,10 @@ routing =
 		[\post /\/application\/create(\..+)?$/ './rest/application/create']
 		[\post /\/application\/delete(\..+)?$/ './rest/application/delete']
 
+	search:
+		[\get /\/search\/user(\..+)?$/ './rest/search/user']
+		[\get /\/search\/kyoppie(\..+)?$/ './rest/search/user'] #dummy
+
 	notice:
 		[\delete /\/notice\/delete(\..+)?$/     './rest/notice/delete']
 		[\delete /\/notice\/delete-all(\..+)?$/ './rest/notice/delete-all']
