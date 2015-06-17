@@ -90,7 +90,7 @@ $ ->
 			$ '#otherparty-status #otherparty-typing' .remove!
 		$message = ($ '<li class="message">' .append $ message).hide!
 		window.TALKSTREAM.set-event $message.children \.message
-		$message.prepend-to $ '#stream .messages' .show 200ms
+		$message.append-to $ '#stream .messages' .show 200ms
 		$.ajax config.api-url + '/talk/read' {
 			type: \post
 			data: {'message-id': message.id}
@@ -104,7 +104,7 @@ $ ->
 		new Audio '/resources/sounds/talk-message.mp3' .play!
 		$message = ($ '<li class="message">' .append $ message).hide!
 		window.TALKSTREAM.set-event $message.children \.message
-		$message.prepend-to $ '#stream .messages' .show 200ms
+		$message.append-to $ '#stream .messages' .show 200ms
 
 	socket.on \otherparty-message-update (message) ->
 		console.log \otherparty-message-update message
