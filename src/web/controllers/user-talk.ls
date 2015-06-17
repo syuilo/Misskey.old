@@ -21,7 +21,7 @@ module.exports = (req, res) ->
 				if message.user-id.to-string! == otherparty.id.to-string!
 					message
 						..is-readed = yes
-						..save!
+						..save ->
 
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
