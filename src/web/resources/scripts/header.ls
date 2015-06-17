@@ -27,18 +27,19 @@ $ ->
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
 	$ '#misskey-main-header .search input' .bind \input ->
+		$input = $ @
 		$result = $ '#misskey-main-header .search .result'
-		if $ @ .val! == ''
+		if $input .val! == ''
 			$result.empty!
 		else
 			$.ajax "#{config.api-url}/search/user" {
 				type: \get
-				data: {'query': $ @ .val!}
+				data: {'query': $input .val!}
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done (result) ->
 				$result.empty!
-				if (result.length > 0) && ($ @ .val! != '')
+				if (result.length > 0) && ($input .val! != '')
 					$result.append $ '<ol class="users">'
 					result.for-each (user) ->
 						$result.find \ol .append do
