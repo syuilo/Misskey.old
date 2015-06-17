@@ -33,15 +33,15 @@ $ ->
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
 	$window = $ '''
-		<div class=\"ui window\" id=\"" + id + "\">
+		<div class="ui window" id="''' + id + '''">
 			<header>
-				<h1>"+ title + "</h1>
-				<div class=\"buttons\">
-					<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>
-					<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>
+				<h1>''' + title + '''</h1>
+				<div class="buttons">
+					<button class="popout" title="ポップアウト"><img src="/resources/images/window-popout.png" alt="Popout"></button>
+					<button class="close" title="閉じる"><img src="/resources/images/window-close.png" alt="Close"></button>
 				</div>
 			</header>
-			<div class=\"content\"></div>
+			<div class="content"></div>
 		</div>
 	''' .css {
 		width
