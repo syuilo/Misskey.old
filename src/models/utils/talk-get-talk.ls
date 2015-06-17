@@ -5,7 +5,7 @@ require! {
 
 # Number -> Number -> Number -> Number -> Number -> Promise [Message]
 module.exports = (me-id, otherparty-id, limit, since-cursor, max-cursor) ->
-	base-query = ({user-id: me-id} `$and` {otherparty-id}) `$or` ({user-id: otherparty-id} `$and` {otherparty-id: me-id})
+	base-query = {{user-id: me-id} `$and` {otherparty-id}} `$or` {{user-id: otherparty-id} `$and` {otherparty-id: me-id}}
 
 	query = | all is-null, [since-cursor, max-cursor] => base-query
 		| since-cursor? => base-query `$and` {cursor: {$gt: since-cursor}}
