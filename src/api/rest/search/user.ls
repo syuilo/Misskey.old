@@ -4,7 +4,7 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	| !(query = req.body.query)? => res.api-error 400 'query parameter is required!!'
+	| !(query = req.query.query)? => res.api-error 400 'query parameter is required!!'
 	| _ =>
 		reg = new RegExp "%#query%" \i
 		db-query =
