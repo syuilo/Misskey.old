@@ -14,6 +14,9 @@ routing =
 	application:
 		[\post /\/application\/create(\..+)?$/ './rest/application/create']
 		[\post /\/application\/delete(\..+)?$/ './rest/application/delete']
+	
+	search:
+		[\get /\/search\/user(\..+)?$/ './rest/search/user']
 
 	notice:
 		[\delete /\/notice\/delete(\..+)?$/     './rest/notice/delete']
