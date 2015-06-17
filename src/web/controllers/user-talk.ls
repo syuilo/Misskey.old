@@ -12,7 +12,8 @@ require! {
 module.exports = (req, res) ->
 	me = req.me.to-object!
 	otherparty = req.root-user.to-object!
-
+	console.log me
+	console.log otherparty
 	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
 		console.log messages
 		user-following-check otherparty.id, me.id .then (following-me) ->
