@@ -204,15 +204,16 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 		browser-height = $ window .height!
 		window-width = $window.outer-width!
 		window-height = $window.outer-height!
+		page-top = parse-int ($ \body .css \margin-top)
 
 		if position.left < 0
 			$window.css {
 				left: 0
 			}
 		
-		if position.top < 0
+		if position.top < page-top
 			$window.css {
-				top: 0
+				top: page-top
 			}
 
 		if position.left + window-width > browser-width
@@ -227,7 +228,7 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 		
 		if $window.has-class \snap-top
 			$window.css {
-				top: 0
+				top: page-top
 			}
 		
 		if $window.has-class \snap-right
