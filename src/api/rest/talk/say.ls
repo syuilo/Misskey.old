@@ -37,11 +37,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		| is-image-attached =>
 			talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
 			talk-message-image.save ->
-				send-response created-talk-message
+				send-response created-talk-message, user-id, otherparty-id
 		| _ =>
-			send-response created-talk-message
+			send-response created-talk-message, user-id, otherparty-id
 
-	function send-response message
+	function send-response(message, user-id, otherparty-id)
 		message .= to-object!
 		res.api-render message
 
