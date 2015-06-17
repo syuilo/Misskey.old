@@ -165,7 +165,7 @@ $ ->
 		if ($ '#otherparty-status #otherparty-typing')[0]
 			$ '#otherparty-status #otherparty-typing' .remove!
 		if type != ''
-			$typing = $ "<p id=\"otherparty-typing\">#{escapeHTML type}</p>"
+			$typing = $ "<p id=\"otherparty-typing\">#{window.escapeHTML type}</p>"
 			$typing.append-to $ \#otherparty-status .animate {
 				opacity: 0
 			} 5000ms
