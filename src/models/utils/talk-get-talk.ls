@@ -3,7 +3,7 @@ require! {
 	'../talk-message': TalkMessage
 }
 
-# Number -> Number -> Number -> Number -> Number -> Promise [Message]
+# ID -> ID -> Number -> Number -> Number -> Promise [Message]
 module.exports = (me-id, otherparty-id, limit, since-cursor, max-cursor) ->
 	base-query = ({user-id: me-id} `$and` {otherparty-id}) `$or` ({user-id: otherparty-id} `$and` {otherparty-id: me-id})
 
