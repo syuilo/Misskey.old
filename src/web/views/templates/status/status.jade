@@ -41,7 +41,7 @@ div.status.article(
 										img.icon(src=config.url + '/img/icon/' + talkPost.user.screenName, alt='icon')
 									header
 										h2
-											a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
+											a.user-name(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
 										span.screen-name= '@' + talkPost.user.screenName
 										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt, pubdate)= talkPost.createdAt
 									div.main
