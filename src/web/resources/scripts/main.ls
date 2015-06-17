@@ -161,13 +161,13 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 				# snap window border
 				threshold = 16px
 				
-				if move-left > threshold
+				if move-left < threshold
 					$window.add-class \snap-left
 					move-left = 0
 				
-				if move-top > threshold
+				if (move-top - page-top) < threshold
 					$window.add-class \snap-top
-					move-top = 0
+					move-top = page-top
 				
 				if move-left + window-width > browser-width - threshold
 					$window.add-class \snap-right
