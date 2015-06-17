@@ -70,7 +70,9 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			opacity: \0
 			transition: 'all ease-in 0.3s'
 		}
-		set-timeout $window.remove, 300
+		set-timeout ->
+			$window.remove
+		, 300ms
 	
 	function end-move
 		$window.find \.content .css {
