@@ -33,15 +33,15 @@ $ ->
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
 	$window = $ '''
-		<div class=\"ui window\" id=\"" + id + "\">
+		<div class="ui window" id="''' + id + '''">
 			<header>
-				<h1>"+ title + "</h1>
-				<div class=\"buttons\">
-					<button class=\"popout\" title=\"ポップアウト\"><img src=\"/resources/images/window-popout.png\" alt=\"Popout\"></button>
-					<button class=\"close\" title=\"閉じる\"><img src=\"/resources/images/window-close.png\" alt=\"Close\"></button>
+				<h1>''' + title + '''</h1>
+				<div class="buttons">
+					<button class="popout" title="ポップアウト"><img src="/resources/images/window-popout.png" alt="Popout"></button>
+					<button class="close" title="閉じる"><img src="/resources/images/window-close.png" alt="Close"></button>
 				</div>
 			</header>
-			<div class=\"content\"></div>
+			<div class="content"></div>
 		</div>
 	''' .css {
 		width
@@ -70,7 +70,9 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			opacity: \0
 			transition: 'all ease-in 0.3s'
 		}
-		set-timeout $window.remove, 300
+		set-timeout ->
+			$window.remove
+		, 300ms
 	
 	function end-move
 		$window.find \.content .css {
@@ -119,26 +121,65 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			browser-height = $ window .height!
 			window-width = $window.outer-width!
 			window-height = $window.outer-height!
+			page-top = parse-int ($ \body .css \margin-top)
 
 			$ \html .mousemove (me) ->
-				move-right = browser-width - ((window-width + me.client-x) - move-base-x)
-				move-bottom = browser-height - ((window-height + me.client-y) - move-base-y)
+				$window.remove-class \snap-top
+				$window.remove-class \snap-right
+				$window.remove-class \snap-bottom
+				$window.remove-class \snap-left
 				
-				if move-right < 0
-					move-right = 0
-					
-				if move-bottom < 0
-					move-bottom = 0
-					
-				if move-right + window-width > browser-width
-					move-right = browser-width - window-width
-					
-				if move-bottom + window-height > browser-height
-					move-bottom = browser-height - window-height
-
+				#move-right = browser-width - ((window-width + me.client-x) - move-base-x)
+				#move-bottom = browser-height - ((window-height + me.client-y) - move-base-y)
+				move-left = me.client-x - move-base-x
+				move-top = me.client-y - move-base-y
+				
+				#if move-right < 0
+				#	move-right = 0
+				#	
+				#if move-bottom < 0
+				#	move-bottom = 0
+				#	
+				#if move-right + window-width > browser-width
+				#	move-right = browser-width - window-width
+				#	
+				#if move-bottom + window-height > browser-height
+				#	move-bottom = browser-height - window-height
+				
+				if move-left < 0
+					move-left = 0
+				
+				if move-top < page-top
+					move-top = page-top
+				
+				if move-left + window-width > browser-width
+					move-left = browser-width - window-width
+				
+				if move-top + window-height > browser-height
+					move-top = browser-height - window-height
+				
+				# snap window border
+				threshold = 16px
+				
+				if move-left < threshold
+					$window.add-class \snap-left
+					move-left = 0
+				
+				if (move-top - page-top) < threshold
+					$window.add-class \snap-top
+					move-top = page-top
+				
+				if move-left + window-width > browser-width - threshold
+					$window.add-class \snap-right
+					move-left = browser-width - window-width
+				
+				if move-top + window-height > browser-height - threshold
+					$window.add-class \snap-bottom
+					move-top = browser-height - window-height
+				
 				$window.css {
-					right: move-right + \px
-					bottom: move-bottom + \px
+					left: move-left + \px
+					top: move-top + \px
 				}
 
 			$ \html .mouseleave ->
@@ -163,23 +204,44 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 		browser-height = $ window .height!
 		window-width = $window.outer-width!
 		window-height = $window.outer-height!
+		page-top = parse-int ($ \body .css \margin-top)
 
 		if position.left < 0
 			$window.css {
-				right: (browser-width - window-width) + \px
+				left: 0
 			}
 		
-		if position.top < 0
+		if position.top < page-top
 			$window.css {
-				bottom: (browser-height - window-height) + \px
+				top: page-top
 			}
 
 		if position.left + window-width > browser-width
 			$window.css {
-				right: '0px'
+				left: 0
 			}
 		
 		if position.top + window-height > browser-height
 			$window.css {
-				bottom: '0px'
+				top: 0
+			}
+		
+		if $window.has-class \snap-top
+			$window.css {
+				top: page-top
+			}
+		
+		if $window.has-class \snap-right
+			$window.css {
+				left: browser-width - window-width + \px
+			}
+			
+		if $window.has-class \snap-bottom
+			$window.css {
+				top: browser-height - window-height + \px
+			}
+		
+		if $window.has-class \snap-left
+			$window.css {
+				left: 0
 			}
