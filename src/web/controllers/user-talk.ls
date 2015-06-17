@@ -10,6 +10,9 @@ require! {
 }
 
 module.exports = (req, res) ->
+	me = req.me
+	otherparty = req.root-user
+	
 	talk-get-talk me._id, otherparty._id, 32messages, null, null .then (messages) ->
 		console.log messages
 		user-following-check otherparty.id, me.id .then (following-me) ->
