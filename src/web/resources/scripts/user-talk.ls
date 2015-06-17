@@ -84,16 +84,18 @@ $ ->
 
 	socket.on \otherparty-message (message) ->
 		console.log \otherparty-message message
-		socket.emit \read message.id
+		$message = $ message
+		message-id = $message.attr \data-id
+		socket.emit \read message-id
 		new Audio '/resources/sounds/talk-message.mp3' .play!
 		if ($ '#otherparty-status #otherparty-typing')[0]
 			$ '#otherparty-status #otherparty-typing' .remove!
-		$message = ($ '<li class="message">' .append $ message).hide!
+		$message = ($ '<li class="message">' .append $message).hide!
 		window.TALKSTREAM.set-event $message.children \.message
 		$message.append-to $ '#stream .messages' .show 200ms
 		$.ajax config.api-url + '/talk/read' {
 			type: \post
-			data: {'message-id': message.id}
+			data: {'message-id': message-id}
 			data-type: \json
 			xhr-fields: {+with-credentials}
 		} .done (data) ->
