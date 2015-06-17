@@ -19,11 +19,9 @@ module.exports = (req, res) ->
 			# 既読にする
 			messages |> each (message) ->
 				if message.user-id.to-string! == otherparty.id.to-string!
-					TalkMessage.update do
-						{id: message.id}
-						{$set: {+is-readed}}
-						{-upsert, -multi}
-						->
+					message
+						..is-readed = yes
+						..save!
 
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
