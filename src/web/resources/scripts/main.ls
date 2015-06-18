@@ -71,7 +71,7 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			transition: 'all ease-in 0.3s'
 		}
 		set-timeout ->
-			$window.remove
+			$window.remove!
 		, 300ms
 	
 	function end-move
