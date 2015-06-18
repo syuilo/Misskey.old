@@ -51,11 +51,11 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 	$ \body .prepend $window
 
 	function top
-		z = 0
+		window.window-z = 0
 		$ \.window .each ->
-			if ($ @ .css \z-index) > z
-				z = Number($ @ .css \z-index)
-		$window.css \z-index z + 1
+			if ($ @ .css \z-index) > window.window-z
+				window.window-z = Number($ @ .css \z-index)
+		$window.css \z-index window.window-z + 1
 
 	function popout
 		opened-window = window.open do
