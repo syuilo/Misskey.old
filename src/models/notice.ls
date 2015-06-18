@@ -1,3 +1,13 @@
+# Types:
+#  follow フォローされました
+#  status-reply つぶやきに返信が付きました
+#  status-repost つぶやきがRepostされました
+#  status-favorite つぶやきがふぁぼられました
+#  talk-message トーク メッセージが届きました
+#  article-comment 記事にコメントが付きました
+#  article-favorite 記事がふぁぼられました
+#  article-publish フォローしているユーザーの記事が公開されました
+
 require! {
 	mongoose
 	'../config'
