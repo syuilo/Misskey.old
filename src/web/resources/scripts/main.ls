@@ -223,7 +223,7 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 		
 		if position.top + window-height > browser-height
 			$window.css {
-				top: 0
+				top: page-top
 			}
 		
 		if $window.has-class \snap-top
