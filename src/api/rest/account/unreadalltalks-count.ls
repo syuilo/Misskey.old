@@ -3,4 +3,5 @@ require! {
 	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	TalkMessage.get-all-unread-count user.id, (count) -> res.api-render count
+	TalkMessage.count {otherparty-id: user.id} `$and` {-is-readed} (err, count) ->
+		res.api-render count

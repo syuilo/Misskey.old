@@ -1,4 +1,4 @@
-music-center-open = no
+window.music-center-open = no
 
 function update-statuses
 	$.ajax "#{config.api-url}/account/unreadalltalks-count" {
@@ -14,15 +14,15 @@ function update-statuses
 	.fail ->
 
 $ ->
-	#update-statuses!
-	#set-interval update-statuses, 5000ms
+	update-statuses!
+	set-interval update-statuses, 5000ms
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
-		if music-center-open
+		if window.music-center-open
 			$ '#misskey-main-header > .informationCenter' .css \height '0'
 		else
 			$ '#misskey-main-header > .informationCenter' .css \height '200px'
-		music-center-open = !music-center-open
+		window.music-center-open = !music-center-open
 	
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
