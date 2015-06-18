@@ -1,4 +1,5 @@
 # Types:
+#  self-notice
 #  follow フォローされました
 #  status-reply つぶやきに返信が付きました
 #  status-repost つぶやきがRepostされました
