@@ -1,13 +1,13 @@
 # Types:
-#  self-notice
-#  follow フォローされました
-#  status-reply つぶやきに返信が付きました
-#  status-repost つぶやきがRepostされました
-#  status-favorite つぶやきがふぁぼられました
-#  talk-message トーク メッセージが届きました
-#  article-comment 記事にコメントが付きました
-#  article-favorite 記事がふぁぼられました
-#  article-publish フォローしているユーザーの記事が公開されました
+#  self-notice (text)
+#  follow (user-id) フォローされました
+#  status-reply (reply-id, status-id, user-id) つぶやきに返信が付きました
+#  status-repost (status-id, user-id) つぶやきがRepostされました
+#  status-favorite (status-id, user-id) つぶやきがふぁぼられました
+#  talk-message (message-id, user-id) トーク メッセージが届きました
+#  article-comment (comment-id, article-id, user-id) 記事にコメントが付きました
+#  article-favorite (article-id, user-id) 記事がふぁぼられました
+#  article-publish (article-id, user-id) フォローしているユーザーの記事が公開されました
 
 require! {
 	mongoose
