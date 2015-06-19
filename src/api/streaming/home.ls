@@ -54,13 +54,9 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 									text-parser: parse-text
 									config: config.public-config
 						| \notice =>
-							console.log 'notice!!!'
 							# Find notice
 							err, notice <- Notice.find-by-id content.value.id
-							console.log err
-							console.log notice
 							html <- generate-notice-timeline-item-html socket.user, notice .then
-							console.log html
 							socket.emit \notice html
 						| _ => socket.emit content.type, content.value
 				else
