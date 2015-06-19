@@ -18,7 +18,7 @@ scripts:
 
 dependencies:
 	bcrypt: '0.8.3'
-	'body-parser': '1.12.4'
+	'body-parser': '1.13.1'
 	compression: '1.5.0'
 	'connect-redis': '2.3.0'
 	cookie: '0.1.3'
