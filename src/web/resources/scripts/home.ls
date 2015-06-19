@@ -4,6 +4,19 @@ $ ->
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
+	
+	# 通知読み込み
+	$.ajax config.api-url + '/notice/timeline-webhtml' {
+		type: \get
+		data: {}
+		data-type: \json
+		xhr-fields: {+with-credentials}
+	} .done (data) ->
+		$notices = $ data
+		$notices.each ->
+			$notice = $ @
+			$notice.append-to $ '#notices .notices'
+	.fail (data) ->
 
 	socket = io.connect config.web-streaming-url + '/streaming/web/home'
 
