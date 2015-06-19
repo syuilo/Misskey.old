@@ -13,8 +13,8 @@ module.exports = (user-id, type, content = null) -> new Promise (resolve, reject
 	}
 	.save (err, created-notice) ->
 		if err then reject err
-		stream-obj =
+		stream-obj = to-json do
 			type: \notice
 			value: created-notice.to-object!
-		publish-redis-streaming "userStream:#user-id" to-json stream-obj
+		publish-redis-streaming "userStream:#user-id" stream-obj
 		resolve created-notice
