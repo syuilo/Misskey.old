@@ -12,10 +12,11 @@ $ ->
 		data-type: \json
 		xhr-fields: {+with-credentials}
 	} .done (data) ->
-		$notices = $ data
-		$notices.each ->
-			$notice = $ @
-			$notice.append-to $ '#notices .notices'
+		if data != ''
+			$notices = $ data
+			$notices.each ->
+				$notice = $ @
+				$notice.append-to $ '#notices .notices'
 	.fail (data) ->
 
 	socket = io.connect config.web-streaming-url + '/streaming/web/home'
