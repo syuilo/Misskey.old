@@ -32,6 +32,8 @@ $ ->
 	socket.on \notice (notice) ->
 		console.log \notice notice
 		
+		$ '#notices .notice-empty' .remove!
+		
 		$notice = ($ notice).hide!
 		$notice.prepend-to ($ '#notices .notices') .show 200
 
