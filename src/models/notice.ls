@@ -11,6 +11,7 @@
 
 require! {
 	mongoose
+	'mongoose-auto-increment'
 	'../config'
 }
 
@@ -18,10 +19,16 @@ Schema = mongoose.Schema
 
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
+mongoose-auto-increment.initialize db
+
 schema = new Schema do
 	content:    {type: Schema.Types.Mixed,    required: no, default: {}}
 	created-at: {type: Date,                  default: Date.now}
+	cursor:     {type: Number}
 	type:       {type: String}
 	user-id:    {type: Schema.Types.ObjectId, required: yes}
+
+# Auto increment
+schema.plugin mongoose-auto-increment.plugin, {model: \Notice, field: \cursor}
 
 module.exports = db.model \Notice schema
