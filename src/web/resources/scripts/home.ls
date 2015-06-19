@@ -4,6 +4,20 @@ $ ->
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
+	
+	# 通知読み込み
+	$.ajax config.api-url + '/notice/timeline-webhtml' {
+		type: \get
+		data: {}
+		data-type: \json
+		xhr-fields: {+with-credentials}
+	} .done (data) ->
+		if data != ''
+			$notices = $ data
+			$notices.each ->
+				$notice = $ @
+				$notice.append-to $ '#notices .notices'
+	.fail (data) ->
 
 	socket = io.connect config.web-streaming-url + '/streaming/web/home'
 
@@ -11,6 +25,12 @@ $ ->
 		console.log 'Connected'
 
 	socket.on \disconnect (client) ->
+		
+	socket.on \notice (notice) ->
+		console.log \notice notice
+		
+		$notice = ($ notice).hide!
+		$notice.prepend-to ($ '#notices .notices') .show 200
 
 	socket.on \status (status) ->
 		console.log \status status

@@ -6,6 +6,7 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
 	'../../../models/utils/status-check-favorited'
+	'../../../models/utils/create-notice'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -30,4 +31,10 @@ function favorite-step req, res, app, user, target-status
 				target-status
 					..favorites-count++
 					..save (err) ->
+						# Create notice
+						create-notice target-status.user-id, \status-favorite {
+							status-id: target-status.id
+							user-id: user.id
+						} .then ->
+						
 						serialize-status target-status, res.api-render

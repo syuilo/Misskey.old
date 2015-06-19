@@ -44,6 +44,8 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									td: a(href='/' + me.screenName)= me.statusesCount
 									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
 									td: a(href='/' + me.screenName + '/followers')= me.followersCount
+					div#notices
+						ul.notices
 					div#recommendation-users
 						ol.users
 							each user in recommendationUsers

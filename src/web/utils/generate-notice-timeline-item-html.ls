@@ -4,9 +4,10 @@ require! {
 	'../../config'
 }
 
-module.exports = (notice) -> new Promise (resolve, reject) ->
+module.exports = (user, notice) -> new Promise (resolve, reject) ->
 	notice-compiler = jade.compile-file "#__dirname/../views/templates/notice/timeline-item.jade"
 	notice-serialyzer notice .then (serialized-notice) ->
-		resolve status-compiler do
+		resolve notice-compiler do
+			me: user
 			notice: serialized-notice
 			config: config.public-config
