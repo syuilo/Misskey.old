@@ -24,6 +24,12 @@ $ ->
 		console.log 'Connected'
 
 	socket.on \disconnect (client) ->
+		
+	socket.on \notice (notice) ->
+		console.log \notice notice
+		
+		$notice = ($ notice).hide!
+		$notice.prepend-to ($ '#notices .notices') .show 200
 
 	socket.on \status (status) ->
 		console.log \status status

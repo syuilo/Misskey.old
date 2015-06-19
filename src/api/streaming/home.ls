@@ -4,6 +4,7 @@ require! {
 	jade
 	'../../models/user': User
 	'../../models/status': Status
+	'../../models/notice': Notice
 	'../../web/utils/serialize-timeline-status'
 	'../../web/utils/parse-text'
 	'../../config'
@@ -51,6 +52,11 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 									me: socket.user
 									text-parser: parse-text
 									config: config.public-config
+						| \notice =>
+							# Find notice
+							err, notice <- Notice.find-by-id content.value.id
+							html <- generate-notice-timeline-item-html socket.user, notice
+							socket.emmit html
 						| _ => socket.emit content.type, content.value
 				else
 					socket.emit content
