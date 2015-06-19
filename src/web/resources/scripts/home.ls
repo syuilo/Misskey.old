@@ -17,6 +17,9 @@ $ ->
 			$notices.each ->
 				$notice = $ @
 				$notice.append-to $ '#notices .notices'
+		else
+			$info = $ '<p class="notice-empty">通知はありません</p>'
+			$info.append-to $ '#notices'
 	.fail (data) ->
 
 	socket = io.connect config.web-streaming-url + '/streaming/web/home'
@@ -28,6 +31,8 @@ $ ->
 		
 	socket.on \notice (notice) ->
 		console.log \notice notice
+		
+		$ '#notices .notice-empty' .remove!
 		
 		$notice = ($ notice).hide!
 		$notice.prepend-to ($ '#notices .notices') .show 200
