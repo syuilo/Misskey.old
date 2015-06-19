@@ -4,6 +4,7 @@ require! {
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/utils/filter-user-for-response'
+	'../../../models/utils/create-notice'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -26,6 +27,12 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 							target-user
 								..followers-count = count
 								..save!
+							
+							# Create notice
+							create-notice target-status.user-id, \follow {
+								user-id: user.id
+							} .then ->
+							
 							stream-obj =
 								type: \followed-me
 								value: user

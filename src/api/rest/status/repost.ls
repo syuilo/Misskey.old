@@ -8,6 +8,7 @@ require! {
 	'../../../models/utils/status-check-reposted'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
+	'../../../models/utils/create-notice'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -34,6 +35,13 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 			target-status
 				..reposts-count++
 				..save (err) ->
+					# Create notice
+					create-notice target-status.user-id, \status-repost {
+						repost-id: created-status.id
+						status-id: target-status.id
+						user-id: user.id
+					} .then ->
+					
 					serialize-status target-status, (target-status-obj) ->
 						target-status-obj
 							..is-repost-to-status = true
