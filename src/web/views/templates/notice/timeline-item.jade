@@ -10,25 +10,28 @@ li.notice(
 			when 'follow'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
-				p
-					i.fa.fa-user-plus
-					a(href= '/' + notice.content.user.screenName)= notice.content.user.name
-					| さんにフォローされました。
+				div.text
+					p
+						i.fa.fa-user-plus
+						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
+						| さんにフォローされました。
 			when 'status-repost'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
-				p
-					i.fa.fa-retweet
-					a(href= '/' + notice.content.user.screenName)= notice.content.user.name
-					| さんが
-				p.status-preview= notice.content.status.text
-				P をRepostしました。
+				div.text
+					p
+						i.fa.fa-retweet
+						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
+						| さんが
+					p.status-preview= notice.content.status.text
+					P をRepostしました。
 			when 'status-favorite'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
-				p
-					i.fa.fa-star
-					a(href= '/' + notice.content.user.screenName)= notice.content.user.name
-					| さんが
-				p.status-preview= notice.content.status.text
-				P をふぁぼりました。
+				div.text
+					p
+						i.fa.fa-star
+						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
+						| さんが
+					p.status-preview= notice.content.status.text
+					P をふぁぼりました。
