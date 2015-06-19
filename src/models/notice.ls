@@ -28,6 +28,13 @@ schema = new Schema do
 	type:       {type: String}
 	user-id:    {type: Schema.Types.ObjectId, required: yes}
 
+if !schema.options.to-object then schema.options.to-object = {}
+schema.options.to-object.transform = (doc, ret, options) ->
+	ret.id = doc.id
+	delete ret._id
+	delete ret.__v
+	ret
+
 # Auto increment
 schema.plugin mongoose-auto-increment.plugin, {model: \Notice, field: \cursor}
 
