@@ -16,7 +16,7 @@ $ ->
 
 	function update-relative-times
 		now = new Date!
-		$ \time .each ->
+		$ "time[data-display-type='relative']" .each ->
 			date = new Date($ @ .attr \datetime)
 			ago = ~~((now - date) / 1000)
 			time-text = switch

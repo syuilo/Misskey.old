@@ -21,4 +21,4 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 						img.image(src= config.url + '/img/talk-message/' + message.id, alt='image')
 				else
 					p.isDeleted このメッセージは削除されました
-			time(datetime= message.createdAt)= message.createdAt
+			time(datetime= message.createdAt, data-display-type='relative')= message.createdAt

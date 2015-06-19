@@ -1,15 +1,27 @@
+# Types:
+#  self-notice
+#  follow フォローされました
+#  status-reply つぶやきに返信が付きました
+#  status-repost つぶやきがRepostされました
+#  status-favorite つぶやきがふぁぼられました
+#  talk-message トーク メッセージが届きました
+#  article-comment 記事にコメントが付きました
+#  article-favorite 記事がふぁぼられました
+#  article-publish フォローしているユーザーの記事が公開されました
+
 require! {
 	mongoose
 	'../config'
 }
 
+Schema = mongoose.Schema
+
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
-notice-schema = new mongoose.Schema do
-	app-id:     {type: Number, required: yes}
-	content:    {type: String}
-	created-at: {type: Date, default: Date.now}
+schema = new Schema do
+	content:    {type: Schema.Types.Mixed,    required: no, default: {}}
+	created-at: {type: Date,                  default: Date.now}
 	type:       {type: String}
-	user-id:    {type: Number, required: yes}
+	user-id:    {type: Schema.Types.ObjectId, required: yes}
 
-module.exports = db.model \Notice notice-schema
+module.exports = db.model \Notice schema

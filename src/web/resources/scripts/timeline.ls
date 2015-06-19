@@ -10,9 +10,9 @@ window.STATUSTIMELINE = {}
 		
 		$status
 			# Set display talk window event 
-			..find \.icon-anchor .click ->
+			..find '.main .icon-anchor' .click ->
 				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
-				url = $status.find \.icon-anchor .attr \href
+				url = $status.find '.main .icon-anchor' .attr \href
 				$content = $ '<iframe>' .attr {src: url, +seamless}
 				window.open-window do
 					window-id
