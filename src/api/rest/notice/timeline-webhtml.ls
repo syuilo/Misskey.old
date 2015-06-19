@@ -18,7 +18,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	.then (notices) ->
 		if notices?
 			promises = notices |> map (notice) ->
-				generate-notice-timeline-item-html notice
+				generate-notice-timeline-item-html user, notice
 			Promise.all promises .then (notice-htmls) ->
 				res.api-render notice-htmls.join ''
 		else

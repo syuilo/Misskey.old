@@ -23,7 +23,7 @@ li.notice(
 						i.fa.fa-retweet
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
 						| さんが
-					p.status-preview= notice.content.status.text
+					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
 					P をRepostしました。
 			when 'status-favorite'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
@@ -33,5 +33,5 @@ li.notice(
 						i.fa.fa-star
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
 						| さんが
-					p.status-preview= notice.content.status.text
+					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
 					P をふぁぼりました。
