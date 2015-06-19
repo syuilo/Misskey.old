@@ -16,5 +16,5 @@ module.exports = (user-id, type, content = null) -> new Promise (resolve, reject
 		stream-obj =
 			type: \notice
 			value: created-notice.to-object!
-		publish-redis-streaming "userStream:#user-id", to-json stream-obj
+		publish-redis-streaming "userStream:#user-id" to-json stream-obj
 		resolve created-notice
