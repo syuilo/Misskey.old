@@ -261,6 +261,7 @@ main {
 											}
 										}
 									}
+
 									&:last-child {
 										.status.article {
 											article {
@@ -364,6 +365,46 @@ main {
 		margin: 8px;
 		background: #fff;
 		border-radius: 8px;
+
+		> .notices {
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			> .notice {
+				display: block;
+				border-bottom: solid 1px rgba(0,0,0,0.05);
+
+				&:after {
+					content: "";
+					display: block;
+					clear: both; 
+				}
+
+				> time {
+					display: inline;
+					position: absolute;
+					top: 16px;
+					right: 12px;
+					vertical-align: top;
+					color: rgba(0,0,0,0.6);
+					font-size: small;
+				}
+
+				&.status-favorite, &.status-repost {
+					.icon-anchor {
+						img {
+							float: left;
+							min-width: 48px;
+							min-height: 48px;
+							max-width: 48px;
+							max-height: 48px;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	#recommendation-users {
