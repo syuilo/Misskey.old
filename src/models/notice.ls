@@ -2,7 +2,7 @@
 #  self-notice (text)
 #  follow (user-id) フォローされました
 #  status-reply (reply-id, status-id, user-id) つぶやきに返信が付きました
-#  status-repost (status-id, user-id) つぶやきがRepostされました
+#  status-repost (repost-id, status-id, user-id) つぶやきがRepostされました
 #  status-favorite (status-id, user-id) つぶやきがふぁぼられました
 #  talk-message (message-id, user-id) トーク メッセージが届きました
 #  article-comment (comment-id, article-id, user-id) 記事にコメントが付きました
