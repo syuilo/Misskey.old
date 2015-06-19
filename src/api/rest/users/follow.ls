@@ -29,7 +29,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 								..save!
 							
 							# Create notice
-							create-notice target-status.user-id, \follow {
+							create-notice target-user.id, \follow {
 								user-id: user.id
 							} .then ->
 							
