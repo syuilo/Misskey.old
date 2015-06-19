@@ -57,7 +57,7 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 							# Find notice
 							err, notice <- Notice.find-by-id content.value.id
 							html <- generate-notice-timeline-item-html socket.user, notice
-							socket.emmit html
+							socket.emit html
 						| _ => socket.emit content.type, content.value
 				else
 					socket.emit content
