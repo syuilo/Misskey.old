@@ -7,6 +7,7 @@ require! {
 	'../../models/notice': Notice
 	'../../web/utils/serialize-timeline-status'
 	'../../web/utils/parse-text'
+	'../../web/utils/generate-notice-timeline-item-html'
 	'../../config'
 }
 module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connection (socket) ->
