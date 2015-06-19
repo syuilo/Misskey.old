@@ -365,7 +365,6 @@ main {
 		max-height: 500px;
 		overflow: scroll;
 		margin: 8px;
-
 		/*background: #fff;*/
 		background-color: transparent;
 		background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(@blurredWallpaperUrl);
@@ -373,7 +372,6 @@ main {
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-
 		border-radius: 8px;
 
 		> .notices {
@@ -408,6 +406,23 @@ main {
 					vertical-align: top;
 					color: rgba(0, 0, 0, 0.6);
 					font-size: small;
+				}
+
+				&.follow {
+					.icon-anchor {
+						img {
+							float: left;
+							min-width: 36px;
+							min-height: 36px;
+							max-width: 36px;
+							max-height: 36px;
+							border-radius: 6px;
+						}
+					}
+
+					.text p i {
+						color: #55ACEE;
+					}
 				}
 
 				&.status-favorite, &.status-repost {
@@ -459,12 +474,6 @@ main {
 								margin-left: 3px;
 							}
 						}
-					}
-				}
-
-				&.follow {
-					.text p i {
-						color: #55ACEE;
 					}
 				}
 
