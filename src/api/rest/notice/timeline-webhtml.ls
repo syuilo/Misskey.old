@@ -12,7 +12,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[since-cursor, max-cursor] = get-express-params req, <[ since-cursor, max-cursor ]>
 	notice-get-timeline do
 		user.id
-		10notices
+		30notices
 		if !empty since-cursor then Number since-cursor else null
 		if !empty max-cursor then Number max-cursor else null
 	.then (notices) ->
