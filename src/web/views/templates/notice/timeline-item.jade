@@ -1,6 +1,7 @@
 li.notice(
 		class= notice.type
 		data-id= notice.id
+		data-cursor= notice.cursor
 		data-notice-type= notice.type)
 	time(datetime=notice.createdAt, data-display-type='relative')= notice.createdAt
 	div.main

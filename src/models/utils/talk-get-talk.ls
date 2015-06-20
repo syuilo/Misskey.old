@@ -11,4 +11,4 @@ module.exports = (me-id, otherparty-id, limit, since-cursor, max-cursor) ->
 		| since-cursor? => base-query `$and` {cursor: {$gt: since-cursor}}
 		| max-cursor?   => base-query `$and` {cursor: {$lt: max-cursor}}
 
-	TalkMessage.find query .sort \-created-at .limit limit .exec!
+	TalkMessage.find query .sort \-createdAt .limit limit .exec!
