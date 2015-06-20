@@ -14,6 +14,8 @@ module.exports = (req, res) ->
 	otherparty = req.root-user.to-object!
 	
 	talk-get-talk me.id, otherparty.id, 32messages, null, null .then (messages) ->
+		messages .= reverse!
+		
 		user-following-check otherparty.id, me.id .then (following-me) ->
 
 			# 既読にする
