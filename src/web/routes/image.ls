@@ -25,8 +25,8 @@ module.exports = (app) ->
 		img = gm image-buffer
 		img.size (err, val) ->
 			if err then console.log err
-			width = if val.width? thne val.width else \NaN
-			height = if val.height? thne val.height else \NaN
+			width = if val.width? then val.width else \NaN
+			height = if val.height? then val.height else \NaN
 			res.display req, res, 'image' {
 				image-url
 				file-name: "#{author.screen-name}.jpg"
