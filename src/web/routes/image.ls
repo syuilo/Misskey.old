@@ -24,17 +24,20 @@ module.exports = (app) ->
 	function display-image(req, res, image-buffer, image-url, author)
 		img = gm image-buffer
 		img.size (err, val) ->
+			if err then console.log err
+			width = if val.width? thne val.width else \NaN
+			height = if val.height? thne val.height else \NaN
 			res.display req, res, 'image' {
 				image-url
 				file-name: "#{author.screen-name}.jpg"
 				author
-				width: val.width
-				height: val.height
+				width
+				height
 			}
 
 	function send-image(req, res, image-buffer)
 		res
-			..set 'Content-Type' 'image/jpeg'
+			..set \Content-Type \image/jpeg
 			..send image-buffer
 
 	function display-user-image(req, res, sn, image-property-name, image-type = \image)
