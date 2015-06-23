@@ -9,6 +9,14 @@ function swing($elem, force)
 $ ->
 	swing ($ '#login-form'), 1
 	swing ($ '#new'), 2
+	
+	function set-features1-design-layer
+		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height!}px"
+	
+	set-features1-design-layer!
+	
+	$ window .resize ->
+		set-features1-design-layer!
 
 	$ '#login-form' .submit (event) ->
 		event.prevent-default!
