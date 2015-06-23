@@ -200,6 +200,41 @@ main {
 			}
 		}
 	}
+
+	#overview {
+	}
+
+	#features-1 {
+		color: #fff;
+		background: @themeColor;
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		ul {
+			display: block;
+			margin: 0 auto;
+			padding: 0;
+			max-width: 800px;
+			list-style: none;
+
+			li {
+				display: block;
+				box-sizing: border-box;
+				float: left;
+				padding: 16px;
+				width: 25%;
+				text-align: center;
+
+				i {
+					font-size: 4em;
+				}
+			}
+		}
+	}
 }
 
 #register-form {
