@@ -450,6 +450,54 @@ main {
 			}
 		}
 	}
+
+	#features-2 {
+		position: relative;
+
+		h2 {
+			position: absolute;
+			top: 0;
+		}
+
+		ul {
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				display: block;
+
+				section {
+					max-width: 1200px;
+					margin: 32px auto;
+
+					&:nth-child(even) {
+						text-align: left;
+					}
+
+					&:nth-child(odd) {
+						text-align: right;
+					}
+
+					h3 {
+						margin: 0;
+						padding: 0 0 16px 0;
+						color: #555;
+						font-size: 3em;
+						font-weight: 100;
+					}
+
+					p {
+						display: inline-block;
+						margin: 4px 0;
+						max-width: 800px;
+						font-size: 1.5em;
+					}
+				}
+			}
+		}
+	}
 }
 
 #register-form {
