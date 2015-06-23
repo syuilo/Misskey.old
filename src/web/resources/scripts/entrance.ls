@@ -11,7 +11,7 @@ $ ->
 	swing ($ '#new'), 2
 	
 	function set-features1-design-layer
-		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height!}px"
+		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height! + 128}px"
 	
 	set-features1-design-layer!
 	
