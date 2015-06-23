@@ -82,7 +82,8 @@ module.exports = (app) ->
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
 			| status-image? =>
-				console.log status-image
+				if id.to-string! == \55896ad7cf7203d2560438b1 then
+					console.log status-image
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
 					if (req.headers[\accept].index-of \text) == 0
