@@ -25,8 +25,8 @@ module.exports = (app) ->
 		img = gm image-buffer
 		img.size (err, val) ->
 			if err then console.log err
-			width = if val.width? then val.width else \NaN
-			height = if val.height? then val.height else \NaN
+			width = val.width
+			height = val.height
 			res.display req, res, 'image' {
 				image-url
 				file-name: "#{author.screen-name}.jpg"
@@ -82,6 +82,7 @@ module.exports = (app) ->
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
 			| status-image? =>
+				console.log status-image
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
 					if (req.headers[\accept].index-of \text) == 0
