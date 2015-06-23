@@ -518,6 +518,42 @@ main {
 					}
 				}
 
+				&.article {
+					background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(/resources/images/sakurako.jpg);
+
+					section {
+						&:before {
+							content: "";
+							display: block;
+							position: absolute;
+							top: -40px;
+							left: -50%;
+							width: 200%;
+							height: 100px;
+							background: #fff;
+							transform: rotate(2deg);
+						}
+					}
+				}
+
+				&.bbs {
+					background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(/resources/images/yuruyuri.jpg);
+
+					section {
+						&:before {
+							content: "";
+							display: block;
+							position: absolute;
+							top: -40px;
+							left: -50%;
+							width: 200%;
+							height: 100px;
+							background: #fff;
+							transform: rotate(-2deg);
+						}
+					}
+				}
+
 
 				section {
 					max-width: 1000px;
