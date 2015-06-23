@@ -353,6 +353,15 @@ main {
 		color: #fff;
 		background: @themeColor;
 
+		&:before {
+			content: "";
+			display: block;
+			border-top: solid 8px transparent;
+			border-right: solid 8px transparent;
+			border-bottom: solid 8px @themeColor;
+			border-left: solid 8px @themeColor;
+		}
+
 		&:after {
 			content: "";
 			display: block;
