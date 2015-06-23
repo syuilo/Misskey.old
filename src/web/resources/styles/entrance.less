@@ -34,15 +34,18 @@ main {
 		background: linear-gradient(to bottom, #f2f2f2 0%,#ffffff 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#ffffff',GradientType=0 );
 		border-bottom: solid 1px #f2f2f2;
+		overflow: hidden;
 
 		#circles {
 			position: absolute;
 			width: 1000px;
 			height: 1000px;
-			top: -200px;
-			margin: 0 auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
 			overflow: hidden;
-			clip: rect(200px, 1006px, 1000px, 0);
 			padding: 0 2px;
 			pointer-events: none;
 
