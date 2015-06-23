@@ -1,16 +1,24 @@
 function swing($elem, force)
 	t = 1
-	timer = setInterval update, 10ms
+	timer = set-interval update, 10ms
 	function update
 		t++
 		pos = ((Math.sin(t / 20) * force) / ((t / 512) / 3))
 		$elem.css \transform "perspective(1024px) rotateX(#{pos}deg)"
 
 $ ->
-	swing ($ '#loginForm'), 1
+	swing ($ '#login-form'), 1
 	swing ($ '#new'), 2
+	
+	function set-features1-design-layer
+		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height! + 128}px"
+	
+	set-features1-design-layer!
+	
+	$ window .resize ->
+		set-features1-design-layer!
 
-	$ '#loginForm' .submit (event) ->
+	$ '#login-form' .submit (event) ->
 		event.prevent-default!
 		$form = $ @
 			..css {
@@ -41,12 +49,12 @@ $ ->
 	init-register-form!
 
 function init-register-form
-	$progress = $ '#registerForm progress'
-	user-name-input-query = '#registerForm .user-name .user-name-input'
-	nickname-input-query = '#registerForm .nickname .nickname-input'
-	password-input-query = '#registerForm .password .password-input'
-	password-retype-input-query = '#registerForm .password-retype .password-retype-input'
-	user-color-input-query = '#registerForm .user-color .user-color-input'
+	$progress = $ '#register-form progress'
+	user-name-input-query = '#register-form .user-name .user-name-input'
+	nickname-input-query = '#register-form .nickname .nickname-input'
+	password-input-query = '#register-form .password .password-input'
+	password-retype-input-query = '#register-form .password-retype .password-retype-input'
+	user-color-input-query = '#register-form .user-color .user-color-input'
 
 	init-user-name-section!
 	init-nickname-section!
@@ -55,7 +63,7 @@ function init-register-form
 	init-user-color-section!
 	init-confirm-section!
 
-	$ '#registerForm form' .submit (event) ->
+	$ '#register-form form' .submit (event) ->
 		event.prevent-default!
 		$form = $ @
 
@@ -71,9 +79,9 @@ function init-register-form
 	function init-user-name-section
 		right = no
 		
-		$cancel-button = $ '#registerForm .user-name button.cancel'
+		$cancel-button = $ '#register-form .user-name button.cancel'
 			..click cancel
-		$next-button = $ '#registerForm .user-name button.next'
+		$next-button = $ '#register-form .user-name button.next'
 			..click next
 
 		$ user-name-input-query .on \keypress (event) ->
@@ -118,34 +126,34 @@ function init-register-form
 						show-message '確認に失敗しました;;' null
 
 		function cancel
-			$ '#registerForm .user-name' .animate {
+			$ '#register-form .user-name' .animate {
 				left: '100%'
 				opacity: 0
 			} 500ms \easeOutQuint
-			$ '#registerForm .user-name .title' .animate {
+			$ '#register-form .user-name .title' .animate {
 				left: '64px'
 				opacity: 0
 			} 1000ms \easeOutQuint
-			$ '#registerForm progress' .css \height 0
-			$ '#registerForm progress' .attr \value 0
+			$ '#register-form progress' .css \height 0
+			$ '#register-form progress' .attr \value 0
 
 			setTimeout ->
-				$ '#registerForm' .css {display: \none}
+				$ '#register-form' .css {display: \none}
 			, 500ms
 
 		function next
 			$progress.attr \value 2
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
-			$ '#registerForm .user-name' .animate {
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .animate {
 				opacity: 0.2
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .nickname' .animate {
+			$ '#register-form .nickname' .animate {
 				left: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
-			$ '#registerForm .nickname .title' .animate {
+			$ '#register-form .nickname .title' .animate {
 				left: 0
 				opacity: 1
 			} 2000ms \easeOutElastic
@@ -159,7 +167,7 @@ function init-register-form
 					if success then \done else \fail
 			$message = $ "<p id=\"userNameAvailable\" class=\"message #{klass}\">#{message}</p>"
 			$message.css \top ($ user-name-input-query .position!.top - 32px + ($ user-name-input-query .outer-height! / 2))
-			$message.append-to '#registerForm .user-name' .animate {
+			$message.append-to '#register-form .user-name' .animate {
 				'margin-right': 0
 				opacity: 1
 			} 500ms \easeOutCubic
@@ -169,9 +177,9 @@ function init-register-form
 
 	function init-nickname-section
 		right = no
-		$back-button = $ '#registerForm .nickname button.back'
+		$back-button = $ '#register-form .nickname button.back'
 			..click back
-		$next-button = $ '#registerForm .nickname button.next'
+		$next-button = $ '#register-form .nickname button.next'
 			..click next
 			
 		$(nickname-input-query).on \keypress (event) ->
@@ -194,16 +202,16 @@ function init-register-form
 		function back
 			$progress.attr \value 1
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
-			$ '#registerForm .user-name' .animate {
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#register-form .user-name' .animate {
 				opacity: 1
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .nickname' .animate {
+			$ '#register-form .nickname' .animate {
 				left: '100%'
 				opacity: 0
 			} 1000ms \easeOutQuint
-			$ '#registerForm .nickname .title' .animate {
+			$ '#register-form .nickname .title' .animate {
 				left: '64px'
 				opacity: 0
 			} 1000ms \easeOutQuint
@@ -212,18 +220,18 @@ function init-register-form
 		function next
 			$progress.attr \value 3
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
-			$ '#registerForm .nickname' .animate {
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .animate {
 				opacity: 0.2
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password' .animate {
+			$ '#register-form .password' .animate {
 				left: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
-			$ '#registerForm .password .title' .animate {
+			$ '#register-form .password .title' .animate {
 				left: 0
 				opacity: 1
 			} 2000ms \easeOutElastic
@@ -237,7 +245,7 @@ function init-register-form
 					if success then \done else \fail
 			$message = $ "<p id=\"nicknameAvailable\" class=\"message #{klass}\">#{message}</p>"
 			$message.css \top ($ nickname-input-query .position!.top - 32px + ($ nickname-input-query .outer-height! / 2))
-			$message.append-to '#registerForm .nickname' .animate {
+			$message.append-to '#register-form .nickname' .animate {
 				'margin-right': 0
 				opacity: 1
 			} 500ms \easeOutCubic
@@ -247,9 +255,9 @@ function init-register-form
 
 	function init-password-section
 		right = no
-		$back-button = $ '#registerForm .password button.back'
+		$back-button = $ '#register-form .password button.back'
 			..click back
-		$next-button = $ '#registerForm .password button.next'
+		$next-button = $ '#register-form .password button.next'
 			..click next
 		
 		$ password-input-query .on \keypress (event) ->
@@ -280,18 +288,18 @@ function init-register-form
 		function back
 			$progress.attr \value 2
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
-			$ '#registerForm .nickname' .animate {
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#register-form .nickname' .animate {
 				opacity: 1
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password' .animate {
+			$ '#register-form .password' .animate {
 				left: '100%'
 				opacity: 0
 			} 1000ms \easeOutQuint
-			$ '#registerForm .password .title' .animate {
+			$ '#register-form .password .title' .animate {
 				left: '64px'
 				opacity: 0
 			} 1000ms \easeOutQuint
@@ -300,20 +308,20 @@ function init-register-form
 		function next
 			$progress.attr \value 4
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
-			$ '#registerForm .password' .animate {
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password' .animate {
 				opacity: 0.2
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password-retype' .animate {
+			$ '#register-form .password-retype' .animate {
 				left: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
-			$ '#registerForm .password-retype .title' .animate {
+			$ '#register-form .password-retype .title' .animate {
 				left: 0
 				opacity: 1
 			} 2000ms \easeOutElastic
@@ -327,7 +335,7 @@ function init-register-form
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordAvailable\" class=\"message #{klass}\">#{message}</p>"
 			$message.css \top ($ password-input-query .position!.top - 32px + ($ password-input-query .outer-height! / 2))
-			$message.append-to '#registerForm .password' .animate {
+			$message.append-to '#register-form .password' .animate {
 				'margin-right': 0
 				opacity: 1
 			} 500ms \easeOutCubic
@@ -337,9 +345,9 @@ function init-register-form
 
 	function init-password-retype-section
 		right = no
-		$back-button = $ '#registerForm .password-retype button.back'
+		$back-button = $ '#register-form .password-retype button.back'
 			..click back
-		$next-button = $ '#registerForm .password-retype button.next'
+		$next-button = $ '#register-form .password-retype button.next'
 			..click next
 		
 		$ password-retype-input-query .on \keypress (event) ->
@@ -369,20 +377,20 @@ function init-register-form
 		function back
 			$progress.attr \value 3
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
-			$ '#registerForm .password' .animate {
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#register-form .password' .animate {
 				opacity: 1
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password-retype' .animate {
+			$ '#register-form .password-retype' .animate {
 				left: '100%'
 				opacity: 0
 			} 1000ms \easeOutQuint
-			$ '#registerForm .password-retype .title' .animate {
+			$ '#register-form .password-retype .title' .animate {
 				left: '64px'
 				opacity: 0
 			} 1000ms \easeOutQuint
@@ -391,22 +399,22 @@ function init-register-form
 		function next
 			$progress.attr \value 5
 
-			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
-			$ '#registerForm .password-retype' .animate {
+			$ '#register-form .password-retype' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password-retype' .animate {
 				opacity: 0.2
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .user-color' .animate {
+			$ '#register-form .user-color' .animate {
 				left: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
-			$ '#registerForm .user-color .title' .animate {
+			$ '#register-form .user-color .title' .animate {
 				left: 0
 				opacity: 1
 			} 2000ms \easeOutElastic
@@ -420,7 +428,7 @@ function init-register-form
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordRetypeAvailable\" class=\"message #{klass}\">#{message}</p>"
 			$message.css \top  ($ password-retype-input-query .position!.top - 32px + ($ password-retype-input-query .outer-height! / 2))
-			$message.append-to '#registerForm .password-retype' .animate {
+			$message.append-to '#register-form .password-retype' .animate {
 				'margin-right': 0
 				opacity: 1
 			} 500ms \easeOutCubic
@@ -430,9 +438,9 @@ function init-register-form
 
 	function init-user-color-section
 		right = no
-		$back-button = $ '#registerForm .user-color button.back'
+		$back-button = $ '#register-form .user-color button.back'
 			..click back
-		$next-button = $ '#registerForm .user-color button.next'
+		$next-button = $ '#register-form .user-color button.next'
 			..click next
 
 		$ user-color-input-query .change ->
@@ -445,22 +453,22 @@ function init-register-form
 		function back
 			$progress.attr \value 4
 
-			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
-			$ '#registerForm .password-retype' .animate {
+			$ '#register-form .password-retype' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#register-form .password-retype' .animate {
 				opacity: 1
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .user-color' .animate {
+			$ '#register-form .user-color' .animate {
 				left: '100%'
 				opacity: 0
 			} 1000ms \easeOutQuint
-			$ '#registerForm .user-color .title' .animate {
+			$ '#register-form .user-color .title' .animate {
 				left: '64px'
 				opacity: 0
 			} 1000ms \easeOutQuint
@@ -469,24 +477,24 @@ function init-register-form
 		function next
 			$progress.attr \value 6
 
-			$ '#registerForm .user-color' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
-			$ '#registerForm .user-color' .animate {
+			$ '#register-form .user-color' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-color' .animate {
 				opacity: 0.2
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password-retype' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .confirm' .animate {
+			$ '#register-form .confirm' .animate {
 				left: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
-			$ '#registerForm .confirm .title' .animate {
+			$ '#register-form .confirm .title' .animate {
 				left: 0
 				opacity: 1
 			} 2000ms \easeOutElastic
@@ -499,7 +507,7 @@ function init-register-form
 					if success then \done else \fail
 			$message = $ "<p id=\"userColorAvailable\" class=\"message #{klass}\">#{message}</p>"
 			$message.css \top ($ user-color-input-query .position!.top - 32px + ($ user-color-input-query .outer-height! / 2))
-			$message.append-to '#registerForm .user-color' .animate {
+			$message.append-to '#register-form .user-color' .animate {
 				'margin-right': 0
 				opacity: 1
 			} 500ms \easeOutCubic
@@ -508,32 +516,32 @@ function init-register-form
 			$ '#userColorAvailable' .remove!
 	
 	function init-confirm-section()
-		$back-button = $ '#registerForm .confirm button.back'
+		$back-button = $ '#register-form .confirm button.back'
 			..click back
-		$submit-button = $ '#registerForm .confirm button.submit'
+		$submit-button = $ '#register-form .confirm button.submit'
 			..click submit
 
 		function back
 			$progress.attr \value 5
 
-			$ '#registerForm .user-color' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
-			$ '#registerForm .user-color' .animate {
+			$ '#register-form .user-color' .css \transform 'perspective(512px) translateX(0) translateZ(0) rotateY(0)'
+			$ '#register-form .user-color' .animate {
 				opacity: 1
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password-retype' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .confirm' .animate {
+			$ '#register-form .confirm' .animate {
 				left: '100%'
 				opacity: 0
 			} 1000ms \easeOutQuint
-			$ '#registerForm .confirm .title' .animate {
+			$ '#register-form .confirm .title' .animate {
 				left: '64px'
 				opacity: 0
 			} 1000ms \easeOutQuint
@@ -542,43 +550,43 @@ function init-register-form
 		function submit
 			$progress.attr \value 7
 
-			$ '#registerForm .confirm' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
-			$('#registerForm .confirm').animate {
+			$ '#register-form .confirm' .css \transform 'perspective(512px) translateX(-300px) translateZ(-100px) rotateY(-45deg)'
+			$('#register-form .confirm').animate {
 				opacity: 0.2
 			} 500ms \easeOutQuint
 
-			$ '#registerForm .user-name' .css \transform 'perspective(512px) translateX(-800px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-name' .css \transform 'perspective(512px) translateX(-800px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .nickname' .css \transform 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .nickname' .css \transform 'perspective(512px) translateX(-700px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password' .css \transform 'perspective(512px) translateX(-600px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .password-retype' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .password-retype' .css \transform 'perspective(512px) translateX(-500px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .user-color' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
+			$ '#register-form .user-color' .css \transform 'perspective(512px) translateX(-400px) translateZ(-100px) rotateY(-45deg)'
 
-			$ '#registerForm .complete' .css {
+			$ '#register-form .complete' .css {
 				left: 0
 				opacity: 1
 			}
-			$ '#registerForm .complete .title' .css {
+			$ '#register-form .complete .title' .css {
 				left: 0
 				opacity: 1
 			}
-			swing ($ '#registerForm .complete'), 1
+			swing ($ '#register-form .complete'), 1
 
 function show-register-form
-	$ '#registerForm' .css {
+	$ '#register-form' .css {
 		display: \block
 	}
-	$ '#registerForm .user-name' .animate {
+	$ '#register-form .user-name' .animate {
 		left: 0
 		opacity: 1
 	} 500ms \easeOutQuint
-	$ '#registerForm .user-name .title' .animate {
+	$ '#register-form .user-name .title' .animate {
 		left: 0
 		opacity: 1
 	} 1000ms \easeOutElastic
-	$ '#registerForm progress' .attr \value 1
-	$ '#registerForm progress' .css \height '8px'
-	$ '#registerForm .user-name .user-name-input' .focus!
+	$ '#register-form progress' .attr \value 1
+	$ '#register-form progress' .css \height '8px'
+	$ '#register-form .user-name .user-name-input' .focus!

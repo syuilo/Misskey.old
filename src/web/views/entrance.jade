@@ -19,17 +19,13 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 		div.github-forkMe.
 			<a href="https://github.com/syuilo/Misskey"><img style="position: absolute; top: 0; right: 0; z-index: 1; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 		main
-			div#mainContainer
+			header
 				h1 Misskey
-				p.welcome-message
-					strong MisskeyはTwitter風SNSです。
-					| Twitterに飽きた方/Twitterに疲れた方/何らかの事情でTwitter界から身を隠さなければならない方/都会(Twitter)の喧騒を離れ田舎(Misskey)でのんびりと過ごしたい方 等どなたでもご利用可能です。
-				p.caution
-					| 注意:
-					strong Misskeyは開発中です。
-					| そのため、バグやまだ使えない機能があったりします。
-					| また現在、iPhone等のモバイル端末には対応していません。
-				form#loginForm(action='/login', method='post')
+				div.design-layer#circles
+					div.c1
+						div.c2
+							div.c3
+				form#login-form(action='/login', method='post')
 					label
 						input#id(name='screen-name'
 							type='text'
@@ -49,70 +45,136 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					input(type='submit', value='Login')
 				button#new 新しくアカウントを作成する
 			
-			div#registerForm
-				progress(max=7, value=0)
-				form
-					div.slide.user-name
-						label
-							h2.title ユーザー名
-							p.caption
-								| Misskey内のID。(半角英数字)
-							div.content
-								input.user-name-input.ui-inputText(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
-						div.nav
-							button.cancel(type='button') キャンセル
-							button.next(type='button', disabled) 次！
-					div.slide.nickname
-						label
-							h2.title ニックネーム
-							p.caption
-								| あなたのニックネーム。
-							div.content
-								input.nickname-input.ui-inputText(name='name', type='text', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 次！
-					div.slide.password
-						label
-							h2.title パスワード
-							p.caption
-								| 8文字以上の強固なパスワード。
-							div.content
-								input.password-input.ui-inputPassword(name='password', type='password', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 次！
-					div.slide.password-retype
-						label
-							h2.title パスワード(再入力)
-							p.caption
-								| もう一度同じパスワードを入力してください。
-							div.content
-								input.password-retype-input.ui-inputPassword(name='retype-password', type='password', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 次！
-					div.slide.user-color
-						label
-							h2.title ユーザーカラー
-							p.caption
-								| あなたのイメージカラー。
-							div.content
-								input.user-color-input.ui-inputColor(name='color', type='color', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 決定！
-					div.slide.confirm
-						label
-							h2.title 始めましょう
-							p.caption
-								| アカウントを作成します(無料)
-						div.nav
-							button.back(type='button') 戻る
-							button.submit(type='submit') はい
-					div.slide.complete
-						label
-							h2.title 少々お待ちください
-							p.caption
-								| 作成しています...
-							img(src='/resources/images/loading/loading.gif')
+			article#overview
+				section
+					h2 Misskeyへようこそ。
+					p
+						strong MisskeyはTwitter風SNSです。
+						| Twitterに飽きた方/Twitterに疲れた方/何らかの事情でTwitter界から身を隠さなければならない方/都会(Twitter)の喧騒を離れ田舎(Misskey)でのんびりと過ごしたい方 等どなたでもご利用可能です。
+				section
+					h2 Misskeyはまだ未完成。
+					p
+						strong Misskeyは現在、開発中です。
+						| そのため、バグやまだ使えない機能があったりします。
+						| また、iPhone等のモバイル端末には今のところ対応していません。
+				
+			article#features-1
+				div.design-layer
+				div.content
+					h2 主な特徴
+					ul
+						li
+							section
+								i.fa.fa-comments
+								h3 コミュニティ
+								p ユーザー同士のコミュニケーションをシームレスに行えます。
+						li
+							section
+								i.fa.fa-clock-o
+								h3 動的なコンテンツ
+								p Misskeyの様々なコンテンツはリアルタイムに変化します。
+						li
+							section
+								i.fa.fa-server
+								h3 貧弱なサーバー
+								p 助けて
+						li
+							section
+								i.fa.fa-heart
+								h3 ゆるゆり
+								p ゆるゆりが無かったらこのSNSもありませんでした。ひまさくが至高
+			
+			article#features-2
+				h2 機能
+				ul
+					li.status
+						section
+							h3 つぶやき
+							p Twitterのそれに似た短いメッセージを投稿できます。
+					li.talk
+						section
+							h3 トーク
+							p TwitterのDMみたいなものです。
+					li.article
+						section
+							h3 記事
+							p 準備中。
+					li.bbs
+						section
+							h3 掲示板
+							p 準備中。
+			
+			article#popular-users
+				h2 人気のユーザーをご紹介します。
+				p 準備中
+			
+			footer
+				small (c) syuilo
+			
+		div#register-form
+			progress(max=7, value=0)
+			form
+				div.slide.user-name
+					label
+						h2.title ユーザー名
+						p.caption
+							| Misskey内のID。(半角英数字)
+						div.content
+							input.user-name-input.ui-inputText(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
+					div.nav
+						button.cancel(type='button') キャンセル
+						button.next(type='button', disabled) 次！
+				div.slide.nickname
+					label
+						h2.title ニックネーム
+						p.caption
+							| あなたのニックネーム。
+						div.content
+							input.nickname-input.ui-inputText(name='name', type='text', required)
+					div.nav
+						button.back(type='button') 戻る
+						button.next(type='button', disabled) 次！
+				div.slide.password
+					label
+						h2.title パスワード
+						p.caption
+							| 8文字以上の強固なパスワード。
+						div.content
+							input.password-input.ui-inputPassword(name='password', type='password', required)
+					div.nav
+						button.back(type='button') 戻る
+						button.next(type='button', disabled) 次！
+				div.slide.password-retype
+					label
+						h2.title パスワード(再入力)
+						p.caption
+							| もう一度同じパスワードを入力してください。
+						div.content
+							input.password-retype-input.ui-inputPassword(name='retype-password', type='password', required)
+					div.nav
+						button.back(type='button') 戻る
+						button.next(type='button', disabled) 次！
+				div.slide.user-color
+					label
+						h2.title ユーザーカラー
+						p.caption
+							| あなたのイメージカラー。
+						div.content
+							input.user-color-input.ui-inputColor(name='color', type='color', required)
+					div.nav
+						button.back(type='button') 戻る
+						button.next(type='button', disabled) 決定！
+				div.slide.confirm
+					label
+						h2.title 始めましょう
+						p.caption
+							| アカウントを作成します(無料)
+					div.nav
+						button.back(type='button') 戻る
+						button.submit(type='submit') はい
+				div.slide.complete
+					label
+						h2.title 少々お待ちください
+						p.caption
+							| 作成しています...
+						img(src='/resources/images/loading/loading.gif')
