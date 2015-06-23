@@ -20,10 +20,16 @@ require! {
 }
 
 module.exports = (app) ->
-	function send-image-buffer-is-null-error(res)
+	function send-image-buffer-is-null-error(res, image-id)
+		buffer = fs.read-file-sync path.resolve "#__dirname/../resources/images/image-error-bg.png"
+		(, image) <- gm buffer
+			.draw-text 0 0 "エラー: バッファがNullです。\nIMGID: -"
+			.compress \jpeg
+			.quality 80
+			.to-buffer \jpeg
 		res
-			..status 500
-			..send 'Image buffer is null.'
+			..set \Content-Type \image/jpeg
+			..send image
 	
 	# Direct access (display image viewer page)
 	function display-image(req, res, image-buffer, image-url, author)
