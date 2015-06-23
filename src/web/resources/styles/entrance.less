@@ -205,6 +205,7 @@ main {
 	}
 
 	#features-1 {
+		text-align: center;
 		color: #fff;
 		background: @themeColor;
 
@@ -214,20 +215,33 @@ main {
 			clear: both;
 		}
 
+		h2 {
+			display: inline-block;
+			margin: 0;
+			padding: 16px 0;
+			font-size: 2em;
+			font-weight: 100;
+		}
+
 		ul {
 			display: block;
 			margin: 0 auto;
 			padding: 0;
-			max-width: 800px;
+			max-width: 900px;
 			list-style: none;
 
 			li {
 				display: block;
 				box-sizing: border-box;
 				float: left;
-				padding: 16px;
+				padding: 0 24px;
 				width: 25%;
 				text-align: center;
+				border-right: dashed 1px #fff;
+
+				&:last-child {
+					border-right: none;
+				}
 
 				i {
 					font-size: 4em;
