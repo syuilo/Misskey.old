@@ -21,25 +21,30 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 		main
 			header
 				h1 Misskey
-				form#login-form(action='/login', method='post')
-					label
-						input#id(name='screen-name'
-							type='text'
-							pattern='^[0-9A-Za-z_]+$'
-							placeholder='ユーザー名'
-							autocomplete='off'
-							autofocus
-							required)
-						p.caption ユーザー名
-					label
-						input(name='password'
-							type='password'
-							placeholder='パスワード'
-							autocomplete='off'
-							required)
-						p.caption パスワード
-					input(type='submit', value='Login')
-				button#new 新しくアカウントを作成する
+				div.form
+					div.design-layer#circles
+						div.c1
+							div.c2
+								div.c3
+					form#login-form(action='/login', method='post')
+						label
+							input#id(name='screen-name'
+								type='text'
+								pattern='^[0-9A-Za-z_]+$'
+								placeholder='ユーザー名'
+								autocomplete='off'
+								autofocus
+								required)
+							p.caption ユーザー名
+						label
+							input(name='password'
+								type='password'
+								placeholder='パスワード'
+								autocomplete='off'
+								required)
+							p.caption パスワード
+						input(type='submit', value='Login')
+					button#new 新しくアカウントを作成する
 			
 			article#overview
 				section

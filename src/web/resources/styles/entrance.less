@@ -25,10 +25,112 @@ main {
 	> header {
 		position: relative;
 		height: 500px;
-		background-image: url('/resources/images/entrance-header.jpg');
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-size: cover;
+		background: #f2f2f2;
+		background: -moz-linear-gradient(top, #f2f2f2 0%, #ffffff 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f2f2), color-stop(100%,#ffffff));
+		background: -webkit-linear-gradient(top, #f2f2f2 0%,#ffffff 100%);
+		background: -o-linear-gradient(top, #f2f2f2 0%,#ffffff 100%);
+		background: -ms-linear-gradient(top, #f2f2f2 0%,#ffffff 100%);
+		background: linear-gradient(to bottom, #f2f2f2 0%,#ffffff 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#ffffff',GradientType=0 );
+		border-bottom: solid 1px #f2f2f2;
+
+		#circles {
+			position: absolute;
+			width: 1000px;
+			height: 1000px;
+			top: -200px;
+			margin: 0 auto;
+			overflow: hidden;
+			clip: rect(200px, 1006px, 1000px, 0);
+			padding: 0 2px;
+			pointer-events: none;
+
+			.c1 {
+				position: absolute;
+				width: 988px;
+				height: 988px;
+				border: 6px solid rgba(70,152,242,0.4);
+				border-top-color: transparent;
+				border-radius: 50%;
+				-webkit-animation: rotate_cw 10s linear infinite;
+				animation: rotate_cw 10s linear infinite;
+			}
+
+			.c2 {
+				position: absolute;
+				width: 950px;
+				height: 950px;
+				margin: 9px;
+				border: 10px solid transparent;
+				border-top-color: #4698f2;
+				border-bottom-color: rgba(70,152,242,0.1);
+				border-radius: 50%;
+				-webkit-animation: rotate_ccw 6s linear infinite;
+				animation: rotate_ccw 6s linear infinite;
+			}
+
+			.c3 {
+				position: absolute;
+				width: 930px;
+				height: 930px;
+				margin: 8px;
+				border: 2px solid rgba(70,152,242,0.4);
+				border-bottom-color: transparent;
+				border-top-color: #4698f2;
+				border-radius: 50%;
+				-webkit-animation: rotate_cw 8s linear infinite;
+				animation: rotate_cw 8s linear infinite;
+			}
+
+			@-webkit-keyframes rotate_cw {
+				0% {
+					-webkit-transform: rotate(0deg);
+					transform: rotate(0deg);
+				}
+
+				100% {
+					-webkit-transform: rotate(360deg);
+					transform: rotate(360deg);
+				}
+			}
+
+			@keyframes rotate_cw {
+				0% {
+					-webkit-transform: rotate(0deg);
+					transform: rotate(0deg);
+				}
+
+				100% {
+					-webkit-transform: rotate(360deg);
+					transform: rotate(360deg);
+				}
+			}
+
+			@-webkit-keyframes rotate_ccw {
+				0% {
+					-webkit-transform: rotate(360deg);
+					transform: rotate(360deg);
+				}
+
+				100% {
+					-webkit-transform: rotate(0deg);
+					transform: rotate(0deg);
+				}
+			}
+
+			@keyframes rotate_ccw {
+				0% {
+					-webkit-transform: rotate(360deg);
+					transform: rotate(360deg);
+				}
+
+				100% {
+					-webkit-transform: rotate(0deg);
+					transform: rotate(0deg);
+				}
+			}
+		}
 
 		h1 {
 			position: absolute;
