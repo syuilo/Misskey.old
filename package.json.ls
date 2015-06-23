@@ -24,7 +24,7 @@ dependencies:
 	cookie: '0.1.3'
 	'cookie-parser': '1.3.5'
 	'escape-html': '1.0.2'
-	express: '4.12.4'
+	express: '4.13.0'
 	'express-minify': '0.1.6'
 	'express-session': '1.11.3'
 	gm: '1.18.1'
