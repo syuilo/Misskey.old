@@ -14,40 +14,21 @@ html, body {
 
 html {
 	color: #000;
-	background-color: #fff;
-	background-image: url("/resources/images/top.jpg");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+	background: #fff;
 }
 
 body {
 }
 
 main {
-	height: 100%;
-	text-align: center;
 
-	h1 {
-		margin: 0;
-		padding: 32px;
-	}
-
-	#mainContainer {
-		position: relative;
-		box-sizing: border-box;
-		width: 350px;
-		margin: 0 auto;
-
-		.welcome-message, .caution {
-			display: inline-block;
-			margin: 4px;
-			padding: 4px 8px;
-			color: #fff;
-			background: rgba(0, 0, 0, 0.8);
+	> header {
+		h1 {
+			margin: 0;
+			padding: 32px;
 		}
 
-		#loginForm {
+		#login-form {
 			position: relative;
 			box-sizing: border-box;
 			width: 100%;
@@ -221,7 +202,7 @@ main {
 	}
 }
 
-#registerForm {
+#registe-form {
 	display: none;
 	position: fixed;
 	top: 0;
