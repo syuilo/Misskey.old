@@ -468,17 +468,17 @@ main {
 			li {
 				display: block;
 
+				&:nth-child(even) {
+					text-align: left;
+				}
+
+				&:nth-child(odd) {
+					text-align: right;
+				}
+
 				section {
-					max-width: 1200px;
+					max-width: 1000px;
 					margin: 32px auto;
-
-					&:nth-child(even) {
-						text-align: left;
-					}
-
-					&:nth-child(odd) {
-						text-align: right;
-					}
 
 					h3 {
 						margin: 0;
