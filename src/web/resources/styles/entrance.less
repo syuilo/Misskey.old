@@ -349,15 +349,24 @@ main {
 	}
 
 	#features-1 {
-		padding: 16px 0 32px 0;
+		position: relative;
 		text-align: center;
 		color: #fff;
-		background: @themeColor;
 
 		&:after {
 			content: "";
 			display: block;
 			clear: both;
+		}
+
+		.design-layer {
+			position: relative;
+			background: @themeColor;
+			transform: rotate(5deg);
+		}
+
+		.content {
+			padding: 16px 0 32px 0;
 		}
 
 		h2 {
