@@ -1,5 +1,8 @@
 $ ->
-	Notification.request-permission!
+	try
+		Notification.request-permission!
+	catch
+		console.log 'oops'
 
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
