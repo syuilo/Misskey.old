@@ -455,8 +455,9 @@ main {
 		position: relative;
 
 		h2 {
-			position: absolute;
-			top: 0;
+			position: relative;
+			z-index: 1;
+			font-weight: 100;
 		}
 
 		ul {
@@ -467,6 +468,7 @@ main {
 
 			li {
 				display: block;
+				position: relative;
 				background-repeat: no-repeat;
 				background-position: center center;
 				background-size: cover;
@@ -505,7 +507,7 @@ main {
 				section {
 					max-width: 1000px;
 					margin: 0 auto;
-					padding: 32px 0;
+					padding: 128px 0;
 
 					h3 {
 						margin: 0;
