@@ -325,7 +325,20 @@ main {
 	}
 
 	#overview {
+		position: relative;
 		padding: 64px;
+
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: - 32px;
+			left: 50%;
+			border-top: solid 16px transparent;
+			border-right: solid 16px transparent;
+			border-bottom: solid 16px transparent;
+			border-left: solid 16px #fff;
+		}
 
 		section {
 			max-width: 1200px;
