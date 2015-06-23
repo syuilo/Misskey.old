@@ -467,6 +467,9 @@ main {
 
 			li {
 				display: block;
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: cover;
 
 				&:nth-child(even) {
 					text-align: left;
@@ -476,20 +479,18 @@ main {
 					text-align: right;
 				}
 
+				&.status {
+					background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(/resources/images/entrance-features-status.jpg);
+				}
+
+				&.talk {
+					background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(/resources/images/entrance-features-talk.jpg);
+				}
+
+
 				section {
 					max-width: 1000px;
 					margin: 0 auto;
-					background-repeat: no-repeat;
-					background-position: center center;
-					background-size: cover;
-
-					&.status {
-						background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(/resources/images/entrance-features-status.jpg);
-					}
-
-					&.talk {
-						background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(/resources/images/entrance-features-talk.jpg);
-					}
 
 					h3 {
 						margin: 0;
