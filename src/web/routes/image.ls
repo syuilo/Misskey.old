@@ -20,25 +20,36 @@ require! {
 }
 
 module.exports = (app) ->
+	function send-image-buffer-is-null-error(res)
+		res
+			..status 500
+			..send 'Image buffer is null.'
+	
 	# Direct access (display image viewer page)
 	function display-image(req, res, image-buffer, image-url, author)
-		img = gm image-buffer
-		img.size (err, val) ->
-			if err then console.log err
-			width = val.width
-			height = val.height
-			res.display req, res, 'image' {
-				image-url
-				file-name: "#{author.screen-name}.jpg"
-				author
-				width
-				height
-			}
+		if image-buffer?
+			img = gm image-buffer
+			img.size (err, val) ->
+				if err then console.log err
+				width = val.width
+				height = val.height
+				res.display req, res, 'image' {
+					image-url
+					file-name: "#{author.screen-name}.jpg"
+					author
+					width
+					height
+				}
+		else
+			send-image-buffer-is-null-error res
 
 	function send-image(req, res, image-buffer)
-		res
-			..set \Content-Type \image/jpeg
-			..send image-buffer
+		if image-buffer?
+			res
+				..set \Content-Type \image/jpeg
+				..send image-buffer
+		else
+			send-image-buffer-is-null-error res
 
 	function display-user-image(req, res, sn, image-property-name, image-type = \image)
 		function display(user, user-image)
@@ -82,8 +93,6 @@ module.exports = (app) ->
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
 			| status-image? =>
-				if id.to-string! == \55896ad7cf7203d2560438b1 then
-					console.log status-image
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
 					if (req.headers[\accept].index-of \text) == 0
