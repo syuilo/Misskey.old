@@ -24,7 +24,10 @@ module.exports = (req, res) -> authorize req, res, (user, app) -> Status.find-on
 			.quality image-quality
 			.to-buffer \jpeg (, buffer) ->
 				fs.unlink path
-				create yes, buffer
+				if buffer?
+					create yes, buffer
+				else
+					res.api-error 400 'Failed attach image. plz try again.'
 	| _ => create no, null
 
 	function create(is-image-attached, image)

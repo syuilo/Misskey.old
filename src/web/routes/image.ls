@@ -20,25 +20,42 @@ require! {
 }
 
 module.exports = (app) ->
-	# Direct access (display image viewer page)
-	function display-image(req, res, image-buffer, image-url, author)
-		img = gm image-buffer
-		img.size (err, val) ->
-			if err then console.log err
-			width = if val.width? then val.width else \NaN
-			height = if val.height? then val.height else \NaN
-			res.display req, res, 'image' {
-				image-url
-				file-name: "#{author.screen-name}.jpg"
-				author
-				width
-				height
-			}
-
-	function send-image(req, res, image-buffer)
+	function send-error-image(res, message)
+		buffer = fs.read-file-sync path.resolve "#__dirname/../resources/images/image-error-bg.png"
+		(, image) <- gm buffer
+			.draw-text 0 32 message
+			.compress \jpeg
+			.quality 80
+			.to-buffer \jpeg
 		res
 			..set \Content-Type \image/jpeg
-			..send image-buffer
+			..send image
+	
+	# Direct access (display image viewer page)
+	function display-image(req, res, image-buffer, image-url, author, image-id)
+		if image-buffer?
+			img = gm image-buffer
+			img.size (err, val) ->
+				if err then console.log err
+				width = val.width
+				height = val.height
+				res.display req, res, 'image' {
+					image-url
+					file-name: "#{author.screen-name}.jpg"
+					author
+					width
+					height
+				}
+		else
+			send-error-image res, "エラー: バッファがNullです。\nIMGID: #image-id"
+
+	function send-image(req, res, image-buffer, image-id)
+		if image-buffer?
+			res
+				..set \Content-Type \image/jpeg
+				..send image-buffer
+		else
+			send-error-image res, "エラー: バッファがNullです。\nIMGID: #image-id"
 
 	function display-user-image(req, res, sn, image-property-name, image-type = \image)
 		function display(user, user-image)
@@ -52,8 +69,9 @@ module.exports = (app) ->
 					image-buffer
 					if image-type == \image then "#{config.public-config.url}/img/#image-property-name/#sn" else "#{config.public-config.url}/img/#image-property-name/#sn/#image-type"
 					user
+					"#{user-image.id} #{image-type}"
 			else
-				send-image req, res, image-buffer
+				send-image req, res, image-buffer, "#{user-image.id} #{image-type}"
 
 		function routing-image(user)
 			switch
@@ -92,8 +110,9 @@ module.exports = (app) ->
 								image-buffer
 								"#{config.public-config.url}/img/status/#id"
 								user
+								status-image.id
 					else
-						send-image req, res, image-buffer
+						send-image req, res, image-buffer, status-image.id
 			| _ =>
 				res
 					..status 404
@@ -117,8 +136,9 @@ module.exports = (app) ->
 									image-buffer
 									"#{config.public-config.url}/img/talk-message/#id"
 									user
+									talkmessage-image.id
 						else
-							send-image req, res, image-buffer
+							send-image req, res, image-buffer, talkmessage-image.id
 					else
 						res
 							..status err.0
