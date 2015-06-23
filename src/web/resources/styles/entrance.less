@@ -23,17 +23,22 @@ body {
 main {
 
 	> header {
+		position: relative;
+
 		h1 {
+			position: absolute;
 			margin: 0;
 			padding: 32px;
+			top: 0;
+			left: 0;
 		}
 
 		#login-form {
-			position: relative;
+			display: block;
 			box-sizing: border-box;
-			width: 100%;
-			margin: 0;
+			margin: 0 auto;
 			padding: 32px 32px 0 32px;
+			width: 400px;
 			background: #fff;
 			box-shadow: 0 0 128px rgba(0, 0, 0, 0.9);
 			transform-origin: center top;
@@ -202,6 +207,12 @@ main {
 	}
 
 	#overview {
+		padding: 64px;
+
+		h2 {
+			font-size: 4em;
+			font-weight: 100;
+		}
 	}
 
 	#features-1 {
