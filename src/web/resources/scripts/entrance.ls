@@ -13,10 +13,15 @@ $ ->
 	function set-features1-design-layer
 		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height! + 128}px"
 	
+	function set-footer-design-layer
+		$ '#footer > .design-layer' .css \height "#{$ \#footer .outer-height! + 128}px"
+	
 	set-features1-design-layer!
+	set-footer-design-layer!
 	
 	$ window .resize ->
 		set-features1-design-layer!
+		set-footer-design-layer!
 
 	$ '#login-form' .submit (event) ->
 		event.prevent-default!
