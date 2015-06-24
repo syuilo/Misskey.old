@@ -42,6 +42,10 @@ routing =
 		[\delete /\/talk\/delete(\..+)?$/ './rest/talk/delete']
 		[\post   /\/talk\/read(\..+)?$/   './rest/talk/read']
 
+	bbs:
+		[\post   /\/bbs\/create(\..+)?$/    './rest/thread/create']
+		[\post   /\/bbs\/post\/create(\..+)?$/    './rest/thread/post/create']
+
 	circle:
 		[\post /\/circle\/create(\..+)?$/ './rest/circle/create']
 		[\get  /\/circle\/show(\..+)?$/   './rest/circle/show']
