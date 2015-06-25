@@ -2,11 +2,14 @@ require! {
 	fs
 	'../../internal/create-status'
 	'../../auth': authorize
+	'../../../utils/get-express-params'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	text = if req.body.text? then req.body.text else ''
-	in-reply-to-status-id = req.body\in-reply-to-status-id ? null
+	[text, in-reply-to-status-id] = get-express-params do
+		req, <[ text in-reply-to-status-id ]>
+	
+	if empty in-reply-to-status-id then in-reply-to-status-id = null
 	
 	image = null
 	if (Object.keys req.files).length == 1 =>
