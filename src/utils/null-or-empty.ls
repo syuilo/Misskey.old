@@ -1,0 +1,1 @@
+export null-or-empty = (x) -> x? || empty x
