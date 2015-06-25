@@ -13,5 +13,6 @@ module.exports = (app, user, title) ->
 			..user-id = user.id
 
 		thread.save (err, created-thread) ->
-			if err then reject err
-			resolve created-thread
+			if err?
+				then reject err
+				else resolve created-thread
