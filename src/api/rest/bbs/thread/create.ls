@@ -1,6 +1,6 @@
 require! {
-	'../../internal/create-bbs-thread'
-	'../../auth': authorize
+	'../../../internal/create-bbs-thread'
+	'../../../auth': authorize
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->

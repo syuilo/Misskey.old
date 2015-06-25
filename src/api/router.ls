@@ -43,8 +43,8 @@ routing =
 		[\post   /\/talk\/read(\..+)?$/   './rest/talk/read']
 
 	bbs:
-		[\post   /\/bbs\/create(\..+)?$/       './rest/bbs/create']
-		[\post   /\/bbs\/post\/create(\..+)?$/ './rest/bbs/post/create']
+		[\post   /\/bbs\/thread\/create(\..+)?$/ './rest/bbs/thread/create']
+		[\post   /\/bbs\/post\/create(\..+)?$/   './rest/bbs/post/create']
 
 	circle:
 		[\post /\/circle\/create(\..+)?$/ './rest/circle/create']
