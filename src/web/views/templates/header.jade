@@ -1,32 +1,9 @@
 header#misskey-main-header(role='banner')
 	script(src='/resources/scripts/header.js')
 	nav.informationCenter
-		div.informationCenterContainer
-			div.info
-				img(src='/resources/images/kyoppie.png', role='kyoppie')
-			p.p 櫻子「大室字画多いー、嫌い」向日葵「またそんな事言ってこの子は。それなら古谷になります？」
-			nav.nav
-				ul
-					li
-						h2 Misskey
-						ul
-							li
-								a(href='/') Home
-							li
-								a(href='/about') About
-							li
-								a(href='http://syuilo.com') Blog
-							li
-								a(href='/dev') Developer
-					li
-						h2 Help
-						ul
-							li
-								a(href='/help') Help
-							li
-								a(href='/syuilo') Contact
-							li
-								a(href='https://github.com/syuilo/Misskey/issues/new') Feedback
+		ul
+			li
+				a(href='/bbs') 掲示板
 	if config.env == 'development'
 		p.env-development-info
 			strong
