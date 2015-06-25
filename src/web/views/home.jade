@@ -14,7 +14,7 @@ block content
 	div#timeline
 		div#post-form-container
 			form#post-form(enctype='multipart/form-data', role='form')
-				img.icon(src='/img/icon/' + me.screenName, alt='icon')
+				img.icon(src='/img/icon/' + me.screenName, alt='icon', title=me.comment)
 				div.form
 					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 					div.design-allow(role='presentation')
