@@ -9,11 +9,12 @@ Schema = mongoose.Schema
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 schema = new Schema do
-	created-at: {type: Date,                  required: yes, default: Date.now}
-	title:      {type: String,                required: yes}
-	tags:       {type: [String],              required: no,  default: []}
-	user-id:    {type: Schema.Types.ObjectId, required: yes}
-
+	created-at:      {type: Date,                  required: yes, default: Date.now}
+	tags:            {type: [String],              required: no,  default: []}
+	title:           {type: String,                required: yes}
+	user-id:         {type: Schema.Types.ObjectId, required: yes}
+	watchers-count:  {type: Number,                required: yes, default: 0}
+	favorites-count: {type: Number,                required: yes, default: 0}
 	
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
