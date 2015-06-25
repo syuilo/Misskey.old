@@ -6,8 +6,7 @@ require! {
 module.exports = (app, user, title) ->
 	resolve, reject <- new Promise!
 	switch
-	| !title? => reject 'Empty title.'
-	| empty title => reject 'Empty title.'
+	| null-or-empty title => reject 'Empty title.'
 	| _ =>
 		thread = new BBSThread!
 			..title = title
