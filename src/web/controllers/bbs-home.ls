@@ -5,5 +5,9 @@ require! {
 }
 
 module.exports = (req, res) ->
+	hot-threads <- get-hot-threads .then
+	recent-threads <- get-recent-threads .then
 	res.display req, res, \bbs-home {
+		hot-threads
+		recent-threads
 	}
