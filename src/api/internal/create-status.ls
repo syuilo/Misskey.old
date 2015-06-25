@@ -11,8 +11,8 @@ require! {
 
 module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 	resolve, reject <- new Promise!
-	(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
 	text .= trim!
+	(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
 	switch
 	| recent-status? && text == recent-status.text => reject 'Duplicate content.'
 	| image? =>
