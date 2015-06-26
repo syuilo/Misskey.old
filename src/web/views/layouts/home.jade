@@ -45,6 +45,15 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
 									td: a(href='/' + me.screenName + '/followers')= me.followersCount
 					div#notices
+						div.nav
+							select.filter-type
+								option(value='all') すべて
+								option(value='self-notice') self-notice
+								option(value='follow') 被フォロー
+								option(value='status-favorite') つぶやきの被お気に入り
+								option(value='status-repost') つぶやきの被Repost
+							button.delete-all-button
+								i.fa.fa-trash-o
 						ul.notices
 					div#recommendation-users
 						ol.users
