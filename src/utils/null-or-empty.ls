@@ -1,1 +1,1 @@
-export null-or-empty = (x) -> x? || empty x
+export null-or-empty = (x) -> !x? || empty x
