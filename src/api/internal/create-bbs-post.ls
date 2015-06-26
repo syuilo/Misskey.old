@@ -31,7 +31,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 					| recent-post? && text == recent-post.text => reject 'Duplicate content.'
 					| image? =>
 						image-quality = if user.is-plus then 80 else 60
-						gm path
+						gm image
 							.compress \jpeg
 							.quality image-quality
 							.to-buffer \jpeg (, buffer) ->
