@@ -1,6 +1,7 @@
 require! {
 	moment
 	mongoose
+	'mongoose-auto-increment'
 	'../config'
 }
 
