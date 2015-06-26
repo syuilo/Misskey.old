@@ -363,7 +363,7 @@ main {
 		box-sizing: border-box;
 		width: ~"calc(100% - 16px)";
 		max-height: 400px;
-		overflow: scroll;
+		overflow: auto;
 		margin: 8px;
 		/*background: #fff;*/
 		background-color: transparent;
@@ -373,6 +373,10 @@ main {
 		background-position: center center;
 		background-size: cover;
 		border-radius: 8px;
+
+		> .nav {
+			display: none;
+		}
 
 		> .notice-empty {
 			display: block;
