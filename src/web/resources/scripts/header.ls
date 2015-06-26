@@ -60,3 +60,6 @@ $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
 	$ \html .css \background-position "center #{header-height}px"
+	$ '[data-ui-background-wallpaper-blur="true"]' .each ->
+		$ @ .css \background-position "center #{header-height}px"
+		

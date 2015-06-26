@@ -44,7 +44,7 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									td: a(href='/' + me.screenName)= me.statusesCount
 									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
 									td: a(href='/' + me.screenName + '/followers')= me.followersCount
-					div#notices
+					div#notices(data-ui-background-wallpaper-blur='true')
 						div.nav
 							select.filter-type
 								option(value='all') すべて
@@ -55,7 +55,7 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 							button.delete-all-button
 								i.fa.fa-trash-o
 						ul.notices
-					div#recommendation-users
+					div#recommendation-users(data-ui-background-wallpaper-blur='true')
 						ol.users
 							each user in recommendationUsers
 								li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
