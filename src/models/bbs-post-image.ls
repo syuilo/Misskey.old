@@ -11,4 +11,4 @@ schema = new Schema do
 	image:   {type: Buffer}
 	post-id: {type: Schema.Types.ObjectId, required: yes}
 
-module.exports = db.model \BBSPostImage chema
+module.exports = db.model \BBSPostImage schema
