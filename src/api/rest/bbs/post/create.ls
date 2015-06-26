@@ -1,7 +1,7 @@
 require! {
 	'../../../internal/create-bbs-post'
 	'../../../auth': authorize
-	'../../../utils/get-express-params'
+	'../../../../utils/get-express-params'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
