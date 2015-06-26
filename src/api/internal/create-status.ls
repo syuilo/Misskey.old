@@ -12,17 +12,20 @@ require! {
 module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 	resolve, reject <- new Promise!
 	text .= trim!
-	(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
-	switch
-	| recent-status? && text == recent-status.text => reject 'Duplicate content.'
-	| image? =>
-		image-quality = if user.is-plus then 80 else 60
-		gm image
-			.compress \jpeg
-			.quality image-quality
-			.to-buffer \jpeg (, buffer) ->
-				create buffer
-	| _ => create null
+	if !image? && null-or-empty text
+		reject 'Empty text.'
+	else
+		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
+		switch
+		| recent-status? && text == recent-status.text => reject 'Duplicate content.'
+		| image? =>
+			image-quality = if user.is-plus then 80 else 60
+			gm image
+				.compress \jpeg
+				.quality image-quality
+				.to-buffer \jpeg (, buffer) ->
+					create buffer
+		| _ => create null
 
 	function create(image)
 		status = new Status do

@@ -22,7 +22,7 @@ status-schema = new Schema do
 	reposts-count:         {type: Number,                  default: 0}
 	repost-from-status-id: {type: Schema.Types.ObjectId,   default: null}
 	tags:                  {type: [String]                 default: []}
-	text:                  {type: String,                  required: yes}
+	text:                  {type: String,                  default: null}
 	user-id:               {type: Schema.Types.ObjectId,   required: yes}
 
 if !status-schema.options.to-object then status-schema.options.to-object = {}
