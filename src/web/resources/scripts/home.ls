@@ -3,6 +3,10 @@ $ ->
 		Notification.request-permission!
 	catch
 		console.log 'oops'
+	
+	$ \#notices .hover do
+		-> $ '#notices .nav' .show 200ms
+		-> $ '#notices .nav' .hide 200ms
 
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
