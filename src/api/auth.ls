@@ -19,7 +19,6 @@ module.exports = (req, res, success) ->
 	| (req.header\Referer == //^#{config.public-config.url}//) => res.api-error 401 'invalid request'
 	| _ =>
 		(, user) <- User.find-by-id req.session.user-id
-		(, application) <- Application.find-by-id config.webappid
-		success user, application
+		success user, null
 
 
