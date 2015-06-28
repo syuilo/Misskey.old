@@ -3,22 +3,24 @@ require! {
 	'gulp-livescript': ls
 }
 
-gulp.task \build <[ build-package-json build-ls build-copy ]>
+{task, src, dest} = {gulp~task, gulp~src, gulp~dest}
 
-gulp.task \build-package-json ->
-	gulp.src './package.json.ls'
+task \build <[ build-package-json build-ls build-copy ]>
+
+task \build-package-json ->
+	src './package.json.ls'
 		.pipe ls!
-		.pipe gulp.dest './'
+		.pipe dest './'
 
-gulp.task \build-ls ->
-	gulp.src './src/**/*.ls' ->
+task \build-ls ->
+	src './src/**/*.ls' ->
 		.pipe ls!
-		.pipe gulp.dest './lib'
+		.pipe dest './lib'
 
-gulp.task \build-copy ->
-	gulp.src <[ ./src/**/* !./src/**/*.ls ]>
-		.pipe gulp.dest './lib'
+task \build-copy ->
+	src <[ ./src/**/* !./src/**/*.ls ]>
+		.pipe dest './lib'
 
-gulp.task \test <[ build ]>
+task \test <[ build ]>
 
-gulp.task \default <[ build ]>
+task \default <[ build ]>
