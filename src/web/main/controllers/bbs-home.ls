@@ -1,7 +1,7 @@
 require! {
-	'../../models/bbs-thread': BBSThraed
-	'../../models/utils/get-bbs-hot-threads'
-	'../../models/utils/get-bbs-recent-threads'
+	'../../../models/bbs-thread': BBSThraed
+	'../../../models/utils/get-bbs-hot-threads'
+	'../../../models/utils/get-bbs-recent-threads'
 }
 
 module.exports = (req, res) ->

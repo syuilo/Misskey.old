@@ -1,6 +1,6 @@
 require! {
-	'../../models/user': User
-	'../../models/webtheme': Webtheme
+	'../../../models/user': User
+	'../../../models/webtheme': Webtheme
 }
 module.exports = (req, res) -> Webtheme.find {} (, themes) ->
 	Promise.all (themes |> map (theme) ->

@@ -1,8 +1,8 @@
 require! {
-	'../../models/utils/status-get-timeline'
-	'../../models/utils/status-get-mentions'
-	'../../models/utils/get-new-users'
-	'../../models/utils/user-following-check'
+	'../../../models/utils/status-get-timeline'
+	'../../../models/utils/status-get-mentions'
+	'../../../models/utils/get-new-users'
+	'../../../models/utils/user-following-check'
 	'../utils/timeline-generate-html'
 }
 

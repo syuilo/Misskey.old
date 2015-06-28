@@ -1,11 +1,11 @@
 require! {
 	marked
-	'../../models/user': User
-	'../../models/user-following': UserFollowing
-	'../../models/status': Status
-	'../../models/utils/user-following-check'
+	'../../../models/user': User
+	'../../../models/user-following': UserFollowing
+	'../../../models/status': Status
+	'../../../models/utils/user-following-check'
 	'../utils/timeline-generate-html'
-	'../../config'
+	'../../../config'
 }
 
 module.exports = (req, res, page = \home) ->
