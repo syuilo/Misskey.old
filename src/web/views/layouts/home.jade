@@ -46,13 +46,13 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									td: a(href='/' + me.screenName + '/followers')= me.followersCount
 					div#notices(data-ui-background-wallpaper-blur='true')
 						div.nav
-							select.filter-type
+							select.filter-type(title='表示を絞り込み')
 								option(value='all') すべて
 								option(value='self-notice') self-notice
 								option(value='follow') 被フォロー
 								option(value='status-favorite') つぶやきの被お気に入り
 								option(value='status-repost') つぶやきの被Repost
-							button.delete-all-button
+							button.delete-all-button(title='全ての通知を削除')
 								i.fa.fa-trash-o
 						ul.notices
 					div#recommendation-users(data-ui-background-wallpaper-blur='true')
