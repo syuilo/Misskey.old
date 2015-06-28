@@ -20,7 +20,7 @@ server = create-server!
 server.locals.compile-debug = off
 #server.locals.pretty = '  '
 server.set 'view engine' \jade
-server.set 'views' "#__dirname/views"
+server.set 'views' "#__dirname/views/pages"
 server.set 'X-Frame-Options' \SAMEORIGIN
 
 server.use body-parser.urlencoded {+extended}
