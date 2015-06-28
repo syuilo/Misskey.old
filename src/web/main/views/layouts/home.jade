@@ -2,7 +2,7 @@ doctype html
 
 html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
 	head(prefix='og: http://ogp.me/ns#')
-		include ../templates/head
+		include ../common/head
 		meta(name='description', content='ママに咲いたカーネーション')
 		meta(name='keywords', content='Misskey')
 		meta(property='og:title', content='Misskey')
@@ -23,7 +23,7 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 		block assets
 		
 	body
-		include ../templates/header
+		include ../common/header
 		
 		main
 			div#contents

@@ -7,7 +7,7 @@ html(lang='ja'
 	data-user-id= user.id
 	data-is-following!= login ? isFollowing.toString() : null)
 	head(prefix='og: http://ogp.me/ns#')
-		include ../templates/head
+		include ../common/head
 		meta(name='robots', content='all')
 		meta(name='description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(name='keywords', content='Misskey,' + user.screenName)
@@ -32,7 +32,7 @@ html(lang='ja'
 		script(src='/resources/scripts/user.js')
 	
 	body
-		include ../templates/header
+		include ../common/header
 		
 		main(role='main')
 			header(role='banner')

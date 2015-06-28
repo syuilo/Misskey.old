@@ -8,7 +8,7 @@ html(
 		data-otherparty-id= otherparty.id
 		data-otherparty-screen-name= otherparty.screenName)
 	head
-		include templates/head
+		include ../common/head
 		title= 'トーク: ' + otherparty.name
 		link(rel='stylesheet', href='/resources/styles/user-talk.css')
 		script(src=webStreamingUrl + '/socket.io/socket.io.js')
@@ -16,7 +16,7 @@ html(
 		
 	body
 		if !noHeader
-			include templates/header
+			include ../common/header
 		main
 			div#timeline
 				div.timeline-container
