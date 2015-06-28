@@ -2,7 +2,7 @@ require! {
 	jade
 	'./serialize-timeline-status'
 	'./parse-text'
-	'../../config'
+	'../../../config'
 }
 
 module.exports = (status, viewer) -> new Promise (resolve, reject) ->

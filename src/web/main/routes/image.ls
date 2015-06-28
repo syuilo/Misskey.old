@@ -7,16 +7,16 @@ require! {
 	path
 	express
 	gm
-	'../../models/user': User
-	'../../models/user-icon': UserIcon
-	'../../models/user-header': UserHeader
-	'../../models/user-wallpaper': UserWallpaper
-	'../../models/status': Status
-	'../../models/status-image': StatusImage
-	'../../models/talk-message': TalkMessage
-	'../../models/talk-message-image': TalkMessageImage
-	'../../models/webtheme': Webtheme
-	'../../config'
+	'../../../models/user': User
+	'../../../models/user-icon': UserIcon
+	'../../../models/user-header': UserHeader
+	'../../../models/user-wallpaper': UserWallpaper
+	'../../../models/status': Status
+	'../../../models/status-image': StatusImage
+	'../../../models/talk-message': TalkMessage
+	'../../../models/talk-message-image': TalkMessageImage
+	'../../../models/webtheme': Webtheme
+	'../../../config'
 }
 
 module.exports = (app) ->

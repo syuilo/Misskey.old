@@ -1,7 +1,7 @@
 require! {
-	'../../models/application': Application
-	'../../models/user': User
-	'../../config'
+	'../../../models/application': Application
+	'../../../models/user': User
+	'../../../config'
 }
 
 # TalkMessage -> User -> User -> Promise TalkMessage

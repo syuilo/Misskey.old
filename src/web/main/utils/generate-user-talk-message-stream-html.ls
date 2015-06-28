@@ -1,7 +1,7 @@
 require! {
 	jade
 	'./parse-text'
-	'../../config'
+	'../../../config'
 }
 
 module.exports = (messages, me) ->

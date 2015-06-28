@@ -1,8 +1,8 @@
 require! {
-	'../../models/utils/status-check-favorited'
-	'../../models/utils/status-check-reposted'
-	'../../models/utils/serialize-status'
-	'../../config'
+	'../../../models/utils/status-check-favorited'
+	'../../../models/utils/status-check-reposted'
+	'../../../models/utils/serialize-status'
+	'../../../config'
 }
 
 module.exports = (status, me, callback) ->

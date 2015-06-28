@@ -5,11 +5,11 @@
 require! {
 	fs
 	express
-	'../../models/access-token': AccessToken
-	'../../models/user': User
-	'../../models/status': Status
+	'../../../models/access-token': AccessToken
+	'../../../models/user': User
+	'../../../models/status': Status
 	'../utils/login': do-login
-	'../../config'
+	'../../../config'
 	'./image': image-router
 }
 

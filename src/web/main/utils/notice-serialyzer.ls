@@ -1,8 +1,8 @@
 require! {
-	'../../models/notice': Notice
-	'../../models/user': User
-	'../../models/status': Status
-	'../../config'
+	'../../../models/notice': Notice
+	'../../../models/user': User
+	'../../../models/status': Status
+	'../../../config'
 }
 
 module.exports = (notice) -> new Promise (resolve, reject) ->

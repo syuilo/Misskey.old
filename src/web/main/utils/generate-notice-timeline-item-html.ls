@@ -1,7 +1,7 @@
 require! {
 	jade
 	'./notice-serialyzer'
-	'../../config'
+	'../../../config'
 }
 
 module.exports = (user, notice) -> new Promise (resolve, reject) ->

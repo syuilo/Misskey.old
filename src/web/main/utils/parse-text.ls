@@ -1,6 +1,6 @@
 require! {
 	'escape-html'
-	'../../config'
+	'../../../config'
 }
 
 # String -> String
