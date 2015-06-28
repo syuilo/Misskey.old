@@ -17,7 +17,7 @@ status-schema = new Schema do
 	cursor:                {type: Number}
 	favorites-count:       {type: Number,                  default: 0}
 	in-reply-to-status-id: {type: Schema.Types.ObjectId,   default: null}
-	is-image-attached:     {type: Boolean,                 default: false}
+	is-image-attached:     {type: Boolean,                 default: no}
 	replies:               {type: [Schema.Types.ObjectId], default: []}
 	reposts-count:         {type: Number,                  default: 0}
 	repost-from-status-id: {type: Schema.Types.ObjectId,   default: null}
