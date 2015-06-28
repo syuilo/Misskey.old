@@ -4,7 +4,7 @@ require! {
 	'../../../utils/get-express-params'
 	'../../../models/notice': Notice
 	'../../../models/utils/notice-get-timeline'
-	'../../../web/utils/generate-notice-timeline-item-html'
+	'../../../web/main/utils/generate-notice-timeline-item-html'
 	'../../../config'
 }
 

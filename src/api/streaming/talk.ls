@@ -5,8 +5,8 @@ require! {
 	jade
 	'../../models/user': User
 	'../../models/talk-message': TalkMessage
-	'../../web/utils/serialize-talk-message'
-	'../../web/utils/parse-text'
+	'../../web/main/utils/serialize-talk-message'
+	'../../web/main/utils/parse-text'
 	'../../config'
 	'express-session': session
 }
@@ -58,7 +58,7 @@ module.exports = (io, session-store) ->
 								# Find message
 								err, message <- TalkMessage.find-by-id content.value.id
 								# Send message HTML
-								message-compiler = jade.compile-file "#__dirname/../../web/views/templates/user-talk/message.jade"
+								message-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/user-talk/message.jade"
 								serialize-talk-message message, socket.user, socket.otherparty .then (serialized-message) ->
 									socket.emit content.type, message-compiler do
 										message: serialized-message

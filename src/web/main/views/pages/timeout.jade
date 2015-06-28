@@ -1,0 +1,22 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='description', content='Oops')
+		meta(name='keywords', content='Misskey')
+		title= 'Oops'
+		link(rel='stylesheet', href='/resources/styles/timeout.css')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			h1
+				i(class='fa fa-exclamation-triangle')
+				| Sorry, processing timed out ><
+			p 3秒経っても処理が完了しなかったため、内部でエラーが発生していると判断しました。
+			p
+				| Back to 
+				a(href='/') home
+				| .

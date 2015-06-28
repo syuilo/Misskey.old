@@ -1,0 +1,148 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title 設定
+		link(rel='stylesheet', href='/resources/styles/i-setting.css')
+		script(src='/resources/scripts/lib/syuiloui.js')
+		script(src='/resources/scripts/i-setting.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			nav
+				a(href='/')
+					i(class='fa fa-chevron-left')
+					| ホームに戻る
+				ul
+					li: a(href='#profile')
+						i(class='fa fa-user')
+						| プロフィール
+					li: a(href='#design')
+						i(class='fa fa-paint-brush')
+						| デザイン
+					li: a(href='#webtheme')
+						i(class='fa fa-desktop')
+						| テーマ
+					li: a(href='#application')
+						i(class='fa fa-puzzle-piece')
+						| アプリケーション
+					li: a(href='#mail')
+						i(class='fa fa-envelope-o')
+						| メールアドレス
+					li: a(href='#logout')
+						i(class='fa fa-power-off')
+						| ログアウト
+			div#content
+				header
+					h1
+						i(class='fa fa-cogs')
+						| 設定
+				div#profile
+					form#profileEditForm
+						label
+							h2.title 名前
+								p.caption
+									| あなたのニックネーム。
+							div.content
+								input.ui-inputText(name='name', type='text', value=me.name)
+						label
+							h2.title ひとことコメント
+								p.caption
+									| 挨拶的なもの。
+							div.content
+								input.ui-inputText(name='comment', type='text', value=me.comment)
+						if me.isPremium
+							label
+								h2.title バッジ
+									p.caption
+										| タイムラインなどで名前の横に表示されるテキスト。
+								div.content
+									input.ui-inputText(name='badge', type='text', value=me.badge)
+						label
+							h2.title WebサイトURL
+								p.caption
+									| (あれば)あなたに関連のあるWebページのアドレス。
+							div.content
+								input.ui-inputText(name='url', type='url', value=me.url)
+						label
+							h2.title 現在地
+								p.caption
+									| 位置情報。(例: 川崎市)
+							div.content
+								input.ui-inputText(name='location', type='text', value=me.location)
+						label
+							h2.title BIO
+								p.caption
+									| 自己紹介。
+							div.content
+								textarea.ui-textarea(name='bio')= me.bio
+						label
+							h2.title タグ
+								p.caption
+									| あなたに関連のあるキーワード。, で区切って複数指定できます。
+							div.content
+								input.ui-inputText(name='tag', type='text', value=me.tag)
+						label
+							h2.title ユーザーカラー
+								p.caption
+									| あなたのイメージカラー。
+							div.content
+								input.ui-inputColor(name='color', type='color', value=me.color)
+						input.ui-inputSubmit(type='submit', value='アップデート')
+					form#iconEditForm
+						label
+							h2 アイコン
+							div.icon
+								p 画像をドロップまたは選択
+								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
+								input(name='image', type='file', accept='image/*')
+						input.ui-inputSubmit(type='submit', value='アップデート')
+					
+				div#design
+					form#headerEditForm
+						label
+							h2 ヘッダー
+							div.header
+								p 画像をドロップまたは選択
+								img.image(src=url + '/img/header/' + me.screenName, alt='header')
+								input(name='image', type='file', accept='image/*')
+						input.ui-inputSubmit(type='submit', value='アップデート')
+					form#wallpaperEditForm
+						label
+							h2 壁紙
+							div.wallpaper
+								p 画像をドロップまたは選択
+								img.image(src=url + '/img/wallpaper/' + me.screenName, alt='wallpaper')
+								input(name='image', type='file', accept='image/*')
+						input.ui-inputSubmit(type='submit', value='アップデート')
+
+				div#webtheme
+					button#webthemeResetButton デフォルトのテーマに戻す
+					ul.themes
+						each theme in webthemes
+							li.theme
+								div.content
+									div.thumbnail(style='background-image: url("https://misskey.xyz/img/webtheme_thumbnail/#{theme.id}")')
+									div.form
+										cite.title= theme.name
+										p.description= theme.description
+										div.author
+											span.name= theme.user.screenName
+											img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
+										form
+											input(name='theme_id', value=theme.id, type='hidden')
+											input.ui-inputSubmit(type='submit', value='インストール')
+								h2.title= theme.name
+
+				div#application
+					p coming soon....
+
+				div#mail
+					p coming soon....
+
+				div#logout
+					a(href='/logout') ログアウト
