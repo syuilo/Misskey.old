@@ -7,7 +7,7 @@ require! {
 module.exports = (messages, me) ->
 	resolve, reject <- new Promise!
 	if messages?
-		message-compiler = jade.compile-file "#__dirname/../views/templates/user-talk/message.jade"
+		message-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/user-talk/message.jade"
 		resolve (messages |> map (message) ->
 			message-compiler do
 				message: message

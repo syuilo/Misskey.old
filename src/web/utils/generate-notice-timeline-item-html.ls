@@ -5,7 +5,7 @@ require! {
 }
 
 module.exports = (user, notice) -> new Promise (resolve, reject) ->
-	notice-compiler = jade.compile-file "#__dirname/../views/templates/notice/timeline-item.jade"
+	notice-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/notice/timeline-item.jade"
 	notice-serialyzer notice .then (serialized-notice) ->
 		resolve notice-compiler do
 			me: user

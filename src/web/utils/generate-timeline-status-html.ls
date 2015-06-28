@@ -6,7 +6,7 @@ require! {
 }
 
 module.exports = (status, viewer) -> new Promise (resolve, reject) ->
-	status-compiler = jade.compile-file "#__dirname/../views/templates/status/status.jade"
+	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/status.jade"
 	serialize-timeline-status status, viewer, (serialized-status) ->
 		html = status-compiler do
 			status: serialized-status
