@@ -1,13 +1,13 @@
 require! {
 	fs
 	path
-	'../../utils/create-server'
-	'../../config'
+	'../utils/create-server'
+	'../config'
 	'body-parser'
 	'cookie-parser'
 	'connect-redis'
 	'express-session': session
-	'../../models/user': User
+	'../models/user': User
 	'./routes/resources': resources-router
 	'./routes/index': index-router
 }
