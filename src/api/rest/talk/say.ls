@@ -13,6 +13,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[text, otherparty-id] = get-express-params req, <[ text otherparty-id ]>
+	app-id = if app? then app.id else null
 	switch
 	| !otherparty-id? => res.api-error 400 'otherparty-id is required :('
 	| _ => user-following-check otherparty-id, user.id .then (is-following) ->
@@ -27,8 +28,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					| error => throw error
 					| _ =>
 						fs.unlink path
-						create app.id, otherparty-id, buffer, true, text, user.id
-		| _ => create app.id, otherparty-id, null, false, text, user.id
+						create app-id, otherparty-id, buffer, true, text, user.id
+		| _ => create app-id, otherparty-id, null, false, text, user.id
 
 	function create(app-id, otherparty-id, image, is-image-attached, text, user-id)
 		talk-message = new TalkMessage {app-id, user-id, otherparty-id, text, is-image-attached}
