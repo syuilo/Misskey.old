@@ -29,7 +29,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 
 	function create(image)
 		status = new Status do
-			app-id: app.id
+			app-id: if app? then app.id else null
 			in-reply-to-status-id: in-reply-to-status-id
 			is-image-attached: image?
 			text: text
