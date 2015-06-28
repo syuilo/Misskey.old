@@ -27,7 +27,7 @@ repost-step = (req, res, app, user, target-status) -> status-check-reposted user
 	| is-reposted => res.api-error 400 'This post is already reposted :)'
 	| _ => User.find-by-id target-status.user-id, (, target-status-user) ->
 		status = new Status do
-			app-id: app.id
+			app-id: if app? then app.id else null
 			text: "RP @#{target-status-user.screen-name} #{target-status.text}"
 			user-id: user.id
 			repost-from-status-id: target-status.id
