@@ -5,9 +5,9 @@ require! {
 	'../../models/user': User
 	'../../models/status': Status
 	'../../models/notice': Notice
-	'../../web/utils/serialize-timeline-status'
-	'../../web/utils/parse-text'
-	'../../web/utils/generate-notice-timeline-item-html'
+	'../../web/main/utils/serialize-timeline-status'
+	'../../web/main/utils/parse-text'
+	'../../web/main/utils/generate-notice-timeline-item-html'
 	'../../config'
 }
 module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connection (socket) ->
