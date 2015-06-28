@@ -1,7 +1,7 @@
 require! {
 	bcrypt
-	'../../../models/user': User
-	'../../../config'
+	'../models/user': User
+	'../config'
 }
 
 module.exports = (req, screen-name, password, done, fail) ->

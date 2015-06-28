@@ -1,7 +1,7 @@
 require! {
 	bcrypt
 	'../../../utils/get-express-params'
-	'../../../web/utils/login': do-login
+	'../../../utils/login': do-login
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/user-icon': UserIcon
