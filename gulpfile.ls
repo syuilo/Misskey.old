@@ -1,6 +1,5 @@
 require! {
 	gulp
-	'gulp-lint-ls': lint-ls
 	'gulp-livescript': ls
 }
 
@@ -22,10 +21,6 @@ task \build-copy ->
 	src <[ ./src/**/* !./src/**/*.ls ]>
 		.pipe dest './lib'
 
-task \test <[ build lint ]>
-
-task \lint ->
-	src './**/*.ls'
-		.pipe lint-ls {+allow-case, +allow-null, +allow-void, +allow-this, +allow-new, +allow-throw, +allow-delete}
+task \test <[ build ]>
 
 task \default <[ build ]>

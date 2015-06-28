@@ -13,7 +13,6 @@ repository:
 main: './'
 scripts:
 	build: 'gulp build'
-	lint: 'gulp lint'
 	test: 'gulp test'
 
 dependencies:
@@ -43,7 +42,6 @@ dependencies:
 	LiveScript: '1.3.1'
 	gulp: '3.9.0'
 	'gulp-livescript': '2.4.0'
-	'gulp-lint-ls': '0.1.0'
 
 author:
 	name: 'syuilo'
