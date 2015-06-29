@@ -21,10 +21,44 @@ html, body {
 		display: block;
 		margin: 0;
 		padding: 0;
+	}
 
-		p {
-			margin: 0;
-			padding: 0;
+	.web-incoming,
+	.web-outgoing,
+	.api-incoming,
+	.api-outgoing {
+		span {
+			margin: 0 8px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.web-incoming,
+	.api-incoming {
+		.course {
+			color: #007acc !important;
+		} 
+	}
+
+	.web-outgoing,
+	.api-outgoing {
+		.course {
+			color: #ff6a00 !important;
+		}
+
+		&.success {
+			color: #0f0;
+		}
+
+		&.failure {
+			color: #f00;
 		}
 	}
 }
