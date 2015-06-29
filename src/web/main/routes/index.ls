@@ -44,6 +44,7 @@ module.exports = (app) ->
 	app.get '/config' (req, res) ->
 		res.set 'Content-Type' 'application/javascript'
 		res.send "var config = conf = #{to-json config.public-config};"
+	app.get '/log' (req, res) -> res.display req, res, 'log'
 	app.get '/bbs' (req, res) -> (require '../controllers/bbs-home') req, res
 	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res

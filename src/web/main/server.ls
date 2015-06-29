@@ -2,6 +2,7 @@ require! {
 	fs
 	path
 	'../../utils/create-server'
+	'../../utils/publish-redis-streaming'
 	'../../config'
 	'body-parser'
 	'cookie-parser'
@@ -111,6 +112,11 @@ server.use allow-cross-domain
 #		next!
 #	else
 #		next!
+
+# Log
+server.all '*' (req, res, next) ->
+	next!
+	publish-redis-streaming \misskey:log "#{Date.now} #{req.ip} #{req.protocol} #{req.method} #{req.path}"
 
 # Resources rooting
 resources-router server
