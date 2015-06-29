@@ -24,6 +24,7 @@ html, body {
 	}
 
 	.web-incoming,
+	.web-outgoing,
 	.api-incoming,
 	.api-outgoing {
 		span {
@@ -39,7 +40,25 @@ html, body {
 		}
 	}
 
+	.web-incoming,
+	.api-incoming {
+		.course {
+			color: #007acc !important;
+		} 
+	}
+
+	.web-outgoing,
 	.api-outgoing {
-		color: #0f0;
+		.course {
+			color: #ff6a00 !important;
+		}
+
+		&.success {
+			color: #0f0;
+		}
+
+		&.failure {
+			color: #f00;
+		}
 	}
 }

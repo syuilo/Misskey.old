@@ -58,10 +58,11 @@ api-server.oauth = oauth2-server do
 	access-token-lifetime: null
 
 api-server.use (req, res, next) ->
-	function log(status-code)
+	function log(status-code, done)
 		publish-redis-streaming \log to-json {
 			type: \api-outgoing
 			value: {
+				done
 				date: Date.now!
 				remote-addr: req.ip
 				protocol: req.protocol
@@ -79,12 +80,12 @@ api-server.use (req, res, next) ->
 				..header 'Content-Type' 'text/x-yaml'
 				..send yaml.safe-dump data
 		| _ => res.json data
-		log 200
+		log 200 yes
 
 	res.api-error = (http-status-code, error) ->
 		res.status http-status-code
 		res.api-render {error}
-		log http-status-code
+		log http-status-code, no
 	
 	next!
 
