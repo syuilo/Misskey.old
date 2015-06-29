@@ -73,7 +73,7 @@ api-server.use (req, res, next) ->
 	next!
 
 # Log
-server.all '*' (req, res, next) ->
+api-server.all '*' (req, res, next) ->
 	next!
 	publish-redis-streaming \log "#{Date.now!} #{req.ip} #{req.protocol} #{req.method} API #{req.headers.host}#{req.path}"
 
