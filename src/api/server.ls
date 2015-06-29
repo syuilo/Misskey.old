@@ -15,6 +15,7 @@ require! {
 	'oauth2-server'
 	'./router': router
 	'../models/oauth/oauth': oauth-model
+	'../utils/publish-redis-streaming'
 	'../config'
 }
 
