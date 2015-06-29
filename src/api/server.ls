@@ -75,7 +75,16 @@ api-server.use (req, res, next) ->
 # Log
 api-server.all '*' (req, res, next) ->
 	next!
-	publish-redis-streaming \log "#{Date.now!} #{req.ip} #{req.protocol} #{req.method} API #{req.headers.host}#{req.path}"
+	publish-redis-streaming \log to-json {
+		type: \api-incoming
+		value: {
+			date: Date.now!
+			remote-addr: req.ip
+			protocol: req.protocol
+			method: req.method
+			path: "#{req.headers.host}#{req.path}"
+		}
+	}
 
 api-server.all '*' (req, res, next) ->
 	res.set do

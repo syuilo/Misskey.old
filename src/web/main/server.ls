@@ -116,7 +116,16 @@ server.use allow-cross-domain
 # Log
 server.all '*' (req, res, next) ->
 	next!
-	publish-redis-streaming \log "#{Date.now!} #{req.ip} #{req.protocol} #{req.method} WEB #{req.headers.host}#{req.path}"
+	publish-redis-streaming \log to-json {
+		type: \web-incoming
+		value: {
+			date: Date.now!
+			remote-addr: req.ip
+			protocol: req.protocol
+			method: req.method
+			path: "#{req.headers.host}#{req.path}"
+		}
+	}
 
 # Resources rooting
 resources-router server
