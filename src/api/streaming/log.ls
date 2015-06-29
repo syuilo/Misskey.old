@@ -3,7 +3,7 @@ require! {
 	'../../config'
 }
 
-module.exports = (io, session-store) ->
+module.exports = (io) ->
 	io.of '/streaming/log' .on \connection (socket) ->
 		
 		socket.emit \connected

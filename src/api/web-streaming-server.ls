@@ -50,4 +50,4 @@ home io, session-store
 talk io, session-store
 
 # Misskey log stream
-log io, session-store
+log io
