@@ -22,4 +22,4 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		(status) ->
 			res.api-render status.to-object!
 		(err) ->
-			res.api-error 400 err
+			res.api-error 400 err.message
