@@ -9,7 +9,7 @@ $ ->
 
 	socket.on \log (log) ->
 		console.log \log log
-		$log = $ log
-		$log = $ '<li class="log">' .append $message
+		$log = $ "<p>#{log}</p>"
+		$log = $ '<li class="log">' .append $log
 		$log.append-to $ \#logs
 		scroll 0, ($ \html .outer-height!)
