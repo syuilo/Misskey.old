@@ -20,7 +20,7 @@ schema = new Schema do
 	is-readed:         {type: Boolean,               default:  no}
 	is-edited:         {type: Boolean,               default:  no}
 	otherparty-id:     {type: Schema.Types.ObjectId, required: yes}
-	text:              {type: String,                required: yes}
+	text:              {type: String,                required: no, default: null}
 	user-id:           {type: Schema.Types.ObjectId, required: yes}
 
 if !schema.options.to-object then schema.options.to-object = {}
