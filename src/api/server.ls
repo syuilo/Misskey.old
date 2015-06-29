@@ -15,6 +15,7 @@ require! {
 	'oauth2-server'
 	'./router': router
 	'../models/oauth/oauth': oauth-model
+	'../utils/publish-redis-streaming'
 	'../config'
 }
 
@@ -66,10 +67,15 @@ api-server.use (req, res, next) ->
 				..send yaml.safe-dump data
 		| _ => res.json data
 
-	res.api-error = (code, message) ->
-		res.status code
-		res.api-render {error: {message}}
+	res.api-error = (http-status-code, error) ->
+		res.status http-status-code
+		res.api-render {error}
 	next!
+
+# Log
+api-server.all '*' (req, res, next) ->
+	next!
+	publish-redis-streaming \log "#{Date.now!} #{req.ip} #{req.protocol} #{req.method} API #{req.headers.host}#{req.path}"
 
 api-server.all '*' (req, res, next) ->
 	res.set do

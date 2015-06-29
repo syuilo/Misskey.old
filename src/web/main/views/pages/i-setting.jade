@@ -48,32 +48,32 @@ html(lang='ja', dir='ltr')
 								p.caption
 									| あなたのニックネーム。
 							div.content
-								input.ui-inputText(name='name', type='text', value=me.name)
+								input.ui-input-text(name='name', type='text', value=me.name)
 						label
 							h2.title ひとことコメント
 								p.caption
 									| 挨拶的なもの。
 							div.content
-								input.ui-inputText(name='comment', type='text', value=me.comment)
+								input.ui-input-text(name='comment', type='text', value=me.comment)
 						if me.isPremium
 							label
 								h2.title バッジ
 									p.caption
 										| タイムラインなどで名前の横に表示されるテキスト。
 								div.content
-									input.ui-inputText(name='badge', type='text', value=me.badge)
+									input.ui-input-text(name='badge', type='text', value=me.badge)
 						label
 							h2.title WebサイトURL
 								p.caption
 									| (あれば)あなたに関連のあるWebページのアドレス。
 							div.content
-								input.ui-inputText(name='url', type='url', value=me.url)
+								input.ui-input-text(name='url', type='url', value=me.url)
 						label
 							h2.title 現在地
 								p.caption
 									| 位置情報。(例: 川崎市)
 							div.content
-								input.ui-inputText(name='location', type='text', value=me.location)
+								input.ui-input-text(name='location', type='text', value=me.location)
 						label
 							h2.title BIO
 								p.caption
@@ -85,14 +85,14 @@ html(lang='ja', dir='ltr')
 								p.caption
 									| あなたに関連のあるキーワード。, で区切って複数指定できます。
 							div.content
-								input.ui-inputText(name='tag', type='text', value=me.tag)
+								input.ui-input-text(name='tag', type='text', value=me.tag)
 						label
 							h2.title ユーザーカラー
 								p.caption
 									| あなたのイメージカラー。
 							div.content
-								input.ui-inputColor(name='color', type='color', value=me.color)
-						input.ui-inputSubmit(type='submit', value='アップデート')
+								input.ui-input-color(name='color', type='color', value=me.color)
+						input.ui-input-submit(type='submit', value='アップデート')
 					form#iconEditForm
 						label
 							h2 アイコン
@@ -100,7 +100,7 @@ html(lang='ja', dir='ltr')
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
 								input(name='image', type='file', accept='image/*')
-						input.ui-inputSubmit(type='submit', value='アップデート')
+						input.ui-input-submit(type='submit', value='アップデート')
 					
 				div#design
 					form#headerEditForm
@@ -110,7 +110,7 @@ html(lang='ja', dir='ltr')
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/header/' + me.screenName, alt='header')
 								input(name='image', type='file', accept='image/*')
-						input.ui-inputSubmit(type='submit', value='アップデート')
+						input.ui-input-submit(type='submit', value='アップデート')
 					form#wallpaperEditForm
 						label
 							h2 壁紙
@@ -118,7 +118,7 @@ html(lang='ja', dir='ltr')
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/wallpaper/' + me.screenName, alt='wallpaper')
 								input(name='image', type='file', accept='image/*')
-						input.ui-inputSubmit(type='submit', value='アップデート')
+						input.ui-input-submit(type='submit', value='アップデート')
 
 				div#webtheme
 					button#webthemeResetButton デフォルトのテーマに戻す
@@ -135,7 +135,7 @@ html(lang='ja', dir='ltr')
 											img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
 										form
 											input(name='theme_id', value=theme.id, type='hidden')
-											input.ui-inputSubmit(type='submit', value='インストール')
+											input.ui-input-submit(type='submit', value='インストール')
 								h2.title= theme.name
 
 				div#application

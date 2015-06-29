@@ -11,20 +11,27 @@ require! {
 
 module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 	resolve, reject <- new Promise!
+	
+	function throw-error(code, message)
+		reject {code, message}
+	
 	text .= trim!
 	if !image? && null-or-empty text
-		reject 'Empty text.'
+		throw-error \empty-text 'Empty text.'
 	else
 		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
 		switch
-		| recent-status? && text == recent-status.text => reject 'Duplicate content.'
+		| recent-status? && text == recent-status.text => throw-error \duplicate-content 'Duplicate content.'
 		| image? =>
 			image-quality = if user.is-plus then 80 else 60
 			gm image
 				.compress \jpeg
 				.quality image-quality
-				.to-buffer \jpeg (, buffer) ->
-					create buffer
+				.to-buffer \jpeg (err, buffer) ->
+					if err? || !buffer?
+						throw-error \failed-attach-image 'Failed attach image.'
+					else
+						create buffer
 		| _ => create null
 
 	function create(image)

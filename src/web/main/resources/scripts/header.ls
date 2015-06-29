@@ -15,7 +15,7 @@ function update-statuses
 
 $ ->
 	update-statuses!
-	set-interval update-statuses, 5000ms
+	set-interval update-statuses, 10000ms
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
 		if window.music-center-open
