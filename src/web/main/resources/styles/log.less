@@ -38,19 +38,35 @@ html, body {
 				margin-right: 0;
 			}
 		}
+
+		.date {
+			opacity: 0.5;
+		}
 	}
 
 	.web-incoming,
 	.api-incoming {
 		.course {
 			color: #007acc !important;
-		} 
+
+			&:before {
+				content: "\f105";
+				font-family: FontAwesome;
+				margin-right: 4px;
+			}
+		}
 	}
 
 	.web-outgoing,
 	.api-outgoing {
 		.course {
 			color: #ff6a00 !important;
+
+			&:before {
+				content: "\f104";
+				font-family: FontAwesome;
+				margin-right: 4px;
+			}
 		}
 
 		&.success {
