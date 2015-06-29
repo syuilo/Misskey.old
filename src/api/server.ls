@@ -66,9 +66,9 @@ api-server.use (req, res, next) ->
 				..send yaml.safe-dump data
 		| _ => res.json data
 
-	res.api-error = (code, message) ->
-		res.status code
-		res.api-render {error: {message}}
+	res.api-error = (http-status-code, error) ->
+		res.status http-status-code
+		res.api-render {error}
 	next!
 
 api-server.all '*' (req, res, next) ->
