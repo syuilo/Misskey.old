@@ -116,7 +116,7 @@ server.use allow-cross-domain
 # Log
 server.all '*' (req, res, next) ->
 	next!
-	publish-redis-streaming \misskey:log "#{Date.now} #{req.ip} #{req.protocol} #{req.method} #{req.path}"
+	publish-redis-streaming \misskey:log "#{Date.now!} #{req.ip} #{req.protocol} #{req.method} #{req.path}"
 
 # Resources rooting
 resources-router server
