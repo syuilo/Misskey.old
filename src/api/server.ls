@@ -71,6 +71,11 @@ api-server.use (req, res, next) ->
 		res.api-render {error}
 	next!
 
+# Log
+server.all '*' (req, res, next) ->
+	next!
+	publish-redis-streaming \log "#{Date.now!} #{req.ip} #{req.protocol} #{req.method} API #{req.headers.host}#{req.path}"
+
 api-server.all '*' (req, res, next) ->
 	res.set do
 		'Access-Control-Allow-Origin': config.public-config.url
