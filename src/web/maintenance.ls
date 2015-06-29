@@ -4,7 +4,7 @@ require! {
 	'../config'
 }
 
-message = jade.render-file "#{__dirname}/views/maintenance.jade"
+message = jade.render-file "#{__dirname}/maintenance.jade"
 
 server = create-server!
 server.all '*' (req, res) ->

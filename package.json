@@ -12,9 +12,7 @@
   },
   "main": "./",
   "scripts": {
-    "install": "gulp build",
     "build": "gulp build",
-    "lint": "gulp lint",
     "test": "gulp test"
   },
   "dependencies": {
@@ -34,17 +32,16 @@
     "less": "2.5.1",
     "marked": "0.3.3",
     "moment": "2.10.3",
-    "mongoose": "4.0.5",
-    "mongoose-auto-increment": "3.2.3",
+    "mongoose": "4.0.6",
+    "mongoose-auto-increment": "4.0.0",
     "multer": "0.1.8",
     "oauth2-server": "2.4.0",
     "prelude-ls": "1.1.2",
     "redis": "0.12.1",
     "socket.io": "1.3.5",
-    "LiveScript": "1.3.1",
+    "livescript": "1.4.0",
     "gulp": "3.9.0",
-    "gulp-livescript": "2.4.0",
-    "gulp-lint-ls": "0.1.0"
+    "gulp-livescript": "2.4.0"
   },
   "author": {
     "name": "syuilo",
