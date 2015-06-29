@@ -361,7 +361,6 @@ textarea {
 						box-shadow: none;
 						transition: color 0.5s ease, border 0.5s ease;
 						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
-
 						/*
 						&:hover {
 							border: solid 1px @themeColor;
@@ -374,7 +373,6 @@ textarea {
 							transition: color 0, border 0.5s ease;
 						}
 						*/
-
 						&:focus {
 							color: darken(@themeColor, 20%);
 						}
@@ -798,9 +796,9 @@ textarea {
 /* General UI
  * ---------------------------------------------------------------- */
 
-.ui-inputText,
-.ui-inputEmail,
-.ui-inputPassword,
+.ui-input-text,
+.ui-input-email,
+.ui-input-password,
 .ui-textarea,
 .ui-select {
 	-webkit-appearance: none;
@@ -854,17 +852,16 @@ textarea {
 .ui-checkbox {
 }
 
-.ui-radioLabel,
-.ui-checkboxLabel {
+.ui-radio-label,
+.ui-checkbox-label {
 	transition: all 0.2s ease;
-}
 
-	.ui-radioLabel:hover,
-	.ui-checkboxLabel:hover {
+	&:hover {
 		color: darken(@themeColor, 20%);
 	}
+}
 
-.ui-inputSubmit,
+.ui-input-submit,
 .ui-button {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -885,37 +882,34 @@ textarea {
 	border-radius: 2px;
 	box-shadow: 0 0 0 1px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
 	transition: border 0.5s ease;
-}
 
-	.ui-inputSubmit:hover,
-	.ui-button:hover {
+	&:hover {
 		background: #fff;
 		/*color: $main_color;*/
 		/*border: solid 1px @themeColor;*/
 		transition: border 0s ease;
 	}
 
-	.ui-inputSubmit:focus,
-	.ui-button:focus {
+	&:focus {
 		border: solid 1px @themeColor;
 		transition: border 0s ease;
 	}
 
-	.ui-inputSubmit:active,
-	.ui-button:active {
+	&:active {
 		padding: 9px 16px 7px 16px;
 		background: #eee;
 		border: solid 1px @themeColor;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
 		transition: border 0s ease;
 	}
+}
 
 .ui-textarea {
 	height: 6em;
 	max-width: 100%;
 }
 
-.ui-attachImage {
+.ui-attach-image {
 	box-sizing: border-box;
 	display: inline-block;
 	position: relative;
@@ -926,13 +920,12 @@ textarea {
 	border: dashed 2px #ccc;
 	color: #777;
 	font-size: 1em;
-}
 
-	.ui-attachImage:hover {
+	&:hover {
 		border: dashed 2px #777;
 	}
 
-	.ui-attachImage input[type=file] {
+	input[type=file] {
 		display: inline;
 		position: absolute;
 		top: 0;
@@ -942,10 +935,11 @@ textarea {
 		opacity: 0;
 	}
 
-	.ui-attachImage img {
+	img {
 		max-width: 100%;
 		max-height: 128px;
 	}
+}
 
 .ui-dialog {
 	display: block;
@@ -961,19 +955,18 @@ textarea {
 	color: #fff;
 	background: rgba(0, 0, 0, 0.8);
 	transition: top 1s ease;
-}
 
-	.ui-dialog p {
+	p {
 		margin: 0;
 		text-align: center;
 	}
-
-.ui-userIcon {
-	display: inline-block;
-	position: relative;
 }
 
-	.ui-userIcon .icon {
+.ui-user-icon {
+	display: inline-block;
+	position: relative;
+
+	.icon {
 		min-width: 32px;
 		max-width: 32px;
 		min-height: 32px;
@@ -981,7 +974,7 @@ textarea {
 		vertical-align: bottom;
 	}
 
-	.ui-userIcon .balloon {
+	.balloon {
 		display: inline-block;
 		pointer-events: none;
 		position: absolute;
@@ -998,22 +991,23 @@ textarea {
 		border-radius: 4px;
 		opacity: 0;
 		transition: opacity 0.1s linear;
+
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: -8px;
+			left: ~"calc(50% - 4px)";
+			border-top: solid 4px rgba(0, 0, 0, 0.7);
+			border-right: solid 4px transparent;
+			border-bottom: solid 4px transparent;
+			border-left: solid 4px transparent;
+		}
 	}
 
-	.ui-userIcon:hover .balloon {
+	&:hover .balloon {
 		opacity: 1;
 	}
-
-	.ui-userIcon .balloon:before {
-		content: "";
-		position: absolute;
-		bottom: -8px;
-		left: ~"calc(50% - 4px)";
-		border-top: solid 4px rgba(0, 0, 0, 0.7);
-		border-right: solid 4px transparent;
-		border-bottom: solid 4px transparent;
-		border-left: solid 4px transparent;
-	}
+}
 
 .image-attacher {
 	box-sizing: border-box;
