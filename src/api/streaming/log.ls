@@ -12,7 +12,6 @@ module.exports = (io) ->
 		subscriber = redis.create-client!
 		subscriber.subscribe \misskey:log
 		subscriber.on \message (, log) ->
-			console.log log
 			log = parse-json log
 			compiler = jade.compile-file switch log.type
 			| \web-incoming => "#__dirname/../../web/main/views/dynamic-parts/log/web-incoming.jade"
