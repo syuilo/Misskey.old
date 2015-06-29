@@ -24,9 +24,18 @@ html, body {
 	}
 
 	.web-incoming,
-	.api-incoming {
+	.api-incoming,
+	.api-outgoing {
 		span {
 			margin: 0 8px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
 		}
 	}
 
