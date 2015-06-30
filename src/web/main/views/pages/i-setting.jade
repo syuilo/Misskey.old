@@ -92,7 +92,7 @@ html(lang='ja', dir='ltr')
 									| あなたのイメージカラー。
 							div.content
 								input.ui-input-color(name='color', type='color', value=me.color)
-						input.ui-input-submit(type='submit', value='アップデート')
+						input.ui-button(type='submit', value='アップデート')
 					form#iconEditForm
 						label
 							h2 アイコン
@@ -100,7 +100,7 @@ html(lang='ja', dir='ltr')
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/icon/' + me.screenName, alt='icon')
 								input(name='image', type='file', accept='image/*')
-						input.ui-input-submit(type='submit', value='アップデート')
+						input.ui-button(type='submit', value='アップデート')
 					
 				div#design
 					form#headerEditForm
@@ -110,7 +110,7 @@ html(lang='ja', dir='ltr')
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/header/' + me.screenName, alt='header')
 								input(name='image', type='file', accept='image/*')
-						input.ui-input-submit(type='submit', value='アップデート')
+						input.ui-button(type='submit', value='アップデート')
 					form#wallpaperEditForm
 						label
 							h2 壁紙
@@ -118,7 +118,7 @@ html(lang='ja', dir='ltr')
 								p 画像をドロップまたは選択
 								img.image(src=url + '/img/wallpaper/' + me.screenName, alt='wallpaper')
 								input(name='image', type='file', accept='image/*')
-						input.ui-input-submit(type='submit', value='アップデート')
+						input.ui-button(type='submit', value='アップデート')
 
 				div#webtheme
 					button#webthemeResetButton デフォルトのテーマに戻す
@@ -135,7 +135,7 @@ html(lang='ja', dir='ltr')
 											img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
 										form
 											input(name='theme_id', value=theme.id, type='hidden')
-											input.ui-input-submit(type='submit', value='インストール')
+											input.ui-button(type='submit', value='インストール')
 								h2.title= theme.name
 
 				div#application

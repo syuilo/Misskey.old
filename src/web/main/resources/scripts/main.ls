@@ -30,6 +30,10 @@ $ ->
 				| ago <  5s        => 'いま'
 				| _ => ''
 			$ @ .text time-text
+	
+	# Attach Wave effects 
+	Waves.attach '.ui-button' <[ waves-button ]>
+	Waves.init!
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
 	$window = $ '''
