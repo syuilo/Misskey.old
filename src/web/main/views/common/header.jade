@@ -64,16 +64,16 @@ header#misskey-main-header(role='banner')
 									img.icon(src= url + '/img/icon/' + me.screenName, alt='icon')
 								div.dropdownContent
 									ul
-										li: a(href= url + '/' + me.screenName)
+										li: a.ui-waves-effect(href= url + '/' + me.screenName)
 											i.fa.fa-laptop
 											| マイページ
-										li: a(href='/i')
+										li: a.ui-waves-effect(href='/i')
 											i.fa.fa-user
 											| マイ メニュー
-										li: a(href='/i/setting')
+										li: a.ui-waves-effect(href='/i/setting')
 											i.fa.fa-cog
 											| 設定
-										li: a(href='/logout')
+										li: a.ui-waves-effect(href='/logout')
 											i(class='fa fa-power-off')
 											| ログアウト
 			else
