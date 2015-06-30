@@ -33,6 +33,7 @@ $ ->
 	
 	# Attach Wave effects 
 	Waves.attach '.ui-button'
+	Waves.attach '.ui-waves-effect'
 	Waves.init!
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
