@@ -32,7 +32,7 @@ $ ->
 			$ @ .text time-text
 	
 	# Attach Wave effects 
-	Waves.attach '.ui-button .ui-input-submit'
+	Waves.attach '.ui-button' <[ waves-button waves-float ]>
 	Waves.init!
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->

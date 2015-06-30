@@ -11,7 +11,7 @@
 }
 
 * {
-	font-family: 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+	font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -861,46 +861,36 @@ textarea {
 	}
 }
 
-.ui-input-submit,
 .ui-button {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 	display: inline-block;
+	float: right;
 	box-sizing: border-box;
-	margin: 6px 0;
+	margin: 0;
 	padding: 8px 16px;
 	min-width: 5em;
 	cursor: pointer;
+	line-height: 1.2em;
 	font-size: 1.2em;
-	font-weight: bold;
+	font-weight: normal;
 	text-decoration: none;
-	color: #444;
-	background: #f9f9f9;
+	color: contrast(@themeColor, #000, #fff, 70%);
+	background: @themeColor;
 	outline: none;
-	border: solid 1px #CCC;
+	border: none;
 	border-radius: 2px;
-	box-shadow: 0 0 0 1px #fff inset, 0 1px 1px rgba(0, 0, 0, 0.1);
-	transition: border 0.5s ease;
+	box-shadow: none;
+	transition: background 0.1s ease;
 
 	&:hover {
-		background: #fff;
-		/*color: $main_color;*/
-		/*border: solid 1px @themeColor;*/
-		transition: border 0s ease;
-	}
-
-	&:focus {
-		border: solid 1px @themeColor;
-		transition: border 0s ease;
+		background: lighten(@themeColor, 10%);
 	}
 
 	&:active {
-		padding: 9px 16px 7px 16px;
-		background: #eee;
-		border: solid 1px @themeColor;
-		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset;
-		transition: border 0s ease;
+		background: darken(@themeColor, 10%);
+		transition: background 0s ease;
 	}
 }
 
