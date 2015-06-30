@@ -5,6 +5,11 @@ require! {
 }
 
 module.exports = (io) ->
+	web-incoming-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/log/web-incoming.jade"
+	web-outgoing-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/log/web-outgoing.jade"
+	api-incoming-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/log/api-incoming.jade"
+	api-outgoing-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/log/api-outgoing.jade"
+	
 	io.of '/streaming/log' .on \connection (socket) ->
 		
 		socket.emit \connected
@@ -13,11 +18,11 @@ module.exports = (io) ->
 		subscriber.subscribe \misskey:log
 		subscriber.on \message (, log) ->
 			log = parse-json log
-			compiler = jade.compile-file switch log.type
-			| \web-incoming => "#__dirname/../../web/main/views/dynamic-parts/log/web-incoming.jade"
-			| \web-outgoing => "#__dirname/../../web/main/views/dynamic-parts/log/web-outgoing.jade"
-			| \api-incoming => "#__dirname/../../web/main/views/dynamic-parts/log/api-incoming.jade"
-			| \api-outgoing => "#__dirname/../../web/main/views/dynamic-parts/log/api-outgoing.jade"
+			compiler = switch log.type
+			| \web-incoming => web-incoming-compiler
+			| \web-outgoing => web-outgoing-compiler
+			| \api-incoming => api-incoming-compiler
+			| \api-outgoing => api-outgoing-compiler
 			socket.emit \log compiler log.value
 			
 		socket.on \disconnect ->
