@@ -226,7 +226,7 @@ textarea {
 	}
 
 	> .main {
-		max-height: 48px;
+		max-height: 3rem;
 		margin: 0;
 		padding: 0;
 		background-color: #fff;
@@ -250,14 +250,14 @@ textarea {
 
 			> .left {
 				float: left;
-				height: 48px;
+				height: 3rem;
 
 				> nav {
 					> .mainNav {
 						display: inline-block;
 						margin: 0 8px;
 						padding: 0;
-						line-height: 48px;
+						line-height: 3rem;
 						vertical-align: top;
 
 						> .misskey {
@@ -265,6 +265,7 @@ textarea {
 							-moz-appearance: none;
 							appearance: none;
 							display: inline-block;
+							vertical-align: top;
 							font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
 							margin: 0 10px;
 							padding: 0;
@@ -291,9 +292,12 @@ textarea {
 
 							> li {
 								display: inline-block;
+								vertical-align: top;
+								height: 3rem;
 
 								> a {
 									display: inline-block;
+									z-index: 1;
 									height: 100%;
 									padding: 0 16px;
 									font-size: 1em;
@@ -743,7 +747,9 @@ textarea {
 
 									> a {
 										display: inline-block;
+										z-index: 1;
 										box-sizing: border-box;
+										vertical-align: top;
 										width: 100%;
 										padding: 10px 20px;
 										text-decoration: none;
@@ -866,14 +872,13 @@ textarea {
 	-moz-appearance: none;
 	appearance: none;
 	display: inline-block;
-	float: right;
 	box-sizing: border-box;
 	margin: 0;
-	padding: 8px 16px !important;
+	padding: 0;
 	min-width: 5em;
 	cursor: pointer;
-	line-height: 1.2em !important;
-	font-size: 1.2em !important;
+	line-height: 1em !important;
+	font-size: 1em !important;
 	font-weight: normal;
 	text-decoration: none;
 	color: contrast(@themeColor, #000, #fff, 70%);
@@ -886,6 +891,7 @@ textarea {
 
 	> * {
 		vertical-align: baseline !important;
+		padding: 12px 16px;
 		line-height: 1em !important;
 		font-size: 1em !important;
 	}
