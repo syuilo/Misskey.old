@@ -202,40 +202,6 @@ main {
 									max-height: 128px;
 								}
 							}
-
-							input[type=submit] {
-								-webkit-appearance: none;
-								-moz-appearance: none;
-								appearance: none;
-								display: inline-block;
-								float: right;
-								box-sizing: border-box;
-								margin: 0;
-								padding: 8px 16px;
-								min-width: 5em;
-								cursor: pointer;
-								line-height: 1.2em;
-								font-size: 1.2em;
-								font-weight: normal;
-								text-decoration: none;
-								color: contrast(@themeColor, #000, #fff, 70%);
-								background: @themeColor;
-								outline: none;
-								border: none;
-								border-radius: 2px;
-								box-shadow: none;
-								transition: background 0.1s ease;
-								font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
-
-								&:hover {
-									background: lighten(@themeColor, 10%);
-								}
-
-								&:active {
-									background: darken(@themeColor, 10%);
-									transition: background 0s ease;
-								}
-							}
 						}
 					}
 				}
@@ -377,13 +343,13 @@ main {
 		> .nav {
 			display: none;
 			border-bottom: solid 1px rgba(0, 0, 0, 0.05);
-			
+
 			&:after {
 				content: "";
 				display: block;
 				clear: both;
 			}
-			
+
 			.filter-type {
 				-webkit-appearance: none;
 				-moz-appearance: none;
@@ -398,12 +364,12 @@ main {
 				border-radius: 4px;
 				background: transparent;
 				transition: border 0.1s ease;
-				
+
 				&:hover {
 					border: solid 1px @themeColor;
 				}
 			}
-			
+
 			.delete-all-button {
 				-webkit-appearance: none;
 				-moz-appearance: none;
@@ -419,15 +385,15 @@ main {
 				outline: none;
 				background: transparent;
 				cursor: pointer;
-				
+
 				&:hover {
 					background: rgba(0, 0, 0, 0.1);
 				}
-				
+
 				&:active {
 					background: rgba(0, 0, 0, 0.2);
 				}
-				
+
 				* {
 					pointer-events: none;
 				}
