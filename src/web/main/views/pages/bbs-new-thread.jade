@@ -1,0 +1,21 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title Misskey掲示板 - スレッドを作成する
+		link(rel='stylesheet', href='/resources/styles/bbs-new-thread.css')
+		script(src='/resources/scripts/bbs-new-thread.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			form#new-thread-form
+				h1
+					| 新しく
+					b スレッド
+					| を作成しますか？
+				input.ui-input-text(type='text', name='title', placeholder='スレッドタイトル')
+				input.ui-button(type='submit', value='スレッドを作成する')

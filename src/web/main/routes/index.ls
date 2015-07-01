@@ -46,6 +46,7 @@ module.exports = (app) ->
 		res.send "var config = conf = #{to-json config.public-config};"
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 	app.get '/bbs' (req, res) -> (require '../controllers/bbs-home') req, res
+	app.get '/bbs-new' (req, res) -> res.display req, res, 'bbs-new-thread'
 	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/talk' (req, res) -> (require '../controllers/i-talks') req, res
