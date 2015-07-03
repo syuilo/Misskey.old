@@ -44,7 +44,7 @@ $ ->
 					result.for-each (user) ->
 						$result.find \ol .append do
 							$ \<li> .append do
-								$ \<a> .attr {
+								$ '<a class="ui-waves-effect">' .attr {
 									'href': "#{config.url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
@@ -53,7 +53,7 @@ $ ->
 									$ '<span class="name">' .text user.name
 								.append do
 									$ '<span class="screenName">' .text "@#{user.screen-name}"
-								
+					window.init-waves-effects!
 			.fail ->
 
 $ window .load ->
