@@ -2,7 +2,7 @@ require! {
 	'../application': Application
 	'../user': User
 }
-module.exports = (src-talk-msg) ->
+module.exports = (src-talk-msg, callback) ->
 	talk-msg = {
 		created-at: src-talk-msg.created-at
 		is-image-attached: src-talk-msg.is-image-attached
