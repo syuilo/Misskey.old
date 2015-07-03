@@ -7,6 +7,11 @@ $.fn.extend {
 
 window.escapeHTML = (val) ->
 	$ '<div />' .text(val).html!
+	
+window.init-waves-effects ->
+	Waves.attach '.ui-button'
+	Waves.attach '.ui-waves-effect'
+	Waves.init!
 
 $ ->
 	update-relative-times!
@@ -31,10 +36,8 @@ $ ->
 				| _ => ''
 			$ @ .text time-text
 	
-	# Attach Wave effects 
-	Waves.attach '.ui-button'
-	Waves.attach '.ui-waves-effect'
-	Waves.init!
+	# Attach Waves effects 
+	window.init-waves-effects!
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
 	$window = $ '''

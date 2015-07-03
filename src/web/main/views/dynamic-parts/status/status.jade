@@ -13,8 +13,10 @@ div.status.article(
 		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
 		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
 		data-source-id          = status.isRepostToStatus ? status.id : null
+		data-text               = status.text
 		data-user-id            = status.user.id
 		data-user-screen-name   = status.user.screenName
+		data-user-name          = status.user.name
 		data-user-color         = status.user.color
 		data-user-verified     != status.user.isPlus.toString()
 		data-is-reply          != status.isReply.toString()

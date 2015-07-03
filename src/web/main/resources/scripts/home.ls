@@ -1,3 +1,13 @@
+function add-status($status)
+	new Audio '/resources/sounds/pop.mp3' .play!
+		
+	$status = $ '<li class="status">' .append($status).hide!
+	window.STATUSTIMELINE.set-event $status.children '.status.article'
+	$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
+	
+	# Attach Wave effects 
+	init-waves-effects!
+
 $ ->
 	try
 		Notification.request-permission!
@@ -46,35 +56,29 @@ $ ->
 
 	socket.on \status (status) ->
 		console.log \status status
-		new Audio '/resources/sounds/pop.mp3' .play!
-		
-		$status = $ '<li class="status">' .append($ status).hide!
-		window.STATUSTIMELINE.set-event $status.children '.status.article'
-		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
+		add-status $ status
 
 	socket.on \repost (status) ->
 		console.log \repost status
-		new Audio '/resources/sounds/pop.mp3' .play!
-		
-		$status = $ '<li class="status">' .append($ status).hide!
-		window.STATUSTIMELINE.set-event $status.children '.status.article'
-		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
+		add-status $ status
 
 	socket.on \reply (status) ->
 		console.log \reply status
-		new Audio '/resources/sounds/pop.mp3' .play!
+		$status = $ status
+		add-status $status
 		
-		$status = $ '<li class="status">' .append($ status).hide!
-		window.STATUSTIMELINE.set-event $status.children '.status.article'
-		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
-		n = new Notification post.user.name, {
-			body: post.text
-			icon: conf.url + '/img/icon/' + post.user.screen-name
+		id = $status.attr \data-id
+		name = $status.attr \data-user-name
+		sn = $status.attr \data-user-screen-name
+		text = $status.attr \data-text
+		n = new Notification name, {
+			body: text
+			icon: "#{conf.url}/img/icon/#sn"
 		}
 		n.onshow = ->
-			set-timeout n.close, 10000
+			set-timeout n.close, 10000ms
 		n.onclick = ->
-			window.open conf.url + '/' + post.user.screenName + '/post/' + post.id
+			window.open "#{conf.url}/#{sn}/status/#{id}"
 
 	socket.on \talk-message (message) ->
 		console.log \talk-message message
