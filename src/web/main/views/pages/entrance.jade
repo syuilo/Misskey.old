@@ -122,7 +122,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						p.caption
 							| Misskey内のID。(半角英数字)
 						div.content
-							input.user-name-input.ui-inputText(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
+							input.user-name-input.ui-input-text(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
 					div.nav
 						button.cancel(type='button') キャンセル
 						button.next(type='button', disabled) 次！
@@ -132,7 +132,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						p.caption
 							| あなたのニックネーム。
 						div.content
-							input.nickname-input.ui-inputText(name='name', type='text', required)
+							input.nickname-input.ui-input-text(name='name', type='text', required)
 					div.nav
 						button.back(type='button') 戻る
 						button.next(type='button', disabled) 次！
@@ -142,7 +142,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						p.caption
 							| 8文字以上の強固なパスワード。
 						div.content
-							input.password-input.ui-inputPassword(name='password', type='password', required)
+							input.password-input.ui-input-password(name='password', type='password', required)
 					div.nav
 						button.back(type='button') 戻る
 						button.next(type='button', disabled) 次！
@@ -152,7 +152,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						p.caption
 							| もう一度同じパスワードを入力してください。
 						div.content
-							input.password-retype-input.ui-inputPassword(name='retype-password', type='password', required)
+							input.password-retype-input.ui-input-password(name='retype-password', type='password', required)
 					div.nav
 						button.back(type='button') 戻る
 						button.next(type='button', disabled) 次！
@@ -162,7 +162,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						p.caption
 							| あなたのイメージカラー。
 						div.content
-							input.user-color-input.ui-inputColor(name='color', type='color', required)
+							input.user-color-input.ui-input-color(name='color', type='color', required)
 					div.nav
 						button.back(type='button') 戻る
 						button.next(type='button', disabled) 決定！
