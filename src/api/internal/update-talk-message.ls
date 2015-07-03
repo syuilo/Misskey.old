@@ -1,6 +1,7 @@
 require! {
 	'../../utils/publish-redis-streaming'
 	'../../models/talk-message': TalkMessage
+	'../../models/utils/filter-talk-message-for-response'
 }
 
 module.exports = (app, user, message-id, text) ->
@@ -31,6 +32,7 @@ module.exports = (app, user, message-id, text) ->
 				resolve message
 
 				# Streaming events
+				obj <- filter-talk-message-for-response message
 				publish-redis-streaming "talkStream:#{message.otherparty-id}-#{user.id}" to-json do
 					type: \otherpartyMessageUpdate
 					value: obj
