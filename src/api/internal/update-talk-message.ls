@@ -16,7 +16,7 @@ module.exports = (app, user, message-id, text) ->
 		(err, message) <- TalkMessage.find-by-id message-id
 		switch
 		| err? => throw-error \message-find-error err
-		| message? => throw-error \message-not-found 'Message not found.'
+		| !message? => throw-error \message-not-found 'Message not found.'
 		| not message.is-image-attached and empty text => throw-error \empty-text 'Empty text.'
 		| message.user-id != user.id => throw-error \not-author 'Message that you have sent only can not be modified.'
 		| message.is-deleted => throw-error \message-has-been-deleted 'Message has been deleted.'
