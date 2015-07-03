@@ -25,12 +25,15 @@ module.exports = (app, user, message-id, text) ->
 				..text = text
 				..is-edited = yes
 			err <- message.save
-			resolve message
-			
-			# Streaming events
-			publish-redis-streaming "talkStream:#{message.otherparty-id}-#{user.id}" to-json do
-				type: \otherpartyMessageUpdate
-				value: obj
-			publish-redis-streaming "talkStream:#{user.id}-#{message.otherparty-id}" to-json do
-				type: \meMessageUpdate
-				value: obj
+			if err?
+				throw-error \message-save-error err
+			else
+				resolve message
+
+				# Streaming events
+				publish-redis-streaming "talkStream:#{message.otherparty-id}-#{user.id}" to-json do
+					type: \otherpartyMessageUpdate
+					value: obj
+				publish-redis-streaming "talkStream:#{user.id}-#{message.otherparty-id}" to-json do
+					type: \meMessageUpdate
+					value: obj
