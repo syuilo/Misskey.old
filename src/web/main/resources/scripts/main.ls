@@ -8,7 +8,7 @@ $.fn.extend {
 window.escapeHTML = (val) ->
 	$ '<div />' .text(val).html!
 	
-window.init-waves-effects ->
+window.init-waves-effects = ->
 	Waves.attach '.ui-button'
 	Waves.attach '.ui-waves-effect'
 	Waves.init!
