@@ -1,6 +1,7 @@
 div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 		title= message.createdAt
 		data-id= message.id
+		data-is-edited!= message.isEdited.toString()
 		data-is-readed!= message.isReaded.toString()
 		data-is-deleted!= message.isDeleted.toString()
 		data-user-id= message.user.id
@@ -21,4 +22,7 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 						img.image(src= config.url + '/img/talk-message/' + message.id, alt='image')
 				else
 					p.isDeleted このメッセージは削除されました
-			time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+			footer
+				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
+				if message.isEdited
+					i.fa.fa-pencil.is-edited
