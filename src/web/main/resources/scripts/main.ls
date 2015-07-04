@@ -14,7 +14,7 @@ window.init-waves-effects = ->
 	Waves.init!
 
 window.display-message = (message) ->
-	$message  $ '<p class="ui-message">' .text message
+	$message = $ '<p class="ui-message">' .text message
 	$ \body .prepend $message
 	$message.animate {
 		opacity: \1
