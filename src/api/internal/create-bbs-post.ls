@@ -10,12 +10,17 @@ require! {
 
 module.exports = (app, user, thread-id, text, image = null) ->
 	resolve, reject <- new Promise!
+	
+	function throw-error(code, message)
+		reject {code, message}
+		
 	text .= trim!
 	switch
-	| null-or-empty text => reject 'Empty text.'
+	| !image? && null-or-empty text => throw-error \empty-text 'Empty text.'
+	| text.length > 1000chars => throw-error \too-long-text 'Too long text.'
 	| null-or-empty thread-id => reject 'Empty thread-id.'
 	| _ =>
-		err, thread <- BBSThread.find-by-id thread-id
+		(err, thread) <- BBSThread.find-by-id thread-id
 		if err?
 			reject err
 		else
@@ -24,23 +29,20 @@ module.exports = (app, user, thread-id, text, image = null) ->
 					user-id: user.id
 					thread-id: thread.id
 				} .sort \-createdAt .exec 
-				if err?
-					reject err
-				else
-					switch
-					| recent-post? && text == recent-post.text => reject 'Duplicate content.'
-					| image? =>
-						image-quality = if user.is-plus then 80 else 60
-						gm image
-							.compress \jpeg
-							.quality image-quality
-							.to-buffer \jpeg (, buffer) ->
-								create app, user, thread, text, buffer
-					| _ => create app, user, thread, text, null
+				switch
+				| recent-post? && text == recent-post.text => throw-error \duplicate-content 'Duplicate content.'
+				| image? =>
+					image-quality = if user.is-plus then 80 else 60
+					gm image
+						.compress \jpeg
+						.quality image-quality
+						.to-buffer \jpeg (, buffer) ->
+							create buffer
+				| _ => create null
 			else
-				reject 'Thread not found.'
+				throw-error \thread-not-fount 'Thread not found.'
 
-	function create(app, user, thread, text, image)
+	function create(image)
 		err, count <- BBSPost.count {thread.id}
 		if err?
 			reject err
@@ -48,7 +50,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 			thread-cursor = count + 1
 
 			post = new BBSPost!
-				..app-id = app.id
+				..app-id = if app? then app.id else null
 				..text = text
 				..user-id = user.id
 				..thread-cursor = thread-cursor
@@ -75,11 +77,8 @@ module.exports = (app, user, thread-id, text, image = null) ->
 								value: {post.id}
 							publish-redis-streaming "userStream:#{reply-post.user-id}" stream-mention-obj
 
-			if err?
-				reject err
-			else
-				switch
-				| image? =>
-					bbs-post-image = new BBSPostImage {post-id: created-post.id, image}
-					bbs-post-image.save -> done!
-				| _ => done!
+			switch
+			| image? =>
+				bbs-post-image = new BBSPostImage {post-id: created-post.id, image}
+				bbs-post-image.save -> done!
+			| _ => done!
