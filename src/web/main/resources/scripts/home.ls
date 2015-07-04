@@ -152,8 +152,7 @@ $ ->
 			$form.find \textarea .focus!
 			$submit-button.attr \disabled no
 			$submit-button.attr \value 'Update \uf1d8'
-			error-code = data.error.code
-			console.log data
+			error-code = JSON.parse data.response-text .error.code
 			switch error-code
 			| \empty-text => 
 			| \duplicate-content => window.display-message '投稿が重複しています。'
