@@ -17,12 +17,38 @@ main {
 	background: #fff;
 
 	h1 {
+		display: block;
+		position: relative;
 		margin: 0 0 16px 0;
 		padding: 16px 0 16px 0;
 		text-align: center;
 		font-size: 1.5em;
 		font-weight: 100;
 		border-bottom: solid 1px #eee;
+
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: 0px;
+			left: ~"calc(50% - 64px)";
+			border-top: solid 64px transparent;
+			border-right: solid 64px transparent;
+			border-bottom: solid 64px #eee;
+			border-left: solid 64px transparent;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: -16px;
+			left: ~"calc(50% - 64px)";
+			border-top: solid 64px transparent;
+			border-right: solid 64px transparent;
+			border-bottom: solid 64px #fff;
+			border-left: solid 64px transparent;
+		}
 
 		i {
 			margin-right: 8px;
