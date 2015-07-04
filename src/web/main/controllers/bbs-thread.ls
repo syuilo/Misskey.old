@@ -7,6 +7,7 @@ require! {
 module.exports = (req, res) ->
 	thread = req.root-thread
 	get-bbs-posts thread.id, 1000posts .then (posts) ->
+		posts .= reverse!
 		generate-bbs-posts-html posts, (html) ->
 			res.display req, res, 'bbs-thread' do
 				thread: thread
