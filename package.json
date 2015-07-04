@@ -13,7 +13,8 @@
   "main": "./",
   "scripts": {
     "build": "gulp build",
-    "test": "gulp test"
+    "test": "gulp test",
+    "watch": "gulp watch"
   },
   "dependencies": {
     "bcrypt": "0.8.3",
@@ -35,7 +36,6 @@
     "mongoose": "4.0.6",
     "mongoose-auto-increment": "4.0.0",
     "multer": "0.1.8",
-    "oauth2-server": "2.4.0",
     "prelude-ls": "1.1.2",
     "redis": "0.12.1",
     "socket.io": "1.3.5",
