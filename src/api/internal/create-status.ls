@@ -16,9 +16,10 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 		reject {code, message}
 	
 	text .= trim!
-	if !image? && null-or-empty text
-		throw-error \empty-text 'Empty text.'
-	else
+	switch
+	| !image? && null-or-empty text => throw-error \empty-text 'Empty text.'
+	| text.length > 300chars => throw-error \too-long-text 'Too long text.'
+	| _ =>
 		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
 		switch
 		| recent-status? && text == recent-status.text => throw-error \duplicate-content 'Duplicate content.'

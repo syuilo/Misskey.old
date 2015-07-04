@@ -154,7 +154,8 @@ $ ->
 			$submit-button.attr \value 'Update \uf1d8'
 			error-code = JSON.parse data.response-text .error.code
 			switch error-code
-			| \empty-text => window.display-message "テキストを入力してください。"
+			| \empty-text => window.display-message 'テキストを入力してください。'
+			| \too-long-text => window.display-message 'テキストが長過ぎます。'
 			| \duplicate-content => window.display-message '投稿が重複しています。'
 			| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
 			| _ => window.display-message "不明なエラー (#error-code)"
