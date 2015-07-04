@@ -36,7 +36,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 
 		$submit-button.attr \disabled yes
-		$submit-button.attr \value 'Updating...'
+		$submit-button.attr \value '投稿しています...'
 
 		$.ajax config.api-url + '/bbs/post/create' {
 			type: \post
@@ -51,14 +51,14 @@ $ ->
 			$form.find \.image-attacher .find 'p, img' .remove!
 			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
 			$submit-button.attr \disabled no
-			$submit-button.attr \value 'Update \uf1d8'
+			$submit-button.attr \value '投稿 \uf1d8'
 			$.remove-cookie \post-autosave
 			window.display-message '投稿しました！'
 		.fail (data) ->
 			#$form[0].reset!
 			$form.find \textarea .focus!
 			$submit-button.attr \disabled no
-			$submit-button.attr \value 'Update \uf1d8'
+			$submit-button.attr \value '投稿 \uf1d8'
 			error-code = JSON.parse data.response-text .error.code
 			switch error-code
 			| \empty-text => window.display-message 'テキストを入力してください。'
