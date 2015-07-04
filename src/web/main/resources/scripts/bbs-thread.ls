@@ -2,7 +2,7 @@ function add-post($post)
 	new Audio '/resources/sounds/pop.mp3' .play!
 		
 	$post = $ '<li class="post">' .append($post).hide!
-	$post.prepend-to ($ '#posts .timeline > .posts') .show 200
+	$post.append-to ($ '#posts .timeline > .posts') .show 200
 
 $ ->
 	thread-id = $ \html .attr \data-thread-id
