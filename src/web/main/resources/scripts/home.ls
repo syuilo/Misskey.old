@@ -129,7 +129,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 
 		$submit-button.attr \disabled yes
-		$submit-button.text 'Updating...'
+		$submit-button.attr \value 'Updating...'
 
 		$.ajax config.api-url + '/status/update' {
 			type: \post
@@ -137,21 +137,27 @@ $ ->
 			-content-type
 			data: new FormData $form.0
 			data-type: \json
-			xhr-fields: {+with-credentials}
-		} .done (data) ->
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
 			$form[0].reset!
 			$form.find \textarea .focus!
 			$form.find \.image-attacher .find 'p, img' .remove!
 			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
 			$submit-button.attr \disabled no
-			$submit-button.text 'Update'
+			$submit-button.attr \value 'Update \uf1d8'
 			$.remove-cookie \post-autosave
+			window.display-message '投稿しました！'
 		.fail (data) ->
-			$form[0].reset!
+			#$form[0].reset!
 			$form.find \textarea .focus!
-			/*alert('error');*/
 			$submit-button.attr \disabled no
-			$submit-button.text 'Update'
+			$submit-button.attr \value 'Update \uf1d8'
+			error-code = JSON.parse data.response-text .error.code
+			switch error-code
+			| \empty-text => 
+			| \duplicate-content => window.display-message '投稿が重複しています。'
+			| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
+			| _ => window.display-message "不明なエラー (#error-code)"
 	
 	$ '#post-form textarea' .bind \input ->
 		text = $ '#post-form textarea' .val!
