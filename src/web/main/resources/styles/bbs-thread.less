@@ -1,3 +1,9 @@
+@themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+@fadeThemeColor: fade(lighten(@themeColor, 47%), 95%);
+
 html {
 	background: #eee;
 }
@@ -26,6 +32,162 @@ main {
 			margin: 0;
 			padding: 0;
 			list-style: none;
+		}
+	}
+}
+
+#post-form-container {
+
+	#post-form {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 650px;
+		margin: 0 auto;
+		padding: 16px 32px 12px 32px;
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.icon {
+			display: block;
+			float: left;
+			max-width: 64px;
+			max-height: 64px;
+			margin: 0 16px 0 0;
+			padding: 0;
+			vertical-align: bottom;
+			border-radius: 32px;
+		}
+
+		.form {
+			display: block;
+			position: relative;
+			float: left;
+			width: ~"calc(100% - 80px)";
+
+			textarea {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				box-sizing: border-box;
+				width: 100%;
+				min-width: 100%;
+				max-width: 100%;
+				height: 64px;
+				min-height: 64px;
+				margin: 0;
+				padding: 8px 12px;
+				font-size: 1.2em;
+				color: #000;
+				outline: none;
+				border: solid 2px #eee;
+				border-radius: 0;
+				box-shadow: none;
+				transition: border 0.2s ease, color 0.2s ease;
+
+				&:hover {
+					border: solid 2px @themeColor;
+
+					& + .design-allow:before {
+						border-right: solid 12px @themeColor;
+					}
+				}
+
+				&:focus {
+					color: darken(@themeColor, 20%);
+					outline: none;
+					border: solid 2px @themeColor;
+
+					& + .design-allow:before {
+						border-right: solid 12px @themeColor;
+					}
+				}
+			}
+
+			.design-allow {
+				content: "";
+				display: block;
+				position: absolute;
+				z-index: 1;
+				top: 8px;
+				left: -23px;
+
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					font-size: 0;
+					line-height: 0;
+					border-top: solid 12px transparent;
+					border-right: solid 12px #eee;
+					border-bottom: solid 12px transparent;
+					border-left: solid 12px transparent;
+					transition: border 0.2s ease;
+				}
+
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					z-index: 1;
+					top: 1px;
+					left: 4px;
+					font-size: 0;
+					line-height: 0;
+					border-top: solid 11px transparent;
+					border-right: solid 11px #fff;
+					border-bottom: solid 11px transparent;
+					border-left: solid 11px transparent;
+					transition: border 0.2s ease;
+				}
+			}
+
+			.image-attacher {
+				box-sizing: border-box;
+				display: inline-block;
+				position: relative;
+				float: right;
+				margin: 2px 8px;
+				padding: 8px 16px;
+				vertical-align: top;
+				line-height: 1.2em;
+				outline: dashed 2px rgba(0, 0, 0, 0.1);
+
+				&:hover {
+					outline: dashed 2px rgba(0, 0, 0, 0.2);
+				}
+
+				input[type=file] {
+					display: inline;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+					opacity: 0;
+				}
+
+				p {
+					margin: 0;
+					padding: 0;
+					color: #777;
+					line-height: 1.2em;
+					font-size: 1em;
+				}
+
+				img {
+					max-width: 100%;
+					max-height: 128px;
+				}
+			}
+
+			.ui-button {
+				float: right;
+			}
 		}
 	}
 }
