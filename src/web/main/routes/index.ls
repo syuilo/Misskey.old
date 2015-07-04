@@ -8,6 +8,7 @@ require! {
 	'../../../models/access-token': AccessToken
 	'../../../models/user': User
 	'../../../models/status': Status
+	'../../../models/bbs-thread': BBSThread
 	'../../../utils/login': do-login
 	'../../../config'
 	'./image': image-router
@@ -36,6 +37,15 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'status-not-found' {}
+	app.param \bbsThreadId (req, res, next, thread-id) ->
+		BBSThread.find-by-id thread-id, (, thread) ->
+			if thread?
+				req.root-thread = req.data.root-thread = thread
+				next!
+			else
+				res
+					..status 404
+					..display req, res, 'thread-not-found' {}
 
 	app.get '/' (req, res) ->
 		if req.login
@@ -46,6 +56,7 @@ module.exports = (app) ->
 		res.send "var config = conf = #{to-json config.public-config};"
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 	app.get '/bbs' (req, res) -> (require '../controllers/bbs-home') req, res
+	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require '../controllers/bbs-thread') req, res
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
 	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res
@@ -65,5 +76,4 @@ module.exports = (app) ->
 	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	app.get '/:userSn/talk' require '../controllers/user-talk'
-	app.get '/:userSn/:postId(\\d+)' (req, res) -> (require '../controllers/post') req, res
-	app.get '/:userSn/post/:postId(\\d+)' (req, res) -> (require '../controllers/post') req, res
+	app.get '/:userSn/status/:statusId' (req, res) -> (require '../controllers/status') req, res
