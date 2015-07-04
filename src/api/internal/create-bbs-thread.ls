@@ -1,9 +1,8 @@
 require! {
 	'./create-bbs-post'
+	'./create-bbs-thread-watch'
 	'../../models/user': User
 	'../../models/bbs-thread': BBSThread
-	'../../models/bbs-post': BBSPost
-	'../../models/bbs-thread-watch': BBSThreadWatch
 }
 
 module.exports = (app, user, title, text = null) ->
@@ -24,11 +23,7 @@ module.exports = (app, user, title, text = null) ->
 
 		(, created-thread) <- thread.save
 		
-		watch = new BBSThreadWatch!
-			..thread-id = created-thread.id
-			..user-id = user.id
-			
-		(, created-watch) <- watch.save
+		(watch) <- create-bbs-thread-watch app, user, created-thread.id .then 
 		
 		if text?
 			create-bbs-post app, user, created-thread.id, text .then do
