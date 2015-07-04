@@ -14,6 +14,7 @@ main: './'
 scripts:
 	build: 'gulp build'
 	test: 'gulp test'
+	watch: 'gulp watch'
 
 dependencies:
 	bcrypt: '0.8.3'

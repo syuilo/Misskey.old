@@ -3,7 +3,8 @@ require! {
 	'gulp-livescript': ls
 }
 
-{task, src, dest} = {gulp~task, gulp~src, gulp~dest}
+{task, src, dest, watch} = {gulp~task, gulp~src, 
+gulp~dest, gulp~watch}
 
 task \build <[ build-package-json build-ls build-copy ]>
 
@@ -22,5 +23,8 @@ task \build-copy ->
 		.pipe dest './lib'
 
 task \test <[ build ]>
+
+task \watch <[ build ]> ->
+	watch './src/**/*' <[ build ]>
 
 task \default <[ build ]>
