@@ -144,14 +144,14 @@ $ ->
 			$form.find \.image-attacher .find 'p, img' .remove!
 			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
 			$submit-button.attr \disabled no
-			$submit-button.attr \value 'Update &#xf1d8;'
+			$submit-button.attr \value 'Update \uf1d8'
 			$.remove-cookie \post-autosave
 			window.display-message '投稿しました！'
 		.fail (data) ->
-			$form[0].reset!
+			#$form[0].reset!
 			$form.find \textarea .focus!
 			$submit-button.attr \disabled no
-			$submit-button.attr \value 'Update &#xf1d8;'
+			$submit-button.attr \value 'Update \uf1d8'
 			error-code = data.error.code
 			switch error-code
 			| \empty-text => 
