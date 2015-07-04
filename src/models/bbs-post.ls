@@ -12,12 +12,12 @@ db = mongoose.create-connection config.mongo.uri, config.mongo.options
 mongoose-auto-increment.initialize db
 
 schema = new Schema do
-	app-id:            {type: Schema.Types.ObjectId,   required: yes}
+	app-id:            {type: Schema.Types.ObjectId,   required: no}
 	created-at:        {type: Date,                    required: yes, default: Date.now}
 	cursor:            {type: Number}
 	is-image-attached: {type: Boolean,                 default: false}
 	replies:           {type: [Schema.Types.ObjectId], default: []}
-	text:              {type: String,                  required: yes}
+	text:              {type: String,                  required: no,  default: null}
 	thread-cursor:     {type: Number,                  required: yes}
 	thread-id:         {type: Schema.Types.ObjectId,   required: yes}
 	user-id:           {type: Schema.Types.ObjectId,   required: yes}
