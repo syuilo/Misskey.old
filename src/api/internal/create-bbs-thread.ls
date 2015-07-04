@@ -27,7 +27,9 @@ module.exports = (app, user, title, text = null) ->
 		
 		console.log text
 		if text?
-			create-bbs-post app, user, created-thread.id, text .then do
+			create-bbs-post do
+				app, user, created-thread.id, text
+			.then do
 				(post) ->
 					console.log post
 					resolve created-thread
