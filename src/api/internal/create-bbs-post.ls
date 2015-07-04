@@ -30,8 +30,11 @@ module.exports = (app, user, thread-id, text, image = null) ->
 				gm image
 					.compress \jpeg
 					.quality image-quality
-					.to-buffer \jpeg (, buffer) ->
-						create buffer
+					.to-buffer \jpeg (err, buffer) ->
+						if err? || !buffer?
+							throw-error \failed-attach-image 'Failed attach image.'
+						else
+							create buffer
 			| _ => create null
 		else
 			throw-error \thread-not-fount 'Thread not found.'
