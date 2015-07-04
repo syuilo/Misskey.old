@@ -27,8 +27,8 @@ $ ->
 		type: \get
 		data: {}
 		data-type: \json
-		xhr-fields: {+with-credentials}
-	} .done (data) ->
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
 		if data != ''
 			$notices = $ data
 			$notices.each ->
