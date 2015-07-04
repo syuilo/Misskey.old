@@ -23,7 +23,7 @@ module.exports = (app, user, title, text = null) ->
 
 		(, created-thread) <- thread.save
 		
-		(watch) <- create-bbs-thread-watch app, user, created-thread.id .then 
+		watch <- create-bbs-thread-watch app, user, created-thread.id .then 
 		
 		if text?
 			create-bbs-post app, user, created-thread.id, text .then do
