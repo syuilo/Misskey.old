@@ -21,64 +21,61 @@ module.exports = (app, user, thread-id, text, image = null) ->
 	| null-or-empty thread-id => reject 'Empty thread-id.'
 	| _ =>
 		(err, thread) <- BBSThread.find-by-id thread-id
-		if err?
-			reject err
-		else
-			if thread?
-				(err, recent-post) <- BBSPost.find-one {
-					user-id: user.id
-					thread-id: thread.id
-				} .sort \-createdAt .exec 
-				switch
-				| recent-post? && text == recent-post.text => throw-error \duplicate-content 'Duplicate content.'
-				| image? =>
-					image-quality = if user.is-plus then 80 else 60
-					gm image
-						.compress \jpeg
-						.quality image-quality
-						.to-buffer \jpeg (, buffer) ->
-							create buffer
-				| _ => create null
-			else
-				throw-error \thread-not-fount 'Thread not found.'
-
-	function create(image)
-		err, count <- BBSPost.count {thread.id}
-		if err?
-			reject err
-		else
-			thread-cursor = count + 1
-
-			post = new BBSPost!
-				..app-id = if app? then app.id else null
-				..text = text
-				..user-id = user.id
-				..thread-cursor = thread-cursor
-				..thread-id = thread.id
-
-			err, created-post <- post.save
-			function done
-				resolve created-post
-
-				stream-obj = to-json do
-					type: \post
-					value: {id: post.id}
-
-				publish-redis-streaming "bbsThreadStream:#{thread.id}" stream-obj
-
-				mentions = text == />>[0-9]+/g
-				if mentions?
-					mentions |> each (mention-thread-cursor) ->
-						mention-thread-cursor .= replace '>>' ''
-						(, reply-post) <- BBSPost.find-one {thread-id: thread.id} `$and` {thread-cursor: mention-thread-cursor}
-						if reply-post?
-							stream-mention-obj = to-json do
-								type: \thread-post-reply
-								value: {post.id}
-							publish-redis-streaming "userStream:#{reply-post.user-id}" stream-mention-obj
-
+		if thread?
+			(err, recent-post) <- BBSPost.find-one {
+				user-id: user.id
+				thread-id: thread.id
+			} .sort \-createdAt .exec 
 			switch
+			| recent-post? && text == recent-post.text => throw-error \duplicate-content 'Duplicate content.'
 			| image? =>
-				bbs-post-image = new BBSPostImage {post-id: created-post.id, image}
-				bbs-post-image.save -> done!
-			| _ => done!
+				image-quality = if user.is-plus then 80 else 60
+				gm image
+					.compress \jpeg
+					.quality image-quality
+					.to-buffer \jpeg (, buffer) ->
+						create buffer
+			| _ => create null
+		else
+			throw-error \thread-not-fount 'Thread not found.'
+
+		function create(image)
+			err, count <- BBSPost.count {thread.id}
+			if err?
+				reject err
+			else
+				thread-cursor = count + 1
+
+				post = new BBSPost!
+					..app-id = if app? then app.id else null
+					..text = text
+					..user-id = user.id
+					..thread-cursor = thread-cursor
+					..thread-id = thread.id
+
+				err, created-post <- post.save
+				function done
+					resolve created-post
+
+					stream-obj = to-json do
+						type: \post
+						value: {id: post.id}
+
+					publish-redis-streaming "bbsThreadStream:#{thread.id}" stream-obj
+
+					mentions = text == />>[0-9]+/g
+					if mentions?
+						mentions |> each (mention-thread-cursor) ->
+							mention-thread-cursor .= replace '>>' ''
+							(, reply-post) <- BBSPost.find-one {thread-id: thread.id} `$and` {thread-cursor: mention-thread-cursor}
+							if reply-post?
+								stream-mention-obj = to-json do
+									type: \thread-post-reply
+									value: {post.id}
+								publish-redis-streaming "userStream:#{reply-post.user-id}" stream-mention-obj
+
+				switch
+				| image? =>
+					bbs-post-image = new BBSPostImage {post-id: created-post.id, image}
+					bbs-post-image.save -> done!
+				| _ => done!
