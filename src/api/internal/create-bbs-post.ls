@@ -40,7 +40,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 			throw-error \thread-not-fount 'Thread not found.'
 
 		function create(image)
-			err, count <- BBSPost.count {thread.id}
+			err, count <- BBSPost.count {thread-id: thread.id}
 			thread-cursor = count + 1
 
 			post = new BBSPost!
