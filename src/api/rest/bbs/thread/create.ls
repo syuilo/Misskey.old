@@ -5,10 +5,10 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	[title] = get-express-params req, <[ title ]>
+	[title, text] = get-express-params req, <[ title text ]>
 
 	create-bbs-thread do
-		app, user, title
+		app, user, title, text
 	.then do
 		(thread) ->
 			res.api-render thread.to-object!

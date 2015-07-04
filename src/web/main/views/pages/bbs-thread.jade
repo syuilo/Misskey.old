@@ -1,0 +1,32 @@
+doctype html
+
+html(lang='ja', dir='ltr', data-thread-id= thread.id)
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title= thread.title
+		link(rel='stylesheet', href='/resources/styles/bbs-thread.css')
+		script(src=webStreamingUrl + '/socket.io/socket.io.js')
+		script(src='/resources/scripts/bbs-thread.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			header
+				h1= thread.title
+			div#posts!= postsHtml
+			footer
+				div#post-form-container
+					form#post-form(enctype='multipart/form-data', role='form')
+						img.icon(src='/img/icon/' + me.screenName, alt='icon', title=me.comment)
+						div.form
+							textarea(name='text', placeholder='', role='textbox', aria-multiline)
+							div.design-allow(role='presentation')
+							input(type='hidden', name='thread-id', value= thread.id)
+							input.ui-button(type='submit', value!='投稿 &#xf1d8;', role='button')
+							ul.tag.ui-taginput
+							div.image-attacher
+								p
+									i.fa.fa-picture-o
+								input(name='image', type='file', accept='image/*')

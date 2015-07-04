@@ -1,0 +1,7 @@
+article
+	header
+		h2
+			span.number= post.threadCursor
+			a(href='/' + post.user.screenName)= post.user.name
+	div.content
+		p.text= post.text

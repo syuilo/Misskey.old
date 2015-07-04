@@ -6,6 +6,7 @@ require! {
 	'../config'
 	'./streaming/home'
 	'./streaming/talk'
+	'./streaming/bbs-thread'
 	'./streaming/log'
 	'express-session': session
 	'socket.io': SocketIO
@@ -48,6 +49,9 @@ home io, session-store
 
 # Talk stream
 talk io, session-store
+
+# BBS Thread stream
+bbs-thread io, session-store
 
 # Misskey log stream
 log io

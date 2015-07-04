@@ -17,13 +17,11 @@ html(lang='ja', dir='ltr')
 					i.fa.fa-angle-double-right
 					| Misskey掲示板
 			div.contents
-				form#new-thread-form
-					h2
-						| 新しく
-						b スレッド
-						| を作成しますか？
-					input.ui-input-text(type='text', name='title', placeholder='スレッドタイトル')
-					input.ui-button(type='submit', value='スレッドを作成する')
+				div#new
+					p
+						| Misskey掲示板では、共通の話題で話し合えます。スレッドが見つかりませんか？
+						a(href='/bbs/new') 新しくスレッドを作成
+						| してみてはいかがでしょう。
 				article#hot-threads
 					h2 人気のスレッド
 					ol.threads

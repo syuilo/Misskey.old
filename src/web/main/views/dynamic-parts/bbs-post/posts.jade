@@ -1,0 +1,7 @@
+div.timeline
+	if posts != null && posts.length > 0
+		ol.posts
+			each post in posts
+				li.post!= post
+	else
+		p.timeline-empty 投稿がありません
