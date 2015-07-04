@@ -153,7 +153,7 @@ $ ->
 			$submit-button.attr \disabled no
 			$submit-button.attr \value 'Update \uf1d8'
 			error-code = data.error.code
-			console.log error-code
+			console.log data
 			switch error-code
 			| \empty-text => 
 			| \duplicate-content => window.display-message '投稿が重複しています。'
