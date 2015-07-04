@@ -6,6 +6,7 @@ html(lang='ja', dir='ltr')
 		meta(name='keywords', content='Misskey')
 		title= thread.title
 		link(rel='stylesheet', href='/resources/styles/bbs-thread.css')
+		script(src=webStreamingUrl + '/socket.io/socket.io.js')
 		script(src='/resources/scripts/bbs-thread.js')
 	
 	body
