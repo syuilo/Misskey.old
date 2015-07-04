@@ -18,14 +18,14 @@ window.display-message = (message) ->
 	$ \body .prepend $message
 	$message.transition {
 		opacity: \1
-		rotate-x: \0
 		perspective: \1024
+		rotate-x: \0
 	}, 200ms
 	set-timeout ->
 		$message.transition {
 			opacity: \0
-			rotate-x: \90
 			perspective: \1024
+			rotate-x: \90
 		}, 200ms
 		set-timeout ->
 			$message.remove!
