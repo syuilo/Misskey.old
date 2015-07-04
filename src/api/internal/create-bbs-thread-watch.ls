@@ -15,10 +15,16 @@ module.exports = (app, user, thread-id) ->
 	| _ =>
 		(, thread) <- BBSThread.find-by-id thread-id
 		if thread?
-			watch = new BBSThreadWatch!
-				..thread-id = thread.id
-				..user-id = user.id
-			(, created-watch) <- watch.save
-			resolve created-watch
+			(, already-watch) <- BBSThreadWatch.find-one {thread-id: thread.id} `$and` {user-id: user.id}
+			if already-watch?
+				throw-error \already-watch 'Already watch.'
+			else
+				watch = new BBSThreadWatch!
+					..thread-id = thread.id
+					..user-id = user.id
+				(, created-watch) <- watch.save
+				thread.watchers-count++
+				thread.save ->
+					resolve created-watch
 		else
 			throw-error \thread-not-found 'Thread not found.'
