@@ -12,9 +12,7 @@ require! {
 	'express-session': session
 	'connect-redis'
 	'js-yaml': yaml
-	'oauth2-server'
 	'./router': router
-	'../models/oauth/oauth': oauth-model
 	'../utils/publish-redis-streaming'
 	'../config'
 }
@@ -49,13 +47,6 @@ api-server
 			secure: no
 			max-age: null
 		store: session-store
-
-# OAuth2 settings
-api-server.oauth = oauth2-server do
-	model: oauth-model
-	grants: []
-	debug: on
-	access-token-lifetime: null
 
 api-server.use (req, res, next) ->
 	function log(status-code, done)
