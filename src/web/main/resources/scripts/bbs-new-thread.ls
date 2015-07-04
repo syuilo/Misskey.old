@@ -1,5 +1,7 @@
 $ ->
 	$ \#form .submit (event) ->
+		event.prevent-default!
+		
 		$submit-button = $form.find '[type=submit]'
 
 		$submit-button.attr \disabled yes
