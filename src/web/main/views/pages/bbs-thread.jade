@@ -12,5 +12,6 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
-			h1= thread.title
+			header
+				h1= thread.title
 			div#posts!= postsHtml
