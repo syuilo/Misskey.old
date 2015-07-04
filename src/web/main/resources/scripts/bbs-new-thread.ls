@@ -1,5 +1,6 @@
 $ ->
-	$ \#form .submit (event) ->
+	$form = $ \#form
+	$form .submit (event) ->
 		event.prevent-default!
 		
 		$submit-button = $form.find '[type=submit]'
