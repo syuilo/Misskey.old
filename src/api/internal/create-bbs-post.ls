@@ -51,6 +51,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 				..thread-id = thread.id
 
 			err, created-post <- post.save
+			
 			function done
 				resolve created-post
 
@@ -72,6 +73,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 							publish-redis-streaming "userStream:#{reply-post.user-id}" stream-mention-obj
 
 			switch
+			| err? => throw-error \post-save-error err
 			| image? =>
 				bbs-post-image = new BBSPostImage {post-id: created-post.id, image}
 				bbs-post-image.save -> done!

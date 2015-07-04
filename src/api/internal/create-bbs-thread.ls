@@ -25,16 +25,13 @@ module.exports = (app, user, title, text = null) ->
 		
 		watch <- create-bbs-thread-watch app, user, created-thread.id .then 
 		
-		console.log text
 		if text?
 			create-bbs-post do
 				app, user, created-thread.id, text
 			.then do
 				(post) ->
-					console.log post
 					resolve created-thread
 				(err) ->
-					console.log err
 					throw-error "create-post-#{err.code}" err.message
 		else
 			resolve created-thread
