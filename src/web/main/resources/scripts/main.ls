@@ -16,14 +16,14 @@ window.init-waves-effects = ->
 window.display-message = (message) ->
 	$message = $ '<p class="ui-message">' .text message
 	$ \body .prepend $message
-	$message.animate {
+	$message.transition {
 		opacity: \1
-		transform: 'perspective(1024px) rotateX(0deg)'
+		rotate-x: \0
 	}, 200ms
 	set-timeout ->
-		$message.animate {
+		$message.transition {
 			opacity: \0
-			transform: 'perspective(1024px) rotateX(90deg)'
+			rotate-x: \90
 		}, 200ms
 		set-timeout ->
 			$message.remove!
