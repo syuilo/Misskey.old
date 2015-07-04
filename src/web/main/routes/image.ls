@@ -62,6 +62,7 @@ module.exports = (app) ->
 			image-buffer = if user-image[image-type]?
 				then user-image[image-type]
 				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
+			/*
 			if (req.headers[\accept].index-of \text) == 0
 				display-image do
 					req
@@ -71,7 +72,8 @@ module.exports = (app) ->
 					user
 					"#{user-image.id} #{image-type}"
 			else
-				send-image req, res, image-buffer, "#{user-image.id} #{image-type}"
+			*/
+			send-image req, res, image-buffer, "#{user-image.id} #{image-type}"
 
 		function routing-image(user)
 			switch
