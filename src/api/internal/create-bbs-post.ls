@@ -18,7 +18,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 	switch
 	| !image? && null-or-empty text => throw-error \empty-text 'Empty text.'
 	| text.length > 1000chars => throw-error \too-long-text 'Too long text.'
-	| null-or-empty thread-id => reject 'Empty thread-id.'
+	| null-or-empty thread-id => throw-error \empty-thread-id 'Empty thread-id.'
 	| _ =>
 		(err, thread) <- BBSThread.find-by-id thread-id
 		if thread?
