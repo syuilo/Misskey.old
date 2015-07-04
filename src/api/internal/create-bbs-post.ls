@@ -22,10 +22,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 	| _ =>
 		(err, thread) <- BBSThread.find-by-id thread-id
 		if thread?
-			(err, recent-post) <- BBSPost.find-one {
-				user-id: user.id
-				thread-id: thread.id
-			} .sort \-createdAt .exec 
+			(err, recent-post) <- BBSPost.find-one {user-id: user.id} `$and` {thread-id: thread.id} .sort \-createdAt .exec
 			switch
 			| recent-post? && text == recent-post.text => throw-error \duplicate-content 'Duplicate content.'
 			| image? =>
