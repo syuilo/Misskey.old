@@ -3,5 +3,6 @@ article
 		h2
 			span.number= post.threadCursor
 			a(href='/' + post.user.screenName)= post.user.name
+			time(datetime= post.createdAt)= post.displayCreatedAt
 	div.content
 		p.text= post.text

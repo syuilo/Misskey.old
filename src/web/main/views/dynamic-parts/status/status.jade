@@ -1,7 +1,7 @@
 div.status.article(
 		class                   = status.isRepostToStatus ? 'repost' : 'normal'
 		lang                    = status.user.lang
-		title                   = status.createdAt
+		title                   = status.displayCreatedAt
 		itemscope
 		itemtype                = 'http://schema.org/BlogPosting'
 		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id

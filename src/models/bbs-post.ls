@@ -1,5 +1,4 @@
 require! {
-	moment
 	mongoose
 	'mongoose-auto-increment'
 	'../config'
@@ -25,7 +24,6 @@ schema = new Schema do
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
-	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
 	delete ret._id
 	delete ret.__v
 	ret
