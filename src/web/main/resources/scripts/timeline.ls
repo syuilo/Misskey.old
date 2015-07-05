@@ -30,16 +30,17 @@ window.STATUSTIMELINE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/status/update" {
+				$.ajax "#{config.api-url}/web/status/reply" {
 					type: \post
 					data: new FormData $form.0
 					-processData
 					-contentType
-					data-type: \json
+					data-type: \html
 					xhr-fields: {+withCredentials}}
-				.done ->
+				.done (html) ->
 					$submit-button.attr \disabled off
-					$form.text '送信しました'
+					$form.remove!
+					$status.find '.replies .statuses' .append $ html
 				.fail ->
 					$submit-button.attr \disabled off
 

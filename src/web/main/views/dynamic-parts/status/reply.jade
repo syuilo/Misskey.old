@@ -1,0 +1,18 @@
+li.status(title!= '#{status.createdAt}&#x0A;'
+	data-id= status.id
+	data-user-id= status.user.id
+	data-user-color= status.user.color
+	data-user-verified!= status.user.isPlus.toString())
+	article
+		a.icon-anchor(href= config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+			img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+		header
+			h2
+				a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
+			span.screen-name= '@' + status.user.screenName
+			a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt, pubdate, data-display-type='relative')= status.createdAt
+		div.main
+			div.text
+				p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+			if status.isImageAttached
+				img.image(src=config.url + '/img/status/' + status.id, alt='image')

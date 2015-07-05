@@ -1,4 +1,8 @@
 routing =
+	web:
+		[\post /\/web\/status\/reply(\..+)?$/   './rest/web/status/reply']
+		[\post /\/web\/status\/kyoppie(\..+)?$/   './rest/web/status/reply'] #dummy
+		
 	account:
 		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
 		[\get    /\/account\/show(\..+)?$/                 './rest/account/show']
