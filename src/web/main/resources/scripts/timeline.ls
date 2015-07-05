@@ -40,7 +40,8 @@ window.STATUSTIMELINE = {}
 				.done (html) ->
 					$reply = $ html
 					console.log $reply
-					console.log $status.find 'article > .article-main > .main > .footer > .replies > .statuses'
+					console.log $status
+					$reply.append-to $ \body
 					$submit-button.attr \disabled off
 					$reply.append-to $status.find 'article > .article-main > .main > .footer > .replies > .statuses'
 					$form.remove!
