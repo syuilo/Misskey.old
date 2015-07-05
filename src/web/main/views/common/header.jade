@@ -22,13 +22,13 @@ header#misskey-main-header(role='banner')
 						div.mainNav
 							button(role='button').misskey Misskey
 							ul
-								li.home: a.ui-waves-effect(href='/')
+								li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
 									i.fa.fa-home
 									| ホーム
-								li.mention: a.ui-waves-effect(href='/i/mention')
+								li.mention(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href='/i/mention')
 									i.fa.fa-at
 									| メンション
-								li.talk: a.ui-waves-effect(href='/i/talks' onclick='return false' title='(実装中)')
+								li.talk(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href='/i/talks' onclick='return false' title='(実装中)')
 									i.fa.fa-comments
 									| トーク
 				div.right
