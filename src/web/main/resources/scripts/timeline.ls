@@ -42,6 +42,7 @@ window.STATUSTIMELINE = {}
 					$submit-button.attr \disabled off
 					$reply.append-to $status.find '.replies > .statuses'
 					$form.remove!
+					window.display-message '返信しました！'
 				.fail ->
 					$submit-button.attr \disabled off
 
