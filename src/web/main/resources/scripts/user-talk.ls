@@ -46,6 +46,19 @@ window.TALKSTREAM = {}
 				.fail (data) ->
 					$button.attr \disabled no
 
+function add-message($message)
+	new Audio '/resources/sounds/talk-message.mp3' .play!
+	$message = ($ '<li class="message">' .append $message).hide!
+	window.TALKSTREAM.set-event $message.children \.message
+	$message.append-to $ '#stream .messages' .show 200ms
+	scroll 0, ($ \html .outer-height!)
+	timer = set-interval ->
+		scroll 0, ($ \html .outer-height!)
+	, 10ms
+	set-timeout ->
+		clear-interval timer
+	, 300ms
+
 $ ->
 	me-id = $ \html .attr \data-me-id
 	me-sn = $ \html .attr \data-me-screen-name
@@ -87,12 +100,9 @@ $ ->
 		$message = $ message
 		message-id = $message.attr \data-id
 		socket.emit \read message-id
-		new Audio '/resources/sounds/talk-message.mp3' .play!
 		if ($ '#otherparty-status #otherparty-typing')[0]
 			$ '#otherparty-status #otherparty-typing' .remove!
-		$message = ($ '<li class="message">' .append $message).hide!
-		window.TALKSTREAM.set-event $message.children \.message
-		$message.append-to $ '#stream .messages' .show 200ms
+		add-message $message
 		$.ajax config.api-url + '/talk/read' {
 			type: \post
 			data: {'message-id': message-id}
@@ -103,10 +113,7 @@ $ ->
 
 	socket.on \me-message (message) ->
 		console.log \me-message message
-		new Audio '/resources/sounds/talk-message.mp3' .play!
-		$message = ($ '<li class="message">' .append $ message).hide!
-		window.TALKSTREAM.set-event $message.children \.message
-		$message.append-to $ '#stream .messages' .show 200ms
+		add-message $ message
 
 	socket.on \otherparty-message-update (message) ->
 		console.log \otherparty-message-update message
