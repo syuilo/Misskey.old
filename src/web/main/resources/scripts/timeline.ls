@@ -40,7 +40,7 @@ window.STATUSTIMELINE = {}
 				.done (html) ->
 					$reply = $ html
 					$submit-button.attr \disabled off
-					$status.find 'article > .article-main > .main > .footer > .replies > .statuses' .append $reply
+					$reply.append-to $status.find 'article > .article-main > .main > .footer > .replies > .statuses'
 					$form.remove!
 				.fail ->
 					$submit-button.attr \disabled off
