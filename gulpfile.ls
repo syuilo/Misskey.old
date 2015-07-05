@@ -3,8 +3,7 @@ require! {
 	'gulp-livescript': ls
 }
 
-{task, src, dest, watch} = {gulp~task, gulp~src, 
-gulp~dest, gulp~watch}
+{task, src, dest, watch} = {gulp~task, gulp~src, gulp~dest, gulp~watch}
 
 task \build <[ build-package-json build-ls build-copy ]>
 
