@@ -62,17 +62,6 @@ module.exports = (app) ->
 			image-buffer = if user-image[image-type]?
 				then user-image[image-type]
 				else fs.read-file-sync path.resolve "#__dirname/../resources/images/defaults/user/#{image-property-name}[#{image-type}].jpg"
-			/*
-			if (req.headers[\accept].index-of \text) == 0
-				display-image do
-					req
-					res
-					image-buffer
-					if image-type == \image then "#{config.public-config.url}/img/#image-property-name/#sn" else "#{config.public-config.url}/img/#image-property-name/#sn/#image-type"
-					user
-					"#{user-image.id} #{image-type}"
-			else
-			*/
 			send-image req, res, image-buffer, "#{user-image.id} #{image-type}"
 
 		function routing-image(user)
@@ -104,17 +93,7 @@ module.exports = (app) ->
 			| status-image? =>
 				image-buffer = status-image.image
 				Status.find-by-id status-image.status-id, (, status) ->
-					if (req.headers[\accept].index-of \text) == 0
-						User.find-by-id status.user-id, (, user) ->
-							display-image do
-								req
-								res
-								image-buffer
-								"#{config.public-config.url}/img/status/#id"
-								user
-								status-image.id
-					else
-						send-image req, res, image-buffer, status-image.id
+					send-image req, res, image-buffer, status-image.id
 			| _ =>
 				res
 					..status 404
@@ -130,17 +109,7 @@ module.exports = (app) ->
 						| _ => null
 					if !err?
 						image-buffer = talkmessage-image.image
-						if (req.headers[\accept].index-of \text) == 0
-							User.find-by-id talkmessage.user-id, (, user) ->
-								display-image do
-									req
-									res
-									image-buffer
-									"#{config.public-config.url}/img/talk-message/#id"
-									user
-									talkmessage-image.id
-						else
-							send-image req, res, image-buffer, talkmessage-image.id
+						send-image req, res, image-buffer, talkmessage-image.id
 					else
 						res
 							..status err.0
