@@ -1,4 +1,5 @@
 require! {
+	moment
 	'../application': Application
 	'../user': User
 	'../bbs-post': BBSPost
