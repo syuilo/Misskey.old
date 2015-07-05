@@ -41,6 +41,8 @@ window.STATUSTIMELINE = {}
 					$reply = $ html
 					$submit-button.attr \disabled off
 					$reply.append-to $status.find '.replies > .statuses'
+					$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
+					$i.append-to $status.find '.article-main'
 					$form.remove!
 					window.display-message '返信しました！'
 				.fail ->
