@@ -40,9 +40,6 @@ window.STATUSTIMELINE = {}
 				.done (html) ->
 					$reply = $ html
 					$submit-button.attr \disabled off
-					console.log $status
-					console.log $status.find
-					console.log $status.find '.replies > .statuses'
 					$reply.append-to $status.find '.replies > .statuses'
 					$form.remove!
 				.fail ->
