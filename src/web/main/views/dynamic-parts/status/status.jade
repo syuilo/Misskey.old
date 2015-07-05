@@ -127,9 +127,9 @@ div.status.article(
 								input(name='image', type='file', accept='image/*')
 				else
 					p この投稿に返信するにはログインしてください。
-				if status.replies.length > 0 && status.replies[0] != null
-					aside.replies(itemprop='comment')
-						ol.statuses
+				aside.replies(itemprop='comment')
+					ol.statuses
+						if status.replies.length > 0 && status.replies[0] != null
 							each reply in status.replies
 								li.status(title!= '#{reply.createdAt}&#x0A;'
 									data-id= reply.id
