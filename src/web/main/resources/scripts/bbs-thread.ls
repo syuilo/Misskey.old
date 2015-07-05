@@ -6,10 +6,11 @@ function add-post($post)
 
 $ ->
 	thread-id = $ \html .attr \data-thread-id
+	cookie-id = "bbs-thread-post-autosave-#{thread-id}"
 	
 	# オートセーブがあるなら復元
-	if $.cookie "bbs-thread-post-autosave-#{thread-id}"
-		$ '#post-form textarea' .val $.cookie "bbs-thread-post-autosave-#{thread-id}"
+	if $.cookie cookie-id
+		$ '#post-form textarea' .val $.cookie cookie-id
 	
 	socket = io.connect config.web-streaming-url + '/streaming/web/bbs-thread'
 
@@ -52,7 +53,7 @@ $ ->
 			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
 			$submit-button.attr \disabled no
 			$submit-button.attr \value '投稿 \uf1d8'
-			$.remove-cookie \post-autosave
+			$.remove-cookie cookie-id
 			window.display-message '投稿しました！'
 		.fail (data) ->
 			#$form[0].reset!
@@ -82,4 +83,4 @@ $ ->
 		text = $ '#post-form textarea' .val!
 
 		# オートセーブ
-		$.cookie "bbs-thread-post-autosave-#{thread-id}" text, { path: '/', expires: 365 }
+		$.cookie cookie-id, text, { path: '/', expires: 365 }
