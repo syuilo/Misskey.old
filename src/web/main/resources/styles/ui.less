@@ -297,8 +297,11 @@ textarea {
 								height: 3rem;
 
 								&.active {
-									color: contrast(@themeColor, #000, #fff, 70%) !important;
 									background: @themeColor;
+
+									> a {
+										color: contrast(@themeColor, #000, #fff, 70%) !important;
+									}
 								}
 
 								> a {
