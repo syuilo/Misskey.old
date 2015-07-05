@@ -1,14 +1,14 @@
 div.status.article(
 		class                   = status.isRepostToStatus ? 'repost' : 'normal'
 		lang                    = status.user.lang
-		title                   = status.createdAt
+		title                   = status.displayCreatedAt
 		itemscope
 		itemtype                = 'http://schema.org/BlogPosting'
 		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
 		data-status-id          = status.id
 		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
 		data-id                 = status.id
-		data-created-at         = status.createdAt
+		data-created-at        != status.createdAt
 		data-cursor             = status.cursor
 		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
 		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null

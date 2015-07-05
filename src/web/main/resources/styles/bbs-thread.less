@@ -34,17 +34,80 @@ main {
 			list-style: none;
 
 			> .post {
-				header {
-					h2 {
-						margin: 0;
-						font-size: 1em;
-						font-weight: normal;
-					}
-				}
+				padding: 0 0 32px 0;
 
-				.content {
-					.text {
-						margin: 0;
+				> article {
+
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+
+					> .icon {
+						display: block;
+						float: left;
+						min-width: 54px;
+						min-height: 54px;
+						max-width: 54px;
+						max-height: 54px;
+						margin: 0 16px 0 0;
+						border-radius: 8px;
+					}
+
+					> .main {
+						float: left;
+						width: ~"calc(100% - 70px)";
+
+						> header {
+							h2 {
+								margin: 0;
+								font-size: 1em;
+								font-weight: normal;
+
+								.number {
+									margin-right: 16px;
+
+									&:after {
+										content: ':';
+									}
+								}
+
+								.name {
+									margin-right: 8px;
+									font-weight: bold;
+								}
+
+								.screen-name {
+									margin-right: 8px;
+								}
+
+								time.absolute {
+									margin: 4px;
+								}
+
+								time.relative {
+									margin: 4px;
+
+									&:before {
+										content: '(';
+									}
+
+									&:after {
+										content: ')';
+									}
+								}
+							}
+						}
+
+						> .content {
+							margin-left: 16px;
+							font-size: 1.1em;
+
+							.text {
+								margin: 0;
+							}
+						}
 					}
 				}
 			}
