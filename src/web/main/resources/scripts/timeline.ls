@@ -39,6 +39,8 @@ window.STATUSTIMELINE = {}
 					xhr-fields: {+with-credentials}}
 				.done (html) ->
 					$reply = $ html
+					console.log $reply
+					console.log $status.find 'article > .article-main > .main > .footer > .replies > .statuses'
 					$submit-button.attr \disabled off
 					$reply.append-to $status.find 'article > .article-main > .main > .footer > .replies > .statuses'
 					$form.remove!
