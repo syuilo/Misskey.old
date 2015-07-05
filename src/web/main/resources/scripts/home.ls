@@ -91,7 +91,7 @@ $ ->
 			icon: conf.url + '/img/icon/' + message.user.screenName
 		}
 		n.onshow = ->
-			set-timeout n.close, 10000
+			set-timeout n.close, 10000ms
 		n.onclick = ->
 			url = config.url + '/' + message.user.screen-name + '/talk?noheader=true'
 			$content = $ '<iframe>' .attr {
