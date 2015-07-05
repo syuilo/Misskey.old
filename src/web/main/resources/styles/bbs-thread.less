@@ -51,7 +51,16 @@ main {
 			list-style: none;
 
 			> .post {
-				padding: 0 0 32px 0;
+				margin: 32px 0;
+				padding: 0;
+
+				&:first-child {
+					margin-top: 0;
+				}
+
+				&:last-child {
+					margin-bottom: 0;
+				}
 
 				> article {
 
@@ -64,10 +73,10 @@ main {
 					> .icon {
 						display: block;
 						float: left;
-						min-width: 54px;
-						min-height: 54px;
-						max-width: 54px;
-						max-height: 54px;
+						min-width: 50px;
+						min-height: 50px;
+						max-width: 50px;
+						max-height: 50px;
 						margin: 0 16px 0 0;
 						border-radius: 8px;
 					}
