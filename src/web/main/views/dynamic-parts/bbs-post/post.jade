@@ -1,10 +1,12 @@
 article
-	header
-		h2
-			span.number= post.threadCursor
-			a.name(href='/' + post.user.screenName)= post.user.name
-			a.screen-name(href='/' + post.user.screenName)= '@' + post.user.screenName
-			time.absolute(datetime= post.createdAt)= post.displayCreatedAt
-			time.relative(datetime= post.createdAt, data-display-type='relative')
-	div.content
-		p.text= post.text
+	img.icon(src= '/img/icon/' + post.user.screenName, alt='icon', title= post.user.comment)
+	div.main
+		header
+			h2
+				span.number= post.threadCursor
+				a.name(href='/' + post.user.screenName)= post.user.name
+				a.screen-name(href='/' + post.user.screenName)= '@' + post.user.screenName
+				time.absolute(datetime= post.createdAt)= post.displayCreatedAt
+				time.relative(datetime= post.createdAt, data-display-type='relative')
+		div.content
+			p.text= post.text

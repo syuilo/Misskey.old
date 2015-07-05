@@ -36,52 +36,77 @@ main {
 			> .post {
 				padding: 0 0 32px 0;
 
-				header {
-					h2 {
-						margin: 0;
-						font-size: 1em;
-						font-weight: normal;
+				> article {
 
-						.number {
-							margin-right: 16px;
-
-							&:before {
-								content: ':';
-							}
-						}
-
-						.name {
-							margin-right: 8px;
-							font-weight: bold;
-						}
-
-						.screen-name {
-							margin-right: 8px;
-						}
-
-						time.absolute {
-							margin: 4px;
-						}
-
-						time.relative {
-							margin: 4px;
-
-							&:before {
-								content: '(';
-							}
-
-							&:after {
-								content: ')';
-							}
-						}
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
 					}
-				}
 
-				.content {
-					margin-left: 16px;
+					> .icon {
+						display: block;
+						float: left;
+						min-width: 54px;
+						min-height: 54px;
+						max-width: 54px;
+						max-height: 54px;
+						margin: 0 16px 0 0;
+						border-radius: 8px;
+					}
 
-					.text {
-						margin: 0;
+					> .main {
+						float: left;
+						width: ~"calc(100% - 70px)";
+
+						> header {
+							h2 {
+								margin: 0;
+								font-size: 1em;
+								font-weight: normal;
+
+								.number {
+									margin-right: 16px;
+
+									&:before {
+										content: ':';
+									}
+								}
+
+								.name {
+									margin-right: 8px;
+									font-weight: bold;
+								}
+
+								.screen-name {
+									margin-right: 8px;
+								}
+
+								time.absolute {
+									margin: 4px;
+								}
+
+								time.relative {
+									margin: 4px;
+
+									&:before {
+										content: '(';
+									}
+
+									&:after {
+										content: ')';
+									}
+								}
+							}
+						}
+
+						> .content {
+							margin-left: 16px;
+
+							.text {
+								margin: 0;
+							}
+						}
 					}
 				}
 			}
