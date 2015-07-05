@@ -42,7 +42,7 @@ window.STATUSTIMELINE = {}
 					$submit-button.attr \disabled off
 					$form.remove!
 					console.log $status.find '.replies .statuses'
-					$status.find '.replies .statuses' .append $ html
+					$status.find '.replies > .statuses' .append $ html
 				.fail ->
 					$submit-button.attr \disabled off
 
@@ -59,7 +59,7 @@ window.STATUSTIMELINE = {}
 						..readAsDataURL file
 
 			# Init tag input of reply-form
-			..find 'article > .article-main > footer .reply-form .tag'
+			..find '.reply-form .tag'
 				.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 			
 			# Init favorite button
