@@ -296,6 +296,14 @@ textarea {
 								vertical-align: top;
 								height: 3rem;
 
+								&.active {
+									background: @themeColor;
+
+									> a {
+										color: contrast(@themeColor, #000, #fff, 70%) !important;
+									}
+								}
+
 								> a {
 									display: inline-block;
 									z-index: 1;
