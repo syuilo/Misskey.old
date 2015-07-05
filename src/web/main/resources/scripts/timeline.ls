@@ -36,7 +36,7 @@ window.STATUSTIMELINE = {}
 					-processData
 					-contentType
 					data-type: \html
-					xhr-fields: {+withCredentials}}
+					xhr-fields: {+with-credentials}}
 				.done (html) ->
 					console.log html
 					$submit-button.attr \disabled off
