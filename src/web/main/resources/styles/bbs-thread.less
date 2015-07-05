@@ -9,7 +9,7 @@ html {
 }
 
 main {
-	header {
+	> header {
 		h1 {
 			display: block;
 			width: 100%;
@@ -19,6 +19,16 @@ main {
 			line-height: 1em;
 			font-size: 2em;
 			font-weight: 100;
+		}
+	}
+
+	> footer {
+		color: #fff;
+		background: #ccc;
+
+		small {
+			padding: 32px;
+			text-align: center;
 		}
 	}
 }
@@ -123,6 +133,8 @@ main {
 }
 
 #post-form-container {
+	background: #ddd;
+
 
 	#post-form {
 		box-sizing: border-box;
@@ -169,7 +181,7 @@ main {
 				font-size: 1.2em;
 				color: #000;
 				outline: none;
-				border: solid 2px #eee;
+				border: solid 2px #ccc;
 				border-radius: 0;
 				box-shadow: none;
 				transition: border 0.2s ease, color 0.2s ease;
@@ -208,7 +220,7 @@ main {
 					font-size: 0;
 					line-height: 0;
 					border-top: solid 12px transparent;
-					border-right: solid 12px #eee;
+					border-right: solid 12px #ccc;
 					border-bottom: solid 12px transparent;
 					border-left: solid 12px transparent;
 					transition: border 0.2s ease;
