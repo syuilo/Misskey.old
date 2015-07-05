@@ -1,4 +1,5 @@
 require! {
+	fs
 	'../../../internal/create-bbs-post'
 	'../../../auth': authorize
 	'../../../../utils/get-express-params'
