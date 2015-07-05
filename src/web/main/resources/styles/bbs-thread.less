@@ -16,6 +16,7 @@ main {
 			max-width: 800px;
 			margin: 0 auto;
 			padding: 32px;
+			line-height: 1em;
 			font-size: 2em;
 			font-weight: 100;
 		}
@@ -27,6 +28,7 @@ main {
 	width: 100%;
 	max-width: 800px;
 	margin: 0 auto;
+	padding: 32px;
 
 	> .timeline {
 		> .posts {
@@ -86,6 +88,7 @@ main {
 
 								time.absolute {
 									margin: 4px;
+									color: rgba(0, 0, 0, 0.5);
 								}
 
 								time.relative {
@@ -98,6 +101,8 @@ main {
 									&:after {
 										content: ')';
 									}
+
+									color: rgba(0, 0, 0, 0.8);
 								}
 							}
 						}
