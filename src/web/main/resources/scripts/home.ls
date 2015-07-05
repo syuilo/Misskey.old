@@ -64,7 +64,6 @@ $ ->
 
 	socket.on \reply (status) ->
 		console.log \reply status
-		status = JSON.parse status
 		
 		id = status.id
 		name = status.user-name
