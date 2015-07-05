@@ -81,7 +81,7 @@ module.exports = (status, callback) ->
 						callback status
 
 	status .= to-object!
-	status.display-created-at = moment status.created-at .format 'YYYY年MM月DD日 HH時mm分ss秒'
+	status.display-created-at = moment status.created-at .format 'YYYY年M月D日 H時m分s秒'
 	status <- serialyze-repost status
 	status.is-reply = status.in-reply-to-status-id?
 	#status <- get-app status
