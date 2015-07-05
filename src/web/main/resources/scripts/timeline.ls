@@ -38,8 +38,10 @@ window.STATUSTIMELINE = {}
 					data-type: \html
 					xhr-fields: {+withCredentials}}
 				.done (html) ->
+					console.log html
 					$submit-button.attr \disabled off
 					$form.remove!
+					console.log $status.find '.replies .statuses'
 					$status.find '.replies .statuses' .append $ html
 				.fail ->
 					$submit-button.attr \disabled off
