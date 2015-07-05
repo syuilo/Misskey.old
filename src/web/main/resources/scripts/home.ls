@@ -64,13 +64,12 @@ $ ->
 
 	socket.on \reply (status) ->
 		console.log \reply status
-		$status = $ status
-		add-status $status
+		status = JSON.parse status
 		
-		id = $status.attr \data-id
-		name = $status.attr \data-user-name
-		sn = $status.attr \data-user-screen-name
-		text = $status.attr \data-text
+		id = status.id
+		name = status.user-name
+		sn = status.user-screen-name
+		text = status.text
 		n = new Notification name, {
 			body: text
 			icon: "#{conf.url}/img/icon/#sn"
