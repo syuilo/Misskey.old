@@ -35,9 +35,10 @@ window.STATUSTIMELINE = {}
 					data: new FormData $form.0
 					-processData
 					-contentType
-					data-type: \html
+					data-type: \json
 					xhr-fields: {+with-credentials}}
 				.done (html) ->
+					html = JSON.parse html
 					$reply = $ html
 					$submit-button.attr \disabled off
 					$status.find '.replies > .statuses' .append $reply
