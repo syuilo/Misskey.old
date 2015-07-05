@@ -70,6 +70,10 @@ api-server.use (req, res, next) ->
 			res
 				..header 'Content-Type' 'text/x-yaml'
 				..send yaml.safe-dump data
+		| \plain =>
+			res
+				..header 'Content-Type' 'text/plain'
+				..send data
 		| _ => res.json data
 		log 200 yes
 

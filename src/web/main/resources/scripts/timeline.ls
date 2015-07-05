@@ -30,18 +30,17 @@ window.STATUSTIMELINE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/web/status/reply" {
+				$.ajax "#{config.api-url}/web/status/reply.plain" {
 					type: \post
 					data: new FormData $form.0
 					-processData
 					-contentType
-					data-type: \json
+					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (html) ->
-					html = JSON.parse html
 					$reply = $ html
 					$submit-button.attr \disabled off
-					$status.find '.replies > .statuses' .append $reply
+					$status.find 'article > .article-main > .main > .footer > .replies > .statuses' .append $reply
 					$form.remove!
 				.fail ->
 					$submit-button.attr \disabled off
