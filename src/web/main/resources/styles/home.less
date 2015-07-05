@@ -684,6 +684,7 @@ main {
 		box-sizing: border-box;
 		width: ~"calc(100% - 16px)";
 		margin: 8px;
+		padding: 16px;
 		/*background: #fff;*/
 		background-color: transparent;
 		background-image: linear-gradient(rgba(255, 170, 27, 0.7), rgba(255, 170, 27, 0.7)), url(@blurredWallpaperUrl);
@@ -704,7 +705,9 @@ main {
 		}
 
 		img {
+			display: block;
 			max-height: 128px;
+			margin: 0 auto;
 		}
 	}
 }
