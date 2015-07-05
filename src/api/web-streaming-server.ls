@@ -35,14 +35,13 @@ session-store = new RedisStore do
 
 # Authorization
 io.use (socket, next) ->
-	handshake = socket.request
-	cookies = cookie.parse handshake.headers.cookie
-	switch
-	| !handshake? => fallthrough
-	| !handshake.headers.cookie? => fallthrough
-	| !cookies[config.session-key]? => fallthrough
-	| cookies[config.session-key] != /s:(.+?)\./ => next new Error '[[error:not-authorized]]'
-	| _ => next!
+	raw-cookie = socket?request?headers?cookie
+	if cookie
+		parsed-cookie = cookie.parse raw-cookie
+		is-authorized = parsed-cookie[config.session-key] != /s:(.+?)\./
+		if is-authorized
+		then next new Error '[[error:not-authorized]]'
+		else next!
 
 # Home stream
 home io, session-store

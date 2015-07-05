@@ -10,10 +10,10 @@ require! {
 
 module.exports = (app, user, thread-id, text, image = null) ->
 	resolve, reject <- new Promise!
-	
+
 	function throw-error(code, message)
 		reject {code, message}
-		
+
 	text .= trim!
 	switch
 	| !image? && null-or-empty text => throw-error \empty-text 'Empty text.'
@@ -51,7 +51,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 				..thread-id = thread.id
 
 			err, created-post <- post.save
-			
+
 			function done
 				resolve created-post
 
