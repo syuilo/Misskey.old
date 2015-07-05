@@ -67,6 +67,17 @@ $ ->
 			| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
 			| _ => window.display-message "不明なエラー (#error-code)"
 	
+	$ \#post-form .find '.image-attacher input[name=image]' .change ->
+		$input = $ @
+		file = $input.prop(\files).0
+		if file.type.match 'image.*'
+			reader = new FileReader!
+			reader.onload = ->
+				$img = $ '<img>' .attr \src reader.result
+				$input.parent '.image-attacher' .find 'p, img' .remove!
+				$input.parent '.image-attacher' .append $img
+			reader.read-as-dataURL file
+	
 	$ '#post-form textarea' .bind \input ->
 		text = $ '#post-form textarea' .val!
 

@@ -15,6 +15,8 @@ require! {
 	'../../../models/status-image': StatusImage
 	'../../../models/talk-message': TalkMessage
 	'../../../models/talk-message-image': TalkMessageImage
+	'../../../models/bbs-post': BBSPost
+	'../../../models/bbs-post-image': BBSPostImage
 	'../../../models/webtheme': Webtheme
 	'../../../config'
 }
@@ -118,6 +120,17 @@ module.exports = (app) ->
 				res
 					..status 404
 					..send 'Image not found.'
+					
+	function display-bbs-post-image(req, res, id)
+		BBSPostImage.find-one {post-id: id} (, post-image) ->
+			| post-image? =>
+				image-buffer = post-image.image
+				BBSPost.find-by-id post-image.post-id, (, post) ->
+					send-image req, res, image-buffer, post-image.id
+			| _ =>
+				res
+					..status 404
+					..send 'Image not found.'
 
 	# User icon
 	app.get '/img/icon/:sn' (req, res) ->
@@ -148,6 +161,11 @@ module.exports = (app) ->
 	app.get '/img/talk-message/:id' (req, res) ->
 		id = req.params.id
 		display-talkmessage-image req, res, id
+	
+	# BBS Post
+	app.get '/img/bbs-post/:id' (req, res) ->
+		id = req.params.id
+		display-bbs-post-image req, res, id
 
 	# Webtheme thumbnail
 	app.get '/img/webtheme-thumbnail/:id' (req, res) ->

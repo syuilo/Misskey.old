@@ -10,3 +10,5 @@ article
 				time.relative(datetime= post.createdAt, data-display-type='relative')
 		div.content
 			p.text= post.text
+			if post.isImageAttached
+				img.image(src=config.url + '/img/bbs-post/' + post.id, alt='image', itemprop='image')
