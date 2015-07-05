@@ -3,7 +3,7 @@ function add-status($status)
 		
 	$status = $ '<li class="status">' .append($status).hide!
 	$recent-status = ($ ($ '#timeline .timeline > .statuses > .status')[0]) .children \.status
-	if $recent-status.attr \data-display-html-is-active == \true
+	if ($recent-status.attr \data-display-html-is-active) == \true
 		$status.add-class \display-html-active-status-prev
 	window.STATUSTIMELINE.set-event $status.children '.status.article'
 	$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
