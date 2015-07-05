@@ -30,16 +30,19 @@ window.STATUSTIMELINE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/status/update" {
+				$.ajax "#{config.api-url}/web/status/reply.plain" {
 					type: \post
 					data: new FormData $form.0
 					-processData
 					-contentType
-					data-type: \json
-					xhr-fields: {+withCredentials}}
-				.done ->
+					data-type: \text
+					xhr-fields: {+with-credentials}}
+				.done (html) ->
+					$reply = $ html
 					$submit-button.attr \disabled off
-					$form.text '送信しました'
+					$reply.append-to $status.find '.replies > .statuses'
+					$form.remove!
+					window.display-message '返信しました！'
 				.fail ->
 					$submit-button.attr \disabled off
 
@@ -56,7 +59,7 @@ window.STATUSTIMELINE = {}
 						..readAsDataURL file
 
 			# Init tag input of reply-form
-			..find 'article > .article-main > footer .reply-form .tag'
+			..find '.reply-form .tag'
 				.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 			
 			# Init favorite button

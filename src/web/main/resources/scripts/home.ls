@@ -2,6 +2,9 @@ function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
 		
 	$status = $ '<li class="status">' .append($status).hide!
+	$recent-status = ($ ($ '#timeline .timeline > .statuses > .status')[0]) .children \.status
+	if ($recent-status.attr \data-display-html-is-active) == \true
+		$status.children \.status .add-class \display-html-active-status-prev
 	window.STATUSTIMELINE.set-event $status.children '.status.article'
 	$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
 	
@@ -64,13 +67,11 @@ $ ->
 
 	socket.on \reply (status) ->
 		console.log \reply status
-		$status = $ status
-		add-status $status
 		
-		id = $status.attr \data-id
-		name = $status.attr \data-user-name
-		sn = $status.attr \data-user-screen-name
-		text = $status.attr \data-text
+		id = status.id
+		name = status.user-name
+		sn = status.user-screen-name
+		text = status.text
 		n = new Notification name, {
 			body: text
 			icon: "#{conf.url}/img/icon/#sn"
@@ -90,7 +91,7 @@ $ ->
 			icon: conf.url + '/img/icon/' + message.user.screenName
 		}
 		n.onshow = ->
-			set-timeout n.close, 10000
+			set-timeout n.close, 10000ms
 		n.onclick = ->
 			url = config.url + '/' + message.user.screen-name + '/talk?noheader=true'
 			$content = $ '<iframe>' .attr {
