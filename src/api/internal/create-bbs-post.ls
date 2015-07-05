@@ -49,6 +49,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 				..user-id = user.id
 				..thread-cursor = thread-cursor
 				..thread-id = thread.id
+				..is-image-attached = image?
 
 			err, created-post <- post.save
 
