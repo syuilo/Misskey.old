@@ -18,6 +18,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 	text .= trim!
 	switch
 	| !image? && null-or-empty text => throw-error \empty-text 'Empty text.'
+	| not null-or-empty text and text[0] == \$ => analyze-command text
 	| text.length > 300chars => throw-error \too-long-text 'Too long text.'
 	| _ =>
 		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
@@ -93,3 +94,32 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 											text: status.text
 										}
 									publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+
+	function analyze-command(text)
+		space-index = text.index-of ' '
+		if space-index > 1
+			command = text.substr 1char space-index
+			argument = text.substr space-index
+			switch command
+			| \report-image =>
+				slash-index = argument.index-of '/'
+				if slash-index > 1
+					type = argument.substr 0char slash-index
+					id = argument.substr slash-index
+					promise = switch type
+					| \status => (require './disable-status-image') app, user, id
+					| \bbs-post => (require './disable-bbs-post-image') app, user, id
+					| \talk-message => (require './disable-talk-message-image') app, user, id
+					| _ => throw-error \unknown-command-report-image-type "Unknown command report-image type."
+					promise.then do
+						(image) ->
+							resolve \ok
+						(err) ->
+							throw-error "report-image-command-#{err.code}" err.message
+				else
+					throw-error \invalid-command-argument "Invalid command argument."
+			| _ => throw-error \unknown-command "Unknown command '#{command}'."
+		else
+			command = text.substr 1char
+			switch command
+			| _ => throw-error \unknown-command "Unknown command '#{command}'."
