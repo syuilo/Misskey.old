@@ -113,7 +113,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 					| _ => throw-error \unknown-command-report-image-type "Unknown command report-image type '#{type}'."
 					promise.then do
 						(image) ->
-							resolve \ok
+							resolve null
 						(err) ->
 							throw-error "report-image-command-#{err.code}" err.message
 				else

@@ -20,6 +20,9 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		app, user, text, in-reply-to-status-id, image
 	.then do
 		(status) ->
-			res.api-render status.to-object!
+			if status?
+				res.api-render status.to-object!
+			else
+				res.api-render \ok
 		(err) ->
 			res.api-error 400 err
