@@ -104,13 +104,13 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 			| \report-image =>
 				slash-index = argument.index-of '/'
 				if slash-index > 1
-					type = argument.substr 0char slash-index
-					id = argument.substr slash-index
+					type = argument.substr 0char (slash-index - 1char)
+					id = argument.substr (slash-index + 1char)
 					promise = switch type
 					| \status => (require './disable-status-image') app, user, id
 					| \bbs-post => (require './disable-bbs-post-image') app, user, id
 					| \talk-message => (require './disable-talk-message-image') app, user, id
-					| _ => throw-error \unknown-command-report-image-type "Unknown command report-image type."
+					| _ => throw-error \unknown-command-report-image-type "Unknown command report-image type '#{type}'."
 					promise.then do
 						(image) ->
 							resolve \ok
