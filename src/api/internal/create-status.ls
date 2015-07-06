@@ -99,12 +99,12 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 		space-index = text.index-of ' '
 		if space-index > 1
 			command = text.substr 1char (space-index - 1char)
-			argument = text.substr space-index
+			argument = text.substr (space-index + 1char)
 			switch command
 			| \report-image =>
 				slash-index = argument.index-of '/'
 				if slash-index > 1
-					type = argument.substr 0char (slash-index - 1char)
+					type = argument.substr 0char slash-index
 					id = argument.substr (slash-index + 1char)
 					promise = switch type
 					| \status => (require './disable-status-image') app, user, id
