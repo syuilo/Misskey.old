@@ -98,7 +98,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 	function analyze-command(text)
 		space-index = text.index-of ' '
 		if space-index > 1
-			command = text.substr 1char space-index
+			command = text.substr 1char (space-index - 1char)
 			argument = text.substr space-index
 			switch command
 			| \report-image =>
