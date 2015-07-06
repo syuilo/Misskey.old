@@ -33,6 +33,12 @@ module.exports = (app) ->
 			..set \Content-Type \image/jpeg
 			..send image
 	
+	function send-disable-image(res)
+		buffer = fs.read-file-sync path.resolve "#__dirname/../resources/images/image-disable.png"
+		res
+			..set \Content-Type \image/png
+			..send buffer
+	
 	# Direct access (display image viewer page)
 	function display-image(req, res, image-buffer, image-url, author, image-id)
 		if image-buffer?
@@ -92,18 +98,24 @@ module.exports = (app) ->
 
 	function display-status-image(req, res, id)
 		StatusImage.find-one {status-id: id} (, status-image) ->
-			| status-image? =>
-				image-buffer = status-image.image
-				Status.find-by-id status-image.status-id, (, status) ->
-					send-image req, res, image-buffer, status-image.id
-			| _ =>
+			| !status-image? =>
 				res
 					..status 404
 					..send 'Image not found.'
+			| status-image.is-disabled => send-disable-image res
+			| _ =>
+				image-buffer = status-image.image
+				Status.find-by-id status-image.status-id, (, status) ->
+					send-image req, res, image-buffer, status-image.id
 
 	function display-talkmessage-image(req, res, id)
 		TalkMessageImage.find-one {message-id: id} (, talkmessage-image) ->
-			| talkmessage-image? =>
+			| !talkmessage-image? =>
+				res
+					..status 404
+					..send 'Image not found.'
+			| talkmessage-image.is-disabled => send-disable-image res
+			| _ =>
 				TalkMessage.find-by-id talkmessage-image.message-id, (, talkmessage) ->
 					err = switch
 						| !req.login => [403 'Access denied.']
@@ -116,21 +128,18 @@ module.exports = (app) ->
 						res
 							..status err.0
 							..send err.1
-			| _ =>
+
+	function display-bbs-post-image(req, res, id)
+		BBSPostImage.find-one {post-id: id} (, post-image) ->
+			| !post-image? =>
 				res
 					..status 404
 					..send 'Image not found.'
-					
-	function display-bbs-post-image(req, res, id)
-		BBSPostImage.find-one {post-id: id} (, post-image) ->
-			| post-image? =>
+			| post-image.is-disabled => send-disable-image res
+			| _ =>
 				image-buffer = post-image.image
 				BBSPost.find-by-id post-image.post-id, (, post) ->
 					send-image req, res, image-buffer, post-image.id
-			| _ =>
-				res
-					..status 404
-					..send 'Image not found.'
 
 	# User icon
 	app.get '/img/icon/:sn' (req, res) ->
