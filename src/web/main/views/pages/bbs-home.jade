@@ -28,11 +28,19 @@ html(lang='ja', dir='ltr')
 						each thread in hotThreads
 							li.thread(title= thread.title)
 								a(href= '/bbs/thread/' + thread.id)
-									h3.title= thread.title
+									header
+										p.watchers-count
+											i.fa.fa-eye
+											span.count= thread.watchersCount
+										h3.title= thread.title
 				article#recent-threads
 					h2 新着スレッド
 					ol.threads
 						each thread in recentThreads
 							li.thread(title= thread.title)
 								a(href= '/bbs/thread/' + thread.id)
-									h3.title= thread.title
+									header
+										p.watchers-count
+											i.fa.fa-eye
+											span.count= thread.watchersCount
+										h3.title= thread.title
