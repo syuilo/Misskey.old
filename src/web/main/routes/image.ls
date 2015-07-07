@@ -15,6 +15,7 @@ require! {
 	'../../../models/status-image': StatusImage
 	'../../../models/talk-message': TalkMessage
 	'../../../models/talk-message-image': TalkMessageImage
+	'../../../models/bbs-thread-eyecatch': BBSThreadEyecatch
 	'../../../models/bbs-post': BBSPost
 	'../../../models/bbs-post-image': BBSPostImage
 	'../../../models/webtheme': Webtheme
@@ -140,6 +141,17 @@ module.exports = (app) ->
 				image-buffer = post-image.image
 				BBSPost.find-by-id post-image.post-id, (, post) ->
 					send-image req, res, image-buffer, post-image.id
+	
+	function display-bbs-thread-eyecatch(req, res, id)
+		BBSThreadEyecatch.find-one {thread-id: id} (, eyecatch) ->
+			| !eyecatch? =>
+				res
+					..status 404
+					..send 'Image not found.'
+			| eyecatch.is-disabled => send-disable-image res
+			| _ =>
+				image-buffer = eyecatch.image
+				send-image req, res, image-buffer, eyecatch.id
 
 	# User icon
 	app.get '/img/icon/:sn' (req, res) ->
@@ -171,7 +183,12 @@ module.exports = (app) ->
 		id = req.params.id
 		display-talkmessage-image req, res, id
 	
-	# BBS Post
+	# BBS thread eyecatch
+	app.get '/img/bbs-thread-eyecatch/:id' (req, res) ->
+		id = req.params.id
+		display-bbs-thread-eyecatch req, res, id
+	
+	# BBS post
 	app.get '/img/bbs-post/:id' (req, res) ->
 		id = req.params.id
 		display-bbs-post-image req, res, id

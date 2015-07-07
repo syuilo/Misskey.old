@@ -39,7 +39,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 							create buffer
 			| _ => create null
 		else
-			throw-error \thread-not-fount 'Thread not found.'
+			throw-error \thread-not-found 'Thread not found.'
 
 		function create(image)
 			err, count <- BBSPost.count {thread-id: thread.id}
