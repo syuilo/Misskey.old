@@ -4,7 +4,7 @@ require! {
 	'../../../models/user-following': UserFollowing
 	'../../../models/status': Status
 	'../../../models/utils/user-following-check'
-	'../utils/timeline-generate-html'
+	'../utils/generate-home-timeline-html'
 	'../../../config'
 }
 
@@ -20,7 +20,7 @@ module.exports = (req, res, page = \home) ->
 				.sort {created-at: \desc}
 				.limit 30status
 				.exec (, statuses) ->
-					timeline-generate-html statuses, me, (html) ->
+					generate-home-timeline-html statuses, me, (html) ->
 						resolve html
 
 		# Get is following
