@@ -19,9 +19,9 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 					label
 						h2 タイトル
 						input.ui-input-text(type='text', name='title', placeholder=thread.title, required, disabled)= thread.title
-					label
+					label#eyecatch
 						h2 アイキャッチ
-						div.icon
+						div.image-attacher
 							p 画像をドロップまたは選択
 							img.image(src=url + '/img/bbs-thread-eyecatch/' + thread.id, alt='eyecatch')
 							input(name='image', type='file', accept='image/*')
