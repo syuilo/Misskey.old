@@ -29,7 +29,7 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 								span= isFavorited ? 'UnStar' : 'Star'
 							a.count#favorites-count= thread.favoritesCount
 						if login
-							if thread.user.id == me.id
+							if thread.userId == me.id
 								li.action
 									button.button#settings-button(role='button')
 										i.fa.fa-cog
