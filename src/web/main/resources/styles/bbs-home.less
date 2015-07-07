@@ -66,22 +66,32 @@ main {
 
 			.thread {
 				display: block;
-				position: relative;
 				float: left;
 				margin: 16px;
-				width: 256px;
-				background-color: #eee;
+				padding: 0;
 
-				.title {
+				a {
 					display: block;
-					position: absolute;
-					bottom: 0;
+					position: relative;
 					margin: 0;
-					padding: 8px;
-					font-size: 1.1em;
-					font-weight: bold;
-					color: #fff;
-					background: rgba(0, 0, 0, 0.8);
+					padding: 0;
+					width: 256px;
+					height: 256px;
+					background-color: #eee;
+
+					.title {
+						display: block;
+						box-sizing: border-box;
+						position: absolute;
+						bottom: 0;
+						margin: 0;
+						padding: 8px 12px;
+						width: 100%;
+						font-size: 1em;
+						font-weight: bold;
+						color: #fff;
+						background: rgba(0, 0, 0, 0.8);
+					}
 				}
 			}
 		}
