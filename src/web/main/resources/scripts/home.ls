@@ -347,7 +347,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text 'Loading...'
-		$.ajax config.api-url + '/status/timeline-webhtml' {
+		$.ajax config.api-url + '/web/status/timeline-homehtml' {
 			type: \get
 			data: {
 				'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
