@@ -17,12 +17,12 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 				h1#title= thread.title
 				ul#actions
 					li.action
-						button.button#watch-button(role='button')
+						button.button#watch-button(role='button', data-watched!= isWatched.toString())
 							i.fa.fa-eye
 							| Watch
 						a.count#watch-count= thread.watchersCount
 					li.action
-						button.button#favorite-button(role='button')
+						button.button#favorite-button(role='button', data-favorited!= isFavorited.toString())
 							i.fa.fa-star
 							| Star
 						a.count#favorites-count= thread.favoritesCount
