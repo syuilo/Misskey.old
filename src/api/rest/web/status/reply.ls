@@ -24,7 +24,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		app, user, text, in-reply-to-status-id, image
 	.then do
 		(status) ->
-			status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/reply.jade"
+			status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/home/reply.jade"
 			serialize-timeline-status status, user, (serialized-status) ->
 				res.api-render status-compiler do
 					status: serialized-status
