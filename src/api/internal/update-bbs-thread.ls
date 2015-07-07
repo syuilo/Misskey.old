@@ -14,7 +14,10 @@ module.exports = (app, user, thread-id, title, image = null) ->
 
 	title .= trim!
 	(err, thread) <- BBSThread.find-by-id thread-id
-	if thread?
+	switch
+	| !thread? => throw-error \thread-not-found 'Thread not found.'
+	| thread.user-id.to-string! != user.id.to-string! => throw-error \access-denied 'Access denied.'
+	| _ =>
 		if image?
 			image-quality = if user.is-plus then 80 else 60
 			gm image
@@ -27,8 +30,6 @@ module.exports = (app, user, thread-id, title, image = null) ->
 						update buffer
 		else
 			update null
-	else
-		throw-error \thread-not-found 'Thread not found.'
 
 	function update(image)
 		if image?
