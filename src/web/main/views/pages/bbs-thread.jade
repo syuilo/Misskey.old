@@ -14,7 +14,8 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 		
 		main(role='main')
 			header
-				h1#title= thread.title
+				div.kyoppie-container
+					h1#title= thread.title
 				ul#actions
 					li.action
 						button.button#watch-button(role='button', data-enable!= isWatched.toString())
