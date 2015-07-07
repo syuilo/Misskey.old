@@ -21,12 +21,12 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 						li.action
 							button.button#watch-button(role='button', data-enable!= isWatched.toString())
 								i.fa.fa-eye
-								| Watch
+								span= isWatched ? 'UnWatch' : 'Watch'
 							a.count#watch-count= thread.watchersCount
 						li.action
 							button.button#favorite-button(role='button', data-enable!= isFavorited.toString())
 								i.fa.fa-star
-								| Star
+								span= isFavorited ? 'UnStar' : 'Star'
 							a.count#favorites-count= thread.favoritesCount
 			div#posts!= postsHtml
 			if login
