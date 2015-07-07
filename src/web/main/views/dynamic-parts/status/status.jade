@@ -43,7 +43,7 @@ div.status.article(
 										img.icon(src=config.url + '/img/icon/' + talkPost.user.screenName, alt='icon')
 									header
 										if talkPost.user.isVerified
-											img.verified-icon(src='/resources/images/verified.png', alt='verified')
+											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 										h2
 											a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
 										span.screen-name= '@' + talkPost.user.screenName
@@ -72,7 +72,7 @@ div.status.article(
 							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
 						header
 							if status.replySource.user.isVerified
-								img.verified-icon(src='/resources/images/verified.png', alt='verified')
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 							h2
 								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
 							span.screen-name= '@' + status.replySource.user.screenName
@@ -89,7 +89,7 @@ div.status.article(
 				header.header
 					div.author(itemprop='author')
 						if status.user.isVerified
-							img.verified-icon(src='/resources/images/verified.png', alt='verified')
+							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 						h2
 							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
 						span.screen-name= '@' + status.user.screenName
@@ -147,7 +147,7 @@ div.status.article(
 											img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
 										header
 											if reply.user.isVerified
-												img.verified-icon(src='/resources/images/verified.png', alt='verified')
+												img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 											h2
 												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
 											span.screen-name= '@' + reply.user.screenName

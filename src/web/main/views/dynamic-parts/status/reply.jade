@@ -8,7 +8,7 @@ li.status(title= status.displayCreatedAt
 			img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 		header
 			if status.user.isVerified
-				img.verified-icon(src='/resources/images/verified.png', alt='verified')
+				img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 			h2
 				a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
 			span.screen-name= '@' + status.user.screenName
