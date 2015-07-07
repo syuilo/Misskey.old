@@ -102,6 +102,7 @@ $ ->
 				$button
 					..attr \disabled off
 					..attr \data-enable \false
+					..attr \title 'このスレッドをウォッチする'
 					..find \span .text 'Watch'
 					..next! .text (Number $button.next!.text!)-1
 			.fail ->
@@ -116,6 +117,7 @@ $ ->
 				$button
 					..attr \disabled off
 					..attr \data-enable \true
+					..attr \title 'このスレッドをウォッチしています'
 					..find \span .text 'UnWatch'
 					..next! .text (Number $button.next!.text!)+1
 			.fail ->
@@ -138,6 +140,7 @@ $ ->
 				$button
 					..attr \disabled off
 					..attr \data-enable \false
+					..attr \title 'このスレッドをふぁぼる'
 					..find \span .text 'Star'
 					..next! .text (Number $button.next!.text!)-1
 			.fail ->
@@ -152,6 +155,7 @@ $ ->
 				$button
 					..attr \disabled off
 					..attr \data-enable \true
+					..attr \title 'このスレッドをふぁぼっています'
 					..find \span .text 'UnStar'
 					..next! .text (Number $button.next!.text!)+1
 			.fail ->
