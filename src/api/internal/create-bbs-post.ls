@@ -78,6 +78,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 				(, watchers) <- BBSThreadWatch.find {thread-id: thread.id}
 				watchers |> each (watcher) ->
 					create-notice watcher.user-id, \bbs-thread-post {
+						user-id: user.id
 						thread-id: thread.id
 						post-id: post.id
 					} .then ->
