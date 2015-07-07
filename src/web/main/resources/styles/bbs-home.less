@@ -70,6 +70,14 @@ main {
 				margin: 16px;
 				padding: 0;
 
+				&:hover {
+					.title {
+						height: 4em;
+					}
+
+					box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
+				}
+
 				a {
 					display: block;
 					position: relative;
@@ -81,13 +89,6 @@ main {
 					background-repeat: no-repeat;
 					background-position: center center;
 					background-size: cover;
-
-					&:hover {
-						.title {
-							max-height: 5em;
-							height: 5em;
-						}
-					}
 
 					header {
 						display: block;
