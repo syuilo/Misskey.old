@@ -540,6 +540,58 @@ main {
 						color: #77B255;
 					}
 				}
+
+				&.bbs-thread-post {
+					.icon-anchor {
+						img {
+							float: left;
+							min-width: 36px;
+							min-height: 36px;
+							max-width: 36px;
+							max-height: 36px;
+							border-radius: 6px;
+						}
+					}
+
+					.text {
+						float: right;
+						box-sizing: border-box;
+						width: ~"calc(100% - 36px)";
+						padding-left: 8px;
+
+						p {
+							margin: 0;
+
+							i {
+								margin-right: 4px;
+							}
+						}
+
+						.post-preview {
+							color: rgba(0, 0, 0, 0.7);
+
+							&:before {
+								content: "\f10d";
+								font-family: FontAwesome;
+								font-size: 1em;
+								font-weight: normal;
+								font-style: normal;
+								display: inline-block;
+								margin-right: 3px;
+							}
+
+							&:after {
+								content: "\f10e";
+								font-family: FontAwesome;
+								font-size: 1em;
+								font-weight: normal;
+								font-style: normal;
+								display: inline-block;
+								margin-left: 3px;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
