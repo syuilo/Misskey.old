@@ -103,7 +103,7 @@ $ ->
 					..attr \disabled off
 					..attr \data-enable \false
 					..find \span .text 'Watch'
-					..next! .text (Number $button.next!.text!)+1
+					..next! .text (Number $button.next!.text!)-1
 			.fail ->
 				$button.attr \disabled off
 		else
@@ -117,7 +117,7 @@ $ ->
 					..attr \disabled off
 					..attr \data-enable \true
 					..find \span .text 'UnWatch'
-					..next! .text (Number $button.next!.text!)-1
+					..next! .text (Number $button.next!.text!)+1
 			.fail ->
 				$button.attr \disabled off
 	
@@ -139,7 +139,7 @@ $ ->
 					..attr \disabled off
 					..attr \data-enable \false
 					..find \span .text 'Star'
-					..next! .text (Number $button.next!.text!)+1
+					..next! .text (Number $button.next!.text!)-1
 			.fail ->
 				$button.attr \disabled off
 		else
@@ -153,6 +153,6 @@ $ ->
 					..attr \disabled off
 					..attr \data-enable \true
 					..find \span .text 'UnStar'
-					..next! .text (Number $button.next!.text!)-1
+					..next! .text (Number $button.next!.text!)+1
 			.fail ->
 				$button.attr \disabled off
