@@ -84,3 +84,75 @@ $ ->
 
 		## オートセーブ
 		#$.cookie cookie-id, text, { path: '/', expires: 365 }
+
+	$ '#watch-button' .click ->
+		$button = $ @
+			..attr \disabled on
+			
+		function check-watch
+			($button.attr \data-enable) == \true
+		
+		if check-watch!
+			$.ajax "#{config.api-url}/bbs/thread/unwatch" {
+				type: \delete
+				data: {'thread-id': thread-id}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done ->
+				$button
+					..attr \disabled off
+					..attr \data-enable \false
+					..find \span .text 'Watch'
+					..next! .text (Number $button.next!.text!)-1
+			.fail ->
+				$button.attr \disabled off
+		else
+			$.ajax "#{config.api-url}/bbs/thread/watch" {
+				type: \post
+				data: {'thread-id': thread-id}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done ->
+				$button
+					..attr \disabled off
+					..attr \data-enable \true
+					..find \span .text 'UnWatch'
+					..next! .text (Number $button.next!.text!)+1
+			.fail ->
+				$button.attr \disabled off
+	
+	$ '#favorite-button' .click ->
+		$button = $ @
+			..attr \disabled on
+			
+		function check-favorite
+			($button.attr \data-enable) == \true
+		
+		if check-favorite!
+			$.ajax "#{config.api-url}/bbs/thread/unfavorite" {
+				type: \delete
+				data: {'thread-id': thread-id}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done ->
+				$button
+					..attr \disabled off
+					..attr \data-enable \false
+					..find \span .text 'Star'
+					..next! .text (Number $button.next!.text!)-1
+			.fail ->
+				$button.attr \disabled off
+		else
+			$.ajax "#{config.api-url}/bbs/thread/favorite" {
+				type: \post
+				data: {'thread-id': thread-id}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done ->
+				$button
+					..attr \disabled off
+					..attr \data-enable \true
+					..find \span .text 'UnStar'
+					..next! .text (Number $button.next!.text!)+1
+			.fail ->
+				$button.attr \disabled off

@@ -36,3 +36,12 @@ li.notice(
 						| さんが
 					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
 					P をふぁぼりました。
+			when 'bbs-thread-post'
+				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
+					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
+				div.text
+					p
+						i.fa.fa-comment
+						a(href= '/bbs/thread/' + notice.content.thread.id)= notice.content.thread.title
+						| に投稿があります:
+					a.post-preview(href= '/bbs/thread/' + notice.content.thread.id + '#post-' + notice.content.post.id)= notice.content.post.text

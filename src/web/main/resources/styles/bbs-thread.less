@@ -10,17 +10,165 @@ html {
 
 main {
 	> header {
-		border-bottom: solid 1px #ddd;
+		.kyoppie-container {
+			h1 {
+				display: block;
+				width: 100%;
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 32px;
+				line-height: 1em;
+				font-size: 2em;
+				font-weight: 100;
+			}
 
-		h1 {
+			border-bottom: solid 1px #ddd;
+		}
+
+		.yuppie-container {
 			display: block;
 			width: 100%;
 			max-width: 800px;
 			margin: 0 auto;
-			padding: 32px;
-			line-height: 1em;
-			font-size: 2em;
-			font-weight: 100;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			#actions {
+				display: block;
+				float: right;
+				margin: 0;
+				padding: 8px;
+				list-style: none;
+
+				.action {
+					display: inline-block;
+					margin: 0 16px;
+
+					.button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: inline-block;
+						box-sizing: border-box;
+						margin: 0;
+						padding: 8px 12px;
+						cursor: pointer;
+						line-height: 1em;
+						font-size: 1em;
+						font-weight: normal;
+						text-decoration: none;
+						outline: 0;
+						border-radius: 0;
+						box-shadow: none;
+
+						* {
+							cursor: pointer;
+						}
+
+						&[data-enable='false'] {
+							color: #000;
+							background: #ddd;
+							border-top: solid 1px #ddd;
+							border-right: none;
+							border-bottom: solid 1px #ddd;
+							border-left: solid 1px #ddd;
+
+							&:hover {
+								background: lighten(#ddd, 10%);
+								border-top: solid 1px lighten(#ddd, 10%);
+								border-bottom: solid 1px lighten(#ddd, 10%);
+								border-left: solid 1px lighten(#ddd, 10%);
+
+								& + .count {
+									border-top: solid 1px lighten(#ddd, 10%);
+									border-right: solid 1px lighten(#ddd, 10%);
+									border-bottom: solid 1px lighten(#ddd, 10%);
+									border-left: none;
+								}
+							}
+
+							&:active,
+							&:disabled {
+								background: darken(#ddd, 10%);
+								border-top: solid 1px darken(#ddd, 10%);
+								border-bottom: solid 1px darken(#ddd, 10%);
+								border-left: solid 1px darken(#ddd, 10%);
+
+								& + .count {
+									border-top: solid 1px darken(#ddd, 10%);
+									border-right: solid 1px darken(#ddd, 10%);
+									border-bottom: solid 1px darken(#ddd, 10%);
+									border-left: none;
+								}
+							}
+
+							& + .count {
+								border-top: solid 1px #ddd;
+								border-right: solid 1px #ddd;
+								border-bottom: solid 1px #ddd;
+								border-left: none;
+							}
+						}
+
+						&[data-enable='true'] {
+							color: contrast(@themeColor, #000, #fff, 70%);
+							background: @themeColor;
+							border-top: solid 1px @themeColor;
+							border-right: none;
+							border-bottom: solid 1px @themeColor;
+							border-left: solid 1px @themeColor;
+
+							&:hover {
+								background: lighten(@themeColor, 10%);
+								border-top: solid 1px lighten(@themeColor, 10%);
+								border-bottom: solid 1px lighten(@themeColor, 10%);
+								border-left: solid 1px lighten(@themeColor, 10%);
+
+								& + .count {
+									border-top: solid 1px lighten(@themeColor, 10%);
+									border-bottom: solid 1px lighten(@themeColor, 10%);
+									border-right: solid 1px lighten(@themeColor, 10%);
+								}
+							}
+
+							&:active,
+							&:disabled {
+								background: darken(@themeColor, 10%);
+								border-top: solid 1px darken(@themeColor, 10%);
+								border-bottom: solid 1px darken(@themeColor, 10%);
+								border-left: solid 1px darken(@themeColor, 10%);
+
+								& + .count {
+									border-top: solid 1px darken(@themeColor, 10%);
+									border-bottom: solid 1px darken(@themeColor, 10%);
+									border-right: solid 1px darken(@themeColor, 10%);
+								}
+							}
+
+							& + .count {
+								border-top: solid 1px @themeColor;
+								border-right: solid 1px @themeColor;
+								border-bottom: solid 1px @themeColor;
+								border-left: none;
+							}
+						}
+
+						i {
+							margin-right: 4px;
+						}
+
+						& + .count {
+							padding: 8px;
+							color: #000;
+							background: #fff;
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -41,7 +189,7 @@ main {
 	width: 100%;
 	max-width: 800px;
 	margin: 0 auto;
-	padding: 32px;
+	padding: 24px 32px 32px 32px;
 
 	> .timeline {
 		> .posts {

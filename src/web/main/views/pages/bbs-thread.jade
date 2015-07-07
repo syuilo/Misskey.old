@@ -14,7 +14,20 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 		
 		main(role='main')
 			header
-				h1= thread.title
+				div.kyoppie-container
+					h1#title= thread.title
+				div.yuppie-container
+					ul#actions
+						li.action
+							button.button#watch-button(role='button', data-enable!= isWatched.toString())
+								i.fa.fa-eye
+								span= isWatched ? 'UnWatch' : 'Watch'
+							a.count#watch-count= thread.watchersCount
+						li.action
+							button.button#favorite-button(role='button', data-enable!= isFavorited.toString())
+								i.fa.fa-star
+								span= isFavorited ? 'UnStar' : 'Star'
+							a.count#favorites-count= thread.favoritesCount
 			div#posts!= postsHtml
 			if login
 				div#post-form-container

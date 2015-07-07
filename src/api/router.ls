@@ -47,8 +47,13 @@ routing =
 		[\post   /\/talk\/read(\..+)?$/   './rest/talk/read']
 
 	bbs:
-		[\post   /\/bbs\/thread\/create(\..+)?$/ './rest/bbs/thread/create']
-		[\post   /\/bbs\/post\/create(\..+)?$/   './rest/bbs/post/create']
+		[\post   /\/bbs\/thread\/create(\..+)?$/     './rest/bbs/thread/create']
+		[\post   /\/bbs\/thread\/favorite(\..+)?$/   './rest/bbs/thread/favorite']
+		[\post   /\/bbs\/thread\/watch(\..+)?$/      './rest/bbs/thread/watch']
+		[\delete /\/bbs\/thread\/unfavorite(\..+)?$/ './rest/bbs/thread/unfavorite']
+		[\delete /\/bbs\/thread\/unwatch(\..+)?$/    './rest/bbs/thread/unwatch']
+		[\post   /\/bbs\/post\/create(\..+)?$/       './rest/bbs/post/create']
+		
 
 	circle:
 		[\post /\/circle\/create(\..+)?$/ './rest/circle/create']
