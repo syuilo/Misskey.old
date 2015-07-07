@@ -1,7 +1,7 @@
 routing =
 	web:
 		[\post /\/web\/status\/reply(\..+)?$/   './rest/web/status/reply']
-		[\post /\/web\/status\/kyoppie(\..+)?$/   './rest/web/status/reply'] #dummy
+		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/   './rest/web/status/timeline-homehtml']
 		
 	account:
 		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
@@ -38,7 +38,6 @@ routing =
 		[\post /\/status\/favorite(\..+)?$/ './rest/status/favorite']
 		[\post /\/status\/repost(\..+)?$/   './rest/status/repost']
 		[\get  /\/status\/timeline(\..+)?$/ './rest/status/timeline']
-		[\get  /\/status\/timeline-webhtml(\..+)?$/ './rest/status/timeline-webhtml']
 
 	talk:
 		[\post   /\/talk\/say(\..+)?$/    './rest/talk/say']
