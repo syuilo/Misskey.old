@@ -8,8 +8,8 @@ require! {
 }
 module.exports = (req, res) ->
 	thread = req.root-thread
-	is-favorited-promise = if req.login then check-bbs-thread-favorited req.user.id, thread.id else new Promise (resolve, reject) -> resolve no
-	is-watched-promise = if req.login then check-bbs-thread-watched req.user.id, thread.id else new Promise (resolve, reject) -> resolve no
+	is-favorited-promise = if req.login then check-bbs-thread-favorited req.me.id, thread.id else new Promise (resolve, reject) -> resolve no
+	is-watched-promise = if req.login then check-bbs-thread-watched req.me.id, thread.id else new Promise (resolve, reject) -> resolve no
 	is-favorited <- is-favorited-promise.then
 	is-watched <- is-watched-promise.then
 	get-bbs-posts thread.id, 1000posts .then (posts) ->
