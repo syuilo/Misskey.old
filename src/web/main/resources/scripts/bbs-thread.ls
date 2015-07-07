@@ -82,5 +82,5 @@ $ ->
 	$ '#post-form textarea' .bind \input ->
 		text = $ '#post-form textarea' .val!
 
-		# オートセーブ
-		$.cookie cookie-id, text, { path: '/', expires: 365 }
+		## オートセーブ
+		#$.cookie cookie-id, text, { path: '/', expires: 365 }
