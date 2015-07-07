@@ -28,6 +28,11 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 								i.fa.fa-star
 								span= isFavorited ? 'UnStar' : 'Star'
 							a.count#favorites-count= thread.favoritesCount
+						if login
+							if thread.user.id == me.id
+								li.action
+									button.button#settings-button(role='button')
+										i.fa.fa-cog
 			div#posts!= postsHtml
 			if login
 				div#post-form-container

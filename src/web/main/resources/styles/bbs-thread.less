@@ -167,6 +167,29 @@ main {
 							background: #fff;
 						}
 					}
+
+					#settings-button {
+						color: #000;
+						background: #ddd;
+						border-top: solid 1px #ddd;
+						border-right: none;
+						border-bottom: solid 1px #ddd;
+						border-left: solid 1px #ddd;
+
+						&:hover {
+							background: lighten(#ddd, 10%);
+							border-top: solid 1px lighten(#ddd, 10%);
+							border-bottom: solid 1px lighten(#ddd, 10%);
+							border-left: solid 1px lighten(#ddd, 10%);
+						}
+
+						&:active {
+							background: darken(#ddd, 10%);
+							border-top: solid 1px darken(#ddd, 10%);
+							border-bottom: solid 1px darken(#ddd, 10%);
+							border-left: solid 1px darken(#ddd, 10%);
+						}
+					}
 				}
 			}
 		}
