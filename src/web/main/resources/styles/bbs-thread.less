@@ -25,129 +25,144 @@ main {
 			border-bottom: solid 1px #ddd;
 		}
 
-		#actions {
-			margin: 0;
-			padding: 0;
-			list-style: none;
+		.yuppie-container {
+			display: block;
+			width: 100%;
+			max-width: 800px;
+			margin: 0 auto;
 
-			.action {
-				display: inline-block;
-				margin: 0 16px;
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
 
-				.button {
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
+			#actions {
+				display: block;
+				float: right;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				.action {
 					display: inline-block;
-					box-sizing: border-box;
-					margin: 0;
-					padding: 8px 12px;
-					cursor: pointer;
-					line-height: 1em;
-					font-size: 1em;
-					font-weight: normal;
-					text-decoration: none;
-					outline: 0;
-					border-radius: 0;
-					box-shadow: none;
-					transition: all 0.1s ease;
+					margin: 0 16px;
 
-					&[data-enable='false'] {
-						color: #000;
-						background: #ddd;
-						border-top: solid 1px #ddd;
-						border-right: none;
-						border-bottom: solid 1px #ddd;
-						border-left: solid 1px #ddd;
+					.button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: inline-block;
+						box-sizing: border-box;
+						margin: 0;
+						padding: 8px 12px;
+						cursor: pointer;
+						line-height: 1em;
+						font-size: 1em;
+						font-weight: normal;
+						text-decoration: none;
+						outline: 0;
+						border-radius: 0;
+						box-shadow: none;
+						transition: all 0.1s ease;
 
-						&:hover {
-							background: lighten(#ddd, 10%);
-							border-top: solid 1px lighten(#ddd, 10%);
-							border-bottom: solid 1px lighten(#ddd, 10%);
-							border-left: solid 1px lighten(#ddd, 10%);
-
-							& + .count {
-								border-top: solid 1px lighten(#ddd, 10%);
-								border-right: solid 1px lighten(#ddd, 10%);
-								border-bottom: solid 1px lighten(#ddd, 10%);
-								border-left: none;
-							}
-						}
-
-						&:active {
-							background: darken(#ddd, 10%);
-							border-top: solid 1px darken(#ddd, 10%);
-							border-bottom: solid 1px darken(#ddd, 10%);
-							border-left: solid 1px darken(#ddd, 10%);
-							transition: background 0s ease;
-
-							& + .count {
-								border-top: solid 1px darken(#ddd, 10%);
-								border-right: solid 1px darken(#ddd, 10%);
-								border-bottom: solid 1px darken(#ddd, 10%);
-								border-left: none;
-							}
-						}
-
-						& + .count {
+						&[data-enable='false'] {
+							color: #000;
+							background: #ddd;
 							border-top: solid 1px #ddd;
-							border-right: solid 1px #ddd;
+							border-right: none;
 							border-bottom: solid 1px #ddd;
-							border-left: none;
-						}
-					}
+							border-left: solid 1px #ddd;
 
-					&[data-enable='true'] {
-						color: contrast(@themeColor, #000, #fff, 70%);
-						background: @themeColor;
-						border-top: solid 1px @themeColor;
-						border-right: none;
-						border-bottom: solid 1px @themeColor;
-						border-left: solid 1px @themeColor;
+							&:hover {
+								background: lighten(#ddd, 10%);
+								border-top: solid 1px lighten(#ddd, 10%);
+								border-bottom: solid 1px lighten(#ddd, 10%);
+								border-left: solid 1px lighten(#ddd, 10%);
 
-						&:hover {
-							background: lighten(@themeColor, 10%);
-							border-top: solid 1px lighten(@themeColor, 10%);
-							border-bottom: solid 1px lighten(@themeColor, 10%);
-							border-left: solid 1px lighten(@themeColor, 10%);
+								& + .count {
+									border-top: solid 1px lighten(#ddd, 10%);
+									border-right: solid 1px lighten(#ddd, 10%);
+									border-bottom: solid 1px lighten(#ddd, 10%);
+									border-left: none;
+								}
+							}
+
+							&:active {
+								background: darken(#ddd, 10%);
+								border-top: solid 1px darken(#ddd, 10%);
+								border-bottom: solid 1px darken(#ddd, 10%);
+								border-left: solid 1px darken(#ddd, 10%);
+								transition: background 0s ease;
+
+								& + .count {
+									border-top: solid 1px darken(#ddd, 10%);
+									border-right: solid 1px darken(#ddd, 10%);
+									border-bottom: solid 1px darken(#ddd, 10%);
+									border-left: none;
+								}
+							}
 
 							& + .count {
+								border-top: solid 1px #ddd;
+								border-right: solid 1px #ddd;
+								border-bottom: solid 1px #ddd;
+								border-left: none;
+							}
+						}
+
+						&[data-enable='true'] {
+							color: contrast(@themeColor, #000, #fff, 70%);
+							background: @themeColor;
+							border-top: solid 1px @themeColor;
+							border-right: none;
+							border-bottom: solid 1px @themeColor;
+							border-left: solid 1px @themeColor;
+
+							&:hover {
+								background: lighten(@themeColor, 10%);
 								border-top: solid 1px lighten(@themeColor, 10%);
 								border-bottom: solid 1px lighten(@themeColor, 10%);
-								border-right: solid 1px lighten(@themeColor, 10%);
+								border-left: solid 1px lighten(@themeColor, 10%);
+
+								& + .count {
+									border-top: solid 1px lighten(@themeColor, 10%);
+									border-bottom: solid 1px lighten(@themeColor, 10%);
+									border-right: solid 1px lighten(@themeColor, 10%);
+								}
+							}
+
+							&:active {
+								background: darken(@themeColor, 10%);
+								border-top: solid 1px darken(@themeColor, 10%);
+								border-bottom: solid 1px darken(@themeColor, 10%);
+								border-left: solid 1px darken(@themeColor, 10%);
+								transition: background 0s ease;
+
+								& + .count {
+									border-top: solid 1px darken(@themeColor, 10%);
+									border-bottom: solid 1px darken(@themeColor, 10%);
+									border-right: solid 1px darken(@themeColor, 10%);
+								}
+							}
+
+							& + .count {
+								border-top: solid 1px @themeColor;
+								border-right: solid 1px @themeColor;
+								border-bottom: solid 1px @themeColor;
+								border-left: none;
 							}
 						}
 
-						&:active {
-							background: darken(@themeColor, 10%);
-							border-top: solid 1px darken(@themeColor, 10%);
-							border-bottom: solid 1px darken(@themeColor, 10%);
-							border-left: solid 1px darken(@themeColor, 10%);
-							transition: background 0s ease;
-
-							& + .count {
-								border-top: solid 1px darken(@themeColor, 10%);
-								border-bottom: solid 1px darken(@themeColor, 10%);
-								border-right: solid 1px darken(@themeColor, 10%);
-							}
+						i {
+							margin-right: 4px;
 						}
 
 						& + .count {
-							border-top: solid 1px @themeColor;
-							border-right: solid 1px @themeColor;
-							border-bottom: solid 1px @themeColor;
-							border-left: none;
+							padding: 8px;
+							color: #000;
+							background: #fff;
 						}
-					}
-
-					i {
-						margin-right: 4px;
-					}
-
-					& + .count {
-						padding: 8px;
-						color: #000;
-						background: #fff;
 					}
 				}
 			}

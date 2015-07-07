@@ -16,17 +16,18 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 			header
 				div.kyoppie-container
 					h1#title= thread.title
-				ul#actions
-					li.action
-						button.button#watch-button(role='button', data-enable!= isWatched.toString())
-							i.fa.fa-eye
-							| Watch
-						a.count#watch-count= thread.watchersCount
-					li.action
-						button.button#favorite-button(role='button', data-enable!= isFavorited.toString())
-							i.fa.fa-star
-							| Star
-						a.count#favorites-count= thread.favoritesCount
+				div.yuppie-container
+					ul#actions
+						li.action
+							button.button#watch-button(role='button', data-enable!= isWatched.toString())
+								i.fa.fa-eye
+								| Watch
+							a.count#watch-count= thread.watchersCount
+						li.action
+							button.button#favorite-button(role='button', data-enable!= isFavorited.toString())
+								i.fa.fa-star
+								| Star
+							a.count#favorites-count= thread.favoritesCount
 			div#posts!= postsHtml
 			if login
 				div#post-form-container
