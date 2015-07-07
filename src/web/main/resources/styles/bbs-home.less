@@ -17,6 +17,10 @@ main {
 	display: block;
 	margin: 0;
 
+	h1, h2 {
+		font-family: '游ゴシック', 'YuGothic', 'Helvetica', 'Arial', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+	}
+
 	> header {
 		background: #86c92e;
 		background: -moz-linear-gradient(top, #86c92e 0%, #00ba69 99%);
@@ -33,7 +37,6 @@ main {
 			max-width: 900px;
 			margin: 0 auto;
 			padding: 32px 64px;
-			font-family: '游ゴシック', 'YuGothic', 'Helvetica', 'Arial', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 			font-size: 3em;
 			font-weight: 100;
 			color: #fff;
@@ -48,8 +51,115 @@ main {
 		display: block;
 		position: relative;
 		width: 100%;
-		max-width: 900px;
+		max-width: 1152px;
 		margin: 0 auto;
 		background: #fff;
+
+		h2 {
+			margin: 0;
+			font-size: 2em;
+			font-weight: normal;
+
+			i {
+				margin-right: 8px;
+			}
+		}
+
+		article {
+			border-bottom: solid 1px #eee;
+		}
+
+		.threads {
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			.thread {
+				display: block;
+				float: left;
+				margin: 16px;
+				padding: 0;
+				transition: all 0.2s ease;
+
+				&:hover {
+					.title {
+						min-height: 4em;
+					}
+
+					box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+				}
+
+				a {
+					display: block;
+					position: relative;
+					margin: 0;
+					padding: 0;
+					width: 256px;
+					height: 256px;
+					background-color: #eee;
+					background-repeat: no-repeat;
+					background-position: center center;
+					background-size: cover;
+
+					header {
+						display: block;
+						position: absolute;
+						bottom: 0;
+
+						.title {
+							display: block;
+							box-sizing: border-box;
+							margin: 0;
+							padding: 8px 12px;
+							width: 256px;
+							min-height: 2em;
+							max-height: 4em;
+							word-wrap: break-word;
+							font-size: 1em;
+							font-weight: bold;
+							//line-height: 1em;
+							color: #fff;
+							background: rgba(0, 0, 0, 0.8);
+							transition: all 0.2s ease;
+						}
+
+						.counts {
+							display: block;
+							margin: 0;
+							padding: 4px 16px;
+							text-align: right;
+							list-style: none;
+
+							.count {
+								display: inline;
+								margin: 0 12px;
+								padding: 0;
+								color: #fff;
+								text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+
+								&:first-child {
+									margin-left: 0;
+								}
+
+								&:last-child {
+									margin-right: 0;
+								}
+
+								i {
+									margin-right: 8px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
