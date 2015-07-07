@@ -253,7 +253,9 @@ $ ->
 			icon: "#{conf.url}/img/icon/#sn"
 		}
 		n.onshow = ->
-			set-timeout n.close, 10000ms
+			set-timeout ->
+				n.close!
+			, 10000ms
 		n.onclick = ->
 			window.open "#{conf.url}/#{sn}/status/#{id}"
 
