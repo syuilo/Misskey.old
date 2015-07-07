@@ -21,7 +21,7 @@ $ ->
 		$submit-button.attr \value '更新しています...'
 
 		$.ajax config.api-url + '/bbs/thread/update' {
-			type: \post
+			type: \put
 			-process-data
 			-content-type
 			data: new FormData $form.0
