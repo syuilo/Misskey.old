@@ -31,12 +31,15 @@ module.exports = (app, user, thread-id, title, image = null) ->
 		throw-error \thread-not-found 'Thread not found.'
 
 	function update(image)
-		(, eyecatch) <- BBSThreadEyecatch.find-one {thread-id}
-		if eyecatch?
-			eyecatch.image = image
-			eyecatch.save ->
-				resolve thread
+		if image?
+			(, eyecatch) <- BBSThreadEyecatch.find-one {thread-id}
+			if eyecatch?
+				eyecatch.image = image
+				eyecatch.save ->
+					resolve thread
+			else
+				new-eyecatch = new BBSThreadEyecatch {thread-id, image}
+				new-eyecatch.save ->
+					resolve thread
 		else
-			new-eyecatch = new BBSThreadEyecatch {thread-id, image}
-			new-eyecatch.save ->
-				resolve thread
+			resolve thread
