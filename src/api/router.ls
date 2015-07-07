@@ -47,7 +47,7 @@ routing =
 
 	bbs:
 		[\post   /\/bbs\/thread\/create(\..+)?$/     './rest/bbs/thread/create']
-		[\put    /\/bbs\/thread\/update(\..+)?$/     './rest/bbs/thread/creupdateate']
+		[\put    /\/bbs\/thread\/update(\..+)?$/     './rest/bbs/thread/update']
 		[\post   /\/bbs\/thread\/favorite(\..+)?$/   './rest/bbs/thread/favorite']
 		[\post   /\/bbs\/thread\/watch(\..+)?$/      './rest/bbs/thread/watch']
 		[\delete /\/bbs\/thread\/unfavorite(\..+)?$/ './rest/bbs/thread/unfavorite']
