@@ -31,7 +31,7 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 						if login
 							if thread.userId == me.id
 								li.action
-									button.button#settings-button(role='button')
+									a.button#settings-button(href= thread.id + '/settings')
 										i.fa.fa-cog
 			div#posts!= postsHtml
 			if login
