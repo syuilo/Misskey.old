@@ -29,9 +29,10 @@ html(lang='ja', dir='ltr')
 							li.thread(title= thread.title)
 								a(href= '/bbs/thread/' + thread.id)
 									header
-										p.watchers-count
-											i.fa.fa-eye
-											span.count= thread.watchersCount
+										ul.counts
+											li.count.watchers-count
+												i.fa.fa-eye
+												span.count= thread.watchersCount
 										h3.title= thread.title
 				article#recent-threads
 					h2 新着スレッド
@@ -40,7 +41,8 @@ html(lang='ja', dir='ltr')
 							li.thread(title= thread.title)
 								a(href= '/bbs/thread/' + thread.id)
 									header
-										p.watchers-count
-											i.fa.fa-eye
-											span.count= thread.watchersCount
+										ul.counts
+											li.count.watchers-count
+												i.fa.fa-eye
+												span.count= thread.watchersCount
 										h3.title= thread.title
