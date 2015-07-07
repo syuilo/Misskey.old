@@ -57,7 +57,7 @@ module.exports = (app) ->
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 	app.get '/bbs' (req, res) -> (require '../controllers/bbs-home') req, res
 	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require '../controllers/bbs-thread') req, res
-	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> res.display req, res, 'bbs-thread-settings'
+	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require '../controllers/bbs-thread-settings') req, res
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
 	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res
