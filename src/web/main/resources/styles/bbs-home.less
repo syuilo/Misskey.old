@@ -48,7 +48,7 @@ main {
 		display: block;
 		position: relative;
 		width: 100%;
-		max-width: 900px;
+		max-width: 1152px;
 		margin: 0 auto;
 		background: #fff;
 
@@ -79,6 +79,13 @@ main {
 					height: 256px;
 					background-color: #eee;
 
+					&:hover {
+						.title {
+							max-height: 5em;
+							height: 5em;
+						}
+					}
+
 					header {
 						display: block;
 						position: absolute;
@@ -90,17 +97,21 @@ main {
 							box-sizing: border-box;
 							margin: 0;
 							padding: 8px 12px;
-							width: 100%;
+							width: 256px;
+							max-height: 4em;
+							word-wrap: break-word;
 							font-size: 1em;
 							font-weight: bold;
+							//line-height: 1em;
 							color: #fff;
 							background: rgba(0, 0, 0, 0.8);
+							transition: all 0.2s ease;
 						}
 
 						.counts {
 							display: block;
 							margin: 0;
-							padding: 0;
+							padding: 4px 12px;
 							list-style: none;
 
 							&:after {
@@ -115,7 +126,7 @@ main {
 								margin: 0;
 								padding: 0;
 								color: #fff;
-								text-shadow: 8px 0 0 rgba(0, 0, 0, 0.5);
+								text-shadow: 0 0 8px rgba(0, 0, 0, 1);
 
 								i {
 									margin-right: 8px;
