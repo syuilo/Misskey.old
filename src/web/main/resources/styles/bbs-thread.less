@@ -22,6 +22,65 @@ main {
 			font-size: 2em;
 			font-weight: 100;
 		}
+
+		#actions {
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				li {
+					.button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: inline-block;
+						box-sizing: border-box;
+						margin: 0;
+						padding: 0;
+						cursor: pointer;
+						line-height: 1em;
+						font-size: 1em;
+						font-weight: normal;
+						text-decoration: none;
+						outline: 0;
+						border-radius: 0;
+						box-shadow: none;
+						transition: all 0.1s ease;
+
+						&[data-enable='false'] {
+							color: #000;
+							background: #ddd;
+							border: solid 1px #ddd;
+
+							&:hover {
+								background: lighten(#ddd, 10%);
+							}
+
+							&:active {
+								background: darken(#ddd, 10%);
+								transition: background 0s ease;
+							}
+						}
+
+						&[data-enable='true'] {
+							color: contrast(@themeColor, #000, #fff, 70%);
+							background: @themeColor;
+							border: solid 1px @themeColor;
+
+							&:hover {
+								background: lighten(@themeColor, 10%);
+							}
+
+							&:active {
+								background: darken(@themeColor, 10%);
+								transition: background 0s ease;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	> footer {
