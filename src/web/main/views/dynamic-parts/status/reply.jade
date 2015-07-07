@@ -2,11 +2,13 @@ li.status(title= status.displayCreatedAt
 	data-id= status.id
 	data-user-id= status.user.id
 	data-user-color= status.user.color
-	data-user-verified!= status.user.isPlus.toString())
+	data-user-verified!= status.user.isVerified.toString())
 	article
 		a.icon-anchor(href= config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
 			img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 		header
+			if status.user.isVerified
+				img.verified-icon(src='/resources/images/verified.png', alt='verified')
 			h2
 				a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
 			span.screen-name= '@' + status.user.screenName
