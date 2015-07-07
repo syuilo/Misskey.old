@@ -3,7 +3,7 @@ require! {
 	'../../../models/utils/status-get-mentions'
 	'../../../models/utils/get-new-users'
 	'../../../models/utils/user-following-check'
-	'../utils/timeline-generate-html'
+	'../utils/generate-home-timeline-html'
 }
 
 status-gets =
@@ -15,7 +15,7 @@ module.exports = (req, res, content = \home) ->
 	Promise.all [
 		new Promise (resolve, reject) ->
 			status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
-				timeline-generate-html statuses, me, (timeline-html) -> resolve timeline-html
+				generate-home-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
 		new Promise (resolve, reject) ->
 			users <- get-new-users 5 .then
 			Promise.all (users |> map (user) ->
