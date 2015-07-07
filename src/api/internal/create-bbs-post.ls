@@ -3,8 +3,10 @@ require! {
 	gm
 	'../../models/user': User
 	'../../models/bbs-thread': BBSThread
+	'../../models/bbs-thread-watch': BBSThreadWatch
 	'../../models/bbs-post': BBSPost
 	'../../models/bbs-post-image': BBSPostImage
+	'../../models/utils/create-notice'
 	'../../utils/publish-redis-streaming'
 }
 
@@ -72,6 +74,13 @@ module.exports = (app, user, thread-id, text, image = null) ->
 								type: \thread-post-reply
 								value: {post.id}
 							publish-redis-streaming "userStream:#{reply-post.user-id}" stream-mention-obj
+				
+				(, watchers) <- BBSThreadWatch.find {thread-id: thread.id}
+				watchers |> each (watcher) ->
+					create-notice watcher.user-id, \bbs-thread-post {
+						thread-id: thread.id
+						post-id: post.id
+					} .then ->
 
 			switch
 			| err? => throw-error \post-save-error err
