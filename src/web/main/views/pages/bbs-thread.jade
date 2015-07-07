@@ -19,15 +19,20 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 				div.yuppie-container
 					ul#actions
 						li.action
-							button.button#watch-button(role='button', data-enable!= isWatched.toString())
+							button.button#watch-button(role='button', data-enable!= isWatched.toString(), title= isWatched ? 'このスレッドをウォッチしています' : 'このスレッドをウォッチする')
 								i.fa.fa-eye
 								span= isWatched ? 'UnWatch' : 'Watch'
 							a.count#watch-count= thread.watchersCount
 						li.action
-							button.button#favorite-button(role='button', data-enable!= isFavorited.toString())
+							button.button#favorite-button(role='button', data-enable!= isFavorited.toString(), title= isWatched ? 'このスレッドをふぁぼっています' : 'このスレッドをふぁぼる')
 								i.fa.fa-star
 								span= isFavorited ? 'UnStar' : 'Star'
 							a.count#favorites-count= thread.favoritesCount
+						if login
+							if thread.userId == me.id
+								li.action
+									a.button#settings-button(href= thread.id + '/settings', title='スレッドの設定')
+										i.fa.fa-cog
 			div#posts!= postsHtml
 			if login
 				div#post-form-container

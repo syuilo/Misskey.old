@@ -48,6 +48,14 @@ main {
 					display: inline-block;
 					margin: 0 16px;
 
+					&:first-child {
+						margin-left: 0;
+					}
+
+					&:last-child {
+						margin-right: 0;
+					}
+
 					.button {
 						-webkit-appearance: none;
 						-moz-appearance: none;
@@ -69,6 +77,14 @@ main {
 							cursor: pointer;
 						}
 
+						&:disabled {
+							cursor: wait;
+
+							* {
+								cursor: wait;
+							}
+						}
+
 						&[data-enable='false'] {
 							color: #000;
 							background: #ddd;
@@ -84,9 +100,9 @@ main {
 								border-left: solid 1px lighten(#ddd, 10%);
 
 								& + .count {
-									border-top: solid 1px lighten(#ddd, 10%);
-									border-right: solid 1px lighten(#ddd, 10%);
-									border-bottom: solid 1px lighten(#ddd, 10%);
+									border-top: solid 2px lighten(#ddd, 10%);
+									border-right: solid 2px lighten(#ddd, 10%);
+									border-bottom: solid 2px lighten(#ddd, 10%);
 									border-left: none;
 								}
 							}
@@ -99,17 +115,17 @@ main {
 								border-left: solid 1px darken(#ddd, 10%);
 
 								& + .count {
-									border-top: solid 1px darken(#ddd, 10%);
-									border-right: solid 1px darken(#ddd, 10%);
-									border-bottom: solid 1px darken(#ddd, 10%);
+									border-top: solid 2px darken(#ddd, 10%);
+									border-right: solid 2px darken(#ddd, 10%);
+									border-bottom: solid 2px darken(#ddd, 10%);
 									border-left: none;
 								}
 							}
 
 							& + .count {
-								border-top: solid 1px #ddd;
-								border-right: solid 1px #ddd;
-								border-bottom: solid 1px #ddd;
+								border-top: solid 2px #ddd;
+								border-right: solid 2px #ddd;
+								border-bottom: solid 2px #ddd;
 								border-left: none;
 							}
 						}
@@ -129,9 +145,9 @@ main {
 								border-left: solid 1px lighten(@themeColor, 10%);
 
 								& + .count {
-									border-top: solid 1px lighten(@themeColor, 10%);
-									border-bottom: solid 1px lighten(@themeColor, 10%);
-									border-right: solid 1px lighten(@themeColor, 10%);
+									border-top: solid 2px lighten(@themeColor, 10%);
+									border-bottom: solid 2px lighten(@themeColor, 10%);
+									border-right: solid 2px lighten(@themeColor, 10%);
 								}
 							}
 
@@ -143,16 +159,16 @@ main {
 								border-left: solid 1px darken(@themeColor, 10%);
 
 								& + .count {
-									border-top: solid 1px darken(@themeColor, 10%);
-									border-bottom: solid 1px darken(@themeColor, 10%);
-									border-right: solid 1px darken(@themeColor, 10%);
+									border-top: solid 2px darken(@themeColor, 10%);
+									border-bottom: solid 2px darken(@themeColor, 10%);
+									border-right: solid 2px darken(@themeColor, 10%);
 								}
 							}
 
 							& + .count {
-								border-top: solid 1px @themeColor;
-								border-right: solid 1px @themeColor;
-								border-bottom: solid 1px @themeColor;
+								border-top: solid 2px @themeColor;
+								border-right: solid 2px @themeColor;
+								border-bottom: solid 2px @themeColor;
 								border-left: none;
 							}
 						}
@@ -162,9 +178,43 @@ main {
 						}
 
 						& + .count {
-							padding: 8px;
+							display: inline-block;
+							box-sizing: border-box;
+							padding: 7px 8px;
+							line-height: 1em;
 							color: #000;
 							background: #fff;
+
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+					}
+
+					#settings-button {
+						color: #000;
+						background: #ddd;
+						border-top: solid 1px #ddd;
+						border-right: none;
+						border-bottom: solid 1px #ddd;
+						border-left: solid 1px #ddd;
+
+						&:hover {
+							background: lighten(#ddd, 10%);
+							border-top: solid 1px lighten(#ddd, 10%);
+							border-bottom: solid 1px lighten(#ddd, 10%);
+							border-left: solid 1px lighten(#ddd, 10%);
+						}
+
+						&:active {
+							background: darken(#ddd, 10%);
+							border-top: solid 1px darken(#ddd, 10%);
+							border-bottom: solid 1px darken(#ddd, 10%);
+							border-left: solid 1px darken(#ddd, 10%);
+						}
+
+						i {
+							margin: 0;
 						}
 					}
 				}
@@ -282,6 +332,11 @@ main {
 							font-size: 1.1em;
 
 							> .text {
+								user-select: text;
+								-moz-user-select: text;
+								-webkit-user-select: text;
+								-ms-user-select: text;
+								cursor: default;
 								margin: 0;
 							}
 
