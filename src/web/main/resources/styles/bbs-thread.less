@@ -28,7 +28,10 @@ main {
 			padding: 0;
 			list-style: none;
 
-			li {
+			.action {
+				display: inline-block;
+				margin: 0 16px;
+
 				.button {
 					-webkit-appearance: none;
 					-moz-appearance: none;
@@ -36,7 +39,7 @@ main {
 					display: inline-block;
 					box-sizing: border-box;
 					margin: 0;
-					padding: 0;
+					padding: 8px 12px;
 					cursor: pointer;
 					line-height: 1em;
 					font-size: 1em;
@@ -135,7 +138,12 @@ main {
 						}
 					}
 
+					i {
+						margin-right: 8px;
+					}
+
 					& + .count {
+						padding: 8px;
 						color: #000;
 						background: #fff;
 					}
