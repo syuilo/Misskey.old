@@ -60,9 +60,9 @@ window.STATUSTIMELINE = {}
 							$input.parent '.image-attacher' .append $img
 						..readAsDataURL file
 
-			# Init tag input of reply-form
-			..find '.reply-form .tag'
-				.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
+			## Init tag input of reply-form
+			#..find '.reply-form .tag'
+			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 			
 			# Init favorite button
 			..find 'article > .article-main > .main > .footer > .actions > .favorite > .favorite-button' .click ->
