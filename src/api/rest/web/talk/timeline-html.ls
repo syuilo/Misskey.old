@@ -12,7 +12,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[otherparty-id, since-cursor, max-cursor] = get-express-params req, <[ otherparty-id since-cursor max-cursor ]>
 	get-talk-timeline do
 		app
-		user.id
+		user
 		otherparty-id
 		30messages
 		if !empty since-cursor then Number since-cursor else null
