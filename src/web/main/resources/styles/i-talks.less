@@ -1,5 +1,9 @@
 @themeColor: <%themeColor%>;
 
+html {
+	background: #eee;
+}
+
 h1 {
 	display: block;
 	position: relative;
@@ -50,15 +54,7 @@ h1 {
 		}
 
 		&[data-is-unread='false'] {
-			background: #fafafa;
-
-			> a > article > .text {
-				color: rgba(0, 0, 0, 0.5);
-
-				.me {
-					color: rgba(0, 0, 0, 0.2);
-				}
-			}
+			opacity: 0.7;
 		}
 
 		> a > article {
