@@ -20,7 +20,10 @@ html(lang='ja', dir='ltr')
 										h2= message.user.name
 										span.screenName= '@' + message.user.screenName
 										time(datetime=message.createdAt)= message.displayCreatedAt
-									p.text= message.text
+									p.text
+										if message.user-id == me.id
+											span.me あなた:
+										|= message.text
 									if message.isImageAttached
 										img.image(src=url + '/img/talk-message/' + message.id, alt='image')
 			else
