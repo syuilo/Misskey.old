@@ -1,7 +1,8 @@
 routing =
 	web:
-		[\post /\/web\/status\/reply(\..+)?$/   './rest/web/status/reply']
-		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/   './rest/web/status/timeline-homehtml']
+		[\post /\/web\/status\/reply(\..+)?$/             './rest/web/status/reply']
+		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/ './rest/web/status/timeline-homehtml']
+		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
 		
 	account:
 		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
