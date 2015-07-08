@@ -13,7 +13,7 @@ module.exports = (req, res, view) ->
 	me = req.me.to-object!
 	otherparty = req.root-user.to-object!
 	
-	get-talk-timeline me.id, otherparty.id, 32messages, null, null .then (messages) ->
+	get-talk-timeline null, me, otherparty.id, 32messages, null, null .then (messages) ->
 		messages .= reverse!
 		
 		user-following-check otherparty.id, me.id .then (following-me) ->
