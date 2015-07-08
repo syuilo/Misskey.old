@@ -263,7 +263,7 @@ $ ->
 			$messages.each ->
 				$message = $ '<li class="message">' .append $ @
 				window.TALKSTREAM.set-event $message.children \.message
-				$message.append-to $ '#stream .messages'
+				$message.prepend-to $ '#stream .messages'
 		.fail (data) ->
 			$button.attr \disabled no
 			$button.text '失敗'
