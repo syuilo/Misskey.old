@@ -9,16 +9,19 @@ html(lang='ja', dir='ltr')
 	
 	body
 		main(role='main')
-			ol#talks
-				each message in messages
-					li.talk
-						a(href= url + '/widget/talk/' + message.user.screenName)
-							article
-								img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
-								header
-									h2= message.user.name
-									span.screenName= '@' + message.user.screenName
-									time(datetime=message.createdAt)= message.createdAt
-								p.text= message.text
-								if message.isImageAttached
-									img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+			if messages != null
+				ol#talks
+					each message in messages
+						li.talk
+							a(href= url + '/widget/talk/' + message.user.screenName)
+								article
+									img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
+									header
+										h2= message.user.name
+										span.screenName= '@' + message.user.screenName
+										time(datetime=message.createdAt)= message.createdAt
+									p.text= message.text
+									if message.isImageAttached
+										img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+			else
+				p#empty-histories 履歴はありません。
