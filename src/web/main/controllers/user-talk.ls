@@ -30,7 +30,7 @@ module.exports = (req, res, view = \normal) ->
 					view-name = switch view
 						| \normal => \user-talk
 						| \widget => \widget-user-talk
-					res.display req, res, view-name {
+					res.display req, res, view-name, {
 						otherparty
 						messages: message-htmls
 						following-me
