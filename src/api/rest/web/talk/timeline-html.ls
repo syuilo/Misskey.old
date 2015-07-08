@@ -11,6 +11,7 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[otherparty-id, since-cursor, max-cursor] = get-express-params req, <[ otherparty-id since-cursor max-cursor ]>
 	get-talk-timeline do
+		app
 		user.id
 		otherparty-id
 		30messages
