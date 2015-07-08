@@ -31,9 +31,10 @@ $ ->
 			window-id
 			$content
 			"<i class=\"fa fa-comments\"></i>トーク"
-			600px
-			420px
-			no
+			520px
+			560px
+			yes
+			'/i/talks'
 		false
 	
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"

@@ -12,7 +12,7 @@ html(lang='ja', dir='ltr')
 			ol#talks
 				each message in messages
 					li.talk
-						a(href= url + '/' + message.user.screenName + '/talk')
+						a(href= url + '/widget/talk/' + message.user.screenName)
 							article
 								img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
 								header

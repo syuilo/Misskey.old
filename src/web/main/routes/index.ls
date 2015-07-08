@@ -78,3 +78,5 @@ module.exports = (app) ->
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	app.get '/:userSn/talk' require '../controllers/user-talk'
 	app.get '/:userSn/status/:statusId' (req, res) -> (require '../controllers/status') req, res
+	app.get '/widget/talk/:userSn' (req, res) -> (require '../controllers/user-talk') req, res, \widget
+
