@@ -64,13 +64,13 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 		
 		function update-otherparty-history
 			(, history) <- TalkHistory.find-one {user-id: otherparty-id, otherparty-id: user-id}
-		if history?
-			history.updated-at = Date.now!
-			history.message-id = message.id
-			history.save!
-		else
-			new-history = new TalkHistory {user-id: otherparty-id, otherparty-id: user-id, message-id}
-			new-history.save!
+			if history?
+				history.updated-at = Date.now!
+				history.message-id = message.id
+				history.save!
+			else
+				new-history = new TalkHistory {user-id: otherparty-id, otherparty-id: user-id, message-id}
+				new-history.save!
 		
 		update-me-history!
 		update-otherparty-history!
