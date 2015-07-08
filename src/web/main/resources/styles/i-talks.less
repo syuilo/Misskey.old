@@ -1,5 +1,9 @@
 @themeColor: <%themeColor%>;
 
+html {
+	background: #eee;
+}
+
 h1 {
 	display: block;
 	position: relative;
@@ -22,13 +26,14 @@ h1 {
 
 	> .talk {
 		position: relative;
-		padding: 12px 0;
-		background-color: transparent;
-		transition: background-color 0.2s ease;
+		padding: 0;
+		background: #fff;
+		border-bottom: solid 1px #eee;
+		transition: background 0s ease;
 
 		&:hover {
-			background-color: rgba(0, 0, 0, 0.02);
-			transition: background-color 0s ease;
+			background: #fafafa;
+			transition: background 0.2s ease;
 
 			> a > article > header > h2 {
 				color: @themeColor;
@@ -43,9 +48,18 @@ h1 {
 			}
 		}
 
+		&:active {
+			background: #eee;
+			transition: background 0.2s ease;
+		}
+
+		&[data-is-unread='false'] {
+			opacity: 0.8;
+		}
+
 		> a > article {
 			position: relative;
-			padding: 20px 12px;
+			padding: 20px 30px;
 
 			&:after {
 				content: "";
@@ -70,12 +84,9 @@ h1 {
 				}
 
 				> time {
-					position: absolute;
-					top: 16px;
-					right: 12px;
+					float: right;
 					display: inline;
-					vertical-align: top;
-					color: rgba(0, 0, 0, 0.6);
+					color: rgba(0, 0, 0, 0.5);
 					font-size: small;
 				}
 
@@ -105,7 +116,7 @@ h1 {
 				min-height: 54px;
 				max-width: 54px;
 				max-height: 54px;
-				margin: 0 12px 4px 0;
+				margin: 0 18px 4px 0;
 				border-radius: 8px;
 				transition: all 0.1s ease;
 			}
@@ -118,6 +129,10 @@ h1 {
 				word-wrap: break-word;
 				font-size: 1.1em;
 				color: rgba(0, 0, 0, 0.8);
+
+				.me {
+					color: rgba(0, 0, 0, 0.4);
+				}
 			}
 
 			> .image {

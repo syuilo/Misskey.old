@@ -31,7 +31,7 @@ $ ->
 			window-id
 			$content
 			"<i class=\"fa fa-comments\"></i>トーク"
-			520px
+			500px
 			560px
 			yes
 			'/i/talks'

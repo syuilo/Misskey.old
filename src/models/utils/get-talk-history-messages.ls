@@ -9,7 +9,7 @@ module.exports = (user-id) ->
 
 	(, histories) <- TalkHistory
 		.find {user-id}
-		.sort \-createdAt
+		.sort \-updatedAt
 		.exec
 
 	promises = histories |> map (history) -> new Promise (resolve-history, reject-history) ->
