@@ -186,7 +186,6 @@ $ ->
 			$typing.append-to $ \#otherparty-status .animate {
 				opacity: 0
 			} 5000ms
-			scroll 0, ($ \html .outer-height!)
 			set-timeout ->
 				$typing.remove!
 			, 5000ms
