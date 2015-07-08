@@ -14,6 +14,7 @@ module.exports = (req, res) ->
 					message.user = otherparty
 					resolve message
 			Promise.all promises .then (serialized-messages) ->
+				serialized-messages .= reverse!
 				done serialized-messages
 		else
 			done null
