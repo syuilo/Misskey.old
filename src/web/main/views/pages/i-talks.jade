@@ -21,7 +21,7 @@ html(lang='ja', dir='ltr')
 										span.screenName= '@' + message.user.screenName
 										time(datetime=message.createdAt)= message.displayCreatedAt
 									p.text
-										if message.user-id == me.id
+										if message.userId == me.id
 											span.me あなた:
 										= message.text
 									if message.isImageAttached
