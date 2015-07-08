@@ -48,28 +48,29 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 
 	function done(message)
 		resolve message
+		
 		user-id = user.id
 		message-id = message.id
 		
 		function update-me-history
 			(, history) <- TalkHistory.find-one {user-id, otherparty-id}
-				if history?
-					history.updated-at = Date.now!
-					history.message-id = message.id
-					history.save!
-				else
-					new-history = new TalkHistory {user-id, otherparty-id, message-id}
-					new-history.save!
+			if history?
+				history.updated-at = Date.now!
+				history.message-id = message.id
+				history.save!
+			else
+				new-history = new TalkHistory {user-id, otherparty-id, message-id}
+				new-history.save!
 		
 		function update-otherparty-history
 			(, history) <- TalkHistory.find-one {user-id: otherparty-id, otherparty-id: user-id}
-				if history?
-					history.updated-at = Date.now!
-					history.message-id = message.id
-					history.save!
-				else
-					new-history = new TalkHistory {user-id: otherparty-id, otherparty-id: user-id, message-id}
-					new-history.save!
+		if history?
+			history.updated-at = Date.now!
+			history.message-id = message.id
+			history.save!
+		else
+			new-history = new TalkHistory {user-id: otherparty-id, otherparty-id: user-id, message-id}
+			new-history.save!
 		
 		update-me-history!
 		update-otherparty-history!
