@@ -12,6 +12,6 @@ module.exports = (req, res) ->
 				message .= to-object!
 				message.user = otherparty
 				resolve-history message
-		Promise.all promises .then (serialized-messages)
+		Promise.all promises .then (serialized-messages) ->
 			res.display req, res, 'i-talks' do
 				messages: serialized-messages
