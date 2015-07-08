@@ -70,6 +70,9 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 				else
 					new-history = new TalkHistory {user-id: otherparty-id, otherparty-id: user-id, message-id}
 					new-history.save!
+		
+		update-me-history!
+		update-otherparty-history!
 
 		[
 			["userStream:#{otherparty-id}" \talk-message]
