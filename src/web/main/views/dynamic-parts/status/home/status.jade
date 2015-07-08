@@ -84,7 +84,7 @@ div.status.article(
 								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
 			div.main
 				div.icon-area
-					a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+					a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 				header.header
 					div.author(itemprop='author')
