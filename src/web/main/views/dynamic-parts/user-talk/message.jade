@@ -1,6 +1,7 @@
 div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 		title= message.createdAt
 		data-id= message.id
+		data-cursor= message.cursor
 		data-is-edited!= message.isEdited.toString()
 		data-is-readed!= message.isReaded.toString()
 		data-is-deleted!= message.isDeleted.toString()

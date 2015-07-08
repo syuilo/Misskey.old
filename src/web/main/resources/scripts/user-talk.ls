@@ -48,22 +48,34 @@ window.TALKSTREAM = {}
 
 function add-message($message)
 	new Audio '/resources/sounds/talk-message.mp3' .play!
+	can-scroll = check-can-scroll!
 	$message = ($ '<li class="message">' .append $message).hide!
 	window.TALKSTREAM.set-event $message.children \.message
 	$message.append-to $ '#stream .messages' .show 200ms
-	scroll 0, ($ \html .outer-height!)
-	timer = set-interval ->
+	if can-scroll
 		scroll 0, ($ \html .outer-height!)
-	, 10ms
-	set-timeout ->
-		clear-interval timer
-	, 300ms
+		timer = set-interval ->
+			scroll 0, ($ \html .outer-height!)
+		, 10ms
+		set-timeout ->
+			clear-interval timer
+		, 300ms
+
+function check-can-scroll
+	$window = $ window
+	height = $window.height()
+	scroll-top = $window.scroll-top!
+	document-height = $ document .height!
+	document-height == height + scroll-top
 
 $ ->
 	me-id = $ \html .attr \data-me-id
 	me-sn = $ \html .attr \data-me-screen-name
 	otherparty-id = $ \html .attr \data-otherparty-id
 	otherparty-sn = $ \html .attr \data-otherparty-screen-name
+	
+	$ '.messages .message.me' .each ->
+		window.TALKSTREAM.set-event $ @
 
 	# オートセーブがあるなら復元
 	if $.cookie "talk-autosave-#{otherparty-id}"
@@ -157,7 +169,6 @@ $ ->
 		else
 			$status.add-class \opening
 		$ \#otherparty-status .prepend $status
-		scroll 0, ($ \html .outer-height!)
 		set-timeout ->
 			$status.add-class \normal
 			$status.remove-class \opening
@@ -178,7 +189,6 @@ $ ->
 			$typing.append-to $ \#otherparty-status .animate {
 				opacity: 0
 			} 5000ms
-			scroll 0, ($ \html .outer-height!)
 			set-timeout ->
 				$typing.remove!
 			, 5000ms
@@ -233,6 +243,30 @@ $ ->
 			$form.find \textarea .focus!
 			/*alert('error');*/
 			$submit-button.attr \disabled no
+	
+	$ '#read-more' .click ->
+		$button = $ @
+		$button.attr \disabled yes
+		$button.text '読み込み中'
+		$.ajax config.api-url + '/web/talk/timeline-html' {
+			type: \get
+			data: {
+				'otherparty-id': otherparty-id
+				'max-cursor': $ '#stream > .messages > .message:first-child > .message' .attr \data-cursor
+			}
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			$button.attr \disabled no
+			$button.text 'もっと読み込む'
+			$messages = $ data
+			$messages.each ->
+				$message = $ '<li class="message">' .append $ @
+				window.TALKSTREAM.set-event $message.children \.message
+				$message.prepend-to $ '#stream .messages'
+		.fail (data) ->
+			$button.attr \disabled no
+			$button.text '失敗'
 
 $ window .load ->
 	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
@@ -240,7 +274,4 @@ $ window .load ->
 
 $ window .resize ->
 	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
-
-$ ->
-	$ '.messages .message.me' .each ->
-		window.TALKSTREAM.set-event $ @
+	
