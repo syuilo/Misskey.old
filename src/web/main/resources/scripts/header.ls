@@ -24,6 +24,19 @@ $ ->
 			$ '#misskey-main-header > .informationCenter' .css \height '200px'
 		window.music-center-open = !music-center-open
 	
+	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .click ->
+		window-id = "misskey-window-talk-histories"
+		$content = $ '<iframe>' .attr {src: '/i/talks', +seamless}
+		window.open-window do
+			window-id
+			$content
+			"<i class=\"fa fa-comments\"></i>トーク"
+			520px
+			560px
+			yes
+			'/i/talks'
+		false
+	
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 
 	$ '#misskey-main-header .search input' .bind \input ->

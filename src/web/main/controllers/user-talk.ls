@@ -9,7 +9,7 @@ require! {
 	'../utils/generate-user-talk-message-stream-html'
 }
 
-module.exports = (req, res) ->
+module.exports = (req, res, view = \normal) ->
 	me = req.me.to-object!
 	otherparty = req.root-user.to-object!
 	
@@ -27,9 +27,11 @@ module.exports = (req, res) ->
 
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-user-talk-message-stream-html messages, me .then (message-htmls) ->
-					res.display req, res, \user-talk {
+					view-name = switch view
+						| \normal => \user-talk
+						| \widget => \widget-user-talk
+					res.display req, res, view-name, {
 						otherparty
 						messages: message-htmls
 						following-me
-						no-header: req.query.noheader == \true
 					}

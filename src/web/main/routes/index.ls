@@ -55,6 +55,7 @@ module.exports = (app) ->
 		res.set 'Content-Type' 'application/javascript'
 		res.send "var config = conf = #{to-json config.public-config};"
 	app.get '/log' (req, res) -> res.display req, res, 'log'
+	app.get '/widget/talk/:userSn' (req, res) -> (require '../controllers/user-talk') req, res, \widget
 	app.get '/bbs' (req, res) -> (require '../controllers/bbs-home') req, res
 	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require '../controllers/bbs-thread') req, res
 	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require '../controllers/bbs-thread-settings') req, res
@@ -78,3 +79,4 @@ module.exports = (app) ->
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	app.get '/:userSn/talk' require '../controllers/user-talk'
 	app.get '/:userSn/status/:statusId' (req, res) -> (require '../controllers/status') req, res
+

@@ -4,7 +4,7 @@ li.status(title= status.displayCreatedAt
 	data-user-color= status.user.color
 	data-user-verified!= status.user.isVerified.toString())
 	article
-		a.icon-anchor(href= config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+		a.icon-anchor(href= config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
 			img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 		header
 			if status.user.isVerified

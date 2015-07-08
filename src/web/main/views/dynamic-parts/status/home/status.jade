@@ -39,7 +39,7 @@ div.status.article(
 								data-user-color= talkPost.user.color
 								data-user-verified!= talkPost.user.isVerified.toString())
 								article
-									a.icon-anchor(href= config.url + '/' + talkPost.user.screenName + '/talk?noheader=true', title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
+									a.icon-anchor(href= config.url + '/widget/talk/' + talkPost.user.screenName, title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 										img.icon(src=config.url + '/img/icon/' + talkPost.user.screenName, alt='icon')
 									header
 										if talkPost.user.isVerified
@@ -56,7 +56,7 @@ div.status.article(
 			if status.isRepostToStatus
 				div.repost-information
 					p.info
-						a.icon-anchor(href=config.url + '/' + status.repostedByUser.screenName + '/talk?noheader=true', title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
+						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
 							img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
 						i.fa.fa-retweet
 						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
@@ -68,7 +68,7 @@ div.status.article(
 					data-user-color= status.replySource.user.color
 					data-user-verified!= status.replySource.user.isVerified.toString())
 					article
-						a.icon-anchor(href=config.url + '/' + status.replySource.user.screenName + '/talk?noheader=true', title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
+						a.icon-anchor(href=config.url + '/widget/talk/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
 							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
 						header
 							if status.replySource.user.isVerified
@@ -84,7 +84,7 @@ div.status.article(
 								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
 			div.main
 				div.icon-area
-					a.icon-anchor(href=config.url + '/' + status.user.screenName + '/talk?noheader=true', title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+					a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
 				header.header
 					div.author(itemprop='author')
@@ -143,7 +143,7 @@ div.status.article(
 									data-user-color= reply.user.color
 									data-user-verified!= reply.user.isVerified.toString())
 									article
-										a.icon-anchor(href= config.url + '/' + reply.user.screenName + '/talk?noheader=true', title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
+										a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
 											img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
 										header
 											if reply.user.isVerified
