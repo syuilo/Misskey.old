@@ -3,6 +3,7 @@ require! {
 	gm
 	'../../models/talk-message': TalkMessage
 	'../../models/talk-message-image': TalkMessageImage
+	'../../models/talk-history': TalkHistory
 	'../../models/user-following': UserFollowing
 	'../../models/utils/user-following-check'
 	'../../utils/publish-redis-streaming'
@@ -41,12 +42,34 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 			| image? =>
 				talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
 				talk-message-image.save ->
-					send-response created-talk-message
+					done created-talk-message
 			| _ =>
-				send-response created-talk-message
+				done created-talk-message
 
-	function send-response(message)
+	function done(message)
 		resolve message
+		user-id = user.id
+		message-id = message.id
+		
+		function update-me-history
+			(, history) <- TalkHistory.find-one {user-id, otherparty-id}
+				if history?
+					history.updated-at = Date.now!
+					history.message-id = message.id
+					history.save!
+				else
+					new-history = new TalkHistory {user-id, otherparty-id, message-id}
+					new-history.save!
+		
+		function update-otherparty-history
+			(, history) <- TalkHistory.find-one {user-id: otherparty-id, otherparty-id: user-id}
+				if history?
+					history.updated-at = Date.now!
+					history.message-id = message.id
+					history.save!
+				else
+					new-history = new TalkHistory {user-id: otherparty-id, otherparty-id: user-id, message-id}
+					new-history.save!
 
 		[
 			["userStream:#{otherparty-id}" \talk-message]
