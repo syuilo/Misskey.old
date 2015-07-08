@@ -48,16 +48,25 @@ window.TALKSTREAM = {}
 
 function add-message($message)
 	new Audio '/resources/sounds/talk-message.mp3' .play!
+	can-scroll = check-can-scroll!
 	$message = ($ '<li class="message">' .append $message).hide!
 	window.TALKSTREAM.set-event $message.children \.message
 	$message.append-to $ '#stream .messages' .show 200ms
-	scroll 0, ($ \html .outer-height!)
-	timer = set-interval ->
+	if can-scroll
 		scroll 0, ($ \html .outer-height!)
-	, 10ms
-	set-timeout ->
-		clear-interval timer
-	, 300ms
+		timer = set-interval ->
+			scroll 0, ($ \html .outer-height!)
+		, 10ms
+		set-timeout ->
+			clear-interval timer
+		, 300ms
+
+function check-can-scroll
+	$window = $ window
+	height = $window.height()
+	scroll-top = $window.scroll-top!
+	document-height = $ document .height!
+	document-height == height + scroll-top
 
 $ ->
 	me-id = $ \html .attr \data-me-id
@@ -157,7 +166,6 @@ $ ->
 		else
 			$status.add-class \opening
 		$ \#otherparty-status .prepend $status
-		scroll 0, ($ \html .outer-height!)
 		set-timeout ->
 			$status.add-class \normal
 			$status.remove-class \opening
