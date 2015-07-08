@@ -26,8 +26,8 @@ html(
 								p#empty-stream
 									i.fa.fa-info-circle
 									| このユーザーとまだ会話したことがありませんっ
-									br
-									a(href='http://syuilo.com/447', target='_blank') 使い方を見る
+							else
+								button#read-more(role='button') もっと読み込む
 							ol.messages
 								if messages != null
 									each message in messages
