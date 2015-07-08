@@ -9,7 +9,7 @@ require! {
 	'../utils/generate-user-talk-message-stream-html'
 }
 
-module.exports = (req, res, view = \normal) ->
+module.exports = (req, res, view) ->
 	me = req.me.to-object!
 	otherparty = req.root-user.to-object!
 	
