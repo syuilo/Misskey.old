@@ -252,7 +252,7 @@ $ ->
 			type: \get
 			data: {
 				'otherparty-id': otherparty-id
-				'max-cursor': $ '#stream > .messages > .message:last-child > .message' .attr \data-cursor
+				'max-cursor': $ '#stream > .messages > .message:first-child > .message' .attr \data-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
