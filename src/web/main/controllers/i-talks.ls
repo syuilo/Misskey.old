@@ -7,6 +7,7 @@ require! {
 
 module.exports = (req, res) ->
 	get-talk-history-messages req.me.id .then (messages) ->
+		console.log messages
 		if not is-null-or-empty messages
 			promises = messages |> map (message) -> new Promise (resolve, reject) ->
 				User.find-by-id message.otherparty-id, (, otherparty) ->
