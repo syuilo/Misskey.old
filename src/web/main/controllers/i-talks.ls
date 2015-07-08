@@ -9,6 +9,7 @@ require! {
 module.exports = (req, res) ->
 	get-talk-history-messages req.me.id .then (messages) ->
 		if messages? and messages.length > 0message
+			messages .= reverse!
 			promises = messages |> map (message) -> new Promise (resolve, reject) ->
 				message .= to-object!
 				message.display-created-at = moment message.created-at .format 'YYYY年M月D日 H時m分s秒'
