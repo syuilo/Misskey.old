@@ -20,7 +20,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty max-cursor then Number max-cursor else null
 	.then (messages) ->
 		if not null-or-empty messages
-			messages .= reverse!
 			User.find-by-id otherparty-id, (, otherparty) ->
 				serialize-talk-messages messages, user, otherparty .then (messages) ->
 					generate-talk-messages-html messages, user .then (message-htmls) ->
