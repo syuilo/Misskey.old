@@ -19,7 +19,7 @@ html(lang='ja', dir='ltr')
 									header
 										h2= message.user.name
 										span.screenName= '@' + message.user.screenName
-										time(datetime=message.createdAt)= message.displayCreatedAt
+										time(datetime=message.createdAt, data-display-type='relative')= message.displayCreatedAt
 									p.text
 										if message.userId == me.id
 											span.me あなた:
