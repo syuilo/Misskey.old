@@ -251,6 +251,7 @@ $ ->
 		$.ajax config.api-url + '/web/talk/timeline-html' {
 			type: \get
 			data: {
+				'otherparty-id': otherparty-id
 				'max-cursor': $ '#stream > .messages > .message:last-child > .message' .attr \data-cursor
 			}
 			data-type: \json
