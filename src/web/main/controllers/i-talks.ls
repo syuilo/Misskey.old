@@ -9,11 +9,17 @@ module.exports = (req, res) ->
 	get-talk-history-messages req.me.id .then (messages) ->
 		if messages? and messages.length > 0message
 			promises = messages |> map (message) -> new Promise (resolve, reject) ->
-				User.find-by-id message.otherparty-id, (, otherparty) ->
-					message .= to-object!
-					message.user = otherparty
-					resolve message
+				message .= to-object!
+				if message.otherparty-id.to-string! == req.me.id.to-string!
+					User.find-by-id message.user-id, (, otherparty) ->
+						message.user = otherparty
+						resolve message
+				else
+					User.find-by-id message.otherparty-id, (, otherparty) ->
+						message.user = otherparty
+						resolve message
 			Promise.all promises .then (serialized-messages) ->
+				serialized-messages .= reverse!
 				done serialized-messages
 		else
 			done null
