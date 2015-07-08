@@ -13,18 +13,26 @@ html {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 4px 8px;
-	min-width: 5em;
+	min-width: 12em;
 	cursor: pointer;
 	text-align: center;
-	font-size: 1em;
+	font-size: 0.8em;
 	font-weight: normal;
 	text-decoration: none;
-	color: #fff;
+	color: rgba(255, 255, 255, 0.8);
 	background: rgba(0, 0, 0, 0.8);
 	outline: 0;
 	border: 0;
-	border-radius: 8px;
+	border-radius: 32px;
 	box-shadow: none;
+
+	&:hover {
+		color: #fff;
+	}
+
+	&:active {
+		background: #000;
+	}
 }
 
 #stream {
