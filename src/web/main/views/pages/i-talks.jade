@@ -1,25 +1,24 @@
-extends ../layouts/home
+doctype html
 
-block title
-	title Talks
-
-block assets
-	link(rel='stylesheet', href='/resources/styles/i-talks.css')
-
-block content
-	h1
-		i.fa.fa-comments
-		| Talks
-	ol#talks
-		each recentMessage in recentMessages
-			li.talk
-				a(href= url + '/' + recentMessage.user.screenName + '/talk')
-					article
-						img.icon(src=url + '/img/icon/' + recentMessage.user.screenName, alt='icon')
-						header
-							h2= recentMessage.user.name
-							span.screenName= '@' + recentMessage.user.screenName
-							time(datetime=recentMessage.createdAt)= recentMessage.createdAt
-						p.text= recentMessage.text
-						if recentMessage.isImageAttached
-							img.image(src=url + '/img/talk-message/' + recentMessage.id, alt='image')
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title トーク
+		link(rel='stylesheet', href='/resources/styles/i-talks.css')
+		script(src='/resources/scripts/i-talks.js')
+	
+	body
+		main(role='main')
+			ol#talks
+				each message in messages
+					li.talk
+						a(href= url + '/' + message.user.screenName + '/talk')
+							article
+								img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
+								header
+									h2= message.user.name
+									span.screenName= '@' + message.user.screenName
+									time(datetime=message.createdAt)= message.createdAt
+								p.text= message.text
+								if message.isImageAttached
+									img.image(src=url + '/img/talk-message/' + message.id, alt='image')
