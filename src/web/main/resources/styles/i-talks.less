@@ -25,11 +25,11 @@ h1 {
 		padding: 0;
 		background: #fff;
 		border-bottom: solid 1px #eee;
-		transition: background 0.2s ease;
+		transition: background 0s ease;
 
 		&:hover {
 			background: #fafafa;
-			transition: background 0s ease;
+			transition: background 0.2s ease;
 
 			> a > article > header > h2 {
 				color: @themeColor;
@@ -46,7 +46,15 @@ h1 {
 
 		&:active {
 			background: #eee;
-			transition: background 0s ease;
+			transition: background 0.2s ease;
+		}
+
+		&[data-is-unread='true'] {
+			background: #fafafa;
+
+			> a > article > .text {
+				color: rgba(0, 0, 0, 0.5);
+			}
 		}
 
 		> a > article {
