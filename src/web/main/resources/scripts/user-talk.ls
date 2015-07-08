@@ -73,6 +73,9 @@ $ ->
 	me-sn = $ \html .attr \data-me-screen-name
 	otherparty-id = $ \html .attr \data-otherparty-id
 	otherparty-sn = $ \html .attr \data-otherparty-screen-name
+	
+	$ '.messages .message.me' .each ->
+		window.TALKSTREAM.set-event $ @
 
 	# オートセーブがあるなら復元
 	if $.cookie "talk-autosave-#{otherparty-id}"
@@ -240,6 +243,29 @@ $ ->
 			$form.find \textarea .focus!
 			/*alert('error');*/
 			$submit-button.attr \disabled no
+	
+	$ '#read-more' .click ->
+		$button = $ @
+		$button.attr \disabled yes
+		$button.text '読み込み中'
+		$.ajax config.api-url + '/web/talk/timeline-html' {
+			type: \get
+			data: {
+				'max-cursor': $ '#stream > .messages > .message:last-child > .message' .attr \data-cursor
+			}
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			$button.attr \disabled no
+			$button.text 'もっと読み込む'
+			$messages = $ data
+			$messages.each ->
+				$message = $ '<li class="message">' .append $ @
+				window.TALKSTREAM.set-event $message.children \.message
+				$message.append-to $ '#stream .messages'
+		.fail (data) ->
+			$button.attr \disabled no
+			$button.text '失敗'
 
 $ window .load ->
 	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
@@ -247,7 +273,4 @@ $ window .load ->
 
 $ window .resize ->
 	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
-
-$ ->
-	$ '.messages .message.me' .each ->
-		window.TALKSTREAM.set-event $ @
+	
