@@ -144,6 +144,7 @@ main {
 					bottom: 22px;
 
 					> .icon-anchor {
+						display: block;
 						margin: 0 32px 0 32px;
 
 						> #icon {
@@ -264,6 +265,7 @@ main {
 		box-sizing: border-box;
 		margin: 0 auto;
 		padding: 32px 0;
+		width: ~"calc(100% - 348px)";
 		max-width: 1344px;
 
 		&:after {
@@ -272,19 +274,14 @@ main {
 			clear: both;
 		}
 
-		#left-content {
-			float: left;
-			width: 300px;
-		}
-
-		#right-content {
+		#side-content {
 			float: left;
 			width: 300px;
 		}
 
 		#main-content {
 			float: left;
-			width: ~"calc(100% - 632px)";
+			width: ~"calc(100% - 332px)";
 			margin: 0 16px;
 
 			&:after {

@@ -80,9 +80,16 @@ html(lang='ja'
 									i.fa.fa-users
 									| フォロワー
 			div#contents
-				div#left-content
-					i
 				div#main-content
 					block content
-				div#right-content
-					i
+				div#side-content
+					if login
+							if me.id != user.id
+								if isFollowMe
+									p#friend-status フォローされています
+					if login
+						if me.id != user.id
+							if isFollowing
+								button#follow-button.following フォロー中
+							else
+								button#follow-button.notFollowing フォロー
