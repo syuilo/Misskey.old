@@ -121,11 +121,14 @@ main {
 				position: relative;
 
 				> #icon-area {
-					display: inline-block;
-					position: relative;
-					margin: -280px 32px 0 96px;
+					display: block;
+					position: absolute;
+					left: 64px;
+					bottom: 16px;
 
-					> #icon-anchor {
+					> .icon-anchor {
+						margin: 0 32px 0 32px;
+
 						> #icon {
 							width: 200px;
 							height: 200px;
@@ -139,40 +142,43 @@ main {
 
 					> #comment {
 						position: absolute;
+						display: block;
 						margin: 0;
 						padding: 4px 12px;
+						text-align: center;
 						background: #fff;
 						border: solid 1px #dde;
+						border-radius: 4px;
 
 						&:before {
 							content: "";
 							display: block;
 							position: absolute;
-							top: -16px;
-							left: ~"calc(50% - 8px)";
-							border-top: solid 8px transparent;
-							border-right: solid 8px transparent;
-							border-bottom: solid 8px #dde;
-							border-left: solid 8px transparent;
+							top: -24px;
+							left: ~"calc(50% - 12px)";
+							border-top: solid 12px transparent;
+							border-right: solid 12px transparent;
+							border-bottom: solid 12px #dde;
+							border-left: solid 12px transparent;
 						}
 
 						&:after {
 							content: "";
 							display: block;
 							position: absolute;
-							top: -15px;
-							left: ~"calc(50% - 8px)";
-							border-top: solid 8px transparent;
-							border-right: solid 8px transparent;
-							border-bottom: solid 8px #fff;
-							border-left: solid 8px transparent;
+							top: -23px;
+							left: ~"calc(50% - 12px)";
+							border-top: solid 12px transparent;
+							border-right: solid 12px transparent;
+							border-bottom: solid 12px #fff;
+							border-left: solid 12px transparent;
 						}
 					}
 				}
 
 				#main-nav {
 					display: inline-block;
-					margin: 0;
+					margin: 0 0 0 332px;
 					padding: 0;
 					list-style: none;
 
