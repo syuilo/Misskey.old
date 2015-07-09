@@ -63,7 +63,7 @@ function add-message($message)
 
 function check-can-scroll
 	$window = $ window
-	height = $window.height()
+	height = $window.height!
 	scroll-top = $window.scroll-top!
 	document-height = $ document .height!
 	height + scroll-top >= (document-height - 64px)
