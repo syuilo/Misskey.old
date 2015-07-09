@@ -221,5 +221,6 @@ $ ->
 	$ window .scroll ->
 		top = $ @ .scroll-top!
 		height = Number($ \#header-data .css \height)
+		console.log "#{top} #{height}"
 		pos = 50 - ((top / height) * 100)
 		$ \#header-data .css \background-position "center #{pos}%"
