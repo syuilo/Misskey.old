@@ -8,7 +8,7 @@ div.status.article(
 		data-status-id          = status.id
 		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
 		data-id                 = status.id
-		data-created-at        != status.createdAt
+		data-created-at         = status.createdAt
 		data-cursor             = status.cursor
 		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
 		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
