@@ -37,7 +37,10 @@ html(lang='ja'
 					div.bottom
 						div.main
 							div.name-area
-								h1#name(itemprop='name')= user.name
+								h1#name(itemprop='name')
+									if user.isVerified
+										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+									= user.name
 								span#screen-name(itemprop='alternateName')= '@' + user.screenName
 							table.count-table
 								tr
