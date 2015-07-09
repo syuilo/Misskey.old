@@ -55,8 +55,8 @@ function add-message($message)
 	if can-scroll
 		scroll 0, ($ \html .outer-height!)
 		timer = set-interval ->
-			scroll 0, ($ \html .outer-height!)
-		, 10ms
+			scroll 0, ($ document .height!)
+		, 1ms
 		set-timeout ->
 			clear-interval timer
 		, 300ms
