@@ -74,6 +74,10 @@ module.exports = (io, session-store) ->
 				publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}" to-json do
 					type: \read
 					value: id
+				TalkMessage.find-by-id id, (, message) ->
+					message
+						..is-readed = yes
+						..save!
 			..on \alive (req) ->
 				publisher.publish "misskey:talkStream:#{socket.otherparty-id}-#{uid}" \alive
 			..on \type (text) ->
