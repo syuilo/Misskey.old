@@ -50,12 +50,19 @@ main {
 				background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
 
 				> .main {
-					width: ~"calc(100% - 304px)";
-					margin: 0 0 0 auto;
+					max-width: 1334px;
+					margin: 0 auto;
 					color: #fff;
+
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
+					}
 
 					.name-area {
 						float: left;
+						margin-left: 267px;
 						padding: 16px 0 16px 24px;
 
 						#name {
@@ -119,11 +126,13 @@ main {
 
 			> .main {
 				position: relative;
+				max-width: 1344px;
+				margin: 0 auto;
 
 				> #icon-area {
 					display: block;
 					position: absolute;
-					left: 64px;
+					left: 32px;
 					bottom: 22px;
 
 					> .icon-anchor {
@@ -852,6 +861,12 @@ main {
 						> .main {
 							position: relative;
 							padding: 22px 26px 22px 26px;
+
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
 
 							> .icon-anchor {
 								float: left;
