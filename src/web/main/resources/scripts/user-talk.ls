@@ -55,8 +55,8 @@ function add-message($message)
 	if can-scroll
 		scroll 0, ($ \html .outer-height!)
 		timer = set-interval ->
-			scroll 0, ($ \html .outer-height!)
-		, 10ms
+			scroll 0, ($ document .height!)
+		, 1ms
 		set-timeout ->
 			clear-interval timer
 		, 300ms
@@ -66,7 +66,7 @@ function check-can-scroll
 	height = $window.height()
 	scroll-top = $window.scroll-top!
 	document-height = $ document .height!
-	height + scroll-top >= (document-height - 32px)
+	height + scroll-top >= (document-height - 64px)
 
 $ ->
 	me-id = $ \html .attr \data-me-id
