@@ -140,9 +140,33 @@ main {
 					> #comment {
 						position: absolute;
 						margin: 0;
-						padding: 4px 8px;
+						padding: 4px 12px;
 						background: #fff;
 						border: solid 1px #dde;
+
+						&:before {
+							content: "";
+							display: block;
+							position: absolute;
+							top: -16px;
+							left: ~"calc(100% - 8px)";
+							border-top: solid 8px transparent;
+							border-right: solid 8px transparent;
+							border-bottom: solid 8px #dde;
+							border-left: solid 8px transparent;
+						}
+
+						&:after {
+							content: "";
+							display: block;
+							position: absolute;
+							top: -15px;
+							left: ~"calc(100% - 8px)";
+							border-top: solid 8px transparent;
+							border-right: solid 8px transparent;
+							border-bottom: solid 8px #fff;
+							border-left: solid 8px transparent;
+						}
 					}
 				}
 
