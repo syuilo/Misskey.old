@@ -262,7 +262,9 @@ main {
 
 	#contents {
 		box-sizing: border-box;
+		margin: 0 auto;
 		padding: 32px 0;
+		max-width: 1344px;
 
 		&:after {
 			content: "";
@@ -282,8 +284,8 @@ main {
 
 		#main-content {
 			float: left;
-			width: ~"calc(100% - 600px)";
-			margin: 0;
+			width: ~"calc(100% - 632px)";
+			margin: 0 16px;
 
 			&:after {
 				content: "";
@@ -599,9 +601,8 @@ main {
 			.status.article {
 				position: relative;
 				width: 100%;
-				max-width: 700px;
-				margin: 0 auto;
-				padding: 12px 0;
+				margin: 0;
+				padding: 0;
 				border-bottom: solid 1px #eee;
 				background: transparent;
 				transition: margin 0.2s ease, background-color 0.2s ease;
