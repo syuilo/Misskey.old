@@ -33,28 +33,35 @@ html(lang='ja'
 		
 		main(role='main')
 			header(role='banner')
-				div#headerMain
-					div#headerUserMenu
-						ul
-							li: a(href='/' + user.screenName + '/talk', title='このユーザーとトーク'): i.fa.fa-comments
-							li: button#sendNewReplyButton(title='このユーザーになんか言う'): i.fa.fa-pencil-square-o
-					div#headerUserArea
-						if login
-							if me.id != user.id
-								if isFollowMe
-									p#friend-status フォローされています
-						div#headerUserAreaBackground
-						div#headerUserAreaMain
-							a#iconAnchor
+				div#header-data
+					div.bottom
+						div.main
+							div.name-area
+								h1#name(itemprop='name')
+									if user.isVerified
+										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+									= user.name
+								span#screen-name(itemprop='alternateName')= '@' + user.screenName
+							table.count-table
+								tr
+									th 投稿
+									th お気に入り
+									th フォロー
+									th フォロワー
+								tr
+									td: a(href='/' + user.screenName)= user.statusesCount
+									td: a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
+									td: a(href='/' + user.screenName + '/followings')= user.followingsCount
+									td: a(href='/' + user.screenName + '/followers')= user.followersCount
+				nav#header-nav(role='navigation')
+					div.main
+						div#icon-area
+							a.icon-anchor
 								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
-							h1
-								span#name(itemprop='name')= user.name
-								span#screenName(itemprop='alternateName')= '@' + user.screenName
-							if user.comment != null
-								p#comment(itemprop='description')= user.comment
-				nav#headerNav(role='navigation')
-					div#headerNavBackground
-					div#headerNavMain
+							div.contents
+								p#comment= user.comment
+								p#location= user.location
+								a#website-url(href= user.url)= user.url
 						ul#main-nav
 							li(class= page == 'home' ? 'active' : '')
 								a(href='/' + user.screenName)
@@ -72,22 +79,17 @@ html(lang='ja'
 								a(href='/' + user.screenName + '/followers')
 									i.fa.fa-users
 									| フォロワー
-						table
-							tr
-								th 投稿
-								th お気に入り
-								th フォロー
-								th フォロワー
-							tr
-								td: a(href='/' + user.screenName)= user.statusesCount
-								td: a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
-								td: a(href='/' + user.screenName + '/followings')= user.followingsCount
-								td: a(href='/' + user.screenName + '/followers')= user.followersCount
-						if login
+			div#contents
+				div#main-content
+					block content
+				div#side-content
+					if login
 							if me.id != user.id
-								if isFollowing
-									button#followButton.ui-followButton.following フォロー中
-								else
-									button#followButton.ui-followButton.notFollowing フォロー
-			div#content
-				block content
+								if isFollowMe
+									p#friend-status フォローされています
+					if login
+						if me.id != user.id
+							if isFollowing
+								button#follow-button.following フォロー中
+							else
+								button#follow-button.notFollowing フォロー
