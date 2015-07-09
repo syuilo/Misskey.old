@@ -261,11 +261,30 @@ main {
 	}
 
 	#contents {
+		box-sizing: border-box;
 		padding: 32px 0;
 
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		#left-content {
+			float: left;
+			width: 300px;
+		}
+
+
+		#right-content {
+			float: left;
+			width: 300px;
+		}
+
 		#main-content {
-			max-width: 600px;
-			margin: 0 auto;
+			float: left;
+			width: ~"calc(100% - 600px)";
+			margin: 0;
 
 			&:after {
 				content: "";
