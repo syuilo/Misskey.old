@@ -40,7 +40,7 @@ main {
 			height: 400px;
 			background-image: url(@headerImageUrl);
 			background-repeat: no-repeat;
-			background-position: center center;
+			background-position: center 50%;
 			background-size: cover;
 
 			> .bottom {
@@ -66,9 +66,16 @@ main {
 						padding: 16px 0 16px 24px;
 
 						#name {
+							user-select: text;
+							-moz-user-select: text;
+							-webkit-user-select: text;
+							-ms-user-select: text;
+							cursor: default;
 							margin: 0;
+							font-family: '游ゴシック', YuGothic, 'Helvetica', 'Arial', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 							font-size: 3em;
 							font-weight: 100;
+							line-height: 1em;
 							text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
 							.verified-icon {
@@ -81,6 +88,11 @@ main {
 						}
 
 						#screen-name {
+							user-select: text;
+							-moz-user-select: text;
+							-webkit-user-select: text;
+							-ms-user-select: text;
+							cursor: default;
 							color: rgba(255, 255, 255, 0.8);
 						}
 					}
@@ -167,6 +179,11 @@ main {
 						text-align: center;
 
 						> #comment {
+							user-select: text;
+							-moz-user-select: text;
+							-webkit-user-select: text;
+							-ms-user-select: text;
+							cursor: default;
 							display: block;
 							box-sizing: border-box;
 							width: 100%;

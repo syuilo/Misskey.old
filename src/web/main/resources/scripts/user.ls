@@ -178,6 +178,12 @@ $ ->
 	function check-follow
 		($ \html .attr \data-is-following) == \true
 	
+	$ \#screen-name .click ->
+		element= document.get-element-by-id \screen-name
+		rng = document.create-range!
+		rng.select-node-contents element
+		window.get-selection!.add-range rng
+	
 	$ '#follow-button' .click ->
 		$button = $ @
 			..attr \disabled on
@@ -211,3 +217,9 @@ $ ->
 				$ \html .attr \data-is-following \false
 			.fail ->
 				$button.attr \disabled off
+	
+	$ window .scroll ->
+		top = $ @ .scroll-top!
+		view-height = $ window .height!
+		pos = 50 - ((top / view-height) * 100)
+		$ \#header-data .css \background-position "center #{pos}%"
