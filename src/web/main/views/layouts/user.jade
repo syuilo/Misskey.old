@@ -59,7 +59,8 @@ html(lang='ja'
 							a.icon-anchor
 								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
 							div.contents
-								p#comment= user.comment
+								if user.comment != ""
+									p#comment= user.comment
 								p#location= user.location
 								a#website-url(href= user.url)= user.url
 						ul#main-nav
