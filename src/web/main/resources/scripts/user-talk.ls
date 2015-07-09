@@ -66,7 +66,7 @@ function check-can-scroll
 	height = $window.height()
 	scroll-top = $window.scroll-top!
 	document-height = $ document .height!
-	height + scroll-top >= (document-height - 32px)
+	height + scroll-top >= (document-height - 64px)
 
 $ ->
 	me-id = $ \html .attr \data-me-id
