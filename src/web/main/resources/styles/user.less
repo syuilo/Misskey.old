@@ -157,42 +157,57 @@ main {
 						}
 					}
 
-					> #comment {
+					> .contents {
 						display: block;
 						position: absolute;
 						top: 100%;
-						box-sizing: border-box;
 						width: 100%;
 						margin: 4px 0 0 0;
-						padding: 4px 12px;
 						text-align: center;
-						background: #fff;
-						border: solid 2px #dde;
-						border-radius: 4px;
-						word-wrap: break-word;
 
-						&:before {
-							content: "";
+						> #comment {
 							display: block;
-							position: absolute;
-							top: -24px;
-							left: ~"calc(50% - 12px)";
-							border-top: solid 12px transparent;
-							border-right: solid 12px transparent;
-							border-bottom: solid 12px #dde;
-							border-left: solid 12px transparent;
+							box-sizing: border-box;
+							width: 100%;
+							margin: 4px 0 0 0;
+							padding: 4px 12px;
+							text-align: center;
+							background: #fff;
+							border: solid 2px #dde;
+							border-radius: 4px;
+							word-wrap: break-word;
+
+							&:before {
+								content: "";
+								display: block;
+								position: absolute;
+								top: -24px;
+								left: ~"calc(50% - 12px)";
+								border-top: solid 12px transparent;
+								border-right: solid 12px transparent;
+								border-bottom: solid 12px #dde;
+								border-left: solid 12px transparent;
+							}
+
+							&:after {
+								content: "";
+								display: block;
+								position: absolute;
+								top: -21px;
+								left: ~"calc(50% - 12px)";
+								border-top: solid 12px transparent;
+								border-right: solid 12px transparent;
+								border-bottom: solid 12px #fff;
+								border-left: solid 12px transparent;
+							}
 						}
 
-						&:after {
-							content: "";
-							display: block;
-							position: absolute;
-							top: -21px;
-							left: ~"calc(50% - 12px)";
-							border-top: solid 12px transparent;
-							border-right: solid 12px transparent;
-							border-bottom: solid 12px #fff;
-							border-left: solid 12px transparent;
+						> #location {
+							color: #555;
+						}
+
+						> #website-url {
+							color: #555;
 						}
 					}
 				}

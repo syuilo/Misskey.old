@@ -58,9 +58,10 @@ html(lang='ja'
 						div#icon-area
 							a.icon-anchor
 								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
-							p#comment= user.comment
-							p#location= user.location
-							a#website-url(href= user.url)= user.url
+							div.contents
+								p#comment= user.comment
+								p#location= user.location
+								a#website-url(href= user.url)= user.url
 						ul#main-nav
 							li(class= page == 'home' ? 'active' : '')
 								a(href='/' + user.screenName)
