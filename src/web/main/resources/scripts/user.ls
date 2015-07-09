@@ -170,24 +170,10 @@ window.STATUSTIMELINE = {}
 							..find 'article > .article-main > .reply-info' .show animation-speed
 							..find 'article > .article-main > footer' .hide animation-speed
 
-$ window .load ->
-	header-set-blur-image!
 
 $ ->
-	function header-set-blur-image
-		screen-width = $ window .width!
-		max-width = $ '#headerMain' .width!
-		header-nav-height = $ '#headerNav' .outer-height!
-		if screen-width < max-width
-			$ '#headerUserAreaBackground' .css \width "#{screen-width}px"
-		else
-			$ '#headerUserAreaBackground' .css \width "#{max-width}px"
-		
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
-	
-	header-set-blur-image!
-	$ window .resize header-set-blur-image
 	
 	function check-follow
 		($ \html .attr \data-is-following) == \true
