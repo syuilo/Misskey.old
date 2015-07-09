@@ -178,7 +178,7 @@ $ ->
 	function check-follow
 		($ \html .attr \data-is-following) == \true
 	
-	$ '#followButton' .click ->
+	$ '#follow-button' .click ->
 		$button = $ @
 			..attr \disabled on
 		if check-follow!
