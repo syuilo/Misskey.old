@@ -220,6 +220,6 @@ $ ->
 	
 	$ window .scroll ->
 		top = $ @ .scroll-top!
-		view-height = $ window .height!
-		pos = 50 - ((top / view-height) * 100)
+		height = parse-int($ \#header-data .css \height)
+		pos = 50 - ((top / height) * 50)
 		$ \#header-data .css \background-position "center #{pos}%"
