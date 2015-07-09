@@ -46,6 +46,7 @@ main {
 			> .bottom {
 				position: absolute;
 				bottom: 0;
+				width: 100%;
 				background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 
 				> .main {
@@ -55,9 +56,7 @@ main {
 					}
 
 					.count-table {
-						position: absolute;
-						bottom: 100%;
-						right: 0;
+						float: right;
 						padding: 8px;
 						margin: 0;
 
@@ -105,15 +104,17 @@ main {
 				position: relative;
 				text-align: center;
 
-				#icon {
+				> #icon-anchor {
 					display: block;
-					position: absolute;
-					width: 200px;
-					height: 200px;
-					margin: 0;
-					padding: 0;
-					vertical-align: bottom;
-					border-radius: 8px;
+					margin: -280px 32px 0 32px;
+
+					> #icon {
+						width: 200px;
+						height: 200px;
+						margin: 0;
+						padding: 0;
+						border-radius: 8px;
+					}
 				}
 
 				#main-nav {
@@ -161,6 +162,7 @@ main {
 
 	#contents {
 		padding: 32px 0;
+
 		#main-content {
 			background: #fff;
 
