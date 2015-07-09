@@ -52,8 +52,10 @@ html(lang='ja'
 									td: a(href='/' + user.screenName + '/followers')= user.followersCount
 				nav#header-nav(role='navigation')
 					div.main
-						a#icon-anchor
-							img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
+						div#icon-area
+							a#icon-anchor
+								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
+							p#comment= user.comment
 						ul#main-nav
 							li(class= page == 'home' ? 'active' : '')
 								a(href='/' + user.screenName)

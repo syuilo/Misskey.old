@@ -120,18 +120,29 @@ main {
 			> .main {
 				position: relative;
 
-				> #icon-anchor {
+				> #icon-area {
 					display: inline-block;
+					position: relative;
 					margin: -280px 32px 0 96px;
 
-					> #icon {
-						width: 200px;
-						height: 200px;
+					> #icon-anchor {
+						> #icon {
+							width: 200px;
+							height: 200px;
+							margin: 0;
+							padding: 0;
+							border: solid 4px #fff;
+							border-radius: 8px;
+							box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+						}
+					}
+
+					> #comment {
+						position: absolute;
 						margin: 0;
-						padding: 0;
-						border: solid 4px #fff;
-						border-radius: 8px;
-						box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+						padding: 4px 8px;
+						background: #fff;
+						border: solid 1px #dde;
 					}
 				}
 
