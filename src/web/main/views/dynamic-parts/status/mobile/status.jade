@@ -31,8 +31,7 @@ div.status.article(
 			if status.isRepostToStatus
 				div.repost-information
 					p.info
-						div.icon-anchor
-							img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
+						img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
 						i.fa.fa-retweet
 						span.name= status.repostedByUser.name
 						| によってRepost
