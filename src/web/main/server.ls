@@ -58,7 +58,7 @@ server.init-session = (req, res, callback) ->
 		api-url: config.public-config.api-url
 		web-streaming-url: config.public-config.web-streaming-url
 		login: req.login
-		is-mobile: 
+		is-mobile: req.is-mobile
 
 	# Renderer function
 	res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
