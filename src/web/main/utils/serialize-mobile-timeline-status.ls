@@ -72,4 +72,5 @@ module.exports = (status, me, callback) ->
 		status.is-reply = status.in-reply-to-status-id?
 		status <- get-user status
 		status <- get-reply-source status
+		console.log status
 		callback status
