@@ -79,6 +79,9 @@ div.status.article(
 				aside.footer
 					if login
 						div.actions
+							div.reply
+								button.reply-button(role='button')
+									i.fa.fa-reply
 							div.repost
 								button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
 									i.fa.fa-retweet
