@@ -1,0 +1,94 @@
+div.status.article(
+		class                   = status.isRepostToStatus ? 'repost' : 'normal'
+		lang                    = status.user.lang
+		title                   = status.displayCreatedAt
+		itemscope
+		itemtype                = 'http://schema.org/BlogPosting'
+		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
+		data-status-id          = status.id
+		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
+		data-id                 = status.id
+		data-created-at         = status.createdAt
+		data-cursor             = status.cursor
+		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
+		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
+		data-source-id          = status.isRepostToStatus ? status.id : null
+		data-text               = status.text
+		data-user-id            = status.user.id
+		data-user-screen-name   = status.user.screenName
+		data-user-name          = status.user.name
+		data-user-color         = status.user.color
+		data-user-verified     != status.user.isVerified.toString()
+		data-is-reply          != status.isReply.toString()
+		data-is-talk           != status.isTalk.toString()
+		data-is-favorited      != login ? status.isFavorited.toString() : null
+		data-is-reposted       != login ? status.isReposted.toString() : null
+		data-is-repostpost     != status.isRepostToStatus.toString()
+		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null)
+	article(role='article')
+		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
+			if status.isRepostToStatus
+				div.repost-information
+					p.info
+						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
+							img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
+						i.fa.fa-retweet
+						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
+						| によってRepost
+			if status.isReply
+				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
+					data-id= status.replySource.id
+					data-user-id= status.replySource.user.id
+					data-user-color= status.replySource.user.color
+					data-user-verified!= status.replySource.user.isVerified.toString())
+					article
+						a.icon-anchor(href=config.url + '/widget/talk/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
+							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
+						header
+							if status.replySource.user.isVerified
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+							h2
+								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
+							span.screen-name= '@' + status.replySource.user.screenName
+							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate, data-display-type='relative')= status.replySource.createdAt
+						div.main
+							div.text
+								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+							if status.replySource.isImageAttached
+								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
+			div.main
+				div.icon-area
+					a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+				header.header
+					div.author(itemprop='author')
+						if status.user.isVerified
+							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+						h2
+							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+						span.screen-name= '@' + status.user.screenName
+					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+				div.content(itemprop='articleBody')
+					div.text
+						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+					div.tag
+						if status.tag != null
+							ol(itemprop='keywords')
+								each tag in status.tag
+									li= tag
+					if status.isImageAttached
+						img.image(src=config.url + '/img/status/' + status.id, alt='image', itemprop='image')
+				aside.footer
+					if login
+						div.actions
+							div.repost
+								button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+									i.fa.fa-retweet
+								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
+							div.favorite
+								button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+									i.fa.fa-star
+								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
+			if status.replies.length > 0 && status.replies[0] != null
+				i.fa.fa-ellipsis-v.reply-info
+			
