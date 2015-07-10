@@ -14,17 +14,12 @@ html(lang='ja', dir='ltr')
 		
 		main(role='main')
 			div#timeline
-				div#post-form-container
-					form#post-form(enctype='multipart/form-data', role='form', data-ui-background-wallpaper-blur='true')
-						img.icon(src='/img/icon/' + me.screenName, alt='icon', title=me.comment)
-						div.form
-							textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
-							div.design-allow(role='presentation')
-							input.ui-button(type='submit', value!='Update &#xf1d8;', role='button')
-							ul.tag.ui-taginput
-							div.image-attacher
-								p
-									i.fa.fa-picture-o
-								input(name='image', type='file', accept='image/*')
+				form#post-form(enctype='multipart/form-data', role='form')
+					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+					input.ui-button(type='submit', value!='&#xf1d8;', role='button')
+					div.image-attacher
+						p
+							i.fa.fa-picture-o
+						input(name='image', type='file', accept='image/*')
 				div.timeline-container
 					div.timeline-main!= timelineHtml
