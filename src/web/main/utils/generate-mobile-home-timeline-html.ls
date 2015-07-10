@@ -19,6 +19,7 @@ module.exports = (statuses, viewer, callback) ->
 						text-parser: parse-text
 						config: config.public-config
 				timeline
+			console.log statuses-htmls
 			html = timeline-compiler do
 				statuses: statuses-htmls
 				login: viewer?

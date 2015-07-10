@@ -62,7 +62,6 @@ module.exports = (status, me, callback) ->
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then
-		console.log status
 		callback status
 	else
 		status.is-favorited = null
