@@ -49,8 +49,12 @@ module.exports = (app) ->
 
 	app.get '/' (req, res) ->
 		if req.login
-			then (require '../controllers/home') req, res
-			else res.display req, res, 'entrance', {}
+			if req.is-mobile
+				(require '../controllers/mobile/home') req, res
+			else
+				(require '../controllers/home') req, res
+		else
+			res.display req, res, 'entrance', {}
 	app.get '/config' (req, res) ->
 		res.set 'Content-Type' 'application/javascript'
 		res.send "var config = conf = #{to-json config.public-config};"
