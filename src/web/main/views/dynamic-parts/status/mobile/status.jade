@@ -20,7 +20,7 @@ div.status.article(
 		data-user-color         = status.user.color
 		data-user-verified     != status.user.isVerified.toString()
 		data-is-reply          != status.isReply.toString()
-		data-is-talk           != status.isTalk.toString()
+		data-is-talk           != (status.isReply && status.isTalk).toString()
 		data-is-favorited      != login ? status.isFavorited.toString() : null
 		data-is-reposted       != login ? status.isReposted.toString() : null
 		data-is-repostpost     != status.isRepostToStatus.toString()
