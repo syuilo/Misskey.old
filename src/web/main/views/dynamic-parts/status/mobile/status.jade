@@ -89,6 +89,3 @@ div.status.article(
 								button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
 									i.fa.fa-star
 								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
-			if status.replies.length > 0 && status.replies[0] != null
-				i.fa.fa-ellipsis-v.reply-info
-			
