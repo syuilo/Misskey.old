@@ -48,6 +48,7 @@ server.use session do
 # セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
 server.init-session = (req, res, callback) ->
 	ua = req.headers['user-agent'].to-lower-case!
+	console.log ua
 	is-mobile = /(iphone|ipod|ipad|android.*mobile|windows.*phone)/i.test ua
 	req.is-mobile = !!is-mobile
 	req.login = req.session? && req.session.user-id?
