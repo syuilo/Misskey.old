@@ -64,6 +64,11 @@ module.exports = (app) ->
 	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require '../controllers/bbs-thread') req, res
 	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require '../controllers/bbs-thread-settings') req, res
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
+	app.get '/i/status-new' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/i-status-new') req, res
+		else
+			(require '../controllers/i-status-new') req, res
 	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/talk' (req, res) -> (require '../controllers/i-talks') req, res

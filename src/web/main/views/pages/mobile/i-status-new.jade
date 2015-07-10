@@ -1,0 +1,23 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../../common/mobile/head
+		title 新規投稿
+		link(rel='stylesheet', href='/resources/styles/mobile/i-status-new.css')
+		script(src='/resources/scripts/mobile/header.js')
+		script(src='/resources/scripts/mobile/i-status-new.js')
+	
+	body
+		header#misskey-main-header
+			h1 新規投稿
+		include ../../common/mobile/nav
+		
+		main(role='main')
+			form#form(enctype='multipart/form-data', role='form')
+				textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+				input.ui-button(type='submit', value!='&#xf1d8;', role='button')
+				div.image-attacher
+					p
+						i.fa.fa-picture-o
+					input(name='image', type='file', accept='image/*')
