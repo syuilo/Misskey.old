@@ -12,6 +12,8 @@ module.exports = (req, res, content = \home) ->
 	me = req.me
 	new Promise (resolve, reject) ->
 		status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
-			generate-mobile-home-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
+			generate-mobile-home-timeline-html statuses, me, (timeline-html) ->
+				console.log timeline-html
+				resolve timeline-html
 	.then (html) -> res.display req, res, 'mobile/home' do
 		timeline-html: html
