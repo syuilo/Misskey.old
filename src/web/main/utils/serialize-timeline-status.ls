@@ -91,11 +91,11 @@ module.exports = (status, me, callback) ->
 	status <- get-reply-source status
 	status <- get-replies status
 	if me?
-		serialized-status.is-favorited <- status-check-favorited me.id, serialized-status.id .then
-		serialized-status.is-reposted <- status-check-reposted me.id, serialized-status.id .then
+		status.is-favorited <- status-check-favorited me.id, status.id .then
+		status.is-reposted <- status-check-reposted me.id, status.id .then
 		callback status
 	else
-		serialized-status.is-favorited = null
-		serialized-status.is-reposted = null
+		status.is-favorited = null
+		status.is-reposted = null
 		callback status
 	
