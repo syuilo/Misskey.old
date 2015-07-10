@@ -59,6 +59,9 @@ server.init-session = (req, res, callback) ->
 		web-streaming-url: config.public-config.web-streaming-url
 		login: req.login
 		is-mobile: req.is-mobile
+	
+	if req.is-mobile
+		server.set 'views' "#__dirname/views/pages/mobile"
 
 	# Renderer function
 	res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data

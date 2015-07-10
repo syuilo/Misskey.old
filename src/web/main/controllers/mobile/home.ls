@@ -26,6 +26,6 @@ module.exports = (req, res, content = \home) ->
 						resolve user)
 				.then (res) ->
 					resolve res
-	] .then (results) -> res.display req, res, 'mobile/home' do
+	] .then (results) -> res.display req, res, 'home' do
 		timeline-html: results.0
 		recommendation-users: results.1
