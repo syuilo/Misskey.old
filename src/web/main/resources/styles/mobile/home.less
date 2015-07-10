@@ -341,7 +341,7 @@
 											color: rgba(0, 0, 0, 0.5);
 										}
 
-										> a {
+										> .count {
 											color: rgba(0, 0, 0, 0.5);
 										}
 									}
@@ -357,7 +357,7 @@
 								margin: 0;
 								padding: 0;
 
-								a > .icon {
+								> .icon {
 									vertical-align: middle;
 									min-width: 32px;
 									min-height: 32px;
@@ -411,7 +411,7 @@
 								padding-top: 16px;
 								padding-bottom: 0;
 
-								> header > a > time {
+								> header > time {
 									top: 16px;
 								}
 							}
@@ -467,24 +467,9 @@
 										padding: 0;
 										font-weight: normal;
 										font-size: 1em;
-
-										> a {
-											color: #444;
-											font-weight: bold;
-											text-decoration: none;
-											transition: all 0.1s ease;
-
-											&:hover {
-												text-decoration: underline;
-												transition: all 0s ease;
-											}
-
-											&:active {
-												text-decoration: underline;
-												color: darken(@themeColor, 10%);
-												transition: all 0s ease;
-											}
-										}
+										color: #444;
+										font-weight: bold;
+										text-decoration: none;
 									}
 
 									> .screen-name {
@@ -494,24 +479,22 @@
 									}
 								}
 
-								> a {
-									> time {
-										position: absolute;
-										top: 12px;
-										right: 12px;
-										display: inline;
-										vertical-align: top;
-										color: rgba(0, 0, 0, 0.6);
-										font-size: small;
+								> time {
+									position: absolute;
+									top: 12px;
+									right: 12px;
+									display: inline;
+									vertical-align: top;
+									color: rgba(0, 0, 0, 0.6);
+									font-size: small;
 
-										&:hover {
-											text-decoration: underline;
-										}
+									&:hover {
+										text-decoration: underline;
+									}
 
-										&:active {
-											color: rgba(0, 0, 0, 0.8);
-											text-decoration: underline;
-										}
+									&:active {
+										color: rgba(0, 0, 0, 0.8);
+										text-decoration: underline;
 									}
 								}
 							}
@@ -643,14 +626,10 @@
 											}
 										}
 
-										> a {
+										> .count {
 											color: rgba(0, 0, 0, 0.2);
 											text-decoration: none;
 											font-size: 0.8em;
-
-											&:hover {
-												text-decoration: underline;
-											}
 										}
 									}
 								}
