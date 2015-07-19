@@ -43,7 +43,7 @@ html(lang='ja'
 									if user.isVerified
 										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 									if isMe
-										input#name(type='text', itemprop='name')= user.name
+										input#name(type='text', itemprop='name', value=user.name)
 									else
 										span#name(itemprop='name')= user.name
 								span#screen-name(itemprop='alternateName')= '@' + user.screenName
