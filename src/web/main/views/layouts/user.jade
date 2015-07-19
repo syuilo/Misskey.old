@@ -1,3 +1,5 @@
+- var isMe = login && me.id == user.id
+
 doctype html
 
 html(lang='ja'
@@ -37,10 +39,13 @@ html(lang='ja'
 					div.bottom
 						div.main
 							div.name-area
-								h1#name(itemprop='name')
+								h1#name-area
 									if user.isVerified
 										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-									= user.name
+									if isMe
+										input#name(type='text', itemprop='name')= user.name
+									else
+										span#name(itemprop='name')= user.name
 								span#screen-name(itemprop='alternateName')= '@' + user.screenName
 							table.count-table
 								tr
