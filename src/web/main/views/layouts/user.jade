@@ -44,8 +44,8 @@ html(lang='ja'
 				i.fa.fa-picture-o
 				| アイコンを編集
 			div.main
+				img.preview(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
 				label.image
-					img.preview(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
 					input(name='image', type='file', accept='image/*')
 				progress(form='icon-edit-form')
 				input.submit-button.ui-button(type='submit', value!='更新 &#xf1d8;')
