@@ -20,7 +20,7 @@ $ ->
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$.remove-cookie \post-autosave
+			$.remove-cookie \post-autosave {path: '/'}
 			location.href = '/'
 		.fail (data) ->
 			#$form[0].reset!
