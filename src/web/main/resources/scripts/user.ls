@@ -180,7 +180,7 @@ $ ->
 			$ \#icon-edit-form-back .css \display \block
 			$ \#icon-edit-form-back .animate {
 				opacity: 1
-			} 500ms \ease
+			} 500ms \linear
 			$ \#icon-edit-form .animate {
 				top: 0
 				opacity: 1
