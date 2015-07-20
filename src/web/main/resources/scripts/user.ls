@@ -205,7 +205,7 @@ $ ->
 					XHR = $.ajax-settings.xhr!
 					if XHR.upload
 						XHR.upload.add-event-listener \progress (e) ->
-							percentage = (parse-int e.loaded / e.total * 10000) / 100
+							percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
 							$form.find \progress
 								..attr \max e.total
 								..attr \value e.loaded
