@@ -123,16 +123,16 @@ a {
 	-moz-user-select: text;
 	-webkit-user-select: text;
 	-ms-user-select: text;
+	display: block;
 	box-sizing: border-box;
 	cursor: auto;
 	margin: 0;
 	padding: 8px 16px;
-	width: 19em;
+	width: 100%;
 	font-size: 1em;
-	line-height: 24px;
 	color: #000;
 	outline: none;
-	border: solid 2px #ddd;
+	border: solid 1px #ddd;
 	border-radius: 0;
 	box-shadow: none;
 	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
@@ -180,10 +180,11 @@ a {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	display: inline-block;
+	display: block;
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0;
+	padding: 12px 16px;
+	width: 100%;
 	cursor: pointer;
 	line-height: 1em !important;
 	font-size: 1em !important;
@@ -196,13 +197,6 @@ a {
 	border-radius: 2px;
 	box-shadow: none;
 	transition: background 0.1s ease;
-
-	> * {
-		vertical-align: baseline !important;
-		padding: 12px 16px;
-		line-height: 1em !important;
-		font-size: 1em !important;
-	}
 
 	&:hover {
 		background: lighten(@themeColor, 10%) !important;
