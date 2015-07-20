@@ -43,6 +43,7 @@ html {
 	padding: 0 32px 32px 32px;
 	border-radius: 8px;
 	background: #fff;
+	box-shadow: 2px 2px 32px rgba(0, 0, 0, 0.2);
 
 	h1 {
 		display: block;
@@ -103,11 +104,19 @@ html {
 			}
 		}
 
-		textarea {
-			width: 100%;
+		input[type=file] {
+			padding: 8px;
+			border: dashed 3px #ddd;
+			border-radius: 4px;
 		}
 
-		.submit-button {
+		.cancel {
+			display: block;
+			float: right;
+			background: #ddd;
+		}
+
+		.submit {
 			display: block;
 			float: right;
 		}
