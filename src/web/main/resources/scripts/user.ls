@@ -185,6 +185,17 @@ $ ->
 				top: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
+		$ '#icon-edit-form input[name=image]' .change ->
+			$input = $ @
+			file = $input.prop \files .0
+			if file.type.match 'image.*'
+				reader = new FileReader!
+					..onload = ->
+						$ '#icon-edit-form .preview' .attr \src reader.result
+						$ '#icon-edit-form .preview' .Jcrop({
+							aspect-ratio: 1
+						}
+					..readAsDataURL file
 
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
