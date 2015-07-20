@@ -15,9 +15,7 @@ html(lang='ja', dir='ltr')
 		
 		main(role='main')
 			form#form(enctype='multipart/form-data', role='form')
-				textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+				textarea.ui-textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+				input.ui-input-file(name='image', type='file', accept='image/*')
 				input.ui-button(type='submit', value!='&#xf1d8;', role='button')
-				div.image-attacher
-					p
-						i.fa.fa-picture-o
-					input(name='image', type='file', accept='image/*')
+
