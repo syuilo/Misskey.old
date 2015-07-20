@@ -233,14 +233,11 @@ $ ->
 			$input = $ @
 			file = $input.prop \files .0
 			if file.type.match 'image.*'
-				blobURL = URL.create-objectURL file
-				$ '#icon-edit-form .preview > .image' .one 'built.cropper' ->
-					URL.revoke-objectURL blobURL
-				.cropper \reset .cropper \replace blobURL
 				reader = new FileReader!
 					..onload = ->
 						$submit-button.attr \disabled no
 						$ '#icon-edit-form .preview > .image' .attr \src reader.result
+						$ '#icon-edit-form .preview > .image' .cropper \destroy
 						$ '#icon-edit-form .preview > .image' .cropper {
 							aspect-ratio: 1 / 1
 							crop: (data) ->
@@ -249,7 +246,7 @@ $ ->
 								$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
 								$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
 						}
-					..readAsDataURL file
+					..read-as-dataURL file
 
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
