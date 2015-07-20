@@ -6,7 +6,7 @@ require! {
 }
 
 module.exports = (status, viewer, callback) ->
-	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/mobile/status.jade"
+	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/mobile/status-detail.jade"
 	if status?
 		serialize-mobile-detail-status status, viewer, (detail-status) ->
 			html = status-compiler do
