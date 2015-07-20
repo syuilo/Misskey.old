@@ -1,0 +1,38 @@
+meta(charset='utf-8')
+meta(name='robots', content='all')
+meta(name='application-name', content='Misskey')
+meta(name='theme-color', content='#006f87')
+meta(name='google-site-verification', content='0KUjKH7EJj28VnWKm0p_Uo1bc6i3ldPNQOHvjxlvnm4')
+meta(name='msvalidate.01', content='48D10EEFFD5D1BD12088BC2081892F14')
+meta(name='dns-prefetch', content='//maxcdn.bootstrapcdn.com')
+meta(name='dns-prefetch', content='//ajax.googleapis.com')
+meta(name='coverage', content='worldwide')
+meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no')
+link(rel='shortcut icon', href='/favicon.ico')
+link(rel='icon', href='/favicon.ico')
+link(rel='fluid-icon', href='/fluid-icon', title='Misskey')
+link(rel='manifest', href='/manifest.json')
+link(rel='help', href='/help')
+link(rel='search', href='/search')
+link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+if rootUser != null
+	link(rel='stylesheet', href='/resources/styles/mobile/ui.css?user=' + rootUser.screenName)
+else
+	link(rel='stylesheet', href='/resources/styles/mobile/ui.css')
+script!= 'var config = conf = ' + JSON.stringify(config) + ';'
+//script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+//script(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')
+script
+	include ../../../resources/scripts/lib/jquery.min.js
+script(src='/resources/scripts/lib/jquery-cookie.js')
+script(src='/resources/scripts/lib/jquery.transit.min.js')
+script(src='/resources/scripts/lib/prelude-browser.js')
+//script(src='/resources/scripts/lib/tag-it.js')
+script(src='/resources/scripts/mobile/main.js')
+script.
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-57628372-1', 'auto');
+	ga('send', 'pageview');

@@ -1,0 +1,139 @@
+div.status.article(
+		class                   = status.isRepostToStatus ? 'repost' : 'normal'
+		lang                    = status.user.lang
+		title                   = status.displayCreatedAt
+		itemscope
+		itemtype                = 'http://schema.org/BlogPosting'
+		data-status-url         = config.url + '/' + status.user.screenName + '/status/' + status.id
+		data-status-id          = status.id
+		data-repost-source-id   = status.isRepostToStatus ? status.source.id : null
+		data-id                 = status.id
+		data-created-at         = status.createdAt
+		data-cursor             = status.cursor
+		data-timeline-cursor    = status.isRepostToStatus ? status.source.cursor : status.cursor
+		data-repost-cursor      = status.isRepostToStatus ? status.cursor : null
+		data-source-id          = status.isRepostToStatus ? status.id : null
+		data-text               = status.text
+		data-user-id            = status.user.id
+		data-user-screen-name   = status.user.screenName
+		data-user-name          = status.user.name
+		data-user-color         = status.user.color
+		data-user-verified     != status.user.isVerified.toString()
+		data-is-reply          != status.isReply.toString()
+		data-is-talk           != (status.moreTalk != null).toString()
+		data-is-favorited      != login ? status.isFavorited.toString() : null
+		data-is-reposted       != login ? status.isReposted.toString() : null
+		data-is-repostpost     != status.isRepostToStatus.toString()
+		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
+		data-display-html-is-active='false')
+	article(role='article')
+		div.article-main
+			if status.moreTalk != null
+				aside.talk
+					ol.statuses
+						each talkPost in status.moreTalk
+							li.status(title!= '#{talkPost.createdAt}&#x0A;'
+								data-id= talkPost.id
+								data-user-id= talkPost.user.id
+								data-user-color= talkPost.user.color
+								data-user-verified!= talkPost.user.isVerified.toString())
+								article
+									a.icon-anchor(href= config.url + '/widget/talk/' + talkPost.user.screenName, title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
+										img.icon(src=config.url + '/img/icon/' + talkPost.user.screenName, alt='icon')
+									header
+										if talkPost.user.isVerified
+											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+										h2
+											a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
+										span.screen-name= '@' + talkPost.user.screenName
+										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt, pubdate, data-display-type='relative')= talkPost.createdAt
+									div.main
+										div.text
+											p!= (talkPost.isReply ? '<a href="' + config.url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
+										if talkPost.isImageAttached
+											img.image(src=config.url + '/img/status/' + talkPost.id, alt='image')
+			if status.isReply
+				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
+					data-id= status.replySource.id
+					data-user-id= status.replySource.user.id
+					data-user-color= status.replySource.user.color
+					data-user-verified!= status.replySource.user.isVerified.toString())
+					article
+						a.icon-anchor(href=config.url + '/widget/talk/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
+							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
+						header
+							if status.replySource.user.isVerified
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+							h2
+								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
+							span.screen-name= '@' + status.replySource.user.screenName
+							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate, data-display-type='relative')= status.replySource.createdAt
+						div.main
+							div.text
+								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+							if status.replySource.isImageAttached
+								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
+			div.main
+				a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+					img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+				header.header
+					div.author(itemprop='author')
+						if status.user.isVerified
+							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+						h2
+							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+						span.screen-name= '@' + status.user.screenName
+					time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+				div.content(itemprop='articleBody')
+					div.text
+						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+					div.tag
+						if status.tag != null
+							ol(itemprop='keywords')
+								each tag in status.tag
+									li= tag
+					if status.isImageAttached
+						img.image(src=config.url + '/img/status/' + status.id, alt='image', itemprop='image')
+				aside.footer
+					if login
+						div.actions
+							div.repost
+								button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+									i.fa.fa-retweet
+								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
+							div.favorite
+								button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+									i.fa.fa-star
+								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
+			if login
+				form.reply-form(action= config.apiUrl + '/status/update', method='post', enctype='multipart/form-data', role='form')
+					textarea.ui-textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
+					input(name='in-reply-to-status-id', type='hidden', value=status.id)
+					input.ui-input-file(name='image', type='file', accept='image/*')
+					input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
+			else
+				p この投稿に返信するにはログインしてください。
+			aside.replies(itemprop='comment')
+				ol.statuses
+					if status.replies.length > 0 && status.replies[0] != null
+						each reply in status.replies
+							li.status(title!= '#{reply.createdAt}&#x0A;'
+								data-id= reply.id
+								data-user-id= reply.user.id
+								data-user-color= reply.user.color
+								data-user-verified!= reply.user.isVerified.toString())
+								article
+									a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
+										img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
+									header
+										if reply.user.isVerified
+											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+										h2
+											a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
+										span.screen-name= '@' + reply.user.screenName
+										a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
+									div.main
+										div.text
+											p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
+										if reply.isImageAttached
+											img.image(src=config.url + '/img/status/' + reply.id, alt='image')

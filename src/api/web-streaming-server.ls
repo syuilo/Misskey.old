@@ -5,6 +5,7 @@ require! {
 	redis
 	'../config'
 	'./streaming/home'
+	'./streaming/mobile-home'
 	'./streaming/talk'
 	'./streaming/bbs-thread'
 	'./streaming/log'
@@ -45,6 +46,9 @@ io.use (socket, next) ->
 
 # Home stream
 home io, session-store
+
+# Mobile Home stream
+mobile-home io, session-store
 
 # Talk stream
 talk io, session-store

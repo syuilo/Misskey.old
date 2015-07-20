@@ -49,8 +49,12 @@ module.exports = (app) ->
 
 	app.get '/' (req, res) ->
 		if req.login
-			then (require '../controllers/home') req, res
-			else res.display req, res, 'entrance', {}
+			if req.is-mobile
+				(require '../controllers/mobile/home') req, res
+			else
+				(require '../controllers/home') req, res
+		else
+			res.display req, res, 'entrance', {}
 	app.get '/config' (req, res) ->
 		res.set 'Content-Type' 'application/javascript'
 		res.send "var config = conf = #{to-json config.public-config};"
@@ -60,6 +64,11 @@ module.exports = (app) ->
 	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require '../controllers/bbs-thread') req, res
 	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require '../controllers/bbs-thread-settings') req, res
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
+	app.get '/i/status-new' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/i-status-new') req, res
+		else
+			(require '../controllers/i-status-new') req, res
 	app.get '/i/mention' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/mentions' (req, res) -> (require '../controllers/i-mention') req, res
 	app.get '/i/talk' (req, res) -> (require '../controllers/i-talks') req, res
@@ -78,5 +87,9 @@ module.exports = (app) ->
 	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	app.get '/:userSn/talk' (req, res) -> (require '../controllers/user-talk') req, res, \normal
-	app.get '/:userSn/status/:statusId' (req, res) -> (require '../controllers/status') req, res
+	app.get '/:userSn/status/:statusId' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/status') req, res
+		else
+			(require '../controllers/status') req, res
 

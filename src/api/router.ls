@@ -2,6 +2,7 @@ routing =
 	web:
 		[\post /\/web\/status\/reply(\..+)?$/             './rest/web/status/reply']
 		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/ './rest/web/status/timeline-homehtml']
+		[\get  /\/web\/status\/timeline-mobilehomehtml(\..+)?$/ './rest/web/status/timeline-mobilehomehtml']
 		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
 		
 	account:

@@ -10,6 +10,7 @@ window.escapeHTML = (val) ->
 	
 window.init-waves-effects = ->
 	Waves.attach '.ui-button'
+	Waves.attach '.ui-cancel-button'
 	Waves.attach '.ui-waves-effect'
 	Waves.init!
 

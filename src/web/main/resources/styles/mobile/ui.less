@@ -1,0 +1,382 @@
+@themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+
+::selection {
+	background: @themeColor;
+	color: #fff;
+}
+
+* {
+	font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo, メイリオ', 'sans-serif';
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	scroll-behavior: smooth;
+}
+
+a {
+	text-decoration: none;
+	color: @themeColor;
+	transition: color 0.1s ease;
+	cursor: pointer;
+
+	&:hover {
+		color: darken(@themeColor, 10%);
+	}
+}
+
+/* UI
+ * ---------------------------------------------------------------- */
+#misskey-main-header {
+	position: fixed;
+	top: 0;
+	z-index: 1024;
+	width: 100%;
+	color: #fff;
+	background: #333;
+	box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	h1 {
+		display: block;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 6px 0;
+		width: 100%;
+		text-align: center;
+		font-size: 1.3em;
+		line-height: 1.5em;
+	}
+
+	.post {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 6px;
+		color: #fff;
+		font-size: 1.8em;
+		line-height: 1em;
+
+		i {
+			vertical-align: middle;
+		}
+	}
+}
+
+#misskey-main-nav {
+	position: fixed;
+	bottom: 0;
+	z-index: 1024;
+	width: 100%;
+	color: #fff;
+	background: #333;
+
+	ul {
+		display: block;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		list-style: none;
+
+		li {
+			display: inline-block;
+
+			a {
+				color: #fff;
+
+				i {
+					padding: 12px 16px;
+					font-size: 1.8em;
+				}
+			}
+		}
+	}
+}
+
+/* General UI
+ * ---------------------------------------------------------------- */
+
+.ui-input-text,
+.ui-input-email,
+.ui-input-password,
+.ui-textarea,
+.ui-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	display: block;
+	box-sizing: border-box;
+	cursor: auto;
+	margin: 0;
+	padding: 8px 12px;
+	width: 100%;
+	font-size: 1em;
+	color: #000;
+	outline: none;
+	border: solid 2px #ddd;
+	border-radius: 4px;
+	box-shadow: none;
+	transition: color 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
+
+	&:hover {
+		border: solid 2px @themeColor;
+		//box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1) inset;
+		transition: border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	&:focus {
+		color: darken(@themeColor, 20%);
+		border: solid 2px @themeColor;
+		//box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2) inset;
+		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
+	}
+
+	&::-webkit-input-placeholder {
+		color: rgb(169, 169, 169);
+	}
+
+	&:-ms-input-placeholder {
+		color: rgb(169, 169, 169);
+	}
+
+	&:-moz-placeholder {
+		color: rgb(169, 169, 169);
+	}
+}
+
+.ui-radio,
+.ui-checkbox {
+}
+
+.ui-radio-label,
+.ui-checkbox-label {
+	transition: all 0.2s ease;
+
+	&:hover {
+		color: darken(@themeColor, 20%);
+	}
+}
+
+.ui-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: block;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 16px;
+	width: 100%;
+	cursor: pointer;
+	font-size: 1.3em;
+	font-weight: normal;
+	text-decoration: none;
+	color: contrast(@themeColor, #000, #fff, 70%);
+	background: @themeColor !important;
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	box-shadow: none;
+	transition: background 0.1s ease;
+
+	&:hover {
+		background: lighten(@themeColor, 10%) !important;
+	}
+
+	&:active {
+		background: darken(@themeColor, 10%) !important;
+		transition: background 0s ease;
+	}
+}
+
+.ui-textarea {
+	height: 6em;
+	max-width: 100%;
+}
+
+.ui-input-file {
+	display: block;
+	box-sizing: border-box;
+	margin: 8px 0;
+	padding: 8px;
+	width: 100%;
+	border: dashed 2px #ddd;
+}
+
+.ui-attach-image {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	margin: 6px 8px;
+	padding: 4px 16px;
+	vertical-align: bottom;
+	border-radius: 3px;
+	border: dashed 2px #ccc;
+	color: #777;
+	font-size: 1em;
+
+	&:hover {
+		border: dashed 2px #777;
+	}
+
+	input[type=file] {
+		display: inline;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	}
+
+	img {
+		max-width: 100%;
+		max-height: 128px;
+	}
+}
+
+.ui-dialog {
+	display: block;
+	position: fixed;
+	z-index: 1024;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 512px;
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.8);
+	transition: top 1s ease;
+
+	p {
+		margin: 0;
+		text-align: center;
+	}
+}
+
+.ui-user-icon {
+	display: inline-block;
+	position: relative;
+
+	.icon {
+		min-width: 32px;
+		max-width: 32px;
+		min-height: 32px;
+		max-height: 32px;
+		vertical-align: bottom;
+	}
+
+	.balloon {
+		display: inline-block;
+		pointer-events: none;
+		position: absolute;
+		top: -2.5em;
+		left: 0;
+		z-index: 1;
+		margin: 0;
+		padding: 6px 12px;
+		line-height: 1em;
+		white-space: nowrap;
+		font-size: 0.9em;
+		color: #fff;
+		background: rgba(0, 0, 0, 0.7);
+		border-radius: 4px;
+		opacity: 0;
+		transition: opacity 0.1s linear;
+
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: -8px;
+			left: ~"calc(50% - 4px)";
+			border-top: solid 4px rgba(0, 0, 0, 0.7);
+			border-right: solid 4px transparent;
+			border-bottom: solid 4px transparent;
+			border-left: solid 4px transparent;
+		}
+	}
+
+	&:hover .balloon {
+		opacity: 1;
+	}
+}
+
+.image-attacher {
+	box-sizing: border-box;
+	display: inline-block;
+	position: relative;
+	margin: 2px 8px;
+	padding: 8px 16px;
+	vertical-align: top;
+	line-height: 1.2em;
+	outline: dashed 2px #ccc;
+
+	&:hover {
+		outline: dashed 2px #777;
+	}
+
+	input[type=file] {
+		display: inline;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		opacity: 0;
+	}
+
+	p {
+		pointer-events: none;
+		margin: 0;
+		padding: 0;
+		color: #777;
+		line-height: 1.2em;
+		font-size: 1em;
+	}
+
+	img {
+		pointer-events: none;
+		max-width: 100%;
+		max-height: 128px;
+	}
+}
+
+.ui-message {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2048;
+	width: 600px;
+	margin: 0 auto;
+	padding: 16px 32px;
+	text-align: center;
+	word-wrap: break-word;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.8);
+	transform-origin: center top;
+	transform: perspective(1024px) rotateX(90deg);
+	opacity: 0;
+}

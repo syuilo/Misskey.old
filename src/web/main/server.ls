@@ -47,6 +47,9 @@ server.use session do
 # セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
 # セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
 server.init-session = (req, res, callback) ->
+	ua = req.headers['user-agent'].to-lower-case!
+	is-mobile = /(iphone|ipod|ipad|android.*mobile|windows.*phone)/i.test ua
+	req.is-mobile = !!is-mobile
 	req.login = req.session? && req.session.user-id?
 	req.data = # Render datas
 		page-path: req.path
@@ -55,6 +58,7 @@ server.init-session = (req, res, callback) ->
 		api-url: config.public-config.api-url
 		web-streaming-url: config.public-config.web-streaming-url
 		login: req.login
+		is-mobile: req.is-mobile
 
 	# Renderer function
 	res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data

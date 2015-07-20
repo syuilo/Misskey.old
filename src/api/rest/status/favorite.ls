@@ -28,6 +28,12 @@ function favorite-step req, res, app, user, target-status
 				status-id: target-status.id
 				user-id: user.id
 			favorite.save ->
+				serialize-status target-status, res.api-render
+				
+				user
+					..status-favorites-count++
+					..save ->
+				
 				target-status
 					..favorites-count++
 					..save (err) ->
@@ -37,4 +43,4 @@ function favorite-step req, res, app, user, target-status
 							user-id: user.id
 						} .then ->
 						
-						serialize-status target-status, res.api-render
+						

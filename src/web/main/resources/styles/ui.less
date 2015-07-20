@@ -913,6 +913,45 @@ textarea {
 	}
 }
 
+.ui-cancel-button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 12px 16px;
+	min-width: 5em;
+	cursor: pointer;
+	line-height: 1em !important;
+	font-size: 1em !important;
+	font-weight: normal;
+	text-decoration: none;
+	color: #fff;
+	background: #ccc !important;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	box-shadow: none;
+	transition: background 0.1s ease;
+
+	> * {
+		vertical-align: baseline !important;
+		padding: 12px 16px;
+		line-height: 1em !important;
+		font-size: 1em !important;
+	}
+
+	&:hover {
+		background: #bbb !important;
+	}
+
+	&:active {
+		background: #aaa !important;
+		transition: background 0s ease;
+	}
+}
+
 .ui-textarea {
 	height: 6em;
 	max-width: 100%;
