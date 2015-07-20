@@ -13,8 +13,8 @@ module.exports = (req, res, content = \home) ->
 		serialize-mobile-detail-status status, me, (detail-status) ->
 			html = status-compiler do
 				status: detail-status
-				login: viewer?
-				me: viewer
+				login: me?
+				me: me
 				text-parser: parse-text
 				config: config.public-config
 			res.display req, res, 'mobile/status' do
