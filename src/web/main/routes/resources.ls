@@ -111,7 +111,7 @@ module.exports = (app) ->
 		| _ =>
 			switch
 			| req.path == /\.css$/ =>
-				css-path = path.resolve "#__dirname/..#req.path"
+				css-path = path.resolve "#__dirname/..#{req.path}"
 				less-path = path.resolve "#__dirname/..#{req.path.replace /\.css$/ '.less'}"
 				if fs.exists-sync less-path
 					app.init-session req, res, ->
