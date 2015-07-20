@@ -87,5 +87,9 @@ module.exports = (app) ->
 	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	app.get '/:userSn/talk' (req, res) -> (require '../controllers/user-talk') req, res, \normal
-	app.get '/:userSn/status/:statusId' (req, res) -> (require '../controllers/status') req, res
+	app.get '/:userSn/status/:statusId' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/status') req, res
+		else
+			(require '../controllers/status') req, res
 

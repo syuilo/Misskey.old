@@ -10,7 +10,6 @@ module.exports = (statuses, viewer, callback) ->
 	timeline-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/mobile/timeline.jade"
 	if statuses?
 		mobile-timeline-serialyzer statuses, viewer .then (timeline) ->
-			console.log timeline
 			statuses-htmls = map do
 				(status) ->
 					status-compiler do
