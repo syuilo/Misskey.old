@@ -212,7 +212,7 @@ $ ->
 					XHR
 			}
 			.done (data) ->
-				
+				location.reload!
 			.fail (data) ->
 				$submit-button.attr \disabled no
 				$submit-button.attr \value '更新 \uf1d8'
