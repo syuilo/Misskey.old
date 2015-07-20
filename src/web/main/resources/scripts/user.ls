@@ -189,6 +189,17 @@ $ ->
 				opacity: 1
 			} 1000ms \easeOutElastic
 		
+		$form.find \.cancel (event) ->
+			event.prevent-default!
+			$ \#icon-edit-form-back .animate {
+				opacity: 0
+			} 500ms \linear ->
+				$ \#icon-edit-form-back .css \display \none
+			$ \#icon-edit-form .animate {
+				top: 0
+				opacity: 1
+			} 1000ms \easeInOutQuart
+		
 		$form.submit (event) ->
 			event.prevent-default!
 			$submit-button.attr \disabled yes
