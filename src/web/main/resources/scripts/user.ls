@@ -192,7 +192,7 @@ $ ->
 				reader = new FileReader!
 					..onload = ->
 						$ '#icon-edit-form .preview' .attr \src reader.result
-						$ '#icon-edit-form .preview' .Jcrop({
+						$ '#icon-edit-form .preview' .Jcrop {
 							aspect-ratio: 1
 						}
 					..readAsDataURL file
