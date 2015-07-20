@@ -116,43 +116,42 @@ div.status.article(
 								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 			if status.replies.length > 0 && status.replies[0] != null
 				i.fa.fa-ellipsis-v.reply-info
-			footer
-				if login
-					form.reply-form(role='form')
-						img.me-icon(src=config.url + '/img/icon/' + me.screenName, alt='icon')
-						div.form
-							textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
-							div.design-allow(role='presentation')
-							input(name='in-reply-to-status-id', type='hidden', value=status.id)
-							input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
-							ul.tag
-							div.image-attacher
-								p
-									i.fa.fa-picture-o
-								input(name='image', type='file', accept='image/*')
-				else
-					p この投稿に返信するにはログインしてください。
-				aside.replies(itemprop='comment')
-					ol.statuses
-						if status.replies.length > 0 && status.replies[0] != null
-							each reply in status.replies
-								li.status(title!= '#{reply.createdAt}&#x0A;'
-									data-id= reply.id
-									data-user-id= reply.user.id
-									data-user-color= reply.user.color
-									data-user-verified!= reply.user.isVerified.toString())
-									article
-										a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
-											img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
-										header
-											if reply.user.isVerified
-												img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-											h2
-												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
-											span.screen-name= '@' + reply.user.screenName
-											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
-										div.main
-											div.text
-												p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
-											if reply.isImageAttached
-												img.image(src=config.url + '/img/status/' + reply.id, alt='image')
+			if login
+				form.reply-form(role='form')
+					img.me-icon(src=config.url + '/img/icon/' + me.screenName, alt='icon')
+					div.form
+						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
+						div.design-allow(role='presentation')
+						input(name='in-reply-to-status-id', type='hidden', value=status.id)
+						input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
+						ul.tag
+						div.image-attacher
+							p
+								i.fa.fa-picture-o
+							input(name='image', type='file', accept='image/*')
+			else
+				p この投稿に返信するにはログインしてください。
+			aside.replies(itemprop='comment')
+				ol.statuses
+					if status.replies.length > 0 && status.replies[0] != null
+						each reply in status.replies
+							li.status(title!= '#{reply.createdAt}&#x0A;'
+								data-id= reply.id
+								data-user-id= reply.user.id
+								data-user-color= reply.user.color
+								data-user-verified!= reply.user.isVerified.toString())
+								article
+									a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
+										img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
+									header
+										if reply.user.isVerified
+											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+										h2
+											a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
+										span.screen-name= '@' + reply.user.screenName
+										a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
+									div.main
+										div.text
+											p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
+										if reply.isImageAttached
+											img.image(src=config.url + '/img/status/' + reply.id, alt='image')

@@ -323,6 +323,76 @@
 				}
 			}
 
+			> .talk {
+				.statuses {
+					.status {
+						display: inline-block;
+						position: relative;
+						width: 100%;
+						box-sizing: border-box;
+						padding: 0;
+						word-wrap: break-word;
+						word-break: break-all;
+						color: rgba(0, 0, 0, 0.4);
+
+						&:hover {
+							> article .icon {
+								filter: saturate(200%);
+								-webkit-filter: saturate(200%);
+								-moz-filter: saturate(200%);
+								-o-filter: saturate(200%);
+								-ms-filter: saturate(200%);
+							}
+						}
+
+						> article {
+							.timeline-reply-article;
+							padding-top: 16px;
+							padding-bottom: 0;
+
+							> header > time {
+								top: 16px;
+							}
+						}
+					}
+				}
+			}
+
+			> .replies {
+				.statuses {
+					.status {
+						display: inline-block;
+						position: relative;
+						width: 100%;
+						box-sizing: border-box;
+						padding: 0;
+						word-wrap: break-word;
+						word-break: break-all;
+						color: rgba(0, 0, 0, 0.4);
+
+						&:hover {
+							> article .icon {
+								filter: saturate(200%);
+								-webkit-filter: saturate(200%);
+								-moz-filter: saturate(200%);
+								-o-filter: saturate(200%);
+								-ms-filter: saturate(200%);
+							}
+						}
+
+						> article {
+							.timeline-reply-article;
+							padding-top: 16px;
+							padding-bottom: 0;
+
+							> header > time {
+								top: 16px;
+							}
+						}
+					}
+				}
+			}
+
 			> .reply-source {
 				display: inline-block;
 				position: relative;
