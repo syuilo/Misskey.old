@@ -194,6 +194,11 @@ $ ->
 						$ '#icon-edit-form .preview' .attr \src reader.result
 						$ '#icon-edit-form .preview' .Jcrop {
 							aspect-ratio: 1
+							on-select: (c) ->
+								$ '#icon-edit-form input[name=x]' .val c.x
+								$ '#icon-edit-form input[name=y]' .val c.y
+								$ '#icon-edit-form input[name=w]' .val c.w
+								$ '#icon-edit-form input[name=h]' .val c.h
 						}
 					..readAsDataURL file
 

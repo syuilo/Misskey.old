@@ -48,6 +48,10 @@ html(lang='ja'
 				label.image
 					input(name='image', type='file', accept='image/*')
 				progress(form='icon-edit-form')
+				input(type='hidden', name='trim-x')
+				input(type='hidden', name='trim-y')
+				input(type='hidden', name='trim-w')
+				input(type='hidden', name='trim-h')
 				input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
 				button.cancel.ui-cancel-button キャンセル
 
