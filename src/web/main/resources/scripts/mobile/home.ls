@@ -8,6 +8,7 @@ window.STATUSTIMELINE = {}
 		function check-reposted
 			($status.attr \data-is-reposted) == \true
 			
+		user-name = $status.attr \data-user-name
 		text = $status.attr \data-text
 		
 		$status
@@ -42,7 +43,7 @@ window.STATUSTIMELINE = {}
 			
 			# Init repost button
 			..find 'article > .article-main > .main > .footer > .actions > .repost > .repost-button' .click ->
-				if window.confirm "「#{text}」をRepostしますか？"
+				if window.confirm "#{user-name}「#{text}」\nを Repost しますか？"
 					$button = $ @
 						..attr \disabled on
 					if check-reposted!
