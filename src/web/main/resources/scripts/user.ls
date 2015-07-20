@@ -184,7 +184,7 @@ $ ->
 			$ \#icon-edit-form .animate {
 				top: 0
 				opacity: 1
-			} 500ms \easeOutElastic
+			} 1000ms \easeOutElastic
 
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
