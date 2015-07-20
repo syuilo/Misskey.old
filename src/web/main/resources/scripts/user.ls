@@ -195,8 +195,8 @@ $ ->
 			} 500ms \linear ->
 				$ \#icon-edit-form-back .css \display \none
 			$ \#icon-edit-form .animate {
-				top: 0
-				opacity: 1
+				top: '-100%'
+				opacity: 0
 			} 1000ms \easeInOutQuart
 		
 		$form.submit (event) ->
