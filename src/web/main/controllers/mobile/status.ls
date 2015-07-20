@@ -10,7 +10,7 @@ require! {
 
 module.exports = (req, res, content = \home) ->
 	me = req.me
-	status-compiler = jade.compile-file "#__dirname/../../views/dynamic-parts/status/mobile/status.jade"
+	status-compiler = jade.compile-file "#__dirname/../../views/dynamic-parts/status/mobile/status-detail.jade"
 	Status.find-by-id req.root-status.id, (, status) ->
 		serialize-mobile-detail-status status, me, (detail-status) ->
 			html = status-compiler do
