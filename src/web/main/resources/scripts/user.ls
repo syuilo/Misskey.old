@@ -189,8 +189,7 @@ $ ->
 				opacity: 1
 			} 1000ms \easeOutElastic
 		
-		$form.find \.cancel (event) ->
-			event.prevent-default!
+		$form.find \.cancel .click ->
 			$ \#icon-edit-form-back .animate {
 				opacity: 0
 			} 500ms \linear ->
