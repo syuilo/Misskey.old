@@ -12,7 +12,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			path = req.files.image.path
 			img = gm path
 			if not all empty, [trim-x, trim-y, trim-w, trim-h]
-				img .= crop trim-x, trim-y, trim-w, trim-h
+				img .= crop trim-w, trim-h, trim-x, trim-y
 			img .= compress \jpeg
 			img .= quality 80
 			img.to-buffer \jpeg (, buffer) ->
