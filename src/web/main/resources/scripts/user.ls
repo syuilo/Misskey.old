@@ -172,11 +172,17 @@ window.STATUSTIMELINE = {}
 
 
 $ ->
+	is-me = $ \html .attr \data-is-me
+	
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
 	
 	function check-follow
 		($ \html .attr \data-is-following) == \true
+		
+	if is-me
+		$ \#name .click ->
+			$ 'main > header' .attr \data-name-editing \true
 	
 	$ \#screen-name .click ->
 		element= document.get-element-by-id \screen-name
