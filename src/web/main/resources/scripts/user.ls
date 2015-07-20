@@ -177,6 +177,7 @@ $ ->
 	# init icon edit form
 	if is-me
 		$form = $ \#icon-edit-form
+		$submit-button = $form.find '[type=submit]'
 		
 		$ \#icon .click ->
 			$ \#icon-edit-form-back .css \display \block
@@ -190,7 +191,6 @@ $ ->
 		
 		$ '#icon-edit-form input[name=image]' .submit (event) ->
 			event.prevent-default!
-			$submit-button = $form.find '[type=submit]'
 			$submit-button.attr \disabled yes
 			$submit-button.attr \value '更新しています...'
 			$.ajax config.api-url + '/account/update-icon' {
@@ -223,6 +223,7 @@ $ ->
 			if file.type.match 'image.*'
 				reader = new FileReader!
 					..onload = ->
+						$submit-button.attr \disabled no
 						$ '#icon-edit-form .preview > .image' .attr \src reader.result
 						$ '#icon-edit-form .preview > .image' .cropper {
 							aspect-ratio: 1 / 1
