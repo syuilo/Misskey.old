@@ -15,7 +15,7 @@ html(lang='ja', dir='ltr')
 		
 		main(role='main')
 			form#form(action= config.apiUrl + '/status/update', method='post', enctype='multipart/form-data', role='form')
-				textarea.ui-textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+				textarea.ui-textarea#textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 				input.ui-input-file(name='image', type='file', accept='image/*')
-				input.ui-button(type='submit', value!='&#xf1d8;', role='button')
+				input.ui-button(type='submit', value!='投稿 &#xf1d8;', role='button')
 

@@ -102,7 +102,7 @@ $ ->
 		$button = $ @
 		$button.attr \disabled yes
 		$button.text 'Loading...'
-		$.ajax config.api-url + '/web/status/timeline-homehtml' {
+		$.ajax config.api-url + '/web/status/timeline-mobilehomehtml' {
 			type: \get
 			data: {
 				'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
@@ -117,8 +117,6 @@ $ ->
 				$status = $ '<li class="status">' .append $ @
 				window.STATUSTIMELINE.set-event $status.children '.status.article'
 				$status.append-to $ '#timeline .timeline > .statuses'
-			# Attach Wave effects 
-			init-waves-effects!
 		.fail (data) ->
 			$button.attr \disabled no
 			$button.text 'Failed...'
