@@ -85,7 +85,7 @@ html {
 	}
 
 	.main {
-		padding: 0 16px;
+		padding: 8px 16px 0 16px;
 
 		&:after {
 			content: "";
@@ -106,12 +106,16 @@ html {
 
 		.preview {
 			display: block;
+			box-sizing: border-box;
 			margin: 0 auto;
 			height: 300px;
+			border: solid 8px #ddd;
 		}
 
 		.jcrop-holder {
+			box-sizing: border-box;
 			margin: 0 auto;
+			border: solid 8px #ddd;
 		}
 
 		input[type=file] {
