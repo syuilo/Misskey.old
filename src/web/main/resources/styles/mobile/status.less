@@ -180,24 +180,6 @@
 	background: transparent;
 	transition: margin 0.2s ease, background-color 0.2s ease;
 
-	&[data-is-repostpost='true'] {
-		> article > .article-main {
-			background: #ebf7de;
-
-			&:hover {
-				background: #e4efd7;
-
-				> .main:before {
-					border-right: solid 12px #e4efd7;
-				}
-			}
-
-			> .main:before {
-				border-right: solid 12px #ebf7de;
-			}
-		}
-	}
-
 	&[data-is-favorited='true'] > article > .article-main {
 		&:hover > .main > .footer > .actions > .favorite > button {
 			color: @themeColor;
@@ -273,57 +255,6 @@
 			border-right: solid 5px transparent;
 			//box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 			transition: border-radius 0.2s ease;
-
-			&:hover {
-				background: #f8f8f8;
-
-				> .main {
-					&:before {
-						border-right: solid 12px #f8f8f8;
-					}
-
-					> .footer > .actions {
-						> .repost, > .favorite {
-							> button {
-								color: rgba(0, 0, 0, 0.5);
-							}
-
-							> .count {
-								color: rgba(0, 0, 0, 0.5);
-							}
-						}
-					}
-				}
-			}
-
-			> .repost-information {
-				padding: 16px 16px 0 16px;
-				color: #57bb00;
-
-				> .info {
-					margin: 0;
-					padding: 0;
-
-					.icon {
-						vertical-align: middle;
-						min-width: 32px;
-						min-height: 32px;
-						max-width: 32px;
-						max-height: 32px;
-						margin: 0 8px 0 0;
-						border-radius: 6px;
-						transition: all 0.1s ease;
-					}
-
-					i {
-						margin-right: 4px;
-					}
-
-					.name {
-						font-weight: bold;
-					}
-				}
-			}
 
 			> .talk {
 				.statuses {

@@ -52,14 +52,6 @@ div.status.article(
 											p!= (talkPost.isReply ? '<a href="' + config.url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
 										if talkPost.isImageAttached
 											img.image(src=config.url + '/img/status/' + talkPost.id, alt='image')
-			if status.isRepostToStatus
-				div.repost-information
-					p.info
-						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
-							img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
-						i.fa.fa-retweet
-						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
-						| によってRepost
 			if status.isReply
 				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 					data-id= status.replySource.id
