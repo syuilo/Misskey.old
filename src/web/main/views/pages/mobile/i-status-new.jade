@@ -14,7 +14,7 @@ html(lang='ja', dir='ltr')
 		include ../../common/mobile/nav
 		
 		main(role='main')
-			form#form(enctype='multipart/form-data', role='form')
+			form#form(action= config.apiUrl + '/status/update', method='post', enctype='multipart/form-data', role='form')
 				textarea.ui-textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 				input.ui-input-file(name='image', type='file', accept='image/*')
 				input.ui-button(type='submit', value!='&#xf1d8;', role='button')
