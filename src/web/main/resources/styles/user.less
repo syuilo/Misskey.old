@@ -213,11 +213,17 @@ main {
 			background-position: center 50%;
 			background-size: cover;
 
+			&:hover {
+				> #header-image-edit-button {
+					display: block;
+				}
+			}
+
 			> #header-image-edit-button {
 				-webkit-appearance: none;
 				-moz-appearance: none;
 				appearance: none;
-				display: block;
+				display: none;
 				position: absolute;
 				top: 16px;
 				right: 16px;
