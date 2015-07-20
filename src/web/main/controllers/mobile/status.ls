@@ -4,6 +4,8 @@ require! {
 	'../../../../models/utils/status-get-timeline'
 	'../../../../models/utils/status-get-mentions'
 	'../../utils/serialize-mobile-detail-status'
+	'../../utils/parse-text'
+	'../../../../config'
 }
 
 module.exports = (req, res, content = \home) ->
