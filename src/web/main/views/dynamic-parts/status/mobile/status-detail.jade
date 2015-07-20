@@ -27,7 +27,7 @@ div.status.article(
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')
 	article(role='article')
-		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
+		div.article-main
 			if status.moreTalk != null
 				aside.talk
 					i.fa.fa-ellipsis-v
