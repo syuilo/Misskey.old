@@ -174,6 +174,14 @@ window.STATUSTIMELINE = {}
 $ ->
 	is-me = $ \html .attr \data-is-me
 	
+	# init icon edit form
+	if is-me
+		$ \#icon .click ->
+			$ \#icon-edit-form .animate {
+				top: 0
+				opacity: 1
+			} 500ms \easeOutQuint
+
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
 	
