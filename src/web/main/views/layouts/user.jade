@@ -48,7 +48,8 @@ html(lang='ja'
 				label.image
 					input(name='image', type='file', accept='image/*')
 				progress(form='icon-edit-form')
-				input.submit-button.ui-button(type='submit', value!='更新 &#xf1d8;')
+				button.cancel.ui-button キャンセル
+				input.submit-button.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
 
 		main(role='main')
 			header(role='banner')
