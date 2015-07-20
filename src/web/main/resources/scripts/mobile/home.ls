@@ -92,7 +92,6 @@ $ ->
 	socket.on \disconnect (client) ->
 
 	socket.on \status (status) ->
-		console.log \status status
 		add-status $ status
 
 	$ '#timeline .load-more' .click ->
