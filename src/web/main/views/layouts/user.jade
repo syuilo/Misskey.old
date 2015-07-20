@@ -48,7 +48,9 @@ html(lang='ja'
 					img.image(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
 				label.image
 					input(name='image', type='file', accept='image/*')
-				progress(form='icon-edit-form', value='0')
+				div.progress
+					p.status
+					progress(form='icon-edit-form', value='0')
 				input(type='hidden', name='trim-x')
 				input(type='hidden', name='trim-y')
 				input(type='hidden', name='trim-w')

@@ -142,24 +142,36 @@ html {
 			float: right;
 		}
 
-		progress {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: block;
-			margin: 0;
-			width: 256px;
-			height: 8px;
-			border: solid 1px #eee;
-			border-radius: 8px;
+		.progress {
+			position: absolute;
+			bottom: 32px;
 
-			&::-webkit-progress-value {
-				background-color: @themeColor;
-				transition: all 1s ease;
+			.status {
+				margin: 0;
+				padding: 0;
+				color: rgba(0, 0, 0, 0.7);
 			}
 
-			&::-webkit-progress-bar {
-				background-color: #fff;
+			progress {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: block;
+				margin: 0;
+				width: 300px;
+				height: 8px;
+				border: solid 1px #eee;
+				border-radius: 8px;
+				overflow: hidden;
+
+				&::-webkit-progress-value {
+					background-color: @themeColor;
+					transition: all 1s ease;
+				}
+
+				&::-webkit-progress-bar {
+					background-color: #fff;
+				}
 			}
 		}
 	}
