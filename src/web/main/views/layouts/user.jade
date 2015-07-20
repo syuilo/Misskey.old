@@ -82,8 +82,9 @@ html(lang='ja'
 		main(role='main')
 			header(role='banner')
 				div#header-data
-					button#header-image-edit-button
-						i.fa.fa-picture-o
+					if isMe
+						button#header-image-edit-button
+							i.fa.fa-picture-o
 					div.bottom
 						div.main
 							div.names-area
