@@ -191,14 +191,14 @@ $ ->
 			if file.type.match 'image.*'
 				reader = new FileReader!
 					..onload = ->
-						$ '#icon-edit-form .preview' .attr \src reader.result
-						$ '#icon-edit-form .preview' .Jcrop {
-							aspect-ratio: 1
-							on-select: (c) ->
-								$ '#icon-edit-form input[name=trim-x]' .val c.x
-								$ '#icon-edit-form input[name=trim-y]' .val c.y
-								$ '#icon-edit-form input[name=trim-w]' .val c.w
-								$ '#icon-edit-form input[name=trim-h]' .val c.h
+						$ '#icon-edit-form .preview > .image' .attr \src reader.result
+						$ '#icon-edit-form .preview > .image' .cropper {
+							aspect-ratio: 1 / 1
+							crop: (data) ->
+								$ '#icon-edit-form input[name=trim-x]' .val Math.round data.x
+								$ '#icon-edit-form input[name=trim-y]' .val Math.round data.y
+								$ '#icon-edit-form input[name=trim-w]' .val Math.round data.width
+								$ '#icon-edit-form input[name=trim-h]' .val Math.round data.height
 						}
 					..readAsDataURL file
 
