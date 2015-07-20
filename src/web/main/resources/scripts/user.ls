@@ -176,6 +176,8 @@ $ ->
 	
 	# init icon edit form
 	if is-me
+		$form = $ \#icon-edit-form
+		
 		$ \#icon .click ->
 			$ \#icon-edit-form-back .css \display \block
 			$ \#icon-edit-form-back .animate {
@@ -185,6 +187,36 @@ $ ->
 				top: 0
 				opacity: 1
 			} 1000ms \easeOutElastic
+		
+		$ '#icon-edit-form input[name=image]' .submit (event) ->
+			event.prevent-default!
+			$submit-button = $form.find '[type=submit]'
+			$submit-button.attr \disabled yes
+			$submit-button.attr \value '更新しています...'
+			$.ajax config.api-url + '/account/update-icon' {
+				+async
+				type: \put
+				-process-data
+				-content-type
+				data: new FormData $form.0
+				data-type: \json
+				xhr-fields: {+with-credentials}
+				xhr: ->
+					XHR = $.ajax-settings.xhr!
+					if XHR.upload
+						XHR.upload.add-event-listener \progress (e) ->
+							$form.find \progress
+								..attr \max e.total
+								..attr \value e.loaded
+						, false
+					XHR
+			}
+			.done (data) ->
+				
+			.fail (data) ->
+				$submit-button.attr \disabled no
+				$submit-button.attr \value '更新 \uf1d8'
+
 		$ '#icon-edit-form input[name=image]' .change ->
 			$input = $ @
 			file = $input.prop \files .0
