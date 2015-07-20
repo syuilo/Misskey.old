@@ -93,6 +93,9 @@ $ ->
 
 	socket.on \status (status) ->
 		add-status $ status
+	
+	socket.on \repost (status) ->
+		add-status $ status
 
 	$ '#timeline .load-more' .click ->
 		$button = $ @
