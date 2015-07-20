@@ -22,8 +22,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		(, blurred-image-buffer) <- blurred-image.to-buffer \jpeg
 		fs.unlink path
 		header
-			..image = image
-			..blur = blurred-image
+			..image = normal-image-buffer
+			..blur = blurred-image-buffer
 			..save -> res.api-render 'success'
 	else
 		res.api-error 400 'Not attached image'
