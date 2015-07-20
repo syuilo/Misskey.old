@@ -29,7 +29,8 @@ html {
 	opacity: 0;
 }
 
-#icon-edit-form {
+#icon-edit-form,
+#header-image-edit-form {
 	display: block;
 	position: fixed;
 	z-index: 128;
@@ -210,6 +211,37 @@ main {
 			background-repeat: no-repeat;
 			background-position: center 50%;
 			background-size: cover;
+
+			> #header-image-edit-button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: block;
+				position: absolute;
+				top: 16px;
+				right: 16px;
+				box-sizing: border-box;
+				margin: 0;
+				padding: 16px;
+				cursor: pointer;
+				font-size: 2em;
+				font-weight: normal;
+				text-decoration: none;
+				color: #fff;
+				background: rgba(0, 0, 0, 0.7);
+				outline: 0;
+				border: 0;
+				border-radius: 2px;
+				box-shadow: none;
+
+				&:hover {
+					background: rgba(0, 0, 0, 0.8);
+				}
+
+				&:active {
+					background: rgba(0, 0, 0, 0.9);
+				}
+			}
 
 			> .bottom {
 				position: absolute;

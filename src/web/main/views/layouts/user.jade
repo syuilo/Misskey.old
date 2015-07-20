@@ -45,7 +45,7 @@ html(lang='ja'
 				| アイコンを編集
 			div.main
 				div.preview
-					img.image(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
+					img.image(src='/img/icon/' + user.screenName, alt='icon')
 				label.image
 					input(name='image', type='file', accept='image/*')
 				div.progress
@@ -57,10 +57,32 @@ html(lang='ja'
 				input(type='hidden', name='trim-h')
 				input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
 				button.cancel.ui-cancel-button(type='button') キャンセル
+		
+		div#header-image-edit-form-back
+		form#header-image-edit-form
+			h1
+				i.fa.fa-picture-o
+				| ヘッダー画像を編集
+			div.main
+				div.preview
+					img.image(src='/img/header/' + user.screenName, alt='header')
+				label.image
+					input(name='image', type='file', accept='image/*')
+				div.progress
+					p.status
+					progress(form='header-image-edit-form', value='0')
+				input(type='hidden', name='trim-x')
+				input(type='hidden', name='trim-y')
+				input(type='hidden', name='trim-w')
+				input(type='hidden', name='trim-h')
+				input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
+				button.cancel.ui-cancel-button(type='button') キャンセル
 
 		main(role='main')
 			header(role='banner')
 				div#header-data
+					button#header-image-edit-button
+						i.fa.fa-picture-o
 					div.bottom
 						div.main
 							div.names-area
