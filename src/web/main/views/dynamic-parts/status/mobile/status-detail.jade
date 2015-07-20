@@ -83,7 +83,7 @@ div.status.article(
 						h2
 							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
 						span.screen-name= '@' + status.user.screenName
-					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+					time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 				div.content(itemprop='articleBody')
 					div.text
 						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
