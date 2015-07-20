@@ -106,7 +106,7 @@ div.status.article(
 									i.fa.fa-star
 								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 			if login
-				form.reply-form(role='form')
+				form.reply-form(action= config.apiUrl + '/status/update', method='post', enctype='multipart/form-data', role='form')
 					textarea.ui-textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 					input(name='in-reply-to-status-id', type='hidden', value=status.id)
 					input.ui-input-file(name='image', type='file', accept='image/*')
