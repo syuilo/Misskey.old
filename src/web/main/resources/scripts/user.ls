@@ -189,7 +189,7 @@ $ ->
 				opacity: 1
 			} 1000ms \easeOutElastic
 		
-		$ '#icon-edit-form input[name=image]' .submit (event) ->
+		$form.submit (event) ->
 			event.prevent-default!
 			$submit-button.attr \disabled yes
 			$submit-button.attr \value '更新しています...'
@@ -217,7 +217,7 @@ $ ->
 				$submit-button.attr \disabled no
 				$submit-button.attr \value '更新 \uf1d8'
 
-		$ '#icon-edit-form input[name=image]' .change ->
+		$form.find 'input[name=image]' .change ->
 			$input = $ @
 			file = $input.prop \files .0
 			if file.type.match 'image.*'
