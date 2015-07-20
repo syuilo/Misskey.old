@@ -177,6 +177,10 @@ $ ->
 	# init icon edit form
 	if is-me
 		$ \#icon .click ->
+			$ \#icon-edit-form-back .css \display \block
+			$ \#icon-edit-form-back .animate {
+				opacity: 1
+			} 500ms \ease
 			$ \#icon-edit-form .animate {
 				top: 0
 				opacity: 1

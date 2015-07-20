@@ -17,18 +17,32 @@ html {
 	background: #eee;
 }
 
+#icon-edit-form-back {
+	display: none;
+	position: fixed;
+	z-index: 127;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+}
+
 #icon-edit-form {
 	display: block;
 	position: fixed;
+	z-index: 128;
 	top: -100%;
+	left: 0;
+	right: 0;
 	box-sizing: border-box;
 	width: 100%;
 	max-width: 700px;
-	margin: 0 auto;
+	margin: 128px auto 0 auto;
 	padding: 0 32px 32px 32px;
 	border-radius: 8px;
 	background: #fff;
-
 
 	h1 {
 		display: block;
