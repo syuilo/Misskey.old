@@ -109,8 +109,8 @@ div.status.article(
 				form.reply-form(role='form')
 					textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 					input(name='in-reply-to-status-id', type='hidden', value=status.id)
-					input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
 					input(name='image', type='file', accept='image/*')
+					input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
 			else
 				p この投稿に返信するにはログインしてください。
 			aside.replies(itemprop='comment')
