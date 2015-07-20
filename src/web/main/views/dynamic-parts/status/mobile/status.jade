@@ -80,7 +80,7 @@ div.status.article(
 					if login
 						div.actions
 							div.reply
-								button.reply-button(role='button')
+								a.reply-button(href=config.url + '/' + status.user.screenName + '/status/' + status.id)
 									i.fa.fa-reply
 							div.repost
 								button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
