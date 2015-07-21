@@ -11,21 +11,31 @@ main > header {
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
+		overflow: hidden;
 
 		.icon {
+			display: block;
 			width: 64px;
+			margin: 16px auto;
+			border: solid 2px #fff;
+			border-radius: 8px;
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 		}
 
 		h1 {
+			display: block;
 			margin: 8px 0;
 			padding: 0;
 			font-size: 1em;
 			font-weight: normal;
+			text-align: center;
 
 			.name {
+				margin: 0;
 			}
 
 			.screen-name {
+				margin: 0;
 				color: rgba(255, 255, 255, 0.5);
 			}
 		}
