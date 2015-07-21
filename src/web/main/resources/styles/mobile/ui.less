@@ -40,14 +40,6 @@ main {
 
 /* UI
  * ---------------------------------------------------------------- */
-body[data-nav-open='true'] {
-	#open-misskey-main-nav-button {
-		> i {
-			transform: rotate(-90deg);
-		}
-	}
-}
-
 #misskey-main-header {
 	position: fixed;
 	top: 0;
@@ -192,6 +184,14 @@ body[data-nav-open='true'] {
 					margin-right: 8px;
 				}
 			}
+		}
+	}
+}
+
+body[data-nav-open='true'] {
+	#open-misskey-main-nav-button {
+		> i {
+			transform: rotate(-90deg);
 		}
 	}
 }
