@@ -5,7 +5,29 @@
 @fadeThemeColor: fade(lighten(@themeColor, 47%), 95%);
 
 main > header {
-	.icon {
-		width: 64px;
+	.main {
+		color: #fff;
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(@headerImageUrl);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+
+		.icon {
+			width: 64px;
+		}
+
+		h1 {
+			margin: 8px 0;
+			padding: 0;
+			font-size: 1em;
+			font-weight: normal;
+
+			.name {
+			}
+
+			.screen-name {
+				color: rgba(255, 255, 255, 0.5);
+			}
+		}
 	}
 }
