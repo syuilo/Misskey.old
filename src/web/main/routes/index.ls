@@ -82,7 +82,11 @@ module.exports = (app) ->
 		, -> res.send-status 400
 	app.get '/logout' (req, res) ->
 		req.session.destroy (err) -> res.redirect '/'
-	app.get '/:userSn' (req, res) -> (require '../controllers/user') req, res, \home
+	app.get '/:userSn' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/user') req, res, \home
+		else
+			(require '../controllers/user') req, res, \home
 	app.get '/:userSn/profile' (req, res) -> (require '../controllers/user') req, res, \profile
 	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers

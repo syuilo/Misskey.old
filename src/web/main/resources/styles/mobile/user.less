@@ -1,0 +1,86 @@
+@themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+@fadeThemeColor: fade(lighten(@themeColor, 47%), 95%);
+
+main > header {
+	background: #fff;
+
+	.main {
+		padding: 8px 0;
+		color: #fff;
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(@headerImageUrl);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+
+		.icon {
+			display: block;
+			width: 80px;
+			margin: 8px auto;
+			border: solid 2px #fff;
+			border-radius: 8px;
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+		}
+
+		.title {
+			display: block;
+			margin: 8px 0;
+			padding: 0;
+			text-align: center;
+			text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+
+			.name {
+				margin: 0;
+				font-size: 1em;
+				font-weight: normal;
+			}
+
+			.screen-name {
+				display: inline;
+				margin: 0;
+				color: rgba(255, 255, 255, 0.7);
+			}
+
+			#friend-status {
+				display: inline;
+				margin: 0 8px;
+				padding: 4px 6px;
+				font-size: 0.7em;
+				background: rgba(0, 0, 0, 0.5);
+				border-radius: 2px;
+			}
+		}
+	}
+
+	nav {
+		display: block;
+		text-align: center;
+		border-bottom: solid 1px #eee;
+
+		table {
+			display: inline-block;
+			margin: 0 auto;
+
+			tr {
+				th, td {
+					text-align: left;
+					line-height: 1em;
+				}
+
+				th {
+					padding: 6px 4px 0 4px;
+					min-width: 5em;
+					color: #555;
+					font-weight: normal;
+					font-size: 0.7em;
+				}
+
+				td {
+					padding: 0 4px 6px 4px;
+				}
+			}
+		}
+	}
+}
