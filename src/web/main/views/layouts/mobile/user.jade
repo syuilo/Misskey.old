@@ -64,12 +64,19 @@ html(lang='ja'
 							td: a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
 							td: a(href='/' + user.screenName + '/followings')= user.followingsCount
 							td: a(href='/' + user.screenName + '/followers')= user.followersCount
-					if login
-						if me.id != user.id
-							if isFollowing
-								button#follow-button.following フォロー中
-							else
-								button#follow-button.notFollowing フォロー
+			
+			if login
+				if me.id != user.id
+					if not isFollowing
+						div.follow
+							button#follow-button.notFollowing フォロー
+			
 			div.main
 				block content
+			
+			footer
+				if login
+					if me.id != user.id
+						if isFollowing
+							button#unfollow-button.following フォローを解除する
 				
