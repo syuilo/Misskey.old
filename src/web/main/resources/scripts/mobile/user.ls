@@ -1,15 +1,15 @@
 prelude = require 'prelude-ls'
 
-$ ->	
+$ ->
+	is-me = $ \html .attr \data-is-me
+	user-name = $ \html .attr \data-user-name
+	user-screen-name = $ \html .attr \data-user-screen-name
+	
 	$ '.timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
 	
 	$ '#misskey-main-header .post' .click ->
-		#if $.cookie \quick-post-autosave
-		#	dflt = $.cookie \quick-post-autosave
-		#else
-		#	dflt = null
-		text = window.prompt '新規投稿'
+		text = window.prompt "#{user-name}に何か言う" "@#{user-screen-name} "
 		if text? and text != ''
 			$.ajax config.api-url + '/status/update' {
 				type: \post
@@ -17,7 +17,7 @@ $ ->
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done (data) ->
-				$.remove-cookie \quick-post-autosave {path: '/'}
+				#
 			.fail (data) ->
 				error-code = JSON.parse data.response-text .error.code
 				switch error-code
