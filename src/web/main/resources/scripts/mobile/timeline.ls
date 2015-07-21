@@ -16,7 +16,7 @@ window.STATUSTIMELINE = {}
 		$status
 			# Init reply button
 			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
-				text = window.prompt "#{user-name}への返信" "@#{user-screen-name} "
+				text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
 				if text? and text != ''
 					$.ajax config.api-url + '/status/update' {
 						type: \post
