@@ -44,7 +44,10 @@ html(lang='ja'
 				div.main
 					img.icon(src='/img/icon/' + user.screenName, alt='icon')
 					div.title
-						h1.name= user.name
+						h1.name
+							if user.isVerified
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+							= user.name
 						div.bottom
 							p.screen-name= '@' + user.screenName
 							if login
