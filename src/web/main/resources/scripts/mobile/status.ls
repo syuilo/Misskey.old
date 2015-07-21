@@ -1,4 +1,7 @@
 $ ->
+	$ '#status .status.article' .each ->
+		window.STATUSTIMELINE.set-event $ @
+	
 	$ \.reply-form .submit (event) ->
 		event.prevent-default!
 
