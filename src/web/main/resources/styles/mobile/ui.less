@@ -63,6 +63,7 @@ main {
 		width: 100%;
 		text-align: center;
 		font-size: 1.1em;
+		font-weight: normal;
 		line-height: 36px;
 	}
 
@@ -89,6 +90,10 @@ main {
 		border-right: solid 1px rgba(0, 0, 0, 0.1);
 		border-radius: 4px;
 		box-shadow: none;
+
+		> i {
+			transition: transform 0.2s ease;
+		}
 	}
 
 	.post {
@@ -128,6 +133,7 @@ main {
 
 	.me {
 		display: block;
+		position: relative;
 		margin: 0;
 		padding: 16px;
 
@@ -139,10 +145,18 @@ main {
 		}
 
 		.name {
-			display: inline;
+			display: block;
 			margin: 0 16px;
+			position: absolute;
+			top: 0;
+			left: 80px;
 			padding: 0;
+			width: ~"calc(100% - 112px)";
 			color: #fff;
+			line-height: 96px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 	}
 
@@ -169,6 +183,14 @@ main {
 					margin-right: 8px;
 				}
 			}
+		}
+	}
+}
+
+body[data-nav-open='true'] {
+	#open-misskey-main-nav-button {
+		> i {
+			transform: rotate(-90deg);
 		}
 	}
 }
