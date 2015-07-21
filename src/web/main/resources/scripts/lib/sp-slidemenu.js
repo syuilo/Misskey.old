@@ -348,6 +348,9 @@
 	SpSlidemenu.prototype.slideOpen = function(event) {
 		var _this = this, toX;
 
+		/// Misskey Original
+		$('body').attr('data-nav-open', 'true');
+
 		if (_this.direction === 'left') {
 			toX = _this.slideWidth;
 		} else {
@@ -402,6 +405,9 @@
 		var _this = this;
 
 		_this.main.SpSlidemenuStatus = SLIDE_STATUS.progress;
+
+		/// Misskey Original
+		$('body').attr('data-nav-open', 'false');
 
 		//event
 		removeTouchEvent('start', _this.main, _this.mainTouchStart, false);
