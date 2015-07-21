@@ -8,7 +8,9 @@ html(lang='ja'
 	itemtype='http://schema.org/ProfilePage'
 	data-user-id= user.id
 	data-is-following!= login ? isFollowing.toString() : null
-	data-is-me!= isMe.toString())
+	data-is-me!= isMe.toString()
+	data-user-name= user.name
+	data-user-screen-name= user.screenName)
 	head(prefix='og: http://ogp.me/ns#')
 		include ../../common/mobile/head
 		meta(name='robots', content='all')
