@@ -1,3 +1,5 @@
+prelude = require 'prelude-ls'
+
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
 		
