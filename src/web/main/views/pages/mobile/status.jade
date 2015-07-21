@@ -14,5 +14,5 @@ html(lang='ja', dir='ltr')
 			h1= status.user.name + 'の投稿'
 		include ../../common/mobile/nav
 		
-		main(role='main')
+		main#misskey-main(role='main')
 			div#status!= statusHtml
