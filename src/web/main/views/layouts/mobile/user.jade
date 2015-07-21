@@ -43,14 +43,15 @@ html(lang='ja'
 			header
 				div.main
 					img.icon(src='/img/icon/' + user.screenName, alt='icon')
-					h1
-						p.name= user.name
-						p.screen-name= '@' + user.screenName
-					p.comment= user.comment
-					if login
-						if me.id != user.id
-							if isFollowMe
-								p#friend-status フォローされています
+					div.title
+						h1.name= user.name
+						div.bottom
+							p.screen-name= '@' + user.screenName
+							if login
+								if me.id != user.id
+									if isFollowMe
+										p#friend-status フォローされています
+					//p.comment= user.comment
 				nav
 					table.count-table
 						tr
