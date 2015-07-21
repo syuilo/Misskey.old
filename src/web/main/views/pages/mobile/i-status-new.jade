@@ -10,10 +10,11 @@ html(lang='ja', dir='ltr')
 	
 	body
 		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
 			h1 新規投稿
 		include ../../common/mobile/nav
 		
-		main(role='main')
+		main#misskey-main(role='main')
 			form#form(action= config.apiUrl + '/status/update', method='post', enctype='multipart/form-data', role='form')
 				textarea.ui-textarea#textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
 				input.ui-input-file(name='image', type='file', accept='image/*')
