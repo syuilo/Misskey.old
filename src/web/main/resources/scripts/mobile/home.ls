@@ -13,11 +13,11 @@ $ ->
 		window.STATUSTIMELINE.set-event $ @
 	
 	$ '#misskey-main-header .post' .click ->
-		if $.cookie \quick-post-autosave
-			dflt = $.cookie \quick-post-autosave
-		else
-			dflt = null
-		text = window.prompt '新規投稿' dflt
+		#if $.cookie \quick-post-autosave
+		#	dflt = $.cookie \quick-post-autosave
+		#else
+		#	dflt = null
+		text = window.prompt '新規投稿'
 		if text? and not empty text
 			$.ajax config.api-url + '/status/update' {
 				type: \post
