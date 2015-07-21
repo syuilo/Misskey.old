@@ -1,5 +1,2 @@
 $ ->
-	$ \body .css \margin-bottom "#{$ 'body > #misskey-main-nav' .outer-height!}px"
-
-$ window .load ->
-	$ \body .css \margin-bottom "#{$ 'body > #misskey-main-nav' .outer-height!}px"
+	SpSlidemenu \main \#misskey-main-nav \#open-misskey-main-nav-button {direction: \left}
