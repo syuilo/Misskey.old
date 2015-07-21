@@ -11,6 +11,12 @@ function add-status($status)
 $ ->	
 	$ '.timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
+	
+	#$ '#misskey-main-header .post' .click ->
+	#	text = window.prompt '新規投稿'
+	#	if text?
+	#		#
+	#	false
 
 	socket = io.connect config.web-streaming-url + '/streaming/web/mobile/home'
 
