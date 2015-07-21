@@ -2,24 +2,28 @@ nav#misskey-main-nav(role='navigation')
 	script(src='/resources/scripts/lib/sp-slidemenu.js')
 	script(src='/resources/scripts/mobile/nav.js')
 	div.slidemenu-body
-		ul.slidemenu-content
-			li
-				a(href='/')
-					i.fa.fa-home
-					| ホーム
-			li
-				a(href='/i/mentions')
-					i.fa.fa-at
-					| メンション
-			li
-				a(href='/i/notices')
-					i.fa.fa-bell
-					| 通知
-			li
-				a(href='/i/talks')
-					i.fa.fa-comments
-					| トーク
-			li
-				a(href='/' + me.screenName)
-					i.fa.fa-user
-					| アカウント
+		div.slidemenu-content
+			a.me(href='/' + me.screenName)
+				img.icon(src='/img/icon/' + me.screenName, alt='icon')
+				p.name= me.name
+			ul
+				li
+					a(href='/')
+						i.fa.fa-home
+						| ホーム
+				li
+					a(href='/i/mentions')
+						i.fa.fa-at
+						| メンション
+				li
+					a(href='/i/notices')
+						i.fa.fa-bell
+						| 通知
+				li
+					a(href='/i/talks')
+						i.fa.fa-comments
+						| トーク
+				li
+					a(href='/' + me.screenName)
+						i.fa.fa-user
+						| アカウント
