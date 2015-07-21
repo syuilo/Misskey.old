@@ -58,13 +58,17 @@ main {
 	h1 {
 		display: block;
 		box-sizing: border-box;
-		margin: 0;
+		margin: 0 auto;
 		padding: 6px 0;
 		width: 100%;
+		max-width: ~"calc(100% - 128px)";
 		text-align: center;
 		font-size: 1.1em;
 		font-weight: normal;
 		line-height: 36px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	#open-misskey-main-nav-button {
