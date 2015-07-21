@@ -1,19 +1,20 @@
 nav#misskey-main-nav(role='navigation')
 	script(src='/resources/scripts/lib/sp-slidemenu.js')
 	script(src='/resources/scripts/mobile/nav.js')
-	ul
-		li
-			a(href='/')
-				i.fa.fa-home
-		li
-			a(href='/i/mentions')
-				i.fa.fa-at
-		li
-			a(href='/i/notices')
-				i.fa.fa-bell
-		li
-			a(href='/i/talks')
-				i.fa.fa-comments
-		li
-			a(href='/' + me.screenName)
-				i.fa.fa-user
+	div.slidemenu-body
+		ul.slidemenu-content
+			li
+				a(href='/')
+					i.fa.fa-home
+			li
+				a(href='/i/mentions')
+					i.fa.fa-at
+			li
+				a(href='/i/notices')
+					i.fa.fa-bell
+			li
+				a(href='/i/talks')
+					i.fa.fa-comments
+			li
+				a(href='/' + me.screenName)
+					i.fa.fa-user
