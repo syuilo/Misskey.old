@@ -20,7 +20,7 @@ $ ->
 		#else
 		#	dflt = null
 		text = window.prompt '新規投稿'
-		if text? and not empty text
+		if text? and text != ''
 			$.ajax config.api-url + '/status/update' {
 				type: \post
 				data: {text}
