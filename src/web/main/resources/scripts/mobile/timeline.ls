@@ -8,10 +8,34 @@ window.STATUSTIMELINE = {}
 		function check-reposted
 			($status.attr \data-is-reposted) == \true
 			
+		status-id = $status.attr \data-id
 		user-name = $status.attr \data-user-name
 		text = $status.attr \data-text
 		
 		$status
+			# Init reply button
+			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
+				text = window.prompt "#{user-name}への返信"
+				if text? and not empty text
+					$.ajax config.api-url + '/status/update' {
+						type: \post
+						data: {
+							text
+							'in-reply-to-status-id': status-id
+						}
+						data-type: \json
+						xhr-fields: {+with-credentials}}
+					.done (data) ->
+						#
+					.fail (data) ->
+						error-code = JSON.parse data.response-text .error.code
+						switch error-code
+						| \empty-text => window.alert 'テキストを入力してください。'
+						| \too-long-text => window.alert 'テキストが長過ぎます。'
+						| \duplicate-content => window.alert '投稿が重複しています。'
+						| \failed-attach-image => window.alert '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
+						| _ => window.alert "不明なエラー (#error-code)"
+				
 			# Init favorite button
 			..find 'article > .article-main > .main > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
