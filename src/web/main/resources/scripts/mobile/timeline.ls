@@ -9,13 +9,14 @@ window.STATUSTIMELINE = {}
 			($status.attr \data-is-reposted) == \true
 			
 		status-id = $status.attr \data-id
+		user-screen-name = $status.attr \data-user-screen-name
 		user-name = $status.attr \data-user-name
 		text = $status.attr \data-text
 		
 		$status
 			# Init reply button
 			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
-				text = window.prompt "#{user-name}への返信"
+				text = window.prompt "#{user-name}への返信" "@#{user-screen-name} "
 				if text? and not empty text
 					$.ajax config.api-url + '/status/update' {
 						type: \post
