@@ -11,7 +11,9 @@ html(lang='ja', dir='ltr')
 	body
 		header#misskey-main-header
 			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
-			h1= status.user.name + 'の投稿'
+			h1
+				b= status.user.name
+				| の投稿
 		include ../../common/mobile/nav
 		
 		main#misskey-main(role='main')
