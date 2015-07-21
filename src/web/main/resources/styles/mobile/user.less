@@ -6,17 +6,17 @@
 
 main > header {
 	.main {
+		padding: 8px 0;
 		color: #fff;
 		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(@headerImageUrl);
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-		overflow: hidden;
 
 		.icon {
 			display: block;
 			width: 64px;
-			margin: 16px auto 8px auto;
+			margin: 8px auto;
 			border: solid 2px #fff;
 			border-radius: 8px;
 			box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -38,6 +38,30 @@ main > header {
 			.screen-name {
 				margin: 0;
 				color: rgba(255, 255, 255, 0.6);
+			}
+		}
+	}
+
+	nav {
+		display: block;
+		border-bottom: solid 1px #eee;
+
+		table {
+			display: block;
+			margin: 0 auto;
+
+			tr {
+				th, td {
+					text-align: left;
+				}
+
+				th {
+					min-width: 5em;
+					padding: 0;
+					color: #555;
+					font-weight: normal;
+					font-size: 0.8em;
+				}
 			}
 		}
 	}
