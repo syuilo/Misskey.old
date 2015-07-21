@@ -12,7 +12,7 @@
 ;(function(window, document, undefined) {
 "use strict";
 
-var div, PREFIX, support, gestureStart, EVENTS, ANIME_SPEED, SLIDE_STATUS, SCROLL_STATUS, THRESHOLD, EVENT_MOE_TIME, rclass, ITEM_CLICK_CLASS_NAME;
+var div, PREFIX, support, gestureStart, EVENTS, ANIME_SPEED, SLIDE_STATUS, SCROLL_STATUS, THRESHOLD, EVENT_MOE_TIME, rclass, ITEM_CLICK_CLASS_NAME, defaults;
 
 div = document.createElement('div');
 
@@ -58,6 +58,16 @@ EVENTS = {
         touch: 'touchend',
         mouse: 'mouseup'
     }
+};
+
+defaults = {
+    main               : "#main",
+    button             : ".menu-button",
+    slidemenu          : ".slidemenu",
+    slidemenu_header   : ".slidemenu-header",
+    slidemenu_body     : ".slidemenu-body",
+    slidemenu_content  : ".slidemenu-content",
+    direction          : 'left'
 };
 
 gestureStart = false;
@@ -141,6 +151,12 @@ function SpSlidemenu(options) {
 
 SpSlidemenu.prototype.init = function(options) {
     var _this = this;
+
+    for(var k in defaults) {
+      if (!options.hasOwnProperty(k)){
+        options[k] = defaults[k];
+      }
+    }
 
     // find and set element.
     _this.setElement(options);
