@@ -39,7 +39,7 @@ html(lang='ja'
 		include ../common/header
 		
 		if isMe
-			div#icon-edit-form-back
+			div#icon-edit-form-back(role='presentation')
 			form#icon-edit-form
 				h1
 					i.fa.fa-picture-o
@@ -59,7 +59,7 @@ html(lang='ja'
 					input.submit.ui-button(type='submit', value!='更新 &#xf1d8;', disabled)
 					button.cancel.ui-cancel-button(type='button') キャンセル
 
-			div#header-image-edit-form-back
+			div#header-image-edit-form-back(role='presentation')
 			form#header-image-edit-form
 				h1
 					i.fa.fa-picture-o
