@@ -16,12 +16,12 @@ window.STATUSTIMELINE = {}
 		$status
 			# Init reply button
 			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
-				text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
-				if text? and text != ''
+				reply-text = window.prompt "#{user-name}「#{text}」への返信" "@#{user-screen-name} "
+				if reply-text? and reply-text != ''
 					$.ajax config.api-url + '/status/update' {
 						type: \post
 						data: {
-							text
+							text: reply-text
 							'in-reply-to-status-id': status-id
 						}
 						data-type: \json
