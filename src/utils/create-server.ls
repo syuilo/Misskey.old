@@ -9,7 +9,7 @@ create-server = ->
 	server.disable 'x-powered-by'
 	server.use compression!
 	server.use express-minify {
-		js_match: null
+		js_match: /dummy/
 	}
 	server
 
