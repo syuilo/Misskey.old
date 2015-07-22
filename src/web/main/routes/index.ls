@@ -102,8 +102,11 @@ module.exports = (app) ->
 			#(require '../controllers/i-notices') req, res
 	
 	# talks
-	app.get '/i/talk' (req, res) -> (require '../controllers/i-talks') req, res
-	app.get '/i/talks' (req, res) -> (require '../controllers/i-talks') req, res
+	app.get '/i/talks' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/i-talks') req, res
+		else
+			(require '../controllers/i-talks') req, res
 	
 	# settings
 	app.get '/i/settings' (req, res) ->
@@ -148,7 +151,11 @@ module.exports = (app) ->
 	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
 	
 	# talk
-	app.get '/:userSn/talk' (req, res) -> (require '../controllers/user-talk') req, res, \normal
+	app.get '/:userSn/talk' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/user-talk') req, res, \normal
+		else
+			(require '../controllers/user-talk') req, res, \normal
 	
 	# staus detail page
 	app.get '/:userSn/status/:statusId' (req, res) ->
