@@ -9,7 +9,7 @@
 <g id="レイヤー_2">
 	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="255.9995" y1="0" x2="255.9995" y2="64.0005">
 		<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.5"/>
-		<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.1"/>
 	</linearGradient>
 	<path fill="url(#SVGID_1_)" d="M0,2c0-1.104,0.896-2,2-2s2,0.896,2,2S3.104,4,2,4S0,3.104,0,2z M10,4c1.104,0,2-0.896,2-2
 		s-0.896-2-2-2S8,0.896,8,2S8.896,4,10,4z M6,10c1.104,0,2-0.896,2-2S7.104,6,6,6S4,6.896,4,8S4.896,10,6,10z M14,10
