@@ -3,8 +3,8 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px"
 	 height="64px" viewBox="0 0 512 64" enable-background="new 0 0 512 64" xml:space="preserve">
-<g id="レイヤー_1">
-	<rect fill="#E6207D" width="512" height="64"/>
+<g id="レイヤー_1" display="none">
+	<rect display="inline" fill="#E6207D" width="512" height="64"/>
 </g>
 <g id="レイヤー_2" opacity="0.35">
 	<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="0" y1="0" x2="0" y2="64"/>
