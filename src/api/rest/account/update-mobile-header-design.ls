@@ -9,7 +9,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	
 	if empty id or id == \none then id = null
 	if id?
-		if id != /^[a-z]+$/
+		if id != /^[a-z\-]+$/
 			res.api-error 400 \invalid-id
 
 	user
