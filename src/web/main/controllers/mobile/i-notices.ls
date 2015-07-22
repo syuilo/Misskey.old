@@ -8,7 +8,7 @@ require! {
 module.exports = (req, res) ->
 	notice-get-timeline do
 		req.me.id
-		30notices
+		20notices
 	.then (notices) ->
 		if notices?
 			generate-mobile-notice-timeline-html req.me, notices .then (html) ->
