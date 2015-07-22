@@ -1,0 +1,24 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../../common/mobile/head
+		title ヘッダーデザイン
+		link(rel='stylesheet', href='/resources/styles/mobile/i-settings-mobile-header-design.css')
+		script(src='/resources/scripts/mobile/header.js')
+		script(src='/resources/scripts/mobile/i-settings-mobile-header-design.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-cog
+				| ヘッダーデザイン
+		include ../../common/mobile/nav
+		
+		main#misskey-main(role='main')
+			form#form(action= apiUrl + '/account/update-mobile-header-design', method='put')
+				select(name='id')
+					option(value='none', selected= user.mobileHeaderDesignId == null) なし
+					option(value='glossy', selected= user.mobileHeaderDesignId == 'glossy') Glossy
+				input.ui-button(type='submit', value='決定')

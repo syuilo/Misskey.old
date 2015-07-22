@@ -111,6 +111,14 @@ module.exports = (app) ->
 			(require '../controllers/mobile/i-settings') req, res
 		else
 			(require '../controllers/i-settings') req, res
+			
+	# profile setting
+	app.get '/i/settings/profile' (req, res) ->
+		(require '../controllers/mobile/i-settings-profile') req, res
+	
+	# mobile header design setting
+	app.get '/i/settings/mobile-header-design' (req, res) ->
+		(require '../controllers/mobile/i-settings-mobile-header-design') req, res
 	
 	# login
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
