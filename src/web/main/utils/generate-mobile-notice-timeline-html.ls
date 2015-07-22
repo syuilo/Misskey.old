@@ -9,5 +9,4 @@ module.exports = (user, notices) -> new Promise (resolve, reject) ->
 		generate-mobile-notice-timeline-item-html user, notice
 	Promise.all promises .then (notice-htmls) ->
 		resolve notices-compiler do
-			notices: notice-htmls
-			config: config.public-config
+			notices: notice-htmls.join ''
