@@ -20,8 +20,8 @@ module.exports = (req, res, view) ->
 			serialize-talk-messages messages, me, otherparty .then (messages) ->
 				generate-talk-messages-html messages, me .then (message-htmls) ->
 					view-name = switch view
-						| \normal => \monile/user-talk
-						| \widget => \monile/widget-user-talk
+						| \normal => \mobile/user-talk
+						| \widget => \mobile/widget-user-talk
 					res.display req, res, view-name, {
 						otherparty
 						messages: message-htmls
