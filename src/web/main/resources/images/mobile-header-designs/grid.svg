@@ -6,7 +6,7 @@
 <g id="レイヤー_1" display="none">
 	<rect display="inline" fill="#E6207D" width="512" height="64"/>
 </g>
-<g id="レイヤー_2" opacity="0.3">
+<g id="レイヤー_2" opacity="0.35">
 	<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="0" y1="0" x2="0" y2="64"/>
 	<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="512" y1="0" x2="0" y2="0"/>
 	<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="512" y1="16" x2="0" y2="16"/>
@@ -44,7 +44,7 @@
 	<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="480" y1="0" x2="480" y2="64"/>
 	<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="496" y1="0" x2="496" y2="64"/>
 </g>
-<g id="レイヤー_3" opacity="0.2">
+<g id="レイヤー_3" opacity="0.25">
 	<g>
 		<g>
 			<line fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-miterlimit="10" x1="512" y1="4" x2="511.5" y2="4"/>
