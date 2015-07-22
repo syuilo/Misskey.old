@@ -94,6 +94,13 @@ module.exports = (app) ->
 		else
 			(require '../controllers/i-mentions') req, res
 	
+	# notices
+	app.get '/i/notices' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/i-notices') req, res
+		else
+			#(require '../controllers/i-notices') req, res
+	
 	# talks
 	app.get '/i/talk' (req, res) -> (require '../controllers/i-talks') req, res
 	app.get '/i/talks' (req, res) -> (require '../controllers/i-talks') req, res

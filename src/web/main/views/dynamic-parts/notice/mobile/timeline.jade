@@ -1,0 +1,8 @@
+div.timeline
+	if notices != null && notices.length > 0
+		ol.notices
+			each notice in notices
+				!= notice
+		button.load-more(role='button') Read more!
+	else
+		p.notices-empty 通知はありません
