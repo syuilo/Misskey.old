@@ -57,6 +57,11 @@ module.exports = (app) ->
 					if style-user?
 						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}/blur\""
 						else ''
+				.replace do
+					/<%mobileHeaderImageUrl%>/g
+					if style-user?
+						then "\"#{config.public-config.url}/resources/images/mobile-header-designs/#{style-user.mobile-header-design-id}.svg\""
+						else ''
 
 	function read-file-send-less(req, res, path, style-user)
 		fs.read-file path, \utf8, (, less-css) ->

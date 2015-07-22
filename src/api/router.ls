@@ -6,16 +6,17 @@ routing =
 		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
 		
 	account:
-		[\post   /\/account\/create(\..+)?$/               './rest/account/create']
-		[\get    /\/account\/show(\..+)?$/                 './rest/account/show']
-		[\put    /\/account\/update(\..+)?$/               './rest/account/update']
-		[\put    /\/account\/update-icon(\..+)?$/          './rest/account/update-icon']
-		[\put    /\/account\/update-header(\..+)?$/        './rest/account/update-header']
-		[\put    /\/account\/update-wallpaper(\..+)?$/     './rest/account/update-wallpaper']
-		[\delete /\/account\/delete-wallpaper(\..+)?$/     './rest/account/delete-wallpaper']
-		[\put    /\/account\/update-webtheme(\..+)?$/      './rest/account/update-webtheme']
-		[\get    /\/account\/unreadalltalks-count(\..+)?$/ './rest/account/unreadalltalks-count']
-		[\delete /\/account\/reset-webtheme(\..+)?$/       './rest/account/reset-webtheme']
+		[\post   /\/account\/create(\..+)?$/                      './rest/account/create']
+		[\get    /\/account\/show(\..+)?$/                        './rest/account/show']
+		[\put    /\/account\/update(\..+)?$/                      './rest/account/update']
+		[\put    /\/account\/update-icon(\..+)?$/                 './rest/account/update-icon']
+		[\put    /\/account\/update-header(\..+)?$/               './rest/account/update-header']
+		[\put    /\/account\/update-wallpaper(\..+)?$/            './rest/account/update-wallpaper']
+		[\delete /\/account\/delete-wallpaper(\..+)?$/            './rest/account/delete-wallpaper']
+		[\put    /\/account\/update-mobile-header-design(\..+)?$/ './rest/account/update-mobile-header-design']
+		[\put    /\/account\/update-webtheme(\..+)?$/             './rest/account/update-webtheme']
+		[\get    /\/account\/unreadalltalks-count(\..+)?$/        './rest/account/unreadalltalks-count']
+		[\delete /\/account\/reset-webtheme(\..+)?$/              './rest/account/reset-webtheme']
 
 	application:
 		[\post /\/application\/create(\..+)?$/ './rest/application/create']

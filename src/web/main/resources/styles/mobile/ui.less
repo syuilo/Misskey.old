@@ -2,6 +2,7 @@
 @headerImageUrl: <%headerImageUrl%>;
 @wallpaperUrl: <%wallpaperUrl%>;
 @blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+@mobileHeaderImageUrl: <%mobileHeaderImageUrl%>;
 
 ::selection {
 	background: @themeColor;
@@ -49,6 +50,11 @@ main {
 	//background: #006f87;
 	color: contrast(@themeColor, #000, #fff, 70%);
 	background: @themeColor;
+	background-color: @themeColor;
+	background-image: url(@mobileHeaderImageUrl);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 	box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
 
 	&:after {
@@ -335,6 +341,33 @@ body[data-nav-open='true'] {
 	padding: 8px;
 	width: 100%;
 	border: dashed 2px #ddd;
+}
+
+.ui-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: 8px 16px;
+	font-size: 1em;
+	vertical-align: middle;
+	background-color: #fff;
+	background-image: url("/resources/images/ui-select-arrow.svg");
+	background-repeat: no-repeat;
+	background-position: ~"calc(100% - 8px)" center;
+	border: 2px solid #ddd;
+	outline: none;
+	box-shadow: none;
+
+	&:hover {
+		border: solid 2px @themeColor;
+		transition: border 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	&:focus {
+		color: darken(@themeColor, 20%);
+		border: solid 2px @themeColor;
+		transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
+	}
 }
 
 .ui-attach-image {
