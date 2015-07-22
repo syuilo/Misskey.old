@@ -6,7 +6,7 @@
 <g id="レイヤー_1" display="none">
 	<rect display="inline" fill="#E6207D" width="512" height="65.556"/>
 </g>
-<g id="レイヤー_2" opacity="0.15">
+<g id="レイヤー_2" opacity="0.1">
 	<polygon points="0,0 8,0 0,8 	"/>
 	<polygon points="16,0 0,16 0,24 24,0 	"/>
 	<polygon points="32,0 0,32 0,40 40,0 	"/>
