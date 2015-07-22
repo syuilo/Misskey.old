@@ -2,7 +2,7 @@ require! {
 	jade
 	'../../../../models/notice': Notice
 	'../../../../models/utils/notice-get-timeline'
-	'../../../utils/generate-mobile-notice-timeline-html'
+	'../../utils/generate-mobile-notice-timeline-html'
 }
 
 module.exports = (req, res) ->
