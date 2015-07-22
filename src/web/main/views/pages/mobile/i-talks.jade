@@ -21,7 +21,7 @@ html(lang='ja', dir='ltr')
 				ol#talks
 					each message in messages
 						li.talk(data-is-my-message!= (message.userId == me.id).toString(), data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
-							a(href= url + '/widget/talk/' + message.user.screenName)
+							a(href= '/' + message.user.screenName + '/talk')
 								article
 									img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
 									header
