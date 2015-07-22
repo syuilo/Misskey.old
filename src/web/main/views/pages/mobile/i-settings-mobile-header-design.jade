@@ -18,7 +18,7 @@ html(lang='ja', dir='ltr')
 		
 		main#misskey-main(role='main')
 			form#form(action= apiUrl + '/account/update-mobile-header-design', method='put')
-				select(name='id')
+				select.ui-select(name='id')
 					option(value='none', selected= me.mobileHeaderDesignId == null) なし
 					option(value='glossy', selected= me.mobileHeaderDesignId == 'glossy') Glossy
 				input.ui-button(type='submit', value='決定')
