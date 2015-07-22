@@ -10,7 +10,6 @@ $ ->
 
 		$.ajax config.api-url + '/account/update-mobile-header-design' {
 			type: \put
-			-process-data
 			-content-type
 			data: new FormData $form.0
 			data-type: \json
