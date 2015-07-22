@@ -7,11 +7,11 @@
 	<rect display="inline" fill="#E4007F" width="512" height="64"/>
 </g>
 <g id="レイヤー_2">
-	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256.0005" y1="32" x2="256.0005" y2="0">
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="255.9995" y1="0" x2="255.9995" y2="64.0005">
 		<stop  offset="0" style="stop-color:#FFFFFF"/>
 		<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0"/>
 	</linearGradient>
-	<rect opacity="0.29" fill="url(#SVGID_1_)" width="512" height="32"/>
+	<rect opacity="0.4" fill="url(#SVGID_1_)" width="512" height="64"/>
 	<g>
 	</g>
 	<g>
