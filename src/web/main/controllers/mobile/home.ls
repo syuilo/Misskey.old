@@ -14,3 +14,4 @@ module.exports = (req, res, content = \home) ->
 		generate-mobile-home-timeline-html statuses, me, (timeline-html) ->
 			res.display req, res, 'mobile/home' do
 				timeline-html: timeline-html
+				page: content
