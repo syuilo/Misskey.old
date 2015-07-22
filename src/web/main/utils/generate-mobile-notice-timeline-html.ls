@@ -1,6 +1,6 @@
 require! {
 	jade
-	'./utils/generate-mobile-notice-timeline-item-html'
+	'./generate-mobile-notice-timeline-item-html'
 }
 
 module.exports = (user, notices) -> new Promise (resolve, reject) ->
