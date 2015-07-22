@@ -13,15 +13,16 @@ html(lang='ja', dir='ltr')
 	body
 		header#misskey-main-header
 			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
-			if page = 'home'
-				h1
-					i.fa.fa-home
-					| Home
-			else if page = 'mention'
-				h1
-					i.fa.fa-at
-					| Mentions
-			button.post: i.fa.fa-pencil-square-o
+			case page
+				when 'home'
+					h1
+						i.fa.fa-home
+						| Home
+					button.post: i.fa.fa-pencil-square-o
+				when 'mentions'
+					h1
+						i.fa.fa-at
+						| Mentions
 		include ../../common/mobile/nav
 		
 		main#misskey-main(role='main')

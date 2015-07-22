@@ -6,7 +6,7 @@ require! {
 
 status-gets =
 	home: status-get-timeline
-	mention: status-get-mentions
+	mentions: status-get-mentions
 
 module.exports = (req, res, content = \home) ->
 	me = req.me
