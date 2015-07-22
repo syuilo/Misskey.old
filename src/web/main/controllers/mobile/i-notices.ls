@@ -6,6 +6,7 @@ require! {
 }
 
 module.exports = (req, res) ->
+	console.log req.me.id
 	notice-get-timeline do
 		req.me.id
 		30notices
