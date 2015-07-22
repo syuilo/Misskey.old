@@ -35,7 +35,7 @@ user-schema = new Schema do
 	tags:                    {type: [String],              required: no,  default: []}
 	url:                     {type: String,                required: no,  default: null}
 	using-webtheme-id:       {type: Schema.Types.ObjectId, required: no,  default: null}
-	mobile-header-design-id: {type: Schema.Types.ObjectId, required: no,  default: null}
+	mobile-header-design-id: {type: String,                required: no,  default: null}
 
 if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
