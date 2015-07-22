@@ -7,7 +7,7 @@ require! {
 
 module.exports = (req, res) ->
 	notice-get-timeline do
-		user.id
+		req.me.id
 		30notices
 	.then (notices) ->
 		if notices?
