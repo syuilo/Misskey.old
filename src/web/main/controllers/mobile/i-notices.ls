@@ -10,6 +10,7 @@ module.exports = (req, res) ->
 		req.me.id
 		30notices
 	.then (notices) ->
+		console.log notices
 		if notices?
 			generate-mobile-notice-timeline-html req.me, notices .then (html) ->
 				res.display req, res, 'mobile/i-notices' do
