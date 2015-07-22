@@ -1,5 +1,5 @@
 require! {
-	'../../../models/user': User
+	'../../../../models/user': User
 }
 
 module.exports = (req, res) ->
