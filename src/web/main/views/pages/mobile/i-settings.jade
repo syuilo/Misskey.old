@@ -16,7 +16,7 @@ html(lang='ja', dir='ltr')
 		include ../../common/mobile/nav
 		
 		main#misskey-main(role='main')
-			p= 'Hello, ' + me.name + '!'
+			p#message= 'Hello, ' + me.name + '!'
 			ul.menu
 				li
 					a(href='/i/settings/profile')
