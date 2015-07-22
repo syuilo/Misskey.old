@@ -269,9 +269,5 @@ $ ->
 			$button.text '失敗'
 
 $ window .load ->
-	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
 	scroll 0, document.body.client-height
-
-$ window .resize ->
-	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
 	
