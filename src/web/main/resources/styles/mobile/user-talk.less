@@ -130,11 +130,14 @@ html {
 }
 
 #post-form-container {
-	position: fixed;
-	z-index: 2;
-	bottom: 0;
 	width: 100%;
 	background: #55788E;
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
 
 	form {
 		width: 600px;
