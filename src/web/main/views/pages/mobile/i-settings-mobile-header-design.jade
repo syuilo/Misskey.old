@@ -20,6 +20,7 @@ html(lang='ja', dir='ltr')
 			form#form(action= apiUrl + '/account/update-mobile-header-design', method='put')
 				select.ui-select(name='id')
 					option(value='none', selected= me.mobileHeaderDesignId == null) なし
-					option(value='glossy', selected= me.mobileHeaderDesignId == 'glossy') Glossy
 					option(value='light-gradation', selected= me.mobileHeaderDesignId == 'light-gradation') 明るいグラデーション
+					option(value='glossy', selected= me.mobileHeaderDesignId == 'glossy') Glossy
+					option(value='city', selected= me.mobileHeaderDesignId == 'city') City
 				input.ui-button(type='submit', value='決定')
