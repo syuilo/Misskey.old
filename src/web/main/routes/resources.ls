@@ -60,7 +60,7 @@ module.exports = (app) ->
 				.replace do
 					/<%mobileHeaderImageUrl%>/g
 					if style-user?
-						then "\"#{config.public-config.url}/resources/images/mobile-header/#{style-user.mobile-header-design-id}\""
+						then "\"#{config.public-config.url}/resources/images/mobile-header-designs/#{style-user.mobile-header-design-id}\""
 						else ''
 
 	function read-file-send-less(req, res, path, style-user)
