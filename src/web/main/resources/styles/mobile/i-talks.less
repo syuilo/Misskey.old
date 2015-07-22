@@ -1,0 +1,131 @@
+@themeColor: <%themeColor%>;
+
+html {
+	background: #eee;
+}
+
+#talks {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	> .talk {
+		position: relative;
+		padding: 0;
+		background: #fff;
+		border-bottom: solid 1px #eee;
+		transition: background 0s ease;
+
+		&:hover {
+			background: #fafafa;
+			transition: background 0.2s ease;
+
+			> a > article > header > h2 {
+				color: @themeColor;
+			}
+
+			> a > article > .icon {
+				filter: saturate(200%);
+				-webkit-filter: saturate(200%);
+				-moz-filter: saturate(200%);
+				-o-filter: saturate(200%);
+				-ms-filter: saturate(200%);
+			}
+		}
+
+		&:active {
+			background: #eee;
+			transition: background 0.2s ease;
+		}
+
+		&[data-is-unread='false'] {
+			opacity: 0.8;
+		}
+
+		> a > article {
+			position: relative;
+			padding: 16px 16px;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			> header {
+				margin-bottom: 2px;
+				white-space: nowrap;
+				overflow: hidden;
+
+				> h2 {
+					text-align: left;
+					display: inline;
+					margin: 0;
+					padding: 0;
+					font-size: 1em;
+					color: rgba(0, 0, 0, 0.9);
+					font-weight: bold;
+					transition: all 0.1s ease;
+				}
+
+				> time {
+					position: absolute;
+					right: 16px;
+					display: inline;
+					color: rgba(0, 0, 0, 0.5);
+					font-size: 0.6em;
+				}
+
+				> .badge {
+					text-align: left;
+					display: inline;
+					font-size: .7em;
+					margin-right: 4px;
+					padding: 2px 6px;
+					vertical-align: middle;
+					background-color: #1bb3b3;
+					border-radius: 2px;
+					color: #fff;
+					font-weight: bold;
+				}
+
+				> .screenName {
+					text-align: left;
+					margin: 0 0 0 8px;
+					color: rgba(0, 0, 0, 0.5);
+				}
+			}
+
+			> .icon {
+				float: left;
+				min-width: 54px;
+				min-height: 54px;
+				max-width: 54px;
+				max-height: 54px;
+				margin: 0 12px 4px 0;
+				border-radius: 8px;
+				transition: all 0.1s ease;
+			}
+
+			> .text {
+				display: block;
+				margin: 0 0 0 0;
+				padding: 0;
+				overflow: hidden;
+				word-wrap: break-word;
+				font-size: 1em;
+				color: rgba(0, 0, 0, 0.8);
+
+				.me {
+					color: rgba(0, 0, 0, 0.4);
+				}
+			}
+
+			> .image {
+				display: block;
+				max-width: 100%;
+				max-height: 512px;
+			}
+		}
+	}
+}
