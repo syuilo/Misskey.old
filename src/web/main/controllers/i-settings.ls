@@ -8,6 +8,6 @@ module.exports = (req, res) -> Webtheme.find {} (, themes) ->
 		User.find-by-id theme.user-id, (, user) ->
 			theme.user = user
 			resolve theme)
-	.then (themes) -> res.display req, res, 'i-setting' do
+	.then (themes) -> res.display req, res, 'i-settings' do
 		me: req.me
 		webthemes: themes

@@ -106,8 +106,11 @@ module.exports = (app) ->
 	app.get '/i/talks' (req, res) -> (require '../controllers/i-talks') req, res
 	
 	# settings
-	app.get '/i/setting' (req, res) -> (require '../controllers/i-setting') req, res
-	app.get '/i/settings' (req, res) -> (require '../controllers/i-setting') req, res
+	app.get '/i/settings' (req, res) ->
+		if req.is-mobile
+			(require '../controllers/mobile/i-settings') req, res
+		else
+			(require '../controllers/i-settings') req, res
 	
 	# login
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
