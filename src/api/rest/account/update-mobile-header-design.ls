@@ -7,7 +7,7 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[id] = get-express-params req, <[ id ]>
 	
-	if empty id then id = null
+	if empty id or id == \none then id = null
 	if id?
 		if id != /^[a-z]+$/
 			res.api-error 400 \invalid-id
