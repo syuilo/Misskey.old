@@ -6,7 +6,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 
 		$submit-button.attr \disabled yes
-		$submit-button.attr \value 'Updating...'
+		$submit-button.attr \value '処理中...'
 
 		$.ajax ($form.attr \action), {
 			type: $form.attr \method
