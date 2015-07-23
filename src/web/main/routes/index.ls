@@ -65,6 +65,10 @@ module.exports = (app) ->
 	# log viewer
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 	
+	# about
+	app.get '/about/:title' (req, res) ->
+		res.display req, res, "about-articles/#{req.params.title}"
+	
 	# talk widget
 	app.get '/widget/talk/:userSn' (req, res) -> (require '../controllers/user-talk') req, res, \widget
 	

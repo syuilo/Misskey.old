@@ -1,0 +1,37 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		if isMobile
+			include ../common/mobile/head
+			title
+				block title
+			link(rel='stylesheet', href='/resources/styles/mobile/about.css')
+			script(src='/resources/scripts/mobile/header.js')
+		else
+			include ../common/head
+			title
+				block title
+			link(rel='stylesheet', href='/resources/styles/about.css')
+	
+	body
+		if isMobile
+			header#misskey-main-header
+				button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+				h1
+					i.fa.fa-info
+					block title
+			include ../common/mobile/nav
+
+			main#misskey-main(role='main')
+				article
+					h1
+						block title
+					block content
+		else
+			include ../common/header
+			main(role='main')
+				article
+					h1
+						block title
+					block content

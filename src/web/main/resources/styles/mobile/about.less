@@ -1,0 +1,36 @@
+html {
+	background: #fff;
+}
+
+
+@media (min-width: 750px) {
+	html {
+		background: #eee;
+	}
+
+	main {
+		padding: 16px 0;
+
+		> article {
+			max-width: 600px;
+			margin: 0 auto !important;
+			padding: 32px !important;
+		}
+	}
+}
+
+main {
+	display: block;
+
+	> article {
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 16px;
+		width: 100%;
+		background: #fff;
+	}
+}
