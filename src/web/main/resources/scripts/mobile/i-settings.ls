@@ -8,8 +8,8 @@ $ ->
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value 'Updating...'
 
-		$.ajax config.api-url + '/account/update-mobile-header-design' {
-			type: \put
+		$.ajax $form.attr \action {
+			type: $form.attr \method
 			-process-data
 			-content-type
 			data: new FormData $form.0
