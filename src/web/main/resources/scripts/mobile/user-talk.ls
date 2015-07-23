@@ -49,16 +49,13 @@ window.TALKSTREAM = {}
 function add-message($message)
 	new Audio '/resources/sounds/talk-message.mp3' .play!
 	can-scroll = check-can-scroll!
-	$message = ($ '<li class="message">' .append $message).hide!
+	$message = ($ '<li class="message">' .append $message)
 	window.TALKSTREAM.set-event $message.children \.message
-	$message.append-to $ '#stream .messages' .show 200ms
+	$message.append-to $ '#stream .messages'
 	if can-scroll
-		scroll 0, ($ \html .outer-height!)
-		timer = set-interval ->
-			scroll 0, ($ document .height!)
-		, 1ms
+		scroll 0, ($ document .height!)
 		set-timeout ->
-			clear-interval timer
+			scroll 0, ($ document .height!)
 		, 300ms
 
 function check-can-scroll

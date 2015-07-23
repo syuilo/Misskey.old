@@ -53,7 +53,7 @@ function add-message($message)
 	window.TALKSTREAM.set-event $message.children \.message
 	$message.append-to $ '#stream .messages' .show 200ms
 	if can-scroll
-		scroll 0, ($ \html .outer-height!)
+		scroll 0, ($ document .height!)
 		timer = set-interval ->
 			scroll 0, ($ document .height!)
 		, 1ms
