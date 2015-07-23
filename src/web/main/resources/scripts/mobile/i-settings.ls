@@ -8,7 +8,7 @@ $ ->
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value 'Updating...'
 
-		$.ajax $form.attr \action {
+		$.ajax ($form.attr \action) {
 			type: $form.attr \method
 			-process-data
 			-content-type
