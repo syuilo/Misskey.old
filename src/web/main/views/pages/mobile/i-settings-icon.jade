@@ -18,6 +18,6 @@ html(lang='ja', dir='ltr')
 		
 		main#misskey-main(role='main')
 			form#form(action= apiUrl + '/account/update-icon', method='put', enctype='multipart/form-data')
-				img.icon-preview(src='/img/icon' + me.screenName, alt='icon')
+				img.icon-preview(src='/img/icon/' + me.screenName, alt='icon')
 				input.ui-input-file(name='image', type='file', accept='image/*')
 				input.ui-button(type='submit', value='決定')
