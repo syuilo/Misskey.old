@@ -50,11 +50,10 @@ module.exports = (app) ->
 	# Root
 	app.get '/' (req, res) ->
 		if req.login
-			#if req.is-mobile
-			#	(require '../controllers/mobile/home') req, res
-			#else
-			#	(require '../controllers/home') req, res
-			res.display req, res, "about-articles/goodbye"
+			if req.is-mobile
+				(require '../controllers/mobile/home') req, res
+			else
+				(require '../controllers/home') req, res
 		else
 			res.display req, res, 'entrance', {}
 	
