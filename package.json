@@ -33,7 +33,7 @@
     "less": "2.5.1",
     "marked": "0.3.3",
     "moment": "2.10.3",
-    "mongoose": "4.0.8",
+    "mongoose": "4.1.0",
     "mongoose-auto-increment": "4.0.0",
     "multer": "0.1.8",
     "prelude-ls": "1.1.2",
