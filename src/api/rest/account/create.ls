@@ -63,7 +63,7 @@ module.exports = (req, res) ->
 					err, following-instance <- following.save
 					err, followingback-instance <- followingback.save
 					User.find-one {screen-name: \syuilo} (err, syuilo) ->
-						if syuilo?
+						if syuilo? and created-user.screen-name-lower != \syuilo
 							syuilo.followers-count++
 							syuilo.followings-count++
 							syuilo.save ->
