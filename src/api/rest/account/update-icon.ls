@@ -17,12 +17,12 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			img .= compress \jpeg
 			img .= quality 80
 			img.to-buffer \jpeg (, buffer) ->
-					#fs.unlink path
-					icon
-						..image = buffer
-						..save (err) ->
-							if err?
-								console.log err
-								res.api-error 500 'error'
-							else
-								res.api-render 'success'
+				#fs.unlink path
+				icon
+					..image = buffer
+					..save (err) ->
+						if err?
+							console.log err
+							res.api-error 500 'error'
+						else
+							res.api-render 'success'
