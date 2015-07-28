@@ -18,6 +18,7 @@ status-schema = new Schema do
 	in-reply-to-status-id: {type: Schema.Types.ObjectId,   default: null}
 	is-image-attached:     {type: Boolean,                 default: no}
 	replies:               {type: [Schema.Types.ObjectId], default: []}
+	replies-count:         {type: Number,                  default: 0}
 	reposts-count:         {type: Number,                  default: 0}
 	repost-from-status-id: {type: Schema.Types.ObjectId,   default: null}
 	tags:                  {type: [String]                 default: []}

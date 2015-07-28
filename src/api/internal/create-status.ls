@@ -52,6 +52,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 				if created-status.in-reply-to-status-id?
 					Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
 						if reply-to-status?
+							reply-to-status.replies-count++
 							if !reply-to-status.replies? or !reply-to-status.replies.0?
 								reply-to-status.replies = [created-status._id]
 							else
