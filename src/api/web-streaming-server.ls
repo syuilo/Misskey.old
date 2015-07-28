@@ -16,9 +16,9 @@ require! {
 read-file = (path) -> fs.read-file-sync path .to-string!
 
 server = https.create-server do
-	key: read-file '../../../../certs/server.key'
-	cert: read-file '../../../../certs/startssl.crt'
-	ca: read-file '../../../../certs/sub.class1.server.ca.pem'
+	key: read-file "#__dirname/../../../../certs/server.key"
+	cert: read-file "#__dirname/../../../../certs/startssl.crt"
+	ca: read-file "#__dirname/../../../../certs/sub.class1.server.ca.pem"
 
 	(req, res) ->
 		res
