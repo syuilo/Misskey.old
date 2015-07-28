@@ -63,10 +63,16 @@ module.exports = (req, res) ->
 					err, following-instance <- following.save
 					err, followingback-instance <- followingback.save
 					err, syuilo <- User.find-by-id '55192d78d82859a1440d6281'
-					syuilo.followers-count++
-					syuilo.followings-count++
-					syuilo.save ->
+					if syuilo?
+						syuilo.followers-count++
+						syuilo.followings-count++
+						syuilo.save ->
+							do-login req, created-user.screen-name, password, (user) ->
+								res.api-render filter-user-for-response created-user
+							, ->
+								res.send-status 500
+					else
 						do-login req, created-user.screen-name, password, (user) ->
-							res.api-render filter-user-for-response created-user
-						, ->
-							res.send-status 500
+								res.api-render filter-user-for-response created-user
+							, ->
+								res.send-status 500
