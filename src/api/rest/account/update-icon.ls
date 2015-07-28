@@ -10,13 +10,19 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	UserIcon.find-by-id user.id, (, icon) ->
 		if (Object.keys req.files).length == 1
 			path = req.files.image.path
+			console.log path
 			img = gm path
 			if not all empty, [trim-x, trim-y, trim-w, trim-h]
 				img .= crop trim-w, trim-h, trim-x, trim-y
 			img .= compress \jpeg
 			img .= quality 80
 			img.to-buffer \jpeg (, buffer) ->
-					fs.unlink path
+					#fs.unlink path
 					icon
 						..image = buffer
-						..save (err) -> res.api-render 'success'
+						..save (err) ->
+							if err?
+								console.log err
+								res.api-error 500 'error'
+							else
+								res.api-render 'success'
