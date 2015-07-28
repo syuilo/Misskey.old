@@ -6,4 +6,7 @@ require! {
 
 # String -> Promise Boolean
 module.exports = (screen-name) ->
-	User.find {screen-name-lower: screen-name.to-lower-case!} .limit 1 .exec! |> map-promise (empty) >> (!)
+	#User.find {screen-name-lower: screen-name.to-lower-case!} .limit 1 .exec! |> map-promise (empty) >> (!)
+	User.find {screen-name-lower: screen-name.to-lower-case!} .limit 1 .exec (err, res) ->
+		console.log err
+		console.log res
