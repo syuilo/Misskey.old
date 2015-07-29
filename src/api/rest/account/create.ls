@@ -22,7 +22,7 @@ module.exports = (req, res) ->
 	| empty password => res.api-error 400 'password is required :('
 	| password.length < 8 => res.api-error 400 'password invalid format'
 	| empty color => res.api-error 400 'color is required :('
-	| color != /#[a-fA-F0-9]{6}/ => res.api-error 400 'color invalid format'
+	| color != /^#[a-fA-F0-9]{6}$/ => res.api-error 400 'color invalid format'
 	| _ => exist-screenname screen-name .then (exist) ->
 		| exist => res.api-error 500 'This screen name is already used.'
 		| _ =>
