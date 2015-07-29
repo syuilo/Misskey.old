@@ -107,6 +107,10 @@ div.status.article(
 				aside.footer
 					if login
 						div.actions
+							div.reply
+								button.reply-button(title='返信', role='button')
+									i.fa.fa-reply
+								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id).count= status.repliesCount != 0 ? status.repliesCount : ''
 							div.repost
 								button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
 									i.fa.fa-retweet
