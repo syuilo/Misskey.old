@@ -9,10 +9,10 @@ window.STATUSTIMELINE = {}
 		function check-reposted
 			($status.attr \data-is-reposted) == \true
 		
-		function activate-display-state($clicked-status)
+		function activate-display-state
 			animation-speed = 200ms
-			if ($clicked-status.attr \data-display-html-is-active) == \false
-				reply-form-text = $clicked-status.find 'article > .article-main > footer .reply-form textarea' .val!
+			if ($status.attr \data-display-html-is-active) == \false
+				reply-form-text = $status.find 'article > .article-main > footer .reply-form textarea' .val!
 				$ '.timeline > .statuses > .status > .status.article' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
@@ -26,7 +26,7 @@ window.STATUSTIMELINE = {}
 					$ @ .hide animation-speed
 				$ '.timeline > .statuses > .status > .status.article > article > .article-main > footer' .each ->
 					$ @ .hide animation-speed
-				$clicked-status
+				$status
 					..attr \data-display-html-is-active \true
 					..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
 					..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
@@ -37,7 +37,7 @@ window.STATUSTIMELINE = {}
 					..find 'article > .article-main > footer .reply-form textarea' .val ''
 					..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
 			else
-				$clicked-status
+				$status
 					..attr \data-display-html-is-active \false
 					..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
 					..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
@@ -133,7 +133,7 @@ window.STATUSTIMELINE = {}
 			
 			# Init reply button
 			..find 'article > .article-main > .main > .footer > .actions > .repost > .reply-button' .click ->
-				activate-display-state $ @
+				activate-display-state!
 			
 			# Init repost button
 			..find 'article > .article-main > .main > .footer > .actions > .repost > .repost-button' .click ->
@@ -174,7 +174,7 @@ window.STATUSTIMELINE = {}
 					can-event = no
 					
 				if can-event
-					activate-display-state $ @
+					activate-display-state!
 
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
