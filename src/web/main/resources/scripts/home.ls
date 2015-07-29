@@ -132,7 +132,7 @@ window.STATUSTIMELINE = {}
 						$status.attr \data-is-favorited \false
 			
 			# Init reply button
-			..find 'article > .article-main > .main > .footer > .actions > .repost > .reply-button' .click ->
+			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
 				activate-display-state!
 			
 			# Init repost button
