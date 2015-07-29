@@ -9,6 +9,43 @@ window.STATUSTIMELINE = {}
 		function check-reposted
 			($status.attr \data-is-reposted) == \true
 		
+		function activate-display-state
+			animation-speed = 200ms
+			if ($status.attr \data-display-html-is-active) == \false
+				reply-form-text = $status.find 'article > .article-main > footer .reply-form textarea' .val!
+				$ '.timeline > .statuses > .status > .status.article' .each ->
+					$ @
+						..attr \data-display-html-is-active \false
+						..remove-class \display-html-active-status-prev
+						..remove-class \display-html-active-status-next
+				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i' .each ->
+					$ @ .show animation-speed
+				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .reply-info' .each ->
+					$ @ .show animation-speed
+				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
+					$ @ .hide animation-speed
+				$ '.timeline > .statuses > .status > .status.article > article > .article-main > footer' .each ->
+					$ @ .hide animation-speed
+				$status
+					..attr \data-display-html-is-active \true
+					..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
+					..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
+					..find 'article > .article-main > .talk > i' .hide animation-speed
+					..find 'article > .article-main > .talk > .statuses' .show animation-speed
+					..find 'article > .article-main > .reply-info' .hide animation-speed
+					..find 'article > .article-main > footer' .show animation-speed
+					..find 'article > .article-main > footer .reply-form textarea' .val ''
+					..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
+			else
+				$status
+					..attr \data-display-html-is-active \false
+					..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
+					..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
+					..find 'article > .article-main > .talk > i' .show animation-speed
+					..find 'article > .article-main > .talk > .statuses' .hide animation-speed
+					..find 'article > .article-main > .reply-info' .show animation-speed
+					..find 'article > .article-main > footer' .hide animation-speed
+		
 		$status
 			# Set display talk window event 
 			..find '.main .icon-anchor' .click ->
@@ -94,6 +131,10 @@ window.STATUSTIMELINE = {}
 						$button.attr \disabled off
 						$status.attr \data-is-favorited \false
 			
+			# Init reply button
+			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
+				activate-display-state!
+			
 			# Init repost button
 			..find 'article > .article-main > .main > .footer > .actions > .repost > .repost-button' .click ->
 				$button = $ @
@@ -125,8 +166,6 @@ window.STATUSTIMELINE = {}
 			
 			# Click event
 			..click (event) ->
-				$clicked-status = $ @
-				
 				can-event = ! (((<[ input textarea button i time a ]>
 					|> prelude.map (element) -> $ event.target .is element)
 					.index-of yes) >= 0)
@@ -135,41 +174,7 @@ window.STATUSTIMELINE = {}
 					can-event = no
 					
 				if can-event
-					animation-speed = 200ms
-					if ($clicked-status.attr \data-display-html-is-active) == \false
-						reply-form-text = $clicked-status.find 'article > .article-main > footer .reply-form textarea' .val!
-						$ '.timeline > .statuses > .status > .status.article' .each ->
-							$ @
-								..attr \data-display-html-is-active \false
-								..remove-class \display-html-active-status-prev
-								..remove-class \display-html-active-status-next
-						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i' .each ->
-							$ @ .show animation-speed
-						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .reply-info' .each ->
-							$ @ .show animation-speed
-						$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
-							$ @ .hide animation-speed
-						$ '.timeline > .statuses > .status > .status.article > article > .article-main > footer' .each ->
-							$ @ .hide animation-speed
-						$clicked-status
-							..attr \data-display-html-is-active \true
-							..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
-							..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
-							..find 'article > .article-main > .talk > i' .hide animation-speed
-							..find 'article > .article-main > .talk > .statuses' .show animation-speed
-							..find 'article > .article-main > .reply-info' .hide animation-speed
-							..find 'article > .article-main > footer' .show animation-speed
-							..find 'article > .article-main > footer .reply-form textarea' .val ''
-							..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
-					else
-						$clicked-status
-							..attr \data-display-html-is-active \false
-							..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
-							..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
-							..find 'article > .article-main > .talk > i' .show animation-speed
-							..find 'article > .article-main > .talk > .statuses' .hide animation-speed
-							..find 'article > .article-main > .reply-info' .show animation-speed
-							..find 'article > .article-main > footer' .hide animation-speed
+					activate-display-state!
 
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
