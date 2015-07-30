@@ -191,88 +191,101 @@ h1 {
 			opacity: 0.8;
 		}
 
-		> a > article {
-			position: relative;
-			padding: 20px 30px;
+		&[data-is-unread='true'] > a > article {
+			background-image: url("/resources/images/i-talks-item-unread.svg");
+			background-repeat: no-repeat;
+			background-position: 0 center;
+		}
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
+		> a {
+			display: block;
+			background-image: url("/resources/images/i-talks-item-arrow.svg");
+			background-repeat: no-repeat;
+			background-position: ~"calc(100% - 16px)" center;
 
-			> header {
-				margin-bottom: 2px;
-				white-space: nowrap;
-				overflow: hidden;
+			> article {
+				position: relative;
+				padding: 20px 30px;
 
-				> h2 {
-					text-align: left;
-					display: inline;
-					margin: 0;
-					padding: 0;
-					font-size: 1em;
-					color: rgba(0, 0, 0, 0.9);
-					font-weight: bold;
+				&:after {
+					content: "";
+					display: block;
+					clear: both;
+				}
+
+				> header {
+					margin-bottom: 2px;
+					white-space: nowrap;
+					overflow: hidden;
+
+					> h2 {
+						text-align: left;
+						display: inline;
+						margin: 0;
+						padding: 0;
+						font-size: 1em;
+						color: rgba(0, 0, 0, 0.9);
+						font-weight: bold;
+						transition: all 0.1s ease;
+					}
+
+					> time {
+						float: right;
+						display: inline;
+						color: rgba(0, 0, 0, 0.5);
+						font-size: small;
+					}
+
+					> .badge {
+						text-align: left;
+						display: inline;
+						font-size: .7em;
+						margin-right: 4px;
+						padding: 2px 6px;
+						vertical-align: middle;
+						background-color: #1bb3b3;
+						border-radius: 2px;
+						color: #fff;
+						font-weight: bold;
+					}
+
+					> .screenName {
+						text-align: left;
+						margin: 0 0 0 8px;
+						color: rgba(0, 0, 0, 0.5);
+					}
+				}
+
+				> .icon {
+					float: left;
+					min-width: 54px;
+					min-height: 54px;
+					max-width: 54px;
+					max-height: 54px;
+					margin: 0 18px 4px 0;
+					border-radius: 8px;
 					transition: all 0.1s ease;
 				}
 
-				> time {
-					float: right;
-					display: inline;
-					color: rgba(0, 0, 0, 0.5);
-					font-size: small;
+				> .text {
+					display: block;
+					margin: 0 0 0 0;
+					padding: 0;
+					overflow: hidden;
+					word-wrap: break-word;
+					font-size: 1.1em;
+					color: rgba(0, 0, 0, 0.8);
+
+					.me {
+						color: rgba(0, 0, 0, 0.4);
+					}
 				}
 
-				> .badge {
-					text-align: left;
-					display: inline;
-					font-size: .7em;
-					margin-right: 4px;
-					padding: 2px 6px;
-					vertical-align: middle;
-					background-color: #1bb3b3;
-					border-radius: 2px;
-					color: #fff;
-					font-weight: bold;
+				> .image {
+					display: block;
+					max-width: 100%;
+					max-height: 512px;
 				}
-
-				> .screenName {
-					text-align: left;
-					margin: 0 0 0 8px;
-					color: rgba(0, 0, 0, 0.5);
-				}
-			}
-
-			> .icon {
-				float: left;
-				min-width: 54px;
-				min-height: 54px;
-				max-width: 54px;
-				max-height: 54px;
-				margin: 0 18px 4px 0;
-				border-radius: 8px;
-				transition: all 0.1s ease;
-			}
-
-			> .text {
-				display: block;
-				margin: 0 0 0 0;
-				padding: 0;
-				overflow: hidden;
-				word-wrap: break-word;
-				font-size: 1.1em;
-				color: rgba(0, 0, 0, 0.8);
-
-				.me {
-					color: rgba(0, 0, 0, 0.4);
-				}
-			}
-
-			> .image {
-				display: block;
-				max-width: 100%;
-				max-height: 512px;
 			}
 		}
 	}
