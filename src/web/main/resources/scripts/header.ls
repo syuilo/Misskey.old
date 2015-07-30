@@ -65,7 +65,7 @@ $ ->
 								.append do
 									$ '<span class="name">' .text user.name
 								.append do
-									$ '<span class="screenName">' .text "@#{user.screen-name}"
+									$ '<span class="screen-name">' .text "@#{user.screen-name}"
 					window.init-waves-effects!
 			.fail ->
 

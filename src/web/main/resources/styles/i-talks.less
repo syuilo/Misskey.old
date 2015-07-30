@@ -19,9 +19,142 @@ h1 {
 	}
 }
 
+
+#search {
+	display: block;
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	background: #fff;
+	box-shadow: 0 0px 2px rgba(0, 0, 0, 0.2);
+
+	> .form {
+		padding: 8px 16px;
+
+		> input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			cursor: auto;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 10px 12px;
+			width: 100%;
+			font-size: 1em;
+			line-height: 1em;
+			color: #000;
+			outline: none;
+			border: solid 1px #eee;
+			border-radius: 5px;
+			box-shadow: none;
+			transition: color 0.5s ease, border 0.5s ease;
+
+			&:hover {
+				border: solid 1px #ddd;
+				transition: border 0.2s ease, box-shadow 0.1s ease;
+			}
+
+			&:focus {
+				color: darken(@themeColor, 20%);
+				border: solid 1px @themeColor;
+				transition: color 0, border 0.5s ease;
+			}
+		}
+	}
+
+	> .result {
+		display: block;
+		position: relative;
+		top: 8px;
+		left: 0;
+		z-index: 2;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: #fff;
+
+		> ol.users {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				a {
+					display: inline-block;
+					z-index: 1;
+					box-sizing: border-box;
+					width: 100%;
+					padding: 8px 32px;
+					vertical-align: top;
+					white-space: nowrap;
+					overflow: hidden;
+					color: rgba(0, 0, 0, 0.8);
+					transition: none;
+
+					&:hover {
+						color: #fff;
+						background: @themeColor;
+
+						.name {
+							color: #fff;
+						}
+
+						.screen-name {
+							color: #fff;
+						}
+					}
+
+					&:active {
+						color: #fff;
+						background: darken(@themeColor, 10%);
+
+						.name {
+							color: #fff;
+						}
+
+						.screen-name {
+							color: #fff;
+						}
+					}
+
+					.icon {
+						vertical-align: middle;
+						min-width: 32px;
+						min-height: 32px;
+						max-width: 32px;
+						max-height: 32px;
+						margin: 0 8px 0 0;
+						border-radius: 6px;
+					}
+
+					.name {
+						margin: 0 8px 0 0;
+						/*font-weight: bold;*/
+						font-weight: normal;
+						color: rgba(0, 0, 0, 0.8);
+					}
+
+					.screen-name {
+						font-weight: normal;
+						color: rgba(0, 0, 0, 0.3);
+					}
+				}
+			}
+		}
+	}
+}
+
 #talks {
 	margin: 0;
 	padding: 0;
+	margin-top: ~"calc(1em + 16px + 20px + 2px)";
 	list-style: none;
 
 	> .talk {
