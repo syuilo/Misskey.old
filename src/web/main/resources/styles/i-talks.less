@@ -19,6 +19,139 @@ h1 {
 	}
 }
 
+
+#search {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #fff;
+
+	> input {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		cursor: auto;
+		box-sizing: border-box;
+		margin: 6px 0;
+		padding: 6px 10px;
+		width: 14em;
+		height: ~"calc(48px - 12px)";
+		font-size: 1em;
+		line-height: ~"calc(48px - 12px)";
+		color: #000;
+		outline: none;
+		//border: solid 1px #ddd;
+		border: solid 1px transparent;
+		border-radius: 0;
+		box-shadow: none;
+		transition: color 0.5s ease, border 0.5s ease;
+		font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ƒqƒ‰ƒMƒmŠpƒS ProN W3','Meiryo UI','Meiryo, ƒƒCƒŠƒI','sans-serif';
+		/*
+						&:hover {
+							border: solid 1px @themeColor;
+							transition: border 0.2s ease, box-shadow 0.1s ease;
+						}
+
+						&:focus {
+							color: @themeColor;
+							border: solid 1px @themeColor;
+							transition: color 0, border 0.5s ease;
+						}
+						*/
+		&:focus {
+			color: darken(@themeColor, 20%);
+		}
+	}
+
+	> .result {
+		display: block;
+		position: absolute;
+		top: auto;
+		right: 0;
+		z-index: 3;
+		width: 340px;
+		margin: 0;
+		padding: 0;
+		background: #fff;
+		box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+
+		> ol.users {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				a {
+					display: inline-block;
+					z-index: 1;
+					box-sizing: border-box;
+					width: 100%;
+					padding: 8px 22px;
+					vertical-align: top;
+					white-space: nowrap;
+					overflow: hidden;
+					color: rgba(0, 0, 0, 0.8);
+					transition: none;
+
+					&:hover {
+						color: #fff;
+						background: @themeColor;
+
+						.name {
+							color: #fff;
+						}
+
+						.screenName {
+							color: #fff;
+						}
+					}
+
+					&:active {
+						color: #fff;
+						background: darken(@themeColor, 10%);
+
+						.name {
+							color: #fff;
+						}
+
+						.screenName {
+							color: #fff;
+						}
+					}
+
+					.icon {
+						vertical-align: middle;
+						min-width: 32px;
+						min-height: 32px;
+						max-width: 32px;
+						max-height: 32px;
+						margin: 0 8px 0 0;
+						border-radius: 6px;
+					}
+
+					.name {
+						margin: 0 8px 0 0;
+						/*font-weight: bold;*/
+						font-weight: normal;
+						color: rgba(0, 0, 0, 0.8);
+					}
+
+					.screen-name {
+						font-weight: normal;
+						color: rgba(0, 0, 0, 0.3);
+					}
+				}
+			}
+		}
+	}
+}
+
 #talks {
 	margin: 0;
 	padding: 0;

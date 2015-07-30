@@ -9,6 +9,9 @@ html(lang='ja', dir='ltr')
 	
 	body
 		main(role='main')
+			div#search(role='search')
+				input(type='search', placeholder!='&#xf002; ユーザーを探してトークを開始')
+				div.result
 			if messages != null
 				ol#talks
 					each message in messages
