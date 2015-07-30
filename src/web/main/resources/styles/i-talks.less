@@ -193,13 +193,19 @@ h1 {
 
 		> a {
 			display: block;
+			background-image: url("/resources/images/i-talks-item-arrow.svg");
+			background-repeat: no-repeat;
+			background-position: ~"calc(100% - 16px)" center;
 
 			article {
 				position: relative;
 				padding: 20px 30px;
-				background-image: url("/resources/images/i-talks-item-arrow.svg");
-				background-repeat: no-repeat;
-				background-position: ~"calc(100% - 16px)" center;
+
+				&[data-is-unread='true'] {
+					background-image: url("/resources/images/i-talks-item-unread.svg");
+					background-repeat: no-repeat;
+					background-position: 16px center;
+				}
 
 				&:after {
 					content: "";
