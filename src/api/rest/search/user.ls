@@ -8,8 +8,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	| _ =>
 		reg = new RegExp query, \i
 		db-query =
-			if query == /^[a-zA-Z0-9_]+$/
-			then {screen-name: reg}
+			if query == /^@?[a-zA-Z0-9_]+$/
+			then {screen-name: reg.replace \@ ''}
 			else {name: reg}
 		User.find db-query
 		.sort {followers-count: -1}
