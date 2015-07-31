@@ -28,15 +28,19 @@ module.exports = (req, res) ->
 		| _ =>
 			salt = bcrypt.gen-salt-sync 14
 			hash-password = bcrypt.hash-sync password, salt
+			screen-name-lower = screen-name.to-lower-case!
 
 			user = new User!
 				..screen-name = screen-name
-				..screen-name-lower = screen-name.to-lower-case!
+				..screen-name-lower = screen-name-lower
 				..password = hash-password
 				..name = name
 				..color = color
 				..followings-count = 1
 				..followers-count = 1
+				..profile-image-url = "https://misskey.xyz/img/icon/#{screen-name-lower}"
+				..banner-image-url = "https://misskey.xyz/img/banner/#{screen-name-lower}"
+				..wallpaper-image-url = "https://misskey.xyz/img/wallpaper/#{screen-name-lower}"
 
 			user.save (err, created-user) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
