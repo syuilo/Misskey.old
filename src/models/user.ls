@@ -9,6 +9,7 @@ Schema = mongoose.Schema
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 user-schema = new Schema do
+	banner-image-url:        {type: String,                required: yes}
 	bio:                     {type: String,                required: no,  default: null}
 	birthday:                {type: String,                required: no,  default: null}
 	color:                   {type: String,                required: yes}
@@ -28,6 +29,7 @@ user-schema = new Schema do
 	location:                {type: String,                required: no,  default: null}
 	name:                    {type: String,                required: yes}
 	password:                {type: String,                required: yes}
+	profile-image-url:       {type: String,                required: yes}
 	screen-name:             {type: String,                required: yes, unique: yes}
 	screen-name-lower:       {type: String,                required: yes, unique: yes}
 	statuses-count:          {type: Number,                required: no,  default: 0}
@@ -35,6 +37,7 @@ user-schema = new Schema do
 	tags:                    {type: [String],              required: no,  default: []}
 	url:                     {type: String,                required: no,  default: null}
 	using-webtheme-id:       {type: Schema.Types.ObjectId, required: no,  default: null}
+	wallpaper-image-url:     {type: String,                required: yes}
 	mobile-header-design-id: {type: String,                required: no,  default: null}
 
 if !user-schema.options.to-object then user-schema.options.to-object = {}
