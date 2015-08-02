@@ -118,4 +118,4 @@ api-server.use (req, res, next) ->
 
 require './web-streaming-server'
 
-exports.app = api-server
+exports.server = api-server
