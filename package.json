@@ -27,6 +27,7 @@
     "express": "4.13.1",
     "express-minify": "0.1.6",
     "express-session": "1.11.3",
+	"vhost": "3.0.1",
     "gm": "1.18.1",
     "jade": "1.11.0",
     "js-yaml": "3.3.1",
