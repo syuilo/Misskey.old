@@ -58,24 +58,23 @@ header#misskey-main-header(role='banner')
 														img(src='/resources/images/notice-delete.png', alt='Delete')
 									else
 										p.empty 通知はありません
-					if login
-						div.account
-							a.screenNameAnchor(href= url + '/' + me.screenName)
-								span.screenName= '@' + me.screenName
-							div.dropdown
-								a.iconAnchor(href= url + '/' + me.screenName)
-									img.icon(src= url + '/img/icon/' + me.screenName, alt='icon')
-								div.dropdownContent
-									ul
-										li: a.ui-waves-effect(href= url + '/' + me.screenName)
-											i.fa.fa-laptop
-											| マイページ
-										li: a.ui-waves-effect(href='/i/settings')
-											i.fa.fa-cog
-											| 設定
-										li: a.ui-waves-effect(href='/logout')
-											i(class='fa fa-power-off')
-											| ログアウト
+					div.account
+						a.screenNameAnchor(href= url + '/' + me.screenName)
+							span.screenName= '@' + me.screenName
+						div.dropdown
+							a.iconAnchor(href= url + '/' + me.screenName)
+								img.icon(src= url + '/img/icon/' + me.screenName, alt='icon')
+							div.dropdownContent
+								ul
+									li: a.ui-waves-effect(href= url + '/' + me.screenName)
+										i.fa.fa-laptop
+										| マイページ
+									li: a.ui-waves-effect(href='/i/settings')
+										i.fa.fa-cog
+										| 設定
+									li: a.ui-waves-effect(href='/logout')
+										i(class='fa fa-power-off')
+										| ログアウト
 			else
 				div.left
 					nav
