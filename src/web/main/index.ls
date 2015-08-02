@@ -159,6 +159,8 @@ server.use (err, req, res, next) ->
 		res.display req, res, \error {err: display-err}
 	else
 		res.send err
+		
+read-file = (path) -> fs.read-file-sync path .to-string!
 
 https-server = https.create-server do
 	key: read-file "#__dirname/../../../../../certs/server.key"
