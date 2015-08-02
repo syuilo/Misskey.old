@@ -77,7 +77,7 @@ api-server.all '*' (req, res, next) ->
 			remote-addr: req.ip
 			protocol: req.protocol
 			method: req.method
-			path: "#{req.headers.host}#{req.path}"
+			path: req.path
 			ua: ua
 			color: convert-string-to-color req.ip
 	}
