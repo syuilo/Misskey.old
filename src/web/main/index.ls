@@ -159,4 +159,4 @@ server.use (err, req, res, next) ->
 	else
 		res.send err
 
-exports.app = server
+exports.server = server
