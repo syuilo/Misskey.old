@@ -134,6 +134,7 @@ server.all '*' (req, res, next) ->
 			path: req.path
 			ua: ua
 			color: convert-string-to-color req.ip
+			done: yes
 	}
 
 # Resources rooting
