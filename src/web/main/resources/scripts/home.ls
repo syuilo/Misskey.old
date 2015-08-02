@@ -56,8 +56,8 @@ window.STATUSTIMELINE = {}
 					window-id
 					$content
 					"<i class=\"fa fa-comments\"></i>#{$status.find \.user-name .text!}"
-					320px
-					470px
+					360px
+					540px
 					yes
 					url
 				false
