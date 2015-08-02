@@ -24,9 +24,6 @@ RedisStore = connect-redis session
 api-server = express!
 	..disable 'x-powered-by'
 
-server = (require \http).Server api-server
-	..listen config.port.api
-
 session-store = new RedisStore do
 	db: 1
 	prefix: 'misskey-session:'
@@ -120,3 +117,5 @@ api-server.use (req, res, next) ->
 	res.api-error 404 'API not found.'
 
 require './web-streaming-server'
+
+exports.app = api-server
