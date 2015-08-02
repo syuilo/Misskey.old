@@ -1,4 +1,5 @@
 require! {
+	https
 	fs
 	path
 	'../../utils/create-server'
@@ -159,4 +160,10 @@ server.use (err, req, res, next) ->
 	else
 		res.send err
 
-exports.server = server
+https-server = https.create-server do
+	key: read-file "#__dirname/../../../../../certs/server.key"
+	cert: read-file "#__dirname/../../../../../certs/startssl.crt"
+	ca: read-file "#__dirname/../../../../../certs/sub.class1.server.ca.pem"
+	server
+
+exports.server = https-server
