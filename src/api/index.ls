@@ -46,20 +46,6 @@ api-server
 		store: session-store
 
 api-server.use (req, res, next) ->
-	function log(status-code, done)
-		publish-redis-streaming \log to-json {
-			type: \api-outgoing
-			value: {
-				done
-				date: Date.now!
-				remote-addr: req.ip
-				protocol: req.protocol
-				method: req.method
-				status-code
-				path: "#{req.headers.host}#{req.path}"
-			}
-		}
-	
 	res.api-render = (data) ->
 		switch req.format
 		| \json => res.json data
@@ -72,12 +58,10 @@ api-server.use (req, res, next) ->
 				..header 'Content-Type' 'text/plain'
 				..send data
 		| _ => res.json data
-		log 200 yes
 
 	res.api-error = (http-status-code, error) ->
 		res.status http-status-code
 		res.api-render {error}
-		log http-status-code, no
 	
 	next!
 
@@ -85,7 +69,7 @@ api-server.use (req, res, next) ->
 api-server.all '*' (req, res, next) ->
 	next!
 	publish-redis-streaming \log to-json {
-		type: \api-incoming
+		type: \api
 		value: {
 			date: Date.now!
 			remote-addr: req.ip

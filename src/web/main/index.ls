@@ -123,7 +123,7 @@ server.use allow-cross-domain
 server.all '*' (req, res, next) ->
 	next!
 	publish-redis-streaming \log to-json {
-		type: \web-incoming
+		type: \web
 		value: {
 			date: Date.now!
 			remote-addr: req.ip
