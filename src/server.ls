@@ -3,6 +3,7 @@ require! {
 	https
 	express
 	vhost
+	jade
 	'./utils/publish-redis-streaming'
 	'./utils/convert-string-to-color'
 	'./banned-ips': banned-ips
@@ -10,6 +11,7 @@ require! {
 }
 
 read-file = (path) -> fs.read-file-sync path .to-string!
+banned-compiler = jade.compile-file "#__dirname/banned.jade"
 
 # Read certs
 certs =
@@ -24,7 +26,7 @@ app.disable \x-powered-by
 # Check IP
 app.all '*' (req, res, next) ->
 	if (banned-ips.index-of req.ip) > -1
-		res.status(401).send "your ip addr is banned (#{req.ip})"
+		res.status(401).send banned-compiler {ip: req.ip}
 		ua = req.headers['user-agent'].to-lower-case!
 		type = switch (req.hostname)
 			| \misskey.xyz => \web
