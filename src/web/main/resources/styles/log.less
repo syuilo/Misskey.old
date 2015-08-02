@@ -49,10 +49,21 @@ html, body {
 		}
 	}
 
-	.web-incoming,
-	.api-incoming {
+	.web-incoming {
 		.course {
 			color: #007acc !important;
+
+			&:before {
+				content: "\f105";
+				font-family: FontAwesome;
+				margin-right: 4px;
+			}
+		}
+	}
+
+	.api-incoming {
+		.course {
+			color: #ff6a00 !important;
 
 			&:before {
 				content: "\f105";
