@@ -68,15 +68,16 @@ api-server.use (req, res, next) ->
 # Log
 api-server.all '*' (req, res, next) ->
 	next!
+	ua = req.headers['user-agent'].to-lower-case!
 	publish-redis-streaming \log to-json {
 		type: \api
-		value: {
+		value:
 			date: Date.now!
 			remote-addr: req.ip
 			protocol: req.protocol
 			method: req.method
 			path: "#{req.headers.host}#{req.path}"
-		}
+			ua: ua
 	}
 
 api-server.all '*' (req, res, next) ->
