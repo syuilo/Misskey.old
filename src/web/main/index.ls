@@ -122,15 +122,16 @@ server.use allow-cross-domain
 # Log
 server.all '*' (req, res, next) ->
 	next!
+	ua = req.headers['user-agent'].to-lower-case!
 	publish-redis-streaming \log to-json {
-		type: \web-incoming
-		value: {
+		type: \web
+		value:
 			date: Date.now!
 			remote-addr: req.ip
 			protocol: req.protocol
 			method: req.method
 			path: "#{req.headers.host}#{req.path}"
-		}
+			ua: ua
 	}
 
 # Resources rooting
