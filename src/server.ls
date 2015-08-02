@@ -26,7 +26,7 @@ app.disable \x-powered-by
 # Check IP
 app.all '*' (req, res, next) ->
 	if (banned-ips.index-of req.ip) > -1
-		res.status(401).send banned-compiler {ip: req.ip}
+		res.status(403).send banned-compiler {ip: req.ip}
 		ua = req.headers['user-agent'].to-lower-case!
 		type = switch (req.hostname)
 			| \misskey.xyz => \web
