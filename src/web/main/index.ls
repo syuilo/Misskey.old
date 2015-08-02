@@ -159,5 +159,4 @@ server.use (err, req, res, next) ->
 	else
 		res.send err
 
-# Listen
-server.listen config.port.web
+exports.app = server
