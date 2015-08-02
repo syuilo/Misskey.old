@@ -4,6 +4,7 @@ require! {
 	path
 	'../../utils/create-server'
 	'../../utils/publish-redis-streaming'
+	'../../utils/convert-string-to-color'
 	'../../config'
 	'body-parser'
 	'cookie-parser'
@@ -132,6 +133,7 @@ server.all '*' (req, res, next) ->
 			method: req.method
 			path: "#{req.headers.host}#{req.path}"
 			ua: ua
+			color: convert-string-to-color req.ip
 	}
 
 # Resources rooting

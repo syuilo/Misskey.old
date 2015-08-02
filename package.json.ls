@@ -39,6 +39,7 @@ dependencies:
 	multer: '0.1.8'
 	'prelude-ls': '1.1.2'
 	redis: '0.12.1'
+	seedrandom: '2.4.2'
 	'socket.io': '1.3.6'
 	livescript: '1.4.0'
 	gulp: '3.9.0'

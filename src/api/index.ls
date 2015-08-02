@@ -14,6 +14,7 @@ require! {
 	'js-yaml': yaml
 	'./router': router
 	'../utils/publish-redis-streaming'
+	'../utils/convert-string-to-color'
 	'../config'
 }
 
@@ -78,6 +79,7 @@ api-server.all '*' (req, res, next) ->
 			method: req.method
 			path: "#{req.headers.host}#{req.path}"
 			ua: ua
+			color: convert-string-to-color req.ip
 	}
 
 api-server.all '*' (req, res, next) ->
