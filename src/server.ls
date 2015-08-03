@@ -1,3 +1,7 @@
+################################
+# Core Server
+################################
+
 require! {
 	fs
 	https
@@ -26,7 +30,10 @@ app.disable \x-powered-by
 # Check IP
 app.all '*' (req, res, next) ->
 	if (banned-ips.index-of req.ip) > -1
+		# Compile after send
 		res.status(403).send banned-compiler {ip: req.ip}
+
+		# Log
 		ua = req.headers['user-agent'].to-lower-case!
 		type = switch (req.hostname)
 			| \misskey.xyz => \web
@@ -41,8 +48,7 @@ app.all '*' (req, res, next) ->
 				path: req.path
 				ua: ua
 				color: convert-string-to-color req.ip
-				done: no
-		}
+				done: no}
 	else
 		next!
 

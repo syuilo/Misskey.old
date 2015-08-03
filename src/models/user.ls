@@ -9,7 +9,6 @@ Schema = mongoose.Schema
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 user-schema = new Schema do
-	banner-image-url:        {type: String,                required: yes}
 	bio:                     {type: String,                required: no,  default: null}
 	birthday:                {type: String,                required: no,  default: null}
 	color:                   {type: String,                required: yes}
@@ -29,7 +28,6 @@ user-schema = new Schema do
 	location:                {type: String,                required: no,  default: null}
 	name:                    {type: String,                required: yes}
 	password:                {type: String,                required: yes}
-	profile-image-url:       {type: String,                required: yes}
 	screen-name:             {type: String,                required: yes, unique: yes}
 	screen-name-lower:       {type: String,                required: yes, unique: yes}
 	statuses-count:          {type: Number,                required: no,  default: 0}
@@ -37,13 +35,15 @@ user-schema = new Schema do
 	tags:                    {type: [String],              required: no,  default: []}
 	url:                     {type: String,                required: no,  default: null}
 	using-webtheme-id:       {type: Schema.Types.ObjectId, required: no,  default: null}
-	wallpaper-image-url:     {type: String,                required: yes}
 	mobile-header-design-id: {type: String,                required: no,  default: null}
 
 if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
+	ret.icon-image-url = "#{config.public-config.image-server-url}/user/icon/#{doc.id}"
+	ret.banner-image-url = "#{config.public-config.image-server-url}/user/banner/#{doc.id}"
+	ret.wallpaper-image-url = "#{config.public-config.image-server-url}/user/wallpaper/#{doc.id}"
 	delete ret._id
 	delete ret.__v
 	delete ret.password
