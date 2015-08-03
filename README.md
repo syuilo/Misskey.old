@@ -30,7 +30,7 @@ It runs on Node.js.
 ## Contribution
 We welcome your contributions.
 
-* Report anything to [New Issue](https://github.com/syuilo/Misskey/issues/new)
+* Report any problems to [Issue](https://github.com/syuilo/Misskey/issues)
 * Send [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
