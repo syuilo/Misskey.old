@@ -14,9 +14,9 @@ message = jade.render-file "#{__dirname}/maintenance.jade"
 
 # Read certs
 certs =
-	key: read-file "#__dirname/../../../certs/server.key"
-	cert: read-file "#__dirname/../../../certs/startssl.crt"
-	ca: read-file "#__dirname/../../../certs/sub.class1.server.ca.pem"
+	key: read-file "#__dirname/../../../../certs/server.key"
+	cert: read-file "#__dirname/../../../../certs/startssl.crt"
+	ca: read-file "#__dirname/../../../../certs/sub.class1.server.ca.pem"
 
 # Init express
 app = express!

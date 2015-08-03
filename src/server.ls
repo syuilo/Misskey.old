@@ -4,7 +4,7 @@
 
 require! {
 	fs
-	http2
+	https
 	express
 	vhost
 	jade
@@ -57,5 +57,4 @@ app.use vhost \misskey.xyz (require "#__dirname/web/main" .server)
 app.use vhost \api.misskey.xyz (require "#__dirname/api" .server)
 
 # Create after listen HTTPS server
-server = http2.create-server certs, app
-server.listen config.port.web-https
+https.create-server certs, app .listen config.port.web-https
