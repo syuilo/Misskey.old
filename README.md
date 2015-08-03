@@ -21,7 +21,7 @@ It runs on Node.js.
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
 [![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
 
-## Available command for development
+## Available commands for development
 * `npm install` - Resolve dependencies
 * `npm run build` - Build
 * `npm test` - Run test
