@@ -329,7 +329,7 @@ $ ->
 			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
 			$submit-button.attr \disabled no
 			$submit-button.attr \value 'Update \uf1d8'
-			$.remove-cookie \post-autosave
+			$.remove-cookie \post-autosave {path: '/'}
 			window.display-message '投稿しました！'
 		.fail (data) ->
 			#$form[0].reset!
