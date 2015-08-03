@@ -88,12 +88,11 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 								status-mention.save ->
 									stream-mention-obj = to-json do
 										type: \reply
-										value: {
+										value:
 											id: status.id
 											user-name: user.name
 											user-screen-name: user.screen-name
 											text: status.text
-										}
 									publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
 	function analyze-command(text)

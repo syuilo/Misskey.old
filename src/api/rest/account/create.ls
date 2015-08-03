@@ -38,45 +38,47 @@ module.exports = (req, res) ->
 				..color = color
 				..followings-count = 1
 				..followers-count = 1
-				..profile-image-url = "https://misskey.xyz/img/icon/#{screen-name-lower}"
-				..banner-image-url = "https://misskey.xyz/img/banner/#{screen-name-lower}"
-				..wallpaper-image-url = "https://misskey.xyz/img/wallpaper/#{screen-name-lower}"
 
 			user.save (err, created-user) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
-					# Init user image documents
-					icon = new UserIcon!
-						.._id = created-user.id
-						..user-id = created-user.id
-					header = new UserHeader!
-						.._id = created-user.id
-						..user-id = created-user.id
-					wallpaper = new UserWallpaper!
-						.._id = created-user.id
-						..user-id = created-user.id
-					err, icon-instance <- icon.save
-					err, header-instance <- header.save
-					err, wallpaper-instance <- wallpaper.save
-					User.find-one {screen-name: \syuilo} (err, syuilo) ->
-						if syuilo? and created-user.screen-name-lower != \syuilo
-							following = new UserFollowing!
-								..follower-id = created-user.id
-								..followee-id = syuilo.id
-							followingback = new UserFollowing!
-								..follower-id = syuilo.id
-								..followee-id = created-user.id
-							err, following-instance <- following.save
-							err, followingback-instance <- followingback.save
-							syuilo.followers-count++
-							syuilo.followings-count++
-							syuilo.save ->
+					created-user
+						..profile-image-name = "#{created-user.id}.jpg"
+						..banner-image-name = "#{created-user.id}.jpg"
+						..wallpaper-image-name = "#{created-user.id}.jpg"
+					created-user.save (err, created-user) ->
+						# Init user image documents
+						icon = new UserIcon!
+							.._id = created-user.id
+							..user-id = created-user.id
+						header = new UserHeader!
+							.._id = created-user.id
+							..user-id = created-user.id
+						wallpaper = new UserWallpaper!
+							.._id = created-user.id
+							..user-id = created-user.id
+						err, icon-instance <- icon.save
+						err, header-instance <- header.save
+						err, wallpaper-instance <- wallpaper.save
+						User.find-one {screen-name: \syuilo} (err, syuilo) ->
+							if syuilo? and created-user.screen-name-lower != \syuilo
+								following = new UserFollowing!
+									..follower-id = created-user.id
+									..followee-id = syuilo.id
+								followingback = new UserFollowing!
+									..follower-id = syuilo.id
+									..followee-id = created-user.id
+								err, following-instance <- following.save
+								err, followingback-instance <- followingback.save
+								syuilo.followers-count++
+								syuilo.followings-count++
+								syuilo.save ->
+									do-login req, created-user.screen-name, password, (user) ->
+										res.api-render filter-user-for-response created-user
+									, ->
+										res.send-status 500
+							else
 								do-login req, created-user.screen-name, password, (user) ->
 									res.api-render filter-user-for-response created-user
 								, ->
 									res.send-status 500
-						else
-							do-login req, created-user.screen-name, password, (user) ->
-								res.api-render filter-user-for-response created-user
-							, ->
-								res.send-status 500
