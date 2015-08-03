@@ -21,14 +21,11 @@ It runs on Node.js.
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
 [![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
 
-## How to build
-1. `git clone git://github.com/syuilo/Misskey.git`
-2. `cd Misskey`
-3. `npm install`
-4. `npm run build`
-
-## How to run test
-Run `npm test` after `npm install`.
+## Available command for development
+* `npm install` - Resolve dependencies
+* `npm run build` - Build
+* `npm test` - Run test
+* `npm run watch` - Watch the files and build when they are changed.
 
 ## Contribution
 We welcome your contributions.
