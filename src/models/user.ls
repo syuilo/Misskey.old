@@ -19,6 +19,7 @@ user-schema = new Schema do
 	followers-count:         {type: Number,                required: no,  default: 0}
 	followings-count:        {type: Number,                required: no,  default: 0}
 	gender:                  {type: String,                required: no,  default: null}
+	is-display-not-follow-user-mention: {type: Boolean,    required: no,  default: yes}
 	is-plus:                 {type: Boolean,               required: no,  default: no}
 	is-suspended:            {type: Boolean,               required: no,  default: no}
 	is-verified:             {type: Boolean,               required: no,  default: no}
