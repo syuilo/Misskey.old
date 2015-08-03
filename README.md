@@ -1,4 +1,4 @@
-# Misskey [![MIT LICENSE](http://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+# Misskey
 
 [![Join the chat at https://gitter.im/syuilo/Misskey](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/syuilo/Misskey)
 [![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
@@ -21,7 +21,7 @@ It runs on Node.js.
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
 [![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
 
-## Available commands for development
+## Available commands
 * `npm install` - Resolve dependencies
 * `npm run build` - Build
 * `npm test` - Run test
