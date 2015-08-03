@@ -36,14 +36,17 @@ user-schema = new Schema do
 	url:                     {type: String,                required: no,  default: null}
 	using-webtheme-id:       {type: Schema.Types.ObjectId, required: no,  default: null}
 	mobile-header-design-id: {type: String,                required: no,  default: null}
+	icon-image-name:         {type: String,                required: no,  default: null}
+	banner-image-name:       {type: String,                required: no,  default: null}
+	wallpaper-image-name:    {type: String,                required: no,  default: null}
 
 if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
-	ret.icon-image-url = "#{config.public-config.image-server-url}/user/icon/#{doc.id}"
-	ret.banner-image-url = "#{config.public-config.image-server-url}/user/banner/#{doc.id}"
-	ret.wallpaper-image-url = "#{config.public-config.image-server-url}/user/wallpaper/#{doc.id}"
+	ret.icon-image-url = "#{config.public-config.image-server-url}/user/icon/#{doc.icon-image-name}"
+	ret.banner-image-url = "#{config.public-config.image-server-url}/user/banner/#{doc.banner-image-name}"
+	ret.wallpaper-image-url = "#{config.public-config.image-server-url}/user/wallpaper/#{doc.wallpaper-image-name}"
 	delete ret._id
 	delete ret.__v
 	delete ret.password
