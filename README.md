@@ -1,18 +1,16 @@
-# Misskey
-
-[![Join the chat at https://gitter.im/syuilo/Misskey](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/syuilo/Misskey)
 [![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
 [![Pull Requst Stats](http://issuestats.com/github/syuilo/Misskey/badge/pr?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Issue Stats](http://issuestats.com/github/syuilo/Misskey/badge/issue?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
 
-https://misskey.xyz/
+# Misskey
 
-## What's?
-**Misskeyは謎めいたTwitter風SNSです。**
+[![Join the chat at https://gitter.im/syuilo/Misskey](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/syuilo/Misskey)
+
+**[Misskey](https://misskey.xyz/)は謎めいたTwitter風SNSです。**
 Node.js上で動作します。
 
-**Misskey is a mysterious SNS like Twitter.**
+**[Misskey](https://misskey.xyz/) is a mysterious SNS like Twitter.**
 It runs on Node.js.
 
 ## Dependencies
