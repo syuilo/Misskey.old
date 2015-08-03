@@ -10,7 +10,7 @@
 **[Misskey](https://misskey.xyz/)は謎めいたTwitter風SNSです。**
 Node.js上で動作します。
 
-**[Misskey](https://misskey.xyz/) is a mysterious SNS like Twitter.**
+**[Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.**
 It runs on Node.js.
 
 ## Dependencies
