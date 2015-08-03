@@ -6,16 +6,16 @@
 [![Issue Stats](http://issuestats.com/github/syuilo/Misskey/badge/issue?style=flat)](http://issuestats.com/github/syuilo/Misskey)
 [![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
 
-A mystery SNS. https://misskey.xyz/
+https://misskey.xyz/
 
 ## What's?
-**Misskeyは謎のTwitter風ソーシャル・ネットワーキング・サービスです。**
+**Misskeyは謎めいたTwitter風SNSです。**
 Node.js上で動作します。
 
-**Misskey is a mystery Twitter Like social networking services.**
+**Misskey is a mysterious SNS like Twitter.**
 It runs on Node.js.
 
-## Implicit dependencies
+## Dependencies
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
 [![MongoDB](https://img.shields.io/badge/MongoDB-2.6.9-blue.svg)](https://www.mongodb.org)
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
@@ -33,8 +33,7 @@ Run `npm test` after `npm install`.
 ## Contribution
 We welcome your contributions.
 
-* Report any problems to [New Issue](https://github.com/syuilo/Misskey/issues/new)
-* Discuss on [Issue (Discussion)](https://github.com/syuilo/Misskey/labels/Discussion)
+* Report anything to [New Issue](https://github.com/syuilo/Misskey/issues/new)
 * Send [Pull Request](https://github.com/syuilo/Misskey/pulls)
 
 ## Special thanks
