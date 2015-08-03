@@ -37,4 +37,4 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 古谷向日葵, 大室櫻子 (2014 June ~)
 
 ## License
-The MIT License. See [LICENSE](LICENSE).
+[MIT](LICENSE)
