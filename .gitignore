@@ -1,15 +1,16 @@
-﻿# npm
+# npm
 npm-debug.log
 /node_modules/
 
 # Built
 /lib/
 
-# After Effects
-/resource-projects/Adobe After Effects 自動保存/
-
 # Mac
 .DS_Store
 
 # Windows
 Thumbs.db
+
+# Other
+/resource-projects/
+/certs/
