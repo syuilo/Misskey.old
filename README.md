@@ -20,7 +20,7 @@ It runs on Node.js.
 [![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
 
 ## Available commands
-* `npm install` - Resolve dependencies
+* `npm install` - Install the dependencies
 * `npm run build` - Build
 * `npm test` - Run test
 * `npm run watch` - Watch the files and build when they are changed.
