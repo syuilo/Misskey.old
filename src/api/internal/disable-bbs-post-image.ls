@@ -7,7 +7,7 @@ module.exports = (app, user, id) ->
 	function throw-error(code, message)
 		reject {code, message}
 	
-	if user.is-plus
-		# kyoppie
-	else
-		throw-error \access-denied 'Access denied.'
+	#if user.is-plus
+	#	# kyoppie
+	#else
+	#	throw-error \access-denied 'Access denied.'
