@@ -62,7 +62,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 				switch
 				| image? =>
 					image-name = "#{created-status.id}-1.jpg"
-					register-image \status-image image-name, \jpg, image .then ->
+					register-image user, \status-image image-name, \jpg, image .then ->
 						created-status.images = [image-name]
 						created-status.save ->
 							done!

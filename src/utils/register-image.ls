@@ -3,12 +3,13 @@ require! {
 	'../config'
 }
 
-module.exports = (type, image-name, image-format-type, image) ->
+module.exports = (user, type, image-name, image-format-type, image) ->
 	resolve, reject <- new Promise!
 	
 	request-data =
 		passkey: config.image-server-passkey
 		'image-name': image-name
+		'user-id': user.id
 		image:
 			value: image
 			options:
