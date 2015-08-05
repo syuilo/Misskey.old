@@ -103,7 +103,7 @@ div.status.article(
 								each tag in status.tag
 									li= tag
 					if status.isImageAttached
-						img.image(src=config.url + '/img/status/' + status.id, alt='image', itemprop='image')
+						img.image(src=status.imageUrls[0], alt='image', itemprop='image')
 				aside.footer
 					if login
 						div.actions

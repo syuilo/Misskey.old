@@ -37,9 +37,9 @@ user-schema = new Schema do
 	url:                     {type: String,                required: no,  default: null}
 	using-webtheme-id:       {type: Schema.Types.ObjectId, required: no,  default: null}
 	mobile-header-design-id: {type: String,                required: no,  default: null}
-	icon-image-name:         {type: String,                required: no,  default: null}
-	banner-image-name:       {type: String,                required: no,  default: null}
-	wallpaper-image-name:    {type: String,                required: no,  default: null}
+	icon-image:              {type: String,                required: no,  default: null}
+	banner-image:            {type: String,                required: no,  default: null}
+	wallpaper-image:         {type: String,                required: no,  default: null}
 
 if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
