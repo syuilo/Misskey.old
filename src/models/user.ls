@@ -45,16 +45,16 @@ schema.virtual \iconImageUrl .get ->
 	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/icon/#{this.icon-image}"
 
 schema.virtual \bannerImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.icon-image}"
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.banner-image}"
 
 schema.virtual \blurredBannerImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.icon-image.replace '.jpg' '-blurred.jpg'}"
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.banner-image.replace '.jpg' '-blurred.jpg'}"
 
 schema.virtual \wallpaperImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.icon-image}"
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.wallpaper-image}"
 
 schema.virtual \blurredWallpaperImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.icon-image.replace '.jpg' '-blurred.jpg'}"
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.wallpaper-image.replace '.jpg' '-blurred.jpg'}"
 
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
