@@ -75,6 +75,7 @@ module.exports = (status, me, callback) ->
 								reply .= to-object!
 								reply.is-reply = reply.in-reply-to-status-id?
 								reply.user = reply-user.to-object!
+								console.log reply
 								resolve reply
 						else
 							resolve null)
