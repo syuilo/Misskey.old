@@ -11,7 +11,7 @@ function parse-url text
 		"<a href='#{url}' target='_blank' class='url'>#{url}</a>"
 
 function parse-reply text
-	text.replace /@([a-zA-Z0-9_]+)/g (, screen-name) ->
+	text.replace /@([a-zA-Z0-9_\/]+)/g (, screen-name) ->
 		"<a href='#{config.public-config.url}/#{screen-name}' target='_blank' class='screen-name'>@#{screen-name}</a>"
 
 function parse-bold text
