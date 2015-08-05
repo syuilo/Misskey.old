@@ -40,7 +40,7 @@ div.status.article(
 								data-user-verified!= talkPost.user.isVerified.toString())
 								article
 									a.icon-anchor(href= config.url + '/widget/talk/' + talkPost.user.screenName, title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
-										img.icon(src=config.url + '/img/icon/' + talkPost.user.screenName, alt='icon')
+										img.icon(src=talkPost.user.iconImageUrl, alt='icon')
 									header
 										if talkPost.user.isVerified
 											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
@@ -52,12 +52,12 @@ div.status.article(
 										div.text
 											p!= (talkPost.isReply ? '<a href="' + config.url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
 										if talkPost.isImageAttached
-											img.image(src=config.url + '/img/status/' + talkPost.id, alt='image')
+											img.image(src=talkPost.imageUrls[0], alt='image')
 			if status.isRepostToStatus
 				div.repost-information
 					p.info
 						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
-							img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
+							img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
 						i.fa.fa-retweet
 						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
 						| によってRepost
@@ -69,7 +69,7 @@ div.status.article(
 					data-user-verified!= status.replySource.user.isVerified.toString())
 					article
 						a.icon-anchor(href=config.url + '/widget/talk/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName)
-							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
+							img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
 						header
 							if status.replySource.user.isVerified
 								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
@@ -81,11 +81,11 @@ div.status.article(
 							div.text
 								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
 							if status.replySource.isImageAttached
-								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
+								img.image(src=status.replySource.imageUrls[0], alt='image')
 			div.main
 				div.icon-area
 					a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
-						img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+						img.icon(src=status.user.iconImageUrl, alt='icon')
 				header.header
 					div.author(itemprop='author')
 						if status.user.isVerified
@@ -124,7 +124,7 @@ div.status.article(
 			footer
 				if login
 					form.reply-form(role='form')
-						img.me-icon(src=config.url + '/img/icon/' + me.screenName, alt='icon')
+						img.me-icon(src=me.iconImageUrl, alt='icon')
 						div.form
 							textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 							div.design-allow(role='presentation')
@@ -148,7 +148,7 @@ div.status.article(
 									data-user-verified!= reply.user.isVerified.toString())
 									article
 										a.icon-anchor(href= config.url + '/widget/talk/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName)
-											img.icon(src=config.url + '/img/icon/' + reply.user.screenName, alt='icon')
+											img.icon(src=reply.user.iconImageUrl, alt='icon')
 										header
 											if reply.user.isVerified
 												img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
@@ -160,4 +160,4 @@ div.status.article(
 											div.text
 												p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
 											if reply.isImageAttached
-												img.image(src=config.url + '/img/status/' + reply.id, alt='image')
+												img.image(src=reply.imageUrls[0], alt='image')
