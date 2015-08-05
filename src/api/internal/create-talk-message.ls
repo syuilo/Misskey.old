@@ -2,7 +2,6 @@ require! {
 	fs
 	gm
 	'../../models/talk-message': TalkMessage
-	'../../models/talk-message-image': TalkMessageImage
 	'../../models/talk-history': TalkHistory
 	'../../models/user-following': UserFollowing
 	'../../models/utils/user-following-check'
