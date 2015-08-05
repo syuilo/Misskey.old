@@ -12,6 +12,8 @@ module.exports = (type, image-name, image) ->
 		image: image
 	
 	url = "#{config.image-server-ip}:#{config.image-server-port}/register-#{type}"
+	console.log url
+	console.log request-data
 	request.post {url: url, form-data: request-data} (err, res, body) ->
 		if err
 			console.log err
