@@ -60,7 +60,6 @@ module.exports = (status, me, callback) ->
 						if reply-status.is-reply
 							status-get-talk reply-status .then (talk) ->
 								status.more-talk = talk
-								console.log talk
 								callback status
 						else
 							callback status
