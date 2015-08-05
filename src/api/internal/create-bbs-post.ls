@@ -5,9 +5,9 @@ require! {
 	'../../models/bbs-thread': BBSThread
 	'../../models/bbs-thread-watch': BBSThreadWatch
 	'../../models/bbs-post': BBSPost
-	'../../models/bbs-post-image': BBSPostImage
 	'../../models/utils/create-notice'
 	'../../utils/publish-redis-streaming'
+	'../../utils/register-image'
 }
 
 module.exports = (app, user, thread-id, text, image = null) ->
@@ -87,6 +87,9 @@ module.exports = (app, user, thread-id, text, image = null) ->
 			switch
 			| err? => throw-error \post-save-error err
 			| image? =>
-				bbs-post-image = new BBSPostImage {post-id: created-post.id, image}
-				bbs-post-image.save -> done!
+				image-name = "#{created-post.id}-1.jpg"
+				register-image user, \bbs-post-image image-name, \jpg, image .then ->
+					created-post.images = [image-name]
+					created-post.save ->
+						done!
 			| _ => done!

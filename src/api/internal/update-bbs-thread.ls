@@ -3,7 +3,7 @@ require! {
 	gm
 	'../../models/user': User
 	'../../models/bbs-thread': BBSThread
-	'../../models/bbs-thread-eyecatch': BBSThreadEyecatch
+	'../../utils/register-image'
 }
 
 module.exports = (app, user, thread-id, title, image = null) ->
@@ -33,14 +33,7 @@ module.exports = (app, user, thread-id, title, image = null) ->
 
 	function update(image)
 		if image?
-			(, eyecatch) <- BBSThreadEyecatch.find-one {thread-id}
-			if eyecatch?
-				eyecatch.image = image
-				eyecatch.save ->
-					resolve thread
-			else
-				new-eyecatch = new BBSThreadEyecatch {thread-id, image}
-				new-eyecatch.save ->
-					resolve thread
+			register-image user, \bbs-thread-eyecatch "#{thread.id}.jpg", \jpg, image .then ->
+				resolve thread
 		else
 			resolve thread
