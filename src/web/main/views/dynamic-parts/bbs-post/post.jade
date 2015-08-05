@@ -1,5 +1,5 @@
 article(id= 'post-' + post.id)
-	img.icon(src= '/img/icon/' + post.user.screenName, alt='icon', title= post.user.comment)
+	img.icon(src= post.user.iconImageUrl, alt='icon', title= post.user.comment)
 	div.main
 		header
 			h2
@@ -11,4 +11,4 @@ article(id= 'post-' + post.id)
 		div.content
 			p.text= post.text
 			if post.isImageAttached
-				img.image(src=config.url + '/img/bbs-post/' + post.id, alt='image', itemprop='image')
+				img.image(src=post.imageUrls[0], alt='image', itemprop='image')

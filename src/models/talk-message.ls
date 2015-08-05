@@ -28,6 +28,7 @@ if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
+	ret.image-urls = doc.images |> map (image) -> "#{config.image-server-url}/contents/user-contents/user/#{doc.user-id}/talk-message/#{image}"
 	delete ret._id
 	delete ret.__v
 	ret
