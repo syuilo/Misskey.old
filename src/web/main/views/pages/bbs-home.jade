@@ -29,7 +29,7 @@ html(lang='ja', dir='ltr')
 					ol.threads
 						each thread in hotThreads
 							li.thread(title= thread.title)
-								a(href= '/bbs/thread/' + thread.id, style='background-image: url("/img/bbs-thread-eyecatch/' + thread.id + '")')
+								a(href= '/bbs/thread/' + thread.id, style='background-image: url("' + thread.eyecatchImageUrl + '")')
 									header
 										ul.counts
 											li.count.watchers-count
