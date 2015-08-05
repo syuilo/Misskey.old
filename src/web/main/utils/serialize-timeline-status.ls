@@ -60,6 +60,7 @@ module.exports = (status, me, callback) ->
 						if reply-status.is-reply
 							status-get-talk reply-status .then (talk) ->
 								status.more-talk = talk |> map (talk-item) -> talk-item.to-object!
+								console.log status.more-talk
 								callback status
 						else
 							callback status
