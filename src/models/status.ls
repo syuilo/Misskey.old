@@ -15,7 +15,7 @@ status-schema = new Schema do
 	created-at:            {type: Date,                    required: yes, default: Date.now}
 	cursor:                {type: Number}
 	favorites-count:       {type: Number,                  default: 0}
-	image-urls:            {type: [String],                default: []}
+	images:                {type: [String],                default: []}
 	in-reply-to-status-id: {type: Schema.Types.ObjectId,   default: null}
 	is-image-attached:     {type: Boolean,                 default: no}
 	replies:               {type: [Schema.Types.ObjectId], default: []}
