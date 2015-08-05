@@ -7,6 +7,7 @@ require! {
 	'../../models/user-following': UserFollowing
 	'../../models/utils/user-following-check'
 	'../../utils/publish-redis-streaming'
+	'../../utils/register-image'
 }
 
 module.exports = (app, user, otherparty-id, text, image = null) ->
@@ -40,9 +41,11 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 		else
 			switch
 			| image? =>
-				talk-message-image = new TalkMessageImage {message-id: created-talk-message.id, image}
-				talk-message-image.save ->
-					done created-talk-message
+				image-name = "#{created-talk-message.id}-1.jpg"
+				register-image user, \talk-message-image image-name, \jpg, image .then ->
+					created-talk-message.images = [image-name]
+					created-talk-message.save ->
+						done created-talk-message
 			| _ =>
 				done created-talk-message
 
