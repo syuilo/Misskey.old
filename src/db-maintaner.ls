@@ -5,6 +5,7 @@ require! {
 
 global <<< require \prelude-ls
 
-Status.find {} (err, status) ->
-	status.image-urls = undefined
-	status.save!
+Status.find {} (err, statuses) ->
+	statuses |> each (status) ->
+		status.image-urls = undefined
+		status.save!
