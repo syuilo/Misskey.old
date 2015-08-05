@@ -1,11 +1,10 @@
 require! {
 	fs
 	gm
-	'../../../models/user-wallpaper': UserWallpaper
+	'../../../utils/register-image'
 	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	(, wallpaper) <- UserWallpaper.find-by-id user.id
 	if (Object.keys req.files).length == 1
 		path = req.files.image.path
 		(, image) <- gm path
@@ -18,9 +17,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			.quality 80
 			.to-buffer \jpeg
 		fs.unlink path
-		wallpaper
-			..image = image
-			..blur = blurred-image
-			..save -> res.api-render 'success'
+		register-image user, \user-wallpaper "#{user.id}.jpg", \jpg, image .then ->
+			register-image user, \user-wallpaper "#{user.id}-blurred.jpg", \jpg, blurred-image .then ->
+				res.api-render 'success'
 	else
 		res.api-error 400 'Not attached image'
