@@ -60,7 +60,6 @@ module.exports = (status, me, callback) ->
 						if reply-status.is-reply
 							status-get-talk reply-status .then (talk) ->
 								status.more-talk = talk |> map (talk-item) -> talk-item.to-object!
-								console.log status.more-talk
 								callback status
 						else
 							callback status
@@ -91,6 +90,7 @@ module.exports = (status, me, callback) ->
 	status <- get-user status
 	status <- get-reply-source status
 	status <- get-replies status
+	console.log status
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then
