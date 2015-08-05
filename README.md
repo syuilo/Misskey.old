@@ -7,9 +7,6 @@
 
 [![Join the chat at https://gitter.im/syuilo/Misskey](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/syuilo/Misskey)
 
-**[Misskey](https://misskey.xyz/)は謎めいたTwitter風SNSです。**
-Node.js上で動作します。
-
 **[Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.**
 It runs on Node.js.
 
