@@ -16,12 +16,15 @@ schema = new Schema do
 	user-id:         {type: Schema.Types.ObjectId, required: yes}
 	watchers-count:  {type: Number,                required: yes, default: 0}
 	favorites-count: {type: Number,                required: yes, default: 0}
+
+schema.virtual \eyecatchImageUrl .get ->
+	"#{config.image-server-url}/contents/bbs-thread-eyecatch/#{this.eyecatch-image}"
 	
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
-	ret.eyecatch-image-url = "#{config.image-server-url}/contents/bbs-thread-eyecatch/#{doc.icon-image}"
+	ret.eyecatch-image-url = "#{config.image-server-url}/contents/bbs-thread-eyecatch/#{doc.eyecatch-image}"
 	delete ret._id
 	delete ret.__v
 	ret
