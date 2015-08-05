@@ -7,6 +7,7 @@ require! {
 	'../../models/user': User
 	'../../models/user-following': UserFollowing
 	'../../utils/publish-redis-streaming'
+	'../../utils/register-image'
 }
 
 module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
@@ -60,8 +61,10 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 							reply-to-status.save!
 				switch
 				| image? =>
-					status-image = new StatusImage {status-id: created-status.id, image}
-					status-image.save -> done!
+					image-name = "#{created-status.id}-1.jpg"
+					register-image \status-image image-name, image .then ->
+						created-status.images = [image-name]
+						done!
 				| _ => done!
 
 				function done
