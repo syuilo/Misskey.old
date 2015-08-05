@@ -11,13 +11,9 @@ require! {
 	'../../../models/bbs-thread': BBSThread
 	'../../../utils/login': do-login
 	'../../../config'
-	'./image': image-router
 }
 
 module.exports = (app) ->
-	# Unstatic images
-	image-router app
-
 	# Preset
 	app.param \userSn (req, res, next, screen-name) ->
 		User.find-one {screen-name-lower: screen-name.to-lower-case!} (, user) ->
