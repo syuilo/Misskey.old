@@ -45,9 +45,9 @@ if !user-schema.options.to-object then user-schema.options.to-object = {}
 user-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
-	ret.icon-image-url = "#{config.public-config.image-server-url}/contents/user-contents/user/#{doc.id}/icon/#{doc.icon-image-name}"
-	ret.banner-image-url = "#{config.public-config.image-server-url}/contents/user-contents/user/#{doc.id}/banner/#{doc.banner-image-name}"
-	ret.wallpaper-image-url = "#{config.public-config.image-server-url}/contents/user-contents/user/#{doc.id}/wallpaper/#{doc.wallpaper-image-name}"
+	ret.icon-image-url = "#{config.public-config.image-server-url}/contents/user-contents/user/#{doc.id}/icon/#{doc.icon-image}"
+	ret.banner-image-url = "#{config.public-config.image-server-url}/contents/user-contents/user/#{doc.id}/banner/#{doc.banner-image}"
+	ret.wallpaper-image-url = "#{config.public-config.image-server-url}/contents/user-contents/user/#{doc.id}/wallpaper/#{doc.wallpaper-image}"
 	delete ret._id
 	delete ret.__v
 	delete ret.password
