@@ -255,7 +255,7 @@ $ ->
 		text = status.text
 		n = new Notification name, {
 			body: text
-			icon: "#{conf.url}/img/icon/#sn"
+			icon: status.user-icon-image-url
 		}
 		n.onshow = ->
 			set-timeout ->
@@ -271,7 +271,7 @@ $ ->
 			return
 		n = new Notification message.user.name, {
 			body: message.text,
-			icon: conf.url + '/img/icon/' + message.user.screenName
+			icon: message.user.icon-image-url
 		}
 		n.onshow = ->
 			set-timeout n.close, 10000ms

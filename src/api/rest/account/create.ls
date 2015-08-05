@@ -40,7 +40,7 @@ module.exports = (req, res) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
 					created-user
-						..profile-image = "#{created-user.id}.jpg"
+						..icon-image = "#{created-user.id}.jpg"
 						..banner-image = "#{created-user.id}.jpg"
 						..wallpaper-image = "#{created-user.id}.jpg"
 					created-user.save (err, created-user) ->
