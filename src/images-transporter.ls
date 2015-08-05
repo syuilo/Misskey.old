@@ -13,6 +13,8 @@ require! {
 	'./config'
 }
 
+global <<< require \prelude-ls
+
 StatusImage.find {} (err, images) ->
 	images |> each (image) ->
 		Status.find-by-id image.status-id, (err, status) ->
