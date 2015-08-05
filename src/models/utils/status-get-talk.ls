@@ -11,5 +11,5 @@ module.exports = (status) ->
 		new Promise (resolve, reject) ->
 			talk-status.is-reply = talk-status.in-reply-to-status-id?
 			User.find-by-id talk-status.user-id, (, talk-status-user) ->
-				talk-status.user = talk-status-user
+				talk-status.user = talk-status-user.to-object!
 				resolve talk-status)
