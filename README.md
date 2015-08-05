@@ -13,7 +13,7 @@ Node.js上で動作します。
 **[Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.**
 It runs on Node.js.
 
-Source code of Misskey image server has also been published here: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
+Source code of Misskey image server has also been published: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
 
 ## Dependencies
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
