@@ -29,6 +29,7 @@ status-schema = new Schema do
 if !status-schema.options.to-object then status-schema.options.to-object = {}
 status-schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
+	ret.image-urls = doc.images |> map (image) -> "#{config.image-server-url}/contents/status/#{image}"
 	delete ret._id
 	delete ret.__v
 	ret
