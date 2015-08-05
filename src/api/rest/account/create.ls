@@ -4,9 +4,6 @@ require! {
 	'../../../utils/login': do-login
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../models/user-icon': UserIcon
-	'../../../models/user-header': UserHeader
-	'../../../models/user-wallpaper': UserWallpaper
 	'../../../models/utils/filter-user-for-response'
 	'../../../models/utils/exist-screenname'
 	'../../../config'
@@ -43,23 +40,10 @@ module.exports = (req, res) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
 					created-user
-						..profile-image-name = "#{created-user.id}.jpg"
-						..banner-image-name = "#{created-user.id}.jpg"
-						..wallpaper-image-name = "#{created-user.id}.jpg"
+						..profile-image = "#{created-user.id}.jpg"
+						..banner-image = "#{created-user.id}.jpg"
+						..wallpaper-image = "#{created-user.id}.jpg"
 					created-user.save (err, created-user) ->
-						# Init user image documents
-						icon = new UserIcon!
-							.._id = created-user.id
-							..user-id = created-user.id
-						header = new UserHeader!
-							.._id = created-user.id
-							..user-id = created-user.id
-						wallpaper = new UserWallpaper!
-							.._id = created-user.id
-							..user-id = created-user.id
-						err, icon-instance <- icon.save
-						err, header-instance <- header.save
-						err, wallpaper-instance <- wallpaper.save
 						User.find-one {screen-name: \syuilo} (err, syuilo) ->
 							if syuilo? and created-user.screen-name-lower != \syuilo
 								following = new UserFollowing!
