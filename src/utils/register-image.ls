@@ -3,7 +3,7 @@ require! {
 	'../config'
 }
 
-module.exports = (type, image-name, image) ->
+module.exports = (type, image-name, image-format-type, image) ->
 	resolve, reject <- new Promise!
 	
 	request-data =
@@ -13,7 +13,7 @@ module.exports = (type, image-name, image) ->
 			value: image
 			options:
 				filename: image-name
-				content-type: 'image/jpg'
+				content-type: "image/#{image-format-type}"
 	
 	url = "http://#{config.image-server-ip}:#{config.image-server-port}/register-#{type}"
 
