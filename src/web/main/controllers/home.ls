@@ -17,15 +17,16 @@ module.exports = (req, res, content = \home) ->
 			status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
 				generate-home-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
 		new Promise (resolve, reject) ->
-			users <- get-new-users 5 .then
-			Promise.all (users |> map (user) ->
-				new Promise (resolve, reject) ->
-					user .= to-object!
-					user-following-check me.id, user.id .then (is-following) ->
-						user.is-following = is-following
-						resolve user)
-				.then (res) ->
-					resolve res
+			resolve null
+			#users <- get-new-users 5 .then
+			#Promise.all (users |> map (user) ->
+			#	new Promise (resolve, reject) ->
+			#		user .= to-object!
+			#		user-following-check me.id, user.id .then (is-following) ->
+			#			user.is-following = is-following
+			#			resolve user)
+			#	.then (res) ->
+			#		resolve res
 	] .then (results) -> res.display req, res, 'home' do
 		timeline-html: results.0
 		recommendation-users: results.1
