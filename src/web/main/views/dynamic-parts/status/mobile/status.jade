@@ -31,7 +31,7 @@ div.status.article(
 			if status.isRepostToStatus
 				div.repost-information
 					p.info
-						img.icon(src=config.url + '/img/icon/' + status.repostedByUser.screenName, alt='icon')
+						img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
 						i.fa.fa-retweet
 						span.name= status.repostedByUser.name
 						| によってRepost
@@ -43,7 +43,7 @@ div.status.article(
 					data-user-verified!= status.replySource.user.isVerified.toString())
 					article
 						div.icon-anchor
-							img.icon(src=config.url + '/img/icon/' + status.replySource.user.screenName, alt='icon')
+							img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
 						header
 							if status.replySource.user.isVerified
 								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
@@ -54,10 +54,10 @@ div.status.article(
 							div.text
 								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
 							if status.replySource.isImageAttached
-								img.image(src=config.url + '/img/status/' + status.replySource.id, alt='image')
+								img.image(src=status.replySource.imageUrls[0], alt='image')
 			div.main
 				div.icon-anchor
-					img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+					img.icon(src=status.user.iconImageUrl, alt='icon')
 				header.header
 					div.author(itemprop='author')
 						if status.user.isVerified
@@ -75,7 +75,7 @@ div.status.article(
 								each tag in status.tag
 									li= tag
 					if status.isImageAttached
-						img.image(src=config.url + '/img/status/' + status.id, alt='image', itemprop='image')
+						img.image(src=status.imageUrls[0], alt='image', itemprop='image')
 				aside.footer
 					if login
 						div.actions

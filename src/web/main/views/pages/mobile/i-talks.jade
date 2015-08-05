@@ -23,7 +23,7 @@ html(lang='ja', dir='ltr')
 						li.talk(data-is-my-message!= (message.userId == me.id).toString(), data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
 							a(href= '/' + message.user.screenName + '/talk')
 								article
-									img.icon(src=url + '/img/icon/' + message.user.screenName, alt='icon')
+									img.icon(src=message.user.iconImageUrl, alt='icon')
 									header
 										h2= message.user.name
 										span.screenName= '@' + message.user.screenName
@@ -33,6 +33,6 @@ html(lang='ja', dir='ltr')
 											span.me あなた:
 										= message.text
 									if message.isImageAttached
-										img.image(src=url + '/img/talk-message/' + message.id, alt='image')
+										img.image(src=message.imageUrls[0], alt='image')
 			else
 				p#empty-histories 履歴はありません。

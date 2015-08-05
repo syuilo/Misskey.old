@@ -5,7 +5,7 @@ li.status(title= status.displayCreatedAt
 	data-user-verified!= status.user.isVerified.toString())
 	article
 		a.icon-anchor(href= config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
-			img.icon(src=config.url + '/img/icon/' + status.user.screenName, alt='icon')
+			img.icon(src=status.user.iconImageUrl, alt='icon')
 		header
 			if status.user.isVerified
 				img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
@@ -17,4 +17,4 @@ li.status(title= status.displayCreatedAt
 			div.text
 				p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 			if status.isImageAttached
-				img.image(src=config.url + '/img/status/' + status.id, alt='image')
+				img.image(src=status.imageUrls[0], alt='image')
