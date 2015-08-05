@@ -5,6 +5,8 @@ require! {
 	'./models/user-header': UserHeader
 	'./models/user-wallpaper': UserWallpaper
 	'./models/status-image': StatusImage
+	'./models/talk-message': TalkMessage
+	'./models/talk-message-image': TalkMessageImage
 	'./models/bbs-post': BBSPost
 	'./models/bbs-thread': BBSThread
 	'./models/bbs-post-image': BBSPostImage
@@ -12,6 +14,16 @@ require! {
 	'./utils/register-image': register-image
 	'./config'
 }
+
+global <<< require \prelude-ls
+
+TalkMessageImage.find {} (err, images) ->
+	images |> each (image) ->
+		TalkMessage.find-by-id image.message-id, (err, message) ->
+			User.find-by-id message.user-id, (err, user) ->
+				message.images = ["#{message.id}-1.jpg"]
+				message.save!
+				register-image user, \talk-message-image, "#{message.id}-1.jpg", \jpg, image.image
 
 StatusImage.find {} (err, images) ->
 	images |> each (image) ->

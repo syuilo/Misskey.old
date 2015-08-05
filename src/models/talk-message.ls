@@ -17,6 +17,7 @@ schema = new Schema do
 	cursor:            {type: Number}
 	is-deleted:        {type: Boolean,               default:  no}
 	is-image-attached: {type: Boolean,               required: yes, default: no}
+	images:            {type: [String],                default: []}
 	is-readed:         {type: Boolean,               default:  no}
 	is-edited:         {type: Boolean,               default:  no}
 	otherparty-id:     {type: Schema.Types.ObjectId, required: yes}
