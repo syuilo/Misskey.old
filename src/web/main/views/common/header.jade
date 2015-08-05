@@ -63,7 +63,7 @@ header#misskey-main-header(role='banner')
 							span.screenName= '@' + me.screenName
 						div.dropdown
 							a.iconAnchor(href= url + '/' + me.screenName)
-								img.icon(src= url + '/img/icon/' + me.screenName, alt='icon')
+								img.icon(src= me.iconImageUrl, alt='icon')
 							div.dropdownContent
 								ul
 									li: a.ui-waves-effect(href= url + '/' + me.screenName)

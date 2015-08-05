@@ -8,7 +8,7 @@ Schema = mongoose.Schema
 
 db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
-user-schema = new Schema do
+schema = new Schema do
 	bio:                     {type: String,                required: no,  default: null}
 	birthday:                {type: String,                required: no,  default: null}
 	color:                   {type: String,                required: yes}
@@ -41,8 +41,23 @@ user-schema = new Schema do
 	banner-image:            {type: String,                required: no,  default: null}
 	wallpaper-image:         {type: String,                required: no,  default: null}
 
-if !user-schema.options.to-object then user-schema.options.to-object = {}
-user-schema.options.to-object.transform = (doc, ret, options) ->
+schema.virtual \iconImageUrl .get ->
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/icon/#{this.icon-image}"
+
+schema.virtual \bannerImageUrl .get ->
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.icon-image}"
+
+schema.virtual \blurredBannerImageUrl .get ->
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.icon-image.replace '.jpg' '-blurred.jpg'}"
+
+schema.virtual \wallpaperImageUrl .get ->
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.icon-image}"
+
+schema.virtual \blurredWallpaperImageUrl .get ->
+	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.icon-image.replace '.jpg' '-blurred.jpg'}"
+
+if !schema.options.to-object then schema.options.to-object = {}
+schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
 	ret.icon-image-url = "#{config.image-server-url}/contents/user-contents/user/#{doc.id}/icon/#{doc.icon-image}"
@@ -54,4 +69,4 @@ user-schema.options.to-object.transform = (doc, ret, options) ->
 	delete ret.emailaddress
 	ret
 
-module.exports = db.model \User user-schema
+module.exports = db.model \User schema
