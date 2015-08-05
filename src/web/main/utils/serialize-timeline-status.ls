@@ -59,7 +59,7 @@ module.exports = (status, me, callback) ->
 						status.reply-source.user = reply-user
 						if reply-status.is-reply
 							status-get-talk reply-status .then (talk) ->
-								status.more-talk = talk |> map (talk-item) -> talk-item.to-object!
+								status.more-talk = talk
 								callback status
 						else
 							callback status
