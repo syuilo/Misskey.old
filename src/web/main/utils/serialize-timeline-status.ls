@@ -90,7 +90,7 @@ module.exports = (status, me, callback) ->
 	status <- get-user status
 	status <- get-reply-source status
 	status <- get-replies status
-	console.log status
+	if status.more-talk? then console.log status.more-talk
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then
