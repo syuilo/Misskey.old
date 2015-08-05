@@ -5,6 +5,7 @@
 require! {
 	fs
 	https
+	express
 	jade
 	'../config'
 }
