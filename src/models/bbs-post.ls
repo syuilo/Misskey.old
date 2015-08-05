@@ -15,6 +15,7 @@ schema = new Schema do
 	created-at:        {type: Date,                    required: yes, default: Date.now}
 	cursor:            {type: Number}
 	is-image-attached: {type: Boolean,                 default: false}
+	images:            {type: [String],                default: []}
 	replies:           {type: [Schema.Types.ObjectId], default: []}
 	text:              {type: String,                  required: no,  default: null}
 	thread-cursor:     {type: Number,                  required: yes}

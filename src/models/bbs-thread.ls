@@ -10,6 +10,7 @@ db = mongoose.create-connection config.mongo.uri, config.mongo.options
 
 schema = new Schema do
 	created-at:      {type: Date,                  required: yes, default: Date.now}
+	eyecatch-image:  {type: String,                required: no,  default: null}
 	tags:            {type: [String],              required: no,  default: []}
 	title:           {type: String,                required: yes}
 	user-id:         {type: Schema.Types.ObjectId, required: yes}
