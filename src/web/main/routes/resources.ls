@@ -40,22 +40,22 @@ module.exports = (app) ->
 				.replace do
 					/<%wallpaperUrl%>/g
 					if style-user?
-						then "\"#{config.public-config.url}/img/wallpaper/#{style-user.screen-name}\""
+						then "\"#{style-user.wallpaper-image-url}\""
 						else ''
 				.replace do
 					/<%blurredWallpaperUrl%>/g
 					if style-user?
-						then "\"#{config.public-config.url}/img/wallpaper/#{style-user.screen-name}/blur\""
+						then "\"#{style-user.blurred-wallpaper-image-url}\""
 						else ''
 				.replace do
 					/<%headerImageUrl%>/g
 					if style-user?
-						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}\""
+						then "\"#{style-user.banner-image-url}\""
 						else ''
 				.replace do
 					/<%blurredHeaderImageUrl%>/g
 					if style-user?
-						then "\"#{config.public-config.url}/img/header/#{style-user.screen-name}/blur\""
+						then "\"#{style-user.blurred-banner-image-url}\""
 						else ''
 				.replace do
 					/<%mobileHeaderImageUrl%>/g

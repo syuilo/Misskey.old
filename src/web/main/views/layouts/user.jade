@@ -18,13 +18,13 @@ html(lang='ja'
 		meta(property='og:type', content='article')
 		meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
 		meta(property='og:url', content=url + '/' + user.screenName)
-		meta(property='og:image', content=url + '/img/icon/' + user.screenName)
+		meta(property='og:image', content=user.iconImageUrl)
 		meta(property='og:site_name', content='Misskey')
 		meta(property='twitter:card', content='summary')
 		meta(property='twitter:site', content='@syuilo')
 		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
 		meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
-		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
+		meta(property='twitter:image', content=user.iconImageUrl)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
 		block title
 		link(rel='stylesheet', href='/resources/styles/user.css?user=' + user.screenName)
@@ -46,7 +46,7 @@ html(lang='ja'
 					| アイコンを編集
 				div.main
 					div.preview
-						img.image(src='/img/icon/' + user.screenName, alt='icon')
+						img.image(src=user.iconImageUrl, alt='icon')
 					label.image
 						input(name='image', type='file', accept='image/*')
 					div.progress
@@ -66,7 +66,7 @@ html(lang='ja'
 					| ヘッダー画像を編集
 				div.main
 					div.preview
-						img.image(src='/img/header/' + user.screenName, alt='header')
+						img.image(src=user.bannerImageUrl, alt='header')
 					label.image
 						input(name='image', type='file', accept='image/*')
 					div.progress
@@ -108,7 +108,7 @@ html(lang='ja'
 					div.main
 						div#icon-area
 							a.icon-anchor
-								img#icon(src='/img/icon/' + user.screenName, alt='icon', itemprop='image')
+								img#icon(src=user.iconImageUrl, alt='icon', itemprop='image')
 							div.contents
 								if user.comment != ""
 									p#comment= user.comment
