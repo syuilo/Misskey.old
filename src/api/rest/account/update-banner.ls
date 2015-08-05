@@ -1,22 +1,20 @@
 require! {
 	fs
 	gm
+	'../../../utils/register-image'
 	'../../../utils/get-express-params'
-	'../../../models/user-header': UserHeader
 	'../../auth': authorize
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[trim-x, trim-y, trim-w, trim-h] = get-express-params req, <[ trim-x trim-y trim-w trim-h ]>
-	(, header) <- UserHeader.find-by-id user.id
 	if (Object.keys req.files).length == 1
 		path = req.files.image.path
 		(normal-image-buffer) <- generate-normal-image path .then
 		(blurred-image-buffer) <- generate-blurred-image path .then
 		fs.unlink path
-		header
-			..image = normal-image-buffer
-			..blur = blurred-image-buffer
-			..save -> res.api-render 'success'
+		register-image user, \user-banner "#{user.id}.jpg", \jpg, normal-image-buffer .then ->
+			register-image user, \user-banner "#{user.id}-blurred.jpg", \jpg, blurred-image-buffer .then ->
+				res.api-render 'success'
 	else
 		res.api-error 400 'Not attached image'
 
