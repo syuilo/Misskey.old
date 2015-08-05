@@ -95,6 +95,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 											id: status.id
 											user-name: user.name
 											user-screen-name: user.screen-name
+											user-icon-image-url: user.icon-image-url
 											text: status.text
 									publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
