@@ -8,6 +8,6 @@ module.exports = (app, user, id) ->
 		reject {code, message}
 	
 	if user.is-plus
-		
+		# kyoppie
 	else
 		throw-error \access-denied 'Access denied.'
