@@ -9,10 +9,14 @@ module.exports = (type, image-name, image) ->
 	request-data =
 		passkey: config.image-server-passkey
 		'image-name': image-name
-		image: image
+		image:
+			value: image
+			options:
+				filename: image-name
+				content-type: 'image/jpg'
 	
 	url = "http://#{config.image-server-ip}:#{config.image-server-port}/register-#{type}"
-	console.log url
+
 	request.post {url: url, form-data: request-data} (err, res, body) ->
 		if err
 			console.log err
