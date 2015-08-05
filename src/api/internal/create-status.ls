@@ -2,7 +2,6 @@ require! {
 	fs
 	gm
 	'../../models/status': Status
-	'../../models/status-image': StatusImage
 	'../../models/status-mention': StatusMention
 	'../../models/user': User
 	'../../models/user-following': UserFollowing
