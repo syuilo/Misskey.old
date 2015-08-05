@@ -12,6 +12,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	if empty in-reply-to-status-id then in-reply-to-status-id = null
 	
 	image = null
+	path = null
 	if (Object.keys req.files).length == 1 =>
 		path = req.files.image.path
 		image = fs.read-file-sync path
@@ -20,9 +21,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		app, user, text, in-reply-to-status-id, image
 	.then do
 		(status) ->
+			if path? then fs.unlink path
 			if status?
 				res.api-render status.to-object!
 			else
 				res.api-render \ok
 		(err) ->
+			if path? then fs.unlink path
 			res.api-error 400 err
