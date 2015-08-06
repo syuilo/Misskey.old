@@ -20,7 +20,7 @@ block content
 					each user in followings
 						li(data-user-verified!= user.isPlus.toString())
 							a(href= '/' + user.screenName)
-								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+								img.icon(src=user.iconImageUrl, alt='icon')
 							h2
 								a(href='/' + user.screenName)= user.name
 								span.screenName= '@' + user.screenName
@@ -34,7 +34,7 @@ block content
 					each user in followers
 						li(data-user-verified!= user.isPlus.toString())
 							a(href= '/' + user.screenName)
-								img.icon(src='/img/icon/' + user.screenName, alt='icon')
+								img.icon(src=user.iconImageUrl, alt='icon')
 							h2
 								a(href='/' + user.screenName)= user.name
 								span.screenName= '@' + user.screenName
