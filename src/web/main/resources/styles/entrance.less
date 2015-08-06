@@ -172,11 +172,11 @@ main {
 			.at {
 				display: block;
 				position: absolute;
-				top: 0;
-				left: 0;
-				box-sizing: border-box;
+				top: 2px;
+				left: 2px;
 				padding: 8px 12px;
 				margin: 0;
+				width: 1em;
 				line-height: 1.5rem;
 				font-size: 1em;
 				font-style: normal;
@@ -187,7 +187,7 @@ main {
 			}
 
 			#id {
-				padding-left: 32px;
+				padding-left: ~"calc(1em + 24px)";
 			}
 
 			input[type=text],
