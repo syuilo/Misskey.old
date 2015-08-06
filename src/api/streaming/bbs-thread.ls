@@ -6,6 +6,7 @@ require! {
 	'../../models/user': User
 	'../../models/bbs-thread': BBSThread
 	'../../models/bbs-post': BBSPost
+	'../../web/main/utils/parse-bbs-thread-post-text'
 	'../../web/main/utils/bbs-post-serialyzer'
 	'../../config'
 	'express-session': session
@@ -62,6 +63,7 @@ module.exports = (io, session-store) ->
 								bbs-post-serialyzer post, (serialized-post) ->
 									socket.emit content.type, post-compiler do
 										post: serialized-post
+										text-parser: parse-bbs-thread-post-text
 										config: config.public-config
 							| _ => socket.emit content.type, content.value
 						else
