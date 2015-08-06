@@ -151,18 +151,31 @@ main {
 		-moz-appearance: none;
 		appearance: none;
 		display: block;
+		position: relative;
 		box-sizing: border-box;
 		margin: 16px 0 0 auto;
-		padding: 8px 12px;
+		padding: 12px 12px;
 		width: 350px;
+		line-height: 1em;
+		font-size: 1.1em;
 		color: #fff;
 		outline: 0;
 		border: 0;
-		border-radius: 2px;
+		border-radius: 8px;
 		box-shadow: none;
 		background: #00acce;
+		overflow: hidden;
+		cursor: pointer;
+
+		* {
+			cursor: pointer;
+		}
 
 		i {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 12px 12px;
 			background: rgba(0, 0, 0, 0.1);
 		}
 
