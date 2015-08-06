@@ -37,7 +37,7 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 			if login
 				div#post-form-container
 					form#post-form(enctype='multipart/form-data', role='form')
-						img.icon(src='/img/icon/' + me.screenName, alt='icon', title=me.comment)
+						img.icon(src=me.iconImageUrl, alt='icon', title=me.comment)
 						div.form
 							textarea(name='text', placeholder='', role='textbox', aria-multiline)
 							div.design-allow(role='presentation')
