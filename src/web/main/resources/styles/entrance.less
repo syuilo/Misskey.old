@@ -149,9 +149,6 @@ main {
 
 			p.caption {
 				display: inline-block;
-				position: absolute;
-				top: 0;
-				left: 0;
 				box-sizing: border-box;
 				width: 6rem;
 				padding: 8px 12px;
@@ -159,8 +156,7 @@ main {
 				line-height: 1.5rem;
 				font-size: 0.9em;
 				font-weight: bold;
-				color: #fff;
-				background: @themeColor;
+				color: @themeColor;
 				transition: all .5s ease;
 			}
 
@@ -173,16 +169,12 @@ main {
 				-moz-user-select: text;
 				-webkit-user-select: text;
 				-ms-user-select: text;
-				display: inline-block;
-				position: absolute;
-				z-index: 1;
-				top: 0;
-				right: 0;
+				display: block;
 				cursor: auto;
 				box-sizing: border-box;
 				padding: 8px 12px;
 				margin: 0;
-				width: ~"calc(100% - 6rem)";
+				width: 100%;
 				line-height: 1.5rem;
 				font-size: 1.1em;
 				color: #000;
@@ -190,7 +182,7 @@ main {
 				border: solid 2px #eee;
 				border-radius: 0;
 				box-shadow: none;
-				background: rgba(255, 255, 255, 0);
+				background: #fff;
 				transition: all .5s ease;
 
 				&:hover {
