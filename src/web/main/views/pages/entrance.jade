@@ -29,6 +29,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 		main
 			form#login-form(action='/login', method='post')
 				label
+					p.caption ユーザー名
 					input#id(name='screen-name'
 						type='text'
 						pattern='^[0-9A-Za-z_]+$'
@@ -36,14 +37,13 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 						autocomplete='off'
 						autofocus
 						required)
-					p.caption ユーザー名
 				label
+					p.caption パスワード
 					input(name='password'
 						type='password'
 						placeholder='パスワード'
 						autocomplete='off'
 						required)
-					p.caption パスワード
 				input(type='submit', value='Login')
 			button#new 新しくアカウントを作成する
 			
