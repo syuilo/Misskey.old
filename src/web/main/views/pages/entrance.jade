@@ -32,13 +32,15 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					p.caption
 						i.fa.fa-at
 						| ユーザー名
-					input#id(name='screen-name'
-						type='text'
-						pattern='^[0-9A-Za-z_]+$'
-						placeholder='ユーザー名'
-						autocomplete='off'
-						autofocus
-						required)
+					div.field
+						i.at @
+						input#id(name='screen-name'
+							type='text'
+							pattern='^[0-9A-Za-z_]+$'
+							placeholder='ユーザー名'
+							autocomplete='off'
+							autofocus
+							required)
 				label
 					p.caption
 						i.fa.fa-lock
