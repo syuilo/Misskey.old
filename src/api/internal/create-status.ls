@@ -1,6 +1,7 @@
 require! {
 	fs
 	gm
+	'image-type': image-type
 	'../../models/status': Status
 	'../../models/status-mention': StatusMention
 	'../../models/user': User
@@ -25,18 +26,26 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 		switch
 		| recent-status? && text == recent-status.text => throw-error \duplicate-content 'Duplicate content.'
 		| image? =>
-			image-quality = if user.is-plus then 80 else 60
-			gm image
-				.compress \jpeg
-				.quality image-quality
-				.to-buffer \jpeg (err, buffer) ->
-					if err? || !buffer?
-						throw-error \failed-attach-image 'Failed attach image.'
-					else
-						create buffer
-		| _ => create null
+			# Detect the image type
+			switch (image-type image)
+			| \gif =>
+				if user.is-plus
+					create image, \gif
+				else
+					throw-error \denied-gif-upload 'Denied GIF upload (plus-account only).'
+			| _ => 
+				image-quality = if user.is-plus then 80 else 60
+				gm image
+					.compress \jpeg
+					.quality image-quality
+					.to-buffer \jpeg (err, buffer) ->
+						if err? || !buffer?
+							throw-error \failed-attach-image 'Failed attach image.'
+						else
+							create buffer, \jpg
+		| _ => create null, null
 
-	function create(image)
+	function create(image, image-type)
 		status = new Status do
 			app-id: if app? then app.id else null
 			in-reply-to-status-id: in-reply-to-status-id
@@ -60,8 +69,8 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 							reply-to-status.save!
 				switch
 				| image? =>
-					image-name = "#{created-status.id}-1.jpg"
-					register-image user, \status-image image-name, \jpg, image .then ->
+					image-name = "#{created-status.id}-1.#{image-type}"
+					register-image user, \status-image image-name, image-type, image .then ->
 						created-status.images = [image-name]
 						created-status.save ->
 							done!
