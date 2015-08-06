@@ -127,6 +127,7 @@ main {
 	padding: 64px 0 0 0;
 
 	.main {
+		position: relative;
 		box-sizing: border-box;
 		height: 512px;
 		padding: 32px;
@@ -135,6 +136,203 @@ main {
 		background-position: center center;
 		background-size: cover;
 		border-radius: 8px;
+
+		.contents {
+			box-sizing: border-box;
+			height: 100%;
+			margin: 0 0 0 auto;
+			background: rgba(0, 0, 0, 0.3);
+
+			#login-form {
+				display: block;
+				box-sizing: border-box;
+				margin: 0;
+				padding: 24px 32px 0 32px;
+				width: 350px;
+				background: #fff;
+				box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+				border-radius: 8px;
+				transform-origin: center top;
+				transform: perspective(512px);
+
+				h2 {
+					display: block;
+					margin: 0 0 12px 0;
+					text-align: center;
+					font-size: 1em;
+					font-weight: normal;
+					color: #888;
+					border-bottom: solid 1px #eee;
+				}
+
+				label {
+					display: block;
+					margin: 8px 0;
+
+					p.caption {
+						display: inline-block;
+						box-sizing: border-box;
+						padding: 8px 12px 4px 12px;
+						margin: 0;
+						line-height: 1.5em;
+						font-size: 1em;
+						font-weight: bold;
+						color: #006f87;
+						transition: all .5s ease;
+
+						i {
+							margin-right: 6px;
+							color: #00acce;
+						}
+					}
+
+					.field {
+						position: relative;
+
+						&:hover input {
+							border: solid 2px #00acce;
+							transition: all .2s ease;
+						}
+					}
+
+					.at {
+						display: block;
+						position: absolute;
+						top: 2px;
+						left: 2px;
+						padding: 8px 12px;
+						margin: 0;
+						width: 1em;
+						height: 1.5em;
+						font-size: 1em;
+						font-style: normal;
+						color: #555;
+						background: #f8f8f8;
+						border: none;
+						border-radius: 4px;
+						cursor: text;
+					}
+
+					#id {
+						padding-left: ~"calc(1em + 24px + 12px)";
+					}
+
+					input[type=text],
+					input[type=password] {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						user-select: text;
+						-moz-user-select: text;
+						-webkit-user-select: text;
+						-ms-user-select: text;
+						display: block;
+						cursor: auto;
+						box-sizing: border-box;
+						padding: 8px 12px;
+						margin: 0;
+						width: 100%;
+						height: ~"calc(1.5em + 16px + 4px)";
+						font-size: 1em;
+						color: #000;
+						outline: none;
+						border: solid 2px #eee;
+						border-radius: 4px;
+						box-shadow: none;
+						background: #fff;
+						transition: all .5s ease;
+
+						&:hover {
+							border: solid 2px #00acce;
+							transition: all .2s ease;
+						}
+
+						&:focus {
+							color: #006f87;
+							border: solid 2px #00acce;
+							transition: all .2s ease;
+						}
+					}
+				}
+
+				input[type=submit] {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					cursor: pointer;
+					box-sizing: border-box;
+					padding: 16px 16px 32px 16px;
+					margin: 0;
+					width: 100%;
+					font-size: 1.2em;
+					color: #555;
+					outline: none;
+					border: none;
+					border-radius: 0;
+					box-shadow: none;
+					background: transparent;
+					transition: all .5s ease;
+					font-family: FontAwesome, '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+
+					&:hover {
+						color: @themeColor;
+						transition: all .2s ease;
+					}
+
+					&:focus {
+						color: @themeColor;
+						transition: all .2s ease;
+					}
+
+					&:active {
+						color: darken(@themeColor, 30%);
+						transition: all .2s ease;
+					}
+				}
+			}
+
+			#new {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: block;
+				position: relative;
+				box-sizing: border-box;
+				margin: 24px 0 0 0;
+				padding: 18px 18px 18px 36px;
+				width: 350px;
+				line-height: 1em;
+				font-size: 1.1em;
+				color: #fff;
+				outline: 0;
+				border: 0;
+				border-radius: 8px;
+				box-shadow: none;
+				background: #00acce;
+				overflow: hidden;
+				cursor: pointer;
+
+				* {
+					cursor: pointer;
+				}
+
+				i {
+					position: absolute;
+					top: 0;
+					left: 0;
+					padding: 18px;
+					background: rgba(0, 0, 0, 0.1);
+				}
+
+				&:hover {
+					background: #00c3e5;
+				}
+
+				&:active {
+					background: #0097b2;
+				}
+			}
+		}
 	}
 
 	h1 {
@@ -144,196 +342,6 @@ main {
 		font-size: 1em;
 		font-weight: normal;
 		color: #888;
-	}
-
-	#new {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		display: block;
-		position: relative;
-		box-sizing: border-box;
-		margin: 24px 0 0 auto;
-		padding: 18px 18px 18px 36px;
-		width: 350px;
-		line-height: 1em;
-		font-size: 1.1em;
-		color: #fff;
-		outline: 0;
-		border: 0;
-		border-radius: 8px;
-		box-shadow: none;
-		background: #00acce;
-		overflow: hidden;
-		cursor: pointer;
-
-		* {
-			cursor: pointer;
-		}
-
-		i {
-			position: absolute;
-			top: 0;
-			left: 0;
-			padding: 18px;
-			background: rgba(0, 0, 0, 0.1);
-		}
-
-		&:hover {
-			background: #00c3e5;
-		}
-
-		&:active {
-			background: #0097b2;
-		}
-	}
-
-	#login-form {
-		display: block;
-		box-sizing: border-box;
-		margin: 0 0 0 auto;
-		padding: 24px 32px 0 32px;
-		width: 350px;
-		background: #fff;
-		box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-		border-radius: 8px;
-		transform-origin: center top;
-		transform: perspective(512px);
-
-		h2 {
-			display: block;
-			margin: 0 0 12px 0;
-			text-align: center;
-			font-size: 1em;
-			font-weight: normal;
-			color: #888;
-			border-bottom: solid 1px #eee;
-		}
-
-		label {
-			display: block;
-			margin: 8px 0;
-
-			p.caption {
-				display: inline-block;
-				box-sizing: border-box;
-				padding: 8px 12px 4px 12px;
-				margin: 0;
-				line-height: 1.5em;
-				font-size: 1em;
-				font-weight: bold;
-				color: #006f87;
-				transition: all .5s ease;
-
-				i {
-					margin-right: 6px;
-					color: #00acce;
-				}
-			}
-
-			.field {
-				position: relative;
-
-				&:hover input {
-					border: solid 2px #00acce;
-					transition: all .2s ease;
-				}
-			}
-
-			.at {
-				display: block;
-				position: absolute;
-				top: 2px;
-				left: 2px;
-				padding: 8px 12px;
-				margin: 0;
-				width: 1em;
-				height: 1.5em;
-				font-size: 1em;
-				font-style: normal;
-				color: #555;
-				background: #f8f8f8;
-				border: none;
-				border-radius: 4px;
-				cursor: text;
-			}
-
-			#id {
-				padding-left: ~"calc(1em + 24px + 12px)";
-			}
-
-			input[type=text],
-			input[type=password] {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				user-select: text;
-				-moz-user-select: text;
-				-webkit-user-select: text;
-				-ms-user-select: text;
-				display: block;
-				cursor: auto;
-				box-sizing: border-box;
-				padding: 8px 12px;
-				margin: 0;
-				width: 100%;
-				height: ~"calc(1.5em + 16px + 4px)";
-				font-size: 1em;
-				color: #000;
-				outline: none;
-				border: solid 2px #eee;
-				border-radius: 4px;
-				box-shadow: none;
-				background: #fff;
-				transition: all .5s ease;
-
-				&:hover {
-					border: solid 2px #00acce;
-					transition: all .2s ease;
-				}
-
-				&:focus {
-					color: #006f87;
-					border: solid 2px #00acce;
-					transition: all .2s ease;
-				}
-			}
-		}
-
-		input[type=submit] {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			cursor: pointer;
-			box-sizing: border-box;
-			padding: 16px 16px 32px 16px;
-			margin: 0;
-			width: 100%;
-			font-size: 1.2em;
-			color: #555;
-			outline: none;
-			border: none;
-			border-radius: 0;
-			box-shadow: none;
-			background: transparent;
-			transition: all .5s ease;
-			font-family: FontAwesome, '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-
-			&:hover {
-				color: @themeColor;
-				transition: all .2s ease;
-			}
-
-			&:focus {
-				color: @themeColor;
-				transition: all .2s ease;
-			}
-
-			&:active {
-				color: darken(@themeColor, 30%);
-				transition: all .2s ease;
-			}
-		}
 	}
 }
 
