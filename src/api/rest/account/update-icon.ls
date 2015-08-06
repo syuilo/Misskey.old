@@ -3,6 +3,7 @@ require! {
 	gm
 	'image-type': image-type
 	'../../../utils/register-image'
+	'../../../utils/delete-image'
 	'../../../utils/get-express-params'
 	'../../auth': authorize
 }
@@ -38,6 +39,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	function update(image, img-type)
 		filename = "#{user.id}.#{img-type}"
 		register-image user, \user-icon, filename, img-type, image .then ->
+			delete-image user, \user-icon, user.icon-image .then!
 			user.icon-image = filename
 			user.save ->
 				res.api-render 'success'
