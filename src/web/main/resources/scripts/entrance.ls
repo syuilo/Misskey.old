@@ -7,9 +7,6 @@ function swing($elem, force)
 		$elem.css \transform "perspective(1024px) rotateX(#{pos}deg)"
 
 $ ->
-	swing ($ '#login-form'), 1
-	swing ($ '#new'), 2
-	
 	function set-features1-design-layer
 		$ '#features-1 > .design-layer' .css \height "#{$ \#features-1 .outer-height! + 128}px"
 	
