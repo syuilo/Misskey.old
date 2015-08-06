@@ -30,34 +30,35 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 		
 		main
 			div.main
-				form#login-form(action='/login', method='post')
-					h2 ログイン
-					label
-						p.caption
-							i.fa.fa-user
-							| ユーザー名
-						div.field
-							i.at @
-							input#id(name='screen-name'
-								type='text'
-								pattern='^[0-9A-Za-z_]+$'
-								placeholder='User name'
+				div.contents
+					form#login-form(action='/login', method='post')
+						h2 ログイン
+						label
+							p.caption
+								i.fa.fa-user
+								| ユーザー名
+							div.field
+								i.at @
+								input#id(name='screen-name'
+									type='text'
+									pattern='^[0-9A-Za-z_]+$'
+									placeholder='User name'
+									autocomplete='off'
+									autofocus
+									required)
+						label
+							p.caption
+								i.fa.fa-lock
+								| パスワード
+							input(name='password'
+								type='password'
+								placeholder='Password'
 								autocomplete='off'
-								autofocus
 								required)
-					label
-						p.caption
-							i.fa.fa-lock
-							| パスワード
-						input(name='password'
-							type='password'
-							placeholder='Password'
-							autocomplete='off'
-							required)
-					input(type='submit', value!='Login &#xf105;')
-				button#new
-					i.fa.fa-pencil-square-o
-					| 新しくアカウントを作成する
+						input(type='submit', value!='Login &#xf105;')
+					button#new
+						i.fa.fa-pencil-square-o
+						| アカウントを作成する
 			h1 Misskey
 			
 		div#register-form
