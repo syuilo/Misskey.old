@@ -215,10 +215,16 @@ main {
 						border-radius: 4px;
 						cursor: text;
 						font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+						transition: all .5s ease;
 					}
 
 					#id {
 						padding-left: ~"calc(1em + 24px + 12px)";
+
+						&:focus + .at {
+							color: #006f87;
+							transition: all .2s ease;
+						}
 					}
 
 					input[type=text],
