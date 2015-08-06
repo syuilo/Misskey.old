@@ -35,7 +35,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 				else
 					update buffer, \jpg
 
-	function update(image, img-type) ->
+	function update(image, img-type)
 		filename = "#{user.id}.#{img-type}"
 		register-image user, \user-icon, filename, img-type, image .then ->
 			user.icon-image = filename
