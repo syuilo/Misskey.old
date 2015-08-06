@@ -11,6 +11,7 @@
 It runs on Node.js.
 
 Source code that has been deployed to https://misskey.xyz/ is available at master branch.
+
 Source code of Misskey image server has also been published: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
 
 ## Dependencies
