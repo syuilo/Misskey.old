@@ -27,8 +27,8 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 		| recent-status? && text == recent-status.text => throw-error \duplicate-content 'Duplicate content.'
 		| image? =>
 			# Detect the image type
-			console.log image-type image
-			switch (image-type image)
+			img-type = (image-type image).ext
+			switch (img-type)
 			| \gif =>
 				if user.is-plus
 					create image, \gif
@@ -46,7 +46,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 							create buffer, \jpg
 		| _ => create null, null
 
-	function create(image, image-type)
+	function create(image, img-type)
 		status = new Status do
 			app-id: if app? then app.id else null
 			in-reply-to-status-id: in-reply-to-status-id
@@ -70,8 +70,8 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 							reply-to-status.save!
 				switch
 				| image? =>
-					image-name = "#{created-status.id}-1.#{image-type}"
-					register-image user, \status-image image-name, image-type, image .then ->
+					image-name = "#{created-status.id}-1.#{img-type}"
+					register-image user, \status-image image-name, img-type, image .then ->
 						created-status.images = [image-name]
 						created-status.save ->
 							done!
