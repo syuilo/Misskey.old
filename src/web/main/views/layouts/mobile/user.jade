@@ -20,13 +20,13 @@ html(lang='ja'
 		meta(property='og:type', content='article')
 		meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
 		meta(property='og:url', content=url + '/' + user.screenName)
-		meta(property='og:image', content=url + '/img/icon/' + user.screenName)
+		meta(property='og:image', content=user.iconImageUrl)
 		meta(property='og:site_name', content='Misskey')
 		meta(property='twitter:card', content='summary')
 		meta(property='twitter:site', content='@syuilo')
 		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
 		meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
-		meta(property='twitter:image', content=url + '/img/icon/' + user.screenName)
+		meta(property='twitter:image', content=user.iconImageUrl)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
 		block title
 		link(rel='stylesheet', href='/resources/styles/mobile/user.css?user=' + user.screenName)
@@ -44,7 +44,7 @@ html(lang='ja'
 		main#misskey-main(role='main')
 			header
 				div.main
-					img.icon(src='/img/icon/' + user.screenName, alt='icon')
+					img.icon(src=user.iconImageUrl, alt='icon')
 					div.title
 						h1.name
 							if user.isVerified

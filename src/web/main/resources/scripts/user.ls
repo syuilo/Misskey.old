@@ -336,7 +336,7 @@ function init-header-image-edit-form
 		event.prevent-default!
 		$submit-button.attr \disabled yes
 		$submit-button.attr \value '更新しています...'
-		$.ajax config.api-url + '/account/update-header' {
+		$.ajax config.api-url + '/account/update-banner' {
 			+async
 			type: \put
 			-process-data
