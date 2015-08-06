@@ -130,17 +130,19 @@ main {
 		position: relative;
 		box-sizing: border-box;
 		height: 512px;
-		padding: 32px;
+		padding: 0;
 		background-image: url('/resources/images/top.jpg');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
-		border-radius: 8px;
+		//border-radius: 8px;
+		overflow: hidden;
 
 		.contents {
 			box-sizing: border-box;
 			height: 100%;
-			margin: 0 0 0 auto;
+			padding: 32px;
+			float: right;
 			background: rgba(0, 0, 0, 0.3);
 
 			#login-form {
