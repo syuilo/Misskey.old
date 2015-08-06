@@ -146,25 +146,6 @@ main {
 
 		label {
 			display: block;
-			position: relative;
-			min-height: ~"calc(1.5em + 16px)";
-			border: solid 1px #eee;
-
-			&:hover, &:focus {
-				p.caption {
-					background: #29797f;
-				}
-			}
-
-			&:before {
-				content: "";
-				display: block;
-				clear: both;
-			}
-
-			&:first-child {
-				margin-bottom: 16px;
-			}
 
 			p.caption {
 				display: inline-block;
@@ -206,7 +187,7 @@ main {
 				font-size: 1.1em;
 				color: #000;
 				outline: none;
-				border: none;
+				border: solid 2px #eee;
 				border-radius: 0;
 				box-shadow: none;
 				background: rgba(255, 255, 255, 0);
@@ -217,17 +198,9 @@ main {
 				}
 
 				&:focus {
-					width: 100%;
-					padding: 8px 12px 8px 32px;
 					color: @themeColor;
-					background: rgba(255, 255, 255, 1.0);
+					border: solid 2px @themeColor;
 					transition: all .2s ease;
-
-					& + .caption {
-						width: 100%;
-						background: #29797f;
-						transition: all .2s ease;
-					}
 				}
 			}
 		}
