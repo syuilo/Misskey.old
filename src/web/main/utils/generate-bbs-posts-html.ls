@@ -1,5 +1,6 @@
 require! {
 	jade
+	'./parse-bbs-thread-post-text'
 	'./bbs-posts-serialyzer'
 	'../../../config'
 }
@@ -13,6 +14,7 @@ module.exports = (posts, callback) ->
 				(post) ->
 					post-compiler do
 						post: post
+						text-parser: parse-bbs-thread-post-text
 						config: config.public-config
 				serialized-posts
 			html = posts-compiler do

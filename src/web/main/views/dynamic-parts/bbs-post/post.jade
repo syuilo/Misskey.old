@@ -9,6 +9,6 @@ article(id= 'post-' + post.id)
 				time.absolute(datetime= post.createdAt)= post.displayCreatedAt
 				time.relative(datetime= post.createdAt, data-display-type='relative')
 		div.content
-			p.text= post.text
+			p.text!= textParser(post.text)
 			if post.isImageAttached
 				img.image(src=post.imageUrls[0], alt='image', itemprop='image')
