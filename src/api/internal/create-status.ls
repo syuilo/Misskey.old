@@ -27,6 +27,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 		| recent-status? && text == recent-status.text => throw-error \duplicate-content 'Duplicate content.'
 		| image? =>
 			# Detect the image type
+			console.log image-type image
 			switch (image-type image)
 			| \gif =>
 				if user.is-plus
