@@ -135,7 +135,7 @@ function init-register-form
 			} 500ms \easeOutCubic
 
 		function hide-message
-			$ '#userNameAvailable' .remove!
+			$ '#user-name-available' .remove!
 
 	function init-nickname-section
 		right = no
