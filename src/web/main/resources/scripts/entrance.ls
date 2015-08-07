@@ -86,8 +86,9 @@ function init-register-form
 		right = no
 		
 		$input .focus ->
-			top = ($column.position!.top) + ($column.outer-height! / 2)
-			$ \#register-form-cursor .animate {
+			$cursor = $ \#register-form-cursor
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2)
+			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
 
@@ -148,24 +149,28 @@ function init-register-form
 			$ '#user-name-available' .remove!
 
 	function init-nickname-section
+		$input = $ nickname-input-query
+		$column = $ '#register-form .nickname'
 		right = no
 		
-		$ nickname-input-query .focus ->
-			$ \#register-form-cursor .animate {
-				top: "#{$ nickname-input-query .css \top}px"
+		$input .focus ->
+			$cursor = $ \#register-form-cursor
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2)
+			$cursor .animate {
+				top: "#{top}px"
 			} 1000ms \easeOutElastic
 			
-		$ nickname-input-query .on \keypress (event) ->
+		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
 			else
 				true
 
-		$ nickname-input-query .keyup ->
+		$input .keyup ->
 			right = no
 			hide-message!
-			name = $ nickname-input-query .val!
+			name = $input .val!
 			if name.length > 0chars
 				right = yes
 				show-message 'Great!' yes
