@@ -128,20 +128,14 @@ function init-register-form
 						show-message '確認に失敗しました;;' null
 
 		function cancel
-			$ '#register-form .user-name' .animate {
-				left: '100%'
+			$ \#register-form-background .animate {
 				opacity: 0
-			} 500ms \easeOutQuint
-			$ '#register-form .user-name .title' .animate {
-				left: '64px'
+			} 500ms \linear ->
+				$ \#register-form-background .css \display \none
+			$ \#register-form .animate {
+				top: '-100%'
 				opacity: 0
-			} 1000ms \easeOutQuint
-			$ '#register-form progress' .css \height 0
-			$ '#register-form progress' .attr \value 0
-
-			setTimeout ->
-				$ '#register-form' .css {display: \none}
-			, 500ms
+			} 1000ms \easeInOutQuart
 
 		function next
 			$progress.attr \value 2
@@ -587,5 +581,4 @@ function show-register-form
 		opacity: 1
 	} 1000ms \easeOutElastic
 	$ '#register-form progress' .attr \value 1
-	$ '#register-form progress' .css \height '8px'
 	$ '#register-form .user-name .user-name-input' .focus!
