@@ -86,7 +86,7 @@ function init-register-form
 		right = no
 		
 		$input .focus ->
-			top = ($column.css \top) + ($column.outer-height! / 2)
+			top = ($column.offset!.top) + ($column.outer-height! / 2)
 			$ \#register-form-cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
