@@ -85,6 +85,7 @@ function init-register-form
 		right = no
 		
 		$input .focus ->
+			console.log 'kyoppie'
 			top = ($input.css \top) + ($input.outer-height! / 2)
 			$ \#register-form-cursor .animate {
 				top: "#{top}px"
