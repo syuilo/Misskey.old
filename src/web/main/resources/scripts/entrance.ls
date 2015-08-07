@@ -133,7 +133,7 @@ function init-register-form
 			} 500ms \linear ->
 				$ \#register-form-background .css \display \none
 			$ \#register-form .animate {
-				top: '-100%'
+				top: '-200%'
 				opacity: 0
 			} 1000ms \easeInOutQuart
 
