@@ -87,7 +87,7 @@ function init-register-form
 		
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2)
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
@@ -155,7 +155,7 @@ function init-register-form
 		
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2)
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
@@ -197,7 +197,7 @@ function init-register-form
 		
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2)
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
@@ -247,7 +247,7 @@ function init-register-form
 		
 		$input .focus ->
 			$cursor = $ \#register-form-cursor
-			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2)
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
 			$cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
