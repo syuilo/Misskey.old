@@ -63,7 +63,6 @@ function init-register-form
 	init-password-section!
 	init-password-retype-section!
 	init-user-color-section!
-	init-confirm-section!
 
 	$ '#register-form form' .submit (event) ->
 		event.prevent-default!
@@ -78,7 +77,7 @@ function init-register-form
 			location.href = config.url
 		.fail ->
 	
-	$ '#register-form .cancel' .click (event) ->
+	$ '#register-cancel' .click (event) ->
 		hide-register-form!
 
 	function init-user-name-section
