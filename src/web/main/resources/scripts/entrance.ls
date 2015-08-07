@@ -82,6 +82,11 @@ function init-register-form
 
 	function init-user-name-section
 		right = no
+		
+		$ user-name-input-query .focus ->
+			$ \#register-form-cursor .animate {
+				top: "#{$ user-name-input-query .css \top}px"
+			} 1000ms \easeOutElastic
 
 		$ user-name-input-query .on \keypress (event) ->
 			if event.which == 13
@@ -141,8 +146,13 @@ function init-register-form
 
 	function init-nickname-section
 		right = no
+		
+		$ nickname-input-query .focus ->
+			$ \#register-form-cursor .animate {
+				top: "#{$ nickname-input-query .css \top}px"
+			} 1000ms \easeOutElastic
 			
-		$(nickname-input-query).on \keypress (event) ->
+		$ nickname-input-query .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
