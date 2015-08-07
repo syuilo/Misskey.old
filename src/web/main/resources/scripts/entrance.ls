@@ -127,7 +127,6 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"userNameAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.css \top ($ user-name-input-query .position!.top - 32px + ($ user-name-input-query .outer-height! / 2))
 			$message.append-to '#register-form .user-name' .animate {
 				'margin-right': 0
 				opacity: 1
