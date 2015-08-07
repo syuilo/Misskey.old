@@ -472,7 +472,8 @@ main {
 		}
 
 		.content {
-			padding: 0 32px;
+			position: relative;
+			margin: 0 32px;
 
 			.at {
 				display: block;
@@ -493,9 +494,14 @@ main {
 				font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
 				transition: all .5s ease;
 			}
+			
+			input[type=text],
+			input[type=password] {
+				.text-input;
+			}
 
 			input[name='screen-name'] {
-				padding-left: ~"calc(1em + 24px + 12px)";
+				padding-left: ~"calc(1em + 24px + 12px)" !important;
 
 				&:focus + .at {
 					color: #006f87;
@@ -503,10 +509,6 @@ main {
 				}
 			}
 
-			input[type=text],
-			input[type=password] {
-				.text-input;
-			}
 		}
 	}
 
