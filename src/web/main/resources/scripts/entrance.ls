@@ -578,15 +578,12 @@ function init-register-form
 			swing ($ '#register-form .complete'), 1
 
 function show-register-form
-	$ '#register-form' .css {
-		display: \block
-	}
-	$ '#register-form .user-name' .animate {
-		left: 0
+	$ \#register-form-background .css \display \block
+	$ \#register-form-background .animate {
 		opacity: 1
-	} 500ms \easeOutQuint
-	$ '#register-form .user-name .title' .animate {
-		left: 0
+	} 500ms \linear
+	$ \#register-form .animate {
+		top: 0
 		opacity: 1
 	} 1000ms \easeOutElastic
 	$ '#register-form progress' .attr \value 1
