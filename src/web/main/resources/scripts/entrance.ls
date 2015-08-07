@@ -90,7 +90,6 @@ function init-register-form
 
 		$ user-name-input-query .keyup ->
 			right = no
-			$next-button.attr \disabled on
 			hide-message!
 			sn = $ user-name-input-query .val!
 
@@ -118,11 +117,8 @@ function init-register-form
 						else
 							right = yes
 							show-message 'このIDは使用できますっ！' yes
-							$next-button.attr \disabled off
 					.fail ->
 						show-message '確認に失敗しました;;' null
-
-		
 
 		function show-message(message, success)
 			hide-message!
