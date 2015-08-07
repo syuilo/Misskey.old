@@ -454,28 +454,25 @@ main {
 				}
 
 				.header {
+					display: block;
+					float: left;
+					box-sizing: border-box;
+					width: 140px;
+					margin: 0;
+					padding: 0 8px;
+					/*text-align: right;*/
+					font-size: 1em;
+					color: #333;
+					transition: color 0.1s ease;
+
 					.title {
-						display: block;
-						float: left;
-						box-sizing: border-box;
-						width: 140px;
-						margin: 0;
-						padding: 0 8px;
-						/*text-align: right;*/
-						font-size: 1em;
-						color: #333;
-						transition: color 0.1s ease;
+					}
 
-						.caption {
-							color: #999;
-							font-size: 0.8em;
-							font-weight: normal;
 
-							&:before {
-								content: "";
-								display: none;
-							}
-						}
+					.caption {
+						color: #999;
+						font-size: 0.8em;
+						font-weight: normal;
 					}
 				}
 
