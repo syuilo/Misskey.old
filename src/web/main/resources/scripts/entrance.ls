@@ -85,8 +85,9 @@ function init-register-form
 		right = no
 		
 		$input .focus ->
-			console.log 'kyoppie'
 			top = ($input.css \top) + ($input.outer-height! / 2)
+			console.log $ \#register-form-cursor
+			console.log top
 			$ \#register-form-cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
