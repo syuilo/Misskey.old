@@ -81,19 +81,28 @@ function init-register-form
 		hide-register-form!
 
 	function init-user-name-section
+		$column = $ '#register-form .user-name'
+		$input = $ user-name-input-query
 		right = no
+		
+		$input .focus ->
+			$cursor = $ \#register-form-cursor
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
+			$cursor .animate {
+				top: "#{top}px"
+			} 1000ms \easeOutElastic
 
-		$ user-name-input-query .on \keypress (event) ->
+		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
 			else
 				true
 
-		$ user-name-input-query .keyup ->
+		$input .keyup ->
 			right = no
 			hide-message!
-			sn = $ user-name-input-query .val!
+			sn = $input .val!
 			
 			$ '.profile-page-url-preview' .text "https://misskey.xyz/#sn"
 
@@ -140,19 +149,28 @@ function init-register-form
 			$ '#user-name-available' .remove!
 
 	function init-nickname-section
+		$input = $ nickname-input-query
+		$column = $ '#register-form .nickname'
 		right = no
+		
+		$input .focus ->
+			$cursor = $ \#register-form-cursor
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
+			$cursor .animate {
+				top: "#{top}px"
+			} 1000ms \easeOutElastic
 			
-		$(nickname-input-query).on \keypress (event) ->
+		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
 			else
 				true
 
-		$ nickname-input-query .keyup ->
+		$input .keyup ->
 			right = no
 			hide-message!
-			name = $ nickname-input-query .val!
+			name = $input .val!
 			if name.length > 0chars
 				right = yes
 				show-message 'Great!' yes
@@ -173,19 +191,28 @@ function init-register-form
 			$ '#nicknameAvailable' .remove!
 
 	function init-password-section
+		$input = $ password-input-query
+		$column = $ '#register-form .password'
 		right = no
 		
-		$ password-input-query .on \keypress (event) ->
+		$input .focus ->
+			$cursor = $ \#register-form-cursor
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
+			$cursor .animate {
+				top: "#{top}px"
+			} 1000ms \easeOutElastic
+		
+		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
 			else
 				true
 
-		$ password-input-query .keyup ->
+		$input .keyup ->
 			right = no
 			hide-message!
-			password = $ password-input-query .val!
+			password = $input .val!
 			if password.length > 0
 				err = switch
 					| password.length < 8chars => '8文字以上でお願いします'
@@ -214,20 +241,29 @@ function init-register-form
 			$ '#passwordAvailable' .remove!
 
 	function init-password-retype-section
+		$input = $ password-retype-input-query
+		$column = $ '#register-form .password-retype'
 		right = no
 		
-		$ password-retype-input-query .on \keypress (event) ->
+		$input .focus ->
+			$cursor = $ \#register-form-cursor
+			top = ($column.position!.top) + ($column.outer-height! / 2) - ($cursor.outer-height! / 2) + ($ '#register-form form' .scroll-top!)
+			$cursor .animate {
+				top: "#{top}px"
+			} 1000ms \easeOutElastic
+		
+		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
 			else
 				true
 
-		$ password-retype-input-query .keyup ->
+		$input .keyup ->
 			right = no
 			hide-message!
 			password = $ password-input-query .val!
-			password-retype = $ password-retype-input-query .val!
+			password-retype = $input .val!
 			if password-retype.length > 0chars
 				if password-retype != password
 					show-message '一致していませんっ！' no
