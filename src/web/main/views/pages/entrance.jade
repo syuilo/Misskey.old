@@ -73,37 +73,42 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 				form
 					div.column.user-name
 						label
-							h2.title ユーザー名
-							p.caption
-								| Misskey内のID。(半角英数字)
+							div.header
+								h3.title ユーザー名
+								p.caption
+									| Misskey内のID。(半角英数字)
 							div.content
 								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
 								i.at @
 					div.column.nickname
 						label
-							h2.title ニックネーム
-							p.caption
-								| あなたのニックネーム。
+							div.header
+								h3.title ニックネーム
+								p.caption
+									| あなたのニックネーム。
 							div.content
 								input.nickname-input(name='name', type='text', required)
 					div.column.password
 						label
-							h2.title パスワード
-							p.caption
-								| 8文字以上の強固なパスワード。
+							div.header
+								h3.title パスワード
+								p.caption
+									| 8文字以上の強固なパスワード。
 							div.content
 								input.password-input(name='password', type='password', required)
 					div.column.password-retype
 						label
-							h2.title パスワード(再入力)
-							p.caption
-								| もう一度同じパスワードを入力してください。
+							div.header
+								h3.title パスワード(再入力)
+								p.caption
+									| もう一度同じパスワードを入力してください。
 							div.content
 								input.password-retype-input(name='retype-password', type='password', required)
 					div.column.user-color
 						label
-							h2.title ユーザーカラー
-							p.caption
-								| あなたのイメージカラー。
+							div.header
+								h3.title ユーザーカラー
+								p.caption
+									| あなたのイメージカラー。
 							div.content
 								input.user-color-input(name='color', type='color', required)
