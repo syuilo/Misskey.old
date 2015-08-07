@@ -81,24 +81,26 @@ function init-register-form
 		hide-register-form!
 
 	function init-user-name-section
+		$input = $ user-name-input-query
 		right = no
 		
-		$ user-name-input-query .focus ->
+		$input .focus ->
+			top = ($input.css \top) + ($input.outer-height! / 2)
 			$ \#register-form-cursor .animate {
-				top: "#{$ user-name-input-query .css \top}px"
+				top: "#{top}px"
 			} 1000ms \easeOutElastic
 
-		$ user-name-input-query .on \keypress (event) ->
+		$input .on \keypress (event) ->
 			if event.which == 13
 				if right then next!
 				false
 			else
 				true
 
-		$ user-name-input-query .keyup ->
+		$input .keyup ->
 			right = no
 			hide-message!
-			sn = $ user-name-input-query .val!
+			sn = $input .val!
 			
 			$ '.profile-page-url-preview' .text "https://misskey.xyz/#sn"
 
