@@ -55,6 +55,26 @@ body {
 	}
 }
 
+.input-at {
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	padding: 8px 12px;
+	margin: 0;
+	width: 1em;
+	height: 1.5em;
+	font-size: 1em;
+	font-style: normal;
+	color: #777;
+	background: rgba(0, 0, 0, 0.025);
+	border: none;
+	border-radius: 2px 0px 0px 2px;
+	cursor: text;
+	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+	transition: all .5s ease;
+}
+
 #circles {
 	position: absolute;
 	width: 1500px;
@@ -241,23 +261,7 @@ main {
 					}
 
 					.at {
-						display: block;
-						position: absolute;
-						top: 2px;
-						left: 2px;
-						padding: 8px 12px;
-						margin: 0;
-						width: 1em;
-						height: 1.5em;
-						font-size: 1em;
-						font-style: normal;
-						color: #777;
-						background: rgba(0, 0, 0, 0.025);
-						border: none;
-						border-radius: 2px 0px 0px 2px;
-						cursor: text;
-						font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-						transition: all .5s ease;
+						.input-at;
 					}
 
 					#id {
@@ -476,25 +480,9 @@ main {
 			margin: 0 32px;
 
 			.at {
-				display: block;
-				position: absolute;
-				top: 2px;
-				left: 2px;
-				padding: 8px 12px;
-				margin: 0;
-				width: 1em;
-				height: 1.5em;
-				font-size: 1em;
-				font-style: normal;
-				color: #777;
-				background: rgba(0, 0, 0, 0.025);
-				border: none;
-				border-radius: 2px 0px 0px 2px;
-				cursor: text;
-				font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-				transition: all .5s ease;
+				.input-at;
 			}
-			
+
 			input[type=text],
 			input[type=password] {
 				.text-input;
@@ -508,7 +496,6 @@ main {
 					transition: all .1s ease;
 				}
 			}
-
 		}
 	}
 
