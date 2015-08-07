@@ -81,13 +81,12 @@ function init-register-form
 		hide-register-form!
 
 	function init-user-name-section
+		$column = $ '#register-form .user-name'
 		$input = $ user-name-input-query
 		right = no
 		
 		$input .focus ->
-			top = ($input.css \top) + ($input.outer-height! / 2)
-			console.log $ \#register-form-cursor
-			console.log top
+			top = ($column.css \top) + ($column.outer-height! / 2)
 			$ \#register-form-cursor .animate {
 				top: "#{top}px"
 			} 1000ms \easeOutElastic
