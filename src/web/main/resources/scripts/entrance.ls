@@ -99,9 +99,9 @@ function init-register-form
 
 			if sn != ''
 				err = switch
+					| not sn.match /^[a-zA-Z0-9_]+$/ => '半角英数記号(_)のみでお願いしますっ'
 					| sn.length < 4chars             => '4文字以上でお願いしますっ'
 					| sn.match /^[0-9]+$/            => 'すべてを数字にすることはできませんっ'
-					| not sn.match /^[a-zA-Z0-9_]+$/ => '半角英数記号(_)のみでお願いしますっ'
 					| sn.length > 20chars            => '20文字以内でお願いします'
 					| _                              => null
 
