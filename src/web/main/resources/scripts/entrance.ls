@@ -128,7 +128,7 @@ function init-register-form
 				then ''
 				else
 					if success then \done else \fail
-			$message = $ "<p id=\"userNameAvailable\" class=\"message #{klass}\">#{message}</p>"
+			$message = $ "<p id=\"user-name-available\" class=\"message #{klass}\">#{message}</p>"
 			$message.append-to '#register-form .user-name' .animate {
 				'margin-top': 0
 				opacity: 1

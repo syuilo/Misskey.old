@@ -580,13 +580,19 @@ main {
 				display: block;
 				position: absolute;
 				bottom: -32px;
-				left: 48px;
+				left: 24px;
 				font-size: 0;
 				line-height: 0;
 				border-top: solid 16px #fff;
 				border-right: solid 16px transparent;
 				border-bottom: solid 16px transparent;
 				border-left: solid 16px transparent;
+			}
+
+			&#user-name-available {
+				&:after {
+					left: 48px !important;
+				}
 			}
 		}
 
