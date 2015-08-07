@@ -92,6 +92,8 @@ function init-register-form
 			right = no
 			hide-message!
 			sn = $ user-name-input-query .val!
+			
+			$ '.profile-page-url-preview' .text "https://misskey.xyz/#sn"
 
 			if sn != ''
 				err = switch
