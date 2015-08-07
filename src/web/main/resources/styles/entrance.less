@@ -18,6 +18,63 @@ body {
 	position: relative;
 }
 
+.text-input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	display: block;
+	cursor: auto;
+	box-sizing: border-box;
+	padding: 8px 12px;
+	margin: 0;
+	width: 100%;
+	height: ~"calc(1.5em + 16px + 4px)";
+	font-size: 1em;
+	color: #000;
+	outline: none;
+	border: solid 2px #eee;
+	border-radius: 4px;
+	box-shadow: none;
+	background: #fff;
+	transition: all .5s ease;
+	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+
+	&:hover {
+		border: solid 2px #00acce;
+		transition: all .2s ease;
+	}
+
+	&:focus {
+		color: #006f87;
+		border: solid 2px #00acce;
+		transition: all .1s ease;
+	}
+}
+
+.input-at {
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	padding: 8px 12px;
+	margin: 0;
+	width: 1em;
+	height: 1.5em;
+	font-size: 1em;
+	font-style: normal;
+	color: #777;
+	background: rgba(0, 0, 0, 0.025);
+	border: none;
+	border-radius: 2px 0px 0px 2px;
+	cursor: text;
+	font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+	transition: all .5s ease;
+}
+
 #circles {
 	position: absolute;
 	width: 1500px;
@@ -204,23 +261,7 @@ main {
 					}
 
 					.at {
-						display: block;
-						position: absolute;
-						top: 2px;
-						left: 2px;
-						padding: 8px 12px;
-						margin: 0;
-						width: 1em;
-						height: 1.5em;
-						font-size: 1em;
-						font-style: normal;
-						color: #777;
-						background: rgba(0, 0, 0, 0.025);
-						border: none;
-						border-radius: 2px 0px 0px 2px;
-						cursor: text;
-						font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-						transition: all .5s ease;
+						.input-at;
 					}
 
 					#id {
@@ -234,40 +275,7 @@ main {
 
 					input[type=text],
 					input[type=password] {
-						-webkit-appearance: none;
-						-moz-appearance: none;
-						appearance: none;
-						user-select: text;
-						-moz-user-select: text;
-						-webkit-user-select: text;
-						-ms-user-select: text;
-						display: block;
-						cursor: auto;
-						box-sizing: border-box;
-						padding: 8px 12px;
-						margin: 0;
-						width: 100%;
-						height: ~"calc(1.5em + 16px + 4px)";
-						font-size: 1em;
-						color: #000;
-						outline: none;
-						border: solid 2px #eee;
-						border-radius: 4px;
-						box-shadow: none;
-						background: #fff;
-						transition: all .5s ease;
-						font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
-
-						&:hover {
-							border: solid 2px #00acce;
-							transition: all .2s ease;
-						}
-
-						&:focus {
-							color: #006f87;
-							border: solid 2px #00acce;
-							transition: all .1s ease;
-						}
+						.text-input;
 					}
 				}
 
@@ -361,103 +369,187 @@ main {
 	}
 }
 
-#register-form {
+#register-form-background {
 	display: none;
 	position: fixed;
+	z-index: 1;
 	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+}
+
+#register-form {
+	display: block;
+	position: fixed;
+	top: -200%;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	z-index: 2;
 	margin: auto;
-	width: 360px;
-	height: 210px;
-	background: rgba(0, 0, 0, 0.5);
-	box-shadow: 0 0 0 1024px rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	opacity: 0;
 
-	form {
-		margin: 0;
-		padding: 0;
-		background: transparent;
-	}
-
-	progress {
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		display: block;
-		position: absolute;
-		z-index: 2;
-		bottom: 100%;
-		margin: 0;
-		width: 100%;
-		height: 0;
-		transition: height 1s ease;
-
-		&::-webkit-progress-value {
-			background-color: @themeColor;
-			transition: all 1s ease;
-		}
-
-		&::-webkit-progress-bar {
-			background-color: #fff;
-		}
-	}
-
-	.slide {
-		display: block;
+	.main {
 		position: absolute;
 		top: 0;
-		left: 100%;
-		width: 100%;
-		height: 100%;
-		text-align: center;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 550px;
+		height: 600px;
+		margin: auto;
 		background: #fff;
-		opacity: 0;
-		transform-origin: center center;
-		transform: perspective(512px);
-		transition: transform 0.5s cubic-bezier(0,.7,.3,1);
+		overflow: scroll;
 
-		.title {
+		header {
 			display: block;
-			position: relative;
-			left: 64px;
-			margin: 0;
-			padding: 0;
-			font-size: 1.5em;
-			font-weight: 100;
-			color: #555;
-			opacity: 0;
+			background: #fff;
+			border-bottom: solid 1px #eee;
+
+			h2 {
+				display: block;
+				margin: 0;
+				padding: 16px 0;
+				text-align: center;
+				font-size: 1em;
+				font-weight: normal;
+				color: #888;
+
+				i {
+					margin-right: 6px;
+				}
+			}
 		}
 
-		.caption {
+		form {
+			margin: 0;
+			padding: 0 32px;
+
+			.at {
+				.input-at;
+			}
+
+			input[type=text],
+			input[type=password] {
+				.text-input;
+				max-width: 19em;
+			}
+
+			input[name='screen-name'] {
+				padding-left: ~"calc(1em + 24px + 12px)" !important;
+
+				&:focus + .at {
+					color: #006f87;
+					transition: all .1s ease;
+				}
+			}
+
+			.profile-page-url-preview {
+				margin: 8px;
+				color: rgba(0, 0, 0, 0.6);
+			}
+
+			.column {
+				position: relative;
+
+				label {
+					display: block;
+					clear: both;
+					margin: 0;
+					padding: 16px 8px;
+					border-bottom: solid 1px #eee;
+
+					&:after {
+						content: "";
+						display: block;
+						clear: both;
+					}
+
+					&:hover {
+						.header {
+							.title {
+								color: @themeColor;
+
+								.caption {
+									color: #999;
+								}
+							}
+						}
+					}
+
+					.header {
+						display: block;
+						float: left;
+						box-sizing: border-box;
+						width: 140px;
+						margin: 0;
+						padding: 0 8px;
+						transition: color 0.1s ease;
+
+						.title {
+							margin: 0;
+							font-size: 1em;
+							color: #333;
+						}
+
+
+						.caption {
+							color: #999;
+							font-size: 0.8em;
+							font-weight: normal;
+						}
+					}
+
+					.content {
+						position: relative;
+						float: left;
+						width: ~"calc(100% - 140px)";
+					}
+				}
+			}
+		}
+
+		progress {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
 			display: block;
-			margin: 8px 0;
-			padding: 4px 0 0 0;
-			font-size: 1.2em;
-			color: #555;
-			border-top: solid 1px #eee;
+			position: absolute;
+			z-index: 2;
+			bottom: 100%;
+			margin: 0;
+			width: 100%;
+			height: 0;
+			transition: height 1s ease;
+
+			&::-webkit-progress-value {
+				background-color: @themeColor;
+				transition: all 1s ease;
+			}
+
+			&::-webkit-progress-bar {
+				background-color: #fff;
+			}
 		}
 
 		.message {
 			display: inline-block;
 			pointer-events: none;
 			position: absolute;
-			top: 0;
-			bottom: 0;
+			top: -44px;
+			left: 148px;
 			box-sizing: border-box;
-			//right: ~"calc(100% + 24px)";
-			right: ~"calc(100% + -8px)";
 			margin: 0;
-			margin-right: 32px;
-			padding: 16px 28px;
-			height: 64px;
-			max-width: 350px;
-			min-height: 64px;
+			margin-top: -16px;
+			padding: 12px 22px;
 			white-space: pre;
 			word-wrap: break-word;
-			line-height: 32px;
 			background: #fff;
-			//box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
 			box-shadow: 0 0 50px rgba(0,0,0,0.3);
 			opacity: 0;
 
@@ -487,14 +579,20 @@ main {
 				content: "";
 				display: block;
 				position: absolute;
-				top: 16px;
-				right: -32px;
+				bottom: -32px;
+				left: 24px;
 				font-size: 0;
 				line-height: 0;
-				border-top: solid 16px transparent;
+				border-top: solid 16px #fff;
 				border-right: solid 16px transparent;
 				border-bottom: solid 16px transparent;
-				border-left: solid 16px #fff;
+				border-left: solid 16px transparent;
+			}
+
+			&#user-name-available {
+				&:after {
+					left: 48px !important;
+				}
 			}
 		}
 
@@ -538,9 +636,9 @@ main {
 			}
 		}
 	}
+}
 
-	.complete {
-		transform-origin: center top !important;
-		transition: none !important;
-	}
+.complete {
+	transform-origin: center top !important;
+	transition: none !important;
 }
