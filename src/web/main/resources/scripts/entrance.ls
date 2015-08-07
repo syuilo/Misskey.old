@@ -148,12 +148,10 @@ function init-register-form
 		$ nickname-input-query .keyup ->
 			right = no
 			hide-message!
-			$next-button.attr \disabled on
 			name = $ nickname-input-query .val!
 			if name.length > 0chars
 				right = yes
 				show-message 'Great!' yes
-				$next-button.attr \disabled off
 
 		function show-message(message, success)
 			hide-message!
@@ -162,9 +160,8 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"nicknameAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.css \top ($ nickname-input-query .position!.top - 32px + ($ nickname-input-query .outer-height! / 2))
 			$message.append-to '#register-form .nickname' .animate {
-				'margin-right': 0
+				'margin-top': 0
 				opacity: 1
 			} 500ms \easeOutCubic
 
@@ -184,7 +181,6 @@ function init-register-form
 		$ password-input-query .keyup ->
 			right = no
 			hide-message!
-			$next-button.attr \disabled on
 			password = $ password-input-query .val!
 			if password.length > 0
 				err = switch
@@ -194,7 +190,6 @@ function init-register-form
 					show-message err, no
 				else
 					show-message 'Nice!' yes
-					$next-button.attr \disabled off
 					right = yes
 			else
 				false
@@ -206,9 +201,8 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.css \top ($ password-input-query .position!.top - 32px + ($ password-input-query .outer-height! / 2))
 			$message.append-to '#register-form .password' .animate {
-				'margin-right': 0
+				'margin-top': 0
 				opacity: 1
 			} 500ms \easeOutCubic
 
@@ -228,7 +222,6 @@ function init-register-form
 		$ password-retype-input-query .keyup ->
 			right = no
 			hide-message!
-			$next-button.attr \disabled on
 			password = $ password-input-query .val!
 			password-retype = $ password-retype-input-query .val!
 			if password-retype.length > 0chars
@@ -238,7 +231,6 @@ function init-register-form
 				else
 					right = yes
 					show-message 'Okay!' yes
-					$next-button.attr \disabled off
 			else
 				false
 
@@ -249,9 +241,8 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"passwordRetypeAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.css \top  ($ password-retype-input-query .position!.top - 32px + ($ password-retype-input-query .outer-height! / 2))
 			$message.append-to '#register-form .password-retype' .animate {
-				'margin-right': 0
+				'margin-top': 0
 				opacity: 1
 			} 500ms \easeOutCubic
 
@@ -266,7 +257,6 @@ function init-register-form
 			color = $ user-color-input-query .val!
 			right = yes
 			show-message 'Good!' yes
-			$next-button.attr \disabled off
 
 		function show-message(message, success)
 			hide-message!
@@ -275,9 +265,8 @@ function init-register-form
 				else
 					if success then \done else \fail
 			$message = $ "<p id=\"userColorAvailable\" class=\"message #{klass}\">#{message}</p>"
-			$message.css \top ($ user-color-input-query .position!.top - 32px + ($ user-color-input-query .outer-height! / 2))
 			$message.append-to '#register-form .user-color' .animate {
-				'margin-right': 0
+				'margin-top': 0
 				opacity: 1
 			} 500ms \easeOutCubic
 
