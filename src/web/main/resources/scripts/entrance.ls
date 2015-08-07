@@ -77,6 +77,9 @@ function init-register-form
 		.done ->
 			location.href = config.url
 		.fail ->
+	
+	$ '#register-form .cancel' .click (event) ->
+		hide-register-form!
 
 	function init-user-name-section
 		right = no
