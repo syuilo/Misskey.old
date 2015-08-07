@@ -67,7 +67,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 			div.main
 				progress(max=7, value=0)
 				form
-					div.slide.user-name
+					div.column.user-name
 						label
 							h2.title ユーザー名
 							p.caption
@@ -75,60 +75,31 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.content
 								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
 								i.at @
-						div.nav
-							button.cancel(type='button') キャンセル
-							button.next(type='button', disabled) 次！
-					div.slide.nickname
+					div.column.nickname
 						label
 							h2.title ニックネーム
 							p.caption
 								| あなたのニックネーム。
 							div.content
 								input.nickname-input(name='name', type='text', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 次！
-					div.slide.password
+					div.column.password
 						label
 							h2.title パスワード
 							p.caption
 								| 8文字以上の強固なパスワード。
 							div.content
 								input.password-input(name='password', type='password', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 次！
-					div.slide.password-retype
+					div.column.password-retype
 						label
 							h2.title パスワード(再入力)
 							p.caption
 								| もう一度同じパスワードを入力してください。
 							div.content
 								input.password-retype-input(name='retype-password', type='password', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 次！
-					div.slide.user-color
+					div.column.user-color
 						label
 							h2.title ユーザーカラー
 							p.caption
 								| あなたのイメージカラー。
 							div.content
 								input.user-color-input(name='color', type='color', required)
-						div.nav
-							button.back(type='button') 戻る
-							button.next(type='button', disabled) 決定！
-					div.slide.confirm
-						label
-							h2.title 始めましょう
-							p.caption
-								| アカウントを作成します(無料)
-						div.nav
-							button.back(type='button') 戻る
-							button.submit(type='submit') はい
-					div.slide.complete
-						label
-							h2.title 少々お待ちください
-							p.caption
-								| 作成しています...
-							img(src='/resources/images/loading/loading.gif')

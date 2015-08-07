@@ -400,8 +400,8 @@ main {
 		right: 0;
 		bottom: 0;
 		left: 0;
-		width: 360px;
-		height: 260px;
+		width: 700px;
+		height: 600px;
 		margin: auto;
 		background: #fff;
 	}
@@ -435,69 +435,29 @@ main {
 		}
 	}
 
-	.slide {
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 100%;
-		width: 100%;
-		height: 100%;
-		text-align: center;
-		background: #fff;
-		opacity: 0;
-		transform-origin: center center;
-		transform: perspective(512px);
-		transition: transform 0.5s cubic-bezier(0,.7,.3,1);
+	.content {
+		position: relative;
+		margin: 0 32px;
 
-		&.user-name {
-			left: 0;
-			opacity: 1;
+		.at {
+			.input-at;
 		}
 
-		.title {
-			display: block;
-			position: relative;
-			left: 64px;
-			margin: 0;
-			padding: 0;
-			font-size: 1.5em;
-			font-weight: 100;
-			color: #555;
-			opacity: 0;
+		input[type=text],
+		input[type=password] {
+			.text-input;
 		}
 
-		.caption {
-			display: block;
-			margin: 8px 0;
-			padding: 4px 0 0 0;
-			font-size: 1.2em;
-			color: #555;
-			border-top: solid 1px #eee;
-		}
+		input[name='screen-name'] {
+			padding-left: ~"calc(1em + 24px + 12px)" !important;
 
-		.content {
-			position: relative;
-			margin: 0 32px;
-
-			.at {
-				.input-at;
-			}
-
-			input[type=text],
-			input[type=password] {
-				.text-input;
-			}
-
-			input[name='screen-name'] {
-				padding-left: ~"calc(1em + 24px + 12px)" !important;
-
-				&:focus + .at {
-					color: #006f87;
-					transition: all .1s ease;
-				}
+			&:focus + .at {
+				color: #006f87;
+				transition: all .1s ease;
 			}
 		}
 	}
+
 
 	.message {
 		display: inline-block;
