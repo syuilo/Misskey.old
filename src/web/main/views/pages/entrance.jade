@@ -79,6 +79,7 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					div.column.user-name
 						label
 							p.caption
+								i.fa.fa-at
 								| ユーザー名
 							div.field
 								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
@@ -87,24 +88,28 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					div.column.nickname
 						label
 							p.caption
+								i.fa.fa-user
 								| ニックネーム
 							div.field
 								input.nickname-input(name='name', type='text', required)
 					div.column.password
 						label
 							p.caption
+								i.fa.fa-lock
 								| パスワード
 							div.field
 								input.password-input(name='password', type='password', required)
 					div.column.password-retype
 						label
 							p.caption
+								i.fa.fa-lock
 								| パスワード(再入力)
 							div.field
 								input.password-retype-input(name='retype-password', type='password', required)
 					div.column.user-color
 						label
 							p.caption
+								i.fa.fa-paint-brush
 								| ユーザーカラー
 							div.field
 								input.user-color-input(name='color', type='color', required)
