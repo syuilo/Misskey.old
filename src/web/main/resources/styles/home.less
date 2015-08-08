@@ -985,7 +985,7 @@ main {
 
 			.status.article {
 				position: relative;
-				width: ~"calc(100% - 70px)";
+				width: ~"calc(100% - 96px)";
 				margin: 24px 0 24px auto;
 				padding: 0;
 				background: transparent;
@@ -1299,18 +1299,22 @@ main {
 							> .icon-area {
 								position: absolute;
 								top: 0;
-								left: -70px;
+								left: -96px;
 
-								a > .icon {
-									min-width: 70px;
-									min-height: 70px;
-									max-width: 70px;
-									max-height: 70px;
-									margin: 16px 12px 4px 0;
-									border-radius: 70px;
-									border: solid 4px #fff;
-									//box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-									transition: all 0.1s ease;
+								.icon-anchor {
+									display: block;
+
+									> .icon {
+										min-width: 70px;
+										min-height: 70px;
+										max-width: 70px;
+										max-height: 70px;
+										margin: 8px 0 4px 0;
+										border-radius: 70px;
+										border: solid 4px #fff;
+										//box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+										transition: all 0.1s ease;
+									}
 								}
 							}
 
