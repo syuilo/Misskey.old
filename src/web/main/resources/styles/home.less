@@ -1058,18 +1058,6 @@ main {
 				}
 
 				&[data-display-html-is-active='true'] {
-					margin: 8px 0 8px auto;
-
-					> article > .article-main {
-						border-radius: 8px;
-
-						&:after {
-							content: "";
-							display: none;
-							width: 0;
-							height: 0;
-						}
-					}
 				}
 				/*
 				&:before {
@@ -1104,22 +1092,11 @@ main {
 
 				&.display-html-active-status-prev {
 					> article > .article-main {
-						border-bottom-left-radius: 8px;
-						border-bottom-right-radius: 8px;
-
-						&:after {
-							content: "";
-							display: none;
-							width: 0;
-							height: 0;
-						}
 					}
 				}
 
 				&.display-html-active-status-next {
 					> article > .article-main {
-						border-top-left-radius: 8px;
-						border-top-right-radius: 8px;
 					}
 				}
 
@@ -1138,8 +1115,9 @@ main {
 						padding: 0;
 						width: 100%;
 						background: #fff;
-						border-right: solid 5px transparent;
-						//box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+						border-radius: 8px;
+						border: solid 2px rgba(0, 0, 0, 0.1);
+						background-clip: padding-box;
 						transition: border-radius 0.2s ease;
 
 						&:hover {
