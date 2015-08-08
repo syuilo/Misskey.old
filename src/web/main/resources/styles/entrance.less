@@ -395,15 +395,18 @@ main {
 	opacity: 0;
 
 	.hello {
+		margin: 0;
+		padding: 0 0 16px 0;
 		text-align: center;
 		color: #555;
 		font-size: 0.9em;
+		border-bottom: solid 1px #eee;
 	}
 
 	#register-form-cursor {
 		position: absolute;
 		top: 0;
-		left: 24px;
+		left: 64px;
 	}
 
 	.main {
@@ -412,7 +415,7 @@ main {
 		right: 0;
 		bottom: 0;
 		left: 0;
-		width: 650px;
+		width: 550px;
 		height: 600px;
 		margin: auto;
 		background: #fff;
@@ -439,11 +442,12 @@ main {
 		}
 
 		form {
+			box-sizing: border-box;
 			position: relative;
 			margin: 0;
-			padding: 0 64px;
-			height: ~"calc(100% - (1em + 32px + 4px))";
-			overflow: scroll;
+			padding: 16px 48px 0 48px;
+			height: ~"calc(100% - (1em + 32px + 6px))";
+			overflow: auto;
 
 			.at {
 				.input-at;
@@ -452,7 +456,6 @@ main {
 			input[type=text],
 			input[type=password] {
 				.text-input;
-				max-width: 19em;
 			}
 
 			input[name='screen-name'] {
@@ -469,6 +472,10 @@ main {
 				color: rgba(0, 0, 0, 0.6);
 			}
 
+			.actions {
+				margin: 32px 0;
+			}
+
 			.column {
 				position: relative;
 
@@ -476,54 +483,28 @@ main {
 					display: block;
 					clear: both;
 					margin: 0;
-					padding: 16px 8px;
+					padding: 16px 32px 16px 64px;
 					border-bottom: solid 1px #eee;
 
-					&:after {
-						content: "";
-						display: block;
-						clear: both;
-					}
-
-					&:hover {
-						.header {
-							.title {
-								color: @themeColor;
-
-								.caption {
-									color: #999;
-								}
-							}
-						}
-					}
-
-					.header {
-						display: block;
-						float: left;
+					.caption {
+						display: inline-block;
 						box-sizing: border-box;
-						width: 140px;
+						padding: 8px 12px 4px 12px;
 						margin: 0;
-						padding: 0 8px;
-						transition: color 0.1s ease;
+						line-height: 1.5em;
+						font-size: 1em;
+						font-weight: bold;
+						color: #006f87;
+						transition: all .5s ease;
 
-						.title {
-							margin: 0;
-							font-size: 1em;
-							color: #333;
-						}
-
-
-						.caption {
-							color: #999;
-							font-size: 0.8em;
-							font-weight: normal;
+						i {
+							margin-right: 6px;
+							color: #00acce;
 						}
 					}
 
-					.content {
+					.field {
 						position: relative;
-						float: left;
-						width: ~"calc(100% - 140px)";
 					}
 				}
 			}
@@ -552,8 +533,8 @@ main {
 			display: inline-block;
 			pointer-events: none;
 			position: absolute;
-			top: -44px;
-			left: 148px;
+			top: -18px;
+			left: 8px;
 			box-sizing: border-box;
 			margin: 0;
 			margin-top: -16px;
@@ -607,43 +588,87 @@ main {
 			}
 		}
 
-		button {
+		#register-accept {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
-			cursor: pointer;
 			display: inline-block;
-			top: 0;
-			left: 0;
+			position: relative;
 			box-sizing: border-box;
-			width: 6rem;
-			padding: 8px 12px;
-			margin: 16px;
-			line-height: 1.5rem;
-			font-size: 0.9em;
-			font-weight: bold;
+			margin: 0 0 0 8px;
+			padding: 18px 18px 18px 60px;
+			width: ~"calc(50% - 8px)";
+			line-height: 1em;
+			font-size: 1.1em;
 			color: #fff;
-			background: #5a7d7f;
-			border: none;
-			outline: none;
-			transition: all .2s ease;
+			outline: 0;
+			border: 0;
+			border-radius: 8px;
+			box-shadow: none;
+			background: #00acce;
+			overflow: hidden;
+			cursor: pointer;
 
-			&:disabled {
-				background: #ddd !important;
+			* {
+				cursor: pointer;
+			}
+
+			i {
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding: 18px;
+				background: rgba(0, 0, 0, 0.1);
 			}
 
 			&:hover {
-				background: #29797f;
-				transition: all .1s ease;
+				background: #00c3e5;
 			}
 
 			&:active {
-				background: #09596f;
-				transition: all .1s ease;
+				background: #0097b2;
+			}
+		}
+
+		#register-cancel {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			position: relative;
+			box-sizing: border-box;
+			margin: 0 8px 0 0;
+			padding: 18px 18px 18px 60px;
+			width: ~"calc(50% - 8px)";
+			line-height: 1em;
+			font-size: 1.1em;
+			color: #fff;
+			outline: 0;
+			border: 0;
+			border-radius: 8px;
+			box-shadow: none;
+			background: #ccc;
+			overflow: hidden;
+			cursor: pointer;
+
+			* {
+				cursor: pointer;
 			}
 
-			&:focus {
-				text-shadow: 0 0 8px #fff;
+			i {
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding: 18px;
+				background: rgba(0, 0, 0, 0.1);
+			}
+
+			&:hover {
+				background: #e5e5e5;
+			}
+
+			&:active {
+				background: #b2b2b2;
 			}
 		}
 	}

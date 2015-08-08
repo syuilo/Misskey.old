@@ -74,50 +74,47 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 					img#register-form-cursor(src='/resources/images/register-form-arrow.svg', alt='')
 					p.hello
 						| MisskeyはTwitter風SNSです。いますぐアカウントを作成して、Misskeyを楽しみましょう。
-						br
-						| もちろん登録/利用は無料です。
 					div.column.user-name
 						label
-							div.header
-								h3.title ユーザー名
-								p.caption
-									| Misskey内のID。(半角英数字)
-							div.content
+							p.caption
+								i.fa.fa-at
+								| ユーザー名
+							div.field
 								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
 								i.at @
 								p.profile-page-url-preview https://misskey.xyz/
 					div.column.nickname
 						label
-							div.header
-								h3.title ニックネーム
-								p.caption
-									| あなたのニックネーム。
-							div.content
+							p.caption
+								i.fa.fa-user
+								| ニックネーム
+							div.field
 								input.nickname-input(name='name', type='text', required)
 					div.column.password
 						label
-							div.header
-								h3.title パスワード
-								p.caption
-									| 8文字以上の強固なパスワード。
-							div.content
+							p.caption
+								i.fa.fa-lock
+								| パスワード
+							div.field
 								input.password-input(name='password', type='password', required)
 					div.column.password-retype
 						label
-							div.header
-								h3.title パスワード(再入力)
-								p.caption
-									| もう一度同じパスワードを入力してください。
-							div.content
+							p.caption
+								i.fa.fa-lock
+								| パスワード(再入力)
+							div.field
 								input.password-retype-input(name='retype-password', type='password', required)
 					div.column.user-color
 						label
-							div.header
-								h3.title ユーザーカラー
-								p.caption
-									| あなたのイメージカラー。
-							div.content
+							p.caption
+								i.fa.fa-paint-brush
+								| ユーザーカラー
+							div.field
 								input.user-color-input(name='color', type='color', required)
 					div.actions
-						button.cancel#register-cancel(type='button') キャンセル
-						input(type='submit', value='作成')
+						button#register-cancel(type='button')
+							i.fa.fa-ban
+							| キャンセル
+						button#register-accept(type='submit')
+							i.fa.fa-check
+							| 作成
