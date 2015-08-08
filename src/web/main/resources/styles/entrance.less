@@ -395,6 +395,7 @@ main {
 	opacity: 0;
 
 	.hello {
+		margin: 0;
 		text-align: center;
 		color: #555;
 		font-size: 0.9em;
@@ -439,9 +440,10 @@ main {
 		}
 
 		form {
+			box-sizing: border-box;
 			position: relative;
 			margin: 0;
-			padding: 0 64px;
+			padding: 16px 64px 0 64px;
 			height: ~"calc(100% - (1em + 32px + 4px))";
 			overflow: scroll;
 
