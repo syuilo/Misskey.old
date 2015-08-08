@@ -960,28 +960,6 @@ main {
 		list-style: none;
 
 		> .status {
-			&:first-child {
-				> .status.article[data-display-html-is-active="true"] {
-					margin: 0 0 8px auto;
-				}
-
-				> .status.article > article > .article-main {
-					border-top-left-radius: 8px;
-					border-top-right-radius: 8px;
-				}
-			}
-
-			&:last-child {
-				> .status.article[data-display-html-is-active="true"] {
-					margin: 8px 0 0 auto;
-				}
-				/*
-				> .status.article > article > .article-main {
-					border-bottom-left-radius: 8px;
-					border-bottom-right-radius: 8px;
-				}
-				*/
-			}
 
 			.status.article {
 				position: relative;
@@ -1121,12 +1099,8 @@ main {
 						transition: border-radius 0.2s ease;
 
 						&:hover {
-							background: #f8f8f8;
 
 							> .main {
-								&:before {
-									border-right: solid 12px #f8f8f8;
-								}
 
 								> .footer > .actions {
 									> .reply, > .repost, > .favorite {
@@ -1189,8 +1163,9 @@ main {
 						}
 
 						> .repost-information {
-							padding: 16px 16px 0 16px;
+							padding: 16px;
 							color: #57bb00;
+							border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 
 							> .info {
 								margin: 0;
@@ -1258,7 +1233,7 @@ main {
 
 						> .main {
 							position: relative;
-							padding: 22px 26px 22px 26px;
+							padding: 16px 26px 22px 24px;
 
 							&:before {
 								content: "";
