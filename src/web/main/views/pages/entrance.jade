@@ -114,5 +114,9 @@ html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
 							div.field
 								input.user-color-input(name='color', type='color', required)
 					div.actions
-						button.cancel#register-cancel(type='button') キャンセル
-						input(type='submit', value='作成')
+						button#register-cancel(type='button')
+							i.fa.fa-ban
+							| キャンセル
+						button#register-accept(type='submit')
+							i.fa.fa-check
+							| 作成
