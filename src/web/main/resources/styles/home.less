@@ -1124,7 +1124,7 @@ main {
 						}
 
 						> .repost-information {
-							padding: 10px;
+							padding: 8px;
 							color: #57bb00;
 							border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 
@@ -1138,10 +1138,10 @@ main {
 
 									> .icon {
 										vertical-align: middle;
-										min-width: 32px;
-										min-height: 32px;
-										max-width: 32px;
-										max-height: 32px;
+										min-width: 28px;
+										min-height: 28px;
+										max-width: 28px;
+										max-height: 28px;
 										margin: 0 8px 0 0;
 										border-radius: 6px;
 										transition: all 0.1s ease;
@@ -1150,7 +1150,7 @@ main {
 
 								> .text {
 									display: block;
-									line-height: 32px;
+									line-height: 28px;
 
 									i {
 										margin-right: 4px;
@@ -1401,63 +1401,6 @@ main {
 									border-radius: 5px;
 								}
 							}
-
-							> .footer {
-
-								> .actions {
-									position: absolute;
-									bottom: 0;
-									right: 0;
-
-									> .reply, > .repost, > .favorite {
-										display: inline-block;
-										padding: 0 16px;
-										min-width: 2.5em;
-
-										> button {
-											-webkit-appearance: none;
-											-moz-appearance: none;
-											appearance: none;
-											display: inline-block;
-											box-sizing: border-box;
-											margin: 0;
-											padding: 8px;
-											cursor: pointer;
-											font-size: 1em;
-											font-weight: normal;
-											text-decoration: none;
-											color: rgba(0, 0, 0, 0.2);
-											outline: none;
-											border: none;
-											border-radius: 0;
-											box-shadow: none;
-											background: transparent;
-
-											&:hover {
-												color: rgba(0, 0, 0, 0.7);
-											}
-
-											&:active {
-												color: rgba(0, 0, 0, 0.9);
-											}
-
-											> i {
-												cursor: pointer;
-											}
-										}
-
-										> a {
-											color: rgba(0, 0, 0, 0.2);
-											text-decoration: none;
-											font-size: 0.8em;
-
-											&:hover {
-												text-decoration: underline;
-											}
-										}
-									}
-								}
-							}
 						}
 
 						> .reply-info {
@@ -1468,7 +1411,63 @@ main {
 							color: rgba(0,0,0,0.1);
 						}
 
-						> footer {
+						> .footer {
+							display: block;
+							border-top: solid 1px #eee;
+
+							> .actions {
+
+								> .reply, > .repost, > .favorite {
+									display: inline-block;
+									padding: 0 16px;
+									min-width: 2.5em;
+
+									> button {
+										-webkit-appearance: none;
+										-moz-appearance: none;
+										appearance: none;
+										display: inline-block;
+										box-sizing: border-box;
+										margin: 0;
+										padding: 8px;
+										cursor: pointer;
+										font-size: 1em;
+										font-weight: normal;
+										text-decoration: none;
+										color: rgba(0, 0, 0, 0.2);
+										outline: none;
+										border: none;
+										border-radius: 0;
+										box-shadow: none;
+										background: transparent;
+
+										&:hover {
+											color: rgba(0, 0, 0, 0.7);
+										}
+
+										&:active {
+											color: rgba(0, 0, 0, 0.9);
+										}
+
+										> i {
+											cursor: pointer;
+										}
+									}
+
+									> a {
+										color: rgba(0, 0, 0, 0.2);
+										text-decoration: none;
+										font-size: 0.8em;
+
+										&:hover {
+											text-decoration: underline;
+										}
+									}
+								}
+							}
+						}
+
+						> aside {
 							display: none;
 							padding: 4px 16px 10px 16px;
 
