@@ -149,8 +149,6 @@ window.STATUSTIMELINE = {}
 			
 			# Init repost button
 			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
-				$button = $ @
-					..attr \disabled on
 				if check-reposted!
 					$status.attr \data-is-reposted \false
 					$.ajax "#{config.api-url}/status/unrepost" {
