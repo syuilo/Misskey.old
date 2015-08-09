@@ -1059,6 +1059,24 @@ main {
 						clear: both;
 					}
 
+					> .repost-form {
+						> .background {
+							display: none;
+							position: fixed;
+							z-index: 1;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							background: rgba(0, 0, 0, 0.7);
+							opacity: 0;
+						}
+
+						> .form {
+							display: none;
+						}
+					}
+
 					> .article-main {
 						box-sizing: border-box;
 						position: relative;
