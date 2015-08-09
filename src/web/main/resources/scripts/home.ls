@@ -183,6 +183,14 @@ window.STATUSTIMELINE = {}
 					$submit-button.attr \disabled off
 					$status.attr \data-is-reposted \false
 					window.display-message 'Repostに失敗しました。再度お試しください。'
+			..find '.repost-form > .form > .cancel' .click ->
+				$status.find '.repost-form .background' .css \opacity \0
+				$status.find '.repost-form .form' .css \opacity \0
+				set-timeout do
+					->
+						$status.find '.repost-form .background' .css \display \none
+						$status.find '.repost-form .form' .css \display \none
+					100ms
 			
 			# Click event
 			..click (event) ->
