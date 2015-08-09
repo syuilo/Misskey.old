@@ -12,7 +12,7 @@ window.STATUSTIMELINE = {}
 		function activate-display-state
 			animation-speed = 200ms
 			if ($status.attr \data-display-html-is-active) == \false
-				reply-form-text = $status.find 'article > .article-main > footer .reply-form textarea' .val!
+				reply-form-text = $status.find 'article > .article-main > .form-and-replies .reply-form textarea' .val!
 				$ '.timeline > .statuses > .status > .status.article' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
@@ -24,7 +24,7 @@ window.STATUSTIMELINE = {}
 					$ @ .show animation-speed
 				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
 					$ @ .hide animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > footer' .each ->
+				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .form-and-replies' .each ->
 					$ @ .hide animation-speed
 				$status
 					..attr \data-display-html-is-active \true
@@ -33,9 +33,9 @@ window.STATUSTIMELINE = {}
 					..find 'article > .article-main > .talk > i' .hide animation-speed
 					..find 'article > .article-main > .talk > .statuses' .show animation-speed
 					..find 'article > .article-main > .reply-info' .hide animation-speed
-					..find 'article > .article-main > footer' .show animation-speed
-					..find 'article > .article-main > footer .reply-form textarea' .val ''
-					..find 'article > .article-main > footer .reply-form textarea' .focus! .val reply-form-text
+					..find 'article > .article-main > .form-and-replies' .show animation-speed
+					..find 'article > .article-main > .form-and-replies .reply-form textarea' .val ''
+					..find 'article > .article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
 			else
 				$status
 					..attr \data-display-html-is-active \false
@@ -44,7 +44,7 @@ window.STATUSTIMELINE = {}
 					..find 'article > .article-main > .talk > i' .show animation-speed
 					..find 'article > .article-main > .talk > .statuses' .hide animation-speed
 					..find 'article > .article-main > .reply-info' .show animation-speed
-					..find 'article > .article-main > footer' .hide animation-speed
+					..find 'article > .article-main > .form-and-replies' .hide animation-speed
 		
 		$status
 			# Set display talk window event 

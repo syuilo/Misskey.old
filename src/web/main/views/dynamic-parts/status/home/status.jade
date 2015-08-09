@@ -122,7 +122,7 @@ div.status.article(
 							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 			if status.replies.length > 0 && status.replies[0] != null
 				i.fa.fa-ellipsis-v.reply-info
-			aside
+			aside.form-and-replies
 				if login
 					form.reply-form(role='form')
 						img.me-icon(src=me.iconImageUrl, alt='icon')
