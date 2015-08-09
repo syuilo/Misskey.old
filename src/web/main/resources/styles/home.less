@@ -1070,10 +1070,32 @@ main {
 							height: 100%;
 							background: rgba(0, 0, 0, 0.7);
 							opacity: 0;
+							transition: opacity 0.1s ease;
 						}
 
 						> .form {
-							display: none;
+							display: block;
+							position: fixed;
+							top: 0;
+							left: 0;
+							z-index: 2;
+							margin: 0;
+							width: 600px;
+							opacity: 0;
+							transition: opacity 0.1s ease;
+
+							> article {
+								.icon-anchor {
+									.icon {
+										min-width: 64px;
+										min-height: 64px;
+										max-width: 64px;
+										max-height: 64px;
+										margin: 4px;
+										border-radius: 8px;
+									}
+								}
+							}
 						}
 					}
 

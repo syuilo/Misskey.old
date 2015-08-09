@@ -54,7 +54,7 @@ div.status.article(
 							img.image(src=status.imageUrls[0], alt='image', itemprop='image')
 				input(type='text', name='text', placeholder='Repostにコメントを付ける')
 				button.cancel(type='button') キャンセル
-				button.accept(type='button') Repost
+				button.accept(type='submit') Repost
 		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
 			if status.moreTalk != null
 				aside.talk

@@ -152,17 +152,37 @@ window.STATUSTIMELINE = {}
 						$button.attr \disabled off
 						$status.attr \data-is-reposted \true
 				else
-					$status.attr \data-is-reposted \true
-					$.ajax "#{config.api-url}/status/repost" {
-						type: \post
-						data: {'status-id': $status.attr \data-id}
-						data-type: \json
-						xhr-fields: {+withCredentials}}
-					.done ->
-						$button.attr \disabled off
-					.fail ->
-						$button.attr \disabled off
-						$status.attr \data-is-reposted \false
+					$status.find '.repost-form .background' .css \display \block
+					$status.find '.repost-form .background' .css \opacity \1
+					$status.find '.repost-form .form' .css \display \block
+					$status.find '.repost-form .form' .css \opacity \1
+			
+			# Init repost form
+			..find '.repost-form > .form' .submit (event) ->
+				event.prevent-default!
+				$form = $ @
+				$submit-button = $form.find \.accept
+					..attr \disabled on
+				$status.attr \data-is-reposted \true
+				$.ajax "#{config.api-url}/status/repost" {
+					type: \post
+					data: {'status-id': $status.attr \data-id}
+					data-type: \json
+					xhr-fields: {+withCredentials}}
+				.done ->
+					$submit-button.attr \disabled off
+					window.display-message 'Reposted!'
+					$status.find '.repost-form .background' .css \opacity \0
+					$status.find '.repost-form .form' .css \opacity \0
+					set-timeout do
+						->
+							$status.find '.repost-form .background' .css \display \none
+							$status.find '.repost-form .form' .css \display \none
+						100ms
+				.fail ->
+					$submit-button.attr \disabled off
+					$status.attr \data-is-reposted \false
+					window.display-message 'Repostに失敗しました。再度お試しください。'
 			
 			# Click event
 			..click (event) ->
