@@ -350,31 +350,31 @@ $ ->
 
 		# オートセーブ
 		$.cookie \post-autosave text, { path: '/', expires: 365 }
-
-	$ '#timeline .load-more' .click ->
-		$button = $ @
-		$button.attr \disabled yes
-		$button.text 'Loading...'
-		$.ajax config.api-url + '/web/status/timeline-homehtml' {
-			type: \get
-			data: {
-				'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
-			}
-			data-type: \json
-			xhr-fields: {+with-credentials}}
-		.done (data) ->
-			$button.attr \disabled no
-			$button.text 'Read more!'
-			$statuses = $ data
-			$statuses.each ->
-				$status = $ '<li class="status">' .append $ @
-				window.STATUSTIMELINE.set-event $status.children '.status.article'
-				$status.append-to $ '#timeline .timeline > .statuses'
-			# Attach Wave effects 
-			init-waves-effects!
-		.fail (data) ->
-			$button.attr \disabled no
-			$button.text 'Failed...'
+		
+	# Read more
+	$ window .scroll ->
+		current = $ window .scroll-top! + window.inner-height
+		if current > $ document .height! - 50
+			if not $ @ .data \loading
+				$ @ .data \loading yes
+				$.ajax config.api-url + '/web/status/timeline-homehtml' {
+					type: \get
+					data: {
+						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
+					}
+					data-type: \json
+					xhr-fields: {+with-credentials}}
+				.done (data) ->
+					$ @ .data \loading no
+					$statuses = $ data
+					$statuses.each ->
+						$status = $ '<li class="status">' .append $ @
+						window.STATUSTIMELINE.set-event $status.children '.status.article'
+						$status.append-to $ '#timeline .timeline > .statuses'
+					# Attach Wave effects 
+					init-waves-effects!
+				.fail (data) ->
+					$ @ .data \loading no
 
 	$ '#recommendation-users > .users > .user' .each ->
 		$user = $ @
