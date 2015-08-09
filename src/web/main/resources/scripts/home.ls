@@ -103,7 +103,7 @@ window.STATUSTIMELINE = {}
 			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 			
 			# Init favorite button
-			..find 'article > .article-main > .main > .footer > .actions > .favorite > .favorite-button' .click ->
+			..find 'article > .article-main > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-favorited!
@@ -132,11 +132,11 @@ window.STATUSTIMELINE = {}
 						$status.attr \data-is-favorited \false
 			
 			# Init reply button
-			..find 'article > .article-main > .main > .footer > .actions > .reply > .reply-button' .click ->
+			..find 'article > .article-main > .footer > .actions > .reply > .reply-button' .click ->
 				activate-display-state!
 			
 			# Init repost button
-			..find 'article > .article-main > .main > .footer > .actions > .repost > .repost-button' .click ->
+			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-reposted!
