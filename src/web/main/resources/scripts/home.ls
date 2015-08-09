@@ -163,9 +163,13 @@ window.STATUSTIMELINE = {}
 						$status.attr \data-is-reposted \true
 				else
 					$status.find '.repost-form .background' .css \display \block
-					$status.find '.repost-form .background' .css \opacity \1
+					$status.find '.repost-form .background' .animate {
+						opacity: 1
+					} 100ms \linear
 					$status.find '.repost-form .form' .css \display \block
-					$status.find '.repost-form .form' .css \opacity \1
+					$status.find '.repost-form .form' .animate {
+						opacity: 1
+					} 100ms \linear
 			
 			# Init repost form
 			..find '.repost-form > .form' .submit (event) ->
@@ -182,25 +186,23 @@ window.STATUSTIMELINE = {}
 				.done ->
 					$submit-button.attr \disabled off
 					window.display-message 'Reposted!'
-					$status.find '.repost-form .background' .css \opacity \0
-					$status.find '.repost-form .form' .css \opacity \0
-					set-timeout do
-						->
-							$status.find '.repost-form .background' .css \display \none
-							$status.find '.repost-form .form' .css \display \none
-						100ms
+					$status.find '.repost-form .background' .animate {
+						opacity: 0
+					} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
+					$status.find '.repost-form .form' .animate {
+						opacity: 0
+					} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 				.fail ->
 					$submit-button.attr \disabled off
 					$status.attr \data-is-reposted \false
 					window.display-message 'Repostに失敗しました。再度お試しください。'
 			..find '.repost-form > .form > .cancel' .click ->
-				$status.find '.repost-form .background' .css \opacity \0
-				$status.find '.repost-form .form' .css \opacity \0
-				set-timeout do
-					->
-						$status.find '.repost-form .background' .css \display \none
-						$status.find '.repost-form .form' .css \display \none
-					100ms
+				$status.find '.repost-form .background' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
+				$status.find '.repost-form .form' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
