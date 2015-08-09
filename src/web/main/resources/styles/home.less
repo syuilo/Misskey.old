@@ -1415,7 +1415,14 @@ main {
 							display: block;
 							border-top: solid 1px #eee;
 
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
+
 							> .actions {
+								float: right;
 
 								> .reply, > .repost, > .favorite {
 									display: inline-block;
