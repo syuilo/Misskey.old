@@ -56,6 +56,7 @@ window.STATUSTIMELINE = {}
 				if document.get-selection!.to-string! != ''
 					can-event = no
 				
+				console.log ($ event.target .parents \.repost-form)
 				if ($ event.target .parents \.repost-form) != []
 					can-event = no
 					
