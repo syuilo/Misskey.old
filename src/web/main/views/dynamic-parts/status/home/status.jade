@@ -58,9 +58,10 @@ div.status.article(
 					p.info
 						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
 							img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
-						i.fa.fa-retweet
-						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
-						| によってRepost
+						span.text
+							i.fa.fa-retweet
+							| Reposted by 
+							a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
 			if status.isReply
 				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 					data-id= status.replySource.id
@@ -88,10 +89,10 @@ div.status.article(
 						img.icon(src=status.user.iconImageUrl, alt='icon')
 				header.header
 					div.author(itemprop='author')
-						if status.user.isVerified
-							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 						h2
 							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+						if status.user.isVerified
+							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 						span.screen-name= '@' + status.user.screenName
 					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 				div.content(itemprop='articleBody')
@@ -104,24 +105,24 @@ div.status.article(
 									li= tag
 					if status.isImageAttached
 						img.image(src=status.imageUrls[0], alt='image', itemprop='image')
-				aside.footer
-					if login
-						div.actions
-							div.reply
-								button.reply-button(title='返信', role='button')
-									i.fa.fa-reply
-								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id).count= status.repliesCount != 0 ? status.repliesCount : ''
-							div.repost
-								button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
-									i.fa.fa-retweet
-								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
-							div.favorite
-								button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
-									i.fa.fa-star
-								a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
+			footer.footer
+				if login
+					div.actions
+						div.reply
+							button.reply-button(title='返信', role='button')
+								i.fa.fa-reply
+							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id).count= status.repliesCount != 0 ? status.repliesCount : ''
+						div.repost
+							button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
+								i.fa.fa-retweet
+							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
+						div.favorite
+							button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
+								i.fa.fa-star
+							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
 			if status.replies.length > 0 && status.replies[0] != null
 				i.fa.fa-ellipsis-v.reply-info
-			footer
+			aside.form-and-replies
 				if login
 					form.reply-form(role='form')
 						img.me-icon(src=me.iconImageUrl, alt='icon')
