@@ -353,10 +353,11 @@ $ ->
 		
 	# Read more
 	$ window .scroll ->
+		me = $ @
 		current = $ window .scroll-top! + window.inner-height
 		if current > $ document .height! - 50
-			if not $ @ .data \loading
-				$ @ .data \loading yes
+			if not me.data \loading
+				me.data \loading yes
 				$.ajax config.api-url + '/web/status/timeline-homehtml' {
 					type: \get
 					data: {
@@ -365,7 +366,7 @@ $ ->
 					data-type: \json
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
-					$ @ .data \loading no
+					me.data \loading no
 					$statuses = $ data
 					$statuses.each ->
 						$status = $ '<li class="status">' .append $ @
@@ -374,7 +375,7 @@ $ ->
 					# Attach Wave effects 
 					init-waves-effects!
 				.fail (data) ->
-					$ @ .data \loading no
+					me.data \loading no
 
 	$ '#recommendation-users > .users > .user' .each ->
 		$user = $ @
