@@ -1075,14 +1075,23 @@ main {
 
 						> .form {
 							display: block;
+							box-sizing: border-box;
 							position: fixed;
-							top: 0;
+							top: 128px;
 							left: 0;
 							z-index: 2;
 							margin: 0;
+							padding: 16px;
 							width: 600px;
+							background: #fff;
+							border-radius: 8px;
 							opacity: 0;
 							transition: opacity 0.1s ease;
+
+							> h2 {
+								font-weight: normal;
+								border-bottom: solid 1px #eee;
+							}
 
 							> article {
 								.icon-anchor {
