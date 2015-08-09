@@ -47,6 +47,18 @@ window.STATUSTIMELINE = {}
 					..find 'article > .article-main > .form-and-replies' .hide animation-speed
 		
 		$status
+			# Click event
+			..click (event) ->
+				can-event = ! (((<[ input textarea button i time a ]>
+					|> prelude.map (element) -> $ event.target .is element)
+					.index-of yes) >= 0)
+				
+				if document.get-selection!.to-string! != ''
+					can-event = no
+					
+				if can-event
+					activate-display-state!
+			
 			# Set display talk window event 
 			..find '.main .icon-anchor' .click ->
 				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
@@ -191,18 +203,6 @@ window.STATUSTIMELINE = {}
 						$status.find '.repost-form .background' .css \display \none
 						$status.find '.repost-form .form' .css \display \none
 					100ms
-			
-			# Click event
-			..click (event) ->
-				can-event = ! (((<[ input textarea button i time a ]>
-					|> prelude.map (element) -> $ event.target .is element)
-					.index-of yes) >= 0)
-				
-				if document.get-selection!.to-string! != ''
-					can-event = no
-					
-				if can-event
-					activate-display-state!
 
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
