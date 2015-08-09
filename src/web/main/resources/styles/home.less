@@ -1132,12 +1132,16 @@ main {
 
 								i {
 									display: inline-block;
+									box-sizing: border-box;
 									padding: 18px;
+									width: ~"calc(1em + 32px)";
 									background: rgba(0, 0, 0, 0.1);
 								}
 
 								p {
 									display: inline-block;
+									margin: 0;
+									width: ~"calc(100% - (1em + 32px))";
 								}
 
 								&:hover {
