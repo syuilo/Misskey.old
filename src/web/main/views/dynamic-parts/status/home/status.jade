@@ -58,9 +58,10 @@ div.status.article(
 					p.info
 						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
 							img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
-						i.fa.fa-retweet
-						a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
-						| によってRepost
+						span.text
+							i.fa.fa-retweet
+							| Reposted by 
+							a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
 			if status.isReply
 				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 					data-id= status.replySource.id
@@ -88,10 +89,10 @@ div.status.article(
 						img.icon(src=status.user.iconImageUrl, alt='icon')
 				header.header
 					div.author(itemprop='author')
-						if status.user.isVerified
-							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 						h2
 							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+						if status.user.isVerified
+							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 						span.screen-name= '@' + status.user.screenName
 					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 				div.content(itemprop='articleBody')
