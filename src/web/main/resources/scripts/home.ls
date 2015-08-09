@@ -12,7 +12,7 @@ window.STATUSTIMELINE = {}
 		function activate-display-state
 			animation-speed = 200ms
 			if ($status.attr \data-display-html-is-active) == \false
-				reply-form-text = $status.find 'article > .article-main > .form-and-replies .reply-form textarea' .val!
+				reply-form-text = $status.children \article .find '.article-main > .form-and-replies .reply-form textarea' .val!
 				$ '.timeline > .statuses > .status > .status.article' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
@@ -30,21 +30,21 @@ window.STATUSTIMELINE = {}
 					..attr \data-display-html-is-active \true
 					..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
 					..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
-					..find 'article > .article-main > .talk > i' .hide animation-speed
-					..find 'article > .article-main > .talk > .statuses' .show animation-speed
-					..find 'article > .article-main > .reply-info' .hide animation-speed
-					..find 'article > .article-main > .form-and-replies' .show animation-speed
-					..find 'article > .article-main > .form-and-replies .reply-form textarea' .val ''
-					..find 'article > .article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
+					..children \article .find  '.article-main > .talk > i' .hide animation-speed
+					..children \article .find  '.article-main > .talk > .statuses' .show animation-speed
+					..children \article .find  '.article-main > .reply-info' .hide animation-speed
+					..children \article .find  '.article-main > .form-and-replies' .show animation-speed
+					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .val ''
+					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
 			else
 				$status
 					..attr \data-display-html-is-active \false
 					..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
 					..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
-					..find 'article > .article-main > .talk > i' .show animation-speed
-					..find 'article > .article-main > .talk > .statuses' .hide animation-speed
-					..find 'article > .article-main > .reply-info' .show animation-speed
-					..find 'article > .article-main > .form-and-replies' .hide animation-speed
+					..children \article .find  '.article-main > .talk > i' .show animation-speed
+					..children \article .find  '.article-main > .talk > .statuses' .hide animation-speed
+					..children \article .find  '.article-main > .reply-info' .show animation-speed
+					..children \article .find  '.article-main > .form-and-replies' .hide animation-speed
 		
 		$status
 			# Click event
