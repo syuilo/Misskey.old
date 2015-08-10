@@ -96,12 +96,12 @@ div.status.article(
 							i.fa.fa-retweet
 							| Reposted by 
 							a.name(href=config.url + '/' + status.repostedByUser.screenName, target='_blank')= status.repostedByUser.name
-					if status.text != null && status.text != ''
+					if status.source.text != null && status.source.text != ''
 						article
 							div.text
-								p!= textParser(status.text)
-							if status.isImageAttached
-								img.image(src=status.imageUrls[0], alt='image', itemprop='image')
+								p!= textParser(status.source.text)
+							if status.source.isImageAttached
+								img.image(src=status.source.imageUrls[0], alt='image', itemprop='image')
 			if status.isReply
 				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 					data-id= status.replySource.id
