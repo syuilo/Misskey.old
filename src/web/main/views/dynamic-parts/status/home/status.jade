@@ -27,40 +27,43 @@ div.status.article(
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')
 	article(role='article')
-		div.repost-form
-			div.background
-			form.form
-				h2
-					i.fa.fa-retweet
-					| この投稿をRepostしますか？
-				article(role='article')
-					a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
-						img.icon(src=status.user.iconImageUrl, alt='icon')
-					header.header
-						h3
-							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
-						if status.user.isVerified
-							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-						span.screen-name= '@' + status.user.screenName
-						a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
-					div.main(itemprop='articleBody')
-						div.text
-							p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
-						div.tag
-							if status.tag != null
-								ol(itemprop='keywords')
-									each tag in status.tag
-										li= tag
-						if status.isImageAttached
-							img.image(src=status.imageUrls[0], alt='image', itemprop='image')
-				input(type='text', name='text', placeholder='Repostにコメントを付ける')
-				div.actions
-					button.accept(type='submit')
-						i.fa.fa-check
-						p Repost
-					button.cancel(type='button')
-						i.fa.fa-ban
-						p キャンセル
+		if login
+			div.repost-form
+				div.background
+				form.form
+					h2
+						i.fa.fa-retweet
+						| この投稿をRepostしますか？
+					article(role='article')
+						a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+							img.icon(src=status.user.iconImageUrl, alt='icon')
+						header.header
+							h3
+								a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+							if status.user.isVerified
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+							span.screen-name= '@' + status.user.screenName
+							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+						div.main(itemprop='articleBody')
+							div.text
+								p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+							div.tag
+								if status.tag != null
+									ol(itemprop='keywords')
+										each tag in status.tag
+											li= tag
+							if status.isImageAttached
+								img.image(src=status.imageUrls[0], alt='image', itemprop='image')
+					div.comment-form
+						img.me-icon(src=me.iconImageUrl, alt='icon')
+						input(type='text', name='text', placeholder='Repostにコメントを付ける')
+					div.actions
+						button.accept(type='submit')
+							i.fa.fa-check
+							p Repost
+						button.cancel(type='button')
+							i.fa.fa-ban
+							p キャンセル
 		div.article-main(style= status.isReply ? 'border-color: ' + status.replySource.user.color + ';' : '')
 			if status.moreTalk != null
 				aside.talk
