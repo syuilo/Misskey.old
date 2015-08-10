@@ -20,7 +20,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 	
 	text .= trim!
 	switch
-	| !image? && null-or-empty text => throw-error \empty-text 'Empty text.'
+	| !image? && !repost-from-status? && null-or-empty text => throw-error \empty-text 'Empty text.'
 	| not null-or-empty text and text[0] == \$ => analyze-command text
 	| text.length > 300chars => throw-error \too-long-text 'Too long text.'
 	| _ =>
