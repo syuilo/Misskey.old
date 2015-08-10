@@ -12,7 +12,7 @@ window.STATUSTIMELINE = {}
 		function activate-display-state
 			animation-speed = 200ms
 			if ($status.attr \data-display-html-is-active) == \false
-				reply-form-text = $status.find 'article > .article-main > .form-and-replies .reply-form textarea' .val!
+				reply-form-text = $status.children \article .find '.article-main > .form-and-replies .reply-form textarea' .val!
 				$ '.timeline > .statuses > .status > .status.article' .each ->
 					$ @
 						..attr \data-display-html-is-active \false
@@ -30,23 +30,38 @@ window.STATUSTIMELINE = {}
 					..attr \data-display-html-is-active \true
 					..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
 					..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
-					..find 'article > .article-main > .talk > i' .hide animation-speed
-					..find 'article > .article-main > .talk > .statuses' .show animation-speed
-					..find 'article > .article-main > .reply-info' .hide animation-speed
-					..find 'article > .article-main > .form-and-replies' .show animation-speed
-					..find 'article > .article-main > .form-and-replies .reply-form textarea' .val ''
-					..find 'article > .article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
+					..children \article .find  '.article-main > .talk > i' .hide animation-speed
+					..children \article .find  '.article-main > .talk > .statuses' .show animation-speed
+					..children \article .find  '.article-main > .reply-info' .hide animation-speed
+					..children \article .find  '.article-main > .form-and-replies' .show animation-speed
+					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .val ''
+					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
 			else
 				$status
 					..attr \data-display-html-is-active \false
 					..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
 					..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
-					..find 'article > .article-main > .talk > i' .show animation-speed
-					..find 'article > .article-main > .talk > .statuses' .hide animation-speed
-					..find 'article > .article-main > .reply-info' .show animation-speed
-					..find 'article > .article-main > .form-and-replies' .hide animation-speed
+					..children \article .find  '.article-main > .talk > i' .show animation-speed
+					..children \article .find  '.article-main > .talk > .statuses' .hide animation-speed
+					..children \article .find  '.article-main > .reply-info' .show animation-speed
+					..children \article .find  '.article-main > .form-and-replies' .hide animation-speed
 		
 		$status
+			# Click event
+			..click (event) ->
+				can-event = ! (((<[ input textarea button i time a ]>
+					|> prelude.map (element) -> $ event.target .is element)
+					.index-of yes) >= 0)
+				
+				if document.get-selection!.to-string! != ''
+					can-event = no
+				
+				if $ event.target .closest \.repost-form .length > 0
+					can-event = no
+					
+				if can-event
+					activate-display-state!
+			
 			# Set display talk window event 
 			..find '.main .icon-anchor' .click ->
 				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
@@ -137,8 +152,6 @@ window.STATUSTIMELINE = {}
 			
 			# Init repost button
 			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
-				$button = $ @
-					..attr \disabled on
 				if check-reposted!
 					$status.attr \data-is-reposted \false
 					$.ajax "#{config.api-url}/status/unrepost" {
@@ -152,29 +165,56 @@ window.STATUSTIMELINE = {}
 						$button.attr \disabled off
 						$status.attr \data-is-reposted \true
 				else
-					$status.attr \data-is-reposted \true
-					$.ajax "#{config.api-url}/status/repost" {
-						type: \post
-						data: {'status-id': $status.attr \data-id}
-						data-type: \json
-						xhr-fields: {+withCredentials}}
-					.done ->
-						$button.attr \disabled off
-					.fail ->
-						$button.attr \disabled off
-						$status.attr \data-is-reposted \false
+					$status.find '.repost-form .background' .css \display \block
+					$status.find '.repost-form .background' .animate {
+						opacity: 1
+					} 100ms \linear
+					$status.find '.repost-form .form' .css \display \block
+					$status.find '.repost-form .form' .animate {
+						opacity: 1
+					} 100ms \linear
 			
-			# Click event
-			..click (event) ->
-				can-event = ! (((<[ input textarea button i time a ]>
-					|> prelude.map (element) -> $ event.target .is element)
-					.index-of yes) >= 0)
-				
-				if document.get-selection!.to-string! != ''
-					can-event = no
-					
-				if can-event
-					activate-display-state!
+			# Init repost form
+			..find '.repost-form > .form' .submit (event) ->
+				event.prevent-default!
+				$form = $ @
+				$submit-button = $form.find \.accept
+					..attr \disabled on
+				$status.attr \data-is-reposted \true
+				$.ajax "#{config.api-url}/status/repost" {
+					type: \post
+					data:
+						'status-id': $status.attr \data-id
+						text: $status.find '.repost-form > form > input[name=text]' .val!
+					data-type: \json
+					xhr-fields: {+withCredentials}}
+				.done ->
+					$submit-button.attr \disabled off
+					window.display-message 'Reposted!'
+					$status.find '.repost-form .background' .animate {
+						opacity: 0
+					} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
+					$status.find '.repost-form .form' .animate {
+						opacity: 0
+					} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
+				.fail ->
+					$submit-button.attr \disabled off
+					$status.attr \data-is-reposted \false
+					window.display-message 'Repostに失敗しました。再度お試しください。'
+			..find '.repost-form > .form > .actions > .cancel' .click ->
+				$status.find '.repost-form .background' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
+				$status.find '.repost-form .form' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
+			..find '.repost-form .background' .click ->
+				$status.find '.repost-form .background' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
+				$status.find '.repost-form .form' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
