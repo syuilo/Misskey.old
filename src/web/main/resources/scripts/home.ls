@@ -206,6 +206,13 @@ window.STATUSTIMELINE = {}
 				$status.find '.repost-form .form' .animate {
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
+			..find '.repost-form .background' .click ->
+				$status.find '.repost-form .background' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
+				$status.find '.repost-form .form' .animate {
+					opacity: 0
+				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
 function add-status($status)
 	new Audio '/resources/sounds/pop.mp3' .play!
