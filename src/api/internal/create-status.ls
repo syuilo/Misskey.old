@@ -6,11 +6,13 @@ require! {
 	'../../models/status-mention': StatusMention
 	'../../models/user': User
 	'../../models/user-following': UserFollowing
+	'../../models/utils/serialize-status'
+	'../../models/utils/filter-user-for-response'
 	'../../utils/publish-redis-streaming'
 	'../../utils/register-image'
 }
 
-module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
+module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-from-status = null) ->
 	resolve, reject <- new Promise!
 	
 	function throw-error(code, message)
@@ -53,10 +55,13 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 			is-image-attached: image?
 			text: text
 			user-id: user.id
+			repost-from-status-id: if repost-from-status? then repost-from-status.id else null
 		err, created-status <- status.save
 		if err?
 			reject err
 		else
+			if repost-from-status?
+				reposted created-status
 			user.statuses-count++
 			user.save ->
 				if created-status.in-reply-to-status-id?
@@ -108,6 +113,30 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null) ->
 											user-icon-image-url: user.icon-image-url
 											text: status.text
 									publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+
+	function reposted(created-status)
+		repost-from-status
+			..reposts-count++
+			..save (err) ->
+				# Create notice
+				create-notice repost-from-status.user-id, \status-repost {
+					repost-id: created-status.id
+					status-id: repost-from-status.id
+					user-id: user.id
+				} .then ->
+
+				serialize-status repost-from-status, (repost-from-status-obj) ->
+					repost-from-status-obj
+						..is-repost-to-status = true
+						..reposted-by-user = filter-user-for-response user
+						.. |> res.api-render
+					stream-obj = to-json do
+						type: \repost
+						value: {created-status.id}
+					publish-redis-streaming "userStream:#{user.id}" stream-obj
+					UserFollowing.find {followee-id: user.id} (, user-followings) ->
+						| !empty user-followings => user-followings |> each (user-following) ->
+							publish-redis-streaming "userStream:#{user-following.follower-id}" stream-obj
 
 	function analyze-command(text)
 		space-index = text.index-of ' '
