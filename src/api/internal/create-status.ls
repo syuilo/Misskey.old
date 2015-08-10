@@ -8,6 +8,7 @@ require! {
 	'../../models/user-following': UserFollowing
 	'../../models/utils/serialize-status'
 	'../../models/utils/filter-user-for-response'
+	'../../models/utils/create-notice'
 	'../../utils/publish-redis-streaming'
 	'../../utils/register-image'
 }
