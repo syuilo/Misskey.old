@@ -37,12 +37,11 @@ div.status.article(
 					a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=status.user.iconImageUrl, alt='icon')
 					header.header
-						div.author(itemprop='author')
-							h3
-								a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
-							if status.user.isVerified
-								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-							span.screen-name= '@' + status.user.screenName
+						h3
+							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+						if status.user.isVerified
+							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+						span.screen-name= '@' + status.user.screenName
 						a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 					div.main(itemprop='articleBody')
 						div.text
