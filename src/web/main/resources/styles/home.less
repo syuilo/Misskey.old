@@ -1105,65 +1105,74 @@ main {
 								}
 							}
 
-							button {
-								-webkit-appearance: none;
-								-moz-appearance: none;
-								appearance: none;
-								display: block;
-								position: relative;
-								box-sizing: border-box;
-								margin: 0;
-								padding: 0;
-								width: 200px;
-								line-height: 1em;
-								font-size: 1.1em;
-								color: #fff;
-								outline: 0;
-								border: 0;
-								border-radius: 8px;
-								box-shadow: none;
-								background: #00acce;
-								overflow: hidden;
-								cursor: pointer;
-
-								* {
-									cursor: pointer;
+							> .actions {
+								&:after {
+									content: "";
+									display: block;
+									clear: both;
 								}
 
-								i {
-									display: inline-block;
+								button {
+									-webkit-appearance: none;
+									-moz-appearance: none;
+									appearance: none;
+									display: block;
+									float: right;
+									position: relative;
 									box-sizing: border-box;
-									padding: 18px;
-									width: ~"calc(1em + 32px)";
-									background: rgba(0, 0, 0, 0.1);
-								}
+									margin: 0 0 0 16px;
+									padding: 0;
+									width: 200px;
+									line-height: 1em;
+									font-size: 1.1em;
+									color: #fff;
+									outline: 0;
+									border: 0;
+									border-radius: 8px;
+									box-shadow: none;
+									background: #00acce;
+									overflow: hidden;
+									cursor: pointer;
 
-								p {
-									display: inline-block;
-									margin: 0;
-									width: ~"calc(100% - (1em + 32px))";
-								}
+									* {
+										cursor: pointer;
+									}
 
-								&:hover {
-									background: #00c3e5;
-								}
+									i {
+										display: inline-block;
+										box-sizing: border-box;
+										padding: 18px;
+										width: ~"calc(1em + 32px)";
+										background: rgba(0, 0, 0, 0.1);
+									}
 
-								&:active {
-									background: #0097b2;
-								}
-							}
-
-								button.cancel {
-									background: #ccc;
+									p {
+										display: inline-block;
+										margin: 0;
+										width: ~"calc(100% - (1em + 32px))";
+									}
 
 									&:hover {
-										background: #e5e5e5;
+										background: #00c3e5;
 									}
 
 									&:active {
-										background: #b2b2b2;
+										background: #0097b2;
 									}
 								}
+
+									button.cancel {
+										background: #ccc;
+
+										&:hover {
+											background: #e5e5e5;
+										}
+
+										&:active {
+											background: #b2b2b2;
+										}
+									}
+							}
 						}
 					}
 
