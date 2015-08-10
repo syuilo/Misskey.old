@@ -199,7 +199,7 @@ window.STATUSTIMELINE = {}
 					$submit-button.attr \disabled off
 					$status.attr \data-is-reposted \false
 					window.display-message 'Repostに失敗しました。再度お試しください。'
-			..find '.repost-form > .form > .cancel' .click ->
+			..find '.repost-form > .form > .actions > .cancel' .click ->
 				$status.find '.repost-form .background' .animate {
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .background' .css \display \none
