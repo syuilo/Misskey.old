@@ -30,7 +30,9 @@ div.status.article(
 		div.repost-form
 			div.background
 			form.form
-				h2 この投稿をRepostしますか？
+				h2
+					i.fa.fa-retweet
+					| この投稿をRepostしますか？
 				article(role='article')
 					a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=status.user.iconImageUrl, alt='icon')
