@@ -1450,7 +1450,31 @@ main {
 							}
 
 							> article {
+								position: relative;
+								padding: 8px 12px;
 								background: #fff;
+								background-clip: padding-box;
+								border-top: solid 4px transparent;
+
+								&:before {
+									content: "";
+									display: block;
+									position: absolute;
+									top: -16px;
+									left: 4px;
+									font-size: 0;
+									line-height: 0;
+									border-top: solid 8px transparent;
+									border-right: solid 8px transparent;
+									border-bottom: solid 8px #fff;
+									border-left: solid 8px transparent;
+								}
+
+								> .text {
+									> p {
+										margin: 0;
+									}
+								}
 							}
 						}
 
