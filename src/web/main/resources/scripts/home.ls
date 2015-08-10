@@ -185,7 +185,7 @@ window.STATUSTIMELINE = {}
 					type: \post
 					data:
 						'status-id': $status.attr \data-id
-						text: $status.find '.repost-form > form > input[name=text]' .val!
+						text: $status.find '.repost-form > form > .comment-form > input[name=text]' .val!
 					data-type: \json
 					xhr-fields: {+withCredentials}}
 				.done ->
