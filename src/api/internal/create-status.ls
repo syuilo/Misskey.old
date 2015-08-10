@@ -26,7 +26,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 	| _ =>
 		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
 		switch
-		| recent-status? && text == recent-status.text && !image? => throw-error \duplicate-content 'Duplicate content.'
+		| recent-status? && text == recent-status.text && !image? && !repost-from-status? => throw-error \duplicate-content 'Duplicate content.'
 		| image? =>
 			# Detect the image type
 			img-type = (image-type image).ext
