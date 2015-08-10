@@ -183,7 +183,9 @@ window.STATUSTIMELINE = {}
 				$status.attr \data-is-reposted \true
 				$.ajax "#{config.api-url}/status/repost" {
 					type: \post
-					data: {'status-id': $status.attr \data-id}
+					data:
+						'status-id': $status.attr \data-id
+						text: $status.find '.repost-form > form > input[name=text]' .val!
 					data-type: \json
 					xhr-fields: {+withCredentials}}
 				.done ->
