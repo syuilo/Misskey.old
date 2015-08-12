@@ -181,7 +181,7 @@ $ ->
 					$statuses = $ data
 					$statuses.each ->
 						$status = $ '<li class="status">' .append $ @
-						window.STATUSTIMELINE.set-event $status.children '.status.article'
+						window.STATUS_CORE.set-event $status.children '.status.article'
 						$status.append-to $ '#timeline .timeline > .statuses'
 					# Attach Wave effects 
 					init-waves-effects!
