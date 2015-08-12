@@ -1,8 +1,6 @@
 require! {
 	jade
 	'../../../../models/status': Status
-	'../../../../models/utils/status-get-timeline'
-	'../../../../models/utils/status-get-mentions'
 	'../../utils/serialize-mobile-detail-status'
 	'../../utils/parse-text'
 	'../../../../config'
