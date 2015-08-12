@@ -215,7 +215,7 @@ window.STATUS_CORE = {}
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 	
-	..add-status($status)
+	..add-status = ($status) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 
 		$status = $ '<li class="status">' .append($status).hide!
