@@ -1,14 +1,12 @@
 require! {
 	jade
 	'../../../../models/status': Status
-	'../../../../models/utils/status-get-timeline'
-	'../../../../models/utils/status-get-mentions'
 	'../../utils/serialize-mobile-detail-status'
 	'../../utils/parse-text'
 	'../../../../config'
 }
 
-module.exports = (req, res, content = \home) ->
+module.exports = (req, res) ->
 	me = req.me
 	status-compiler = jade.compile-file "#__dirname/../../views/dynamic-parts/status/mobile/status-detail.jade"
 	Status.find-by-id req.root-status.id, (, status) ->
