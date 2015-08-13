@@ -15,6 +15,6 @@ li.status(title= status.displayCreatedAt
 			a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt, pubdate, data-display-type='relative')= status.createdAt
 		div.main
 			div.text
-				p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+				p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 			if status.isImageAttached
 				img.image(src=status.imageUrls[0], alt='image')
