@@ -46,7 +46,7 @@ div.status.article(
 							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 						div.main(itemprop='articleBody')
 							div.text
-								p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+								p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 							div.tag
 								if status.tag != null
 									ol(itemprop='keywords')
@@ -87,7 +87,7 @@ div.status.article(
 										a(href=config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.id): time(datetime=talkPost.createdAt, pubdate, data-display-type='relative')= talkPost.createdAt
 									div.main
 										div.text
-											p!= (talkPost.isReply ? '<a href="' + config.url + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
+											p!= (talkPost.isReply ? '<a href="' + config.url + '/' + talkPost.user.screenName + '/status/' + talkPost.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(talkPost.text)
 										if talkPost.isImageAttached
 											img.image(src=talkPost.imageUrls[0], alt='image')
 			if status.isRepostToStatus
@@ -123,7 +123,7 @@ div.status.article(
 							a(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id): time(datetime=status.replySource.createdAt, pubdate, data-display-type='relative')= status.replySource.createdAt
 						div.main
 							div.text
-								p!= (status.replySource.isReply ? '<a href="' + config.url + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+								p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
 							if status.replySource.isImageAttached
 								img.image(src=status.replySource.imageUrls[0], alt='image')
 			div.main
@@ -140,7 +140,7 @@ div.status.article(
 					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 				div.content(itemprop='articleBody')
 					div.text
-						p!= (status.isReply ? '<a href="' + config.url + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+						p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
 					div.tag
 						if status.tag != null
 							ol(itemprop='keywords')
@@ -202,6 +202,6 @@ div.status.article(
 											a(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id): time(datetime=reply.createdAt, pubdate, data-display-type='relative')= reply.createdAt
 										div.main
 											div.text
-												p!= (reply.isReply ? '<a href="' + config.url + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
+												p!= (reply.isReply ? '<a href="' + config.url + '/' + reply.user.screenName + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(reply.text)
 											if reply.isImageAttached
 												img.image(src=reply.imageUrls[0], alt='image')
