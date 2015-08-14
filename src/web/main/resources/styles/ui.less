@@ -304,6 +304,8 @@ textarea {
 								vertical-align: top;
 								height: 48px;
 								line-height: 48px;
+								background-clip: padding-box;
+								border-right: solid 2px rgba(0, 0, 0, 0.2);
 
 								&.active {
 									background: @themeColor;
@@ -383,7 +385,7 @@ textarea {
 						box-shadow: none;
 						transition: color 0.5s ease, border 0.5s ease;
 						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
-						
+
 						&:hover {
 							background: rgba(0, 0, 0, 0.1);
 						}
@@ -691,9 +693,8 @@ textarea {
 						overflow: visible;
 						clear: both;
 						float: right;
-						transition: background 0s linear 0.5s;
 
-						&:hover {
+						&[data-active='true'] {
 							background: #111111;
 							transition: background 0s linear;
 
@@ -703,13 +704,16 @@ textarea {
 
 							> .dropdown-content {
 								visibility: visible;
-								opacity: 1;
-								transform: scale(1);
-								transition: opacity 0.1s linear;
 							}
 						}
 
 						> .dropdown-header {
+							cursor: pointer;
+
+							* {
+								cursor: pointer;
+							}
+
 							&:after {
 								content: "";
 								display: block;
@@ -755,7 +759,6 @@ textarea {
 							margin: 0;
 							padding: 0;
 							background: #111111;
-							transition: visibility 0s linear 0.5s;
 
 							> ul {
 								margin: 0;
