@@ -19,16 +19,16 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		.sort {followers-count: -1}
 		.limit 5users
 		.exec (err, users) ->
-			users |> each (user) ->
-				user .= to-object!
+			users |> map (user) ->
+				user.to-object!
 			if (search-type == \screen-name) and (users.length < 5users)
 				reg = new RegExp query, \i
 				User.find {name: reg}
 				.sort {followers-count: -1}
 				.limit 5users - users.length
 				.exec (err, other-users) ->
-					other-users |> each (user) ->
-						user .= to-object!
+					other-users |> map (user) ->
+						user.to-object!
 					res.api-render users.concat other-users
 			else
 				res.api-render users
