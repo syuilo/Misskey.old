@@ -33,7 +33,9 @@ module.exports = (app, user, thread-id, title, image = null) ->
 
 	function update(image)
 		if image?
-			register-image user, \bbs-thread-eyecatch "#{thread.id}.jpg", \jpg, image .then ->
-				resolve thread
+			register-image user, \bbs-thread-eyecatch "#{thread.id}.jpg", \jpg, image .then (path) ->
+				thread.eyecatch-image = path
+				thread.save ->
+					resolve thread
 		else
 			resolve thread

@@ -17,8 +17,10 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			.quality 80
 			.to-buffer \jpeg
 		fs.unlink path
-		register-image user, \user-wallpaper "#{user.id}.jpg", \jpg, image .then ->
+		register-image user, \user-wallpaper "#{user.id}.jpg", \jpg, image .then (path) ->
 			register-image user, \user-wallpaper "#{user.id}-blurred.jpg", \jpg, blurred-image .then ->
-				res.api-render 'success'
+				user.wallpaper-image = path
+				user.save ->
+					res.api-render 'success'
 	else
 		res.api-error 400 'Not attached image'
