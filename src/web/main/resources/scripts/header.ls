@@ -41,7 +41,7 @@ $ ->
 	
 	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .account .dropdown'
-		if $dropdown.attr \data-active == \true
+		if ($dropdown.attr \data-active) == \true
 			$dropdown.attr \data-active \false
 			$dropdown.find 'i.fa.fa fa-angle-up' .attr \class 'fa fa-angle-down'
 		else
