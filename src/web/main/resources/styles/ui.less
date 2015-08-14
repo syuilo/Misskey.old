@@ -700,11 +700,11 @@ textarea {
 							background: #111111;
 							transition: background 0s linear;
 
-							> .screenName {
+							> .dropdown-header > .screenName {
 								color: #fff;
 							}
 
-							> .dropdownContent {
+							> .dropdown-content {
 								visibility: visible;
 								opacity: 1;
 								transform: scale(1);
@@ -712,33 +712,42 @@ textarea {
 							}
 						}
 
-						> .screenName {
-							display: block;
-							float: left;
-							margin: 0 16px;
-							max-width: 16em;
-							line-height: 48px;
-							font-weight: bold;
-							text-decoration: none;
-							color: @header-foreground-color;
+						> .dropdown-header {
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
 
-							i {
-								margin-left: 8px;
+							> .screenName {
+								display: block;
+								float: left;
+								margin: 0 16px;
+								max-width: 16em;
+								line-height: 48px;
+								font-weight: bold;
+								text-decoration: none;
+								color: @header-foreground-color;
+
+								i {
+									margin-left: 8px;
+								}
+							}
+
+							> .icon {
+								display: block;
+								float: left;
+								box-sizing: border-box;
+								min-width: 32px;
+								max-width: 32px;
+								min-height: 32px;
+								max-height: 32px;
+								margin: 8px 8px 8px 0;
+								border-radius: 4px;
 							}
 						}
 
-						> .icon {
-							display: block;
-							box-sizing: border-box;
-							min-width: 32px;
-							max-width: 32px;
-							min-height: 32px;
-							max-height: 32px;
-							margin: 8px;
-							border-radius: 4px;
-						}
-
-						> .dropdownContent {
+						> .dropdown-content {
 							visibility: hidden;
 							display: block;
 							position: absolute;
