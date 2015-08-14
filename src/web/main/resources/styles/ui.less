@@ -369,10 +369,10 @@ textarea {
 						-ms-user-select: text;
 						cursor: auto;
 						box-sizing: border-box;
-						margin: 6px 0;
+						margin: 0;
 						padding: 6px 10px;
 						width: 14em;
-						height: ~"calc(48px - 12px)";
+						height: 48px;
 						font-size: 1em;
 						line-height: ~"calc(48px - 12px)";
 						color: #fff;
@@ -389,13 +389,12 @@ textarea {
 							border: solid 1px @themeColor;
 							transition: border 0.2s ease, box-shadow 0.1s ease;
 						}
+						*/
 
 						&:focus {
-							color: @themeColor;
-							border: solid 1px @themeColor;
-							transition: color 0, border 0.5s ease;
+							background: #111111;
 						}
-						*/
+						
 						&:focus {
 							color: darken(@themeColor, 20%);
 						}
@@ -410,7 +409,7 @@ textarea {
 						width: 340px;
 						margin: 0;
 						padding: 0;
-						background: @header-background-color;
+						background: #111111;
 
 						> ol.users {
 							margin: 0;
