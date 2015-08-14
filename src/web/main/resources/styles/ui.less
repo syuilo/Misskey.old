@@ -696,11 +696,6 @@ textarea {
 
 						&[data-active='true'] {
 							background: #111111;
-							transition: background 0s linear;
-
-							> .dropdown-header > .screenName {
-								color: #fff;
-							}
 
 							> .dropdown-content {
 								visibility: visible;
@@ -712,6 +707,14 @@ textarea {
 
 							* {
 								cursor: pointer;
+							}
+
+							&:hover {
+								background: rgba(0, 0, 0, 0.1);
+
+								> .screenName {
+									color: #fff;
+								}
 							}
 
 							&:after {
