@@ -37,9 +37,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					update buffer, \jpg
 
 	function update(image, img-type)
-		filename = "#{user.id}.#{img-type}"
-		register-image user, \user-icon, filename, img-type, image .then ->
+		register-image user, \user-icon, "#{user.id}.#{img-type}", img-type, image .then (path) ->
 			delete-image user, \user-icon, user.icon-image .then!
-			user.icon-image = filename
+			user.icon-image = path
 			user.save ->
 				res.api-render 'success'

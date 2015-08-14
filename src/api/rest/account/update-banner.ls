@@ -12,9 +12,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		(normal-image-buffer) <- generate-normal-image path .then
 		(blurred-image-buffer) <- generate-blurred-image path .then
 		fs.unlink path
-		register-image user, \user-banner "#{user.id}.jpg", \jpg, normal-image-buffer .then ->
+		register-image user, \user-banner "#{user.id}.jpg", \jpg, normal-image-buffer .then (path) ->
 			register-image user, \user-banner "#{user.id}-blurred.jpg", \jpg, blurred-image-buffer .then ->
-				res.api-render 'success'
+				user.banner-image = path
+				user.save ->
+					res.api-render 'success'
 	else
 		res.api-error 400 'Not attached image'
 

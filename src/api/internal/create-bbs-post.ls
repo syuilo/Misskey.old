@@ -88,8 +88,8 @@ module.exports = (app, user, thread-id, text, image = null) ->
 			| err? => throw-error \post-save-error err
 			| image? =>
 				image-name = "#{created-post.id}-1.jpg"
-				register-image user, \bbs-post-image image-name, \jpg, image .then ->
-					created-post.images = [image-name]
+				register-image user, \bbs-post-image image-name, \jpg, image .then (path) ->
+					created-post.images = [path]
 					created-post.save ->
 						done!
 			| _ => done!

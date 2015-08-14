@@ -77,8 +77,8 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 				switch
 				| image? =>
 					image-name = "#{created-status.id}-1.#{img-type}"
-					register-image user, \status-image image-name, img-type, image .then ->
-						created-status.images = [image-name]
+					register-image user, \status-image image-name, img-type, image .then (path) ->
+						created-status.images = [path]
 						created-status.save ->
 							done!
 				| _ => done!

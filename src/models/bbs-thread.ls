@@ -18,13 +18,13 @@ schema = new Schema do
 	favorites-count: {type: Number,                required: yes, default: 0}
 
 schema.virtual \eyecatchImageUrl .get ->
-	"#{config.image-server-url}/contents/bbs-thread-eyecatch/#{this.eyecatch-image}"
+	"#{config.image-server-url}/#{this.eyecatch-image}"
 	
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
-	ret.eyecatch-image-url = "#{config.image-server-url}/contents/bbs-thread-eyecatch/#{doc.eyecatch-image}"
+	ret.eyecatch-image-url = "#{config.image-server-url}/#{doc.eyecatch-image}"
 	delete ret._id
 	delete ret.__v
 	ret

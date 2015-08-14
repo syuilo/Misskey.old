@@ -41,8 +41,8 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 			switch
 			| image? =>
 				image-name = "#{created-talk-message.id}-1.jpg"
-				register-image user, \talk-message-image image-name, \jpg, image .then ->
-					created-talk-message.images = [image-name]
+				register-image user, \talk-message-image image-name, \jpg, image .then (path) ->
+					created-talk-message.images = [path]
 					created-talk-message.save ->
 						done created-talk-message
 			| _ =>

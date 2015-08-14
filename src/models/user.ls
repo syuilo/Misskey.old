@@ -42,27 +42,27 @@ schema = new Schema do
 	wallpaper-image:         {type: String,                required: no,  default: null}
 
 schema.virtual \iconImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/icon/#{this.icon-image}"
+	"#{config.image-server-url}/#{this.icon-image}"
 
 schema.virtual \bannerImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.banner-image}"
+	"#{config.image-server-url}/#{this.banner-image}"
 
 schema.virtual \blurredBannerImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/banner/#{this.banner-image.replace '.jpg' '-blurred.jpg'}"
+	"#{config.image-server-url}/#{this.banner-image.replace '.jpg' '-blurred.jpg'}"
 
 schema.virtual \wallpaperImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.wallpaper-image}"
+	"#{config.image-server-url}/#{this.wallpaper-image}"
 
 schema.virtual \blurredWallpaperImageUrl .get ->
-	"#{config.image-server-url}/contents/user-contents/user/#{this.id}/wallpaper/#{this.wallpaper-image.replace '.jpg' '-blurred.jpg'}"
+	"#{config.image-server-url}/#{this.wallpaper-image.replace '.jpg' '-blurred.jpg'}"
 
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
 	ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
-	ret.icon-image-url = "#{config.image-server-url}/contents/user-contents/user/#{doc.id}/icon/#{doc.icon-image}"
-	ret.banner-image-url = "#{config.image-server-url}/contents/user-contents/user/#{doc.id}/banner/#{doc.banner-image}"
-	ret.wallpaper-image-url = "#{config.image-server-url}/contents/user-contents/user/#{doc.id}/wallpaper/#{doc.wallpaper-image}"
+	ret.icon-image-url = "#{config.image-server-url}/#{doc.icon-image}"
+	ret.banner-image-url = "#{config.image-server-url}/#{doc.banner-image}"
+	ret.wallpaper-image-url = "#{config.image-server-url}/#{doc.wallpaper-image}"
 	delete ret._id
 	delete ret.__v
 	delete ret.password
