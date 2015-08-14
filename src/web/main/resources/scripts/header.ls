@@ -43,8 +43,10 @@ $ ->
 		$input = $ @
 		$result = $ '#misskey-main-header .search .result'
 		if $input .val! == ''
+			$input.attr \data-active \false
 			$result.empty!
 		else
+			$input.attr \data-active \true
 			$.ajax "#{config.api-url}/search/user" {
 				type: \get
 				data: {'query': $input .val!}
