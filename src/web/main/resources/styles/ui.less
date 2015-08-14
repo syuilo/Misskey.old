@@ -106,7 +106,6 @@ textarea {
 	z-index: 1024;
 	width: 100%;
 	//box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
-
 	> .donate {
 		margin: 0;
 		padding: 4px 16px;
@@ -248,7 +247,6 @@ textarea {
 		background-size: auto 24px;
 		//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
 		//border-top: solid 3px @themeColor;
-
 		&:after {
 			content: "";
 			display: block;
@@ -319,7 +317,7 @@ textarea {
 									display: inline-block;
 									z-index: 1;
 									height: 100%;
-									padding: 0 16px;
+									padding: 0 24px;
 									font-size: 1em;
 									color: @header-foreground-color;
 									transition: all 0.2s ease;
@@ -733,10 +731,12 @@ textarea {
 							> .icon {
 								display: block;
 								box-sizing: border-box;
-								min-width: 48px;
-								max-width: 48px;
-								min-height: 48px;
-								max-height: 48px;
+								min-width: 32px;
+								max-width: 32px;
+								min-height: 32px;
+								max-height: 32px;
+								margin: 8px;
+								border-radius: 4px;
 							}
 						}
 
