@@ -59,11 +59,11 @@ header#misskey-main-header(role='banner')
 									else
 										p.empty 通知はありません
 					div.account
-						a.screenNameAnchor(href= url + '/' + me.screenName)
-							span.screenName= '@' + me.screenName
 						div.dropdown
-							a.iconAnchor(href= url + '/' + me.screenName)
-								img.icon(src= me.iconImageUrl, alt='icon')
+							span.screenName
+								= '@' + me.screenName
+								i.fa.fa-angle-down
+							img.icon(src= me.iconImageUrl, alt='icon')
 							div.dropdownContent
 								ul
 									li: a.ui-waves-effect(href= url + '/' + me.screenName)

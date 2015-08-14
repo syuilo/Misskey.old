@@ -688,14 +688,26 @@ textarea {
 					display: inline-block;
 					vertical-align: top;
 
-					> .screenNameAnchor {
+					> .dropdown {
 						display: inline-block;
+						position: relative;
+						overflow: visible;
+						clear: both;
+						float: right;
 
 						&:hover {
 							> .screenName {
 								color: @themeColor;
 							}
+
+							> .dropdownContent {
+								visibility: visible;
+								opacity: 1;
+								transform: scale(1);
+								transition: opacity 0.1s linear;
+							}
 						}
+
 
 						> .screenName {
 							display: inline-block;
@@ -706,38 +718,21 @@ textarea {
 							text-decoration: none;
 							color: @header-foreground-color;
 							transition: all 0.2s ease;
-						}
-					}
 
-					> .dropdown {
-						display: inline-block;
-						position: relative;
-						overflow: visible;
-						clear: both;
-						float: right;
-
-						&:hover {
-							> .dropdownContent {
-								visibility: visible;
-								opacity: 1;
-								transform: scale(1);
-								transition: opacity 0.1s linear;
+							i {
+								margin-left: 8px;
 							}
 						}
 
-						> .iconAnchor {
+						> .icon {
 							display: block;
-
-							> .icon {
-								display: block;
-								box-sizing: border-box;
-								min-width: 32px;
-								max-width: 32px;
-								min-height: 32px;
-								max-height: 32px;
-								margin: 8px;
-								border-radius: 4px;
-							}
+							box-sizing: border-box;
+							min-width: 32px;
+							max-width: 32px;
+							min-height: 32px;
+							max-height: 32px;
+							margin: 8px;
+							border-radius: 4px;
 						}
 
 						> .dropdownContent {
