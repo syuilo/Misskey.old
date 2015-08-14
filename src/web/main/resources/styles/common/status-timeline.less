@@ -189,6 +189,7 @@
 }
 
 .timeline {
+	background: #fff;
 
 	> .statuses {
 		margin: 0;
@@ -202,8 +203,6 @@
 				width: ~"calc(100% - 80px)";
 				margin: 0 0 0 auto;
 				padding: 0;
-				background: transparent;
-				transition: margin 0.2s ease, background-color 0.2s ease;
 
 				&[data-is-repostpost='true'] {
 					> article > .article-main {
@@ -644,16 +643,13 @@
 					}
 
 					> .article-main {
+						display: block;
 						box-sizing: border-box;
 						position: relative;
 						padding: 0;
 						width: 100%;
-						background: #fff;
-						border-radius: 8px;
 						border: solid 1px transparent;
 						//background-clip: padding-box;
-						transition: border-radius 0.2s ease;
-
 						&:hover {
 
 							> .main {
