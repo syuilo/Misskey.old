@@ -312,20 +312,24 @@ textarea {
 
 									> a {
 										color: contrast(@themeColor, #000, #fff, 70%) !important;
+										border-bottom: solid 4px rgba(255, 255, 255, 0.3) !important;
 									}
 								}
 
 								> a {
 									display: inline-block;
+									box-sizing: border-box;
 									z-index: 1;
 									height: 100%;
 									padding: 0 24px;
 									font-size: 1em;
 									color: @header-foreground-color;
+									border-bottom: solid 0px rgba(255, 255, 255, 0.3);
 									transition: all 0.2s ease;
 
 									&:hover {
 										color: @themeColor;
+										border-bottom: solid 4px rgba(255, 255, 255, 0.3);
 									}
 
 									&:active {
