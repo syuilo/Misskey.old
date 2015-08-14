@@ -304,26 +304,32 @@ textarea {
 								vertical-align: top;
 								height: 48px;
 								line-height: 48px;
+								background-clip: padding-box !important;
+								border-right: solid 1px rgba(0, 0, 0, 0.2);
 
 								&.active {
 									background: @themeColor;
 
 									> a {
 										color: contrast(@themeColor, #000, #fff, 70%) !important;
+										border-bottom: solid 4px rgba(255, 255, 255, 0.3) !important;
 									}
 								}
 
 								> a {
 									display: inline-block;
+									box-sizing: border-box;
 									z-index: 1;
 									height: 100%;
 									padding: 0 24px;
 									font-size: 1em;
 									color: @header-foreground-color;
+									border-bottom: solid 0px rgba(255, 255, 255, 0.3);
 									transition: all 0.2s ease;
 
 									&:hover {
 										color: @themeColor;
+										border-bottom: solid 4px rgba(255, 255, 255, 0.3);
 									}
 
 									&:active {
@@ -383,14 +389,14 @@ textarea {
 						box-shadow: none;
 						transition: color 0.5s ease, border 0.5s ease;
 						font-family: FontAwesome, 'Helvetica','Arial','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','Meiryo UI','Meiryo, メイリオ','sans-serif';
-						
+
 						&:hover {
 							background: rgba(0, 0, 0, 0.1);
 						}
 
 						&:focus {
-							color: darken(@themeColor, 20%);
-							background: #111111;
+							color: @themeColor;
+							background: rgba(0, 0, 0, 0.2);
 						}
 
 						&[data-active='true'] {
@@ -691,25 +697,38 @@ textarea {
 						overflow: visible;
 						clear: both;
 						float: right;
-						transition: background 0s linear 0.5s;
 
-						&:hover {
+						&[data-active='true'] {
 							background: #111111;
-							transition: background 0s linear;
-
-							> .dropdown-header > .screenName {
-								color: #fff;
-							}
 
 							> .dropdown-content {
 								visibility: visible;
-								opacity: 1;
-								transform: scale(1);
-								transition: opacity 0.1s linear;
 							}
 						}
 
 						> .dropdown-header {
+							cursor: pointer;
+
+							* {
+								cursor: pointer;
+							}
+
+							&:hover {
+								background: rgba(0, 0, 0, 0.1);
+
+								> .screenName {
+									color: #fff;
+								}
+							}
+
+							&:active {
+								background: rgba(0, 0, 0, 0.2);
+
+								> .screenName {
+									color: #fff;
+								}
+							}
+
 							&:after {
 								content: "";
 								display: block;
@@ -755,7 +774,6 @@ textarea {
 							margin: 0;
 							padding: 0;
 							background: #111111;
-							transition: visibility 0s linear 0.5s;
 
 							> ul {
 								margin: 0;

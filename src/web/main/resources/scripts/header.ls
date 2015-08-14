@@ -38,7 +38,16 @@ $ ->
 		false
 	
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
-
+	
+	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-main-header .account .dropdown'
+		if ($dropdown.attr \data-active) == \true
+			$dropdown.attr \data-active \false
+			$dropdown.find 'i.fa.fa-angle-up' .attr \class 'fa fa-angle-down'
+		else
+			$dropdown.attr \data-active \true
+			$dropdown.find 'i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
+		
 	$ '#misskey-main-header .search input' .bind \input ->
 		$input = $ @
 		$result = $ '#misskey-main-header .search .result'
