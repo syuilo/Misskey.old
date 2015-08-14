@@ -24,19 +24,19 @@ header#misskey-main-header(role='banner')
 							ul
 								li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
 									i.fa.fa-home
-									| ホーム
+									| Home
 								li.mention(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href='/i/mentions')
 									i.fa.fa-at
-									| メンション
+									| Mentions
 								li.talk(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href='/i/talks')
 									i.fa.fa-comments
-									| トーク
+									| Talks
 								li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
 									i.fa.fa-users
-									| 掲示板
+									| Boards
 				div.right
 					div.search(role='search')
-						input(type='search', placeholder!='&#xf002; 検索')
+						input(type='search', placeholder!='&#xf002; Search')
 						div.result
 					div.notice
 						div.dropdown
@@ -69,13 +69,13 @@ header#misskey-main-header(role='banner')
 								ul
 									li: a.ui-waves-effect(href= url + '/' + me.screenName)
 										i.fa.fa-laptop
-										| マイページ
+										| My page
 									li: a.ui-waves-effect(href='/i/settings')
 										i.fa.fa-cog
-										| 設定
+										| Settings
 									li: a.ui-waves-effect(href='/logout')
 										i(class='fa fa-power-off')
-										| ログアウト
+										| Signout
 			else
 				div.left
 					nav
@@ -87,4 +87,4 @@ header#misskey-main-header(role='banner')
 									| エントランス
 								li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
 									i.fa.fa-users
-									| 掲示板
+									| Boards
