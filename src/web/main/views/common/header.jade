@@ -60,11 +60,12 @@ header#misskey-main-header(role='banner')
 										p.empty 通知はありません
 					div.account
 						div.dropdown
-							span.screenName
-								= '@' + me.screenName
-								i.fa.fa-angle-down
-							img.icon(src= me.iconImageUrl, alt='icon')
-							div.dropdownContent
+							div.dropdown-header
+								span.screenName
+									= '@' + me.screenName
+									i.fa.fa-angle-down
+								img.icon(src= me.iconImageUrl, alt='icon')
+							div.dropdown-content
 								ul
 									li: a.ui-waves-effect(href= url + '/' + me.screenName)
 										i.fa.fa-laptop
