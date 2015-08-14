@@ -694,6 +694,7 @@ textarea {
 						overflow: visible;
 						clear: both;
 						float: right;
+						transition: background 0s linear 0.5s;
 
 						&:hover {
 							background: #111111;
@@ -709,7 +710,6 @@ textarea {
 								transition: opacity 0.1s linear;
 							}
 						}
-
 
 						> .screenName {
 							display: block;
@@ -740,7 +740,6 @@ textarea {
 
 						> .dropdownContent {
 							visibility: hidden;
-							opacity: 0;
 							display: block;
 							position: absolute;
 							top: auto;
@@ -750,9 +749,7 @@ textarea {
 							margin: 0;
 							padding: 0;
 							background: #111111;
-							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-							transform: scale(0.9);
-							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+							transition: visibility 0s linear 0.5s;
 
 							> ul {
 								margin: 0;
