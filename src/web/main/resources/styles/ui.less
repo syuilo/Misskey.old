@@ -3,6 +3,9 @@
 @wallpaperUrl: <%wallpaperUrl%>;
 @blurredWallpaperUrl: <%blurredWallpaperUrl%>;
 
+@header-background-color: #333333;
+@header-foreground-color: rgba(255, 255, 255, 0.7);
+
 ::selection {
 	background: @themeColor;
 	color: #fff;
@@ -102,8 +105,7 @@ textarea {
 	top: 0;
 	z-index: 1024;
 	width: 100%;
-	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
-
+	//box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
 	> .donate {
 		margin: 0;
 		padding: 4px 16px;
@@ -238,14 +240,13 @@ textarea {
 		//max-height: 3rem;
 		margin: 0;
 		padding: 0;
-		background-color: #fff;
+		background-color: @header-background-color;
 		background-image: url("/resources/images/misskey-logo-web-header.svg");
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: auto 24px;
 		//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
-		border-top: solid 3px @themeColor;
-
+		//border-top: solid 3px @themeColor;
 		&:after {
 			content: "";
 			display: block;
@@ -316,9 +317,9 @@ textarea {
 									display: inline-block;
 									z-index: 1;
 									height: 100%;
-									padding: 0 16px;
+									padding: 0 24px;
 									font-size: 1em;
-									color: rgba(0, 0, 0, 0.5);
+									color: @header-foreground-color;
 									transition: all 0.2s ease;
 
 									&:hover {
@@ -374,7 +375,8 @@ textarea {
 						height: ~"calc(48px - 12px)";
 						font-size: 1em;
 						line-height: ~"calc(48px - 12px)";
-						color: #000;
+						color: #fff;
+						background: transparent;
 						outline: none;
 						//border: solid 1px #ddd;
 						border: solid 1px transparent;
@@ -408,8 +410,7 @@ textarea {
 						width: 340px;
 						margin: 0;
 						padding: 0;
-						background: #fff;
-						box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+						background: @header-background-color;
 
 						> ol.users {
 							margin: 0;
@@ -426,7 +427,7 @@ textarea {
 									vertical-align: top;
 									white-space: nowrap;
 									overflow: hidden;
-									color: rgba(0, 0, 0, 0.8);
+									color: @header-foreground-color;
 									transition: none;
 
 									&:hover {
@@ -469,12 +470,12 @@ textarea {
 										margin: 0 8px 0 0;
 										/*font-weight: bold;*/
 										font-weight: normal;
-										color: rgba(0, 0, 0, 0.8);
+										color: rgba(255, 255, 255, 0.8);
 									}
 
 									.screen-name {
 										font-weight: normal;
-										color: rgba(0, 0, 0, 0.3);
+										color: rgba(255, 255, 255, 0.3);
 									}
 								}
 							}
@@ -687,35 +688,22 @@ textarea {
 					display: inline-block;
 					vertical-align: top;
 
-					> .screenNameAnchor {
-						display: inline-block;
-
-						&:hover {
-							> .screenName {
-								color: @themeColor;
-							}
-						}
-
-						> .screenName {
-							display: inline-block;
-							margin: 0 16px;
-							max-width: 16em;
-							line-height: 48px;
-							font-weight: bold;
-							text-decoration: none;
-							color: rgba(0, 0, 0, 0.5);
-							transition: all 0.2s ease;
-						}
-					}
-
 					> .dropdown {
 						display: inline-block;
 						position: relative;
 						overflow: visible;
 						clear: both;
 						float: right;
+						transition: background 0s linear 0.5s;
 
 						&:hover {
+							background: #111111;
+							transition: background 0s linear;
+
+							> .screenName {
+								color: #fff;
+							}
+
 							> .dropdownContent {
 								visibility: visible;
 								opacity: 1;
@@ -724,22 +712,34 @@ textarea {
 							}
 						}
 
-						> .iconAnchor {
+						> .screenName {
 							display: block;
+							float: left;
+							margin: 0 16px;
+							max-width: 16em;
+							line-height: 48px;
+							font-weight: bold;
+							text-decoration: none;
+							color: @header-foreground-color;
 
-							> .icon {
-								display: block;
-								box-sizing: border-box;
-								min-width: 48px;
-								max-width: 48px;
-								min-height: 48px;
-								max-height: 48px;
+							i {
+								margin-left: 8px;
 							}
+						}
+
+						> .icon {
+							display: block;
+							box-sizing: border-box;
+							min-width: 32px;
+							max-width: 32px;
+							min-height: 32px;
+							max-height: 32px;
+							margin: 8px;
+							border-radius: 4px;
 						}
 
 						> .dropdownContent {
 							visibility: hidden;
-							opacity: 0;
 							display: block;
 							position: absolute;
 							top: auto;
@@ -748,10 +748,8 @@ textarea {
 							width: 270px;
 							margin: 0;
 							padding: 0;
-							background: #fff;
-							box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-							transform: scale(0.9);
-							transition: visibility 0s linear 0.5s, opacity 0.1s linear 0.4s, transform 0.2s ease-out 0.4s;
+							background: #111111;
+							transition: visibility 0s linear 0.5s;
 
 							> ul {
 								margin: 0;
@@ -771,8 +769,8 @@ textarea {
 										width: 100%;
 										padding: 10px 20px;
 										text-decoration: none;
-										color: #555;
-										background-color: #fff;
+										color: rgba(255, 255, 255, 0.7);
+										background-color: #111111;
 										background-image: url("/resources/images/allow.svg");
 										background-repeat: no-repeat;
 										background-position: calc(100% - 8px) center;
