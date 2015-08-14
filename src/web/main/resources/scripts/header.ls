@@ -61,7 +61,7 @@ $ ->
 									'href': "#{config.url}/#{user.screen-name}"
 									'title': user.comment}
 								.append do
-									$ '<img class="icon" alt="icon">' .attr \src "#{config.url}/img/icon/#{user.screen-name}"
+									$ '<img class="icon" alt="icon">' .attr \src user.icon-image-url
 								.append do
 									$ '<span class="name">' .text user.name
 								.append do
