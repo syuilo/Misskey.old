@@ -13,9 +13,22 @@ function update-statuses
 				$ '<span class="unreadCount">' .text result
 	.fail ->
 
+function update-clock
+	yyyymmdd = moment!.format 'YYYY/MM/DD'
+	hhmm = moment!.format 'HH:mm'
+	if (new Date!).get-seconds! % 2 == 0
+		hhmm .= replace \: '<span style=\'visibility:hidden\'>:</span>'
+
+	clock = $ '#misskey-main-header .time .now' 
+	clock.html "#yyyymmdd<br>#hhmm"
+
 $ ->
 	update-statuses!
 	set-interval update-statuses, 10000ms
+	
+	update-clock!
+	set-interval update-clock, 1000ms
+
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
 		if window.music-center-open

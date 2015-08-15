@@ -2,6 +2,7 @@ require! {
 	https
 	fs
 	path
+	moment
 	'../../utils/create-server'
 	'../../utils/publish-redis-streaming'
 	'../../utils/convert-string-to-color'
@@ -61,6 +62,7 @@ server.init-session = (req, res, callback) ->
 		web-streaming-url: config.public-config.web-streaming-url
 		login: req.login
 		is-mobile: req.is-mobile
+		moment: moment
 
 	# Renderer function
 	res.display = (req, res, name, render-data) -> res.render name, req.data <<< render-data
