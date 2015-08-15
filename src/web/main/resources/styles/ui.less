@@ -850,7 +850,6 @@ textarea {
 							padding: 0 12px;
 							text-align: center;
 							font-size: 0.5em;
-							color: @header-foreground-color;
 							cursor: pointer;
 
 							* {
@@ -883,6 +882,11 @@ textarea {
 								display: table-cell;
 								vertical-align: middle;
 								height: 48px;
+								color: @header-foreground-color;
+
+								> .yyyymmdd {
+									color: rgba(255,255,255,0.5);
+								}
 							}
 						}
 

@@ -15,6 +15,7 @@ function update-statuses
 
 function update-clock
 	yyyymmdd = moment!.format 'YYYY/MM/DD'
+	yyyymmdd = "<span class='yyyymmdd'>#yyyymmdd</span>"
 	hhmm = moment!.format 'HH:mm'
 	if (new Date!).get-seconds! % 2 == 0
 		hhmm .= replace \: '<span style=\'visibility:visible\'>:</span>'
