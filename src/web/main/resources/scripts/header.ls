@@ -159,23 +159,6 @@ $ ->
 			close!
 		else
 			open!
-	
-	$ '#misskey-main-header .time .dropdown .dropdown-header' .click ->
-		$dropdown = $ '#misskey-main-header .time .dropdown'
-		
-		function close
-			$dropdown.attr \data-active \false
-		
-		function open
-			$ document .click (e) ->
-				if !$.contains $dropdown[0], e.target
-					close!
-			$dropdown.attr \data-active \true
-		
-		if ($dropdown.attr \data-active) == \true
-			close!
-		else
-			open!
 		
 	$ '#misskey-main-header .search input' .bind \input ->
 		$input = $ @
