@@ -42,7 +42,7 @@ function update-clock
 	
 	# 長針
 	angle = Math.PI * (h % 12 + m / 60) / 6
-	length = (Math.min canv-w, canv-h) / 2.2
+	length = (Math.min canv-w, canv-h) / 4
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
@@ -56,7 +56,7 @@ function update-clock
 	
 	# 分針
 	angle = Math.PI * (m + s / 60) / 30
-	length = (Math.min canv-w, canv-h) / 4
+	length = (Math.min canv-w, canv-h) / 2.2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
