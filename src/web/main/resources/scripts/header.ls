@@ -38,6 +38,27 @@ function update-clock
 	canv-h = canvas.height
 	ctx.clear-rect 0, 0, canv-w, canv-h
 	
+	# 背景
+	ctx.begin-path!
+	line-start = (Math.min canv-w, canv-h) * 0.97
+	line-end-short = (Math.min canv-w, canv-h) * 0.94
+	line-end-long = (Math.min canv-w, canv-h) * 0.91
+	for (i = 0; i < 60; i++)
+		angle = Math.PI * i / 30
+		uv = new vec2 (Math.sin angle), (-Math.cos angle)
+		ctx.move-to do
+			(canv-w / 2) + uv.x * line-start
+			(canv-h / 2) + uv.y * line-start
+		if i % 5 == 0
+			ctx.line-to do
+				(canv-w / 2) + uv.x * line-end-long
+				(canv-h / 2) + uv.y * line-end-long
+		else
+			ctx.line-to do
+				(canv-w / 2) + uv.x * line-end-short
+				(canv-h / 2) + uv.y * line-end-short
+	ctx.stroke!
+	
 	# 分
 	angle = Math.PI * (m + s / 60) / 30
 	length = (Math.min canv-w, canv-h) / 2.3
