@@ -14,15 +14,75 @@ function update-statuses
 	.fail ->
 
 function update-clock
+	s = (new Date!).get-seconds!
+	m = (new Date!).get-minutes!
+	h = (new Date!).get-hours!
 	yyyymmdd = moment!.format 'YYYY/MM/DD'
 	yyyymmdd = "<span class='yyyymmdd'>#yyyymmdd</span>"
 	hhmm = moment!.format 'HH:mm'
-	if (new Date!).get-seconds! % 2 == 0
+	if s % 2 == 0
 		hhmm .= replace \: '<span style=\'visibility:visible\'>:</span>'
 	else
 		hhmm .= replace \: '<span style=\'visibility:hidden\'>:</span>'
 	clock = $ '#misskey-main-header .time .now' 
 	clock.html "#yyyymmdd<br>#hhmm"
+	
+	# DRAW CLOCK
+	vec2 = (x, y) ->
+		@.x = x
+		@.y = y
+
+	canvas = document.get-element-by-id \misskey-main-clock-canvas
+	ctx = canvas.get-context \2d
+	canv-w = canvas.width
+	canv-h = canvas.height
+	ctx.clear-rect 0, 0, canv-w, canv-h
+	
+	ctx.begin-path!
+	
+	# 長針
+	angle = Math.PI * (h % 12 + m / 60) / 6
+	length = (Math.min canv-w, canv-h) / 2.2
+	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.stroke-style = \#ffffff
+	ctx.line-width = 2
+	ctx.move-to do
+		(canv-w / 2) - uv.x * length / 5
+		(canv-h / 2) - uv.y * length / 5
+	ctx.line-to do
+		(canv-w / 2) + uv.x * length
+		(canv-h / 2) + uv.y * length
+	ctx.stroke!
+	
+	# 分針
+	angle = Math.PI * (m + s / 60) / 30
+	length = (Math.min canv-w, canv-h) / 4
+	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.stroke-style = \#ffffff
+	ctx.line-width = 2
+	ctx.move-to do
+		(canv-w / 2) - uv.x * length / 5
+		(canv-h / 2) - uv.y * length / 5
+	ctx.line-to do
+		(canv-w / 2) + uv.x * length
+		(canv-h / 2) + uv.y * length
+	ctx.stroke!
+	
+	# 秒針
+	angle = Math.PI * s / 30
+	length = (Math.min canv-w, canv-h) / 2.2
+	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
+	ctx.line-width = 1
+	ctx.move-to do
+		(canv-w / 2) - uv.x * length / 5
+		(canv-h / 2) - uv.y * length / 5
+	ctx.line-to do
+		(canv-w / 2) + uv.x * length
+		(canv-h / 2) + uv.y * length
+	ctx.stroke!
+	
+	
 
 $ ->
 	update-statuses!
