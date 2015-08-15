@@ -7,7 +7,7 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	limitter user.id, \status/update, 86400sec, 300post .then do
+	limitter user.id, \status/update, 86400sec, 500post .then do
 		->
 			process!
 		->
