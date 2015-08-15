@@ -47,8 +47,8 @@ function update-clock
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 2
-		(canv-h / 2) - uv.y * length / 2
+		(canv-w / 2) - uv.x * length / 3
+		(canv-h / 2) - uv.y * length / 3
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
@@ -60,8 +60,8 @@ function update-clock
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 2
-		(canv-h / 2) - uv.y * length / 2
+		(canv-w / 2) - uv.x * length / 3
+		(canv-h / 2) - uv.y * length / 3
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
@@ -73,8 +73,8 @@ function update-clock
 	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
 	ctx.line-width = 1
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 2
-		(canv-h / 2) - uv.y * length / 2
+		(canv-w / 2) - uv.x * length / 3
+		(canv-h / 2) - uv.y * length / 3
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
