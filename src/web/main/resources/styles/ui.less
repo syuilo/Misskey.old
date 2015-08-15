@@ -824,10 +824,18 @@ textarea {
 
 				> .time {
 					display: inline-block;
-					padding: 0 8px;
+					padding: 0 12px;
 					text-align: center;
 					font-size: 0.5em;
 					color: @header-foreground-color;
+
+					&:hover {
+						background: rgba(0, 0, 0, 0.1);
+
+						> .time {
+							color: #fff;
+						}
+					}
 
 					> time {
 						display: table-cell;
