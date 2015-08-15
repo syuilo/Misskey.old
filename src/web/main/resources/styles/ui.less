@@ -831,14 +831,6 @@ textarea {
 						position: relative;
 						overflow: visible;
 
-						&:hover {
-							background: #111111;
-
-							> .dropdown-content {
-								visibility: visible;
-							}
-						}
-
 						> .dropdown-header {
 							padding: 0 12px;
 							text-align: center;
@@ -850,7 +842,11 @@ textarea {
 							}
 
 							&:hover {
-								background: rgba(0, 0, 0, 0.1);
+								background: #111111;
+
+								& + .dropdown-content {
+									visibility: visible;
+								}
 
 								> time {
 									color: #fff !important;
