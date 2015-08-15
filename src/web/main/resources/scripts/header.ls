@@ -56,12 +56,22 @@ $ ->
 	
 	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .account .dropdown'
-		if ($dropdown.attr \data-active) == \true
+		
+		function close
 			$dropdown.attr \data-active \false
 			$dropdown.find 'i.fa.fa-angle-up' .attr \class 'fa fa-angle-down'
-		else
+		
+		function open
+			$ document .one \click (e) ->
+				if !$.contains $dropdown[0], e.target
+					close!
 			$dropdown.attr \data-active \true
 			$dropdown.find 'i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
+		
+		if ($dropdown.attr \data-active) == \true
+			close!
+		else
+			open!
 	
 	$ '#misskey-main-header .time .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .time .dropdown'
