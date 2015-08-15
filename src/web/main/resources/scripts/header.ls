@@ -40,12 +40,12 @@ function update-clock
 	
 	# 背景
 	ctx.begin-path!
-	ctx.stroke-style = 'rgba(255, 255, 255, 0.1)'
+	ctx.stroke-style = 'rgba(255, 255, 255, 0.2)'
 	ctx.line-width = 1
 	center = (Math.min (canv-w / 2), (canv-h / 2))
-	line-start = center * 0.92
-	line-end-short = center * 0.89
-	line-end-long = center * 0.86
+	line-start = center * 0.91
+	line-end-short = center * 0.88
+	line-end-long = center * 0.85
 	for i from 0 to 59 by 1
 		angle = Math.PI * i / 30
 		uv = new vec2 (Math.sin angle), (-Math.cos angle)
