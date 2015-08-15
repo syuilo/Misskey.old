@@ -13,7 +13,7 @@ module.exports = (user-id, endpoint, limit-period, limit-max) ->
 	resolve, reject <- new Promise!
 	
 	# ログ引き出し
-	(err, log) <- APIAccessLog.find {user-id, endpoint} 
+	(err, log) <- APIAccessLog.find-one {user-id, endpoint} 
 	# ログが存在した場合
 	if log?
 		last = log.reseted-at.get-time! / 1000 # 最終リミットカウントリセット日時(秒)
