@@ -78,10 +78,14 @@ header#misskey-main-header(role='banner')
 										i(class='fa fa-power-off')
 										| Signout
 					div.time
-						time.now(datetime= Date.now())
-							= moment().format('YYYY/MM/DD')
-							br
-							= moment().format('HH:mm')
+						div.dropdown(data-active='false')
+							div.dropdown-header(role='button')
+								time.now(datetime= Date.now())
+									= moment().format('YYYY/MM/DD')
+									br
+									= moment().format('HH:mm')
+							div.dropdown-content
+								canvas.clock
 			else
 				div.left
 					nav

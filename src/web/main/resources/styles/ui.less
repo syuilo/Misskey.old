@@ -824,23 +824,86 @@ textarea {
 
 				> .time {
 					display: inline-block;
-					padding: 0 12px;
-					text-align: center;
-					font-size: 0.5em;
-					color: @header-foreground-color;
 
-					&:hover {
-						background: rgba(0, 0, 0, 0.1);
 
-						> .time {
-							color: #fff;
+					> .dropdown {
+						display: inline-block;
+						position: relative;
+						overflow: visible;
+
+						&[data-active='true'] {
+							background: #111111;
+
+							> .dropdown-content {
+								visibility: visible;
+							}
 						}
-					}
 
-					> time {
-						display: table-cell;
-						vertical-align: middle;
-						height: 48px;
+						&:hover {
+							background: rgba(0, 0, 0, 0.1);
+
+							> .time {
+								color: #fff;
+							}
+						}
+
+						> .dropdown-header {
+							padding: 0 12px;
+							text-align: center;
+							font-size: 0.5em;
+							color: @header-foreground-color;
+							cursor: pointer;
+
+							* {
+								cursor: pointer;
+							}
+
+							&:hover {
+								background: rgba(0, 0, 0, 0.1);
+
+								> .screenName {
+									color: #fff;
+								}
+							}
+
+							&:active {
+								background: rgba(0, 0, 0, 0.2);
+
+								> .screenName {
+									color: #fff;
+								}
+							}
+
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
+
+							> time {
+								display: table-cell;
+								vertical-align: middle;
+								height: 48px;
+							}
+						}
+
+						> .dropdown-content {
+							visibility: hidden;
+							display: block;
+							position: absolute;
+							top: auto;
+							right: 0;
+							z-index: 3;
+							width: 270px;
+							margin: 0;
+							padding: 0;
+							background: #111111;
+
+							> .clock {
+								width: 256px;
+								height: 256px;
+							}
+						}
 					}
 				}
 			}

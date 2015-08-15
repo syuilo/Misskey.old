@@ -61,6 +61,13 @@ $ ->
 		else
 			$dropdown.attr \data-active \true
 			$dropdown.find 'i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
+	
+	$ '#misskey-main-header .time .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-main-header .time .dropdown'
+		if ($dropdown.attr \data-active) == \true
+			$dropdown.attr \data-active \false
+		else
+			$dropdown.attr \data-active \true
 		
 	$ '#misskey-main-header .search input' .bind \input ->
 		$input = $ @
