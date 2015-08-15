@@ -65,7 +65,7 @@ function update-clock
 	
 	# 分
 	angle = Math.PI * (m + s / 60) / 30
-	length = (Math.min canv-w, canv-h) / 2.5
+	length = (Math.min canv-w, canv-h) / 2.6
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	ctx.stroke-style = \#ffffff
@@ -96,7 +96,7 @@ function update-clock
 	
 	# 秒
 	angle = Math.PI * s / 30
-	length = (Math.min canv-w, canv-h) / 2.5
+	length = (Math.min canv-w, canv-h) / 2.6
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
