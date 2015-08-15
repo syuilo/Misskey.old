@@ -45,12 +45,12 @@ function update-clock
 	line-start = (Math.min canv-w, canv-h) * 0.97
 	line-end-short = (Math.min canv-w, canv-h) * 0.94
 	line-end-long = (Math.min canv-w, canv-h) * 0.91
-	for i from 0 to 60 by 1
+	for i from 0 to 59 by 1
 		angle = Math.PI * i / 30
 		uv = new vec2 (Math.sin angle), (-Math.cos angle)
 		ctx.move-to do
-			(canv-w / 2) + uv.x * line-start
-			(canv-h / 2) + uv.y * line-start
+			(canv-w / 2) + uv.x
+			(canv-h / 2) + uv.y
 		if i % 5 == 0
 			ctx.line-to do
 				(canv-w / 2) + uv.x * line-end-long
@@ -63,7 +63,7 @@ function update-clock
 	
 	# 分
 	angle = Math.PI * (m + s / 60) / 30
-	length = (Math.min canv-w, canv-h) / 2.3
+	length = (Math.min canv-w, canv-h) / 2.5
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	ctx.stroke-style = \#ffffff
@@ -94,7 +94,7 @@ function update-clock
 	
 	# 秒
 	angle = Math.PI * s / 30
-	length = (Math.min canv-w, canv-h) / 2.3
+	length = (Math.min canv-w, canv-h) / 2.5
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
