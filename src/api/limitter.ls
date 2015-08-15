@@ -4,6 +4,11 @@ require! {
 	'../models/user': User
 }
 
+# Limitter
+# user-id: 対象ユーザー(ID)
+# endpoint: 対象API名
+# limit-period: リミットカウント期間
+# limit-max: 上記のリミットカウント期間内にどれだけの利用を許すかの数
 module.exports = (user-id, endpoint, limit-period, limit-max) ->
 	resolve, reject <- new Promise!
 	
