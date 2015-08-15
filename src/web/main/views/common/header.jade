@@ -1,4 +1,5 @@
 header#misskey-main-header(role='banner')
+	script(src='/resources/scripts/lib/moment.js')
 	script(src='/resources/scripts/header.js')
 	nav.informationCenter
 		ul
@@ -76,6 +77,11 @@ header#misskey-main-header(role='banner')
 									li: a.ui-waves-effect(href='/logout')
 										i(class='fa fa-power-off')
 										| Signout
+					div.time
+						time.now(datetime= Date.now())
+							= moment().format('YYYY/MM/DD')
+							br
+							= moment().format('HH:mm')
 			else
 				div.left
 					nav
