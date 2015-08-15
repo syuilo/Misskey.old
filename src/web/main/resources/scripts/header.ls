@@ -40,7 +40,7 @@ function update-clock
 	
 	ctx.begin-path!
 	
-	# 長針
+	# 時
 	angle = Math.PI * (h % 12 + m / 60) / 6
 	length = (Math.min canv-w, canv-h) / 4
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
@@ -54,7 +54,7 @@ function update-clock
 		(canv-h / 2) + uv.y * length
 	ctx.stroke!
 	
-	# 分針
+	# 分
 	angle = Math.PI * (m + s / 60) / 30
 	length = (Math.min canv-w, canv-h) / 2.2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
@@ -68,7 +68,7 @@ function update-clock
 		(canv-h / 2) + uv.y * length
 	ctx.stroke!
 	
-	# 秒針
+	# 秒
 	angle = Math.PI * s / 30
 	length = (Math.min canv-w, canv-h) / 2.2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
