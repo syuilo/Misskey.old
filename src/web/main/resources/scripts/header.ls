@@ -44,7 +44,8 @@ function update-clock
 	angle = Math.PI * (h % 12 + m / 60) / 6
 	length = (Math.min canv-w, canv-h) / 4
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
-	ctx.stroke-style = \#ffffff
+	#ctx.stroke-style = \#ffffff
+	ctx.stroke-style = $ '#misskey-main-header' .attr \data-user-color
 	ctx.line-width = 2
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 5
