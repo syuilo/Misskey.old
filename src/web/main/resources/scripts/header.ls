@@ -47,8 +47,8 @@ function update-clock
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 4
-		(canv-h / 2) - uv.y * length / 4
+		(canv-w / 2) - uv.x * length / 5
+		(canv-h / 2) - uv.y * length / 5
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
@@ -56,13 +56,13 @@ function update-clock
 	
 	# 分針
 	angle = Math.PI * (m + s / 60) / 30
-	length = (Math.min canv-w, canv-h) / 3
+	length = (Math.min canv-w, canv-h) / 4
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 4
-		(canv-h / 2) - uv.y * length / 4
+		(canv-w / 2) - uv.x * length / 5
+		(canv-h / 2) - uv.y * length / 5
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
@@ -75,8 +75,8 @@ function update-clock
 	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
 	ctx.line-width = 1
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 4
-		(canv-h / 2) - uv.y * length / 4
+		(canv-w / 2) - uv.x * length / 5
+		(canv-h / 2) - uv.y * length / 5
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
