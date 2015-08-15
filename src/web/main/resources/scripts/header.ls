@@ -40,7 +40,7 @@ function update-clock
 	
 	# 背景
 	ctx.begin-path!
-	ctx.stroke-style = 'rgba(0, 0, 0, 0.5)'
+	ctx.stroke-style = '#ff0000'
 	ctx.line-width = 1
 	line-start = (Math.min canv-w, canv-h) * 0.97
 	line-end-short = (Math.min canv-w, canv-h) * 0.94
