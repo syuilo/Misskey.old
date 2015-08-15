@@ -1,4 +1,6 @@
-header#misskey-main-header(role='banner')
+header#misskey-main-header(
+		role='banner'
+		data-user-color= (rootUser != null) ? rootUser.color : login ? me.color : config.themeColor)
 	script(src='/resources/scripts/lib/moment.js')
 	script(src='/resources/scripts/header.js')
 	nav.informationCenter
