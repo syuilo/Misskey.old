@@ -15,10 +15,9 @@ function update-statuses
 
 function update-clock
 	yyyymmdd = moment!.format 'YYYY/MM/DD'
+	hhmm = moment!.format 'HH:mm'
 	if (new Date!).get-seconds! % 2 == 0
-		hhmm = moment!.format 'HH:mm'
-	else
-		hhmm = moment!.format 'HH<span style=\'visibility:hidden\'>:</span>mm'
+		hhmm .= replace \: '<span style=\'visibility:hidden\'>:</span>'
 
 	clock = $ '#misskey-main-header .time .now' 
 	clock.html "#yyyymmdd<br>#hhmm"
