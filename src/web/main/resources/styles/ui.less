@@ -822,11 +822,15 @@ textarea {
 				}
 
 				> .time {
-					display: block;
+					display: inline-block;
+					padding: 0 8px;
+					text-align: center;
+					font-size: 0.5em;
 					color: @header-foreground-color;
 
 					> time {
-						display: block;
+						display: table-cell;
+						vertical-align: middle;
 						height: 48px;
 					}
 				}
