@@ -38,12 +38,11 @@ function update-clock
 	canv-h = canvas.height
 	ctx.clear-rect 0, 0, canv-w, canv-h
 	
-	ctx.begin-path!
-	
 	# 時
 	angle = Math.PI * (h % 12 + m / 60) / 6
 	length = (Math.min canv-w, canv-h) / 4
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.begin-path!
 	#ctx.stroke-style = \#ffffff
 	ctx.stroke-style = $ '#misskey-main-header' .attr \data-user-color
 	ctx.line-width = 2
@@ -59,6 +58,7 @@ function update-clock
 	angle = Math.PI * (m + s / 60) / 30
 	length = (Math.min canv-w, canv-h) / 2.2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.begin-path!
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 2
 	ctx.move-to do
@@ -73,6 +73,7 @@ function update-clock
 	angle = Math.PI * s / 30
 	length = (Math.min canv-w, canv-h) / 2.2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.begin-path!
 	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
 	ctx.line-width = 1
 	ctx.move-to do
