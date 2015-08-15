@@ -62,7 +62,7 @@ $ ->
 			$dropdown.find 'i.fa.fa-angle-up' .attr \class 'fa fa-angle-down'
 		
 		function open
-			$ document .one \click (e) ->
+			$ document .click (e) ->
 				if !$.contains $dropdown, e.target
 					close!
 			$dropdown.attr \data-active \true
