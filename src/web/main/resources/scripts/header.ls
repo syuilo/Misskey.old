@@ -39,13 +39,13 @@ function update-clock
 	ctx.clear-rect 0, 0, canv-w, canv-h
 	
 	ctx.begin-path!
-	ctx.stroke-style = \#ffffff
-	ctx.line-width = 1
 	
 	# 長針
 	angle = Math.PI * (h % 12 + m / 60) / 6
 	length = (Math.min canv-w, canv-h) / 2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.stroke-style = \#ffffff
+	ctx.line-width = 2
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 2
 		(canv-h / 2) - uv.y * length / 2
@@ -55,8 +55,10 @@ function update-clock
 	
 	# 分針
 	angle = Math.PI * (m + s / 60) / 30
-	length = (Math.min canv-w, canv-h) / 2
+	length = (Math.min canv-w, canv-h) / 3
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.stroke-style = \#ffffff
+	ctx.line-width = 2
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 2
 		(canv-h / 2) - uv.y * length / 2
@@ -68,6 +70,8 @@ function update-clock
 	angle = Math.PI * s / 30
 	length = (Math.min canv-w, canv-h) / 2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.stroke-style = 'rgba(255, 255, 255, 0.5)'
+	ctx.line-width = 1
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 2
 		(canv-h / 2) - uv.y * length / 2
