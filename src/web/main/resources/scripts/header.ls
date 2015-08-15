@@ -26,6 +26,10 @@ function update-clock
 	clock.html "#yyyymmdd<br>#hhmm"
 	
 	# DRAW CLOCK
+	vec2 = (x, y) ->
+		@.x = x
+		@.y = y
+
 	canvas = document.get-element-by-id \misskey-main-clock-canvas
 	ctx = canvas.get-context \2d
 	canv-w = canvas.width
@@ -34,8 +38,17 @@ function update-clock
 	ctx.begin-path!
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 1
-	ctx.move-to canv-w / 2, canv-h / 2
-	ctx.line-to (canv-w / 2) + Math.sin(Math.PI + (60 - s) * 6.27 / 60), (canv-h / 2) + Math.cos(Math.PI + (60 - s) * 6.27 / 60)
+	
+	angle = Math.PI * s / 30
+	length = (Math.min canv-w, canv-h) / 1.4
+	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.move-to do
+		(canv-w / 2) - uv.x * length / 4
+		(canv-h / 2) - uv.y * length / 4
+	ctx.line-to do
+		(canv-w / 2) + uv.x * length
+		(canv-h / 2) + uv.y * length
+	
 	ctx.stroke!
 	
 	
