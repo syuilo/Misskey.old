@@ -73,6 +73,7 @@ function init-icon-edit-form
 		$ \#icon-edit-form-back .animate {
 			opacity: 1
 		} 500ms \linear
+		$ \#icon-edit-form .css \visibility \visible
 		$ \#icon-edit-form .animate {
 			top: 0
 			opacity: 1
@@ -86,7 +87,8 @@ function init-icon-edit-form
 		$ \#icon-edit-form .animate {
 			top: '-100%'
 			opacity: 0
-		} 1000ms \easeInOutQuart
+		} 1000ms \easeInOutQuart ->
+			$ \#icon-edit-form .css \visibility \hidden
 
 	$form.submit (event) ->
 		event.prevent-default!
@@ -136,7 +138,6 @@ function init-icon-edit-form
 					}
 				..read-as-dataURL file
 
-
 function init-header-image-edit-form
 	$form = $ \#header-image-edit-form
 	$submit-button = $form.find '[type=submit]'
@@ -146,6 +147,7 @@ function init-header-image-edit-form
 		$ \#header-image-edit-form-back .animate {
 			opacity: 1
 		} 500ms \linear
+		$ \#header-edit-form .css \visibility \visible
 		$ \#header-image-edit-form .animate {
 			top: 0
 			opacity: 1
@@ -159,7 +161,8 @@ function init-header-image-edit-form
 		$ \#header-image-edit-form .animate {
 			top: '-100%'
 			opacity: 0
-		} 1000ms \easeInOutQuart
+		} 1000ms \easeInOutQuart ->
+			$ \#header-edit-form .css \visibility \hidden
 
 	$form.submit (event) ->
 		event.prevent-default!
