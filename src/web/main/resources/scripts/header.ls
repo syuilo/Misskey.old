@@ -34,11 +34,13 @@ function update-clock
 	ctx = canvas.get-context \2d
 	canv-w = canvas.width
 	canv-h = canvas.height
+	ctx.clear-rect 0, 0, canv-w, canv-h
 	
 	ctx.begin-path!
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 1
 	
+	# 秒針
 	angle = Math.PI * s / 30
 	length = (Math.min canv-w, canv-h) / 1.4
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
