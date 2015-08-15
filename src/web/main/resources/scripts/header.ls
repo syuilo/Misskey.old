@@ -14,15 +14,31 @@ function update-statuses
 	.fail ->
 
 function update-clock
+	s = (new Date!).get-seconds!
 	yyyymmdd = moment!.format 'YYYY/MM/DD'
 	yyyymmdd = "<span class='yyyymmdd'>#yyyymmdd</span>"
 	hhmm = moment!.format 'HH:mm'
-	if (new Date!).get-seconds! % 2 == 0
+	if s % 2 == 0
 		hhmm .= replace \: '<span style=\'visibility:visible\'>:</span>'
 	else
 		hhmm .= replace \: '<span style=\'visibility:hidden\'>:</span>'
 	clock = $ '#misskey-main-header .time .now' 
 	clock.html "#yyyymmdd<br>#hhmm"
+	
+	# DRAW CLOCK
+	canvas = document.get-element-by-id \misskey-main-clock-canvas
+	ctx = canvas.get-context \2d
+	canv-w = canvas.width
+	canv-h = canvas.height
+	
+	ctx.begin-path!
+	ctx.stroke-style = \#ffffff
+	ctx.line-width = 1
+	ctx.move-to canv-w / 2, canv-h / 2
+	ctx.line-to (canv-w / 2) + Math.sin(Math.PI + (60 - s) * 6.27 / 60), (canv-h / 2) + Math.cos(Math.PI + (60 - s) * 6.27 / 60)
+	ctx.stroke!
+	
+	
 
 $ ->
 	update-statuses!
