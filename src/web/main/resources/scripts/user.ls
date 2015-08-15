@@ -147,7 +147,7 @@ function init-header-image-edit-form
 		$ \#header-image-edit-form-back .animate {
 			opacity: 1
 		} 500ms \linear
-		$ \#header-edit-form .css \visibility \visible
+		$ \#header-image-edit-form .css \visibility \visible
 		$ \#header-image-edit-form .animate {
 			top: 0
 			opacity: 1
@@ -162,7 +162,7 @@ function init-header-image-edit-form
 			top: '-100%'
 			opacity: 0
 		} 1000ms \easeInOutQuart ->
-			$ \#header-edit-form .css \visibility \hidden
+			$ \#header-image-edit-form .css \visibility \hidden
 
 	$form.submit (event) ->
 		event.prevent-default!
