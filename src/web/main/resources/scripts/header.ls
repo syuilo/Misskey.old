@@ -42,11 +42,11 @@ function update-clock
 	
 	# 秒針
 	angle = Math.PI * s / 30
-	length = (Math.min canv-w, canv-h) / 1.4
+	length = (Math.min canv-w, canv-h) / 2
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.move-to do
-		(canv-w / 2) - uv.x * length / 4
-		(canv-h / 2) - uv.y * length / 4
+		(canv-w / 2) - uv.x * length / 2
+		(canv-h / 2) - uv.y * length / 2
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
