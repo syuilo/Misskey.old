@@ -45,7 +45,7 @@ function update-clock
 	line-start = (Math.min canv-w, canv-h) * 0.97
 	line-end-short = (Math.min canv-w, canv-h) * 0.94
 	line-end-long = (Math.min canv-w, canv-h) * 0.91
-	for (i = 0; i < 60; i++)
+	for i from 0 to 60 by 1
 		angle = Math.PI * i / 30
 		uv = new vec2 (Math.sin angle), (-Math.cos angle)
 		ctx.move-to do
