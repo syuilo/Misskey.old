@@ -15,6 +15,7 @@ function update-statuses
 
 function update-clock
 	yyyymmdd = moment!.format 'YYYY/MM/DD'
+	yyyymmdd = "<span class='yyyymmdd'>#yyyymmdd</span>"
 	hhmm = moment!.format 'HH:mm'
 	if (new Date!).get-seconds! % 2 == 0
 		hhmm .= replace \: '<span style=\'visibility:visible\'>:</span>'
@@ -55,12 +56,39 @@ $ ->
 	
 	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .account .dropdown'
-		if ($dropdown.attr \data-active) == \true
+		
+		function close
 			$dropdown.attr \data-active \false
 			$dropdown.find 'i.fa.fa-angle-up' .attr \class 'fa fa-angle-down'
-		else
+		
+		function open
+			$ document .click (e) ->
+				if !$.contains $dropdown[0], e.target
+					close!
 			$dropdown.attr \data-active \true
 			$dropdown.find 'i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
+		
+		if ($dropdown.attr \data-active) == \true
+			close!
+		else
+			open!
+	
+	$ '#misskey-main-header .time .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-main-header .time .dropdown'
+		
+		function close
+			$dropdown.attr \data-active \false
+		
+		function open
+			$ document .click (e) ->
+				if !$.contains $dropdown[0], e.target
+					close!
+			$dropdown.attr \data-active \true
+		
+		if ($dropdown.attr \data-active) == \true
+			close!
+		else
+			open!
 		
 	$ '#misskey-main-header .search input' .bind \input ->
 		$input = $ @
