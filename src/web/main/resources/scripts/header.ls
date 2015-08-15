@@ -15,6 +15,8 @@ function update-statuses
 
 function update-clock
 	s = (new Date!).get-seconds!
+	m = (new Date!).get-minutes!
+	h = (new Date!).get-hours!
 	yyyymmdd = moment!.format 'YYYY/MM/DD'
 	yyyymmdd = "<span class='yyyymmdd'>#yyyymmdd</span>"
 	hhmm = moment!.format 'HH:mm'
@@ -39,6 +41,28 @@ function update-clock
 	ctx.begin-path!
 	ctx.stroke-style = \#ffffff
 	ctx.line-width = 1
+	
+	# 長針
+	angle = Math.PI * (h % 12 + m / 60) / 6
+	length = (Math.min canv-w, canv-h) / 2
+	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.move-to do
+		(canv-w / 2) - uv.x * length / 2
+		(canv-h / 2) - uv.y * length / 2
+	ctx.line-to do
+		(canv-w / 2) + uv.x * length
+		(canv-h / 2) + uv.y * length
+	
+	# 分針
+	angle = Math.PI * (m + s / 60) / 30
+	length = (Math.min canv-w, canv-h) / 2
+	uv = new vec2 (Math.sin angle), (-Math.cos angle)
+	ctx.move-to do
+		(canv-w / 2) - uv.x * length / 2
+		(canv-h / 2) - uv.y * length / 2
+	ctx.line-to do
+		(canv-w / 2) + uv.x * length
+		(canv-h / 2) + uv.y * length
 	
 	# 秒針
 	angle = Math.PI * s / 30
