@@ -29,7 +29,7 @@ module.exports = (user-id, endpoint, limit-period, limit-max) ->
 		else
 			# リミットを超過する場合
 			if log.count >= limit-max
-				reject! # Failed...
+				reject! # Failure...
 			# まだ大丈夫な場合
 			else
 				# カウントを増やす
