@@ -52,6 +52,7 @@ function update-clock
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
+	ctx.stroke!
 	
 	# 分針
 	angle = Math.PI * (m + s / 60) / 30
@@ -65,6 +66,7 @@ function update-clock
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
+	ctx.stroke!
 	
 	# 秒針
 	angle = Math.PI * s / 30
@@ -78,7 +80,6 @@ function update-clock
 	ctx.line-to do
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
-	
 	ctx.stroke!
 	
 	
