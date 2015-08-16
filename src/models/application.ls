@@ -12,12 +12,16 @@ schema = new Schema do
 	name:              {type: String,                required: yes}
 	user-id:           {type: Schema.Types.ObjectId, required: yes}
 	created-at:        {type: Date,                  required: yes, default: Date.now}
-	api-key:           {type: String,                required: yes, unique: yes}
+	app-key:           {type: String,                required: yes, unique: yes}
 	callback-url:      {type: String,                required: no,  default: null}
 	description:       {type: String,                required: yes}
 	developer-name:    {type: String,                required: no,  default: null}
 	developer-website: {type: String,                required: no,  default: null}
-	is-suspended:      {type: Boolean,               required: yes, default: no}
+	is-suspended:      {type: Boolean,               required: no,  default: no}
+	icon-image:        {type: String,                required: no,  default: null}
+	permissions:       {type: [String],              required: no,  default: []}
+	screen-id:         {type: String,                required: yes, unique: yes}
+	screen-id-lower:   {type: String,                required: yes, unique: yes}
 
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->

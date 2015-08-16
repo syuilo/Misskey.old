@@ -5,7 +5,6 @@
 require! {
 	fs
 	express
-	'../../../models/access-token': AccessToken
 	'../../../models/user': User
 	'../../../models/status': Status
 	'../../../models/bbs-thread': BBSThread
