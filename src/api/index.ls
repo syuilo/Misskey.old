@@ -7,7 +7,7 @@ require! {
 	cookie
 	multer
 	redis
-	corser
+	cors
 	'body-parser'
 	'cookie-parser'
 	'express-session': session
@@ -31,7 +31,7 @@ session-store = new RedisStore do
 	prefix: 'misskey-session:'
 
 api-server
-	..use corser.create!
+	..use cors!
 	..use body-parser.urlencoded {+extended}
 	..use multer!
 	..use cookie-parser config.cookie-pass
