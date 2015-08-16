@@ -69,7 +69,7 @@ window.STATUS_CORE = {}
 				window.open-window do
 					window-id
 					$content
-					"<i class=\"fa fa-comments\"></i>#{$status.find \.user-name .text!}"
+					"<i class=\"fa fa-comments\"></i>#{$status.attr \data-user-name}"
 					360px
 					540px
 					yes
