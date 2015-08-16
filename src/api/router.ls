@@ -4,6 +4,7 @@ routing =
 		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/ './rest/web/status/timeline-homehtml']
 		[\get  /\/web\/status\/timeline-mobilehomehtml(\..+)?$/ './rest/web/status/timeline-mobilehomehtml']
 		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
+		[\get  /\/web\/get-header-statuses(\..+)?$/       './rest/web/get-header-statuses']
 		
 	account:
 		[\post   /\/account\/create(\..+)?$/                      './rest/account/create']
