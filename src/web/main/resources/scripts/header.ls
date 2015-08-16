@@ -191,11 +191,13 @@ $ ->
 				xhr-fields: {+with-credentials}}
 			.done (data) ->
 				$ '#misskey-main-header .notices .unread-count' .remove!
+				$list = $ '<ol class="notices" />'
 				if data != ''
 					$notices = $ data
 					$notices.each ->
 						$notice = $ @
-						$notice.append-to $notices-container
+						$notice.append-to $list
+					$list.append-to $notices-container
 				else
 					$info = $ '<p class="notice-empty">通知はありません</p>'
 					$info.append-to $notices-container
