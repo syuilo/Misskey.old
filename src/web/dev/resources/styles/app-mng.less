@@ -19,6 +19,8 @@ main {
 		max-width: 650px;
 
 		#nav {
+			border-bottom: solid 1px #eee;
+
 			> ul {
 				position: relative;
 				bottom: -1px;
@@ -44,7 +46,10 @@ main {
 					}
 
 					&.unactive {
+						border-top: solid 1px transparent;
+						border-right: solid 1px transparent;
 						border-bottom: solid 1px #eee;
+						border-left: solid 1px transparent;
 
 						> a {
 							color: #666;
