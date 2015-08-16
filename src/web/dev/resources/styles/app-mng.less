@@ -23,6 +23,37 @@ main {
 			> ul {
 				> li {
 					display: inline-block;
+
+					&.active {
+						border-top: solid 1px #eee;
+						border-right: solid 1px #eee;
+						border-left: solid 1px #eee;
+
+						> a {
+							color: @themeColor;
+
+							&:hover {
+								color: @themeColor;
+							}
+						}
+					}
+
+					&.unactive {
+						border-bottom: solid 1px #eee;
+
+						> a {
+							color: #555;
+
+							&:hover {
+								color: #000;
+							}
+						}
+					}
+
+					> a {
+						padding: 16px 24px;
+						transition: none;
+					}
 				}
 			}
 		}
