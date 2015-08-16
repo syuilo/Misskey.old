@@ -11,7 +11,7 @@ require! {
 }
 
 read-file = (path) -> fs.read-file-sync path .to-string!
-message = jade.render-file "#{__dirname}/maintenance.jade"
+message = jade.render-file "#__dirname/maintenance.jade"
 
 # Read certs
 certs =
@@ -27,6 +27,12 @@ app.all '*' (req, res) ->
 	res.status 503
 	res.send message
 
-# Create after listen HTTPS server
-server = https.create-server certs, app
-server.listen config.port.web-https
+# Listen HTTPS server after create 
+https.create-server certs, app .listen config.port.web-https
+
+# Redirect HTTP
+http-app = express!
+http-app.disable \x-powered-by
+http-app.all '*' (req, res, next) ->
+	res.redirect 'https://misskey.xyz'
+http-app.listen config.port.web-http
