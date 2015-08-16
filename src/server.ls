@@ -4,6 +4,7 @@
 
 require! {
 	fs
+	http
 	https
 	express
 	vhost
