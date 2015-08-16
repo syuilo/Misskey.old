@@ -21,7 +21,7 @@ module.exports = (app, user, app-name, app-screen-id, app-description, app-callb
 	switch
 	| empty app-name => throw-error \empty-app-name 'app-name is required.'
 	| empty app-screen-id => throw-error \empty-app-screen-id 'app-screen-id is required.'
-	| app-screen-id == /^[0-9]+$/ || app-screen-id != /^[a-zA-Z0-9_]{4,20}$/ => throw-error \invalid-app-screen-id 'app-screen-id invalid format'
+	| app-screen-id == /^[0-9]+$/ || app-screen-id != /^[a-zA-Z0-9\-]{2,128}$/ => throw-error \invalid-app-screen-id 'app-screen-id invalid format'
 	| empty app-description => throw-error \empty-app-description 'app-description is required.'
 	| _ => exist-app-screen-id app-screen-id .then (exist) ->
 		| exist => throw-error \screen-id-already-used 'This screen id is already used.'
