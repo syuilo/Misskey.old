@@ -189,6 +189,7 @@ $ ->
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done (data) ->
+				$ '#misskey-main-header .notices .unread-count' .remove!
 				if data != ''
 					$notices = $ data
 					$notices.each ->
