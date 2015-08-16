@@ -13,11 +13,16 @@ html(lang='ja', dir='ltr')
 			h1 Create a new Application
 			form
 				label
-					h2 Name
-					input.ui-input-text(name='name', type='text')
+					h2
+						i.required *
+						| Name
+					input.ui-input-text(name='name', type='text', required)
 				label
-					h2 Description
-					input.ui-input-text(name='description', type='text')
+					h2
+						i.required *
+						| Description
+					input.ui-input-text(name='description', type='text', required)
 				label
-					h2 Callback URL (Optional)
+					h2
+						| Callback URL (Optional)
 					input.ui-input-text(name='callback-url', type='url')
