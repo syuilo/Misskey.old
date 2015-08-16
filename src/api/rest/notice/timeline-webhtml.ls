@@ -17,6 +17,11 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty max-cursor then Number max-cursor else null
 	.then (notices) ->
 		if notices?
+			# 既読にする
+			notices |> each (notice) ->
+				notice
+					..is-read = yes
+					..save!
 			promises = notices |> map (notice) ->
 				generate-notice-timeline-item-html user, notice
 			Promise.all promises .then (notice-htmls) ->

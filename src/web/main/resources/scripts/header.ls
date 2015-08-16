@@ -1,16 +1,25 @@
 window.music-center-open = no
 
 function update-statuses
-	$.ajax "#{config.api-url}/account/unreadalltalks-count" {
+	$.ajax "#{config.api-url}/web/get-header-statuses" {
 		type: \get
 		data-type: \json
 		xhr-fields: {+with-credentials}}
 	.done (result) ->
+		unread-notices-count = result.unread-notices-count
+		unread-talk-messages-count = result.unread-talk-messages-count
+		
+		if $ '#misskey-main-header .notices .unread-count' .0
+			$ '#misskey-main-header .notices .unread-count' .remove!
+		if unread-notices-count != 0
+			$ '#misskey-main-header .notices .dropdown .dropdown-header p' .append do
+				$ '<span class="unread-count">' .text unread-notices-count
+		
 		if $ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .0
 			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .remove!
-		if result != 0
+		if unread-talk-messages-count != 0
 			$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a' .append do
-				$ '<span class="unreadCount">' .text result
+				$ '<span class="unreadCount">' .text unread-talk-messages-count
 	.fail ->
 
 function update-clock
@@ -108,8 +117,6 @@ function update-clock
 		(canv-w / 2) + uv.x * length
 		(canv-h / 2) + uv.y * length
 	ctx.stroke!
-	
-	
 
 $ ->
 	update-statuses!
@@ -117,7 +124,6 @@ $ ->
 	
 	update-clock!
 	set-interval update-clock, 1000ms
-
 
 	$ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav .misskey' .click ->
 		if window.music-center-open
@@ -141,6 +147,7 @@ $ ->
 	
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
 	
+	# 「アカウント」ドロップダウン
 	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
 		$dropdown = $ '#misskey-main-header .account .dropdown'
 		
@@ -155,6 +162,50 @@ $ ->
 			$dropdown.attr \data-active \true
 			$dropdown.find 'i.fa.fa-angle-down' .attr \class 'fa fa-angle-up'
 		
+		if ($dropdown.attr \data-active) == \true
+			close!
+		else
+			open!
+	
+	# 「通知」ドロップダウン
+	$ '#misskey-main-header .notices .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-main-header .notices .dropdown'
+		
+		function close
+			$dropdown.attr \data-active \false
+			$ '#misskey-main-header .notices .dropdown .dropdown-content' .empty!
+		
+		function open
+			$ document .click (e) ->
+				if !$.contains $dropdown[0], e.target
+					close!
+			$dropdown.attr \data-active \true
+			
+			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content'
+			$ '<img class="loading" src="/resources/images/notices-loading.gif" alt="loading..." />' .append-to $notices-container
+			
+			# 通知読み込み
+			$.ajax config.api-url + '/notice/timeline-webhtml' {
+				type: \get
+				data: {}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done (data) ->
+				$ '#misskey-main-header .notices .loading' .remove!
+				$ '#misskey-main-header .notices .unread-count' .remove!
+				$list = $ '<ol class="notices" />'
+				if data != ''
+					$notices = $ data
+					$notices.each ->
+						$notice = $ @
+						$notice.append-to $list
+					$list.append-to $notices-container
+				else
+					$info = $ '<p class="notice-empty">通知はありません</p>'
+					$info.append-to $notices-container
+			.fail (data) ->
+				$ '#misskey-main-header .notices .loading' .remove!
+				
 		if ($dropdown.attr \data-active) == \true
 			close!
 		else
