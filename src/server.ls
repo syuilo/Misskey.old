@@ -65,4 +65,4 @@ http-app = express!
 http-app.disable \x-powered-by
 http-app.use vhost \misskey.xyz (req, res) -> res.redirect 'https://misskey.xyz'
 http-app.use vhost \dev.misskey.xyz (req, res) -> (require "#__dirname/web/dev" .server)
-http-app.listen config.port.web-http
+http.create-server http-app .listen config.port.web-http
