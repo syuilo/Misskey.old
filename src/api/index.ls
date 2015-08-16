@@ -7,6 +7,7 @@ require! {
 	cookie
 	multer
 	redis
+	corser
 	'body-parser'
 	'cookie-parser'
 	'express-session': session
@@ -30,6 +31,7 @@ session-store = new RedisStore do
 	prefix: 'misskey-session:'
 
 api-server
+	..use corser.create!
 	..use body-parser.urlencoded {+extended}
 	..use multer!
 	..use cookie-parser config.cookie-pass
@@ -47,17 +49,17 @@ api-server
 		store: session-store
 
 # CORS
-api-server.use (req, res, next) ->
-	res.header 'Access-Control-Allow-Credentials' yes
-	res.header 'Access-Control-Allow-Origin' '*'
-	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
-	
-	# intercept OPTIONS method
-	if req.method == \OPTIONS
-		res.send 204
-	else
-		next!
+#api-server.use (req, res, next) ->
+#	res.header 'Access-Control-Allow-Credentials' yes
+#	res.header 'Access-Control-Allow-Origin' '*'
+#	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
+#	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
+#	
+#	# intercept OPTIONS method
+#	if req.method == \OPTIONS
+#		res.send 204
+#	else
+#		next!
 
 api-server.use (req, res, next) ->
 	res.api-render = (data) ->

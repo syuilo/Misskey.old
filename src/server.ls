@@ -28,19 +28,6 @@ certs =
 app = express!
 app.disable \x-powered-by
 
-# CORS
-app.use (req, res, next) ->
-	res.header 'Access-Control-Allow-Credentials' yes
-	res.header 'Access-Control-Allow-Origin' '*'
-	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
-	
-	# intercept OPTIONS method
-	if req.method == \OPTIONS
-		res.send 204
-	else
-		next!
-
 # Check IP
 app.all '*' (req, res, next) ->
 	if (banned-ips.index-of req.ip) > -1
