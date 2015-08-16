@@ -77,7 +77,7 @@ server.get '/favicon.ico' (req, res) -> res.send-file path.resolve "#__dirname/r
 server.get '/manifest.json' (req, res) -> res.send-file path.resolve "#__dirname/resources/manifest.json"
 
 # Resources rooting
-resources-router server
+#resources-router server
 
 # Init session
 server.all '*' (req, res, next) -> server.init-session req, res, -> next!
