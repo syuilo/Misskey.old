@@ -179,6 +179,25 @@ $ ->
 				if !$.contains $dropdown[0], e.target
 					close!
 			$dropdown.attr \data-active \true
+			
+			$notices = $ '#misskey-main-header .notices .dropdown .dropdown-content'
+			
+			# 通知読み込み
+			$.ajax config.api-url + '/notice/timeline-webhtml' {
+				type: \get
+				data: {}
+				data-type: \json
+				xhr-fields: {+with-credentials}}
+			.done (data) ->
+				if data != ''
+					$notices = $ data
+					$notices.each ->
+						$notice = $ @
+						$notice.append-to $notices
+				else
+					$info = $ '<p class="notice-empty">通知はありません</p>'
+					$info.append-to $notices
+			.fail (data) ->
 		
 		if ($dropdown.attr \data-active) == \true
 			close!
