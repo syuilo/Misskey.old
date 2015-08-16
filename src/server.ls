@@ -56,5 +56,12 @@ app.all '*' (req, res, next) ->
 app.use vhost \misskey.xyz (require "#__dirname/web/main" .server)
 app.use vhost \api.misskey.xyz (require "#__dirname/api" .server)
 
-# Create after listen HTTPS server
+# Listen HTTPS server after create 
 https.create-server certs, app .listen config.port.web-https
+
+# Redirect HTTP
+http-app = express!
+http-app.disable \x-powered-by
+http-app.all '*' (req, res, next) ->
+	res.redirect 'https://misskey.xyz'
+http-app.listen config.port.web-http
