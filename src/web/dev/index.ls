@@ -76,6 +76,10 @@ server.init-session = (req, res, callback) ->
 server.get '/favicon.ico' (req, res) -> res.send-file path.resolve "#__dirname/resources/favicon.ico"
 server.get '/manifest.json' (req, res) -> res.send-file path.resolve "#__dirname/resources/manifest.json"
 
+server.all '*' (req, res, next) ->
+	console.log \yuppie
+	next!
+
 # Resources rooting
 #resources-router server
 
