@@ -70,7 +70,7 @@ api-server.use (req, res, next) ->
 allow-cross-domain = (req, res, next) ->
 	res
 		..header 'Access-Control-Allow-Credentials' yes
-		..header 'Access-Control-Allow-Origin' 'https://misskey.xyz https://misskey.xyz:1206 http://dev.misskey.xyz http://dev.misskey.xyz:1205'
+		..header 'Access-Control-Allow-Origin' '*'
 		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
 		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
 
