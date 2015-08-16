@@ -173,6 +173,7 @@ $ ->
 		
 		function close
 			$dropdown.attr \data-active \false
+			$ '#misskey-main-header .notices .dropdown .dropdown-content' .empty!
 		
 		function open
 			$ document .click (e) ->
