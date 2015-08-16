@@ -40,9 +40,9 @@ module.exports = (req, res) ->
 				| err? => res.api-error 500 'Sorry, register failed. please try again.'
 				| _ =>
 					created-user
-						..icon-image = '/contents/default-contents/icon.jpg'
-						..banner-image = '/contents/default-contents/banner.jpg'
-						..wallpaper-image = '/contents/default-contents/wallpaper.jpg'
+						..icon-image = 'contents/default-contents/icon.jpg'
+						..banner-image = 'contents/default-contents/banner.jpg'
+						..wallpaper-image = 'contents/default-contents/wallpaper.jpg'
 					created-user.save (err, created-user) ->
 						User.find-one {screen-name: \syuilo} (err, syuilo) ->
 							if syuilo? and created-user.screen-name-lower != \syuilo
