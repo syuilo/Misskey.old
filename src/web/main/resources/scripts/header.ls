@@ -181,7 +181,7 @@ $ ->
 					close!
 			$dropdown.attr \data-active \true
 			
-			$notices = $ '#misskey-main-header .notices .dropdown .dropdown-content'
+			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content'
 			
 			# 通知読み込み
 			$.ajax config.api-url + '/notice/timeline-webhtml' {
@@ -195,10 +195,10 @@ $ ->
 					$notices = $ data
 					$notices.each ->
 						$notice = $ @
-						$notice.append-to $notices
+						$notice.append-to $notices-container
 				else
 					$info = $ '<p class="notice-empty">通知はありません</p>'
-					$info.append-to $notices
+					$info.append-to $notices-container
 			.fail (data) ->
 		
 		if ($dropdown.attr \data-active) == \true
