@@ -17,7 +17,7 @@ schema = new Schema do
 	description:       {type: String,                required: yes}
 	developer-name:    {type: String,                required: no,  default: null}
 	developer-website: {type: String,                required: no,  default: null}
-	is-suspended:      {type: Boolean,               required: yes, default: no}
+	is-suspended:      {type: Boolean,               required: no,  default: no}
 
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
