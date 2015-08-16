@@ -25,7 +25,8 @@ schema = new Schema do
 	content:    {type: Schema.Types.Mixed,    required: no, default: {}}
 	created-at: {type: Date,                  default: Date.now}
 	cursor:     {type: Number}
-	type:       {type: String}
+	type:       {type: String,                required: yes}
+	is-read:    {type: Boolean,               required: no, default:  no}
 	user-id:    {type: Schema.Types.ObjectId, required: yes}
 
 if !schema.options.to-object then schema.options.to-object = {}

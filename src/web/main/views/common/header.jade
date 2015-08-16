@@ -41,26 +41,6 @@ header#misskey-main-header(
 					div.search(role='search')
 						input(type='search', placeholder!='&#xf002; Search')
 						div.result
-					div.notice
-						div.dropdown
-							div.i
-								i.fa.fa-bell
-							div.dropdownContainer
-								button.allDeleteButton(role='button', title='全て削除')
-									i.fa.fa-trash
-								div.dropdownContent
-									if notices != null
-										ol.notices
-											each notice in notices
-												li.notice(title= notice.createdAt
-													data-id= notice.id)
-													time(datetime= notice.createdAt)= notice.createdAt
-													div.content!= notice.content
-													span.appName= notice.app.name
-													button.deleteButton(role='button', title='削除')
-														img(src='/resources/images/notice-delete.png', alt='Delete')
-									else
-										p.empty 通知はありません
 					div.account
 						div.dropdown(data-active='false')
 							div.dropdown-header(role='button')
@@ -79,6 +59,11 @@ header#misskey-main-header(
 									li: a.ui-waves-effect(href='/logout')
 										i(class='fa fa-power-off')
 										| Signout
+					div.notices
+						div.dropdown(data-active='false')
+							div.dropdown-header(role='button')
+								i.fa.fa-envelope
+							div.dropdown-content
 					div.time
 						div.dropdown(data-active='false')
 							div.dropdown-header(role='button')
