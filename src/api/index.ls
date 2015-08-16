@@ -48,19 +48,6 @@ api-server
 			max-age: null
 		store: session-store
 
-# CORS
-#api-server.use (req, res, next) ->
-#	res.header 'Access-Control-Allow-Credentials' yes
-#	res.header 'Access-Control-Allow-Origin' '*'
-#	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-#	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
-#	
-#	# intercept OPTIONS method
-#	if req.method == \OPTIONS
-#		res.send 204
-#	else
-#		next!
-
 api-server.use (req, res, next) ->
 	res.api-render = (data) ->
 		switch req.format
@@ -95,15 +82,6 @@ api-server.all '*' (req, res, next) ->
 			color: convert-string-to-color req.ip
 			done: yes
 	}
-
-api-server.all '*' (req, res, next) ->
-	res.set do
-		'Access-Control-Allow-Origin': config.public-config.url
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-		'Access-Control-Allow-Credentials': yes
-		'X-Frame-Options': \SAMEORIGIN
-	next!
 
 api-server.options '*' (req, res, next) ->
 	res
