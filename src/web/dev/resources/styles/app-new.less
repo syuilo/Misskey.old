@@ -1,16 +1,30 @@
-main > form {
-	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 32px;
-	max-width: 650px;
+main {
 
-	label {
-		padding: 16px 0;
-	}
-
-	h2 {
-		margin: 0;
+	h1 {
+		display: block;
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 32px;
+		max-width: 650px;
 		color: #444;
 		font-weight: normal;
+	}
+
+	> form {
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 32px;
+		max-width: 650px;
+
+		label {
+			display: block;
+			padding: 16px 0;
+		}
+
+		h2 {
+			margin: 0 0 8px 0;
+			color: #444;
+			font-weight: normal;
+		}
 	}
 }
