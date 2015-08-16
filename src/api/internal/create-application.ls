@@ -28,7 +28,7 @@ module.exports = (app, user, app-name, app-screen-id, app-description, app-callb
 		| _ =>
 			# Generate APP KEY
 			chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-			app-key = ''
+			app-key = 'hmsk.'
 			for i from 1 to 32 by 1
 				app-key += chars[Math.floor (Math.random! * chars.length)]
 			
