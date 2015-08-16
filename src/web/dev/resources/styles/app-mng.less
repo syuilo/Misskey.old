@@ -88,7 +88,8 @@ main {
 			position: relative;
 
 			input {
-				padding-left: ~"calc(1em + 24px + 12px)" !important;
+				padding-left: ~"calc(1em + 20px + 12px)" !important;
+				height: ~"calc(1em + 24px)";
 
 				&:focus + .ico {
 					color: darken(@themeColor, 20%);
@@ -101,10 +102,10 @@ main {
 				position: absolute;
 				top: 2px;
 				left: 2px;
-				padding: 8px 12px;
+				padding: 8px 10px;
 				margin: 0;
 				width: 1em;
-				height: 1.5em;
+				height: ~"calc(1em + 24px)";
 				font-size: 1em;
 				font-style: normal;
 				color: #777;
