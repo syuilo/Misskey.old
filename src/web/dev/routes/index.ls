@@ -15,6 +15,7 @@ module.exports = (app) ->
 	
 	app.get '/my-apps' (req, res) -> (require '../controllers/my-apps') req, res
 	app.get '/app-new' (req, res) -> (require '../controllers/app-new') req, res
+	app.get '/app/:appId' (req, res) -> (require '../controllers/app-mng') req, res
 	
 	# Config javascript
 	app.get '/config' (req, res) ->
