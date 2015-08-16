@@ -6,7 +6,6 @@ require! {
 	fs
 	express
 	'../../../models/user': User
-	'../../../utils/login': do-login
 	'../../../config'
 }
 
