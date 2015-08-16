@@ -6,11 +6,10 @@ main {
 		display: block;
 		box-sizing: border-box;
 		margin: 0 auto;
-		padding: 32px;
+		padding: 16px 32px 0 32px;
 		max-width: 650px;
 		color: #444;
 		font-weight: normal;
-		border-bottom: solid 1px #eee;
 	}
 
 	> .main {
@@ -21,12 +20,18 @@ main {
 
 		#nav {
 			> ul {
+				position: relative;
+				bottom: -1px;
+				margin: 0;
+				padding: 0;
+
 				> li {
 					display: inline-block;
 
 					&.active {
 						border-top: solid 1px #eee;
 						border-right: solid 1px #eee;
+						border-bottom: solid 1px #fff;
 						border-left: solid 1px #eee;
 
 						> a {
@@ -51,6 +56,7 @@ main {
 					}
 
 					> a {
+						display: inline-block;
 						padding: 16px 24px;
 						transition: none;
 
@@ -64,11 +70,14 @@ main {
 	}
 }
 
+#content {
+	padding: 32px;
+}
+
 #settings {
 	> form {
 		box-sizing: border-box;
 		margin: 0 auto;
-		padding: 32px;
 		max-width: 650px;
 
 		label {
