@@ -58,6 +58,13 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 							err, notice <- Notice.find-by-id content.value.id
 							html <- generate-notice-timeline-item-html socket.user, notice .then
 							socket.emit \notice html
+						| \talk-message =>
+							# Find user
+							err, user <- User.find-by-id content.value.user-id
+							socket.emit \talk-message {
+								id: content.value.id
+								user: user.to-object!
+							}
 						| _ => socket.emit content.type, content.value
 				else
 					socket.emit content

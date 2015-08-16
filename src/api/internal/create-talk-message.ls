@@ -82,4 +82,4 @@ module.exports = (app, user, otherparty-id, text, image = null) ->
 			["talkStream:#{otherparty-id}-#{user.id}" \otherparty-message]
 			["talkStream:#{user.id}-#{otherparty-id}" \me-message]
 		] |> each ([channel, type]) ->
-			publish-redis-streaming channel, to-json {type, value: {id: message.id}}
+			publish-redis-streaming channel, to-json {type, value: {id: message.id, user-id: message.user-id}}
