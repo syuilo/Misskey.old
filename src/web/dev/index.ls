@@ -3,6 +3,7 @@ require! {
 	fs
 	path
 	moment
+	corser
 	'../../utils/create-server'
 	'body-parser'
 	'cookie-parser'
@@ -24,6 +25,7 @@ server.set 'view engine' \jade
 server.set 'views' "#__dirname/views/pages"
 server.set 'X-Frame-Options' \SAMEORIGIN
 
+server.use corser.create!
 server.use body-parser.urlencoded {+extended}
 server.use cookie-parser config.cookie-pass
 
@@ -71,25 +73,6 @@ server.init-session = (req, res, callback) ->
 			..data.me = null
 			..me = null
 		callback!
-
-# CORS middleware
-#
-# see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
-allow-cross-domain = (req, res, next) ->
-	res
-		..header 'Access-Control-Allow-Credentials' yes
-		..header 'Access-Control-Allow-Origin' '*'
-		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
-
-    # intercept OPTIONS method
-	if req.method == \OPTIONS
-		res.send 204
-	else
-		next!
-
-# CORS
-server.use allow-cross-domain
 
 # Statics
 server.get '/favicon.ico' (req, res) -> res.send-file path.resolve "#__dirname/resources/favicon.ico"
