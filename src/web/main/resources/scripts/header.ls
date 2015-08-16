@@ -182,6 +182,7 @@ $ ->
 			$dropdown.attr \data-active \true
 			
 			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content'
+			$ '<img class="loading" src="/resources/images/notices-loading.gif" alt="loading..." />' .append-to $notices-container
 			
 			# 通知読み込み
 			$.ajax config.api-url + '/notice/timeline-webhtml' {
@@ -190,6 +191,7 @@ $ ->
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done (data) ->
+				$ '#misskey-main-header .notices .loading' .remove!
 				$ '#misskey-main-header .notices .unread-count' .remove!
 				$list = $ '<ol class="notices" />'
 				if data != ''
@@ -202,7 +204,8 @@ $ ->
 					$info = $ '<p class="notice-empty">通知はありません</p>'
 					$info.append-to $notices-container
 			.fail (data) ->
-		
+				$ '#misskey-main-header .notices .loading' .remove!
+				
 		if ($dropdown.attr \data-active) == \true
 			close!
 		else
