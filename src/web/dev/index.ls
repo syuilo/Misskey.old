@@ -14,6 +14,8 @@ require! {
 	'../../config'
 }
 
+console.log \akarin
+
 RedisStore = connect-redis session
 
 session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
