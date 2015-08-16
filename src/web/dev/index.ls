@@ -14,8 +14,6 @@ require! {
 	'../../config'
 }
 
-console.log \akarin
-
 RedisStore = connect-redis session
 
 session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
@@ -78,12 +76,8 @@ server.init-session = (req, res, callback) ->
 server.get '/favicon.ico' (req, res) -> res.send-file path.resolve "#__dirname/resources/favicon.ico"
 server.get '/manifest.json' (req, res) -> res.send-file path.resolve "#__dirname/resources/manifest.json"
 
-server.all '*' (req, res, next) ->
-	console.log \yuppie
-	next!
-
 # Resources rooting
-#resources-router server
+resources-router server
 
 # Init session
 server.all '*' (req, res, next) -> server.init-session req, res, -> next!
