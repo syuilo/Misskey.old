@@ -15,7 +15,6 @@ li.notice(
 					p
 						i.fa.fa-user-plus
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
-						| さんにフォローされました。
 			when 'status-repost'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
@@ -23,9 +22,7 @@ li.notice(
 					p
 						i.fa.fa-retweet
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
-						| さんが
 					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
-					P をRepostしました。
 			when 'status-favorite'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
@@ -33,9 +30,7 @@ li.notice(
 					p
 						i.fa.fa-star
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
-						| さんが
 					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
-					P をふぁぼりました。
 			when 'bbs-thread-post'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
@@ -43,5 +38,4 @@ li.notice(
 					p
 						i.fa.fa-comment
 						a(href= '/bbs/thread/' + notice.content.thread.id)= notice.content.thread.title
-						| に投稿があります:
 					a.post-preview(href= '/bbs/thread/' + notice.content.thread.id + '#post-' + notice.content.post.id)= notice.content.post.text
