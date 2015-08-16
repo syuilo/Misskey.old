@@ -30,11 +30,10 @@ app.disable \x-powered-by
 
 # CORS
 app.use (req, res, next) ->
-	res
-		..header 'Access-Control-Allow-Credentials' yes
-		..header 'Access-Control-Allow-Origin' '*'
-		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
+	res.header 'Access-Control-Allow-Credentials' yes
+	res.header 'Access-Control-Allow-Origin' '*'
+	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
+	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
 	
 	# intercept OPTIONS method
 	if req.method == \OPTIONS
