@@ -63,6 +63,7 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 							err, user <- User.find-by-id content.value.user-id
 							socket.emit \talk-message {
 								id: content.value.id
+								text: content.value.text
 								user: user.to-object!
 							}
 						| _ => socket.emit content.type, content.value
