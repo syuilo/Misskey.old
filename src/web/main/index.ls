@@ -3,6 +3,7 @@ require! {
 	fs
 	path
 	moment
+	corser
 	'../../utils/create-server'
 	'../../utils/publish-redis-streaming'
 	'../../utils/convert-string-to-color'
@@ -27,6 +28,7 @@ server.set 'view engine' \jade
 server.set 'views' "#__dirname/views/pages"
 server.set 'X-Frame-Options' \SAMEORIGIN
 
+server.use corser.create!
 server.use body-parser.urlencoded {+extended}
 server.use cookie-parser config.cookie-pass
 
