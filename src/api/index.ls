@@ -64,24 +64,18 @@ api-server.use (req, res, next) ->
 		res.api-render {error}
 	next!
 
-# CORS middleware
-#
-# see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
-allow-cross-domain = (req, res, next) ->
-	res
-		..header 'Access-Control-Allow-Credentials' yes
-		..header 'Access-Control-Allow-Origin' '*'
-		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
-
-    # intercept OPTIONS method
+# CORS
+api-server.use (req, res, next) ->
+	res.header 'Access-Control-Allow-Credentials' yes
+	res.header 'Access-Control-Allow-Origin' '*'
+	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
+	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
+	
+	# intercept OPTIONS method
 	if req.method == \OPTIONS
 		res.send 204
 	else
 		next!
-
-# CORS
-api-server.use allow-cross-domain
 
 # Log
 api-server.all '*' (req, res, next) ->
