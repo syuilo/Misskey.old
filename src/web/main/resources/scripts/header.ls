@@ -12,7 +12,7 @@ function update-statuses
 		if $ '#misskey-main-header .notices .unread-count' .0
 			$ '#misskey-main-header .notices .unread-count' .remove!
 		if unread-notices-count != 0
-			$ '#misskey-main-header .notices .dropdown .dropdown-header' .append do
+			$ '#misskey-main-header .notices .dropdown .dropdown-header p' .append do
 				$ '<span class="unread-count">' .text unread-notices-count
 		
 		if $ '#misskey-main-header > .main .mainContentsContainer .left nav .mainNav ul .talk a .unreadCount' .0
