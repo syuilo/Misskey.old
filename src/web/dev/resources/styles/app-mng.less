@@ -63,3 +63,81 @@ main {
 		}
 	}
 }
+
+#settings {
+	> form {
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 32px;
+		max-width: 650px;
+
+		label {
+			display: block;
+			padding: 16px 0;
+
+			h2 {
+				margin: 0 0 8px 0;
+				color: #444;
+				font-weight: normal;
+
+				.required {
+					margin-right: 0.25em;
+					color: #888;
+				}
+			}
+
+			input[name='name'], input[name='id'] {
+				max-width: 26em;
+			}
+
+			.caption {
+				margin: 8px;
+				font-size: 0.9em;
+				color: #777;
+			}
+		}
+
+		button[type=submit] {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			cursor: pointer;
+			box-sizing: border-box;
+			padding: 32px 16px;
+			margin: 0;
+			width: 100%;
+			font-size: 1.2em;
+			color: #555;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			background: transparent;
+			transition: all .5s ease;
+			cursor: pointer;
+
+			* {
+				cursor: pointer;
+			}
+
+			&:hover {
+				color: @themeColor;
+				transition: all .2s ease;
+			}
+
+			&:focus {
+				color: @themeColor;
+				transition: all .2s ease;
+			}
+
+			&:active {
+				color: darken(@themeColor, 30%);
+				transition: all .2s ease;
+			}
+
+			i {
+				margin-right: 0.5em;
+			}
+		}
+	}
+}
