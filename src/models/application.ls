@@ -12,7 +12,7 @@ schema = new Schema do
 	name:              {type: String,                required: yes}
 	user-id:           {type: Schema.Types.ObjectId, required: yes}
 	created-at:        {type: Date,                  required: yes, default: Date.now}
-	api-key:           {type: String,                required: yes, unique: yes}
+	app-key:           {type: String,                required: yes, unique: yes}
 	callback-url:      {type: String,                required: no,  default: null}
 	description:       {type: String,                required: yes}
 	developer-name:    {type: String,                required: no,  default: null}
