@@ -31,7 +31,6 @@ module.exports = (app, user, app-name, app-screen-id, app-description, app-callb
 			app-key = 'hmsk.'
 			for i from 1 to 32 by 1
 				app-key += chars[Math.floor (Math.random! * chars.length)]
-			console.log app-key
 			
 			app = new Application!
 				..user-id = user.id
@@ -46,6 +45,7 @@ module.exports = (app, user, app-name, app-screen-id, app-description, app-callb
 
 			app.save (err, created-app) ->
 				if err
-					throw-error \unknown-error err
+					console.log err
+					throw-error \unknown-error null
 				else
 					resolve created-app
