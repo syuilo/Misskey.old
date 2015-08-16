@@ -9,7 +9,6 @@ require! {
 	express
 	vhost
 	jade
-	corser
 	'./utils/publish-redis-streaming'
 	'./utils/convert-string-to-color'
 	'./banned-ips': banned-ips
@@ -28,7 +27,6 @@ certs =
 # Init express
 app = express!
 app.disable \x-powered-by
-app.use corser.create!
 
 # Check IP
 app.all '*' (req, res, next) ->

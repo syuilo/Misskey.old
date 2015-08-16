@@ -7,7 +7,7 @@ require! {
 	cookie
 	multer
 	redis
-	corser
+	cors
 	'body-parser'
 	'cookie-parser'
 	'express-session': session
@@ -31,7 +31,13 @@ session-store = new RedisStore do
 	prefix: 'misskey-session:'
 
 api-server
-	..use corser.create!
+	..use cors do
+		credentials: on
+		origin:
+			* 'https://misskey.xyz'
+			* 'https://misskey.xyz:1206'
+			* 'http://dev.misskey.xyz'
+			* 'http://dev.misskey.xyz:1205'
 	..use body-parser.urlencoded {+extended}
 	..use multer!
 	..use cookie-parser config.cookie-pass
@@ -47,19 +53,6 @@ api-server
 			secure: no
 			max-age: null
 		store: session-store
-
-# CORS
-#api-server.use (req, res, next) ->
-#	res.header 'Access-Control-Allow-Credentials' yes
-#	res.header 'Access-Control-Allow-Origin' '*'
-#	res.header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
-#	res.header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
-#	
-#	# intercept OPTIONS method
-#	if req.method == \OPTIONS
-#		res.send 204
-#	else
-#		next!
 
 api-server.use (req, res, next) ->
 	res.api-render = (data) ->
@@ -95,15 +88,6 @@ api-server.all '*' (req, res, next) ->
 			color: convert-string-to-color req.ip
 			done: yes
 	}
-
-api-server.all '*' (req, res, next) ->
-	res.set do
-		'Access-Control-Allow-Origin': config.public-config.url
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-		'Access-Control-Allow-Credentials': yes
-		'X-Frame-Options': \SAMEORIGIN
-	next!
 
 api-server.options '*' (req, res, next) ->
 	res
