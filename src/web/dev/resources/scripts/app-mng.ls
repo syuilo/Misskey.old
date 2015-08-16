@@ -1,0 +1,2 @@
+$ ->
+	SYUILOUI.Tab $ '#nav > ul'
