@@ -5,6 +5,7 @@ html(lang='ja', dir='ltr')
 		include ../common/head
 		title= app.name
 		link(rel='stylesheet', href='/resources/styles/app-mng.css')
+		script(src='/resources/scripts/lib/syuiloui.js')
 		script(src='/resources/scripts/app-mng.js')
 	
 	body
@@ -13,4 +14,49 @@ html(lang='ja', dir='ltr')
 		main(role='main')
 			h1= app.name
 			div.main
-				
+				nav#nav
+					ul
+						li: a(href='#dashboard')
+							i.fa.fa-dashboard
+							| Dashboard
+						li: a(href='#settings')
+							i.fa.fa-cogs
+							| Settings
+						li: a(href='#app-key')
+							i.fa.fa-key
+							| App Key
+				div#content
+					div#dashboard
+						div.app-screen-id
+							dt ID
+							dd= app.screenId
+					div#settings
+						form
+							label
+								h2
+									i.required *
+									| Name
+								input.ui-input-text(name='name', type='text', required)
+								p.caption アプリケーション名。
+							label
+								h2
+									i.required *
+									| ID
+								input.ui-input-text(name='id', type='text', pattern='^[a-zA-Z0-9\-]+$', required)
+								p.caption アプリケーションID。半角英数字、ハイフンで構成してください。
+							label
+								h2
+									i.required *
+									| Description
+								input.ui-input-text(name='description', type='text', required)
+								p.caption アプリケーションの説明。
+							label
+								h2
+									| Callback URL (Optional)
+								input.ui-input-text(name='callback-url', type='url')
+								p.caption 認証時のコールバックURL。このアプリケーションが、Webアプリケーションでない場合は省略してください。
+							button(type='submit')
+								i.fa.fa-check
+								| Update
+					div#app-key
+						input.ui-input-text(type='text', readonly)= app.appKey
