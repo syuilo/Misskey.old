@@ -20,6 +20,8 @@ schema = new Schema do
 	is-suspended:      {type: Boolean,               required: no,  default: no}
 	icon-image:        {type: String,                required: no,  default: null}
 	permissions:       {type: [String],              required: no,  default: []}
+	screen-id:         {type: String,                required: yes, unique: yes}
+	screen-id-lower:   {type: String,                required: yes, unique: yes}
 
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
