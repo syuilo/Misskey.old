@@ -87,7 +87,7 @@ $ ->
 		n.onshow = ->
 			set-timeout n.close, 10000ms
 		n.onclick = ->
-			url = config.url + '/' + message.user.screen-name + '/talk?noheader=true'
+			url = config.url + '/widget/talk/' + message.user.screen-name
 			$content = $ '<iframe>' .attr {
 				src: url
 				+seamless
