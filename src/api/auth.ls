@@ -1,7 +1,7 @@
 require! {
 	'../config'
 	'../utils/get-express-params'
-	'../models/access-token': AccessToken
+	'../models/user-key': UserKey
 	'../models/application': Application
 	'../models/user': User
 	'../utils/is-null'
