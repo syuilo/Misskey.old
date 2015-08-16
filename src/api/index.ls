@@ -31,7 +31,13 @@ session-store = new RedisStore do
 	prefix: 'misskey-session:'
 
 api-server
-	..use cors!
+	..use cors do
+		credentials: on
+		origin:
+			* 'https://misskey.xyz'
+			* 'https://misskey.xyz:1206'
+			* 'http://dev.misskey.xyz'
+			* 'http://dev.misskey.xyz:1205'
 	..use body-parser.urlencoded {+extended}
 	..use multer!
 	..use cookie-parser config.cookie-pass
