@@ -91,7 +91,7 @@ server.get '/manifest.json' (req, res) -> res.send-file path.resolve "#__dirname
 allow-cross-domain = (req, res, next) ->
 	res
 		..header 'Access-Control-Allow-Credentials' yes
-		..header 'Access-Control-Allow-Origin' config.public-config.url
+		..header 'Access-Control-Allow-Origin' '*'
 		..header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE'
 		..header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept'
 
