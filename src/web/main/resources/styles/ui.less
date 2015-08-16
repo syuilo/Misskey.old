@@ -820,6 +820,72 @@ textarea {
 
 				> .notices {
 					display: inline-block;
+					vertical-align: top;
+
+					> .dropdown {
+						display: inline-block;
+						position: relative;
+						overflow: visible;
+						clear: both;
+
+						&[data-active='true'] {
+							background: #111111;
+
+							> .dropdown-content {
+								visibility: visible;
+							}
+						}
+
+						> .dropdown-header {
+							cursor: pointer;
+
+							* {
+								cursor: pointer;
+							}
+
+							&:hover {
+								background: rgba(0, 0, 0, 0.1);
+
+								> .screenName {
+									color: #fff;
+								}
+							}
+
+							&:active {
+								background: rgba(0, 0, 0, 0.2);
+
+								> .screenName {
+									color: #fff;
+								}
+							}
+
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
+
+							> i {
+								display: block;
+								margin: 0 16px;
+								line-height: 48px;
+								color: @header-foreground-color;
+							}
+						}
+
+						> .dropdown-content {
+							visibility: hidden;
+							display: block;
+							position: absolute;
+							top: auto;
+							right: 0;
+							z-index: 3;
+							width: 270px;
+							margin: 0;
+							padding: 0;
+							background: #111111;
+						}
+					}
 				}
 
 				> .time {
