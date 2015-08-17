@@ -11,15 +11,16 @@ html(lang='ja', dir='ltr')
 			h1
 				i.fa.fa-link
 				| アカウントへのアクセスを許可しますか？
-			div.app
-				h2.name= app.name
-				img.icon(src=app.iconImageUrl, alt='icon')
-			if isLogin
-				div.me
-					img.icon(src=me.iconImageUrl, alt='icon')
-			else
-				div.login
-					h2 ログイン
+			div.form
+				div.app
+					h2.name= app.name
+					img.icon(src=app.iconImageUrl, alt='icon')
+				if isLogin
+					div.me
+						img.icon(src=me.iconImageUrl, alt='icon')
+				else
+					div.login
+						h2 ログイン
 		footer
 			a(href='https://misskey.xyz')
 				img(src='/resources/images/authorize-footer-logo.svg', alt='Misskey')

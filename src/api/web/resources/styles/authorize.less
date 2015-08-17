@@ -4,12 +4,7 @@ html {
 
 main {
 	display: block;
-	margin: 32px auto;
-	padding: 32px;
-	width: 100%;
-	max-width: 512px;
 	text-align: center;
-	background: #fff;
 
 	h1 {
 		margin: 0;
@@ -21,46 +16,56 @@ main {
 		}
 	}
 
-	.app {
-		position: relative;
+	> .form {
+		display: block;
+		margin: 32px auto;
+		padding: 32px;
+		width: 100%;
+		max-width: 512px;
+		text-align: center;
+		background: #fff;
 
-		.name {
-			margin: 16px 0 8px 0;
-			color: #444;
-			font-size: 1.2em;
-		}
-
-		.icon {
-			display: block;
+		.app {
 			position: relative;
-			z-index: 1;
-			box-sizing: border-box;
-			width: 80px;
-			height: 80px;
-			margin: 0 auto;
-			border-radius: 80px;
-			border: solid 2px #eee;
+
+			.name {
+				margin: 16px 0 8px 0;
+				color: #444;
+				font-size: 1.2em;
+			}
+
+			.icon {
+				display: block;
+				position: relative;
+				z-index: 1;
+				box-sizing: border-box;
+				width: 80px;
+				height: 80px;
+				margin: 0 auto;
+				border-radius: 80px;
+				border: solid 2px #eee;
+			}
+
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 39px;
+				width: 100%;
+				height: 2px;
+				background: #eee;
+			}
 		}
 
-		&:before {
-			content: "";
-			display: block;
-			position: absolute;
-			bottom: 39px;
-			width: 100%;
-			height: 2px;
-			background: #eee;
-		}
-	}
 
-
-	.me {
-		.icon {
-			display: block;
-			width: 128px;
-			height: 128px;
-			margin: 0 auto;
-			border-radius: 128px;
+		.me {
+			.icon {
+				display: block;
+				width: 128px;
+				height: 128px;
+				margin: 0 auto;
+				border-radius: 128px;
+			}
 		}
 	}
 }
