@@ -5,12 +5,13 @@ html(lang='ja', dir='ltr')
 		include ../common/head
 		title Misskey アプリケーションのインストール
 		link(rel='stylesheet', href='/resources/styles/authorize.css')
+		script(src='/resources/scripts/authorize.js')
 	
 	body
 		main(role='main')
 			h1
 				| アカウントへのアクセスを許可しますか？
-			div.form
+			form.form#form
 				div.app
 					h2.name= app.name
 					p.description= app.description
@@ -21,22 +22,23 @@ html(lang='ja', dir='ltr')
 					div.me
 						img.icon(src=me.iconImageUrl, alt='icon')
 					div.confirm
-						button.cancel
+						button.cancel#cancel(type='button')
 							i.fa.fa-ban
 							| 拒否
-						button.accept
+						button.accept#accept(type='button')
 							i.fa.fa-check
 							| 許可
 				else
 					div.login
 						h2 ログイン
 					div.confirm
-						button.cancel
+						button.cancel#cancel(type='button')
 							i.fa.fa-ban
 							| 拒否
-						button.accept
+						button.accept#accept(type='button')
 							i.fa.fa-check
 							| ログインして許可
+				input(type='hidden', name='sauth-session-key', value=sessionKey)
 		footer
 			a(href='https://misskey.xyz')
 				img(src='/resources/images/authorize-footer-logo.svg', alt='Misskey')
