@@ -37,7 +37,7 @@ module.exports = (app, user, app-id, image, trim-x = null, trim-y = null, trim-w
 					if err? || !buffer?
 						throw-error \failed-attach-image 'Failed attach image.'
 					else
-						create buffer, \jpg
+						update buffer, \jpg
 
 	function update(image, img-type)
 		image-name = "#{target-app.id}.#{img-type}"
