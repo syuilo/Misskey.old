@@ -1,0 +1,169 @@
+@themeColor: <%themeColor%>;
+
+html {
+	background: #eee;
+}
+
+main {
+	display: block;
+	text-align: center;
+
+	h1 {
+		margin: 48px 0 0 0;
+		color: #00afc8;
+		font-size: 1.5em;
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+
+		i {
+			margin-right: 0.25em;
+		}
+	}
+
+	> .form {
+		display: block;
+		margin: 32px auto;
+		padding: 24px 32px 0 32px;
+		width: 100%;
+		max-width: 384px;
+		text-align: center;
+		background: #fff;
+
+		.app {
+			position: relative;
+
+			.name {
+				margin: 0;
+				color: #444;
+				font-size: 1.2em;
+			}
+
+			.description {
+				margin: 0 0 8px 0;
+				color: #aaa;
+				font-size: 0.9em;
+			}
+
+			.icon {
+				display: block;
+				position: relative;
+				z-index: 1;
+				box-sizing: border-box;
+				width: 80px;
+				height: 80px;
+				margin: 0 auto;
+				border-radius: 80px;
+				border: solid 8px #eee;
+				transition: all 0.1s ease;
+
+				&:hover {
+					border: solid 0 #eee;
+				}
+			}
+
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 39px;
+				width: 100%;
+				height: 2px;
+				background: #eee;
+			}
+		}
+
+		.link {
+			padding: 16px 0;
+			text-align: center;
+
+			i {
+				color: #888;
+			}
+		}
+
+
+		.me {
+			.icon {
+				display: block;
+				width: 112px;
+				height: 112px;
+				margin: 0 auto;
+				border-radius: 112px;
+			}
+		}
+
+		.confirm {
+			position: relative;
+
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 24px;
+				left: 50%;
+				width: 1px;
+				height: ~"calc(100% - 48px)";
+				background: #eee;
+			}
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				display: block;
+				float: left;
+				box-sizing: border-box;
+				padding: 32px 16px 48px 16px;
+				margin: 0;
+				width: 50%;
+				font-size: 1.2em;
+				color: #555;
+				outline: none;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				background: transparent;
+				transition: all .5s ease;
+				cursor: pointer;
+
+				* {
+					cursor: pointer;
+				}
+
+				&:hover {
+					color: @themeColor;
+					transition: all .2s ease;
+				}
+
+				&:focus {
+					color: @themeColor;
+					transition: all .2s ease;
+				}
+
+				&:active {
+					color: darken(@themeColor, 30%);
+					transition: all .2s ease;
+				}
+
+				i {
+					margin-right: 0.5em;
+				}
+			}
+		}
+	}
+}
+
+footer {
+	margin-bottom: 32px;
+	text-align: center;
+
+	img {
+		max-width: 128px;
+	}
+}

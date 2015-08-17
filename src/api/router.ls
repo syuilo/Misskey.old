@@ -1,3 +1,9 @@
+require! {
+	'./web/routes/resources': web-resources-router
+	'./web/routes/index': web-index-router
+	'../config'
+}
+
 routing =
 	web:
 		[\post /\/web\/status\/reply(\..+)?$/             './rest/web/status/reply']
@@ -5,6 +11,10 @@ routing =
 		[\get  /\/web\/status\/timeline-mobilehomehtml(\..+)?$/ './rest/web/status/timeline-mobilehomehtml']
 		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
 		[\get  /\/web\/get-header-statuses(\..+)?$/       './rest/web/get-header-statuses']
+	
+	sauth:
+		[\get    /\/sauth\/get-authentication-session-key(\..+)?$/ './rest/sauth/get-authentication-session-key']
+		[\get    /\/sauth\/get-user-key(\..+)?$/                   './rest/sauth/get-user-key']
 		
 	account:
 		[\post   /\/account\/create(\..+)?$/                      './rest/account/create']
@@ -86,3 +96,6 @@ module.exports = (app) ->
 
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
+	
+	web-resources-router app
+	web-index-router app

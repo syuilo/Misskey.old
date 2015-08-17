@@ -1,0 +1,21 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title Misskey インストールエラー
+		link(rel='stylesheet', href='/resources/styles/authorize-invalid-session-key.css')
+	
+	body
+		main(role='main')
+			h1
+				i.fa.fa-exclamation-circle
+				| Oops...
+			p
+				| セッション・キーが無効です。このエラーはほとんどの場合、アプリケーションに問題があることが原因です。
+			p
+				| 問題が解決しない場合は、アプリケーションの開発者にお問い合わせください。
+			code invalid-session-key
+		footer
+			a(href='https://misskey.xyz')
+				img(src='/resources/images/authorize-footer-logo.svg', alt='Misskey')

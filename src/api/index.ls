@@ -54,6 +54,9 @@ api-server
 			max-age: null
 		store: session-store
 
+api-server.set 'view engine' \jade
+api-server.set 'views' "#__dirname/web/views/pages"
+
 api-server.use (req, res, next) ->
 	res.api-render = (data) ->
 		switch req.format

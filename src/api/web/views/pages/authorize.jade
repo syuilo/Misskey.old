@@ -1,0 +1,45 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title Misskey アプリケーションのインストール
+		link(rel='stylesheet', href='/resources/styles/authorize.css')
+		script(src='/resources/scripts/authorize.js')
+	
+	body
+		main(role='main')
+			h1
+				| アカウントへのアクセスを許可しますか？
+			form.form#form(action='/authorize', method='post')
+				div.app
+					h2.name= app.name
+					p.description= app.description
+					img.icon(src=app.iconImageUrl, alt='icon')
+				div.link
+					i.fa.fa-link
+				if isLogin
+					div.me
+						img.icon(src=me.iconImageUrl, alt='icon')
+					div.confirm
+						button.cancel#cancel(type='button')
+							i.fa.fa-ban
+							| 拒否
+						button.accept#accept(type='button')
+							i.fa.fa-check
+							| 許可
+				else
+					div.login
+						h2 ログイン
+					div.confirm
+						button.cancel#cancel(type='button')
+							i.fa.fa-ban
+							| 拒否
+						button.accept#accept(type='button')
+							i.fa.fa-check
+							| ログインして許可
+				input(type='hidden', name='cancel', value='false')
+				input(type='hidden', name='sauth-session-key', value=sessionKey)
+		footer
+			a(href='https://misskey.xyz')
+				img(src='/resources/images/authorize-footer-logo.svg', alt='Misskey')
