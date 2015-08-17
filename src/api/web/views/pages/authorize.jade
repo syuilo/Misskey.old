@@ -11,7 +11,7 @@ html(lang='ja', dir='ltr')
 		main(role='main')
 			h1
 				| アカウントへのアクセスを許可しますか？
-			form.form#form
+			form.form#form(action='/authorize', method='post')
 				div.app
 					h2.name= app.name
 					p.description= app.description
@@ -38,6 +38,7 @@ html(lang='ja', dir='ltr')
 						button.accept#accept(type='button')
 							i.fa.fa-check
 							| ログインして許可
+				input(type='hidden', name='cancel', value='false')
 				input(type='hidden', name='sauth-session-key', value=sessionKey)
 		footer
 			a(href='https://misskey.xyz')
