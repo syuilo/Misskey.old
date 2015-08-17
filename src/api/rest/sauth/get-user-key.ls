@@ -5,11 +5,17 @@ require! {
 
 module.exports = (req, res) ->
 	app-key = req.headers['sauth-app-key']
+	
+	[session-key, pin-code] = get-express-params do
+		req, <[ session-key pin-code ]>
+			
 	if app-key?
 		create-user-key do
-			app-key
+			app-key, session-key, pin-code
 		.then do
-			(sauth-authentication-session-key) ->
-				res.api-render {authentication-session-key: sauth-authentication-session-key.key}
+			(user-key) ->
+				res.api-render {
+					user-key: user-key.key
+				}
 			(err) ->
 				res.api-error 400 err
