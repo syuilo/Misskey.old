@@ -6,15 +6,12 @@ require! {
 }
 
 module.exports = (req, res) ->
-	session-key = req.body[\session-key]
+	session-key = req.body[\sauth-session-key]
 	cancel = req.body[\cancel]
 	
 	is-login = req.session? && req.session.user-id?
-	console.log is-login
-	console.log session-key
+	
 	(err, session) <- SAuthAuthenticationSessionKey.find-one {key: session-key}
-	console.log err
-	console.log session
 	if session?
 		if not session.is-invalid
 			if is-login
