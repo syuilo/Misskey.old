@@ -34,19 +34,21 @@ main {
 			display: block;
 			position: relative;
 			z-index: 1;
+			box-sizing: border-box;
 			width: 80px;
 			height: 80px;
 			margin: 0 auto;
 			border-radius: 80px;
+			border: solid 2px #eee;
 		}
 
 		&:before {
 			content: "";
 			display: block;
 			position: absolute;
-			bottom: 40px;
+			bottom: 39px;
 			width: 100%;
-			height: 1px;
+			height: 2px;
 			background: #eee;
 		}
 	}
