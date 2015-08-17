@@ -11,7 +11,10 @@ require! {
 
 module.exports = (app) ->
 	app.get '/authorize@:sessionKey' (req, res) ->
-		(require '../controllers/authorize') req, res
+		(require '../controllers/authorize-get') req, res
+	
+	app.post '/authorize' (req, res) ->
+		(require '../controllers/authorize-post') req, res
 	
 	# Config javascript
 	app.get '/config' (req, res) ->
