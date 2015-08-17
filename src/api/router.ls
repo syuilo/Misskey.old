@@ -1,7 +1,7 @@
 require! {
 	'./web/routes/resources': web-resources-router
 	'./web/routes/index': web-index-router
-	'../../config'
+	'../config'
 }
 
 routing =
