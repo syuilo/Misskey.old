@@ -99,8 +99,44 @@ textarea {
 	top: 0;
 	z-index: 1024;
 	width: 100%;
+	border-bottom: solid 4px #00acce;
 
 	> .main {
+		> .main {
+			margin: 0 auto;
+			width: 100%;
+			max-width: 1200px;
+			height: 64px;
+
+			> .logo {
+				display: block;
+				float: left;
+
+				img {
+					height: 64px;
+					vertical-align: top;
+				}
+			}
+
+			> .my-apps {
+				display: block;
+				float: right;
+
+				&:hover {
+					background: #eee;
+				}
+
+				&:active {
+					background: #ddd;
+				}
+
+				i {
+					padding: 0 32px;
+					line-height: 64px;
+					font-size: 2em;
+				}
+			}
+		}
 	}
 }
 

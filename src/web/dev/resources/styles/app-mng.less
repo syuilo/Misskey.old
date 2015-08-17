@@ -2,21 +2,36 @@
 
 main {
 
-	h1 {
+	> header {
 		display: block;
 		box-sizing: border-box;
 		margin: 0 auto;
 		padding: 16px 32px 0 32px;
-		max-width: 700px;
-		color: #444;
-		font-weight: normal;
+		max-width: 800px;
+
+		#icon {
+			display: inline-block;
+			width: 64px;
+			height: 64px;
+			border-radius: 8px;
+		}
+
+		#name {
+			display: inline-block;
+			margin: 0;
+			padding: 0 16px;
+			line-height: 64px;
+			vertical-align: top;
+			color: #444;
+			font-weight: normal;
+		}
 	}
 
 	> .main {
 		box-sizing: border-box;
 		margin: 0 auto;
-		padding: 32px;
-		max-width: 700px;
+		padding: 16px 32px 32px 32px;
+		max-width: 800px;
 
 		#nav {
 			border-bottom: solid 1px #ddd;
@@ -190,6 +205,128 @@ main {
 
 			i {
 				margin-right: 0.5em;
+			}
+		}
+	}
+}
+
+#app-icon-edit {
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	label {
+		display: block;
+		margin: 16px 0;
+
+		h2 {
+			margin: 0 0 4px 0;
+			font-size: 1.3em;
+			font-weight: 100;
+		}
+	}
+
+	.preview {
+		display: block;
+		margin: 0 auto;
+		max-height: 300px;
+		max-width: 100%;
+		background: #eee;
+
+		.image {
+			display: block;
+			margin: 0 auto;
+			max-height: 300px;
+			max-width: 100%;
+		}
+	}
+
+	input[type=file] {
+		display: block;
+		padding: 8px;
+		margin: 0 auto;
+		border: dashed 3px #ddd;
+		border-radius: 4px;
+
+		&:hover, &:focus, &:active {
+			border: dashed 3px #ccc;
+		}
+	}
+
+	button[type=submit] {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		cursor: pointer;
+		box-sizing: border-box;
+		padding: 32px 16px;
+		margin: 0;
+		width: 100%;
+		font-size: 1.2em;
+		color: #555;
+		outline: none;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		background: transparent;
+		transition: all .5s ease;
+		cursor: pointer;
+
+		* {
+			cursor: pointer;
+		}
+
+		&:hover {
+			color: @themeColor;
+			transition: all .2s ease;
+		}
+
+		&:focus {
+			color: @themeColor;
+			transition: all .2s ease;
+		}
+
+		&:active {
+			color: darken(@themeColor, 30%);
+			transition: all .2s ease;
+		}
+
+		i {
+			margin-right: 0.5em;
+		}
+	}
+
+	.progress {
+
+
+		.status {
+			margin: 0;
+			padding: 0;
+			color: rgba(0, 0, 0, 0.7);
+		}
+
+		progress {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			margin: 0;
+			width: 100%;
+			height: 8px;
+			border: solid 1px #eee;
+			border-radius: 8px;
+			overflow: hidden;
+
+			&::-webkit-progress-value {
+				background-color: @themeColor;
+				transition: all 1s ease;
+			}
+
+			&::-webkit-progress-bar {
+				background-color: #fff;
 			}
 		}
 	}

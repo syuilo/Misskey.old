@@ -11,3 +11,10 @@ html(lang='ja', dir='ltr')
 		
 		main(role='main')
 			a(href='/app-new') new
+			
+			ol#apps
+				each app in apps
+					li
+						a(href='/app/' + app.id)
+							h2= app.name
+							p= app.description

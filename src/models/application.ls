@@ -23,9 +23,13 @@ schema = new Schema do
 	screen-id:         {type: String,                required: yes, unique: yes}
 	screen-id-lower:   {type: String,                required: yes, unique: yes}
 
+schema.virtual \iconImageUrl .get ->
+	"#{config.image-server-url}/#{this.icon-image}"
+
 if !schema.options.to-object then schema.options.to-object = {}
 schema.options.to-object.transform = (doc, ret, options) ->
 	ret.id = doc.id
+	ret.icon-image-url = "#{config.image-server-url}/#{doc.icon-image}"
 	#ret.created-at = moment doc.created-at .format 'YYYY/MM/DD HH:mm:ss Z'
 	ret
 

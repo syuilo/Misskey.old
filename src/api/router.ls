@@ -26,8 +26,9 @@ routing =
 		[\delete /\/account\/reset-webtheme(\..+)?$/              './rest/account/reset-webtheme']
 
 	application:
-		[\post /\/application\/create(\..+)?$/ './rest/application/create']
-		[\post /\/application\/delete(\..+)?$/ './rest/application/delete']
+		[\post /\/application\/create(\..+)?$/      './rest/application/create']
+		[\put  /\/application\/update-icon(\..+)?$/ './rest/application/update-icon']
+		[\post /\/application\/delete(\..+)?$/      './rest/application/delete']
 
 	search:
 		[\get /\/search\/user(\..+)?$/ './rest/search/user']
