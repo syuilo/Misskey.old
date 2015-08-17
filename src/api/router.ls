@@ -93,9 +93,9 @@ module.exports = (app) ->
 				extension = filename.1.match /\.(.+)$/
 				req.format = extension.1 if extension?
 			next!
+
+	routing |> values |> concat |> each ([method, url, handler]) ->
+		app[method] url, require handler
 	
 	web-resources-router app
 	web-index-router app
-	
-	routing |> values |> concat |> each ([method, url, handler]) ->
-		app[method] url, require handler

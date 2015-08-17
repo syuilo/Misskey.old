@@ -46,6 +46,9 @@ module.exports = (app) ->
 
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
+		is-login = req.session? && req.session.user-id?
+		
+		switch
 		| (req.path.index-of '..') > -1 =>
 			res
 				..status 400
@@ -57,11 +60,20 @@ module.exports = (app) ->
 				less-path = path.resolve "#__dirname/..#{req.path.replace /\.css$/ '.less'}"
 				if fs.exists-sync less-path
 					app.init-session req, res, ->
-						read-file-send-less do
-							req
-							res
-							less-path
-							if req.login then req.me else null
+						if is-login
+							(, user) <- User.find-by-id req.session.user-id
+							read-file-send-less do
+								req
+								res
+								less-path
+								user
+						else
+							read-file-send-less do
+								req
+								res
+								less-path
+								null
+						
 				else if fs.exists-sync css-path
 					res.send-file css-path
 			| req.url.index-of '.less' == -1 =>
