@@ -8,5 +8,11 @@ html(lang='ja', dir='ltr')
 	
 	body
 		main(role='main')
+			h1
+				i.fa.fa-link
+				| このアプリケーションがあなたのアカウントにアクセスすることを許可しますか？
 			p= me.name
 			p= app.name
+		footer
+			a(href='https://misskey.xyz')
+				img(src='/resources/images/authorize-footer-logo.svg', alt='Misskey')
