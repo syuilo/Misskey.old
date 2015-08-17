@@ -11,7 +11,7 @@ require! {
 
 module.exports = (app) ->
 	app.get '/authorize@:sessionKey' (req, res) ->
-		(require './web/controllers/authorize') req, res
+		(require '../controllers/authorize') req, res
 	
 	# Config javascript
 	app.get '/config' (req, res) ->
