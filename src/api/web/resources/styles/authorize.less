@@ -22,21 +22,42 @@ main {
 	}
 
 	.app {
+		position: relative;
+
+		.name {
+			margin: 16px;
+			color: #444;
+		}
+
 		.icon {
 			display: block;
+			position: relative;
+			z-index: 1;
 			width: 80px;
 			height: 80px;
 			margin: 0 auto;
+			border-radius: 80px;
+		}
+
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: 40px;
+			width: 100%;
+			height: 1px;
+			background: #eee;
 		}
 	}
 
-	
+
 	.me {
 		.icon {
 			display: block;
 			width: 128px;
 			height: 128px;
 			margin: 0 auto;
+			border-radius: 128px;
 		}
 	}
 }
