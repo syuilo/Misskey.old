@@ -92,6 +92,19 @@ main {
 		}
 
 		.confirm {
+			position: relative;
+
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				bottom: 32px;
+				left: 50%;
+				width: 1px;
+				height: ~"calc(100% - 32px)";
+				background: #eee;
+			}
+
 			&:after {
 				content: "";
 				display: block;
