@@ -16,9 +16,6 @@ module.exports = (app-key, session-key, pin-code) ->
 	(err, session) <- SAuthAuthenticationSessionKey.find-one {key: session-key}
 	(err, pin) <- SAuthPINCode.find-one {pin-code}
 	
-	console.log session-key
-	console.log session
-	
 	switch
 	| not app? => throw-error \authorize-failed 'Authorize failed. type:himawari'
 	| not session? => throw-error \authorize-failed 'Authorize failed. type:sakurako'
