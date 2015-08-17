@@ -6,7 +6,7 @@ require! {
 }
 
 module.exports = (req, res) ->
-	session-key = req.body[\session-key]
+	session-key = req.body[\sauth-session-key]
 	cancel = req.body[\cancel]
 	
 	is-login = req.session? && req.session.user-id?
