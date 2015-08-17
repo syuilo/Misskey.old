@@ -1,7 +1,11 @@
 require! {
+	'../../../models/application': Application
 	'../../../models/user': User
 	'../../../config'
 }
 
 module.exports = (req, res) ->
-	res.display req, res, \my-apps
+	Application.find {user-id: req.me.id} (err, apps) ->
+		res.display req, res, \my-apps {
+			apps
+		}
