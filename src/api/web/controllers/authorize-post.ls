@@ -26,7 +26,7 @@ module.exports = (req, res) ->
 
 	function generate-pin(user)
 		create-sauth-pin-code do
-			session
+			session, user
 		.then do
 			(pin-code) ->
 				res.render 'authorize-pin' do
