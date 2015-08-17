@@ -41,7 +41,7 @@ module.exports = (app, user, app-id, image, trim-x = null, trim-y = null, trim-w
 
 	function update(image, img-type)
 		image-name = "#{target-app.id}.#{img-type}"
-		register-image user, \app-icon image-name, img-type, image .then (path) ->
+		register-image user, \application-icon image-name, img-type, image .then (path) ->
 			target-app.icon-image = path
 			target-app.save ->
 				resolve target-app
