@@ -1,0 +1,90 @@
+@themeColor: <%themeColor%>;
+
+main {
+	> .main {
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 16px 32px 32px 32px;
+		max-width: 800px;
+
+		> header {
+			display: block;
+			box-sizing: border-box;
+			margin: 0 auto;
+			padding: 16px 16px 0 16px;
+			max-width: 800px;
+			border-bottom: solid 1px #eee;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			a {
+				display: block;
+				float: right;
+				padding: 0 24px;
+				line-height: 64px;
+				font-size: 1.5em;
+			}
+
+			h1 {
+				display: block;
+				float: left;
+				margin: 0;
+				padding: 0 16px;
+				line-height: 64px;
+				vertical-align: top;
+				color: #444;
+				font-weight: normal;
+			}
+		}
+	}
+}
+
+#apps {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		a {
+			display: block;
+			padding: 16px;
+
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			&:hover {
+				background: #f8f8f8;
+			}
+
+			&:active {
+				background: #eee;
+			}
+
+			.icon {
+				display: block;
+				float: left;
+				width: 64px;
+				height: 64px;
+				margin-right: 16px;
+				border-radius: 8px;
+			}
+
+			h2 {
+				margin: 0;
+				color: #444;
+			}
+
+			p {
+				margin: 8px;
+				color: #777;
+			}
+		}
+	}
+}

@@ -46,24 +46,24 @@ html(lang='ja', dir='ltr')
 								h2
 									i.required *
 									| Name
-								input.ui-input-text(name='name', type='text', required)
+								input.ui-input-text(name='name', type='text', required, value=app.name, placeholder=app.name)
 								p.caption アプリケーション名。
 							label
 								h2
 									i.required *
 									| ID
-								input.ui-input-text(name='id', type='text', pattern='^[a-zA-Z0-9\-]+$', required)
+								input.ui-input-text(name='id', type='text', pattern='^[a-zA-Z0-9\-]+$', required, value=app.screenId, placeholder=app.screenId)
 								p.caption アプリケーションID。半角英数字、ハイフンで構成してください。
 							label
 								h2
 									i.required *
 									| Description
-								input.ui-input-text(name='description', type='text', required)
+								input.ui-input-text(name='description', type='text', required, value=app.description, placeholder=app.description)
 								p.caption アプリケーションの説明。
 							label
 								h2
 									| Callback URL (Optional)
-								input.ui-input-text(name='callback-url', type='url')
+								input.ui-input-text(name='callback-url', type='url', value=app.callbackUrl, placeholder=app.callbackUrl)
 								p.caption 認証時のコールバックURL。このアプリケーションが、Webアプリケーションでない場合は省略してください。
 							button(type='submit')
 								i.fa.fa-check
@@ -73,6 +73,13 @@ html(lang='ja', dir='ltr')
 							div.field
 								input.ui-input-text(type='text', value=app.appKey, readonly)
 								i.ico.fa.fa-key
+						div.regenerate
+							button.regenerate-button
+								i.fa.fa-ban
+								| Regenerate
+							p.caption
+								i.fa.fa-exclamation-triangle
+								| App Keyを再生成すると、今までに発行されたUser Keyはすべて無効になります。
 					div#app-icon-edit
 						form
 							div.preview

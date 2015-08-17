@@ -10,11 +10,14 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
-			a(href='/app-new') new
-			
-			ol#apps
-				each app in apps
-					li
-						a(href='/app/' + app.id)
-							h2= app.name
-							p= app.description
+			div.main
+				header
+					h1 Manage your apps
+					a(href='/app-new'): i.fa.fa-plus
+				ol#apps
+					each app in apps
+						li
+							a(href='/app/' + app.id)
+								img.icon(src=app.iconImageUrl, alt='')
+								h2= app.name
+								p= app.description
