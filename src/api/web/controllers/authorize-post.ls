@@ -25,7 +25,7 @@ module.exports = (req, res) ->
 		res.render 'authorize-invalid-session-key'
 
 	function generate-pin(user)
-		cretae-sauth-pin-code do
+		create-sauth-pin-code do
 			session
 		.then do
 			(pin-code) ->
