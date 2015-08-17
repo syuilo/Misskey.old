@@ -10,8 +10,8 @@ module.exports = (app-key) ->
 	function throw-error(code, message)
 		reject {code, message}
 	
-	(err, ap) <- Application.find-one {app-key}
-	if ap?
+	(err, app) <- Application.find-one {app-key}
+	if app?
 		# Generate KEY
 		chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 		key = 'kyoppie.'
