@@ -17,12 +17,12 @@ module.exports = (app-key, session-key, pin-code) ->
 	(err, pin) <- SAuthPINCode.find-one {pin-code}
 	
 	switch
-	| not app? => throw-error \authorize-failed 'Authorize failed.'
-	| not session? => throw-error \authorize-failed 'Authorize failed.'
-	| app.id.to-string! != session.app-id.to-string! => throw-error \authorize-failed 'Authorize failed.'
-	| session.is-invalid? => throw-error \authorize-failed 'Authorize failed.'
-	| not pin? => throw-error \authorize-failed 'Authorize failed.'
-	| pin.session-key != session.key => throw-error \authorize-failed 'Authorize failed.'
+	| not app? => throw-error \authorize-failed 'Authorize failed. type:himawari'
+	| not session? => throw-error \authorize-failed 'Authorize failed. type:sakurako'
+	| app.id.to-string! != session.app-id.to-string! => throw-error \authorize-failed 'Authorize failed. type:kyoppie'
+	| session.is-invalid => throw-error \authorize-failed 'Authorize failed. type:yuppie'
+	| not pin? => throw-error \authorize-failed 'Authorize failed. type:akari'
+	| pin.session-key != session.key => throw-error \authorize-failed 'Authorize failed. type:tinatsu'
 	| _ =>
 		(err, user) <- User.find-by-id pin.user-id
 		
