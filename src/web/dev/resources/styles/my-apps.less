@@ -11,7 +11,7 @@ main {
 			display: block;
 			box-sizing: border-box;
 			margin: 0 auto;
-			padding: 16px 32px 0 32px;
+			padding: 16px 16px 0 16px;
 			max-width: 800px;
 			border-bottom: solid 1px #eee;
 
@@ -24,8 +24,8 @@ main {
 			a {
 				display: block;
 				float: right;
-				width: 64px;
-				height: 64px;
+				padding: 0 24px;
+				line-height: 64px;
 				font-size: 1.5em;
 			}
 
@@ -38,6 +38,47 @@ main {
 				vertical-align: top;
 				color: #444;
 				font-weight: normal;
+			}
+		}
+	}
+}
+
+#apps {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		a {
+			&:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			&:hover {
+				background: #eee;
+			}
+
+			&:active {
+				background: #ddd;
+			}
+
+			.icon {
+				display: block;
+				float: left;
+				width: 64px;
+				height: 64px;
+				border-radius: 8px;
+			}
+
+			h2 {
+				color: #444;
+			}
+
+			p {
+				margin: 8px;
+				color: #777;
 			}
 		}
 	}
