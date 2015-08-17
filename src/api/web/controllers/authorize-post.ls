@@ -13,7 +13,7 @@ module.exports = (req, res) ->
 	
 	(err, session) <- SAuthAuthenticationSessionKey.find-one {key: session-key}
 	if session?
-		if not key.is-invalid
+		if not session.is-invalid
 			if is-login
 				(, user) <- User.find-by-id req.session.user-id
 				generate-pin user
