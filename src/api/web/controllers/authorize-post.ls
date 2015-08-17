@@ -1,5 +1,5 @@
 require! {
-	'../../internal/cretae-sauth-pin-code'
+	'../../internal/create-sauth-pin-code'
 	'../../../models/application': Application
 	'../../../models/sauth-authentication-session-key': SAuthAuthenticationSessionKey
 	'../../../models/user': User
