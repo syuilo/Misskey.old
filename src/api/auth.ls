@@ -14,7 +14,7 @@ module.exports = (req, res, success) ->
 	if sauth-app-key? and sauth-user-key?
 		(err, app) <- Application.find-one {app-key: sauth-app-key}
 		if app?
-			(err, key) <- UserKey.find-one {key: user-key}
+			(err, key) <- UserKey.find-one {key: sauth-user-key}
 			if key?
 				if key.app-id.to-string! == app.id.to-string!
 					(err, user) <- User.find-by-id key.user-id
