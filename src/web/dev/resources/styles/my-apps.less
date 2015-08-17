@@ -49,9 +49,14 @@ main {
 	list-style: none;
 
 	li {
+
 		a {
 			display: block;
 			padding: 16px;
+			background-color: #fff;
+			background-image: url("/resources/images/arrow.svg");
+			background-repeat: no-repeat;
+			background-position: calc(92%) center;
 
 			&:after {
 				content: "";
@@ -60,11 +65,11 @@ main {
 			}
 
 			&:hover {
-				background: #f8f8f8;
+				background-color: #f8f8f8;
 			}
 
 			&:active {
-				background: #eee;
+				background-color: #eee;
 			}
 
 			.icon {
