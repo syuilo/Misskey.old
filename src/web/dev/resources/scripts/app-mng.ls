@@ -1,5 +1,6 @@
 $ ->
 	SYUILOUI.Tab $ '#nav > ul'
+	init-icon-edit-form!
 
 function init-icon-edit-form
 	$form = $ '#app-icon-edit form'
