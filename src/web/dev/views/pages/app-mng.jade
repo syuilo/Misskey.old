@@ -4,15 +4,19 @@ html(lang='ja', dir='ltr')
 	head
 		include ../common/head
 		title= app.name
+		link(rel='stylesheet', href='/resources/styles/cropper.min.css')
 		link(rel='stylesheet', href='/resources/styles/app-mng.css')
 		script(src='/resources/scripts/lib/syuiloui.js')
+		script(src='/resources/scripts/lib/cropper.min.js')
 		script(src='/resources/scripts/app-mng.js')
 	
 	body
 		include ../common/header
 		
 		main(role='main')
-			h1= app.name
+			header
+				img#icon(src=app.iconImageUrl, alt='icon')
+				h1#name= app.name
 			div.main
 				nav#nav
 					ul
@@ -25,6 +29,9 @@ html(lang='ja', dir='ltr')
 						li: a(href='#app-key')
 							i.fa.fa-key
 							| App Key
+						li: a(href='#app-icon-edit')
+							i.fa.fa-picture-o
+							| Icon
 				div#content
 					div#dashboard
 						div.app-screen-id
@@ -63,3 +70,19 @@ html(lang='ja', dir='ltr')
 							div.field
 								input.ui-input-text(type='text', value=app.appKey, readonly)
 								i.ico.fa.fa-key
+					div#app-icon-edit
+						form
+							div.preview
+								img.image(src=app.iconImageUrl, alt='icon')
+							label.image
+								input(name='image', type='file', accept='image/*')
+							div.progress
+								p.status
+								progress(form='icon-edit-form', value='0')
+							input(type='hidden', name='trim-x')
+							input(type='hidden', name='trim-y')
+							input(type='hidden', name='trim-w')
+							input(type='hidden', name='trim-h')
+							button(type='submit')
+								i.fa.fa-check
+								| Update
