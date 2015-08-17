@@ -78,7 +78,7 @@ api-server.use (req, res, next) ->
 # Log
 api-server.all '*' (req, res, next) ->
 	next!
-	ua = req.headers['user-agent'].to-lower-case!
+	ua = if req.headers['user-agent']? then req.headers['user-agent'].to-lower-case! else null
 	publish-redis-streaming \log to-json {
 		type: \api
 		value:
