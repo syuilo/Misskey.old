@@ -38,6 +38,6 @@ module.exports = (req, res) ->
 						pin-code: pin-code.pin-code
 				# Webアプリ (コールバックURLにリダイレクト)
 				else
-					res.redirect "#app.callback-url?pin-code=#{pin-code.pin-code}"
+					res.redirect "#{app.callback-url}?pin-code=#{pin-code.pin-code}"
 			(err) ->
 				res.render 'authorize-unknown-error'
