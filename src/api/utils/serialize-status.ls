@@ -33,7 +33,12 @@ module.exports = (status, me, callback) ->
 	function get-app(status, callback)
 		if status.app-id?
 			Application.find-by-id status.app-id, (, app) ->
-				status.app = app.to-object!
+				status.app = {
+					name: app.name
+					description: app.description
+					icon-image-url: app.icon-image-url
+					screen-id: app.screen-id
+				}
 				callback status
 		else
 			status.app = null
