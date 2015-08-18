@@ -36,7 +36,7 @@ module.exports = (req, res) ->
 		.then do
 			(pin-code) ->
 				# Not Webアプリ (PINコード表示)
-				if nul-or-empty app.callback-url
+				if null-or-empty app.callback-url
 					res.render 'authorize-pin' do
 						pin-code: pin-code.pin-code
 				# Webアプリ (コールバックURLにリダイレクト)
