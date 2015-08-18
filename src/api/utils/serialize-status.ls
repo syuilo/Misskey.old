@@ -47,6 +47,9 @@ module.exports = (status, me, callback) ->
 	function get-user(status, callback)
 		User.find-by-id status.user-id, (, user) ->
 			status.user = user.to-object!
+			delete status.user.icon-image
+			delete status.user.banner-image
+			delete status.user.wallpaper-image
 			callback status
 
 	function get-reply-source(status, callback)
