@@ -21,7 +21,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	.then (statuses) ->
 		Promise.all (statuses |> map (status) ->
 			resolve, reject <- new Promise!
-			serialize-status status, me, (serialized-status) ->
+			serialize-status status, user, (serialized-status) ->
 				resolve serialized-status)
 		.then (serialized-statuses) ->
 			res.api-render statuses
