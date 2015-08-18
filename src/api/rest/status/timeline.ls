@@ -24,4 +24,4 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			serialize-status status, user, (serialized-status) ->
 				resolve serialized-status)
 		.then (serialized-statuses) ->
-			res.api-render statuses
+			res.api-render serialized-statuses
