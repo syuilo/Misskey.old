@@ -4,6 +4,7 @@ require! {
 	'../../models/user-key': UserKey
 	'../../models/sauth-authentication-session-key': SAuthAuthenticationSessionKey
 	'../../models/sauth-pin-code': SAuthPINCode
+	'../../models/utils/create-notice'
 }
 
 module.exports = (app-key, session-key, pin-code) ->
@@ -41,6 +42,15 @@ module.exports = (app-key, session-key, pin-code) ->
 				console.log err
 				throw-error \unknown-error null
 			else
-				session.remove!
-				pin.remove!
-				resolve created-user-key
+				done session, pin, created-user-key
+
+	function done(session, pin, user-key)
+		resolve user-key
+		
+		session.remove!
+		pin.remove!
+		
+		# Create notice
+		create-notice user-key.user-id, \install-app {
+			app-id: app.id
+		} .then ->
