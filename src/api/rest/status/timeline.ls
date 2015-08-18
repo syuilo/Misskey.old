@@ -15,7 +15,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			count = 1
 	status-get-timeline do
 		user.id
-		30statuses
 		if !empty count then count else 30statuses
 		if !empty since-id then since-id else null
 		if !empty max-id then max-id else null
