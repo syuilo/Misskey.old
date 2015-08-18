@@ -137,7 +137,14 @@ div.status.article(
 						if status.user.isVerified
 							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 						span.screen-name= '@' + status.user.screenName
-					a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+					div.right
+						if status.app != null
+							a.via-anchor
+								p.via
+									span.caption via
+									b.app-name= status.app.name
+						a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
+							time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 				div.content(itemprop='articleBody')
 					div.text
 						p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)

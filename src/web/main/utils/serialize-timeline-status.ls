@@ -31,10 +31,12 @@ module.exports = (status, me, callback) ->
 			callback status
 
 	function get-app(status, callback)
-		Application.find-by-id status.app-id, (, app) ->
-			#delete app.consumer-key
-			#delete app.callback-url
-			status.app = app.to-object!
+		if status.app-id?
+			Application.find-by-id status.app-id, (, app) ->
+				status.app = app.to-object!
+				callback status
+		else
+			status.app = null
 			callback status
 
 	function get-user(status, callback)
@@ -86,7 +88,7 @@ module.exports = (status, me, callback) ->
 	status.display-created-at = moment status.created-at .format 'YYYY年M月D日 H時m分s秒'
 	status <- serialyze-repost status
 	status.is-reply = status.in-reply-to-status-id?
-	#status <- get-app status
+	status <- get-app status
 	status <- get-user status
 	status <- get-reply-source status
 	status <- get-replies status
