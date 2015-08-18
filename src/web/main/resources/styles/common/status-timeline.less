@@ -205,7 +205,6 @@
 				padding: 8px 0;
 
 				&[data-is-repostpost='true'] {
-
 				}
 
 				&[data-is-favorited='true'] > article > .article-main {
@@ -881,23 +880,44 @@
 									}
 								}
 
-								> a {
-									> time {
-										position: absolute;
-										top: 16px;
-										right: 16px;
-										display: inline;
-										vertical-align: top;
-										color: rgba(0, 0, 0, 0.6);
-										font-size: small;
+								> .right {
+									position: absolute;
+									top: 16px;
+									right: 16px;
 
-										&:hover {
-											text-decoration: underline;
+									> .via-anchor {
+										> .via {
+											display: inline;
+											margin: 0 16px;
+											vertical-align: top;
+											color: rgba(0, 0, 0, 0.3);
+											font-size: small;
+
+											> .caption {
+												margin-right: 4px;
+											}
+
+											> .app-name {
+												font-weight: bold;
+											}
 										}
+									}
 
-										&:active {
-											color: rgba(0, 0, 0, 0.8);
-											text-decoration: underline;
+									> .time-anchor {
+										> time {
+											display: inline;
+											vertical-align: top;
+											color: rgba(0, 0, 0, 0.6);
+											font-size: small;
+
+											&:hover {
+												text-decoration: underline;
+											}
+
+											&:active {
+												color: rgba(0, 0, 0, 0.8);
+												text-decoration: underline;
+											}
 										}
 									}
 								}

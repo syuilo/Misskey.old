@@ -1,5 +1,6 @@
 require! {
 	'../../../models/notice': Notice
+	'../../../models/application': Application
 	'../../../models/user': User
 	'../../../models/status': Status
 	'../../../models/bbs-thread': BBSThread
@@ -11,6 +12,10 @@ module.exports = (notice) -> new Promise (resolve, reject) ->
 	notice .= to-object!
 	switch notice.type
 	| \self-notice => resolve notice
+	| \install-app =>
+		err, app <- Application.find-by-id notice.content.app-id
+		notice.content.app = app.to-object!
+		resolve notice
 	| \follow =>
 		err, user <- User.find-by-id notice.content.user-id
 		notice.content.user = user.to-object!

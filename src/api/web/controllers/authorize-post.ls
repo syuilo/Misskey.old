@@ -16,7 +16,10 @@ module.exports = (req, res) ->
 		if not session.is-invalid
 			if is-login
 				(, user) <- User.find-by-id req.session.user-id
-				generate-pin user
+				if cancel == \true
+					cancel-session!
+				else
+					generate-pin user
 			else
 				#generate-pin null
 		else
@@ -25,11 +28,23 @@ module.exports = (req, res) ->
 		res.render 'authorize-invalid-session-key'
 
 	function generate-pin(user)
+		(err, app) <- Application.find-by-id session.app-id
+		
+		# PINコード発行
 		create-sauth-pin-code do
 			session, user
 		.then do
 			(pin-code) ->
-				res.render 'authorize-pin' do
-					pin-code: pin-code.pin-code
+				# Not Webアプリ (PINコード表示)
+				if null-or-empty app.callback-url
+					res.render 'authorize-pin' do
+						pin-code: pin-code.pin-code
+				# Webアプリ (コールバックURLにリダイレクト)
+				else
+					res.redirect "#{app.callback-url}?pin-code=#{pin-code.pin-code}"
 			(err) ->
-				
+				res.render 'authorize-unknown-error'
+		
+	function cancel-session
+		session.remove!
+		res.render 'authorize-cancel'
