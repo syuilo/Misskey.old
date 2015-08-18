@@ -11,7 +11,7 @@ module.exports = (req, res, success) ->
 	sauth-app-key = req.headers['sauth-app-key']
 	sauth-user-key = req.headers['sauth-user-key']
 	
-	if sauth-app-key? and sauth-user-key?
+	if (not null-or-empty sauth-app-key) and (not null-or-empty sauth-user-key)
 		(err, app) <- Application.find-one {app-key: sauth-app-key}
 		if app?
 			(err, key) <- UserKey.find-one {key: sauth-user-key}
@@ -32,7 +32,7 @@ module.exports = (req, res, success) ->
 		is-logged = req.session? && req.session.user-id?
 		referer = req.header \Referer
 		switch
-		| empty referer => res.api-error 401 'refer is empty'
+		| null-or-empty referer => res.api-error 401 'refer is empty'
 		| not is-logged => res.api-error 401 'not logged'
 		| (req.header\Referer == //^#{config.public-config.url}//) => res.api-error 401 'invalid request'
 		| _ =>
