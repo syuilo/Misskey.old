@@ -1,6 +1,7 @@
 require! {
 	'../../auth': authorize
 	'../../internal/create-status'
+	'../../utils/serialize-status'
 	'../../../utils/get-express-params'
 	'../../../models/status': Status
 	'../../../models/utils/status-check-reposted'
@@ -35,7 +36,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					(status) ->
 						if path? then fs.unlink path
 						if status?
-							res.api-render status.to-object!
+							serialize-status status, user, (serialized-status) ->
+								res.api-render serialized-status
 						else
 							res.api-render \ok
 					(err) ->
