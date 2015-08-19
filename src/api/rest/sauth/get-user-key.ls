@@ -18,9 +18,7 @@ module.exports = (req, res) ->
 				(err, user) <- User.find-by-id user-key.user-id
 				res.api-render {
 					user-key: user-key.key
-					user-id: user.id
-					user-screen-name: user.screen-name
-					user-name: user.name
+					user: user.to-object!
 				}
 			(err) ->
 				res.api-error 400 err
