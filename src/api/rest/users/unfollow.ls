@@ -3,7 +3,6 @@ require! {
 	'../../../utils/publish-redis-streaming'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../models/utils/filter-user-for-response'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -27,4 +26,4 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 								type: \unfollowed-me
 								value: user
 							publish-redis-streaming "userStream:#{target-user.id}", to-json stream-obj
-							res.api-render filter-user-for-response target-user
+							res.api-render target-user.to-object!
