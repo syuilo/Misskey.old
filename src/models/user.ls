@@ -63,6 +63,9 @@ schema.options.to-object.transform = (doc, ret, options) ->
 	ret.icon-image-url = "#{config.image-server-url}/#{doc.icon-image}"
 	ret.banner-image-url = "#{config.image-server-url}/#{doc.banner-image}"
 	ret.wallpaper-image-url = "#{config.image-server-url}/#{doc.wallpaper-image}"
+	delete ret.icon-image
+	delete ret.banner-image
+	delete ret.wallpaper-image
 	delete ret._id
 	delete ret.__v
 	delete ret.password
