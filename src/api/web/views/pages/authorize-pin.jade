@@ -5,6 +5,7 @@ html(lang='ja', dir='ltr')
 		include ../common/head
 		title Misskey アプリケーションのインストール
 		link(rel='stylesheet', href='/resources/styles/authorize-pin.css')
+		script(src='/resources/scripts/authorize-pin.js')
 	
 	body
 		main(role='main')
@@ -13,6 +14,7 @@ html(lang='ja', dir='ltr')
 			div.pin
 				h2 アプリケーションに戻って、下記のコードを入力してください。
 				code#pin= pinCode
+				p このウィンドウは30秒後に自動で閉じます。
 		footer
 			a(href='https://misskey.xyz')
 				img(src='/resources/images/authorize-footer-logo.svg', alt='Misskey')
