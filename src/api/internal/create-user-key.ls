@@ -26,31 +26,36 @@ module.exports = (app-key, session-key, pin-code) ->
 	| _ =>
 		(err, user) <- User.find-by-id pin.user-id
 		
-		# Generate KEY
-		chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'
-		user-key-token = 'yryr.'
-		for i from 1 to 32 by 1
-			user-key-token += chars[Math.floor (Math.random! * chars.length)]
+		(err, exist-key) <- UserKey.find-one {user-id: user.id, app-id: app.id}
+		# 既にkeyがあったらそれを返す
+		if exist-key?
+			done session, pin, exist-key
+		else
+			# Generate KEY
+			chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'
+			user-key-token = 'yryr.'
+			for i from 1 to 32 by 1
+				user-key-token += chars[Math.floor (Math.random! * chars.length)]
 
-		user-key = new UserKey!
-			..app-id = app.id
-			..user-id = user.id
-			..key = user-key-token
+			user-key = new UserKey!
+				..app-id = app.id
+				..user-id = user.id
+				..key = user-key-token
 
-		user-key.save (err, created-user-key) ->
-			if err
-				console.log err
-				throw-error \unknown-error null
-			else
-				done session, pin, created-user-key
+			user-key.save (err, created-user-key) ->
+				if err
+					console.log err
+					throw-error \unknown-error null
+				else
+					done session, pin, created-user-key
+					
+					# Create notice
+					create-notice user-key.user-id, \install-app {
+						app-id: app.id
+					} .then ->
 
 	function done(session, pin, user-key)
 		resolve user-key
 		
 		session.remove!
 		pin.remove!
-		
-		# Create notice
-		create-notice user-key.user-id, \install-app {
-			app-id: app.id
-		} .then ->
