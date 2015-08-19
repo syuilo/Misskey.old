@@ -1,8 +1,9 @@
 require! {
 	fs
+	'../../auth': authorize
 	'../../limitter'
 	'../../internal/create-status'
-	'../../auth': authorize
+	'../../utils/serialize-status'
 	'../../../utils/get-express-params'
 }
 
@@ -31,7 +32,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			(status) ->
 				if path? then fs.unlink path
 				if status?
-					res.api-render status.to-object!
+					serialize-status status, user, (serialized-status) ->
+						res.api-render serialized-status
 				else
 					res.api-render \ok
 			(err) ->
