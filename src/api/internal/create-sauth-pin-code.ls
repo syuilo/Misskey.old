@@ -18,7 +18,7 @@ module.exports = (sauth-session, user) ->
 		# Generate KEY
 		chars = 'abcdefghijklmnopqrstuvwxyz'
 		code = ''
-		for i from 1 to 8 by 1
+		for i from 1 to 5 by 1
 			code += chars[Math.floor (Math.random! * chars.length)]
 
 		pin = new SAuthPINCode!
