@@ -1,9 +1,15 @@
 prelude = require 'prelude-ls'
 
 $ ->
-	$ '#statuses .timeline .statuses .status .status.article' .each ->
-		window.STATUS_CORE.set-event $ @
+	q = $ \html .attr \data-query
+	q-reg = new RegExp q, \i
 	
+	$ '#statuses .timeline .statuses .status .status.article' .each ->
+		$status = $ @
+		window.STATUS_CORE.set-event $status
+		$text = $status.find '.article-main > .main > .content > .text'
+		$text .html ($text.text!.replace q-reg, "<mark>#{q}</mark>")
+		
 	$ '#search input' .bind \input ->
 			$input = $ @
 			$result = $ '#search .result'
