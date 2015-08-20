@@ -2,13 +2,14 @@ prelude = require 'prelude-ls'
 
 $ ->
 	q = $ \html .attr \data-query
+	q = $ '<div>' .text q .html!
 	q-reg = new RegExp q, \i
 	
 	$ '#statuses .timeline .statuses .status .status.article' .each ->
 		$status = $ @
 		window.STATUS_CORE.set-event $status
 		$text = $status.find '.article-main > .main > .content > .text'
-		$text .html ($text.html!.replace q-reg, "<mark>#{$ '<div>' .text q .html!}</mark>")
+		$text .html ($text.html!.replace q-reg, "<mark>#{q}</mark>")
 		
 	$ '#search input' .bind \input ->
 			$input = $ @
