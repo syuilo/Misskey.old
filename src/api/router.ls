@@ -45,9 +45,10 @@ routing =
 		[\get /\/search\/kyoppie(\..+)?$/ './rest/search/user'] #dummy
 
 	notice:
-		[\get    /\/notice\/timeline(\..+)?$/ './rest/notice/timeline']
-		[\delete /\/notice\/delete(\..+)?$/     './rest/notice/delete']
-		[\delete /\/notice\/delete-all(\..+)?$/ './rest/notice/delete-all']
+		[\post   /\/notice\/create(\..+)?$/           './rest/notice/create']
+		[\get    /\/notice\/timeline(\..+)?$/         './rest/notice/timeline']
+		[\delete /\/notice\/delete(\..+)?$/           './rest/notice/delete']
+		[\delete /\/notice\/delete-all(\..+)?$/       './rest/notice/delete-all']
 		[\get    /\/notice\/timeline-webhtml(\..+)?$/ './rest/notice/timeline-webhtml']
 
 	users:

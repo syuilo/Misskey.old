@@ -1,7 +1,7 @@
 require! {
 	'../../models/user': User
 	'../../models/application': Application
-	'../../models/utils/create-notice'
+	'./create-notice'
 	'../../utils/publish-redis-streaming'
 	'../../models/utils/exist-app-screen-id'
 }

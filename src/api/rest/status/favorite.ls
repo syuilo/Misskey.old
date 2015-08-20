@@ -6,7 +6,7 @@ require! {
 	'../../../models/status': Status
 	'../../../models/status-favorite': StatusFavorite
 	'../../../models/utils/status-check-favorited'
-	'../../../models/utils/create-notice'
+	'../../internal/create-notice'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -38,7 +38,7 @@ function favorite-step req, res, app, user, target-status
 					..favorites-count++
 					..save (err) ->
 						# Create notice
-						create-notice target-status.user-id, \status-favorite {
+						create-notice null, target-status.user-id, \status-favorite {
 							status-id: target-status.id
 							user-id: user.id
 						} .then ->

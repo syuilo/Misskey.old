@@ -22,6 +22,7 @@ db = mongoose.create-connection config.mongo.uri, config.mongo.options
 mongoose-auto-increment.initialize db
 
 schema = new Schema do
+	app-id:     {type: Schema.Types.ObjectId, required: no, default: null}
 	content:    {type: Schema.Types.Mixed,    required: no, default: {}}
 	created-at: {type: Date,                  default: Date.now}
 	cursor:     {type: Number}
