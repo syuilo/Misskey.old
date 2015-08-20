@@ -12,9 +12,11 @@
 **[Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.**
 It runs on Node.js.
 
-Source code that has been deployed to https://misskey.xyz/ is available at master branch.
-
 Source code of Misskey image server has also been published: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
+
+## Branches
+* `master` - Stable version. Deployed to https://misskey.xyz/ .
+* `develop` - Development version. Deployed to https://misskey.xyz:1206/ . Only this branch is accepting any Pull Request.
 
 ## Dependencies
 [![Node.js](https://img.shields.io/badge/Node.js-0.12.0-blue.svg)](https://nodejs.org)
