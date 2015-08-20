@@ -1,4 +1,9 @@
+prelude = require 'prelude-ls'
+
 $ ->
+	$ '#statuses .timeline .statuses .status .status.article' .each ->
+		window.STATUS_CORE.set-event $ @
+	
 	$ '#search input' .bind \input ->
 			$input = $ @
 			$result = $ '#search .result'
