@@ -4,7 +4,7 @@ require! {
 	'../../models/user-key': UserKey
 	'../../models/sauth-authentication-session-key': SAuthAuthenticationSessionKey
 	'../../models/sauth-pin-code': SAuthPINCode
-	'../../models/utils/create-notice'
+	'./create-notice'
 }
 
 module.exports = (app-key, session-key, pin-code) ->
@@ -50,7 +50,7 @@ module.exports = (app-key, session-key, pin-code) ->
 					done session, pin, created-user-key
 					
 					# Create notice
-					create-notice user-key.user-id, \install-app {
+					create-notice null, user-key.user-id, \install-app {
 						app-id: app.id
 					} .then ->
 

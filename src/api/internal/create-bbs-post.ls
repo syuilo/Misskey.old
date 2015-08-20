@@ -5,7 +5,7 @@ require! {
 	'../../models/bbs-thread': BBSThread
 	'../../models/bbs-thread-watch': BBSThreadWatch
 	'../../models/bbs-post': BBSPost
-	'../../models/utils/create-notice'
+	'./create-notice'
 	'../../utils/publish-redis-streaming'
 	'../../utils/register-image'
 }
@@ -78,7 +78,7 @@ module.exports = (app, user, thread-id, text, image = null) ->
 				(, watchers) <- BBSThreadWatch.find {thread-id: thread.id}
 				watchers |> each (watcher) ->
 					if user.id.to-string! != watcher.user-id.to-string!
-						create-notice watcher.user-id, \bbs-thread-post {
+						create-notice null, watcher.user-id, \bbs-thread-post {
 							user-id: user.id
 							thread-id: thread.id
 							post-id: post.id

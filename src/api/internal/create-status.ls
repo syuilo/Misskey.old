@@ -8,7 +8,7 @@ require! {
 	'../../models/user-following': UserFollowing
 	'../../models/utils/serialize-status'
 	'../../models/utils/filter-user-for-response'
-	'../../models/utils/create-notice'
+	'./create-notice'
 	'../../utils/publish-redis-streaming'
 	'../../utils/register-image'
 }
@@ -120,7 +120,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 			..reposts-count++
 			..save (err) ->
 				# Create notice
-				create-notice repost-from-status.user-id, \status-repost {
+				create-notice null, repost-from-status.user-id, \status-repost {
 					repost-id: created-status.id
 					status-id: repost-from-status.id
 					user-id: user.id

@@ -3,7 +3,7 @@ require! {
 	'../../../utils/publish-redis-streaming'
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
-	'../../../models/utils/create-notice'
+	'../../internal/create-notice'
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
@@ -28,7 +28,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 								..save!
 							
 							# Create notice
-							create-notice target-user.id, \follow {
+							create-notice null, target-user.id, \follow {
 								user-id: user.id
 							} .then ->
 							
