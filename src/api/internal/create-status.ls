@@ -116,7 +116,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 				UserFollowing.find {followee-id: user.id} (, followings) ->
 					| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
 
-				mentions = status.text == /@[a-zA-Z0-9_]+/g
+				mentions = created-status.text == /@[a-zA-Z0-9_]+/g
 				if mentions?
 					mentions |> each (mention-sn) ->
 						mention-sn .= replace '@' ''
