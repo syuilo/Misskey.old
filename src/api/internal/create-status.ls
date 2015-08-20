@@ -50,70 +50,91 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 		| _ => create null, null
 
 	function create(image, img-type)
-		status = new Status do
-			app-id: if app? then app.id else null
-			in-reply-to-status-id: in-reply-to-status-id
-			is-image-attached: image?
-			text: text
-			user-id: user.id
-			repost-from-status-id: if repost-from-status? then repost-from-status.id else null
-		err, created-status <- status.save
-		if err?
-			reject err
+		if in-reply-to-status-id?
+			(err, reply-status) <- Status.find-by-id in-reply-to-status-id
+			if reply-status?
+				status = new Status do
+					app-id: if app? then app.id else null
+					in-reply-to-status-id: if reply-status.repost-from-status-id? then reply-status.repost-from-status-id else in-reply-to-status-id
+					is-image-attached: image?
+					text: text
+					user-id: user.id
+					repost-from-status-id: if repost-from-status? then repost-from-status.id else null
+				err, created-status <- status.save
+				if err?
+					reject err
+				else
+					created created-status
+			else
+				throw-error \reply-status-not-found 'Reply status not found.'
 		else
-			if repost-from-status?
-				reposted created-status
-			user.statuses-count++
-			user.save ->
-				if created-status.in-reply-to-status-id?
-					Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
-						if reply-to-status?
-							reply-to-status.replies-count++
-							if !reply-to-status.replies? or !reply-to-status.replies.0?
-								reply-to-status.replies = [created-status._id]
-							else
-								reply-to-status.replies.push created-status._id
-							reply-to-status.save!
-				switch
-				| image? =>
-					image-name = "#{created-status.id}-1.#{img-type}"
-					register-image user, \status-image image-name, img-type, image .then (path) ->
-						created-status.images = [path]
-						created-status.save ->
-							done!
-				| _ => done!
+			status = new Status do
+				app-id: if app? then app.id else null
+				in-reply-to-status-id: null
+				is-image-attached: image?
+				text: text
+				user-id: user.id
+				repost-from-status-id: if repost-from-status? then repost-from-status.id else null
+			err, created-status <- status.save
+			if err?
+				reject err
+			else
+				created created-status
+	
+	function created(created-status)
+		if repost-from-status?
+			reposted created-status
+		user.statuses-count++
+		user.save ->
+			if created-status.in-reply-to-status-id?
+				Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
+					if reply-to-status?
+						reply-to-status.replies-count++
+						if !reply-to-status.replies? or !reply-to-status.replies.0?
+							reply-to-status.replies = [created-status._id]
+						else
+							reply-to-status.replies.push created-status._id
+						reply-to-status.save!
+			switch
+			| image? =>
+				image-name = "#{created-status.id}-1.#{img-type}"
+				register-image user, \status-image image-name, img-type, image .then (path) ->
+					created-status.images = [path]
+					created-status.save ->
+						done!
+			| _ => done!
 
-				function done
-					resolve created-status
+			function done
+				resolve created-status
 
-					stream-obj = to-json do
-						type: \status
-						value: {id: status.id}
+				stream-obj = to-json do
+					type: \status
+					value: {id: status.id}
 
-					publish-redis-streaming "userStream:#{user.id}" stream-obj
+				publish-redis-streaming "userStream:#{user.id}" stream-obj
 
-					UserFollowing.find {followee-id: user.id} (, followings) ->
-						| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
+				UserFollowing.find {followee-id: user.id} (, followings) ->
+					| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
 
-					mentions = status.text == /@[a-zA-Z0-9_]+/g
-					if mentions?
-						mentions |> each (mention-sn) ->
-							mention-sn .= replace '@' ''
-							(, reply-user) <- User.find-one {screen-name-lower: mention-sn.to-lower-case!}
-							if reply-user?
-								status-mention = new StatusMention do
-									status-id: status.id
-									user-id: reply-user.id
-								status-mention.save ->
-									stream-mention-obj = to-json do
-										type: \reply
-										value:
-											id: status.id
-											user-name: user.name
-											user-screen-name: user.screen-name
-											user-icon-image-url: user.icon-image-url
-											text: status.text
-									publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+				mentions = status.text == /@[a-zA-Z0-9_]+/g
+				if mentions?
+					mentions |> each (mention-sn) ->
+						mention-sn .= replace '@' ''
+						(, reply-user) <- User.find-one {screen-name-lower: mention-sn.to-lower-case!}
+						if reply-user?
+							status-mention = new StatusMention do
+								status-id: status.id
+								user-id: reply-user.id
+							status-mention.save ->
+								stream-mention-obj = to-json do
+									type: \reply
+									value:
+										id: status.id
+										user-name: user.name
+										user-screen-name: user.screen-name
+										user-icon-image-url: user.icon-image-url
+										text: status.text
+								publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
 	function reposted(created-status)
 		repost-from-status
