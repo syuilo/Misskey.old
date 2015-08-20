@@ -38,8 +38,9 @@ header#misskey-main-header(
 									i.fa.fa-users
 									| Boards
 				div.right
-					div.search(role='search')
-						input(type='search', placeholder!='&#xf002; Search')
+					form.search(action='/search', method='get', role='search')
+						input(type='search', name='q', placeholder!='&#xf002; Search')
+						input(type='hidden', name='type', value='general')
 						div.result
 					div.account
 						div.dropdown(data-active='false')
