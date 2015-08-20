@@ -109,7 +109,7 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 
 				stream-obj = to-json do
 					type: \status
-					value: {id: status.id}
+					value: {id: created-status.id}
 
 				publish-redis-streaming "userStream:#{user.id}" stream-obj
 
@@ -123,17 +123,17 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 						(, reply-user) <- User.find-one {screen-name-lower: mention-sn.to-lower-case!}
 						if reply-user?
 							status-mention = new StatusMention do
-								status-id: status.id
+								status-id: created-status.id
 								user-id: reply-user.id
 							status-mention.save ->
 								stream-mention-obj = to-json do
 									type: \reply
 									value:
-										id: status.id
+										id: created-status.id
 										user-name: user.name
 										user-screen-name: user.screen-name
 										user-icon-image-url: user.icon-image-url
-										text: status.text
+										text: created-status.text
 								publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
 	function reposted(created-status)
