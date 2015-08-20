@@ -8,6 +8,21 @@ li.notice(
 		case notice.type
 			when 'self-notice'
 				p= notice.content.text
+			when 'application'
+				a.icon-anchor(href='/app/' + notice.app.screenName, title= notice.app.description, rel='icon')
+					img.icon(src=notice.app.iconImageUrl, alt='icon')
+				div.text
+					p
+						i.fa.fa-info-circle
+						p= notice.content.text
+			when 'install-app'
+				a.icon-anchor(href='/app/' + notice.content.app.screenName, title= notice.content.app.description, rel='icon')
+					img.icon(src=notice.content.app.iconImageUrl, alt='icon')
+				div.text
+					p
+						i.fa.fa-plug
+						p アプリがインストールされました:
+						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
 			when 'follow'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')

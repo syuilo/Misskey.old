@@ -12,6 +12,10 @@ module.exports = (notice) -> new Promise (resolve, reject) ->
 	notice .= to-object!
 	switch notice.type
 	| \self-notice => resolve notice
+	| \application =>
+		err, app <- Application.find-by-id notice.app-id
+		notice.app = app.to-object!
+		resolve notice
 	| \install-app =>
 		err, app <- Application.find-by-id notice.content.app-id
 		notice.content.app = app.to-object!
