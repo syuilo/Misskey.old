@@ -14,7 +14,7 @@ module.exports = (req, res, content = \home) ->
 	me = req.me
 	Promise.all [
 		new Promise (resolve, reject) ->
-			status-gets[content] me.id, 30statuses, null, null .then (statuses) ->
+			status-gets[content] me.id, 20statuses, null, null .then (statuses) ->
 				generate-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
 		new Promise (resolve, reject) ->
 			users <- get-new-users 5 .then
