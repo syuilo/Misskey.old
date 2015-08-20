@@ -58,6 +58,7 @@ routing =
 		[\delete /\/users\/unfollow(\..+)?$/ './rest/users/unfollow']
 
 	status:
+		[\get  /\/status\/show(\..+)?$/     './rest/status/show']
 		[\post /\/status\/update(\..+)?$/   './rest/status/update']
 		[\post /\/status\/favorite(\..+)?$/ './rest/status/favorite']
 		[\post /\/status\/repost(\..+)?$/   './rest/status/repost']
