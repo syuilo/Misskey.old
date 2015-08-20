@@ -15,7 +15,7 @@ block content
 			div.usersList
 				ol
 					each user in followings
-						li(data-user-verified!= user.isPlus.toString())
+						li(data-user-verified!= user.isVerified.toString())
 							a(href= '/' + user.screenName)
 								img.icon(src=user.iconImageUrl, alt='icon')
 							h2
@@ -29,7 +29,7 @@ block content
 			div.usersList
 				ol
 					each user in followers
-						li(data-user-verified!= user.isPlus.toString())
+						li(data-user-verified!= user.isVerified.toString())
 							a(href= '/' + user.screenName)
 								img.icon(src=user.iconImageUrl, alt='icon')
 							h2
