@@ -8,6 +8,13 @@ li.notice(
 		case notice.type
 			when 'self-notice'
 				p= notice.content.text
+			when 'application'
+				a.icon-anchor(href='/app/' + notice.app.screenName, title= notice.app.description, rel='icon')
+					img.icon(src=notice.app.iconImageUrl, alt='icon')
+				div.text
+					p
+						i.fa.fa-info-circle
+						p= notice.content.text
 			when 'install-app'
 				a.icon-anchor(href='/app/' + notice.content.app.screenName, title= notice.content.app.description, rel='icon')
 					img.icon(src=notice.content.app.iconImageUrl, alt='icon')
