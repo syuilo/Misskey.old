@@ -18,3 +18,125 @@ main {
 	max-width: 900px;
 	margin: 0 auto;
 }
+
+#search {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+
+	> input {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		display: block;
+		cursor: auto;
+		box-sizing: border-box;
+		padding: 8px 12px;
+		margin: 0;
+		width: 100%;
+		font-size: 1em;
+		color: #000;
+		outline: none;
+		border: solid 2px #eee;
+		border-radius: 4px;
+		box-shadow: none;
+		background: #fff;
+		transition: all .5s ease;
+
+		&:hover {
+			border: solid 2px #ddd;
+			transition: all .2s ease;
+		}
+
+		&:focus {
+			color: darken(@themeColor, 20%);
+			border: solid 2px @themeColor;
+			transition: all .1s ease;
+		}
+	}
+
+	> .result {
+		display: block;
+		position: absolute;
+		top: auto;
+		right: 0;
+		z-index: 3;
+		width: 340px;
+		margin: 0;
+		padding: 0;
+		background: #fff;
+
+		> ol.users {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				a {
+					display: inline-block;
+					z-index: 1;
+					box-sizing: border-box;
+					width: 100%;
+					padding: 8px 22px;
+					vertical-align: top;
+					white-space: nowrap;
+					overflow: hidden;
+					color: #000;
+					transition: none;
+
+					&:hover {
+						color: #fff;
+						background: @themeColor;
+
+						.name {
+							color: #fff;
+						}
+
+						.screen-name {
+							color: #fff;
+						}
+					}
+
+					&:active {
+						color: #fff;
+						background: darken(@themeColor, 10%);
+
+						.name {
+							color: #fff;
+						}
+
+						.screen-name {
+							color: #fff;
+						}
+					}
+
+					.icon {
+						vertical-align: middle;
+						min-width: 32px;
+						min-height: 32px;
+						max-width: 32px;
+						max-height: 32px;
+						margin: 0 8px 0 0;
+						border-radius: 6px;
+					}
+
+					.name {
+						margin: 0 8px 0 0;
+						/*font-weight: bold;*/
+						font-weight: normal;
+						color: rgba(255, 255, 255, 0.8);
+					}
+
+					.screen-name {
+						font-weight: normal;
+						color: rgba(255, 255, 255, 0.3);
+					}
+				}
+			}
+		}
+	}
+}

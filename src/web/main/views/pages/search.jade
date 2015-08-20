@@ -14,4 +14,10 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
-			div#statuses!= statusesHtml
+			form#search(action='/search', method='get', role='search')
+				input(type='search', name='q', placeholder!='&#xf002; Search')
+				input(type='hidden', name='type', value='general')
+				input(type='hidden', name='ref', value='search')
+				div.result
+			div#results
+				div#statuses!= statusesHtml
