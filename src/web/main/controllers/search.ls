@@ -10,8 +10,12 @@ module.exports = (req, res) ->
 	Promise.all [
 		new Promise (resolve, reject) ->
 			reg = new RegExp q, \i
-			Status.find {text: reg} (err, statuses) ->
-				generate-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
+			Status
+				.find {text: reg}
+				.sort \-createdAt
+				.limit 30
+				.exec (err, statuses) ->
+					generate-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
 		new Promise (resolve, reject) ->
 			resolve null
 	] .then (results) -> res.display req, res, 'search' do
