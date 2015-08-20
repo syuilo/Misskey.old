@@ -46,6 +46,7 @@ routing =
 
 	notice:
 		[\post   /\/notice\/create(\..+)?$/           './rest/notice/create']
+		[\get    /\/notice\/show(\..+)?$/             './rest/notice/show']
 		[\get    /\/notice\/timeline(\..+)?$/         './rest/notice/timeline']
 		[\delete /\/notice\/delete(\..+)?$/           './rest/notice/delete']
 		[\delete /\/notice\/delete-all(\..+)?$/       './rest/notice/delete-all']
