@@ -8,7 +8,7 @@ $ ->
 		$status = $ @
 		window.STATUS_CORE.set-event $status
 		$text = $status.find '.article-main > .main > .content > .text'
-		$text .html ($text.text!.replace q-reg, "<mark>#{q}</mark>")
+		$text .html ($text.html!.replace q-reg, "<mark>#{$ '<div>' .text q .html!}</mark>")
 		
 	$ '#search input' .bind \input ->
 			$input = $ @
