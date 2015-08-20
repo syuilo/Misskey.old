@@ -80,61 +80,61 @@ module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-f
 				reject err
 			else
 				created created-status
-	
-	function created(created-status)
-		if repost-from-status?
-			reposted created-status
-		user.statuses-count++
-		user.save ->
-			if created-status.in-reply-to-status-id?
-				Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
-					if reply-to-status?
-						reply-to-status.replies-count++
-						if !reply-to-status.replies? or !reply-to-status.replies.0?
-							reply-to-status.replies = [created-status._id]
-						else
-							reply-to-status.replies.push created-status._id
-						reply-to-status.save!
-			switch
-			| image? =>
-				image-name = "#{created-status.id}-1.#{img-type}"
-				register-image user, \status-image image-name, img-type, image .then (path) ->
-					created-status.images = [path]
-					created-status.save ->
-						done!
-			| _ => done!
 
-			function done
-				resolve created-status
+		function created(created-status)
+			if repost-from-status?
+				reposted created-status
+			user.statuses-count++
+			user.save ->
+				if created-status.in-reply-to-status-id?
+					Status.find-by-id created-status.in-reply-to-status-id, (, reply-to-status) ->
+						if reply-to-status?
+							reply-to-status.replies-count++
+							if !reply-to-status.replies? or !reply-to-status.replies.0?
+								reply-to-status.replies = [created-status._id]
+							else
+								reply-to-status.replies.push created-status._id
+							reply-to-status.save!
+				switch
+				| image? =>
+					image-name = "#{created-status.id}-1.#{img-type}"
+					register-image user, \status-image image-name, img-type, image .then (path) ->
+						created-status.images = [path]
+						created-status.save ->
+							done!
+				| _ => done!
 
-				stream-obj = to-json do
-					type: \status
-					value: {id: created-status.id}
+				function done
+					resolve created-status
 
-				publish-redis-streaming "userStream:#{user.id}" stream-obj
+					stream-obj = to-json do
+						type: \status
+						value: {id: created-status.id}
 
-				UserFollowing.find {followee-id: user.id} (, followings) ->
-					| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
+					publish-redis-streaming "userStream:#{user.id}" stream-obj
 
-				mentions = created-status.text == /@[a-zA-Z0-9_]+/g
-				if mentions?
-					mentions |> each (mention-sn) ->
-						mention-sn .= replace '@' ''
-						(, reply-user) <- User.find-one {screen-name-lower: mention-sn.to-lower-case!}
-						if reply-user?
-							status-mention = new StatusMention do
-								status-id: created-status.id
-								user-id: reply-user.id
-							status-mention.save ->
-								stream-mention-obj = to-json do
-									type: \reply
-									value:
-										id: created-status.id
-										user-name: user.name
-										user-screen-name: user.screen-name
-										user-icon-image-url: user.icon-image-url
-										text: created-status.text
-								publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
+					UserFollowing.find {followee-id: user.id} (, followings) ->
+						| !empty followings => followings |> each ((following) -> publish-redis-streaming "userStream:#{following.follower-id}" stream-obj)
+
+					mentions = created-status.text == /@[a-zA-Z0-9_]+/g
+					if mentions?
+						mentions |> each (mention-sn) ->
+							mention-sn .= replace '@' ''
+							(, reply-user) <- User.find-one {screen-name-lower: mention-sn.to-lower-case!}
+							if reply-user?
+								status-mention = new StatusMention do
+									status-id: created-status.id
+									user-id: reply-user.id
+								status-mention.save ->
+									stream-mention-obj = to-json do
+										type: \reply
+										value:
+											id: created-status.id
+											user-name: user.name
+											user-screen-name: user.screen-name
+											user-icon-image-url: user.icon-image-url
+											text: created-status.text
+									publish-redis-streaming "userStream:#{reply-user.id}" stream-mention-obj
 
 	function reposted(created-status)
 		repost-from-status
