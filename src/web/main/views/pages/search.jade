@@ -15,7 +15,7 @@ html(lang='ja', dir='ltr')
 		
 		main(role='main')
 			form#search(action='/search', method='get', role='search')
-				input(type='search', name='q', placeholder!='&#xf002; Search')
+				input(type='search', name='q', placeholder!='&#xf002; Search', value=query)
 				input(type='hidden', name='type', value='general')
 				input(type='hidden', name='ref', value='search')
 				div.result
