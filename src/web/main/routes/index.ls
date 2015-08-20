@@ -60,6 +60,9 @@ module.exports = (app) ->
 	# log viewer
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 	
+	# search
+	app.get '/search' (req, res) -> (require '../controllers/search') req, res
+	
 	# about
 	app.get '/about/:title' (req, res) ->
 		res.display req, res, "about-articles/#{req.params.title}"
