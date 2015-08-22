@@ -64,6 +64,6 @@ https.create-server certs, app .listen config.port.web-https
 # Redirect HTTP
 http-app = express!
 http-app.disable \x-powered-by
-http-app.use vhost \misskey.xyz (req, res) -> res.redirect 'https://misskey.xyz'
+http-app.use vhost \misskey.xyz (req, res) -> res.redirect "https://misskey.xyz#{req.url}"
 http-app.use vhost \dev.misskey.xyz (require "#__dirname/web/dev" .server)
 http.create-server http-app .listen config.port.web-http
