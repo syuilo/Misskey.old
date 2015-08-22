@@ -38,6 +38,13 @@ We welcome your contributions.
 
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
 
+## API
+MisskeyはAPIを提供しています。
+
+### Thirdparty libraries
+- [M#](https//github.com/marihachi/msharp) (.NET)
+- [misskey.ts](https://github.com/AyaMorisawa/Disskey/blob/master/src/misskey.ts) (typescript)
+
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
 
