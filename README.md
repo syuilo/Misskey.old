@@ -41,6 +41,9 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 ## API
 MisskeyはAPIを提供しています。
 
+### Usage
+See [documentation](doc/api.md).
+
 ### Thirdparty libraries
 - [M#](https//github.com/marihachi/msharp) (.NET)
 - [misskey.ts](https://github.com/AyaMorisawa/Disskey/blob/master/src/misskey.ts) (typescript)
