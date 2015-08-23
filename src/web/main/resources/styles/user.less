@@ -548,42 +548,19 @@ main {
 	}
 
 	#contents {
-		box-sizing: border-box;
-		margin: 0 0 0 auto;
-		padding: 32px 0;
-		width: ~"calc(100% - 348px)";
-		max-width: 1344px;
+		position: relative;
 
-		&:after {
-			content: "";
-			display: block;
-			clear: both;
-		}
-
-		#side-content {
-			float: left;
-			width: 300px;
-		}
-
-		#main-content {
-			float: left;
-			width: ~"calc(100% - 332px)";
-			margin: 0 16px;
+		#content {
+			box-sizing: border-box;
+			margin: 0 auto 0 320px;
+			padding: 32px 0;
+			width: ~"calc(100% - 348px)";
+			max-width: 1344px;
 
 			&:after {
 				content: "";
 				display: block;
 				clear: both;
-			}
-
-			#timeline {
-			}
-
-			#profile {
-				#bio {
-					padding: 8px 32px;
-					background: #fff;
-				}
 			}
 
 			#followings-list, #followers-list {
@@ -683,6 +660,12 @@ main {
 						}
 				}
 			}
+		}
+
+		#side-content {
+			position: absolute;
+			top: 0;
+			right: 0;
 		}
 	}
 }
