@@ -44,10 +44,10 @@ Misskey provides web-baed API.
 
 ### Thirdparty libraries
 #### .NET
-* [M#](https://github.com/marihachi/msharp) written in C#
+* [M#](https://github.com/marihachi/msharp) - MisskeyAPI Library For C#
 
 #### Node.js
-* [misskey.ts](https://github.com/AyaMorisawa/Disskey/blob/master/src/misskey.ts-README.md) written in TypeScript
+* [misskey.ts](https://github.com/AyaMorisawa/Disskey/blob/master/src/misskey.ts-README.md) - A Misskey library for Node.js, written in TypeScript, developed for Disskey.
 
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
