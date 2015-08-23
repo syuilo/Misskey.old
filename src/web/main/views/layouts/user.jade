@@ -120,8 +120,9 @@ html(lang='ja'
 									h2 Followers
 									ol
 										each user in followersRecent
-											a(href= '/' + user.screenName)
-												img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
+											li
+												a(href= '/' + user.screenName)
+													img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
 						ul#main-nav
 							li(class= page == 'home' ? 'active' : '')
 								a(href='/' + user.screenName)
