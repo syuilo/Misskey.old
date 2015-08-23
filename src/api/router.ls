@@ -63,6 +63,7 @@ routing =
 		[\post /\/status\/favorite(\..+)?$/ './rest/status/favorite']
 		[\post /\/status\/repost(\..+)?$/   './rest/status/repost']
 		[\get  /\/status\/timeline(\..+)?$/ './rest/status/timeline']
+		[\get  /\/status\/mentions(\..+)?$/ './rest/status/mentions']
 
 	talk:
 		[\post   /\/talk\/say(\..+)?$/    './rest/talk/say']
