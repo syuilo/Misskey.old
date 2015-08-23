@@ -1,7 +1,7 @@
 require! {
 	'../../auth': authorize
 	'../../../utils/get-express-params'
-	'../../../models/utils/serialize-status'
+	'../../utils/serialize-status'
 	'../../../models/status': Status
 }
 module.exports = (req, res) -> authorize req, res, (user, app) ->
