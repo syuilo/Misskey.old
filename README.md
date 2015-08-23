@@ -39,7 +39,7 @@ We welcome your contributions.
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
 
 ## API
-Misskey provides web-baed API.
+Misskey provides web-based API.
 [Documentation](doc/api.md) is available.
 
 ### Thirdparty libraries
