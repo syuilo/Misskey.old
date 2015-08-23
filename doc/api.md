@@ -80,11 +80,19 @@ Misskey APIを利用できるようになるための最初の一歩は、Misske
 
 ## レスポンス形式の指定
 エンドポイントの最後に拡張子を付けるとその形式でレスポンスが返ります。対応しているフォーマットは以下の通りです。
-
-* JSON
-* YAML
-
 拡張子を省略した場合はデフォルトでJSONが使用されます。
+
+### JSON
+ex: https://api.misskey.xyz/teapot/coffee.json
+```json
+{"error":"I'm a teapot."}
+```
+
+### YAML
+ex: https://api.misskey.xyz/teapot/coffee.yaml
+```yaml
+error: "I'm a teapot."
+```
 
 # レートリミッティングシステム
 一部のAPIにはアクセス数のリミットが設定されています。
