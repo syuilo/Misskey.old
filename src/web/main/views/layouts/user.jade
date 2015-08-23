@@ -112,8 +112,11 @@ html(lang='ja'
 							a.icon-anchor
 								img#icon(src=user.iconImageUrl, alt='icon', itemprop='image')
 							div.contents
-								if user.comment != ""
-									p#comment= user.comment
+								p#comment
+									if user.comment != null && user.comment != ""
+										= user.comment
+									else
+										span.no-comment no comment
 								p#location= user.location
 								a#website-url(href= user.url)= user.url
 								div#followers
