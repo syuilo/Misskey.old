@@ -25,28 +25,28 @@ User keyは、あなたのアプリケーションと連携したユーザーに
 
 ##User keyの取得
 認証フォームを経由して、ユーザーにあなたのアプリケーションがアカウントにアクセスすることを許可してもらう必要があります。
-ここでは、その認証フォームを表示して最終的にユーザーのUser Keyを取得するフローを順を追って説明します。
+ここでは、その認証フォームを表示して最終的にユーザーの*User Key*を取得するフローを順を追って説明します。
 
-1. https://api.misskey.xyz/sauth/get-authentication-session-key にGETリクエストを送る
-  - HTTPヘッダーに``sauth-app-key``としてあなたのアプリケーションのApp Keyを含めてください。
-2. レスポンスとして``authenticationSessionKey``(以下Session Key)が(デフォルトで)JSON形式で手に入ります。
-  - このSession Keyは、今から行う認証フローの間、必要になります。
+1. **https://api.misskey.xyz/sauth/get-authentication-session-key** にGETリクエストを送る
+  - HTTPヘッダーに``sauth-app-key``としてあなたのアプリケーションの*App Key*を含めてください。
+2. レスポンスとして``authenticationSessionKey``(以下*Session Key*)が(デフォルトで)JSON形式で手に入ります。
+  - この*Session Key*は、今から行う認証フローの間、必要になります。
 3. **https://api.misskey.xyz/authorize@(Session Key)**をユーザーのブラウザで開きます。
-  - 例えば、2.で入手したSession Keyが``kyoppie``なら、https://api.misskey.xyz/authorize@kyoppie です。
+  - 例えば、2.で入手した*Session Key*が``kyoppie``なら、**https://api.misskey.xyz/authorize@kyoppie** です。
 4. ブラウザに認証フォームが表示されるので、ユーザーはそのフォームに従いアプリケーションの連携を許可するか拒否する
-5. ユーザーが連携を許可した場合、ブラウザに続けてPINコードが表示されます。(PINコードは、例えるなら連携を許可したユーザーのUser Key引換券のようなものです。)あなたのアプリケーションに、そのPINコードを入力してもらうようにしてください。
-  - 注意：あなたのアプリケーションがデスクトップ・アプリケーションなどではなく、Webアプリケーションの場合、PINコードは表示されずに、アプリケーション登録時に設定されたCallback URLにGETパラメータの``pin-code``としてPINコードを添付したリクエストが送信されます。
-6. ユーザーがあなたのアプリケーションに表示されたPINコードを入力し、これでPINコードが入手できました。
-7. https://api.misskey.xyz/sauth/get-user-key にGETリクエストを送信し、User Keyを発行してもらいます。
-  - HTTPヘッダーに``sauth-app-key``としてあなたのアプリケーションのApp Keyを含めてください。
+5. ユーザーが連携を許可した場合、ブラウザに続けて*PINコード*が表示されます。(*PINコード*は、例えるなら連携を許可したユーザーの*User Key*引換券のようなものです。)あなたのアプリケーションに、その*PINコード*を入力してもらうようにしてください。
+  - 注意：あなたのアプリケーションがデスクトップ・アプリケーションなどではなく、Webアプリケーションの場合、*PINコード*は表示されずに、アプリケーション登録時に設定された**Callback URL**にGETパラメータの``pin-code``として*PINコード*を添付したリクエストが送信されます。
+6. ユーザーがあなたのアプリケーションに表示された*PINコード*を入力し、これで*PINコード*が入手できました。
+7. **https://api.misskey.xyz/sauth/get-user-key** にGETリクエストを送信し、*User Key*を発行してもらいます。
+  - HTTPヘッダーに``sauth-app-key``としてあなたのアプリケーションの*App Key*を含めてください。
   - パラメータに以下を含めてください。
-    * ``pin-code`` : 入手したPINコード
-    * ``authentication-session-key`` : Session Key
-8. レスポンスとしてuserKeyがJSON形式で手に入ります。User Keyの他に、認証したユーザーの情報も含まれています。
+    * ``pin-code`` : 入手した*PINコード*
+    * ``authentication-session-key`` : *Session Key*
+8. レスポンスとして*User Key*が``userKey``としてJSON形式で手に入ります。*User Key*の他に、認証したユーザーの情報も含まれています。
 9. これで完了です。APIにアクセスできます。
   - APIにアクセスするときは、HTTPヘッダーに以下の情報を含めてください。
-    * ``sauth-app-key`` : あなたのアプリケーションのApp Key
-    * ``sauth-user-key`` : 入手したUser Key
+    * ``sauth-app-key`` : あなたのアプリケーションの*App Key*
+    * ``sauth-user-key`` : 入手した*User Key*
 
 # レートリミッティングシステム
 一部のAPIにはアクセス数のリミットが設定されています。
