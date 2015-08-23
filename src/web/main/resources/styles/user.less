@@ -188,6 +188,7 @@ main {
 	max-width: 1408px;
 	margin: 0 auto;
 	padding: 0;
+	background: #fff;
 
 	&:after {
 		content: "";
@@ -286,7 +287,7 @@ main {
 							.verified-icon {
 								display: inline-block;
 								vertical-align: baseline;
-								margin-right: 8px;
+								margin-left: 8px;
 								width: 0.6em;
 								height: 0.6em;
 								font-size: 3em;
@@ -306,7 +307,7 @@ main {
 								font-size: 3em;
 								font-weight: 100;
 								line-height: 1em;
-								text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+								text-shadow: 0 0 8px rgba(0, 0, 0, 1);
 							}
 
 							input {
@@ -386,6 +387,7 @@ main {
 			margin: 0;
 			padding: 0;
 			background: #fff;
+			border-bottom: solid 1px #eee;
 
 			> .main {
 				position: relative;
@@ -473,6 +475,25 @@ main {
 							&:hover,
 							&:focus {
 								text-decoration: underline;
+							}
+						}
+
+						> #followers {
+							ol {
+								margin: 0;
+								padding: 0;
+								list-style: none;
+
+								li {
+									float: left;
+
+									a {
+										img {
+											width: 16px;
+											height: 16px;
+										}
+									}
+								}
 							}
 						}
 					}
