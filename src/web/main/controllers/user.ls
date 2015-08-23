@@ -11,6 +11,11 @@ require! {
 module.exports = (req, res, page = \home) ->
 	user = req.root-user
 	me = if req.login then req.me else null
+	
+	marked.set-options {
+		sanitize: yes
+	}
+	
 	Promise.all [
 		# Get statuses timeline (home page only)
 		new Promise (resolve, reject) ->
@@ -86,6 +91,21 @@ module.exports = (req, res, page = \home) ->
 								User.find-by-id follower.follower-id, (, user) ->
 									resolve user.to-object!)
 							.then (follower-users) -> resolve follower-users
+		
+		# Get recent followers
+		new Promise (resolve, reject) ->
+			UserFollowing
+				.find {followee-id: user.id}
+				.sort {created-at: \desc}
+				.limit 128users
+				.exec (, followers) ->
+					| !followers? => resolve null
+					| _ =>
+						Promise.all (followers |> map (follower) ->
+							resolve, reject <- new Promise!
+							User.find-by-id follower.follower-id, (, user) ->
+								resolve user.to-object!)
+						.then (follower-users) -> resolve follower-users
 	] .then (results) -> res.display do
 		req
 		res
@@ -97,6 +117,7 @@ module.exports = (req, res, page = \home) ->
 			bio: results.3
 			followings: results.4
 			followers: results.5
+			followers-recent: results.6
 			user
 			tags: user.tags
 			page

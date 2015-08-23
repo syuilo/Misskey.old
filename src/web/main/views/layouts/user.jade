@@ -91,9 +91,9 @@ html(lang='ja'
 						div.main
 							div.names-area
 								h1#name-area
+									span#name(itemprop='name')= user.name
 									if user.isVerified
 										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-									span#name(itemprop='name')= user.name
 								span#screen-name(itemprop='alternateName')= '@' + user.screenName
 							table.count-table
 								tr
@@ -116,6 +116,13 @@ html(lang='ja'
 									p#comment= user.comment
 								p#location= user.location
 								a#website-url(href= user.url)= user.url
+								div#followers
+									h2 Followers
+									ol
+										each user in followersRecent
+											li
+												a(href= '/' + user.screenName)
+													img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
 						ul#main-nav
 							li(class= page == 'home' ? 'active' : '')
 								a(href='/' + user.screenName)
