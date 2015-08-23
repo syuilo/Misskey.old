@@ -3,6 +3,7 @@ header#misskey-main-header(
 		data-user-color= (rootUser != null) ? rootUser.color : login ? me.color : config.themeColor)
 	script(src='/resources/scripts/lib/moment.js')
 	script(src='/resources/scripts/header.js')
+	img(src='/resources/images/notices-loading.gif', alt='', style='display: none;')
 	nav.informationCenter
 		ul
 			li
