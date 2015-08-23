@@ -97,7 +97,7 @@ module.exports = (req, res, page = \home) ->
 			UserFollowing
 				.find {followee-id: user.id}
 				.sort {created-at: \desc}
-				.limit 64users
+				.limit 128users
 				.exec (, followers) ->
 					| !followers? => resolve null
 					| _ =>
