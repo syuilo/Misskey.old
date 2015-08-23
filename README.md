@@ -39,14 +39,15 @@ We welcome your contributions.
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
 
 ## API
-MisskeyはAPIを提供しています。
-
-### Usage
-See [documentation](doc/api.md).
+Misskey provides web-baed API.
+[Documentation](doc/api.md) is available.
 
 ### Thirdparty libraries
-- [M#](https//github.com/marihachi/msharp) (.NET)
-- [misskey.ts](https://github.com/AyaMorisawa/Disskey/blob/master/src/misskey.ts) (typescript)
+#### .NET
+* [M#](https//github.com/marihachi/msharp) written in C#
+
+#### Node.js
+* [misskey.ts](https://github.com/AyaMorisawa/Disskey/blob/master/src/misskey.ts-README.md) written in TypeScript
 
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
