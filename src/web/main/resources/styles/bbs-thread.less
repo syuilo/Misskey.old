@@ -10,7 +10,13 @@ html {
 
 main {
 	> header {
+
 		.kyoppie-container {
+			position: relative;
+			z-index: 1;
+			background: #fff;
+			box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.1);
+
 			h1 {
 				display: block;
 				width: 100%;
@@ -20,72 +26,186 @@ main {
 				line-height: 1em;
 				font-size: 2em;
 				font-weight: 100;
+				color: #00738A;
+				font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 			}
-
-			border-bottom: solid 1px #ddd;
+			//border-bottom: solid 1px #ddd;
 		}
 
 		.yuppie-container {
 			display: block;
 			width: 100%;
-			max-width: 800px;
-			margin: 0 auto;
+			background: #F7F7F7;
+			box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.1);
 
-			&:after {
-				content: "";
+			.yuppie {
 				display: block;
-				clear: both;
-			}
+				width: 100%;
+				max-width: 900px;
+				margin: 0 auto;
 
-			#actions {
-				display: block;
-				float: right;
-				margin: 0;
-				padding: 8px;
-				list-style: none;
+				&:after {
+					content: "";
+					display: block;
+					clear: both;
+				}
 
-				.action {
-					display: inline-block;
-					margin: 0 16px;
+				#actions {
+					display: block;
+					float: right;
+					margin: 0;
+					padding: 8px;
+					list-style: none;
 
-					&:first-child {
-						margin-left: 0;
-					}
-
-					&:last-child {
-						margin-right: 0;
-					}
-
-					.button {
-						-webkit-appearance: none;
-						-moz-appearance: none;
-						appearance: none;
+					.action {
 						display: inline-block;
-						box-sizing: border-box;
-						margin: 0;
-						padding: 8px 12px;
-						cursor: pointer;
-						line-height: 1em;
-						font-size: 1em;
-						font-weight: normal;
-						text-decoration: none;
-						outline: 0;
-						border-radius: 0;
-						box-shadow: none;
+						margin: 0 12px;
 
-						* {
-							cursor: pointer;
+						&:first-child {
+							margin-left: 0;
 						}
 
-						&:disabled {
-							cursor: wait;
+						&:last-child {
+							margin-right: 0;
+						}
+
+						.button {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							display: inline-block;
+							box-sizing: border-box;
+							margin: 0;
+							padding: 8px 12px;
+							cursor: pointer;
+							line-height: 1em;
+							font-size: 1em;
+							font-weight: normal;
+							text-decoration: none;
+							outline: 0;
+							border-radius: 4px 0 0 4px;
+							box-shadow: none;
 
 							* {
+								cursor: pointer;
+							}
+
+							&:disabled {
 								cursor: wait;
+
+								* {
+									cursor: wait;
+								}
+							}
+
+							&[data-enable='false'] {
+								color: #000;
+								background: #ddd;
+								border-top: solid 1px #ddd;
+								border-right: none;
+								border-bottom: solid 1px #ddd;
+								border-left: solid 1px #ddd;
+
+								&:hover {
+									background: #e7e7e7;
+									border-top: solid 1px #e7e7e7;
+									border-bottom: solid 1px #e7e7e7;
+									border-left: solid 1px #e7e7e7;
+
+									& + .count {
+										border-top: solid 2px #e7e7e7;
+										border-right: solid 2px #e7e7e7;
+										border-bottom: solid 2px #e7e7e7;
+										border-left: none;
+									}
+								}
+
+								&:active,
+								&:disabled {
+									background: darken(#ddd, 10%);
+									border-top: solid 1px darken(#ddd, 10%);
+									border-bottom: solid 1px darken(#ddd, 10%);
+									border-left: solid 1px darken(#ddd, 10%);
+
+									& + .count {
+										border-top: solid 2px darken(#ddd, 10%);
+										border-right: solid 2px darken(#ddd, 10%);
+										border-bottom: solid 2px darken(#ddd, 10%);
+										border-left: none;
+									}
+								}
+
+								& + .count {
+									border-top: solid 2px #ddd;
+									border-right: solid 2px #ddd;
+									border-bottom: solid 2px #ddd;
+									border-left: none;
+								}
+							}
+
+							&[data-enable='true'] {
+								color: contrast(@themeColor, #000, #fff, 70%);
+								background: @themeColor;
+								border-top: solid 1px @themeColor;
+								border-right: none;
+								border-bottom: solid 1px @themeColor;
+								border-left: solid 1px @themeColor;
+
+								&:hover {
+									background: lighten(@themeColor, 10%);
+									border-top: solid 1px lighten(@themeColor, 10%);
+									border-bottom: solid 1px lighten(@themeColor, 10%);
+									border-left: solid 1px lighten(@themeColor, 10%);
+
+									& + .count {
+										border-top: solid 2px lighten(@themeColor, 10%);
+										border-bottom: solid 2px lighten(@themeColor, 10%);
+										border-right: solid 2px lighten(@themeColor, 10%);
+									}
+								}
+
+								&:active,
+								&:disabled {
+									background: darken(@themeColor, 10%);
+									border-top: solid 1px darken(@themeColor, 10%);
+									border-bottom: solid 1px darken(@themeColor, 10%);
+									border-left: solid 1px darken(@themeColor, 10%);
+
+									& + .count {
+										border-top: solid 2px darken(@themeColor, 10%);
+										border-bottom: solid 2px darken(@themeColor, 10%);
+										border-right: solid 2px darken(@themeColor, 10%);
+									}
+								}
+
+								& + .count {
+									border-top: solid 2px @themeColor;
+									border-right: solid 2px @themeColor;
+									border-bottom: solid 2px @themeColor;
+									border-left: none;
+								}
+							}
+
+							i {
+								margin-right: 4px;
+							}
+
+							& + .count {
+								display: inline-block;
+								box-sizing: border-box;
+								padding: 7px 8px;
+								line-height: 1em;
+								color: #000;
+								background: #fff;
+								border-radius: 0 4px 4px 0;
+
+								&:hover {
+									text-decoration: underline;
+								}
 							}
 						}
 
-						&[data-enable='false'] {
+						#settings-button {
 							color: #000;
 							background: #ddd;
 							border-top: solid 1px #ddd;
@@ -94,127 +214,22 @@ main {
 							border-left: solid 1px #ddd;
 
 							&:hover {
-								background: lighten(#ddd, 10%);
-								border-top: solid 1px lighten(#ddd, 10%);
-								border-bottom: solid 1px lighten(#ddd, 10%);
-								border-left: solid 1px lighten(#ddd, 10%);
-
-								& + .count {
-									border-top: solid 2px lighten(#ddd, 10%);
-									border-right: solid 2px lighten(#ddd, 10%);
-									border-bottom: solid 2px lighten(#ddd, 10%);
-									border-left: none;
-								}
+								background: #e7e7e7;
+								border-top: solid 1px #e7e7e7;
+								border-bottom: solid 1px #e7e7e7;
+								border-left: solid 1px #e7e7e7;
 							}
 
-							&:active,
-							&:disabled {
+							&:active {
 								background: darken(#ddd, 10%);
 								border-top: solid 1px darken(#ddd, 10%);
 								border-bottom: solid 1px darken(#ddd, 10%);
 								border-left: solid 1px darken(#ddd, 10%);
-
-								& + .count {
-									border-top: solid 2px darken(#ddd, 10%);
-									border-right: solid 2px darken(#ddd, 10%);
-									border-bottom: solid 2px darken(#ddd, 10%);
-									border-left: none;
-								}
 							}
 
-							& + .count {
-								border-top: solid 2px #ddd;
-								border-right: solid 2px #ddd;
-								border-bottom: solid 2px #ddd;
-								border-left: none;
+							i {
+								margin: 0;
 							}
-						}
-
-						&[data-enable='true'] {
-							color: contrast(@themeColor, #000, #fff, 70%);
-							background: @themeColor;
-							border-top: solid 1px @themeColor;
-							border-right: none;
-							border-bottom: solid 1px @themeColor;
-							border-left: solid 1px @themeColor;
-
-							&:hover {
-								background: lighten(@themeColor, 10%);
-								border-top: solid 1px lighten(@themeColor, 10%);
-								border-bottom: solid 1px lighten(@themeColor, 10%);
-								border-left: solid 1px lighten(@themeColor, 10%);
-
-								& + .count {
-									border-top: solid 2px lighten(@themeColor, 10%);
-									border-bottom: solid 2px lighten(@themeColor, 10%);
-									border-right: solid 2px lighten(@themeColor, 10%);
-								}
-							}
-
-							&:active,
-							&:disabled {
-								background: darken(@themeColor, 10%);
-								border-top: solid 1px darken(@themeColor, 10%);
-								border-bottom: solid 1px darken(@themeColor, 10%);
-								border-left: solid 1px darken(@themeColor, 10%);
-
-								& + .count {
-									border-top: solid 2px darken(@themeColor, 10%);
-									border-bottom: solid 2px darken(@themeColor, 10%);
-									border-right: solid 2px darken(@themeColor, 10%);
-								}
-							}
-
-							& + .count {
-								border-top: solid 2px @themeColor;
-								border-right: solid 2px @themeColor;
-								border-bottom: solid 2px @themeColor;
-								border-left: none;
-							}
-						}
-
-						i {
-							margin-right: 4px;
-						}
-
-						& + .count {
-							display: inline-block;
-							box-sizing: border-box;
-							padding: 7px 8px;
-							line-height: 1em;
-							color: #000;
-							background: #fff;
-
-							&:hover {
-								text-decoration: underline;
-							}
-						}
-					}
-
-					#settings-button {
-						color: #000;
-						background: #ddd;
-						border-top: solid 1px #ddd;
-						border-right: none;
-						border-bottom: solid 1px #ddd;
-						border-left: solid 1px #ddd;
-
-						&:hover {
-							background: lighten(#ddd, 10%);
-							border-top: solid 1px lighten(#ddd, 10%);
-							border-bottom: solid 1px lighten(#ddd, 10%);
-							border-left: solid 1px lighten(#ddd, 10%);
-						}
-
-						&:active {
-							background: darken(#ddd, 10%);
-							border-top: solid 1px darken(#ddd, 10%);
-							border-bottom: solid 1px darken(#ddd, 10%);
-							border-left: solid 1px darken(#ddd, 10%);
-						}
-
-						i {
-							margin: 0;
 						}
 					}
 				}
