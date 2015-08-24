@@ -7,7 +7,7 @@ require! {
 module.exports = escape-html >> parse-url >> parse-reply >> parse-bold >> parse-small >> parse-newline
 
 function parse-url text
-	text.replace /https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#]+/g (url) ->
+	text.replace /https?:\/\/[-_.!~*a-zA-Z0-9;\/?:\@&=+\$,%#\(\)]+/g (url) ->
 		"<a href='#{url}' target='_blank' class='url'>#{url}</a>"
 
 function parse-reply text
