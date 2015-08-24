@@ -13,7 +13,7 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 		include ../common/header
 		
 		main(role='main')
-			header
+			header(style='background-image: url("' + thread.eyecatchImageUrl + '")', role='banner')
 				div.kyoppie-container
 					h1#title= thread.title
 				div.yuppie-container
