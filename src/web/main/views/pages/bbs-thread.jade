@@ -24,7 +24,7 @@ html(lang='ja', dir='ltr', data-thread-id= thread.id)
 								span= isWatched ? 'UnWatch' : 'Watch'
 							a.count#watch-count= thread.watchersCount
 						li.action
-							button.button#favorite-button(role='button', data-enable!= isFavorited.toString(), title= isWatched ? 'このスレッドをふぁぼっています' : 'このスレッドをふぁぼる')
+							button.button#favorite-button(role='button', data-enable!= isFavorited.toString(), title= isFavorited ? 'このスレッドをふぁぼっています' : 'このスレッドをふぁぼる')
 								i.fa.fa-star
 								span= isFavorited ? 'UnStar' : 'Star'
 							a.count#favorites-count= thread.favoritesCount
