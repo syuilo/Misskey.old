@@ -593,6 +593,18 @@
 									overflow: hidden;
 									cursor: pointer;
 
+									&:disabled {
+										opacity: 0.5;
+									}
+
+									&:[data-reposting='true'] {
+										cursor: wait;
+
+										* {
+											cursor: wait;
+										}
+									}
+
 									* {
 										cursor: pointer;
 									}

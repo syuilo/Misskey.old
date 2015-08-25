@@ -179,6 +179,7 @@ window.STATUS_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.accept
 					..attr \disabled on
+					..attr \data-reposting \true
 				$status.attr \data-is-reposted \true
 				$.ajax "#{config.api-url}/status/repost" {
 					type: \post
@@ -188,7 +189,9 @@ window.STATUS_CORE = {}
 					data-type: \json
 					xhr-fields: {+withCredentials}}
 				.done ->
-					$submit-button.attr \disabled off
+					$submit-button
+						..attr \disabled off
+						..attr \data-reposting \false
 					window.display-message 'Reposted!'
 					$status.find '.repost-form .background' .animate {
 						opacity: 0
@@ -197,7 +200,9 @@ window.STATUS_CORE = {}
 						opacity: 0
 					} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 				.fail ->
-					$submit-button.attr \disabled off
+					$submit-button
+						..attr \disabled off
+						..attr \data-reposting \false
 					$status.attr \data-is-reposted \false
 					window.display-message 'Repostに失敗しました。再度お試しください。'
 			..find '.repost-form > .form > .actions > .cancel' .click ->
