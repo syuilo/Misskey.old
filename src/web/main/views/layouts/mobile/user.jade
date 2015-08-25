@@ -47,16 +47,29 @@ html(lang='ja'
 					img.icon(src=user.iconImageUrl, alt='icon')
 					div.title
 						h1.name
+							= user.name
 							if user.isVerified
 								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-							= user.name
 						div.bottom
 							p.screen-name= '@' + user.screenName
 							if login
 								if me.id != user.id
 									if isFollowMe
 										p#friend-status フォローされています
-					//p.comment= user.comment
+				div#profile
+					p#comment
+						if user.comment != null && user.comment != ""
+							= user.comment
+						else
+							span.no-comment no comment
+						if user.location != null && user.location != ""
+							p#location
+								i.fa.fa-map-marker
+								= user.location
+						if user.url != null && user.url != ""
+							a#website(href= user.url)
+								i.fa.fa-link
+								= user.url
 				nav
 					table.count-table
 						tr
