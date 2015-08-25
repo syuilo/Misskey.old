@@ -15,7 +15,7 @@ $ ->
 		console.log 'Disconnected'
 
 	socket.on \log (log) ->
-		if check-can-scroll
+		if check-can-scroll!
 			$log = $ log
 			$log.append-to $ \#logs
 			if ($ \#logs .children \li .length) > 1024
