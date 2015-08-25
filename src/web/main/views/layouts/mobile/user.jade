@@ -65,9 +65,13 @@ html(lang='ja'
 					if user.location != null && user.location != "" && user.url != null && user.url != ""
 						div.bottom
 							if user.location != null && user.location != ""
-								p#location= user.location
+								p#location
+									i.fa.fa-map-marker
+									= user.location
 							if user.url != null && user.url != ""
-								a#website(href= user.url)= user.url
+								a#website(href= user.url)
+									i.fa.fa-link
+									= user.url
 				nav
 					table.count-table
 						tr
