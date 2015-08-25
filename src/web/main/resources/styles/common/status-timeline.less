@@ -16,7 +16,7 @@
 
 .timeline-reply-article {
 	position: relative;
-	padding: 8px 16px;
+	padding: 8px 32px;
 
 	&:after {
 		content: "";
@@ -54,7 +54,7 @@
 			> time {
 				position: absolute;
 				top: 8px;
-				right: 16px;
+				right: 32px;
 				display: inline;
 				vertical-align: top;
 				color: rgba(0, 0, 0, 0.4);
@@ -804,7 +804,7 @@
 
 						> .main {
 							position: relative;
-							padding: 16px 24px 0 18px;
+							padding: 16px 32px 0 32px;
 
 							> .icon-area {
 								float: left;
@@ -883,7 +883,7 @@
 								> .right {
 									position: absolute;
 									top: 16px;
-									right: 16px;
+									right: 32px;
 
 									> .via-anchor {
 										> .via {
@@ -1079,9 +1079,11 @@
 
 						> .form-and-replies {
 							display: none;
-							padding: 4px 16px 10px 16px;
+							padding: 0;
 
 							> .reply-form {
+								padding: 0 32px;
+
 								&:after {
 									content: "";
 									display: block;
