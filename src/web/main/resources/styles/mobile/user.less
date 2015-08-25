@@ -81,27 +81,27 @@ main > header {
 
 	#profile {
 		display: block;
+		position: relative;
 		text-align: center;
 		border-bottom: solid 1px #eee;
 
 		#comment {
 			display: block;
-			position: relative;
 			margin: 8px;
 			padding: 8px;
-			color: #222;
+			color: #333;
 			background: #eee;
 
 			&:before {
 				content: "";
 				display: block;
 				position: absolute;
-				top: -24px;
-				left: calc(50% - 12px);
-				border-top: solid 12px transparent;
-				border-right: solid 12px transparent;
-				border-bottom: solid 12px #eee;
-				border-left: solid 12px transparent;
+				top: -32px;
+				left: calc(50% - 16px);
+				border-top: solid 16px transparent;
+				border-right: solid 16px transparent;
+				border-bottom: solid 16px #eee;
+				border-left: solid 16px transparent;
 			}
 
 			.no-comment {
