@@ -86,10 +86,23 @@ main > header {
 
 		#comment {
 			display: block;
+			position: relative;
 			margin: 8px;
 			padding: 8px;
 			color: #222;
 			background: #eee;
+
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: -24px;
+				left: calc(50% - 12px);
+				border-top: solid 12px transparent;
+				border-right: solid 12px transparent;
+				border-bottom: solid 12px #eee;
+				border-left: solid 12px transparent;
+			}
 
 			.no-comment {
 				color: rgba(0, 0, 0, 0.3);
