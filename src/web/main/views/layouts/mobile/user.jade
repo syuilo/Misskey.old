@@ -62,9 +62,12 @@ html(lang='ja'
 							= user.comment
 						else
 							span.no-comment no comment
-					div.bottom
-						p#location= user.location
-						a#website(href= user.url)= user.url
+					if user.location != null && user.location != "" && user.url != null && user.url != ""
+						div.bottom
+							if user.location != null && user.location != ""
+								p#location= user.location
+							if user.url != null && user.url != ""
+								a#website(href= user.url)= user.url
 				nav
 					table.count-table
 						tr
