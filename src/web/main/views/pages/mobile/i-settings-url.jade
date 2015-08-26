@@ -18,5 +18,5 @@ html(lang='ja', dir='ltr')
 		
 		main#misskey-main(role='main')
 			form#form(action= apiUrl + '/account/update-url', method='put')
-				input.ui-input-url(name='url', type='url', placeholder=me.location, value=me.location)
+				input.ui-input-url(name='url', type='url', placeholder=me.url, value=me.url)
 				input.ui-button(type='submit', value='決定')
