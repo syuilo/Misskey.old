@@ -118,7 +118,7 @@ html(lang='ja'
 									else
 										span.no-comment no comment
 								p#location= user.location
-								a#website-url(href= user.url)= user.url
+								p#website-url: a(href= user.url)= user.url
 								div#followers
 									h2 Followers
 									ol
