@@ -189,7 +189,6 @@
 }
 
 .timeline {
-	background: #fff;
 
 	> .statuses {
 		margin: 0;
@@ -203,6 +202,8 @@
 				position: relative;
 				margin: 0;
 				padding: 8px 0;
+				background: #fff;
+				transition: margin 0.2s ease;
 
 				&[data-is-repostpost='true'] {
 				}
@@ -256,6 +257,7 @@
 				}
 
 				&[data-display-html-is-active='true'] {
+					margin: 16px 0;
 				}
 				/*
 				&:before {
@@ -709,7 +711,7 @@
 						}
 
 						> .repost-information {
-							padding: 8px 16px;
+							padding: 8px 32px;
 							color: #57bb00;
 
 							> .info {
