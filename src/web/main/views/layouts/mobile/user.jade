@@ -67,9 +67,10 @@ html(lang='ja'
 								i.fa.fa-map-marker
 								= user.location
 						if user.url != null && user.url != ""
-							a#website(href= user.url)
-								i.fa.fa-link
-								= user.url
+							p#website
+								a(href= user.url)
+									i.fa.fa-link
+									= user.url
 				nav
 					table.count-table
 						tr
