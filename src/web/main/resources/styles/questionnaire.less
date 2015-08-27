@@ -52,6 +52,10 @@ main {
 		label {
 			display: block;
 			float: left;
+
+			input[type=radio] {
+				display: block;
+			}
 		}
 
 		.status-timeline-frequency {
@@ -60,7 +64,16 @@ main {
 			}
 		}
 
-		input[type=radio] {
+		.rate {
+			display: block;
+			float: left;
+			width: ~"calc(100% - 128px)";
+		}
+
+		input[value='not-rated'] {
+			display: block;
+			float: left;
+			width: 128px;
 		}
 	}
 }
