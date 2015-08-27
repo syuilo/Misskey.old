@@ -5,6 +5,9 @@ $ ->
 	user-name = $ \html .attr \data-user-name
 	user-screen-name = $ \html .attr \data-user-screen-name
 	
+	function check-follow
+		($ \html .attr \data-is-following) == \true
+	
 	$ '.timeline .statuses .status .status.article' .each ->
 		window.STATUSTIMELINE.set-event $ @
 	
