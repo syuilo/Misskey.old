@@ -194,14 +194,6 @@
 					> article > .article-main {
 						background: #ebf7de;
 
-						&:hover {
-							background: #e4efd7;
-
-							> .main:before {
-								border-right: solid 12px #e4efd7;
-							}
-						}
-
 						> .main:before {
 							border-right: solid 12px #ebf7de;
 						}
@@ -209,9 +201,6 @@
 				}
 
 				&[data-is-favorited='true'] > article > .article-main {
-					&:hover > .main > .footer > .actions > .favorite > button {
-						color: @themeColor;
-					}
 
 					> .main > .footer > .actions > .favorite {
 						> button {
@@ -229,10 +218,6 @@
 				}
 
 				&[data-is-reposted='true'] > article > .article-main {
-					&:hover > .main > .footer > .actions > .repost > button {
-						color: @themeColor;
-					}
-
 					> .main > .footer > .actions > .repost {
 						> button {
 							color: @themeColor;
