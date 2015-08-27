@@ -56,6 +56,12 @@ html(lang='ja'
 								if me.id != user.id
 									if isFollowMe
 										p#friend-status フォローされています
+					if login
+						if me.id != user.id
+							if isFollowing
+								button#friend-button.following フォロー解除
+							else
+								button#friend-button.not-following フォロー
 				div#profile
 					p#comment
 						if user.comment != null && user.comment != ""
@@ -88,18 +94,5 @@ html(lang='ja'
 							td(class= page == 'followers' ? 'active' : '')
 								a(href='/' + user.screenName + '/followers')= user.followersCount
 			
-			if login
-				if me.id != user.id
-					if !isFollowing
-						div.follow
-							button#follow-button.notFollowing フォロー
-			
 			div.main
 				block content
-			
-			footer
-				if login
-					if me.id != user.id
-						if isFollowing
-							button#unfollow-button.following フォローを解除する
-				
