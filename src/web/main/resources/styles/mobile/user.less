@@ -155,6 +155,9 @@ main > header {
 		table {
 			display: inline-block;
 			margin: 0 auto;
+			vertical-align: top;
+			border-collapse: separate;
+			border-spacing: 0;
 
 			tr {
 				th, td {
@@ -163,15 +166,20 @@ main > header {
 				}
 
 				th {
-					padding: 6px 4px 0 4px;
+					padding: 3px 4px 0 4px;
 					min-width: 5em;
 					color: #666;
 					font-weight: normal;
 					font-size: 0.7em;
+					border-top: solid 3px transparent;
 				}
 
 				td {
-					padding: 0 4px 6px 4px;
+					padding: 0 4px 3px 4px;
+
+					&.active {
+						border-bottom: solid 3px @themeColor;
+					}
 				}
 			}
 		}

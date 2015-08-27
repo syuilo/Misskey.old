@@ -79,10 +79,14 @@ html(lang='ja'
 							th フォロー
 							th フォロワー
 						tr
-							td: a(href='/' + user.screenName)= user.statusesCount
-							td: a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
-							td: a(href='/' + user.screenName + '/followings')= user.followingsCount
-							td: a(href='/' + user.screenName + '/followers')= user.followersCount
+							td(class= page == 'home' ? 'active' : '')
+								a(href='/' + user.screenName)= user.statusesCount
+							td(class= page == 'status-favorites' ? 'active' : '')
+								a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
+							td(class= page == 'followings' ? 'active' : '')
+								a(href='/' + user.screenName + '/followings')= user.followingsCount
+							td(class= page == 'followers' ? 'active' : '')
+								a(href='/' + user.screenName + '/followers')= user.followersCount
 			
 			if login
 				if me.id != user.id
