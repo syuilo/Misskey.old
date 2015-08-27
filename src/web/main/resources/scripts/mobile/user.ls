@@ -83,6 +83,6 @@ $ ->
 					..remove-class \not-following
 					..add-class \following
 					..text 'フォロー解除'
-				$ \html .attr \data-is-following \false
+				$ \html .attr \data-is-following \true
 			.fail ->
 				$button.attr \disabled off
