@@ -46,10 +46,19 @@ main {
 		}
 
 		fieldset {
+			position: relative;
 			clear: both;
 			margin: 0;
-			padding: 32px 0;
+			padding: 64px 0 32px 0;
 			border: none;
+
+			legend {
+				position: absolute;
+				top: 0;
+				padding: 16px 0;
+				width: 100%;
+				text-align: center;
+			}
 
 			&.status-timeline-frequency {
 				.rate {
