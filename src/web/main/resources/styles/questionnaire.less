@@ -49,31 +49,35 @@ main {
 			border-bottom: solid 1px #eee;
 		}
 
-		label {
-			display: block;
-			float: left;
+		fieldset {
+			clear: both;
 
-			input[type=radio] {
-				display: block;
-			}
-		}
-
-		.status-timeline-frequency {
 			label {
-				width: 20%;
+				display: block;
+				float: left;
+
+				input[type=radio] {
+					display: block;
+				}
 			}
-		}
 
-		.rate {
-			display: block;
-			float: left;
-			width: ~"calc(100% - 128px)";
-		}
+			.status-timeline-frequency {
+				label {
+					width: 20%;
+				}
+			}
 
-		input[value='not-rated'] {
-			display: block;
-			float: left;
-			width: 128px;
+			.rate {
+				display: block;
+				float: left;
+				width: ~"calc(100% - 128px)";
+			}
+
+			input[value='not-rated'] {
+				display: block;
+				float: left;
+				width: 128px;
+			}
 		}
 	}
 }
