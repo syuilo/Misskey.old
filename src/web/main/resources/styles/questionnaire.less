@@ -1,3 +1,5 @@
+@themeColor: <%themeColor%>;
+
 html {
 	background: #eee;
 }
@@ -122,6 +124,9 @@ main {
 				input[type=radio] {
 					display: block;
 					margin: 8px auto;
+					position: relative;
+					top: -64px;
+					box-shadow: 0 0 0 0 @themeColor;
 				}
 
 				p {
