@@ -121,12 +121,20 @@ main {
 					}
 				}
 
+				&:before {
+					content: "";
+					display: block;
+					width: 32px;
+					height: 32px;
+					border: solid 2px #ddd;
+					border-radius: 100%;
+				}
+
 				input[type=radio] {
 					display: block;
 					margin: 8px auto;
 					position: relative;
 					top: -64px;
-					box-shadow: 0 0 0 0 @themeColor;
 				}
 
 				p {
