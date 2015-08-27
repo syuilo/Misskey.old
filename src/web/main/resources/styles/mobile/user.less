@@ -24,12 +24,36 @@ main > header {
 	background: #fff;
 
 	.main {
+		position: relative;
 		padding: 8px 0;
 		color: #fff;
 		background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.7) 100%), url(@headerImageUrl);
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
+
+		#friend-button {
+			display: block;
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 8px 12px;
+			cursor: pointer;
+			font-size: 0.8em;
+			font-weight: normal;
+			text-decoration: none;
+			color: contrast(@themeColor, #000, #fff, 70%);
+			background: @themeColor !important;
+			outline: none;
+			border: none;
+			border-radius: 4px;
+			box-shadow: none;
+		}
 
 		.icon {
 			display: block;
@@ -93,7 +117,7 @@ main > header {
 		#comment {
 			display: block;
 			position: relative;
-			margin: 0 8px 8px 8px;
+			margin: 0 8px;
 			padding: 8px;
 			color: #333;
 			background: #eee;
@@ -118,7 +142,8 @@ main > header {
 
 		#location {
 			display: block;
-			margin: 0 1em;
+			margin: 0.5em 0;
+			padding: 0 8px;
 			color: #444;
 			word-break: break-all;
 
@@ -129,7 +154,8 @@ main > header {
 
 		#website {
 			display: block;
-			margin: 0 1em;
+			margin: 0.5em 0;
+			padding: 0 8px;
 			color: #444;
 			word-break: break-all;
 
@@ -155,6 +181,9 @@ main > header {
 		table {
 			display: inline-block;
 			margin: 0 auto;
+			vertical-align: top;
+			border-collapse: separate;
+			border-spacing: 0;
 
 			tr {
 				th, td {
@@ -163,15 +192,20 @@ main > header {
 				}
 
 				th {
-					padding: 6px 4px 0 4px;
+					padding: 5px 4px 0 4px;
 					min-width: 5em;
 					color: #666;
 					font-weight: normal;
 					font-size: 0.7em;
+					border-top: solid 3px transparent;
 				}
 
 				td {
-					padding: 0 4px 6px 4px;
+					padding: 2px 4px 5px 4px;
+
+					&.active {
+						border-bottom: solid 3px @themeColor;
+					}
 				}
 			}
 		}

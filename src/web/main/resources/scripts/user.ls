@@ -54,7 +54,7 @@ $ ->
 					..remove-class \notFollowing
 					..add-class \following
 					..text 'フォロー中'
-				$ \html .attr \data-is-following \false
+				$ \html .attr \data-is-following \true
 			.fail ->
 				$button.attr \disabled off
 	
