@@ -34,7 +34,6 @@ div.status.article(
 						img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
 						i.fa.fa-retweet
 						span.name= status.repostedByUser.name
-						| によってRepost
 			if status.isReply
 				div.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 					data-id= status.replySource.id
