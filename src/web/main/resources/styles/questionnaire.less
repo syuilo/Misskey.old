@@ -13,7 +13,7 @@ main {
 		margin: 0 auto;
 		padding: 16px 64px 32px 64px;
 		width: 100%;
-		max-width: 800px;
+		max-width: 900px;
 		font-size: 1.1em;
 		background: #fff;
 		border-radius: 8px;
@@ -52,7 +52,8 @@ main {
 			clear: both;
 			margin: 32px 0;
 			padding: 64px 0 32px 0;
-			border: none;
+			border: solid 1px #eee;
+			border-radius: 8px;
 
 			legend {
 				position: absolute;
@@ -282,7 +283,7 @@ main {
 			}
 
 			.not-rated {
-				display: none;
+				display: block;
 				float: left;
 				box-sizing: border-box;
 				width: 90px;
@@ -295,7 +296,7 @@ main {
 				position: relative;
 				float: left;
 				box-sizing: border-box;
-				width: 100%;
+				width: ~"calc(100% - 90px)";
 
 				&:before {
 					content: "";
