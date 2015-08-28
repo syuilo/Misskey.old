@@ -324,8 +324,8 @@ main {
 			.suggestion {
 				position: relative;
 				clear: both;
-				margin: 32px 0;
-				padding: 64px 0 32px 0;
+				margin: 0;
+				padding: 64px 32px 0 32px;
 				border: none;
 
 				&:disabled {
@@ -335,10 +335,47 @@ main {
 				legend {
 					position: absolute;
 					top: 0;
-					padding: 16px 0;
+					padding: 24px 0;
 					width: 100%;
 					text-align: center;
 					font-weight: bold;
+				}
+
+				textarea {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					user-select: text;
+					-moz-user-select: text;
+					-webkit-user-select: text;
+					-ms-user-select: text;
+					display: block;
+					cursor: auto;
+					box-sizing: border-box;
+					padding: 8px 12px;
+					margin: 0;
+					width: 100%;
+					height: 4em;
+					font-size: 1em;
+					color: #000;
+					outline: none;
+					border: solid 2px #eee;
+					border-radius: 4px;
+					box-shadow: none;
+					background: #fff;
+					transition: all .5s ease;
+					font-family: 'Meiryo UI', 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', sans-serif;
+
+					&:hover {
+						border: solid 2px #00acce;
+						transition: all .2s ease;
+					}
+
+					&:focus {
+						color: #006f87;
+						border: solid 2px #00acce;
+						transition: all .1s ease;
+					}
 				}
 			}
 		}
