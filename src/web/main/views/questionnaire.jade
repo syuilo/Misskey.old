@@ -9,6 +9,8 @@ html(lang='ja', dir='ltr')
 		main(role='main')
 			article
 				h1 アンケート
+				if me != null
+					p= me.screenName
 				section
 					dt ステータス タイムラインの使用頻度
 					if statusTimelineFrequency != null && statusTimelineFrequency != ''
