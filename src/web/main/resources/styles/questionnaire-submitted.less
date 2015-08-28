@@ -1,0 +1,39 @@
+html {
+	background: #eee;
+}
+
+main {
+	display: block;
+	padding: 32px 0 32px 0;
+
+	> article {
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 16px 64px 32px 64px;
+		width: 100%;
+		max-width: 800px;
+		font-size: 1.1em;
+		background: #fff;
+		border-radius: 8px;
+
+		&, * {
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+		}
+
+		h1 {
+			box-sizing: border-box;
+			margin: 0 0 0 -32px;
+			padding: 8px;
+			width: ~"calc(100% + 64px)";
+			text-align: center;
+			font-size: 2em;
+			font-weight: bold;
+			color: #333;
+			border-bottom: solid 1px #eee;
+		}
+	}
+}
