@@ -22,6 +22,21 @@ module.exports = (req, res) ->
 	
 	questionnaire-compiler = jade.compile-file "#__dirname/../views/questionnaire.jade"
 	
+	html = questionnaire-compiler {
+		me
+		status-timeline-frequency
+		status-timeline-usability
+		status-timeline-usability-suggestion
+		talk-frequency
+		talk-usability
+		talk-usability-suggestion
+		bbs-frequency
+		bbs-usability
+		bbs-usability-suggestion
+		design
+		message
+	}
+	
 	# SMTP Settings
 	setting =
 		host: config.email-smtp-host
@@ -35,20 +50,7 @@ module.exports = (req, res) ->
 		from: 'syuilo@misskey.xyz'
 		to: 'syuilotan@yahoo.co.jp'
 		subject: 'Questionnaire'
-		html: questionnaire-compiler {
-				me
-				status-timeline-frequency
-				status-timeline-usability
-				status-timeline-usability-suggestion
-				talk-frequency
-				talk-usability
-				talk-usability-suggestion
-				bbs-frequency
-				bbs-usability
-				bbs-usability-suggestion
-				design
-				message
-			}
+		html: html
 
 	smtp = nodemailer.create-transport setting
 
