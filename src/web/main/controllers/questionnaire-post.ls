@@ -20,7 +20,7 @@ module.exports = (req, res) ->
 		subject: 'Questionnaire'
 		html: 'test'
 
-	smtp = nodemailer.create-transport \SMTP setting
+	smtp = nodemailer.create-transport setting
 
 	smtp.send-mail mail-options, (err) ->
 		if err
