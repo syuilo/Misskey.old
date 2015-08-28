@@ -98,6 +98,9 @@ html(lang='ja', dir='ltr')
 						label
 							input(type='radio', name='talk-usability', value='very-good')
 							p とても使いやすい
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
 							
 				fieldset.bbs-frequency
 					legend 掲示板の使用頻度
@@ -139,6 +142,9 @@ html(lang='ja', dir='ltr')
 						label
 							input(type='radio', name='bbs-usability', value='very-good')
 							p とても使いやすい
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
 							
 				fieldset.design
 					legend 全体的なサイトのデザイン
@@ -158,6 +164,10 @@ html(lang='ja', dir='ltr')
 						label
 							input(type='radio', name='design', value='very-good')
 							p とても良い
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
 				
-				button
+				button#submit(type='submit')
+					i.fa.fa-check
 					| 送信
