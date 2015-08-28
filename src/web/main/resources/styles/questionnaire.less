@@ -155,8 +155,10 @@ main {
 					margin: 0 auto;
 					width: 16px;
 					height: 16px;
+					background: #fff;
 					border: solid 2px #ddd;
 					border-radius: 100%;
+					outline: solid 4px #fff;
 				}
 
 				&:after {
@@ -206,6 +208,7 @@ main {
 
 			.rate {
 				display: block;
+				position: relative;
 				float: left;
 				box-sizing: border-box;
 				width: ~"calc(100% - 128px)";
@@ -214,11 +217,11 @@ main {
 					content: "";
 					display: block;
 					position: absolute;
-					top: 0;
+					top: 9px;
 					left: 0;
 					right: 0;
 					margin: 0 auto;
-					width: 100%;
+					width: ~"width: calc(100% - 20%)";
 					height: 2px;
 					background: #eee;
 				}
