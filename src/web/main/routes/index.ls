@@ -67,7 +67,7 @@ module.exports = (app) ->
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
 	
 	# questionnaire (submit)
-	app.get '/questionnaire' (req, res) -> (require '../controllers/questionnaire-post') req, res
+	app.post '/questionnaire' (req, res) -> (require '../controllers/questionnaire-post') req, res
 	
 	# about
 	app.get '/about/:title' (req, res) ->
