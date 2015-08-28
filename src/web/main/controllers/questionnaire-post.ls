@@ -15,7 +15,7 @@ module.exports = (req, res) ->
 			pass: config.email-smtp-pass
 
 	mail-options =
-		from: 'syuilo@misskey.xyz'
+		from: config.email-smtp-user #'syuilo@misskey.xyz'
 		to: 'syuilotan@yahoo.co.jp'
 		subject: 'Questionnaire'
 		html: 'test'
