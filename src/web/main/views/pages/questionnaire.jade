@@ -1,0 +1,173 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title アンケート
+		script(src='/resources/scripts/questionnaire.js')
+		link(rel='stylesheet', href='/resources/styles/questionnaire.css')
+		
+	body
+		include ../common/header
+		
+		main(role='main')
+			form#form(action='/questionnaire', method='post')
+				h1 Misskeyについての質問
+				fieldset.status-timeline-frequency
+					legend ステータス タイムラインの使用頻度
+					label.not-rated
+						input(type='radio', name='status-timeline-frequency', value='not-rated')
+						p 使ったことはない
+					div.rate
+						label
+							input(type='radio', name='status-timeline-frequency', value='very-seldom')
+							p めったに使わない
+						label
+							input(type='radio', name='status-timeline-frequency', value='seldom')
+							p 少ない
+						label
+							input(type='radio', name='status-timeline-frequency', value='normal')
+							p 普通
+						label
+							input(type='radio', name='status-timeline-frequency', value='often')
+							p 多い
+						label
+							input(type='radio', name='status-timeline-frequency', value='very-often')
+							p とても多い
+							
+				fieldset.status-timeline-usability
+					legend ステータス タイムラインの使いやすさ
+					div.rate
+						label
+							input(type='radio', name='status-timeline-usability', value='very-bad')
+							p すごく使いにくい
+						label
+							input(type='radio', name='status-timeline-usability', value='bad')
+							p 使いにくい
+						label
+							input(type='radio', name='status-timeline-usability', value='normal')
+							p 普通
+						label
+							input(type='radio', name='status-timeline-usability', value='good')
+							p 使いやすい
+						label
+							input(type='radio', name='status-timeline-usability', value='very-good')
+							p とても使いやすい
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
+							
+				fieldset.talk-frequency
+					legend トークの使用頻度
+					label.not-rated
+						input(type='radio', name='talk-frequency', value='not-rated')
+						p 使ったことはない
+					div.rate
+						label
+							input(type='radio', name='talk-frequency', value='very-seldom')
+							p めったに使わない
+						label
+							input(type='radio', name='talk-frequency', value='seldom')
+							p 少ない
+						label
+							input(type='radio', name='talk-frequency', value='normal')
+							p 普通
+						label
+							input(type='radio', name='talk-frequency', value='often')
+							p 多い
+						label
+							input(type='radio', name='talk-frequency', value='very-often')
+							p とても多い
+							
+				fieldset.talk-usability
+					legend トークの使いやすさ
+					div.rate
+						label
+							input(type='radio', name='talk-usability', value='very-bad')
+							p すごく使いにくい
+						label
+							input(type='radio', name='talk-usability', value='bad')
+							p 使いにくい
+						label
+							input(type='radio', name='talk-usability', value='normal')
+							p 普通
+						label
+							input(type='radio', name='talk-usability', value='good')
+							p 使いやすい
+						label
+							input(type='radio', name='talk-usability', value='very-good')
+							p とても使いやすい
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
+							
+				fieldset.bbs-frequency
+					legend 掲示板の使用頻度
+					label.not-rated
+						input(type='radio', name='bbs-frequency', value='not-rated')
+						p 使ったことはない
+					div.rate
+						label
+							input(type='radio', name='bbs-frequency', value='very-seldom')
+							p めったに使わない
+						label
+							input(type='radio', name='bbs-frequency', value='seldom')
+							p 少ない
+						label
+							input(type='radio', name='bbs-frequency', value='normal')
+							p 普通
+						label
+							input(type='radio', name='bbs-frequency', value='often')
+							p 多い
+						label
+							input(type='radio', name='bbs-frequency', value='very-often')
+							p とても多い
+							
+				fieldset.bbs-usability
+					legend 掲示板の使いやすさ
+					div.rate
+						label
+							input(type='radio', name='bbs-usability', value='very-bad')
+							p すごく使いにくい
+						label
+							input(type='radio', name='bbs-usability', value='bad')
+							p 使いにくい
+						label
+							input(type='radio', name='bbs-usability', value='normal')
+							p 普通
+						label
+							input(type='radio', name='bbs-usability', value='good')
+							p 使いやすい
+						label
+							input(type='radio', name='bbs-usability', value='very-good')
+							p とても使いやすい
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
+							
+				fieldset.design
+					legend 全体的なサイトのデザイン
+					div.rate
+						label
+							input(type='radio', name='design', value='very-bad')
+							p すごく悪い
+						label
+							input(type='radio', name='design', value='bad')
+							p 悪い
+						label
+							input(type='radio', name='design', value='normal')
+							p 普通
+						label
+							input(type='radio', name='design', value='good')
+							p 良い
+						label
+							input(type='radio', name='design', value='very-good')
+							p とても良い
+					fieldset.suggestion(disabled)
+						legend 改善するにはどうしたら良いと思われますか？
+						textarea(name='status-timeline-usability-suggestion', placeholder='ご意見があればご記入ください。')
+				
+				button#submit(type='submit')
+					i.fa.fa-check
+					| 送信
