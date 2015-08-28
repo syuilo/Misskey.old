@@ -23,7 +23,7 @@ module.exports = (req, res) ->
 
 	smtp = nodemailer.create-transport \SMTP setting
 
-	smtp.send-mail mail-options, (err, res) ->
+	smtp.send-mail mail-options, (err) ->
 		if err
 			console.log err
 			res.display req, res, \something-happened
