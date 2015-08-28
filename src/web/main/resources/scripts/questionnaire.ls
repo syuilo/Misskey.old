@@ -1,7 +1,7 @@
 $ ->
 	$ '.status-timeline-frequency input:radio' .change ->
 		$input = $ @
-		if $input.val! == \not-rated
+		if $input.val! == \unused
 			$ '.status-timeline-usability' .attr \disabled yes
 		else
 			$ '.status-timeline-usability' .attr \disabled no
@@ -15,7 +15,7 @@ $ ->
 	
 	$ '.talk-frequency input:radio' .change ->
 		$input = $ @
-		if $input.val! == \not-rated
+		if $input.val! == \unused
 			$ '.talk-usability' .attr \disabled yes
 		else
 			$ '.talk-usability' .attr \disabled no
@@ -29,7 +29,7 @@ $ ->
 	
 	$ '.bbs-frequency input:radio' .change ->
 		$input = $ @
-		if $input.val! == \not-rated
+		if $input.val! == \unused
 			$ '.bbs-usability' .attr \disabled yes
 		else
 			$ '.bbs-usability' .attr \disabled no
