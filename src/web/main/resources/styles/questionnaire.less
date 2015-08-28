@@ -115,6 +115,7 @@ main {
 				position: relative;
 				float: left;
 				text-align: center;
+				overflow: hidden;
 
 				&:hover {
 					&:before {
@@ -154,22 +155,25 @@ main {
 					content: "";
 					display: block;
 					position: absolute;
-					top: 0;
+					top: 5px;
 					left: 0;
 					right: 0;
 					margin: 0 auto;
-					width: 8px;
-					height: 8px;
+					width: 10px;
+					height: 10px;
 					background: @themeColor;
 					border-radius: 100%;
 				}
 
 				input[type=radio] {
 					display: block;
+					width: 10px;
+					height: 10px;
 					margin: 8px auto;
 					position: relative;
-					top: -64px;
-					box-shadow: 0 32px 0 0 #fff;
+					z-index: 1;
+					top: -32px;
+					box-shadow: 0 29px 0 0 #fff;
 
 					&:checked {
 						box-shadow: none;
