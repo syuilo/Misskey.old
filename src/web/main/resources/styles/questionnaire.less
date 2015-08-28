@@ -289,6 +289,10 @@ main {
 				width: 100px;
 				padding: 0 16px;
 				border-right: solid 1px #eee;
+
+				& + .rate {
+					width: ~"calc(100% - 100px)";
+				}
 			}
 
 			.rate {
@@ -296,7 +300,7 @@ main {
 				position: relative;
 				float: left;
 				box-sizing: border-box;
-				width: ~"calc(100% - 100px)";
+				width: 100%;
 
 				&:before {
 					content: "";
