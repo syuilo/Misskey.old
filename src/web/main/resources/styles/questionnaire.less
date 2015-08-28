@@ -60,6 +60,7 @@ main {
 				padding: 16px 0;
 				width: 100%;
 				text-align: center;
+				font-weight: bold;
 			}
 
 			&.status-timeline-frequency {
@@ -187,6 +188,10 @@ main {
 
 					&:checked {
 						box-shadow: none;
+
+						& + p {
+							color: #000;
+						}
 					}
 				}
 
@@ -194,7 +199,8 @@ main {
 					display: block;
 					margin: 0;
 					font-size: 0.8em;
-					color: #444;
+					color: #666;
+					font-weight: bold;
 				}
 			}
 
