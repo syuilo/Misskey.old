@@ -1,0 +1,19 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='description', content='Something happened')
+		title= 'Something happened'
+		link(rel='stylesheet', href='/resources/styles/something-happened.css')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			h1
+				i.fa.fa-exclamation-triangle
+				| Something happened
+			details
+				summary 詳細情報
+				p Something happened
