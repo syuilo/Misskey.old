@@ -47,7 +47,7 @@ main {
 			border-bottom: solid 1px #eee;
 		}
 
-		fieldset {
+		> fieldset {
 			position: relative;
 			clear: both;
 			margin: 32px 0;
@@ -107,8 +107,21 @@ main {
 				}
 
 				.suggestion {
+					clear: both;
+					margin: 32px 0;
+					padding: 64px 0 32px 0;
+
 					&:disabled {
 						display: none;
+					}
+
+					legend {
+						position: absolute;
+						top: 0;
+						padding: 16px 0;
+						width: 100%;
+						text-align: center;
+						font-weight: bold;
 					}
 				}
 			}
