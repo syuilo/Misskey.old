@@ -105,25 +105,6 @@ main {
 						width: 20%;
 					}
 				}
-
-				.suggestion {
-					clear: both;
-					margin: 32px 0;
-					padding: 64px 0 32px 0;
-
-					&:disabled {
-						display: none;
-					}
-
-					legend {
-						position: absolute;
-						top: 0;
-						padding: 16px 0;
-						width: 100%;
-						text-align: center;
-						font-weight: bold;
-					}
-				}
 			}
 
 			&.talk-frequency {
@@ -337,6 +318,27 @@ main {
 					width: ~"calc(100% - 20%)";
 					height: 2px;
 					background: #eee;
+				}
+			}
+
+			.suggestion {
+				position: relative;
+				clear: both;
+				margin: 32px 0;
+				padding: 64px 0 32px 0;
+				border: none;
+
+				&:disabled {
+					display: none;
+				}
+
+				legend {
+					position: absolute;
+					top: 0;
+					padding: 16px 0;
+					width: 100%;
+					text-align: center;
+					font-weight: bold;
 				}
 			}
 		}
