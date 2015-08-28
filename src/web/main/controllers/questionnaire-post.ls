@@ -9,11 +9,10 @@ module.exports = (req, res) ->
 	
 	# SMTP Settings
 	setting =
-		host: config.email-smtp-host
+		service: \Gmail
 		auth:
 			user: config.email-smtp-user
 			pass: config.email-smtp-pass
-			port: config.email-smtp-port
 
 	mail-options =
 		from: 'syuilo@misskey.xyz'
