@@ -20,6 +20,8 @@ module.exports = (req, res) ->
 	design = req.body\design
 	message = req.body\message
 	
+	questionnaire-compiler = jade.compile-file "#__dirname/../views/questionnaire.jade"
+	
 	# SMTP Settings
 	setting =
 		host: config.email-smtp-host
@@ -33,7 +35,20 @@ module.exports = (req, res) ->
 		from: 'syuilo@misskey.xyz'
 		to: 'syuilotan@yahoo.co.jp'
 		subject: 'Questionnaire'
-		html: 'test'
+		html: questionnaire-compiler {
+				me
+				status-timeline-frequency
+				status-timeline-usability
+				status-timeline-usability-suggestion
+				talk-frequency
+				talk-usability
+				talk-usability-suggestion
+				bbs-frequency
+				bbs-usability
+				bbs-usability-suggestion
+				design
+				message
+			}
 
 	smtp = nodemailer.create-transport setting
 

@@ -1,0 +1,143 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		meta(charset='utf-8')
+		title アンケート
+		
+	body
+		main(role='main')
+			article
+				h1 アンケート
+				section
+					dt ステータス タイムラインの使用頻度
+					if statusTimelineFrequency != null && statusTimelineFrequency != ''
+						dd
+							case statusTimelineFrequency
+								when 'unused'
+									| 使ったことはない
+								when 'seldom'
+									| あまり使わない
+								when 'normal'
+									| それなりに
+								when 'often'
+									| よく使う
+								when 'very-often'
+									| これなしでは生きていけないほどよく使う
+					else
+						dd 未回答
+						
+				section
+					dt ステータス タイムラインの使いやすさ
+					if statusTimelineUsability != null && statusTimelineUsability != ''
+						dd
+							case statusTimelineUsability
+								when 'very-bad'
+									| すごく使いにくい
+								when 'bad'
+									| 使いにくい
+								when 'normal'
+									| 普通
+								when 'good'
+									| 使いやすい
+								when 'very-good'
+									| とても使いやすい
+					else
+						dd 未回答
+					p= statusTimelineUsabilitySuggestion
+					
+				section
+					dt トークの使用頻度
+					if talkFrequency != null && talkFrequency != ''
+						dd
+							case talkFrequency
+								when 'unused'
+									| 使ったことはない
+								when 'seldom'
+									| あまり使わない
+								when 'normal'
+									| それなりに
+								when 'often'
+									| よく使う
+								when 'very-often'
+									| これなしでは生きていけないほどよく使う
+					else
+						dd 未回答
+						
+				section
+					dt トークの使いやすさ
+					if talkUsability != null && talkUsability != ''
+						dd
+							case talkUsability
+								when 'very-bad'
+									| すごく使いにくい
+								when 'bad'
+									| 使いにくい
+								when 'normal'
+									| 普通
+								when 'good'
+									| 使いやすい
+								when 'very-good'
+									| とても使いやすい
+					else
+						dd 未回答
+					p= talkUsabilitySuggestion
+							
+				section
+					dt 掲示板の使用頻度
+					if bbsFrequency != null && bbsFrequency != ''
+						dd
+							case bbsFrequency
+								when 'unused'
+									| 使ったことはない
+								when 'seldom'
+									| あまり使わない
+								when 'normal'
+									| それなりに
+								when 'often'
+									| よく使う
+								when 'very-often'
+									| これなしでは生きていけないほどよく使う
+					else
+						dd 未回答
+						
+				section
+					dt 掲示板の使いやすさ
+					if bbsUsability != null && bbsUsability != ''
+						dd
+							case bbsUsability
+								when 'very-bad'
+									| すごく使いにくい
+								when 'bad'
+									| 使いにくい
+								when 'normal'
+									| 普通
+								when 'good'
+									| 使いやすい
+								when 'very-good'
+									| とても使いやすい
+					else
+						dd 未回答
+					p= bbsUsabilitySuggestion
+				
+				section
+					dt 全体的なサイトのデザイン
+					if design != null && design != ''
+						dd
+							case design
+								when 'very-bad'
+									| すごく悪い
+								when 'bad'
+									| 悪い
+								when 'normal'
+									| 普通
+								when 'good'
+									| 良い
+								when 'very-good'
+									| とても良い
+					else
+						dd 未回答
+					p= designSuggestion
+
+				section
+					p= message
