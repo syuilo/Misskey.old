@@ -1,4 +1,5 @@
 require! {
+	jade
 	nodemailer
 	'../../../models/user': User
 	'../../../config'
@@ -6,6 +7,18 @@ require! {
 
 module.exports = (req, res) ->
 	me = if req.login then req.me else null
+	
+	status-timeline-frequency = req.body\status-timeline-frequency
+	status-timeline-usability = req.body\status-timeline-usability
+	status-timeline-usability-suggestion = req.body\status-timeline-usability-suggestion
+	talk-frequency = req.body\talk-frequency
+	talk-usability = req.body\talk-usability
+	talk-usability-suggestion = req.body\talk-usability-suggestion
+	bbs-frequency = req.body\bbs-frequency
+	bbs-usability = req.body\bbs-usability
+	bbs-usability-suggestion = req.body\bbs-usability-suggestion
+	design = req.body\design
+	message = req.body\message
 	
 	# SMTP Settings
 	setting =
