@@ -4,7 +4,7 @@ require! {
 	'../../../config'
 }
 
-module.exports = (req, res, page = \home) ->
+module.exports = (req, res) ->
 	me = if req.login then req.me else null
 	
 	# SMTP Settings
@@ -26,13 +26,7 @@ module.exports = (req, res, page = \home) ->
 	smtp.send-mail mail-options, (err, res) ->
 		if err
 			console.log err
-			res.display do
-				req
-				res
-				\something-happened
+			res.display req, res, \something-happened
 		else
-			res.display do
-				req
-				res
-				\questionnaire-submitted
+			res.display req, res, \questionnaire-submitted
 		smtp.close!
