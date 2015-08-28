@@ -55,6 +55,11 @@ main {
 			border: solid 1px #eee;
 			border-radius: 8px;
 
+			&:disabled {
+				pointer-events: none;
+				opacity: 0.5;
+			}
+
 			legend {
 				position: absolute;
 				top: 0;
