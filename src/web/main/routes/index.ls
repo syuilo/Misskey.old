@@ -66,6 +66,9 @@ module.exports = (app) ->
 	# questionnaire
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
 	
+	# questionnaire (submit)
+	app.get '/questionnaire' (req, res) -> (require '../controllers/questionnaire-post') req, res
+	
 	# about
 	app.get '/about/:title' (req, res) ->
 		res.display req, res, "about-articles/#{req.params.title}"
