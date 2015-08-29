@@ -9,8 +9,7 @@
 
 [![Join the chat at https://gitter.im/syuilo/Misskey](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/syuilo/Misskey)
 
-**[Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.**
-It runs on Node.js.
+**[Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS running on Node.js.
 
 Source code of Misskey image server has also been published: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
 
