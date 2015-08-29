@@ -117,8 +117,15 @@ html(lang='ja'
 										= user.comment
 									else
 										span.no-comment no comment
-								p#location= user.location
-								p#website-url: a(href= user.url)= user.url
+								if user.location != null && user.location != ""
+									p#location
+										i.fa.fa-map-marker
+										= user.location
+								if user.url != null && user.url != ""
+									p#website
+										a(href= user.url)
+											i.fa.fa-link
+											= user.url
 								div#followers
 									h2 Followers
 									ol

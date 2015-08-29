@@ -473,15 +473,30 @@ main {
 						}
 
 						> #location {
+							display: block;
 							color: #555;
+
+							i {
+								margin-right: 0.25em;
+							}
 						}
 
 						> #website-url {
-							color: #555;
+							display: block;
+							color: #444;
+							word-break: break-all;
 
-							&:hover,
-							&:focus {
-								text-decoration: underline;
+							a {
+								color: #444;
+
+								&:hover,
+								&:focus {
+									text-decoration: underline;
+								}
+							}
+
+							i {
+								margin-right: 0.25em;
 							}
 						}
 
