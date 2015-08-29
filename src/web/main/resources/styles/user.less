@@ -473,15 +473,30 @@ main {
 						}
 
 						> #location {
+							display: block;
 							color: #555;
+
+							i {
+								margin-right: 0.25em;
+							}
 						}
 
-						> #website-url {
-							color: #555;
+						> #website {
+							display: block;
+							color: #444;
+							word-break: break-all;
 
-							&:hover,
-							&:focus {
-								text-decoration: underline;
+							a {
+								color: #444;
+
+								&:hover,
+								&:focus {
+									text-decoration: underline;
+								}
+							}
+
+							i {
+								margin-right: 0.25em;
 							}
 						}
 
@@ -560,7 +575,7 @@ main {
 		#content {
 			box-sizing: border-box;
 			margin: 0 auto;
-			padding: 32px 0;
+			padding: 16px 0;
 			width: ~"calc(100% - 615px)";
 			max-width: 700px;
 
