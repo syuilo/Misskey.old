@@ -1,6 +1,6 @@
 # Misskey API
-MisskeyはWebベースのAPIを提供しています。
-これらの提供されているAPIを利用することで、Misskeyにメッセージを投稿したり、メッセージを読み込んだり、フォローしたり等のMisskeyの機能を利用したアプリケーションを簡単に作ることが出来ます。
+MisskeyはMisskey APIと呼ばれるWebベースのAPIを提供しています。
+Misskey APIを利用することで、Misskeyにメッセージを投稿したり、メッセージを読み込んだり、フォローしたりといったMisskeyの機能を利用したアプリケーションを簡単に作ることが出来ます。
 Misskey APIを利用してアプリケーションを作る方法の詳細は次の章をご確認ください。
 
 # Get started
