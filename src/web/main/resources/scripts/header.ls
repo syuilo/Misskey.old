@@ -173,7 +173,7 @@ $ ->
 		
 		function close
 			$dropdown.attr \data-active \false
-			$ '#misskey-main-header .notices .dropdown .dropdown-content' .empty!
+			$ '#misskey-main-header .notices .dropdown .dropdown-content .main' .empty!
 		
 		function open
 			$ document .click (e) ->
@@ -181,7 +181,7 @@ $ ->
 					close!
 			$dropdown.attr \data-active \true
 			
-			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content'
+			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content .main'
 			$ '<img class="loading" src="/resources/images/notices-loading.gif" alt="loading..." />' .append-to $notices-container
 			
 			# 通知読み込み
