@@ -68,6 +68,16 @@ header#misskey-main-header(
 								p
 									i.fa.fa-envelope
 							div.dropdown-content
+								div.nav
+									select.filter-type(title='表示を絞り込み')
+										option(value='all') すべて
+										option(value='self-notice') self-notice
+										option(value='follow') 被フォロー
+										option(value='status-favorite') つぶやきの被お気に入り
+										option(value='status-repost') つぶやきの被Repost
+									button.delete-all-button(title='全ての通知を削除')
+										i.fa.fa-trash-o
+								div.main
 					div.time
 						div.dropdown(data-active='false')
 							div.dropdown-header(role='button')

@@ -166,6 +166,31 @@ $ ->
 			close!
 		else
 			open!
+			
+	# 通知全削除ﾎﾞﾔﾝ
+	$ '#misskey-main-header .notices .delete-all-button' .click ->
+		$ '#misskey-main-header .notices .notice' .each (i) ->
+			$notice = $ @
+			set-timeout ->
+				$notice.transition {
+					perspective: \1024
+					rotate-y: \90
+				} 200ms \ease ->
+					$message.remove!
+			, i * 100
+			
+		$.ajax config.api-url + '/notice/delete-all' {
+			type: \delete
+			data: {}
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			$ '#misskey-main-header .notices .unread-count' .remove!
+			$list = $ '<ol class="notices" />'
+			$info = $ '<p class="notice-empty">通知はありません</p>'
+			$info.append-to $notices-container
+		.fail (data) ->
+			
 	
 	# 「通知」ドロップダウン
 	$ '#misskey-main-header .notices .dropdown .dropdown-header' .click ->
@@ -173,7 +198,7 @@ $ ->
 		
 		function close
 			$dropdown.attr \data-active \false
-			$ '#misskey-main-header .notices .dropdown .dropdown-content' .empty!
+			$ '#misskey-main-header .notices .dropdown .dropdown-content .main' .empty!
 		
 		function open
 			$ document .click (e) ->
@@ -181,7 +206,7 @@ $ ->
 					close!
 			$dropdown.attr \data-active \true
 			
-			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content'
+			$notices-container = $ '#misskey-main-header .notices .dropdown .dropdown-content .main'
 			$ '<img class="loading" src="/resources/images/notices-loading.gif" alt="loading..." />' .append-to $notices-container
 			
 			# 通知読み込み
@@ -195,6 +220,8 @@ $ ->
 				$ '#misskey-main-header .notices .unread-count' .remove!
 				$list = $ '<ol class="notices" />'
 				if data != ''
+					$ '#misskey-main-header .notices .nav' .css \display \block
+					$ '#misskey-main-header .notices .main' .css \margin-top \32px
 					$notices = $ data
 					$notices.each ->
 						$notice = $ @
