@@ -173,11 +173,11 @@ $ ->
 			$notice = $ @
 			set-timeout ->
 				$notice.transition {
-					perspective: \1024
+					perspective: \2048
 					rotate-y: \-90
 				} 200ms \ease ->
 					$message.remove!
-			, i * 100
+			, i * 50
 			
 		$.ajax config.api-url + '/notice/delete-all' {
 			type: \delete
