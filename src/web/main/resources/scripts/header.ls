@@ -166,6 +166,31 @@ $ ->
 			close!
 		else
 			open!
+			
+	# 通知全削除ﾎﾞﾔﾝ
+	$ '#misskey-main-header .notices .delete-all-button' .click ->
+		$ '#misskey-main-header .notices .notice' .each (i) ->
+			$notice = $ @
+			set-timeout ->
+				$notice.transition {
+					perspective: \1024
+					rotate-y: \90
+				} 200ms \ease ->
+					$message.remove!
+			, i * 100
+			
+		$.ajax config.api-url + '/notice/delete-all' {
+			type: \delete
+			data: {}
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			$ '#misskey-main-header .notices .unread-count' .remove!
+			$list = $ '<ol class="notices" />'
+			$info = $ '<p class="notice-empty">通知はありません</p>'
+			$info.append-to $notices-container
+		.fail (data) ->
+			
 	
 	# 「通知」ドロップダウン
 	$ '#misskey-main-header .notices .dropdown .dropdown-header' .click ->
