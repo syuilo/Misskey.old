@@ -220,6 +220,8 @@ $ ->
 				$ '#misskey-main-header .notices .unread-count' .remove!
 				$list = $ '<ol class="notices" />'
 				if data != ''
+					$ '#misskey-main-header .notices .nav' .css \display \block
+					$ '#misskey-main-header .notices .main' .css \margin-top \32px
 					$notices = $ data
 					$notices.each ->
 						$notice = $ @
