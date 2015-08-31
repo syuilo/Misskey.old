@@ -775,7 +775,12 @@ textarea {
 								margin: 0;
 								padding: 0;
 								list-style: none;
-								font-size: 1.2em;
+								font-size: 1em;
+								border-bottom: solid 1px #222;
+
+								&:last-child {
+									border-bottom: none;
+								}
 
 								> li {
 									display: inline-block;
@@ -787,11 +792,11 @@ textarea {
 										box-sizing: border-box;
 										vertical-align: top;
 										width: 100%;
-										padding: 10px 20px;
+										padding: 12px 20px;
 										text-decoration: none;
 										color: rgba(255, 255, 255, 0.7);
 										background-color: #111111;
-										background-image: url("/resources/images/allow.svg");
+										background-image: url("/resources/images/arrow-white.svg");
 										background-repeat: no-repeat;
 										background-position: calc(100% - 8px) center;
 										transition: none;
