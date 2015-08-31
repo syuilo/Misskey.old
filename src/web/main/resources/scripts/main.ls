@@ -21,16 +21,14 @@ window.display-message = (message) ->
 		opacity: \1
 		perspective: \1024
 		rotate-x: \0
-	}, 200ms
+	} 200ms \ease
 	set-timeout ->
 		$message.transition {
 			opacity: \0
 			perspective: \1024
 			rotate-x: \90
-		}, 200ms
-		set-timeout ->
+		} 200ms \ease ->
 			$message.remove!
-		, 200ms
 	, 5000ms
 
 window.open-window = (id, $content, title, width, height, can-popout = false, popout-url = null) ->
