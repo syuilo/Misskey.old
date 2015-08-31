@@ -1,4 +1,5 @@
 require! {
+	'./github-webhook': github-webhook
 	'./web/routes/resources': web-resources-router
 	'./web/routes/index': web-index-router
 	'../config'
@@ -101,6 +102,8 @@ module.exports = (app) ->
 
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
+	
+	github-webhook app
 	
 	web-resources-router app
 	web-index-router app
