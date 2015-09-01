@@ -29,27 +29,27 @@ module.exports = (app) ->
 		handler.on \pull_request (event) ->
 			pr = event.payload.pull_request
 			text = switch (event.payload.action)
-				| \unassigned => "担当が解除されました:「#{pr.title}」\n#{pr.url}"
-				| \labeled => "ラベルが付与されました:「#{pr.title}」\n#{pr.url}"
-				| \unlabeled => "ラベルが削除されました:「#{pr.title}」\n#{pr.url}"
-				| \opened => "新しいPull Requestが開かれました:「#{pr.title}」\n#{pr.url}"
+				| \unassigned => "担当が解除されました:「#{pr.title}」\n#{pr.html_url}"
+				| \labeled => "ラベルが付与されました:「#{pr.title}」\n#{pr.html_url}"
+				| \unlabeled => "ラベルが削除されました:「#{pr.title}」\n#{pr.html_url}"
+				| \opened => "新しいPull Requestが開かれました:「#{pr.title}」\n#{pr.html_url}"
 				| \closed =>
 					if pr.merged
-						"Pull RequestがMergeされました:「#{pr.title}」\n#{pr.url}"
+						"Pull RequestがMergeされました:「#{pr.title}」\n#{pr.html_url}"
 					else
-						"Pull Requestが閉じられました:「#{pr.title}」\n#{pr.url}"
-				| \reopened => "Pull Requestが再度開かれました:「#{pr.title}」\n#{pr.url}"
+						"Pull Requestが閉じられました:「#{pr.title}」\n#{pr.html_url}"
+				| \reopened => "Pull Requestが再度開かれました:「#{pr.title}」\n#{pr.html_url}"
 			create-status null noticer, text .then!
 
 		handler.on \issues (event) ->
 			issue = event.payload.issue
 			text = switch (event.payload.action)
-				| \unassigned => "担当が解除されました:「#{issue.title}」\n#{issue.url}"
-				| \labeled => "ラベルが付与されました:「#{issue.title}」\n#{issue.url}"
-				| \unlabeled => "ラベルが削除されました:「#{issue.title}」\n#{issue.url}"
-				| \opened => "新しいIssueが開かれました:「#{issue.title}」\n#{issue.url}"
-				| \closed => "Issueが閉じられました:「#{issue.title}」\n#{issue.url}"
-				| \reopened => "Issueが再度開かれました:「#{issue.title}」\n#{issue.url}"
+				| \unassigned => "担当が解除されました:「#{issue.title}」\n#{issue.html_url}"
+				| \labeled => "ラベルが付与されました:「#{issue.title}」\n#{issue.html_url}"
+				| \unlabeled => "ラベルが削除されました:「#{issue.title}」\n#{issue.html_url}"
+				| \opened => "新しいIssueが開かれました:「#{issue.title}」\n#{issue.html_url}"
+				| \closed => "Issueが閉じられました:「#{issue.title}」\n#{issue.html_url}"
+				| \reopened => "Issueが再度開かれました:「#{issue.title}」\n#{issue.html_url}"
 			create-status null noticer, text .then!
 		
 		handler.on \issue_comment (event) ->
