@@ -22,4 +22,5 @@ module.exports = (app) ->
 			console.log event.payload
 
 		handler.on \issues (event) ->
+			#create-status null noticer, ""
 			console.log "Received an issue event for #{event.payload.repository.name} action=#{event.payload.action}: \##{event.payload.issue.number} #{event.payload.issue.title}"
