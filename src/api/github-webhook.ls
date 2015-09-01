@@ -8,10 +8,7 @@ require! {
 module.exports = (app) ->
 	app.all '*' (req, res, next) ->
 		handler = github-webhook-handler {path: '/github-webhook', secret: config.github-webhook-secret}
-
-		handler req, res, (err) ->
-			next!
-			
+		
 		(err, noticer) <- User.find-one {screen-name: 'misskey_github'}
 
 		handler.on \error (err) ->
@@ -43,3 +40,6 @@ module.exports = (app) ->
 					
 				(err) ->
 					console.error err
+		
+		handler req, res, (err) ->
+			next!
