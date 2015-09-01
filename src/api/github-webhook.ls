@@ -18,7 +18,13 @@ module.exports = (app) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then ->
+			create-status do
+				null noticer, "Pushされたようです。#{event.payload.ref}"
+			.then do
+				(status) ->
+					
+				(err) ->
+					console.error err
 
 		handler.on \issues (event) ->
 			issue = event.payload.issue
@@ -29,4 +35,10 @@ module.exports = (app) ->
 				| \opened => "新しいIssueが開かれました:「#{issue.title}」#{issue.url}"
 				| \closed => "Issueが閉じられました:「#{issue.title}」#{issue.url}"
 				| \reopened => "Issueが再度開かれました:「#{issue.title}」#{issue.url}"
-			create-status null noticer, text .then ->
+			create-status do
+				null noticer, text
+			.then do
+				(status) ->
+					
+				(err) ->
+					console.error err
