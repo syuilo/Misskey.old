@@ -13,7 +13,7 @@ require! {
 	'../../utils/register-image'
 }
 
-module.exports = (app, user, text, in-reply-to-status-id, image = null, repost-from-status = null) ->
+module.exports = (app, user, text, in-reply-to-status-id = null, image = null, repost-from-status = null) ->
 	resolve, reject <- new Promise!
 	
 	function throw-error(code, message)
