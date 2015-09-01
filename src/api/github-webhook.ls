@@ -34,8 +34,8 @@ module.exports = (app) ->
 				| \unlabeled => "ラベルが削除されました:「#{pr.title}」\n#{pr.url}"
 				| \opened => "新しいPull Requestが開かれました:「#{pr.title}」\n#{pr.url}"
 				| \closed =>
-					if pr.marged
-						"Pull RequestがMargeされました:「#{pr.title}」\n#{pr.url}"
+					if pr.merged
+						"Pull RequestがMergeされました:「#{pr.title}」\n#{pr.url}"
 					else
 						"Pull Requestが閉じられました:「#{pr.title}」\n#{pr.url}"
 				| \reopened => "Pull Requestが再度開かれました:「#{pr.title}」\n#{pr.url}"
