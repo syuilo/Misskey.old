@@ -52,5 +52,12 @@ module.exports = (app) ->
 				| \reopened => "Issueが再度開かれました:「#{issue.title}」#{issue.url}"
 			create-status null noticer, text .then!
 		
+		handler.on \issue_comment (event) ->
+			issue = event.payload.issue
+			comment = event.payload.comment
+			text = switch (event.payload.action)
+				| \created => "Issue「#{issue.title}」にコメント:#{comment.user.login}「#{comment.body}」#{comment.html_url}"
+			create-status null noticer, text .then!
+		
 		handler req, res, (err) ->
 			next!
