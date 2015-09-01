@@ -1,5 +1,7 @@
 require! {
 	'github-webhook-handler': github-webhook-handler
+	'./internal/create-status'
+	'../models/user': User
 	'../config'
 }
 
@@ -9,12 +11,15 @@ module.exports = (app) ->
 
 		handler req, res, (err) ->
 			next!
+			
+		(err, noticer) <- User.find-one {screen-name: 'misskey_github'}
 
 		handler.on \error (err) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			console.log "Received a push event for #{event.payload.repository.name} to #{event.payload.ref}"
+			#create-status null noticer, ""
+			console.log event.payload
 
 		handler.on \issues (event) ->
 			console.log "Received an issue event for #{event.payload.repository.name} action=#{event.payload.action}: \##{event.payload.issue.number} #{event.payload.issue.title}"
