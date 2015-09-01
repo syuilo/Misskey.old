@@ -15,16 +15,9 @@ module.exports = (app) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			create-status do
-				null noticer, "Pushされたようです。#{event.payload.ref}"
-			.then do
-				(status) ->
-					
-				(err) ->
-					console.error err
+			create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
 
 		handler.on \issues (event) ->
-			console.log \kyoppie
 			issue = event.payload.issue
 			text = switch (event.payload.action)
 				| \unassigned => "担当が解除されました:「#{issue.title}」#{issue.url}"
@@ -33,13 +26,7 @@ module.exports = (app) ->
 				| \opened => "新しいIssueが開かれました:「#{issue.title}」#{issue.url}"
 				| \closed => "Issueが閉じられました:「#{issue.title}」#{issue.url}"
 				| \reopened => "Issueが再度開かれました:「#{issue.title}」#{issue.url}"
-			create-status do
-				null noticer, text
-			.then do
-				(status) ->
-					
-				(err) ->
-					console.error err
+			create-status null noticer, text .then!
 		
 		handler req, res, (err) ->
 			next!
