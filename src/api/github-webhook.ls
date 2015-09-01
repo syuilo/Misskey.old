@@ -27,6 +27,7 @@ module.exports = (app) ->
 					console.error err
 
 		handler.on \issues (event) ->
+			console.log \kyoppie
 			issue = event.payload.issue
 			text = switch (event.payload.action)
 				| \unassigned => "担当が解除されました:「#{issue.title}」#{issue.url}"
