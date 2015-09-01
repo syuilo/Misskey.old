@@ -15,7 +15,11 @@ module.exports = (app) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
+			text = switch (event.payload.ref)
+				| \refs/heads/master => "安定チャンネルにPushされたようです。(master)\n**まもなくデプロイされる可能性があります。**"
+				| \refs/heads/develop => "開発チャンネルにPushされたようです。(develop)"
+				| _ => "Pushされたようです。#{event.payload.ref}"
+			create-status null noticer, text .then!
 
 		handler.on \issues (event) ->
 			issue = event.payload.issue
