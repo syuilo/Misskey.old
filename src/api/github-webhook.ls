@@ -20,6 +20,26 @@ module.exports = (app) ->
 				| \refs/heads/develop => "開発チャンネルにPushされたようです。(develop)"
 				| _ => "Pushされたようです。#{event.payload.ref}"
 			create-status null noticer, text .then!
+		
+		handler.on \fork (event) ->
+			repo = event.payload.forkee
+			text = "Forkされました。#{repo.html_url}"
+			create-status null noticer, text .then!
+			
+		handler.on \pull_request (event) ->
+			pr = event.payload.pull_request
+			text = switch (event.payload.action)
+				| \unassigned => "担当が解除されました:「#{pr.title}」#{pr.url}"
+				| \labeled => "ラベルが付与されました:「#{pr.title}」#{pr.url}"
+				| \unlabeled => "ラベルが削除されました:「#{pr.title}」#{pr.url}"
+				| \opened => "新しいPull Requestが開かれました:「#{pr.title}」#{pr.url}"
+				| \closed =>
+					if pr.marged
+						"Pull RequestがMargeされました:「#{pr.title}」#{pr.url}"
+					else
+						"Pull Requestが閉じられました:「#{pr.title}」#{pr.url}"
+				| \reopened => "Pull Requestが再度開かれました:「#{pr.title}」#{pr.url}"
+			create-status null noticer, text .then!
 
 		handler.on \issues (event) ->
 			issue = event.payload.issue
