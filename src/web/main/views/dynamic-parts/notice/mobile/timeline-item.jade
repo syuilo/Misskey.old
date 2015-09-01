@@ -25,7 +25,7 @@ li.notice(
 						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
 			when 'follow'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
-					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
+					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
 				div.text
 					p
 						i.fa.fa-user-plus
@@ -33,7 +33,7 @@ li.notice(
 						| さんにフォローされました。
 			when 'status-repost'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
-					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
+					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
 				div.text
 					p
 						i.fa.fa-retweet
@@ -43,7 +43,7 @@ li.notice(
 					P をRepostしました。
 			when 'status-favorite'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
-					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
+					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
 				div.text
 					p
 						i.fa.fa-star
@@ -53,7 +53,7 @@ li.notice(
 					P をふぁぼりました。
 			when 'bbs-thread-post'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
-					img.icon(src='/img/icon/' + notice.content.user.screenName, alt='icon')
+					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
 				div.text
 					p
 						i.fa.fa-comment
