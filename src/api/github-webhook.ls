@@ -18,8 +18,15 @@ module.exports = (app) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			#create-status null noticer, ""
-			console.log event.payload
+			create-status null noticer, "Pushされたようです。#{event.payload.ref}"
 
 		handler.on \issues (event) ->
-			console.log "Received an issue event for #{event.payload.repository.name} action=#{event.payload.action}: \##{event.payload.issue.number} #{event.payload.issue.title}"
+			issue = event.payload.issue
+			text = switch (event.payload.action)
+				| \unassigned => "担当が解除されました:「#{issue.title}」#{issue.url}"
+				| \labeled => "ラベルが付与されました:「#{issue.title}」#{issue.url}"
+				| \unlabeled => "ラベルが削除されました:「#{issue.title}」#{issue.url}"
+				| \opened => "新しいIssueが開かれました:「#{issue.title}」#{issue.url}"
+				| \closed => "Issueが閉じられました:「#{issue.title}」#{issue.url}"
+				| \reopened => "Issueが再度開かれました:「#{issue.title}」#{issue.url}"
+			create-status null noticer, text
