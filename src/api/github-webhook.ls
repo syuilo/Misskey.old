@@ -18,7 +18,7 @@ module.exports = (app) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			#create-status null noticer, ""
+			create-status null noticer, "Pushされたようです。#{event.payload.ref}"
 			console.log event.payload
 
 		handler.on \issues (event) ->
