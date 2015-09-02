@@ -175,7 +175,7 @@ $ ->
 				$notice.transition {
 					perspective: \2048px
 					rotate-x: \90
-				} 200ms \ease ->
+				} 2000ms \ease ->
 					$message.remove!
 			, i * 50
 			
