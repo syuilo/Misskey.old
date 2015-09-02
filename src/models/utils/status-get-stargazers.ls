@@ -10,5 +10,13 @@ module.exports = (status, limit = 16stargazers) ->
 		StatusFavorite.find {status-id: status.id}
 		.sort \-createdAt # Desc
 		.limit limit
-		.exec (err, users) ->
-			resolve users
+		.exec (err, stargazers) ->
+			if stargazers?
+				Promise.all (stargazers |> map (stargazer) ->
+					new Promise (resolve, reject) ->
+						User.find-by-id stargazer.user-id, (, user) ->
+							resolve user)
+					.then (users) ->
+						callback users
+			else
+				resolve null
