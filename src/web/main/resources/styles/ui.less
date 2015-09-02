@@ -130,101 +130,6 @@ textarea {
 		}
 	}
 
-	> .informationCenter {
-		display: block;
-		height: 0;
-		overflow: hidden;
-		color: contrast(@themeColor, #000, #fff, 70%);
-		background: linear-gradient(fade(@themeColor, 50%), fade(@themeColor, 50%)), url(@blurredWallpaperUrl);
-		background-color: transparent;
-		background-attachment: fixed;
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-size: cover;
-		transition: all 0.5s cubic-bezier(0,0,0,1);
-
-		&:after {
-			content: "";
-			display: block;
-			clear: both;
-		}
-
-		> .informationCenterContainer {
-			width: 100%;
-			max-width: 1300px;
-			margin: 0 auto;
-
-			> .info {
-				display: block;
-				float: left;
-				width: 330px;
-				height: 200px;
-
-				img {
-					height: 100%;
-					width: 100%;
-				}
-			}
-
-			> .p {
-				display: block;
-				float: left;
-				box-sizing: border-box;
-				width: ~"calc(100% - 330px)";
-				margin: 0;
-				padding: 8px 16px;
-				font-size: 1.2em;
-			}
-
-			> .nav {
-				display: block;
-				float: left;
-				box-sizing: border-box;
-				width: ~"calc(100% - 330px)";
-				padding: 16px;
-
-				> ul {
-					display: block;
-					margin: 0;
-					padding: 0;
-					list-style: none;
-
-					> li {
-						display: block;
-						float: left;
-						box-sizing: border-box;
-						width: 200px;
-						padding: 0 16px;
-						border-right: dashed 1px contrast(@themeColor, #000, #fff, 70%);
-
-						> h2 {
-							margin: 0;
-							padding: 0;
-							font-size: 1.1em;
-							font-weight: bold;
-						}
-
-						> ul {
-							display: block;
-							margin: 0;
-							padding: 0;
-							list-style: none;
-
-							> li {
-								font-size: 0.9em;
-								font-weight: bold;
-
-								> a {
-									color: contrast(@themeColor, #000, #fff, 70%);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
 	> .info {
 		display: block;
 		width: 100%;
@@ -241,10 +146,10 @@ textarea {
 		margin: 0;
 		padding: 0;
 		background-color: @header-background-color;
-		background-image: url("/resources/images/misskey-logo-web-header.svg");
+		/*background-image: url("/resources/images/misskey-logo-web-header.svg");
 		background-repeat: no-repeat;
 		background-position: center center;
-		background-size: auto 24px;
+		background-size: auto 24px;*/
 		//box-shadow: 0 2px 2px -2px rgba(0,0,0,0.5);
 		//border-top: solid 3px @themeColor;
 		&:after {
