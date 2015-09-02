@@ -173,8 +173,9 @@ $ ->
 			$notice = $ @
 			set-timeout ->
 				$notice.transition {
-					perspective: \2048px
+					perspective: \4096px
 					rotate-x: \90
+					opacity: \0
 				} 2000ms \ease ->
 					$message.remove!
 			, i * 50
