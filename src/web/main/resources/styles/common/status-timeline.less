@@ -1042,11 +1042,42 @@
 								clear: both;
 							}
 
-							> .actions {
+							> .stargazers {
+								display: block;
 								float: right;
+								margin: 0;
+								padding: 0 16px 0 0;
+								list-style: none;
+								border-right: solid 1px #eee;
+
+								> .stargazer {
+									display: inline-block;
+									margin: 4px;
+									padding: 0;
+
+									> .icon-anchor {
+										display: inline-block;
+
+										> .icon {
+											vertical-align: bottom;
+											width: 24px;
+											height: 24px;
+											border-radius: 4px;
+										}
+									}
+								}
+							}
+
+							> .actions {
+								display: block;
+								float: right;
+								margin: 0;
+								padding: 0;
+								list-style: none;
 
 								> .reply, > .repost, > .favorite {
 									display: inline-block;
+									margin: 0;
 									padding: 0 16px;
 									min-width: 2.5em;
 
