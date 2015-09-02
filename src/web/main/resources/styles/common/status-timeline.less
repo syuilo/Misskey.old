@@ -1042,11 +1042,38 @@
 								clear: both;
 							}
 
-							> .actions {
+							> .stargazers {
+								display: block;
 								float: right;
+								margin: 0;
+								padding: 0;
+								list-style: none;
+
+								> .stargazer {
+									display: inline-block;
+									margin: 2px;
+									padding: 0;
+
+									> .icon-anchor {
+										> .icon {
+											width: 28px;
+											height: 28px;
+											border-radius: 4px;
+										}
+									}
+								}
+							}
+
+							> .actions {
+								display: block;
+								float: right;
+								margin: 0;
+								padding: 0;
+								list-style: none;
 
 								> .reply, > .repost, > .favorite {
 									display: inline-block;
+									margin: 0;
 									padding: 0 16px;
 									min-width: 2.5em;
 

@@ -5,6 +5,7 @@ require! {
 	'../../../models/status': Status
 	'../../../models/utils/status-get-talk'
 	'../../../models/utils/status-get-replies'
+	'../../../models/utils/status-get-stargazers'
 	'../../../models/utils/status-check-favorited'
 	'../../../models/utils/status-check-reposted'
 	'../../../config'
@@ -83,6 +84,13 @@ module.exports = (status, me, callback) ->
 					.then (replies) ->
 						status.replies = replies
 						callback status
+	
+	function get-stargazers(status, callback)
+		status-get-stargazers status .then (stargazers) ->
+			| !stargazers? => callback status
+			| _ =>
+				status.stargazers = stargazers
+				callback status
 
 	status .= to-object!
 	status.display-created-at = moment status.created-at .format 'YYYY年M月D日 H時m分s秒'
@@ -92,6 +100,7 @@ module.exports = (status, me, callback) ->
 	status <- get-user status
 	status <- get-reply-source status
 	status <- get-replies status
+	status <- get-stargazers status
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then

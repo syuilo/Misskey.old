@@ -156,17 +156,23 @@ div.status.article(
 					if status.isImageAttached
 						img.image(src=status.imageUrls[0], alt='image', itemprop='image')
 			footer.footer
+				if status.stargazers != null
+					ol.stargazers
+						each stargazer in status.stargazers
+							li.stargazer
+								a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName)
+									img.icon(src=stargazer.iconImageUrl, alt='icon')
 				if login
-					div.actions
-						div.reply
+					ul.actions
+						li.reply
 							button.reply-button(title='返信', role='button')
 								i.fa.fa-reply
 							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id).count= status.repliesCount != 0 ? status.repliesCount : ''
-						div.repost
+						li.repost
 							button.repost-button(title= status.isReposted ? 'Repostを取り消し' : 'Repost', role='button')
 								i.fa.fa-retweet
 							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/reposts').count= status.repostsCount != 0 ? status.repostsCount : ''
-						div.favorite
+						li.favorite
 							button.favorite-button(title= status.isFavorited ? 'お気に入り解除' : 'お気に入り', role='button')
 								i.fa.fa-star
 							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id + '/favorites').count= status.favoritesCount != 0 ? status.favoritesCount : ''
