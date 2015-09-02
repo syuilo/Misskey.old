@@ -176,7 +176,7 @@ $ ->
 					perspective: \4096px
 					rotate-x: \90
 					opacity: \0
-				} 2000ms \ease ->
+				} 200ms \ease ->
 					$message.remove!
 			, i * 50
 			
