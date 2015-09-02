@@ -17,6 +17,6 @@ module.exports = (status, limit = 16stargazers) ->
 						User.find-by-id stargazer.user-id, (, user) ->
 							resolve user)
 					.then (users) ->
-						callback users
+						resolve users
 			else
 				resolve null
