@@ -18,7 +18,7 @@ Source code of Misskey image server has also been published: [syuilo/Misskey-Ima
 - [**Official**(https://misskey.xyz)](https://misskey.xyz)
 
 ### Windows Desktop
-comming soon
+coming soon
 
 ## Branches
 Note that only `develop` branch is accepting any Pull Request.
