@@ -13,6 +13,13 @@
 
 Source code of Misskey image server has also been published: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
 
+## Usage
+### Web
+- [**Official**(https://misskey.xyz)](https://misskey.xyz)
+
+### Windows Desktop
+comming soon
+
 ## Branches
 Note that only `develop` branch is accepting any Pull Request.
 
