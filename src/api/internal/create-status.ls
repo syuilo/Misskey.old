@@ -19,11 +19,13 @@ module.exports = (app, user, text, in-reply-to-status-id = null, image = null, r
 	function throw-error(code, message)
 		reject {code, message}
 	
+	max-length = if user.is-plus then 500chars else 300chars
+	
 	text .= trim!
 	switch
 	| !image? && !repost-from-status? && null-or-empty text => throw-error \empty-text 'Empty text.'
 	| not null-or-empty text and text[0] == \$ => analyze-command text
-	| text.length > 300chars => throw-error \too-long-text 'Too long text.'
+	| text.length > max-length => throw-error \too-long-text 'Too long text.'
 	| _ =>
 		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
 		switch
