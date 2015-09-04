@@ -82,6 +82,9 @@ window.STATUS_CORE = {}
 							opacity: 0
 						} 100ms \linear ->
 							$back.css \display \none
+						$img.css {
+							position: \relative
+						}
 					else
 						$image.attr \data-is-expanded \true
 						$back.css \display \block
