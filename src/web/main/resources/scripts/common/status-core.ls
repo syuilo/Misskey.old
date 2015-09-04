@@ -65,17 +65,27 @@ window.STATUS_CORE = {}
 			..find '.main .attached-images > .images > .image' .each ->
 				$image = $ @
 				$img = $image.find \img
-				$image.find \button .click ->
+				$button = $image.find \button
+				$back = $image.find \.background
+				
+				$img.click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
-						$image.find '.background' .animate {
+						$back.animate {
 							opacity: 0
 						} 100ms \linear ->
-							$image.find '.repost-form .background' .css \display \block
+							$back.css \display \block
+				$button.click ->
+					if ($image.attr \data-is-expanded) == \true
+						$image.attr \data-is-expanded \false
+						$back.animate {
+							opacity: 0
+						} 100ms \linear ->
+							$back.css \display \block
 					else
 						$image.attr \data-is-expanded \true
-						$image.find '.background' .css \display \block
-						$image.find '.background' .animate {
+						$back.css \display \block
+						$back.animate {
 							opacity: 1
 						} 100ms \linear
 
