@@ -105,7 +105,7 @@ window.STATUS_CORE = {}
 							top: offset.top - $ window .scroll-top!
 							left: offset.top
 						}
-						$img.css {
+						$img.animate {
 							position: \fixed
 							'z-index': 1024
 							top: 0
@@ -115,7 +115,7 @@ window.STATUS_CORE = {}
 							margin: \auto
 							'max-width': '100%'
 							'max-height': '100%'
-						}
+						} 500ms \ease
 
 
 			# Ajax setting of reply-form
