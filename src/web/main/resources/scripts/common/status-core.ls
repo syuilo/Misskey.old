@@ -68,14 +68,14 @@ window.STATUS_CORE = {}
 				$image.find \button .click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
-						$image.find '.repost-form .background' .animate {
+						$image.find '.background' .animate {
 							opacity: 0
 						} 100ms \linear ->
 							$image.find '.repost-form .background' .css \display \block
 					else
 						$image.attr \data-is-expanded \true
-						$image.find '.repost-form .background' .css \display \block
-						$image.find '.repost-form .background' .animate {
+						$image.find '.background' .css \display \block
+						$image.find '.background' .animate {
 							opacity: 1
 						} 100ms \linear
 
