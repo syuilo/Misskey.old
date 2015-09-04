@@ -83,11 +83,21 @@ window.STATUS_CORE = {}
 						} 100ms \linear ->
 							$back.css \display \none
 					else
-						$image.attr \data-is-expanded \true
+						set-timeout ->
+							$image.attr \data-is-expanded \true
+						, 1000ms
 						$back.css \display \block
 						$back.animate {
 							opacity: 1
 						} 100ms \linear
+						offset = $img.offset!
+						$img.css {
+							position: \fixed
+							'z-index': 2
+							top: offset.top - $ window .scroll-op!
+							left: offset.top
+						}
+
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
