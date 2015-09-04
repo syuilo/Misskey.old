@@ -154,7 +154,13 @@ div.status.article(
 								each tag in status.tag
 									li= tag
 					if status.isImageAttached
-						img.image(src=status.imageUrls[0], alt='image', itemprop='image')
+						div.attached-images
+							ol.images
+								each imageUrl in status.imageUrls
+									li.image
+										button.expand(title='拡大', role='button')
+											i.fa.fa-expand
+										img.image(src=imageUrl, alt='image', itemprop='image')
 			footer.footer
 				if login
 					ul.actions
