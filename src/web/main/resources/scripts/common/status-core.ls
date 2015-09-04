@@ -83,9 +83,7 @@ window.STATUS_CORE = {}
 						} 100ms \linear ->
 							$back.css \display \none
 					else
-						set-timeout ->
-							$image.attr \data-is-expanded \true
-						, 1000ms
+						$image.attr \data-is-expanded \true
 						$back.css \display \block
 						$back.animate {
 							opacity: 1
@@ -96,6 +94,17 @@ window.STATUS_CORE = {}
 							'z-index': 2
 							top: offset.top - $ window .scroll-top!
 							left: offset.top
+						}
+						$img.css {
+							position: \fixed
+							'z-index': 2
+							top: 0
+							left: 0
+							right: 0
+							bottom: 0
+							margin: \auto
+							'max-width': '100%'
+							'max-height': '100%'
 						}
 
 
