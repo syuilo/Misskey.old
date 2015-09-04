@@ -94,7 +94,7 @@ window.STATUS_CORE = {}
 						$img.css {
 							position: \fixed
 							'z-index': 2
-							top: offset.top - $ window .scroll-op!
+							top: offset.top - $ window .scroll-top!
 							left: offset.top
 						}
 
