@@ -75,6 +75,10 @@ window.STATUS_CORE = {}
 							opacity: 0
 						} 100ms \linear ->
 							$back.css \display \none
+						$img.css {
+							position: \relative
+							'max-height': '512px'
+						}
 				$button.click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
