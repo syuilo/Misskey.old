@@ -74,14 +74,14 @@ window.STATUS_CORE = {}
 						$back.animate {
 							opacity: 0
 						} 100ms \linear ->
-							$back.css \display \block
+							$back.css \display \none
 				$button.click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
 						$back.animate {
 							opacity: 0
 						} 100ms \linear ->
-							$back.css \display \block
+							$back.css \display \none
 					else
 						$image.attr \data-is-expanded \true
 						$back.css \display \block
