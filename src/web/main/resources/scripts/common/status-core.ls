@@ -77,6 +77,7 @@ window.STATUS_CORE = {}
 							$back.css \display \none
 						$img.css {
 							position: \relative
+							'z-index': 0
 							'max-height': '512px'
 						}
 				$button.click ->
@@ -88,6 +89,7 @@ window.STATUS_CORE = {}
 							$back.css \display \none
 						$img.css {
 							position: \relative
+							'z-index': 0
 							'max-height': '512px'
 						}
 					else
