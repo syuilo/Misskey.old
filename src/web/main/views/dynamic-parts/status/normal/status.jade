@@ -76,7 +76,7 @@ div.status.article(
 								data-user-color= talkPost.user.color
 								data-user-verified!= talkPost.user.isVerified.toString())
 								article
-									a.icon-anchor(href= config.url + '/widget/talk/' + talkPost.user.screenName, title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
+									a.icon-anchor(href= config.url + '/' + talkPost.user.screenName, title= talkPost.user.comment != null ? talkPost.user.comment : '@' + talkPost.user.screenName)
 										img.icon(src=talkPost.user.iconImageUrl, alt='icon')
 									header
 										if talkPost.user.isVerified
@@ -93,7 +93,7 @@ div.status.article(
 			if status.isRepostToStatus
 				div.repost-information
 					p.info
-						a.icon-anchor(href=config.url + '/widget/talk/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
+						a.icon-anchor(href=config.url + '/' + status.repostedByUser.screenName, title= status.repostedByUser.comment != null ? status.repostedByUser.comment : '@' + status.repostedByUser.screenName)
 							img.icon(src=status.repostedByUser.iconImageUrl, alt='icon')
 						span.text
 							i.fa.fa-retweet
@@ -128,7 +128,7 @@ div.status.article(
 								img.image(src=status.replySource.imageUrls[0], alt='image')
 			div.main
 				div.icon-area
-					a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+					a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 						img.icon(src=status.user.iconImageUrl, alt='icon')
 				header.header
 					div.author(itemprop='author')
@@ -157,7 +157,7 @@ div.status.article(
 						div.attached-images
 							ol.images
 								each imageUrl in status.imageUrls
-									li.image
+									li.image(data-is-expanded='false')
 										button.expand(title='拡大', role='button')
 											i.fa.fa-expand
 										img.image(src=imageUrl, alt='image', itemprop='image')

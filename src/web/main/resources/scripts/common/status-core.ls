@@ -61,20 +61,17 @@ window.STATUS_CORE = {}
 				if can-event
 					activate-display-state!
 			
-			# Set display talk window event 
-			..find '.main .icon-anchor' .click ->
-				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
-				url = $status.find '.main .icon-anchor' .attr \href
-				$content = $ '<iframe>' .attr {src: url, +seamless}
-				window.open-window do
-					window-id
-					$content
-					"<i class=\"fa fa-comments\"></i>#{$status.attr \data-user-name}"
-					360px
-					540px
-					yes
-					url
-				false
+			# Images
+			..find '.main .attached-images > .images > .image' .each ->
+				$image = $ @
+				$img = $image.find \img
+				$image.find \button .click ->
+					if ($image.attr \data-is-expanded) == \true
+						$image.attr \data-is-expanded \false
+						$img.css \position \relative
+					else
+						$image.attr \data-is-expanded \true
+						$img.css \position \fixed
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
