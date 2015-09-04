@@ -75,11 +75,13 @@ window.STATUS_CORE = {}
 							opacity: 0
 						} 100ms \linear ->
 							$back.css \display \none
-						$img.css {
-							position: \relative
-							'z-index': 0
-							'max-height': '512px'
-						}
+				$back.click ->
+					if ($image.attr \data-is-expanded) == \true
+						$image.attr \data-is-expanded \false
+						$back.animate {
+							opacity: 0
+						} 100ms \linear ->
+							$back.css \display \none
 				$button.click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
@@ -87,36 +89,12 @@ window.STATUS_CORE = {}
 							opacity: 0
 						} 100ms \linear ->
 							$back.css \display \none
-						$img.css {
-							position: \relative
-							'z-index': 0
-							'max-height': '512px'
-						}
 					else
 						$image.attr \data-is-expanded \true
 						$back.css \display \block
 						$back.animate {
 							opacity: 1
 						} 100ms \linear
-						offset = $img.offset!
-						$img.css {
-							position: \fixed
-							'z-index': 1024
-							top: offset.top - $ window .scroll-top!
-							left: offset.top
-						}
-						$img.animate {
-							position: \fixed
-							'z-index': 1024
-							top: 0
-							left: 0
-							right: 0
-							bottom: 0
-							margin: \auto
-							'max-width': '100%'
-							'max-height': '100%'
-						} 500ms \ease
-
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
