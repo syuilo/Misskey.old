@@ -95,13 +95,13 @@ window.STATUS_CORE = {}
 						offset = $img.offset!
 						$img.css {
 							position: \fixed
-							'z-index': 2
+							'z-index': 1024
 							top: offset.top - $ window .scroll-top!
 							left: offset.top
 						}
 						$img.css {
 							position: \fixed
-							'z-index': 2
+							'z-index': 1024
 							top: 0
 							left: 0
 							right: 0
