@@ -68,10 +68,16 @@ window.STATUS_CORE = {}
 				$image.find \button .click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
-						$img.css \position \relative
+						$image.find '.repost-form .background' .animate {
+							opacity: 0
+						} 100ms \linear ->
+							$image.find '.repost-form .background' .css \display \block
 					else
 						$image.attr \data-is-expanded \true
-						$img.css \position \fixed
+						$image.find '.repost-form .background' .css \display \block
+						$image.find '.repost-form .background' .animate {
+							opacity: 1
+						} 100ms \linear
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->

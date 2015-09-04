@@ -158,6 +158,7 @@ div.status.article(
 							ol.images
 								each imageUrl in status.imageUrls
 									li.image(data-is-expanded='false')
+										div.background
 										button.expand(title='拡大', role='button')
 											i.fa.fa-expand
 										img.image(src=imageUrl, alt='image', itemprop='image')
