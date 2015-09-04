@@ -84,6 +84,7 @@ window.STATUS_CORE = {}
 							$back.css \display \none
 						$img.css {
 							position: \relative
+							'max-height': '512px'
 						}
 					else
 						$image.attr \data-is-expanded \true
