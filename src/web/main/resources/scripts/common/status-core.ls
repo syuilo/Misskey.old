@@ -61,20 +61,40 @@ window.STATUS_CORE = {}
 				if can-event
 					activate-display-state!
 			
-			# Set display talk window event 
-			..find '.main .icon-anchor' .click ->
-				window-id = "misskey-window-talk-#{$status.attr \data-user-id}"
-				url = $status.find '.main .icon-anchor' .attr \href
-				$content = $ '<iframe>' .attr {src: url, +seamless}
-				window.open-window do
-					window-id
-					$content
-					"<i class=\"fa fa-comments\"></i>#{$status.attr \data-user-name}"
-					360px
-					540px
-					yes
-					url
-				false
+			# Images
+			..find '.main .attached-images > .images > .image' .each ->
+				$image = $ @
+				$img = $image.find \img
+				$button = $image.find \button
+				$back = $image.find \.background
+				
+				$img.click ->
+					if ($image.attr \data-is-expanded) == \true
+						$image.attr \data-is-expanded \false
+						$back.animate {
+							opacity: 0
+						} 100ms \linear ->
+							$back.css \display \none
+				$back.click ->
+					if ($image.attr \data-is-expanded) == \true
+						$image.attr \data-is-expanded \false
+						$back.animate {
+							opacity: 0
+						} 100ms \linear ->
+							$back.css \display \none
+				$button.click ->
+					if ($image.attr \data-is-expanded) == \true
+						$image.attr \data-is-expanded \false
+						$back.animate {
+							opacity: 0
+						} 100ms \linear ->
+							$back.css \display \none
+					else
+						$image.attr \data-is-expanded \true
+						$back.css \display \block
+						$back.animate {
+							opacity: 1
+						} 100ms \linear
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
