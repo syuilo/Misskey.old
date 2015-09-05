@@ -3,20 +3,9 @@
 #
 
 require! {
-	express
-	redis
-	'connect-redis'
 	'../config'
+	'./home'
 }
 
-# Create server
-server = express!
-	..disable 'x-powered-by'
-
-session-store = new RedisStore do
-	db: 1
-	prefix: 'misskey-session:'
-
-require './home'
-
-exports.server = server
+exports.server = (server) ->
+	home server 
