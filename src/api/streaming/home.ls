@@ -1,6 +1,7 @@
 require! {
-	'../auth': authorize
+	ws 
 }
 
-module.exports = (req, res) -> authorize req, res, (user, app) ->
-	
+module.exports = (req, res) ->
+	#WebSocketServer = ws.Server
+	#wss = new WebSocketServer { port: 8080 }
