@@ -32,7 +32,7 @@ Note that only `develop` branch is accepting any Pull Request.
 
 ## API
 Misskey provides web-based API.
-See [Documentation](doc/api.md) for more information.
+See [Documentation](doc/api-usage.md) for more information.
 
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
