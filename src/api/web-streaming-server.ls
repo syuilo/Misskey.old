@@ -53,4 +53,5 @@ bbs-thread io, session-store
 # Misskey log stream
 log io
 
-exports.server = server
+exports.server = (req, res) ->
+	server.emit \request req, res
