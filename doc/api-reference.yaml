@@ -1,3 +1,4 @@
+- endpoint: account/create
 - endpoint: account/delete-walpaper
 - endpoint: account/reset-webtheme
 - endpoint: account/show
