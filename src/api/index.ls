@@ -104,6 +104,4 @@ router api-server
 api-server.use (req, res, next) ->
 	res.api-error 404 'API not found.'
 
-require './web-streaming-server'
-
 exports.server = api-server
