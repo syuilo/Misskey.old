@@ -3,7 +3,7 @@
 #
 
 require! {
-	'../config'
+	'../../config'
 	'./home'
 }
 
