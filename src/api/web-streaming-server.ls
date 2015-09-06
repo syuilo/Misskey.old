@@ -21,7 +21,7 @@ read-file = (path) -> fs.read-file-sync path .to-string!
 
 server = http.create-server!
 
-io = SocketIO.listen server, transports: <[ websocket ]>
+io = SocketIO.listen server
 
 RedisStore = (require \connect-redis) session
 session-store = new RedisStore do
