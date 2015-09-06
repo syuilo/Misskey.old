@@ -24,7 +24,11 @@ server = express!
 
 read-file = (path) -> fs.read-file-sync path .to-string!
 
-io = SocketIO.listen http.Server server, origins: "#{config.public-config.domain}:*"
+io-server = http.Server server
+
+io = SocketIO.listen io-server, origins: "#{config.public-config.domain}:*"
+
+io-server.listen!
 
 RedisStore = (require \connect-redis) session
 session-store = new RedisStore do
@@ -56,4 +60,4 @@ bbs-thread io, session-store
 # Misskey log stream
 log io
 
-exports.server = server
+exports.server = io-server
