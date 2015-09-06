@@ -1,0 +1,7 @@
+div.timeline
+	if statuses != null && statuses.length > 0
+		ol.statuses
+			each status in statuses
+				li.status!= status
+	else
+		p.timeline-empty タイムラインに表示するものがありません
