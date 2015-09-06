@@ -34,8 +34,8 @@ api-server
 	..use cors do
 		credentials: on
 		origin:
-			* 'https://misskey.xyz'
-			* 'https://misskey.xyz:1206'
+			* 'http://misskey.xyz'
+			* 'http://misskey.xyz:1206'
 			* 'http://dev.misskey.xyz'
 			* 'http://dev.misskey.xyz:1205'
 	..use body-parser.urlencoded {+extended}
