@@ -58,7 +58,7 @@ app.all '*' (req, res, next) ->
 # Define servers
 app.use vhost \misskey.xyz (require "#__dirname/web/main" .server)
 app.use vhost \api.misskey.xyz (require "#__dirname/api" .server)
-app.use vhost \streaming.misskey.xyz (require "#__dirname/api/streaming" .server server)
+#app.use vhost \streaming.misskey.xyz (require "#__dirname/api/streaming" .server server)
 #app.use vhost \dev.misskey.xyz (require "#__dirname/web/dev" .server)
 
 ## Listen HTTPS server after create 
