@@ -1033,7 +1033,7 @@
 													display: block;
 												}
 											}
-											
+
 											&[data-is-expanded='true'] {
 												> .expand {
 													display: none !important;
@@ -1164,7 +1164,7 @@
 								padding: 0;
 								list-style: none;
 
-								> .reply, > .repost, > .favorite {
+								> .reply, > .repost, > .favorite, > .delete, > .pin {
 									display: inline-block;
 									margin: 0;
 									padding: 0 16px;
@@ -1188,6 +1188,10 @@
 										border-radius: 0;
 										box-shadow: none;
 										background: transparent;
+
+										&:disabled {
+											opacity: 0.5;
+										}
 
 										&:hover {
 											color: rgba(0, 0, 0, 0.7);
