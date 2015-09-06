@@ -1,4 +1,9 @@
+#
+# Misskey Web streaming server
+#
+
 require! {
+	express
 	fs
 	https
 	cookie
@@ -13,19 +18,11 @@ require! {
 	'socket.io': SocketIO
 }
 
+# Create server
+server = express!
+	..disable 'x-powered-by'
+
 read-file = (path) -> fs.read-file-sync path .to-string!
-
-server = https.create-server do
-	key: read-file "#__dirname/../../../../certs/server.key"
-	cert: read-file "#__dirname/../../../../certs/startssl.crt"
-	ca: read-file "#__dirname/../../../../certs/sub.class1.server.ca.pem"
-
-	(req, res) ->
-		res
-			..write-head 200 'Content-Type': 'text/plain'
-			..end 'kyoppie'
-
-server.listen config.port.web-streaming
 
 io = SocketIO.listen server, origins: "#{config.public-config.domain}:*"
 
@@ -58,3 +55,5 @@ bbs-thread io, session-store
 
 # Misskey log stream
 log io
+
+exports.server = server
