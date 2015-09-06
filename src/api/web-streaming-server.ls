@@ -4,11 +4,11 @@ require! {
 	cookie
 	redis
 	'../config'
-	'./streaming/home'
-	'./streaming/mobile-home'
-	'./streaming/talk'
-	'./streaming/bbs-thread'
-	'./streaming/log'
+	'./web-streaming/home'
+	'./web-streaming/mobile-home'
+	'./web-streaming/talk'
+	'./web-streaming/bbs-thread'
+	'./web-streaming/log'
 	'express-session': session
 	'socket.io': SocketIO
 }
