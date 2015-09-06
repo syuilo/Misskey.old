@@ -5,7 +5,7 @@
 require! {
 	express
 	fs
-	https
+	http
 	cookie
 	redis
 	'../config'
@@ -24,7 +24,7 @@ server = express!
 
 read-file = (path) -> fs.read-file-sync path .to-string!
 
-io = SocketIO.listen server.listen!, origins: "#{config.public-config.domain}:*"
+io = SocketIO.listen http.Server server, origins: "#{config.public-config.domain}:*"
 
 RedisStore = (require \connect-redis) session
 session-store = new RedisStore do
