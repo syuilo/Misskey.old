@@ -3,7 +3,6 @@
 #
 
 require! {
-	express
 	fs
 	http
 	cookie
@@ -18,17 +17,11 @@ require! {
 	'socket.io': SocketIO
 }
 
-# Create server
-server = express!
-	..disable 'x-powered-by'
-
 read-file = (path) -> fs.read-file-sync path .to-string!
 
-io-server = http.Server server
+server = http.create-server!
 
-io = SocketIO.listen io-server, origins: "#{config.public-config.domain}:*"
-
-io-server.listen!
+io = SocketIO.listen server, origins: "#{config.public-config.domain}:*"
 
 RedisStore = (require \connect-redis) session
 session-store = new RedisStore do
@@ -60,4 +53,4 @@ bbs-thread io, session-store
 # Misskey log stream
 log io
 
-exports.server = io-server
+exports.server = server
