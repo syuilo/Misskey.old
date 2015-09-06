@@ -34,6 +34,8 @@ api-server
 	..use cors do
 		credentials: on
 		origin:
+			* 'https://misskey.xyz'
+			* 'https://misskey.xyz:1206'
 			* 'http://misskey.xyz'
 			* 'http://misskey.xyz:1206'
 			* 'http://dev.misskey.xyz'
