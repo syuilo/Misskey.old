@@ -136,6 +136,7 @@ window.STATUS_CORE = {}
 					, 500ms
 				->
 					clear-timeout $status.user-profile-show-timer
+					clear-timeout $status.user-profile-hide-timer
 					$status.user-profile-hide-timer = set-timeout ->
 						$status.children \.user-profile-popup .remove!
 					, 500ms
