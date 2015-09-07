@@ -1,7 +1,9 @@
 - var isMyStatus = login && (me.id == status.userId)
+- var klass = status.isRepostToStatus ? 'repost' : 'normal';
+- if (status.isPinnedStatus) { klass += ' pinned' }
 
 div.status.article(
-		class                   = status.isRepostToStatus ? 'repost' : 'normal'
+		class                   = klass
 		lang                    = status.user.lang
 		title                   = status.displayCreatedAt
 		itemscope
@@ -25,6 +27,7 @@ div.status.article(
 		data-is-talk           != (status.moreTalk != null).toString()
 		data-is-favorited      != login ? status.isFavorited.toString() : null
 		data-is-reposted       != login ? status.isReposted.toString() : null
+		data-is-pinned      != isMyStatus ? (me.pinnedStatus == status.id).toString() : null
 		data-is-repostpost     != status.isRepostToStatus.toString()
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')
@@ -98,6 +101,12 @@ div.status.article(
 									p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
 								if status.replySource.isImageAttached
 									img.image(src=status.replySource.imageUrls[0], alt='image')
+			
+			if status.isPinnedStatus
+				section.pin-information
+					p.info
+						i.fa.fa-thumb-tack
+						| ピン留めされたステータス
 			
 			if status.isRepostToStatus
 				section.repost-information

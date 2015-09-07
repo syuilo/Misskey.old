@@ -249,3 +249,6 @@ window.STATUS_CORE = {}
 			$status.children \.status .add-class \display-html-active-status-prev
 		window.STATUS_CORE.set-event $status.children '.status.article'
 		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
+
+		# Attach Wave effects
+		init-waves-effects!
