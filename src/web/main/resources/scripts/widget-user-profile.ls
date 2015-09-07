@@ -4,17 +4,17 @@ $ ->
 	function check-follow
 		($ \html .attr \data-is-following) == \true
 
-	$ '#follow-button' .hover do
+	$ '#friend-button' .hover do
 		->
 			if check-follow!
-				$ '#follow-button' .add-class \danger
-				$ '#follow-button' .text 'フォロー解除'
+				$ '#friend-button' .add-class \danger
+				$ '#friend-button' .text 'フォロー解除'
 		->
 			if check-follow!
-				$ '#follow-button' .remove-class \danger
-				$ '#follow-button' .text 'フォロー中'
+				$ '#friend-button' .remove-class \danger
+				$ '#friend-button' .text 'フォロー中'
 
-	$ '#follow-button' .click ->
+	$ '#friend-button' .click ->
 		$button = $ @
 			..attr \disabled on
 		if check-follow!
