@@ -97,7 +97,7 @@ window.STATUS_CORE = {}
 						} 100ms \linear
 
 			..find '.reply-form textarea' .bind \input ->
-				$status.find 'reply-form .submit-button' .attr \disabled no
+				$status.find '.reply-form .submit-button' .attr \disabled no
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
