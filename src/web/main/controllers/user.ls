@@ -25,7 +25,7 @@ module.exports = (req, res, page = \home) ->
 				Status
 					.find {user-id: user.id}
 					.sort {created-at: \desc}
-					.limit 20status
+					.limit 10status
 					.exec (, statuses) ->
 						generate-detail-status-timeline-html statuses, me, (html) ->
 							resolve html
