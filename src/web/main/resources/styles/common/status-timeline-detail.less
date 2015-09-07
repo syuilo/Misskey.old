@@ -7,6 +7,8 @@
 /* Timeline
  * ---------------------------------------------------------------- */
 
+ @border: solid 1px rgba(0, 0, 0, 0.13);
+
 .timeline {
 
 	> .statuses {
@@ -25,8 +27,7 @@
 				position: relative;
 				margin: 16px 0;
 				padding: 0;
-				background: #fff;
-				border: solid 1px rgba(0, 0, 0, 0.13);
+				border:  @border;
 
 				.repost-form {
 					> .background {
@@ -660,6 +661,7 @@
 
 						> .main {
 							position: relative;
+							background: #fff;
 
 							> .header {
 								display: block;
@@ -1049,8 +1051,9 @@
 
 						> .stargazers {
 							display: block;
-							padding: 12px 8px;
+							padding: 8px 12px;
 							background: #f8f8f8;
+							border-top:  @border;
 
 							&:after {
 								content: "";
@@ -1087,6 +1090,7 @@
 						> .reply-form {
 							padding: 8px 12px;
 							background: #f8f8f8;
+							border-top:  @border;
 
 							&:after {
 								content: "";
