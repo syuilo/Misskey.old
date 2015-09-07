@@ -140,6 +140,35 @@ window.STATUS_CORE = {}
 			#..find '.reply-form .tag'
 			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 
+			# Init read talk button
+			..find 'article > .main > .read-talk' .click ->
+				$button = $ @
+					..attr \disabled on
+					..attr \title '読み込み中...'
+					..find \i .attr \class 'fa fa-spinner fa-pulse'
+
+				$.ajax config.api-url + '/web/status/get-talk-detail-html' {
+					type: \get
+					data: {
+						'status-id': $status.find 'article > .main > .reply-source' .attr \data-id
+					}
+					data-type: \json
+					xhr-fields: {+with-credentials}}
+				.done (data) ->
+					$button.remove!
+					$statuses = $ data
+					$statuses.each ->
+						$talk-status = $ '<li class="status">' .append $ @
+						window.STATUS_CORE.set-event $talk-status.children '.status.article'
+						$talk-status.append-to $status.find 'article > .main > .talk > .statuses'
+				.fail (data) ->
+					$button = $ @
+						..attr \disabled off
+						..attr \title '会話をもっと読む'
+						..find \i .attr \class 'fa fa-ellipsis-v'
+
+					window.display-message '読み込みに失敗しました。再度お試しください。'
+
 			# Init pin button
 			..find 'article > .main > .main > .footer > .actions > .pin > .pin-button' .click ->
 				$button = $ @
