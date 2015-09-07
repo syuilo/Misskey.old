@@ -158,7 +158,7 @@ window.STATUS_CORE = {}
 					$button.remove!
 					$statuses = $ data
 					$statuses.each ->
-						$talk-status = $ '<li class="status">' .append $ @
+						$talk-status = $ @
 						window.STATUS_CORE.set-event $talk-status.children '.status.article'
 						$talk-status.append-to $status.find 'article > .main > .talk > .statuses'
 				.fail (data) ->
