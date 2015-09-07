@@ -86,7 +86,8 @@ module.exports = (status, me, callback) ->
 				status.stargazers = stargazers
 				callback status
 
-	status .= to-object!
+	if status.has-own-property \toObject
+		status .= to-object!
 	status.display-created-at = moment status.created-at .format 'YYYY年M月D日 H時m分s秒'
 	status <- serialyze-repost status
 	status.is-reply = status.in-reply-to-status-id?

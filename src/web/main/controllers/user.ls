@@ -31,6 +31,7 @@ module.exports = (req, res, page = \home) ->
 						if user.pinned-status?
 							(err, pinned-status) <- Status.find-by-id user.pinned-status
 							if pinned-status?
+								pinned-status .= to-object!
 								pinned-status.is-pinned-status = yes
 								statuses.unshift pinned-status
 							generate-detail-status-timeline-html statuses, me, (html) ->
