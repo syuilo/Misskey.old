@@ -638,6 +638,26 @@
 
 					> .main {
 
+						> .talk {
+							> .statuses {
+								display: block;
+								margin: 0;
+								padding: 0;
+								list-style: none;
+								text-align: left;
+
+								> .status {
+									&:last-child {
+										border-bottom: solid 1px #e8e8e8;
+									}
+
+									padding: 8px;
+									border-bottom: solid 1px #efefef;
+									.sub-article;
+								}
+							}
+						}
+
 						> .read-talk {
 							-webkit-appearance: none;
 							-moz-appearance: none;

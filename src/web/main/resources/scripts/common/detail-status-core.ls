@@ -147,7 +147,7 @@ window.STATUS_CORE = {}
 					..attr \title '読み込み中...'
 					..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-				$.ajax config.api-url + '/web/status/get-talk-detail-html' {
+				$.ajax config.api-url + '/web/status/get-talk-detail-html.plain' {
 					type: \get
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source' .attr \data-id
