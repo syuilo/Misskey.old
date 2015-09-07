@@ -102,7 +102,7 @@ window.STATUS_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-				$.ajax "#{config.api-url}/web/status/reply.plain" {
+				$.ajax "#{config.api-url}/web/status/reply-detail.plain" {
 					type: \post
 					data: new FormData $form.0
 					-processData
@@ -113,8 +113,6 @@ window.STATUS_CORE = {}
 					$reply = $ html
 					$submit-button.attr \disabled off
 					$reply.append-to $status.find '.replies > .statuses'
-					$i = $ '<i class="fa fa-ellipsis-v reply-info" style="display: none;"></i>'
-					$i.append-to $status.find '.article-main'
 					$form.remove!
 					window.display-message '返信しました！'
 				.fail ->
