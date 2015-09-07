@@ -1145,7 +1145,7 @@
 							border-top: solid 1px #e8e8e8;
 
 							& + .replies > .statuses > .status:first-child {
-								border-top: solid 1px #e8e8e8;
+								border-top: solid 1px #efefef;
 							}
 
 							&:after {
@@ -1365,6 +1365,10 @@
 								text-align: left;
 
 								> .status {
+									&:first-child {
+										border-top: solid 1px #e8e8e8;
+									}
+
 									padding: 8px;
 									border-top: solid 1px #efefef;
 									.sub-article;
