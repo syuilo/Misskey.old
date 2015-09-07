@@ -1145,6 +1145,10 @@
 							background: #f8f8f8;
 							border-top: solid 1px #e8e8e8;
 
+							& + .replies {
+								border-top: none;
+							}
+
 							&:after {
 								content: "";
 								display: block;
@@ -1348,6 +1352,8 @@
 						}
 
 						> .replies {
+							border-top: solid 1px #e8e8e8;
+
 							> .statuses {
 								display: block;
 								margin: 0;
