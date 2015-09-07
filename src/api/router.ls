@@ -8,15 +8,16 @@ require! {
 routing =
 	web:
 		[\post /\/web\/status\/reply(\..+)?$/             './rest/web/status/reply']
+		[\post /\/web\/status\/reply-detail(\..+)?$/             './rest/web/status/reply-detail']
 		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/ './rest/web/status/timeline-homehtml']
 		[\get  /\/web\/status\/timeline-mobilehomehtml(\..+)?$/ './rest/web/status/timeline-mobilehomehtml']
 		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
 		[\get  /\/web\/get-header-statuses(\..+)?$/       './rest/web/get-header-statuses']
-	
+
 	sauth:
 		[\get    /\/sauth\/get-authentication-session-key(\..+)?$/ './rest/sauth/get-authentication-session-key']
 		[\get    /\/sauth\/get-user-key(\..+)?$/                   './rest/sauth/get-user-key']
-		
+
 	account:
 		[\post   /\/account\/create(\..+)?$/                      './rest/account/create']
 		[\get    /\/account\/show(\..+)?$/                        './rest/account/show']
@@ -102,8 +103,8 @@ module.exports = (app) ->
 
 	routing |> values |> concat |> each ([method, url, handler]) ->
 		app[method] url, require handler
-	
+
 	github-webhook app
-	
+
 	web-resources-router app
 	web-index-router app

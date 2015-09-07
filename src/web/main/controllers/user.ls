@@ -4,18 +4,18 @@ require! {
 	'../../../models/user-following': UserFollowing
 	'../../../models/status': Status
 	'../../../models/utils/user-following-check'
-	'../utils/generate-timeline-html'
+	'../utils/generate-detail-status-timeline-html'
 	'../../../config'
 }
 
 module.exports = (req, res, page = \home) ->
 	user = req.root-user
 	me = if req.login then req.me else null
-	
+
 	marked.set-options {
 		sanitize: yes
 	}
-	
+
 	Promise.all [
 		# Get statuses timeline (home page only)
 		new Promise (resolve, reject) ->
@@ -25,9 +25,9 @@ module.exports = (req, res, page = \home) ->
 				Status
 					.find {user-id: user.id}
 					.sort {created-at: \desc}
-					.limit 20status
+					.limit 10status
 					.exec (, statuses) ->
-						generate-timeline-html statuses, me, (html) ->
+						generate-detail-status-timeline-html statuses, me, (html) ->
 							resolve html
 
 		# Get is following
@@ -91,7 +91,7 @@ module.exports = (req, res, page = \home) ->
 								User.find-by-id follower.follower-id, (, user) ->
 									resolve user.to-object!)
 							.then (follower-users) -> resolve follower-users
-		
+
 		# Get recent followers
 		new Promise (resolve, reject) ->
 			UserFollowing
