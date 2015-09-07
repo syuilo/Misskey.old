@@ -100,7 +100,7 @@ window.STATUS_CORE = {}
 						} 100ms \linear
 
 			# Init stargazer tooltips
-			..find '.main .stargazers > .stargazers > .stargazer' .each ->
+			..find '.main .stargazers > .stargazers > .stargazer > a' .each ->
 				$stargazer = $ @
 				$tooltip = $ '<p class="ui-tooltip">' .text $stargazer.attr \data-tooltip
 				$stargazer.hover do
