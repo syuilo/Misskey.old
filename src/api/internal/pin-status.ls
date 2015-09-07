@@ -23,4 +23,4 @@ module.exports = (app, user, status-id) ->
 			if err?
 				throw-error \user-save-error err
 			else
-				resolve user
+				resolve status
