@@ -212,7 +212,7 @@ div.status.article(
 					ol.stargazers
 						each stargazer in status.stargazers
 							li.stargazer
-								a.icon-anchor.ui-tooltip(href='/' + stargazer.screenName, title= '@' + stargazer.screenName, data-tooltip= stargazer.name)
+								a.icon-anchor(href='/' + stargazer.screenName, title= '@' + stargazer.screenName, data-tooltip= stargazer.name)
 									img.icon(src=stargazer.iconImageUrl, alt='icon')
 			
 			if login
