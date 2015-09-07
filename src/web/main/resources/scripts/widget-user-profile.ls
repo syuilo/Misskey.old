@@ -39,6 +39,7 @@ $ ->
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done ->
+				$button .remove-class \danger
 				$button
 					..attr \disabled off
 					..remove-class \notFollowing
