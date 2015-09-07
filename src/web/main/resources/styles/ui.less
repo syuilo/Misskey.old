@@ -1693,6 +1693,18 @@ textarea {
 	color: #fff;
 	background: rgba(0, 0, 0, 0.8);
 	border-radius: 4px;
+
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: -4px;
+		left: ~"calc(50% - 2px)";
+		border-top: solid 2px rgba(0, 0, 0, 0.8);
+		border-right: solid 2px transparent;
+		border-bottom: solid 2px transparent;
+		border-left: solid 2px transparent;
+	}
 }
 
 /* Tag input
