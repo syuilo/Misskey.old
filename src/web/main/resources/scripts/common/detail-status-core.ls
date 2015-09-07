@@ -116,25 +116,26 @@ window.STATUS_CORE = {}
 				->
 					clear-timeout $status.user-profile-show-timer
 					clear-timeout $status.user-profile-hide-timer
-					$status.user-profile-show-timer = set-timeout ->
-						$popup = $ '<iframe class="user-profile-popup">' .attr {
-							src: $status.attr \data-user-profile-widget-url
-							+seamless
-						}
-						$popup.css {
-							top: 0
-							left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 16px
-						}
-						$popup.hover do
-							->
-								clear-timeout $status.user-profile-hide-timer
-							->
-								clear-timeout $status.user-profile-show-timer
-								$status.user-profile-hide-timer = set-timeout ->
-									$status.children \.user-profile-popup .remove!
-								, 500ms
-						$status.append $popup
-					, 500ms
+					if not $status.children \.user-profile-popup [0]
+						$status.user-profile-show-timer = set-timeout ->
+							$popup = $ '<iframe class="user-profile-popup">' .attr {
+								src: $status.attr \data-user-profile-widget-url
+								+seamless
+							}
+							$popup.css {
+								top: 0
+								left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 16px
+							}
+							$popup.hover do
+								->
+									clear-timeout $status.user-profile-hide-timer
+								->
+									clear-timeout $status.user-profile-show-timer
+									$status.user-profile-hide-timer = set-timeout ->
+										$status.children \.user-profile-popup .remove!
+									, 500ms
+							$status.append $popup
+						, 500ms
 				->
 					clear-timeout $status.user-profile-show-timer
 					clear-timeout $status.user-profile-hide-timer
