@@ -7,7 +7,7 @@ $.fn.extend {
 
 window.escapeHTML = (val) ->
 	$ '<div />' .text(val).html!
-	
+
 window.init-waves-effects = ->
 	Waves.attach '.ui-button'
 	Waves.attach '.ui-cancel-button'
@@ -73,7 +73,7 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 		set-timeout ->
 			$window.remove!
 		, 300ms
-	
+
 	function end-move
 		$window.find \.content .css {
 			'pointer-events': \auto
@@ -128,55 +128,55 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 				$window.remove-class \snap-right
 				$window.remove-class \snap-bottom
 				$window.remove-class \snap-left
-				
+
 				#move-right = browser-width - ((window-width + me.client-x) - move-base-x)
 				#move-bottom = browser-height - ((window-height + me.client-y) - move-base-y)
 				move-left = me.client-x - move-base-x
 				move-top = me.client-y - move-base-y
-				
+
 				#if move-right < 0
 				#	move-right = 0
-				#	
+				#
 				#if move-bottom < 0
 				#	move-bottom = 0
-				#	
+				#
 				#if move-right + window-width > browser-width
 				#	move-right = browser-width - window-width
-				#	
+				#
 				#if move-bottom + window-height > browser-height
 				#	move-bottom = browser-height - window-height
-				
+
 				if move-left < 0
 					move-left = 0
-				
+
 				if move-top < page-top
 					move-top = page-top
-				
+
 				if move-left + window-width > browser-width
 					move-left = browser-width - window-width
-				
+
 				if move-top + window-height > browser-height
 					move-top = browser-height - window-height
-				
+
 				# snap window border
 				threshold = 16px
-				
+
 				if move-left < threshold
 					$window.add-class \snap-left
 					move-left = 0
-				
+
 				if (move-top - page-top) < threshold
 					$window.add-class \snap-top
 					move-top = page-top
-				
+
 				if move-left + window-width > browser-width - threshold
 					$window.add-class \snap-right
 					move-left = browser-width - window-width
-				
+
 				if move-top + window-height > browser-height - threshold
 					$window.add-class \snap-bottom
 					move-top = browser-height - window-height
-				
+
 				$window.css {
 					left: move-left + \px
 					top: move-top + \px
@@ -185,7 +185,7 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			$ \html .mouseleave ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
 				end-move!
-			
+
 			$ \html .mouseup ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
 				end-move!
@@ -210,7 +210,7 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			$window.css {
 				left: 0
 			}
-		
+
 		if position.top < page-top
 			$window.css {
 				top: page-top
@@ -220,32 +220,32 @@ window.open-window = (id, $content, title, width, height, can-popout = false, po
 			$window.css {
 				left: 0
 			}
-		
+
 		if position.top + window-height > browser-height
 			$window.css {
 				top: page-top
 			}
-		
+
 		if $window.has-class \snap-top
 			$window.css {
 				top: page-top
 			}
-		
+
 		if $window.has-class \snap-right
 			$window.css {
 				left: browser-width - window-width + \px
 			}
-			
+
 		if $window.has-class \snap-bottom
 			$window.css {
 				top: browser-height - window-height + \px
 			}
-		
+
 		if $window.has-class \snap-left
 			$window.css {
 				left: 0
 			}
-			
+
 $ ->
 	update-relative-times!
 
@@ -265,9 +265,9 @@ $ ->
 				| ago >= 3600s     => ~~(ago / 3600s) + '時間前'
 				| ago >= 60s       => ~~(ago / 60s) + '分前'
 				| ago >= 5s        => ~~(ago % 60s) + '秒前'
-				| ago <  5s        => 'いま'
+				| ago <  5s        => 'たった今'
 				| _ => ''
 			$ @ .text time-text
-	
-	# Attach Waves effects 
+
+	# Attach Waves effects
 	window.init-waves-effects!

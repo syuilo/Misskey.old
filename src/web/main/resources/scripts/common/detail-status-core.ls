@@ -138,7 +138,7 @@ window.STATUS_CORE = {}
 			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
 
 			# Init favorite button
-			..find 'article > .article-main > .footer > .actions > .favorite > .favorite-button' .click ->
+			..find 'article > .main > .main > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
 					..attr \disabled on
 				if check-favorited!
@@ -167,11 +167,11 @@ window.STATUS_CORE = {}
 						$status.attr \data-is-favorited \false
 
 			# Init reply button
-			..find 'article > .article-main > .footer > .actions > .reply > .reply-button' .click ->
+			..find 'article > .main > .main > .footer > .actions > .reply > .reply-button' .click ->
 				activate-display-state!
 
 			# Init repost button
-			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
+			..find 'article > .main > .main > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
 					$status.attr \data-is-reposted \false
 					$.ajax "#{config.api-url}/status/unrepost" {
