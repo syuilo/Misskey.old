@@ -1273,7 +1273,7 @@
 									}
 
 									input[type=file] {
-										display: inline;
+										display: block;
 										position: absolute;
 										top: 0;
 										left: 0;
@@ -1281,6 +1281,10 @@
 										height: 100%;
 										overflow: hidden;
 										opacity: 0;
+
+										&::-webkit-file-upload-button {
+											display: none;
+										}
 									}
 
 									p {
