@@ -1,0 +1,199 @@
+@themeColor: <%themeColor%>;
+@headerImageUrl: <%headerImageUrl%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+@fadeThemeColor: fade(lighten(@themeColor, 47%), 95%);
+
+main {
+	> header {
+		background: #fff;
+
+		.main {
+			position: relative;
+			padding: 8px 0;
+			color: #fff;
+			background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.7) 100%), url(@headerImageUrl);
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+
+			.icon {
+				display: block;
+				width: 80px;
+				height: 80px;
+				margin: 8px auto;
+				border: solid 2px #fff;
+				border-radius: 8px;
+				box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+			}
+
+			.title {
+				display: block;
+				margin: 8px 0;
+				padding: 0;
+				text-align: center;
+				text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+
+				.name {
+					margin: 0;
+					font-size: 1.1em;
+					font-weight: bold;
+
+					.verified-icon {
+						display: inline-block;
+						vertical-align: text-bottom;
+						margin-left: 0.25em;
+						width: 1.1em;
+						height: 1.1em;
+					}
+				}
+
+				.screen-name {
+					display: inline;
+					margin: 0;
+					color: rgba(255, 255, 255, 0.7);
+					font-size: 0.9em;
+				}
+
+				#friend-status {
+					display: inline;
+					margin: 0 8px;
+					padding: 4px 6px;
+					font-size: 0.7em;
+					background: rgba(0, 0, 0, 0.5);
+					border-radius: 2px;
+				}
+			}
+		}
+
+		#profile {
+			display: block;
+			position: relative;
+			z-index: 2;
+			padding: 8px 0;
+			text-align: center;
+			//border-bottom: solid 1px #eee;
+			background: #fff;
+			box-shadow: 0 -3px 2px 4px rgba(0, 0, 0, 0.2);
+
+			#comment {
+				display: block;
+				position: relative;
+				margin: 0 8px;
+				padding: 8px;
+				color: #333;
+				background: #eee;
+				border-radius: 4px;
+
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					top: -32px;
+					left: ~"calc(50% - 16px)";
+					border-top: solid 16px transparent;
+					border-right: solid 16px transparent;
+					border-bottom: solid 16px #eee;
+					border-left: solid 16px transparent;
+				}
+
+				.no-comment {
+					color: rgba(0, 0, 0, 0.3);
+				}
+			}
+
+			#location {
+				display: block;
+				margin: 0.5em 0;
+				padding: 0 8px;
+				color: #444;
+				word-break: break-all;
+
+				i {
+					margin-right: 0.25em;
+				}
+			}
+
+			#website {
+				display: block;
+				margin: 0.5em 0;
+				padding: 0 8px;
+				color: #444;
+				word-break: break-all;
+
+				a {
+					color: #444;
+				}
+
+				i {
+					margin-right: 0.25em;
+				}
+			}
+		}
+
+		nav {
+			display: block;
+			position: relative;
+			z-index: 1;
+			text-align: center;
+			//border-bottom: solid 1px #eee;
+			background: #f7f7f7;
+			box-shadow: 0 -3px 2px 4px rgba(0, 0, 0, 0.2);
+
+			table {
+				display: inline-block;
+				margin: 0 auto;
+				vertical-align: top;
+				border-collapse: separate;
+				border-spacing: 0;
+
+				tr {
+					th, td {
+						text-align: left;
+						line-height: 1em;
+					}
+
+					th {
+						padding: 5px 4px 0 4px;
+						min-width: 5em;
+						color: #666;
+						font-weight: normal;
+						font-size: 0.7em;
+						border-top: solid 3px transparent;
+					}
+
+					td {
+						padding: 2px 4px 5px 4px;
+
+						&.active {
+							border-bottom: solid 3px @themeColor;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#friend-button {
+		display: block;
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 8px 12px;
+		cursor: pointer;
+		font-size: 0.8em;
+		font-weight: normal;
+		text-decoration: none;
+		color: contrast(@themeColor, #000, #fff, 70%);
+		background: @themeColor !important;
+		outline: none;
+		border: none;
+		border-radius: 4px;
+		box-shadow: none;
+	}
+}

@@ -111,6 +111,25 @@ window.STATUS_CORE = {}
 					->
 						$stargazer.find \.ui-tooltip .remove!
 
+			# Display profile
+			..find 'article > .main > .main > .header > .icon-area > .icon-anchor' .hover do
+				->
+					$status.user-profile-show-timer = set-timeout ->
+						$popup = $ '<iframe class="user-profile-popup">' .attr {
+							src: $status.attr \data-user-profile-widget-url
+							+seamless
+						}
+						$popup.css {
+							top: 0
+							left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 32px
+						}
+						$status.append $popup
+					, 500ms
+				->
+					$status.children \.user-profile-popup .remove!
+					clear-timeout $status.user-profile-show-timer
+
+			# Enable reply button
 			..find '.reply-form textarea' .bind \input ->
 				$status.find '.reply-form .submit-button' .attr \disabled no
 
