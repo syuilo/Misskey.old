@@ -25,6 +25,7 @@ div.status.article(
 		data-is-talk           != (status.moreTalk != null).toString()
 		data-is-favorited      != login ? status.isFavorited.toString() : null
 		data-is-reposted       != login ? status.isReposted.toString() : null
+		data-is-pinned      != isMyStatus ? (me.pinnedStatus == status.id).toString() : null
 		data-is-repostpost     != status.isRepostToStatus.toString()
 		data-repost-by-user-id != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')

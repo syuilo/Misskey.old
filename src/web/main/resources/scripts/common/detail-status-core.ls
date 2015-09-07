@@ -8,6 +8,9 @@ window.STATUS_CORE = {}
 		function check-reposted
 			($status.attr \data-is-reposted) == \true
 
+		function check-pinned
+			($status.attr \data-is-pinned) == \true
+
 		function activate-display-state
 			animation-speed = 200ms
 			if ($status.attr \data-display-html-is-active) == \false
@@ -136,6 +139,35 @@ window.STATUS_CORE = {}
 			## Init tag input of reply-form
 			#..find '.reply-form .tag'
 			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
+
+			# Init pin button
+			..find 'article > .main > .main > .footer > .actions > .pin > .pin-button' .click ->
+				$button = $ @
+					..attr \disabled on
+				if check-pinned!
+					$status.attr \data-is-pinned \false
+					$.ajax "#{config.api-url}/account/delete-pinned-status" {
+						type: \delete
+						data: {}
+						data-type: \json
+						xhr-fields: {+withCredentials}}
+					.done ->
+						$button.attr \disabled off
+					.fail ->
+						$button.attr \disabled off
+						$status.attr \data-is-pinned \true
+				else
+					$status.attr \data-is-pinned \true
+					$.ajax "#{config.api-url}/account/update-pinned-status" {
+						type: \put
+						data: {'status-id': $status.attr \data-id}
+						data-type: \json
+						xhr-fields: {+withCredentials}}
+					.done ->
+						$button.attr \disabled off
+					.fail ->
+						$button.attr \disabled off
+						$status.attr \data-is-pinned \false
 
 			# Init favorite button
 			..find 'article > .main > .main > .footer > .actions > .favorite > .favorite-button' .click ->
