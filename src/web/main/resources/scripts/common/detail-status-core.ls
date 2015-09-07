@@ -221,7 +221,9 @@ window.STATUS_CORE = {}
 					$statuses = $ data
 					$statuses.each ->
 						$talk-status = $ @
-						window.STATUS_CORE.set-event $talk-status.children '.status.article'
+						init-user-profile-popup do
+							$talk-status.find 'article > .icon-area > .icon-anchor'
+							$talk-status.attr \data-user-profile-widget-url
 						$talk-status.append-to $status.find 'article > .main > .talk > .statuses'
 				.fail (data) ->
 					$button = $ @
