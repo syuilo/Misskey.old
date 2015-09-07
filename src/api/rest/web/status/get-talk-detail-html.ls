@@ -13,7 +13,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[status-id] = get-express-params req, <[ status-id ]>
 	(err, source-status) <- Status.find-by-id status-id
 	if source-status?
-		if source-status.is-reply
+		if source-status.in-reply-to-status-id?
 			status-get-talk source-status .then (talk) ->
 				status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/detail/reply.jade"
 				Promise.all (talk |> map (status) -> new Promise (resolve,) ->
