@@ -17,7 +17,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			status-get-talk source-status .then (talk) ->
 				status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/detail/reply.jade"
 				Promise.all (talk |> map (status) -> new Promise (resolve,) ->
-					status .= to-object!
 					(err, status-user) <- User.find-by-id status.user-id
 					status.user = status-user
 					resolve status)
