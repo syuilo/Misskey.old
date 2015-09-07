@@ -67,7 +67,7 @@ div.status.article(
 							i.fa.fa-ban
 							p キャンセル
 
-		div.main
+		section.main
 		
 			if status.isReply && status.replySource.isReply
 				button.read-talk(role='button')
@@ -85,7 +85,7 @@ div.status.article(
 								img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
 						div.main
 							header.header
-								h2
+								h2.name
 									a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
 								if status.replySource.user.isVerified
 									img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
@@ -120,25 +120,26 @@ div.status.article(
 					div.icon-area
 						a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 							img.icon(src=status.user.iconImageUrl, alt='icon')
-					div.top
-						div.left
-							div.name
-								h1
-									a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
-								if status.user.isVerified
-									img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-								p.screen-name= '@' + status.user.screenName
-						div.right
-							if status.app != null
-								p.via
-									a.via-anchor
-										span.caption via
-										b.app-name= status.app.name
-							p.created-at
-								a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
-									time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
-					div.bottom
-						p.comment= status.user.comment
+					div.main
+						div.top
+							div.left
+								div.author
+									h1.name
+										a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
+									if status.user.isVerified
+										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+									p.screen-name= '@' + status.user.screenName
+							div.right
+								if status.app != null
+									p.via
+										a.via-anchor
+											span.caption via
+											b.app-name= status.app.name
+								p.created-at
+									a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
+										time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+						div.bottom
+							p.comment= status.user.comment
 				
 				div.content
 					div.text
