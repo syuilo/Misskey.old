@@ -2,7 +2,8 @@ li.status(title!= '#{status.createdAt}&#x0A;'
 		data-id= status.id
 		data-user-id= status.user.id
 		data-user-color= status.user.color
-		data-user-verified!= status.user.isVerified.toString())
+		data-user-verified!= status.user.isVerified.toString()
+		data-user-profile-widget-url= config.url + '/widget/user/' + status.user.screenName)
 	article
 		div.icon-area
 			a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
