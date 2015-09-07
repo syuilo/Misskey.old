@@ -31,6 +31,7 @@ schema = new Schema do
 	password:                {type: String,                required: yes}
 	screen-name:             {type: String,                required: yes, unique: yes}
 	screen-name-lower:       {type: String,                required: yes, unique: yes}
+	pinned-status: {type: Schema.Types.ObjectId, required: no, default: null}
 	statuses-count:          {type: Number,                required: no,  default: 0}
 	status-favorites-count:  {type: Number,                required: no,  default: 0}
 	tags:                    {type: [String],              required: no,  default: []}
