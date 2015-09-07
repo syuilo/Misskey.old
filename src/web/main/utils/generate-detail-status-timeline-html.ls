@@ -1,6 +1,6 @@
 require! {
 	jade
-	'./detail-timeline-serialyzer.ls'
+	'./detail-timeline-serialyzer'
 	'./parse-text'
 	'../../../config'
 }
