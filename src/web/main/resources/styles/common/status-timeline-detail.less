@@ -33,7 +33,6 @@
 					border: solid 1px #bdb;
 				}
 
-
 				&[data-is-favorited='true'] > article > .main > .main {
 					&:hover > .footer > .actions > .favorite > button {
 						color: @themeColor;
@@ -1145,8 +1144,8 @@
 							background: #f8f8f8;
 							border-top: solid 1px #e8e8e8;
 
-							& + .replies {
-								border-top: none;
+							& + .replies > .statuses > .status:first-child {
+								border-top: solid 1px #efefef;
 							}
 
 							&:after {
@@ -1358,8 +1357,6 @@
 						}
 
 						> .replies {
-							border-top: solid 1px #e8e8e8;
-
 							> .statuses {
 								display: block;
 								margin: 0;
@@ -1368,7 +1365,12 @@
 								text-align: left;
 
 								> .status {
+									&:first-child {
+										border-top: solid 1px #e8e8e8;
+									}
+
 									padding: 8px;
+									border-top: solid 1px #efefef;
 									.sub-article;
 								}
 							}
