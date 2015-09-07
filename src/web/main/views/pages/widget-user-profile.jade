@@ -8,7 +8,7 @@ html(
 	head
 		include ../common/head
 		title= user.name
-		link(rel='stylesheet', href='/resources/styles/widget-user-profile.css')
+		link(rel='stylesheet', href='/resources/styles/widget-user-profile.css?user=' + user.screenName)
 		script(src='/resources/scripts/widget-user-profile.js')
 		
 	body
