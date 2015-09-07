@@ -109,6 +109,7 @@ window.STATUS_CORE = {}
 							bottom: $stargazer.outer-height! + 4px
 							left: ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
 						}
+						console.log $tooltip.outer-width!
 						$stargazer.append $tooltip
 					->
 						$stargazer.find \.ui-tooltip .remove!
