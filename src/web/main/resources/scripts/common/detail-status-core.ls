@@ -111,6 +111,20 @@ window.STATUS_CORE = {}
 					->
 						$stargazer.find \.ui-tooltip .remove!
 
+			# Display profile
+			..find 'article > .main > .main > .header > .icon-area > .icon-anchor' .hover do
+				->
+					sethover = set-timeout ->
+						$popup = $ '<iframe>' .attr {
+							src: $status.attr \data-user-profile-widget-url
+							+seamless
+						}
+						$status.append $popup
+					, 1000ms
+				->
+					clear-timeout sethover
+
+			# Enable reply button
 			..find '.reply-form textarea' .bind \input ->
 				$status.find '.reply-form .submit-button' .attr \disabled no
 
