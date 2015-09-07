@@ -152,7 +152,7 @@ window.STATUS_CORE = {}
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source' .attr \data-id
 					}
-					data-type: \json
+					data-type: \text
 					xhr-fields: {+with-credentials}}
 				.done (data) ->
 					$button.remove!
