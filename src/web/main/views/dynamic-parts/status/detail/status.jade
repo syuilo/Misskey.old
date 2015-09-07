@@ -72,8 +72,11 @@ div.status.article(
 
 		section.main
 		
+			aside.talk
+				ol.statuses
+		
 			if status.isReply && status.replySource.isReply
-				button.read-talk(role='button')
+				button.read-talk(role='button', title='会話をもっと読む')
 					i.fa.fa-ellipsis-v
 			
 			if status.isReply
