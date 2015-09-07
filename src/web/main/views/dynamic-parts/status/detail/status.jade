@@ -1,4 +1,6 @@
 - var isMyStatus = login && (me.id == status.userId)
+- var klass = status.isRepostToStatus ? 'repost' : 'normal';
+- if (isMyStatus && (me.pinnedStatus == status.id)) { klass += ' pinned' }
 
 div.status.article(
 		class                   = status.isRepostToStatus ? 'repost' : 'normal'

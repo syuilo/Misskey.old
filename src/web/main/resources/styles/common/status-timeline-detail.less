@@ -25,9 +25,14 @@
 
 			.status.article {
 				position: relative;
-				margin: 16px 0;
+				margin: 0;
 				padding: 0;
-				border: solid 1px #ddd;
+
+				&.pinned {
+					margin-bottom: 16px;
+					padding-top: 16px;
+					border-bottom: solid 2px #ddd;
+				}
 
 				&[data-is-repostpost="true"] {
 					border: solid 1px #bdb;
@@ -621,6 +626,9 @@
 
 				> article {
 					position: relative;
+					margin: 16px 0;
+					padding: 0;
+					border: solid 1px #ddd;
 
 					> .main {
 

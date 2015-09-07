@@ -27,8 +27,16 @@ module.exports = (req, res, page = \home) ->
 					.sort {created-at: \desc}
 					.limit 10status
 					.exec (, statuses) ->
-						generate-detail-status-timeline-html statuses, me, (html) ->
-							resolve html
+						# Get pinned statuses
+						if user.pinned-status?
+							(err, pinned-status) <- Status.find-by-id user.pinned-status
+							if pinned-status?
+								statuses.unshift pinned-status
+							generate-detail-status-timeline-html statuses, me, (html) ->
+								resolve html
+						else
+							generate-detail-status-timeline-html statuses, me, (html) ->
+								resolve html
 
 		# Get is following
 		new Promise (resolve, reject) ->
