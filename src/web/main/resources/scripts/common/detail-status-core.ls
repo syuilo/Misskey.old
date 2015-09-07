@@ -96,6 +96,9 @@ window.STATUS_CORE = {}
 							opacity: 1
 						} 100ms \linear
 
+			..find '.reply-form textarea' .bind \input ->
+				$status.find '.reply-form .submit-button' .attr \disabled no
+
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
 				event.prevent-default!
@@ -112,7 +115,7 @@ window.STATUS_CORE = {}
 				.done (html) ->
 					$reply = $ html
 					$submit-button.attr \disabled off
-					$reply.append-to $status.find '.replies > .statuses'
+					$reply.prepend-to $status.find '.replies > .statuses'
 					$form.remove!
 					window.display-message '返信しました！'
 				.fail ->
