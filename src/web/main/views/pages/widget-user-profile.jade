@@ -42,8 +42,10 @@ html(
 				if me.id != user.id
 					div#friend-form
 						if isFollowMe
-							p#friend-status フォローされています
+							p#friend-status
+								i.fa.fa-hart
+								| フォローされています
 						if isFollowing
-							button#friend-button.following フォロー解除
+							button#friend-button.following フォローしています
 						else
 							button#friend-button.not-following フォロー
