@@ -99,6 +99,18 @@ window.STATUS_CORE = {}
 							opacity: 1
 						} 100ms \linear
 
+			# Init stargazer tooltips
+			..find '.main .stargazers > .stargazers > .stargazer > a' .each ->
+				$stargazer = $ @
+				$tooltip = $ '<p class="ui-tooltip">' .text $stargazer.attr \data-tooltip
+				$stargazer.hover do
+					->
+						$tooltip.css \bottom $stargazer.outer-height! + 4px
+						$stargazer.append $tooltip
+						$stargazer.find \.ui-tooltip .css \left ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
+					->
+						$stargazer.find \.ui-tooltip .remove!
+
 			..find '.reply-form textarea' .bind \input ->
 				$status.find '.reply-form .submit-button' .attr \disabled no
 

@@ -1189,13 +1189,21 @@
 								padding: 0;
 								list-style: none;
 
+								&:after {
+									content: "";
+									display: block;
+									clear: both;
+								}
+
 								> .stargazer {
-									display: inline-block;
+									display: block;
+									position: relative;
+									float: left;
 									margin: 0 4px;
 									padding: 0;
 
 									> .icon-anchor {
-										display: inline-block;
+										display: block;
 
 										> .icon {
 											vertical-align: bottom;

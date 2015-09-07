@@ -1681,47 +1681,30 @@ textarea {
 	}
 }
 
-/* FollowButton
+/* Tooltip
  * ---------------------------------------------------------------- */
-.ui-followButton {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	display: inline-block;
-	box-sizing: border-box;
+.ui-tooltip {
+	display: block;
+	position: absolute;
+	z-index: 128;
 	margin: 0;
-	padding: 10px 16px;
-	min-width: 8em;
-	cursor: pointer;
-	font-size: 1em;
-	font-weight: bold;
-	text-decoration: none;
-	outline: none;
-	border: none;
-	border-radius: 2px;
-	box-shadow: none;
-	transition: background 0.1s ease;
+	padding: 4px 8px;
+	white-space: nowrap;
+	font-size: 0.8em;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 4px;
 
-	&.following {
-		color: #fff;
-		background: @themeColor;
-
-		&:hover {
-			background: #f20;
-		}
-
-		&:active {
-			background: #700;
-		}
-	}
-
-	&.notFollowing {
-		color: #000;
-		background: #eee;
-
-		&:hover {
-			background: @themeColor;
-		}
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: -8px;
+		left: ~"calc(50% - 2px)";
+		border-top: solid 4px rgba(0, 0, 0, 0.8);
+		border-right: solid 4px transparent;
+		border-bottom: solid 4px transparent;
+		border-left: solid 4px transparent;
 	}
 }
 
