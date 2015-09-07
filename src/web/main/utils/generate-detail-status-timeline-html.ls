@@ -1,6 +1,6 @@
 require! {
 	jade
-	'./timeline-serialyzer'
+	'./detail-timeline-serialyzer.ls'
 	'./parse-text'
 	'../../../config'
 }
@@ -9,7 +9,7 @@ module.exports = (statuses, viewer, callback) ->
 	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail/status.jade"
 	timeline-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail/timeline.jade"
 	if statuses?
-		timeline-serialyzer statuses, viewer .then (timeline) ->
+		detail-timeline-serialyzer statuses, viewer .then (timeline) ->
 			statuses-htmls = map do
 				(status) ->
 					status-compiler do
