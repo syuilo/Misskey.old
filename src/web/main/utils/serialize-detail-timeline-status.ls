@@ -86,6 +86,8 @@ module.exports = (status, me, callback) ->
 				status.stargazers = stargazers
 				callback status
 
+	console.log status.text
+	console.log status.has-own-property \toObject
 	if status.has-own-property \toObject
 		status .= to-object!
 	status.display-created-at = moment status.created-at .format 'YYYY年M月D日 H時m分s秒'
