@@ -124,7 +124,7 @@ window.STATUS_CORE = {}
 							left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 16px
 						}
 						$status.append $popup
-					, 1000ms
+					, 500ms
 				->
 					$status.children \.user-profile-popup .remove!
 					clear-timeout $status.user-profile-show-timer
