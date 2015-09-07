@@ -116,7 +116,7 @@ window.STATUS_CORE = {}
 				->
 					clear-timeout $status.user-profile-show-timer
 					clear-timeout $status.user-profile-hide-timer
-					if not $status.children \.user-profile-popup [0]
+					if not ($status.children '.user-profile-popup')[0]
 						$status.user-profile-show-timer = set-timeout ->
 							$popup = $ '<iframe class="user-profile-popup">' .attr {
 								src: $status.attr \data-user-profile-widget-url
