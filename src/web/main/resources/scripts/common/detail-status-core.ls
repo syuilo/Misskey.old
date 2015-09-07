@@ -121,7 +121,7 @@ window.STATUS_CORE = {}
 						}
 						$popup.css {
 							top: 0
-							left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 32px
+							left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 16px
 						}
 						$status.append $popup
 					, 500ms
