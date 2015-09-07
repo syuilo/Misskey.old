@@ -1011,203 +1011,203 @@
 									}
 								}
 							}
+						}
 
+						> .stargazers {
 							> .stargazers {
-								> .stargazers {
-									display: block;
-									float: left;
-									margin: 0;
+								display: block;
+								float: left;
+								margin: 0;
+								padding: 0;
+								list-style: none;
+
+								> .stargazer {
+									display: inline-block;
+									margin: 6px 2px;
 									padding: 0;
-									list-style: none;
 
-									> .stargazer {
+									> .icon-anchor {
 										display: inline-block;
-										margin: 6px 2px;
-										padding: 0;
 
-										> .icon-anchor {
-											display: inline-block;
-
-											> .icon {
-												vertical-align: bottom;
-												width: 20px;
-												height: 20px;
-												border-radius: 4px;
-											}
+										> .icon {
+											vertical-align: bottom;
+											width: 20px;
+											height: 20px;
+											border-radius: 4px;
 										}
 									}
 								}
 							}
+						}
 
-							> .reply-form {
-								padding: 8px;
+						> .reply-form {
+							padding: 8px;
 
-								&:after {
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
+
+							> .me-icon-area {
+								display: block;
+								float: left;
+								padding: 4px;
+								width: 32px;
+
+								> .me-icon {
+									display: block;
+									width: 32px;
+									height: 32px;
+									min-width: 32px;
+									min-height: 32px;
+									max-width: 32px;
+									max-height: 32px;
+								}
+							}
+
+							> .main {
+								display: block;
+								float: left;
+								padding: 4px;
+								box-sizing: border-box;
+								width: ~"calc(100% - (32px + 4px + 4px))";
+
+								> textarea {
+									-webkit-appearance: none;
+									-moz-appearance: none;
+									appearance: none;
+									user-select: text;
+									-moz-user-select: text;
+									-webkit-user-select: text;
+									-ms-user-select: text;
+									box-sizing: border-box;
+									width: 100%;
+									max-width: 100%;
+									height: 64px;
+									min-height: 64px;
+									vertical-align: bottom;
+									margin: 0;
+									padding: 8px 12px;
+									outline: 0;
+									border: solid 1px #eee;
+									border-radius: 0;
+									font-size: 1.1em;
+									transition: border 0.2s ease, color 0.2s ease;
+
+									&:hover {
+										border: solid 1px @themeColor;
+
+										& + .design-allow:before {
+											border-right: solid 12px @themeColor;
+										}
+									}
+
+									&:focus {
+										color: darken(@themeColor, 20%);
+										outline: none;
+										border: solid 1px @themeColor;
+
+										& + .design-allow:before {
+											border-right: solid 12px @themeColor;
+										}
+									}
+								}
+
+								> .design-allow {
 									content: "";
 									display: block;
-									clear: both;
-								}
+									position: absolute;
+									z-index: 1;
+									top: 8px;
+									left: -23px;
 
-								> .me-icon-area {
-									display: block;
-									float: left;
-									padding: 4px;
-									width: 32px;
-
-									> .me-icon {
+									&:before {
+										content: "";
 										display: block;
-										width: 32px;
-										height: 32px;
-										min-width: 32px;
-										min-height: 32px;
-										max-width: 32px;
-										max-height: 32px;
-									}
-								}
-
-								> .main {
-									display: block;
-									float: left;
-									padding: 4px;
-									box-sizing: border-box;
-									width: ~"calc(100% - (32px + 4px + 4px))";
-
-									> textarea {
-										-webkit-appearance: none;
-										-moz-appearance: none;
-										appearance: none;
-										user-select: text;
-										-moz-user-select: text;
-										-webkit-user-select: text;
-										-ms-user-select: text;
-										box-sizing: border-box;
-										width: 100%;
-										max-width: 100%;
-										height: 64px;
-										min-height: 64px;
-										vertical-align: bottom;
-										margin: 0;
-										padding: 8px 12px;
-										outline: 0;
-										border: solid 1px #eee;
-										border-radius: 0;
-										font-size: 1.1em;
-										transition: border 0.2s ease, color 0.2s ease;
-
-										&:hover {
-											border: solid 1px @themeColor;
-
-											& + .design-allow:before {
-												border-right: solid 12px @themeColor;
-											}
-										}
-
-										&:focus {
-											color: darken(@themeColor, 20%);
-											outline: none;
-											border: solid 1px @themeColor;
-
-											& + .design-allow:before {
-												border-right: solid 12px @themeColor;
-											}
-										}
+										position: absolute;
+										font-size: 0;
+										line-height: 0;
+										border-top: solid 12px transparent;
+										border-right: solid 12px #eee;
+										border-bottom: solid 12px transparent;
+										border-left: solid 12px transparent;
+										transition: border 0.2s ease;
 									}
 
-									> .design-allow {
+									&:after {
 										content: "";
 										display: block;
 										position: absolute;
 										z-index: 1;
-										top: 8px;
-										left: -23px;
+										top: 1px;
+										left: 2px;
+										font-size: 0;
+										line-height: 0;
+										border-top: solid 11px transparent;
+										border-right: solid 11px #fff;
+										border-bottom: solid 11px transparent;
+										border-left: solid 11px transparent;
+										transition: border 0.2s ease;
+									}
+								}
 
-										&:before {
-											content: "";
-											display: block;
-											position: absolute;
-											font-size: 0;
-											line-height: 0;
-											border-top: solid 12px transparent;
-											border-right: solid 12px #eee;
-											border-bottom: solid 12px transparent;
-											border-left: solid 12px transparent;
-											transition: border 0.2s ease;
-										}
+								> .ui-button {
+									float: right;
+								}
 
-										&:after {
-											content: "";
-											display: block;
-											position: absolute;
-											z-index: 1;
-											top: 1px;
-											left: 2px;
-											font-size: 0;
-											line-height: 0;
-											border-top: solid 11px transparent;
-											border-right: solid 11px #fff;
-											border-bottom: solid 11px transparent;
-											border-left: solid 11px transparent;
-											transition: border 0.2s ease;
-										}
+								> .image-attacher {
+									box-sizing: border-box;
+									display: inline-block;
+									float: right;
+									position: relative;
+									margin: 5px 9px;
+									padding: 7px 16px;
+									vertical-align: top;
+									outline: dashed 2px #ccc;
+
+									&:hover {
+										outline: dashed 2px #777;
 									}
 
-									> .ui-button {
-										float: right;
+									input[type=file] {
+										display: inline;
+										position: absolute;
+										top: 0;
+										left: 0;
+										width: 100%;
+										height: 100%;
+										overflow: hidden;
+										opacity: 0;
 									}
 
-									> .image-attacher {
-										box-sizing: border-box;
-										display: inline-block;
-										float: right;
-										position: relative;
-										margin: 5px 9px;
-										padding: 7px 16px;
-										vertical-align: top;
-										outline: dashed 2px #ccc;
+									p {
+										margin: 0;
+										color: #777;
+										font-size: 1em;
+									}
 
-										&:hover {
-											outline: dashed 2px #777;
-										}
-
-										input[type=file] {
-											display: inline;
-											position: absolute;
-											top: 0;
-											left: 0;
-											width: 100%;
-											height: 100%;
-											overflow: hidden;
-											opacity: 0;
-										}
-
-										p {
-											margin: 0;
-											color: #777;
-											font-size: 1em;
-										}
-
-										img {
-											max-width: 100%;
-											max-height: 128px;
-										}
+									img {
+										max-width: 100%;
+										max-height: 128px;
 									}
 								}
 							}
+						}
 
-							> .replies {
-								> .statuses {
-									display: block;
-									margin: 0;
-									padding: 0;
-									list-style: none;
-									text-align: left;
+						> .replies {
+							> .statuses {
+								display: block;
+								margin: 0;
+								padding: 0;
+								list-style: none;
+								text-align: left;
 
-									> .status {
-										position: relative;
+								> .status {
+									position: relative;
 
-										> article {
-											.sub-article;
-										}
+									> article {
+										.sub-article;
 									}
 								}
 							}
