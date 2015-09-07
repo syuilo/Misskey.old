@@ -13,4 +13,38 @@ html(
 		
 	body
 		main
-			h1= user.name
+			header
+				div.main
+					img.icon(src=user.iconImageUrl, alt='icon')
+					div.title
+						h1.name
+							= user.name
+							if user.isVerified
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+						div.bottom
+							p.screen-name= '@' + user.screenName
+							if login
+								if me.id != user.id
+									if isFollowMe
+										p#friend-status フォローされています
+				div#profile
+					p#comment
+						if user.comment != null && user.comment != ""
+							= user.comment
+						else
+							span.no-comment no comment
+					if user.location != null && user.location != ""
+						p#location
+							i.fa.fa-map-marker
+							= user.location
+					if user.url != null && user.url != ""
+						p#website
+							a(href= user.url)
+								i.fa.fa-link
+								= user.url
+			if login
+				if me.id != user.id
+					if isFollowing
+						button#friend-button.following フォロー解除
+					else
+						button#friend-button.not-following フォロー
