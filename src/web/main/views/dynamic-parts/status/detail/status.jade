@@ -3,7 +3,7 @@
 - if (status.user.pinnedStatus == status.id) { klass += ' pinned' }
 
 div.status.article(
-		class                   = status.isRepostToStatus ? 'repost' : 'normal'
+		class                   = klass
 		lang                    = status.user.lang
 		title                   = status.displayCreatedAt
 		itemscope
