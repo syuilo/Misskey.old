@@ -205,4 +205,4 @@ module.exports = (app) ->
 			(require '../controllers/status') req, res
 
 	# User profile widget
-	app.get '/widget/:userSn' (req, res) -> (require '../controllers/widget-user-profile') req, res
+	app.get '/widget/user/:userSn' (req, res) -> (require '../controllers/widget-user-profile') req, res
