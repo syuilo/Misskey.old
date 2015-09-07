@@ -102,6 +102,12 @@ div.status.article(
 								if status.replySource.isImageAttached
 									img.image(src=status.replySource.imageUrls[0], alt='image')
 			
+			if status.isPinnedStatus
+				section.pin-information
+					p.info
+						i.fa.fa-thumb-tack
+						| ピン留めされたステータス
+			
 			if status.isRepostToStatus
 				section.repost-information
 					p.info
