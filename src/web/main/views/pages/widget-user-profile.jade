@@ -40,9 +40,10 @@ html(
 								= user.url
 			if login
 				if me.id != user.id
-					if isFollowMe
-						p#friend-status フォローされています
-					if isFollowing
-						button#friend-button.following フォロー解除
-					else
-						button#friend-button.not-following フォロー
+					div#friend-form
+						if isFollowMe
+							p#friend-status フォローされています
+						if isFollowing
+							button#friend-button.following フォロー解除
+						else
+							button#friend-button.not-following フォロー
