@@ -29,6 +29,10 @@
 				padding: 0;
 				border: solid 1px #ddd;
 
+				&[data-is-repostpost="true"] {
+					border: solid 1px #bdb;
+				}
+
 				.repost-form {
 					> .background {
 						display: none;
@@ -595,6 +599,8 @@
 						> .repost-information {
 							padding: 8px 32px;
 							color: #57bb00;
+							background: #f8f8f8;
+							border-bottom: solid 1px #e8e8e8;
 
 							> .info {
 								margin: 0;
