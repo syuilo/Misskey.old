@@ -1,6 +1,6 @@
 require! {
 	'../../../models/status': Status
-	'../utils/generate-timeline-html'
+	'../utils/generate-detail-status-timeline-html'
 }
 
 module.exports = (req, res) ->
@@ -15,7 +15,7 @@ module.exports = (req, res) ->
 				.sort \-createdAt
 				.limit 30
 				.exec (err, statuses) ->
-					generate-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
+					generate-detail-status-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
 		new Promise (resolve, reject) ->
 			resolve null
 	] .then (results) -> res.display req, res, 'search' do

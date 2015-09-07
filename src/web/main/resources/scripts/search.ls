@@ -4,13 +4,13 @@ $ ->
 	q = $ \html .attr \data-query
 	q = $ '<div>' .text q .html!
 	q-reg = new RegExp q, \i
-	
+
 	$ '#statuses .timeline .statuses .status .status.article' .each ->
 		$status = $ @
 		window.STATUS_CORE.set-event $status
-		$text = $status.find '.article-main > .main > .content > .text'
+		$text = $status.find '.main > .main > .content > .text'
 		$text .html ($text.html!.replace q-reg, "<mark>#{q}</mark>")
-		
+
 	$ '#search input' .bind \input ->
 			$input = $ @
 			$result = $ '#search .result'
