@@ -231,7 +231,7 @@ div.status.article(
 											img.icon(src=reply.user.iconImageUrl, alt='icon')
 									div.main
 										header.header
-											h2
+											h2.name
 												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
 											if reply.user.isVerified
 												img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
