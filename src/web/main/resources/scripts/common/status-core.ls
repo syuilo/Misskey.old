@@ -4,10 +4,10 @@ window.STATUS_CORE = {}
 	..set-event = ($status) ->
 		function check-favorited
 			($status.attr \data-is-favorited) == \true
-		
+
 		function check-reposted
 			($status.attr \data-is-reposted) == \true
-		
+
 		function activate-display-state
 			animation-speed = 200ms
 			if ($status.attr \data-display-html-is-active) == \false
@@ -44,30 +44,30 @@ window.STATUS_CORE = {}
 					..children \article .find  '.article-main > .talk > .statuses' .hide animation-speed
 					..children \article .find  '.article-main > .reply-info' .show animation-speed
 					..children \article .find  '.article-main > .form-and-replies' .hide animation-speed
-		
+
 		$status
 			# Click event
 			..click (event) ->
 				can-event = ! (((<[ input textarea button i time a ]>
 					|> prelude.map (element) -> $ event.target .is element)
 					.index-of yes) >= 0)
-				
+
 				if document.get-selection!.to-string! != ''
 					can-event = no
-				
+
 				if $ event.target .closest \.repost-form .length > 0
 					can-event = no
-					
+
 				if can-event
 					activate-display-state!
-			
+
 			# Images
 			..find '.main .attached-images > .images > .image' .each ->
 				$image = $ @
 				$img = $image.find \img
 				$button = $image.find \button
 				$back = $image.find \.background
-				
+
 				$img.click ->
 					if ($image.attr \data-is-expanded) == \true
 						$image.attr \data-is-expanded \false
@@ -135,7 +135,7 @@ window.STATUS_CORE = {}
 			## Init tag input of reply-form
 			#..find '.reply-form .tag'
 			#	.tagit {placeholder-text: 'タグ', field-name: 'tags[]'}
-			
+
 			# Init favorite button
 			..find 'article > .article-main > .footer > .actions > .favorite > .favorite-button' .click ->
 				$button = $ @
@@ -164,11 +164,11 @@ window.STATUS_CORE = {}
 					.fail ->
 						$button.attr \disabled off
 						$status.attr \data-is-favorited \false
-			
+
 			# Init reply button
 			..find 'article > .article-main > .footer > .actions > .reply > .reply-button' .click ->
 				activate-display-state!
-			
+
 			# Init repost button
 			..find 'article > .article-main > .footer > .actions > .repost > .repost-button' .click ->
 				if check-reposted!
@@ -192,7 +192,7 @@ window.STATUS_CORE = {}
 					$status.find '.repost-form .form' .animate {
 						opacity: 1
 					} 100ms \linear
-			
+
 			# Init repost form
 			..find '.repost-form > .form' .submit (event) ->
 				event.prevent-default!
@@ -239,7 +239,7 @@ window.STATUS_CORE = {}
 				$status.find '.repost-form .form' .animate {
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
-	
+
 	..add-status = ($status) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 
@@ -249,6 +249,3 @@ window.STATUS_CORE = {}
 			$status.children \.status .add-class \display-html-active-status-prev
 		window.STATUS_CORE.set-event $status.children '.status.article'
 		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
-
-		# Attach Wave effects 
-		init-waves-effects!

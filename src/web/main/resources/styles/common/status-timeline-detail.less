@@ -1139,8 +1139,8 @@
 									-webkit-user-select: text;
 									-ms-user-select: text;
 									box-sizing: border-box;
-									width: 100%;
-									max-width: 100%;
+									width: ~"calc(100% - (8em + 8px))";
+									max-width: ~"calc(100% - (8em + 8px))";
 									height: ~"calc(1em + 16px)";
 									min-height: ~"calc(1em + 16px)";
 									vertical-align: bottom;
@@ -1209,19 +1209,50 @@
 									}
 								}
 
-								> .ui-button {
-									float: right;
+								> .submit-button {
+									-webkit-appearance: none;
+									-moz-appearance: none;
+									appearance: none;
+									display: block;
+									position: absolute;
+									bottom: 0;
+									right: 0;
+									box-sizing: border-box;
+									margin: 0;
+									padding: 8px 0;
+									width: 8em;
+									font-size: 1em;
+									text-align: center;
+									cursor: pointer;
+									color: contrast(@themeColor, #000, #fff, 70%);
+									background: @themeColor;
+									outline: none;
+									border: none;
+									box-shadow: none;
+
+									&:hover {
+										background: lighten(@themeColor, 10%);
+									}
+
+									&:active {
+										background: darken(@themeColor, 10%);
+									}
+
+									&:disabled {
+										color: rgba(0, 0, 0, 0.2);
+									}
 								}
 
 								> .image-attacher {
+									display: block;
 									box-sizing: border-box;
-									display: inline-block;
-									float: right;
-									position: relative;
-									margin: 5px 9px;
+									position: absolute;
+									top: 0;
+									right: ~"calc(8em + 8px + 8px)";
+									margin: 0;
 									padding: 7px 16px;
 									vertical-align: top;
-									outline: dashed 2px #ccc;
+									outline: none;
 
 									&:hover {
 										outline: dashed 2px #777;

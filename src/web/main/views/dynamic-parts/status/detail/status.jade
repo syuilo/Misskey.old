@@ -210,7 +210,7 @@ div.status.article(
 					div.main
 						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 						div.design-allow(role='presentation')
-						input.submit-button.ui-button(type='submit', value!='&#xf112; Reply', role='button')
+						input.submit-button(type='submit', value!='&#xf112; Reply', role='button')
 						div.image-attacher
 							p
 								i.fa.fa-picture-o
