@@ -105,12 +105,9 @@ window.STATUS_CORE = {}
 				$tooltip = $ '<p class="ui-tooltip">' .text $stargazer.attr \data-tooltip
 				$stargazer.hover do
 					->
-						$tooltip.css {
-							bottom: $stargazer.outer-height! + 4px
-							left: ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
-						}
-						console.log $tooltip.outer-width!
+						$tooltip.css \bottom $stargazer.outer-height! + 4px
 						$stargazer.append $tooltip
+						$stargazer.find \.ui-tooltip .css \left ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
 					->
 						$stargazer.find \.ui-tooltip .remove!
 
