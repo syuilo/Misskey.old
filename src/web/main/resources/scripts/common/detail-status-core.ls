@@ -119,6 +119,10 @@ window.STATUS_CORE = {}
 							src: $status.attr \data-user-profile-widget-url
 							+seamless
 						}
+						$popup.css {
+							top: 0
+							left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width!
+						}
 						$status.append $popup
 					, 1000ms
 				->
