@@ -113,16 +113,18 @@ window.STATUS_CORE = {}
 
 			# Display profile
 			..find 'article > .main > .main > .header > .icon-area > .icon-anchor' .hover do
+				$status.user-profile-show-timer = null
 				->
-					sethover = set-timeout ->
-						$popup = $ '<iframe>' .attr {
+					$status.user-profile-show-timer = set-timeout ->
+						$popup = $ '<iframe class="user-profile-popup">' .attr {
 							src: $status.attr \data-user-profile-widget-url
 							+seamless
 						}
 						$status.append $popup
 					, 1000ms
 				->
-					clear-timeout sethover
+					$status.children \.user-profile-popup .remove!
+					clear-timeout $status.user-profile-show-timer
 
 			# Enable reply button
 			..find '.reply-form textarea' .bind \input ->
