@@ -141,13 +141,12 @@ window.STATUS_CORE = {}
 							opacity: 1
 						} 100ms \linear
 
-			# Init stargazer tooltips
+			# Init the profile popup of the user of the reply of the replies
 			..find 'article > .main > .replies > .statuses > .status' .each ->
 				$reply = $ @
-				# Init the profile popup of the user of the reply
 				init-user-profile-popup do
-					$reply.find 'article > .main > .reply-source > article > .icon-area > .icon-anchor'
-					$reply.find 'article > .main > .reply-source' .attr \data-user-profile-widget-url
+					$reply.find 'article > .icon-area > .icon-anchor'
+					$reply.attr \data-user-profile-widget-url
 
 			# Init stargazer tooltips
 			..find '.main .stargazers > .stargazers > .stargazer > a' .each ->
