@@ -1140,8 +1140,8 @@
 									-webkit-user-select: text;
 									-ms-user-select: text;
 									box-sizing: border-box;
-									width: ~"calc(100% - (8em + 8px))";
-									max-width: ~"calc(100% - (8em + 8px))";
+									width: ~"calc(100% - (7em + 8px))";
+									max-width: ~"calc(100% - (7em + 8px))";
 									height: ~"calc(1em + 16px)";
 									min-height: ~"calc(1em + 16px)";
 									vertical-align: bottom;
@@ -1216,11 +1216,11 @@
 									appearance: none;
 									display: block;
 									position: absolute;
-									bottom: 0;
+									bottom: 1px;
 									right: 0;
 									box-sizing: border-box;
 									margin: 4px;
-									padding: 4px 0;
+									padding: 5px 0;
 									width: 7em;
 									font-size: 1em;
 									text-align: center;
@@ -1248,12 +1248,17 @@
 									display: block;
 									box-sizing: border-box;
 									position: absolute;
-									top: 0;
-									right: ~"calc(8em + 8px + 8px)";
+									top: 4px;
+									right: ~"calc(7em + 8px + 8px)";
 									margin: 0;
 									padding: 7px 16px;
 									vertical-align: top;
 									outline: none;
+									cursor: pointer;
+
+									* {
+										cursor: pointer;
+									}
 
 									&:hover {
 										p {
