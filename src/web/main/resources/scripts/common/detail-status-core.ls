@@ -113,7 +113,6 @@ window.STATUS_CORE = {}
 
 			# Display profile
 			..find 'article > .main > .main > .header > .icon-area > .icon-anchor' .hover do
-				$status.user-profile-show-timer = null
 				->
 					$status.user-profile-show-timer = set-timeout ->
 						$popup = $ '<iframe class="user-profile-popup">' .attr {
