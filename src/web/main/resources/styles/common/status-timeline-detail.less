@@ -587,7 +587,6 @@
 
 						> .reply-source {
 							padding: 8px;
-
 							.sub-article;
 						}
 
@@ -1050,6 +1049,12 @@
 						> .stargazers {
 							display: block;
 							background: #f8f8f8;
+
+							&:after {
+								content: "";
+								display: block;
+								clear: both;
+							}
 
 							> .stargazers {
 								display: block;
