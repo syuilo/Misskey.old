@@ -33,6 +33,47 @@
 					border: solid 1px #bdb;
 				}
 
+				
+				&[data-is-favorited='true'] > article > .main {
+					&:hover > .footer > .actions > .favorite > button {
+						color: @themeColor;
+					}
+
+					> .footer > .actions > .favorite {
+						> button {
+							color: @themeColor;
+
+							&:hover {
+								color: darken(@themeColor, 10%);
+							}
+
+							&:active {
+								color: darken(@themeColor, 20%);
+							}
+						}
+					}
+				}
+
+				&[data-is-reposted='true'] > article > .main {
+					&:hover > .footer > .actions > .repost > button {
+						color: @themeColor;
+					}
+
+					> .footer > .actions > .repost {
+						> button {
+							color: @themeColor;
+
+							&:hover {
+								color: darken(@themeColor, 10%);
+							}
+
+							&:active {
+								color: darken(@themeColor, 20%);
+							}
+						}
+					}
+				}
+
 				.repost-form {
 					> .background {
 						display: none;
