@@ -80,9 +80,15 @@ window.STATUS_CORE = {}
 						$trigger.parent!.children \.user-profile-popup .remove!
 					, 500ms
 
+		# Init the profile popup of the user
 		init-user-profile-popup do
 			$status.find 'article > .main > .main > .header > .icon-area > .icon-anchor'
 			$status.attr \data-user-profile-widget-url
+
+		# Init the profile popup of the user of the reply source
+		init-user-profile-popup do
+			$status.find 'article > .main > .reply-source > article > .icon-area > .icon-anchor'
+			$status.find 'article > .main > .reply-source' .attr \data-user-profile-widget-url
 
 		$status
 			# Click event
@@ -134,6 +140,14 @@ window.STATUS_CORE = {}
 						$back.animate {
 							opacity: 1
 						} 100ms \linear
+
+			# Init stargazer tooltips
+			..find 'article > .main > .replies > .statuses > .status' .each ->
+				$reply = $ @
+				# Init the profile popup of the user of the reply
+				init-user-profile-popup do
+					$reply.find 'article > .main > .reply-source > article > .icon-area > .icon-anchor'
+					$reply.find 'article > .main > .reply-source' .attr \data-user-profile-widget-url
 
 			# Init stargazer tooltips
 			..find '.main .stargazers > .stargazers > .stargazer > a' .each ->
