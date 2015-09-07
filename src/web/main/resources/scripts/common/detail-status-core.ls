@@ -48,6 +48,42 @@ window.STATUS_CORE = {}
 					..children \article .find  '.article-main > .reply-info' .show animation-speed
 					..children \article .find  '.article-main > .form-and-replies' .hide animation-speed
 
+		function init-user-profile-popup($trigger, widget-url)
+			$trigger.hover do
+				->
+					clear-timeout $trigger.user-profile-show-timer
+					clear-timeout $trigger.user-profile-hide-timer
+					if not ($trigger.parent!.children '.user-profile-popup')[0]
+						$trigger.user-profile-show-timer = set-timeout ->
+							$popup = $ '<iframe class="user-profile-popup">' .attr {
+								src: widget-url
+								+seamless
+							}
+							$popup.css {
+								top: 0
+								left: $trigger.outer-width! + 16px
+							}
+							$popup.hover do
+								->
+									clear-timeout $trigger.user-profile-hide-timer
+								->
+									clear-timeout $trigger.user-profile-show-timer
+									$trigger.user-profile-hide-timer = set-timeout ->
+										$trigger.parent!.children \.user-profile-popup .remove!
+									, 500ms
+							$trigger.parent!.append $popup
+						, 500ms
+				->
+					clear-timeout $status.user-profile-show-timer
+					clear-timeout $status.user-profile-hide-timer
+					$status.user-profile-hide-timer = set-timeout ->
+						$trigger.parent!.children \.user-profile-popup .remove!
+					, 500ms
+
+		init-user-profile-popup do
+			$status.find 'article > .main > .main > .header > .icon-area > .icon-anchor'
+			$status.attr \data-user-profile-widget-url
+
 		$status
 			# Click event
 			..click (event) ->
@@ -110,38 +146,6 @@ window.STATUS_CORE = {}
 						$stargazer.find \.ui-tooltip .css \left ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
 					->
 						$stargazer.find \.ui-tooltip .remove!
-
-			# Display profile
-			..find 'article > .main > .main > .header > .icon-area > .icon-anchor' .hover do
-				->
-					clear-timeout $status.user-profile-show-timer
-					clear-timeout $status.user-profile-hide-timer
-					if not ($status.children '.user-profile-popup')[0]
-						$status.user-profile-show-timer = set-timeout ->
-							$popup = $ '<iframe class="user-profile-popup">' .attr {
-								src: $status.attr \data-user-profile-widget-url
-								+seamless
-							}
-							$popup.css {
-								top: 0
-								left: $status.find 'article > .main > .main > .header > .icon-area > .icon-anchor' .outer-width! + 16px
-							}
-							$popup.hover do
-								->
-									clear-timeout $status.user-profile-hide-timer
-								->
-									clear-timeout $status.user-profile-show-timer
-									$status.user-profile-hide-timer = set-timeout ->
-										$status.children \.user-profile-popup .remove!
-									, 500ms
-							$status.append $popup
-						, 500ms
-				->
-					clear-timeout $status.user-profile-show-timer
-					clear-timeout $status.user-profile-hide-timer
-					$status.user-profile-hide-timer = set-timeout ->
-						$status.children \.user-profile-popup .remove!
-					, 500ms
 
 			# Enable reply button
 			..find '.reply-form textarea' .bind \input ->
