@@ -73,6 +73,26 @@
 					}
 				}
 
+				&[data-is-pinned='true'] > article > .main > .main {
+					&:hover > .footer > .actions > .pin > button {
+						color: @themeColor;
+					}
+
+					> .footer > .actions > .pin {
+						> button {
+							color: @themeColor;
+
+							&:hover {
+								color: darken(@themeColor, 10%);
+							}
+
+							&:active {
+								color: darken(@themeColor, 20%);
+							}
+						}
+					}
+				}
+
 				.repost-form {
 					> .background {
 						display: none;
