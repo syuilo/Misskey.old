@@ -74,9 +74,9 @@ window.STATUS_CORE = {}
 							$trigger.parent!.append $popup
 						, 500ms
 				->
-					clear-timeout $status.user-profile-show-timer
-					clear-timeout $status.user-profile-hide-timer
-					$status.user-profile-hide-timer = set-timeout ->
+					clear-timeout $trigger.user-profile-show-timer
+					clear-timeout $trigger.user-profile-hide-timer
+					$trigger.user-profile-hide-timer = set-timeout ->
 						$trigger.parent!.children \.user-profile-popup .remove!
 					, 500ms
 
