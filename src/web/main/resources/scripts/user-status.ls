@@ -1,2 +1,2 @@
 $ ->
-	window.STATUS_CORE.set-event $ '#status .status.article'
+	window.STATUS_CORE.set-event $ '#status .main .status.article'
