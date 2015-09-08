@@ -5,10 +5,10 @@ $ ->
 		Notification.request-permission!
 	catch
 		console.log 'oops'
-	
+
 	$ '.timeline .statuses .status .status.article' .each ->
 		window.STATUS_CORE.set-event $ @
-	
+
 	$ \#notices .hover do
 		-> $ '#notices .nav' .show 200ms
 		-> $ '#notices .nav' .hide 200ms
@@ -16,7 +16,7 @@ $ ->
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
-	
+
 	# 通知読み込み
 	$.ajax config.api-url + '/notice/timeline-webhtml' {
 		type: \get
@@ -40,12 +40,12 @@ $ ->
 		console.log 'Connected'
 
 	socket.on \disconnect (client) ->
-		
+
 	socket.on \notice (notice) ->
 		console.log \notice notice
-		
+
 		$ '#notices .notice-empty' .remove!
-		
+
 		$notice = ($ notice).hide!
 		$notice.prepend-to ($ '#notices .notices') .show 200
 
@@ -59,7 +59,7 @@ $ ->
 
 	socket.on \reply (status) ->
 		console.log \reply status
-		
+
 		id = status.id
 		name = status.user-name
 		sn = status.user-screen-name
@@ -85,7 +85,9 @@ $ ->
 			icon: message.user.icon-image-url
 		}
 		n.onshow = ->
-			set-timeout n.close, 10000ms
+			set-timeout ->
+				n.close!
+			, 10000ms
 		n.onclick = ->
 			url = config.url + '/widget/talk/' + message.user.screen-name
 			$content = $ '<iframe>' .attr {
@@ -155,13 +157,13 @@ $ ->
 			| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
 			| \denied-gif-upload => window.display-message 'GIFを投稿可能なのはplus-accountのみです。'
 			| _ => window.display-message "不明なエラー (#error-code)"
-	
+
 	$ '#post-form textarea' .bind \input ->
 		text = $ '#post-form textarea' .val!
 
 		# オートセーブ
 		$.cookie \post-autosave text, { path: '/', expires: 365 }
-		
+
 	# Read more
 	$ window .scroll ->
 		me = $ @
@@ -183,7 +185,7 @@ $ ->
 						$status = $ '<li class="status">' .append $ @
 						window.STATUS_CORE.set-event $status.children '.status.article'
 						$status.append-to $ '#timeline .timeline > .statuses'
-					# Attach Wave effects 
+					# Attach Wave effects
 					init-waves-effects!
 				.fail (data) ->
 					me.data \loading no
