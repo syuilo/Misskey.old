@@ -162,7 +162,7 @@ window.STATUS_CORE = {}
 
 			# Enable reply button
 			..find '.reply-form textarea' .bind \input ->
-				$status.find '.reply-form .submit-button' .attr \disabled no
+				$status.find '.reply-form .submit-button' .attr \disabled off
 
 			# Ajax setting of reply-form
 			..find \.reply-form .submit (event) ->
@@ -195,12 +195,13 @@ window.STATUS_CORE = {}
 			# Preview attache image
 			..find '.image-attacher input[name=image]' .change ->
 				$input = $ @
+				$input.parents '.reply-form' .find '.image-preview-container' .css \display \block
+				$status.find '.reply-form .submit-button' .attr \disabled off
 				file = $input.prop \files .0
 				if file.type.match 'image.*'
 					reader = new FileReader!
 						..onload = ->
 							$img = $ '<img>' .attr \src reader.result
-							$input.parents '.reply-form' .find '.image-preview-container' .css \display \block
 							$input.parents '.reply-form' .find '.image-preview' .find 'img' .remove!
 							$input.parents '.reply-form' .find '.image-preview' .append $img
 						..readAsDataURL file
