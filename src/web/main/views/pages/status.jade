@@ -14,4 +14,8 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
+			button#read-after(role='button', title='これより後の投稿を読む')
+				i.fa.fa-angle-up
 			div.ui-status#status!= statusHtml
+			button#read-before(role='button', title='これより前の投稿を読む')
+				i.fa.fa-angle-down
