@@ -15,19 +15,19 @@ require! {
 
 module.exports = (app, user, text, in-reply-to-status-id = null, image = null, repost-from-status = null) ->
 	resolve, reject <- new Promise!
-	
+
 	function throw-error(code, message)
 		reject {code, message}
-	
+
 	max-length = if user.is-plus then 500chars else 300chars
-	
+
 	text .= trim!
 	switch
 	| !image? && !repost-from-status? && null-or-empty text => throw-error \empty-text 'Empty text.'
 	| not null-or-empty text and text[0] == \$ => analyze-command text
 	| text.length > max-length => throw-error \too-long-text 'Too long text.'
 	| _ =>
-		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec 
+		(, recent-status) <- Status.find-one {user-id: user.id} .sort \-createdAt .exec
 		switch
 		| recent-status? && text == recent-status.text && !image? && !repost-from-status? => throw-error \duplicate-content 'Duplicate content.'
 		| image? =>
@@ -39,7 +39,7 @@ module.exports = (app, user, text, in-reply-to-status-id = null, image = null, r
 					create image, \gif
 				else
 					throw-error \denied-gif-upload 'Denied GIF upload (plus-account only).'
-			| _ => 
+			| _ =>
 				image-quality = if user.is-plus then 80 else 60
 				gm image
 					.compress \jpeg
@@ -168,6 +168,12 @@ module.exports = (app, user, text, in-reply-to-status-id = null, image = null, r
 			command = text.substr 1char (space-index - 1char)
 			argument = text.substr (space-index + 1char)
 			switch command
+			| \memo =>
+				text = argument
+				create-notice null, user.id, \self-notice {
+					text: text
+				} .then ->
+					resolve null
 			| \report-image =>
 				slash-index = argument.index-of '/'
 				if slash-index > 1
