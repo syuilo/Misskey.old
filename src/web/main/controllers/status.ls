@@ -8,6 +8,7 @@ require! {
 }
 
 module.exports = (req, res) ->
+	user = req.root-user
 	me = req.me
 	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail/status.jade"
 	Status.find-by-id req.root-status.id, (, status) ->
@@ -19,5 +20,6 @@ module.exports = (req, res) ->
 				text-parser: parse-text
 				config: config.public-config
 			res.display req, res, 'status' do
+				user: user
 				status: detail-status
 				status-html: html
