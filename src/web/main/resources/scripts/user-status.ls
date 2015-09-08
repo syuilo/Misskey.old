@@ -9,6 +9,7 @@ function init-read-before-statuses-button
 		$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
 			type: \get
 			data: {
+				'user-id': $ '#status .main > .status.article' .attr \data-user-id
 				'max-cursor': $ '#status .main > .status.article' .attr \data-timeline-cursor
 			}
 			data-type: \json
@@ -39,6 +40,7 @@ function init-read-after-statuses-button
 		$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
 			type: \get
 			data: {
+				'user-id': $ '#status .main > .status.article' .attr \data-user-id
 				'since-cursor': $ '#status .main > .status.article' .attr \data-timeline-cursor
 			}
 			data-type: \json

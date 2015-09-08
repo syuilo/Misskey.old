@@ -222,6 +222,7 @@ function init-header-image-edit-form
 				$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
 					type: \get
 					data: {
+						'user-id': $ \html .attr \data-user-id
 						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
 					}
 					data-type: \json
