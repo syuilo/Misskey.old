@@ -695,7 +695,7 @@
 				}
 
 				> .repost-information {
-					padding: 8px 32px;
+					padding: 6px 32px;
 					color: #57bb00;
 					background: #f8f8f8;
 					border-bottom: solid 1px #e8e8e8;
@@ -715,7 +715,7 @@
 								max-width: 28px;
 								max-height: 28px;
 								margin: 0 8px 0 0;
-								border-radius: 6px;
+								border-radius: 4px;
 								transition: all 0.1s ease;
 							}
 						}
@@ -730,6 +730,16 @@
 
 							.name {
 								font-weight: bold;
+								color: #555;
+								text-decoration: none;
+
+								&:hover {
+									text-decoration: underline;
+								}
+
+								&:active {
+									text-decoration: underline;
+								}
 							}
 						}
 					}
@@ -1139,6 +1149,7 @@
 
 									&:disabled {
 										opacity: 0.5;
+										cursor: default;
 									}
 
 									&:hover {
@@ -1250,7 +1261,7 @@
 						display: block;
 						position: relative;
 						float: left;
-						padding: 4px;
+						padding: 4px 4px 4px 8px;
 						box-sizing: border-box;
 						width: ~"calc(100% - (32px + 4px + 4px))";
 
@@ -1301,7 +1312,7 @@
 							position: absolute;
 							z-index: 1;
 							top: 12px;
-							left: -11px;
+							left: -7px;
 
 							&:before {
 								content: "";
@@ -1370,8 +1381,10 @@
 							}
 
 							&:disabled {
-								background: #D4D4D4;
-								color: #fff;
+								color: #D0D0D0;
+								background: #EFEFEF;
+								border: solid 1px #E7E7E7;
+								cursor: default;
 							}
 						}
 
