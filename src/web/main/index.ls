@@ -58,9 +58,15 @@ server.use session do
 # セッションを準備し、ユーザーがログインしているかどうかやデフォルトレンダリングデータを用意する
 # セッションの確立が必要ないリソースなどへのアクセスでもこの処理を行うのは無駄であるので、任意のタイミングで処理を呼び出せるようにする
 server.init-session = (req, res, callback) ->
-	ua = req.headers['user-agent'].to-lower-case!
-	is-mobile = /(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test ua
-	req.is-mobile = !!is-mobile
+	uas = req.headers['user-agent']
+	if uas?
+		ua = uas.to-lower-case!
+		is-mobile = /(iphone|ipod|ipad|android.*mobile|windows.*phone|psp|vita|nitro|nintendo)/i.test ua
+		req.is-mobile = !!is-mobile
+	else
+		ua = null
+		is-mobile = no
+		req.is-mobile = no
 	req.login = req.session? && req.session.user-id?
 	req.data = # Render datas
 		page-path: req.path
@@ -96,7 +102,11 @@ server.get '/manifest.json' (req, res) -> res.send-file path.resolve "#__dirname
 # Log
 server.all '*' (req, res, next) ->
 	next!
-	ua = req.headers['user-agent'].to-lower-case!
+	uas = req.headers['user-agent']
+	if uas?
+		ua = uas.to-lower-case!
+	else
+		ua = null
 	publish-redis-streaming \log to-json {
 		type: \web
 		value:
@@ -136,5 +146,5 @@ server.use (err, req, res, next) ->
 		res.display req, res, \error {err: display-err}
 	else
 		res.send err
-		
+
 exports.server = server
