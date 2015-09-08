@@ -6,7 +6,24 @@
 
 main {
 	> header {
+		position: relative;
 		background: #fff;
+
+		#talk-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 8px;
+			padding: 8px;
+			color: #fff;
+			outline: 0;
+			border: 0;
+			box-shadow: none;
+		}
 
 		.main {
 			position: relative;
@@ -81,7 +98,7 @@ main {
 			display: block;
 			position: relative;
 			z-index: 2;
-			padding: 8px 0;
+			padding: 0;
 			text-align: center;
 			//border-bottom: solid 1px #eee;
 			background: #fff;
@@ -93,7 +110,7 @@ main {
 				padding: 8px;
 				color: #333;
 				background: #eee;
-				border-radius: 4px;
+				border-bottom: solid 1px #eee;
 
 				&:before {
 					content: "";
@@ -103,7 +120,7 @@ main {
 					left: ~"calc(50% - 16px)";
 					border-top: solid 16px transparent;
 					border-right: solid 16px transparent;
-					border-bottom: solid 16px #eee;
+					border-bottom: solid 16px #fff;
 					border-left: solid 16px transparent;
 				}
 

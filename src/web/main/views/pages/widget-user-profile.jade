@@ -16,6 +16,9 @@ html(lang='ja'
 	body
 		main
 			header
+				if login
+					a#talk-button(href=config.url + '/widget/talk/' + user.screenName)
+						i.fa.fa-comments
 				div.main
 					a.icon-anchor(href=config.url + '/' + user.screenName, target='_top', rel='icon')
 						img.icon(src=user.iconImageUrl, alt='icon')
