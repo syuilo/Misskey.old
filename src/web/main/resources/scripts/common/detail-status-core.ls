@@ -200,8 +200,8 @@ window.STATUS_CORE = {}
 					reader = new FileReader!
 						..onload = ->
 							$img = $ '<img>' .attr \src reader.result
-							$input.parents '.main' .find '.image-preview' .find 'img' .remove!
-							$input.parents '.main' .find '.image-preview' .append $img
+							$input.parents '.reply-form' .find '.image-preview' .find 'img' .remove!
+							$input.parents '.reply-form' .find '.image-preview' .append $img
 						..readAsDataURL file
 
 			## Init tag input of reply-form
