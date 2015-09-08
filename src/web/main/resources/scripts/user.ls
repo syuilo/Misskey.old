@@ -2,7 +2,7 @@ prelude = require 'prelude-ls'
 
 $ ->
 	is-me = $ \html .attr \data-is-me
-	
+
 	# Init edit forms
 	if is-me
 		init-icon-edit-form!
@@ -10,20 +10,20 @@ $ ->
 
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUS_CORE.set-event $ @
-	
+
 	function check-follow
 		($ \html .attr \data-is-following) == \true
-		
+
 	if is-me
 		$ \#name .click ->
 			$ 'main > header' .attr \data-name-editing \true
-	
+
 	$ \#screen-name .click ->
 		element= document.get-element-by-id \screen-name
 		rng = document.create-range!
 		rng.select-node-contents element
 		window.get-selection!.add-range rng
-	
+
 	$ '#follow-button' .click ->
 		$button = $ @
 			..attr \disabled on
@@ -57,7 +57,7 @@ $ ->
 				$ \html .attr \data-is-following \true
 			.fail ->
 				$button.attr \disabled off
-	
+
 	$ window .scroll ->
 		top = $ @ .scroll-top!
 		height = parse-int($ \#header-data .css \height)
@@ -211,3 +211,27 @@ function init-header-image-edit-form
 							$ '#header-image-edit-form input[name=trim-h]' .val Math.round data.height
 					}
 				..read-as-dataURL file
+
+	# Read more
+	$ window .scroll ->
+		me = $ @
+		current = $ window .scroll-top! + window.inner-height
+		if current > $ document .height! - 32
+			if not me.data \loading
+				me.data \loading yes
+				$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
+					type: \get
+					data: {
+						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
+					}
+					data-type: \json
+					xhr-fields: {+with-credentials}}
+				.done (data) ->
+					me.data \loading no
+					$statuses = $ data
+					$statuses.each ->
+						$status = $ '<li class="status">' .append $ @
+						window.STATUS_CORE.set-event $status.children '.status.article'
+						$status.append-to $ '#timeline .timeline > .statuses'
+				.fail (data) ->
+					me.data \loading no
