@@ -170,7 +170,7 @@ window.STATUS_CORE = {}
 				$form = $ @
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
-					..value 'Replying...'
+					..attr \value 'Replying...'
 				$.ajax "#{config.api-url}/web/status/reply-detail.plain" {
 					type: \post
 					data: new FormData $form.0
@@ -189,7 +189,7 @@ window.STATUS_CORE = {}
 					window.display-message '返信しました！'
 				.fail ->
 					$submit-button.attr \disabled off
-					$submit-button.value '&#xf112; Reply'
+					$submit-button.attr \value '&#xf112; Reply'
 					window.display-message '返信に失敗しました。再度お試しください。'
 
 			# Preview attache image
