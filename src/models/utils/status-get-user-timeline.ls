@@ -12,7 +12,7 @@ module.exports = (user-id, limit, since-cursor, max-cursor) -> new Promise (reso
 		| max-cursor?   => \-createdAt
 	console.log since-cursor
 	Status
-		.sort sort
 		.find query
+		.sort sort
 		.limit limit
 		.exec (, statuses) -> resolve statuses
