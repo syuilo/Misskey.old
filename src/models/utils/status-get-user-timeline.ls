@@ -7,8 +7,11 @@ module.exports = (user-id, limit, since-cursor, max-cursor) -> new Promise (reso
 	query = | !since-cursor? and !max-cursor? => {user-id: user-id}
 		| since-cursor? => (user-id: user-id) `$and` (cursor: {$gt: since-cursor})
 		| max-cursor?   => (user-id: user-id) `$and` (cursor: {$lt: max-cursor})
+	sort = | !since-cursor? and !max-cursor? => \-createdAt
+		| since-cursor? => \createdAt
+		| max-cursor?   => \-createdAt
 	Status
 		.find query
-		.sort \-createdAt # Desc
+		.sort sort
 		.limit limit
 		.exec (, statuses) -> resolve statuses
