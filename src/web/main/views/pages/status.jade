@@ -14,4 +14,13 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
-			div.ui-status#status!= statusHtml
+			div#status
+				button#read-after(role='button', title='これより後の投稿を読む')
+					i.fa.fa-angle-up
+				aside.timeline#after-timeline
+					ol.statuses
+				div.ui-status.main!= statusHtml
+				aside.timeline#before-timeline
+					ol.statuses
+				button#read-before(role='button', title='これより前の投稿を読む')
+					i.fa.fa-angle-down

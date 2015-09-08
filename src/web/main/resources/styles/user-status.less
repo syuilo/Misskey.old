@@ -14,4 +14,39 @@ main {
 
 #status {
 	padding: 16px 0;
+
+	> .main .status.article > article {
+		margin: 0;
+	}
+}
+
+#read-before, #read-after {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: block;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 8px 0;
+	width: 100%;
+	font-size: 1em;
+	text-align: center;
+	color: #999;
+	cursor: pointer;
+	background: transparent;
+	outline: none;
+	border: none;
+	box-shadow: none;
+
+	&:hover {
+		background: #f6f6f6;
+	}
+
+	&:active {
+		background: #e5e5e5;
+	}
+
+	&:disabled {
+		color: #ccc;
+	}
 }
