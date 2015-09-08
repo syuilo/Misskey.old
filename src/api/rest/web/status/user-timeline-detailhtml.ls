@@ -14,8 +14,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	status-get-user-timeline do
 		user-id
 		10statuses
-		if !empty since-cursor then Number since-cursor else null
-		if !empty max-cursor then Number max-cursor else null
+		if not empty since-cursor then Number since-cursor else null
+		if not empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
 		status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/detail/status.jade"
 		detail-timeline-serialyzer statuses, user .then (timeline) ->
