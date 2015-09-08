@@ -39,9 +39,9 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 								img.icon(src=me.iconImageUrl, alt='icon')
 							table.status
 								tr
-									th 投稿
-									th フォロー
-									th フォロワー
+									th Statuses
+									th Following
+									th Followers
 								tr
 									td: a(href='/' + me.screenName)= me.statusesCount
 									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
