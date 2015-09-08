@@ -14,4 +14,7 @@ module.exports = (user-id, limit, since-cursor, max-cursor) -> new Promise (reso
 		.find query
 		.sort sort
 		.limit limit
-		.exec (, statuses) -> resolve statuses
+		.exec (, statuses) ->
+			if sort == \createdAt
+				statuses .= reverse!
+			resolve statuses
