@@ -1438,9 +1438,22 @@
 							}
 						}
 
-						> .image-preview {
-							img {
-								max-width: 100%;
+						> .image-preview-container {
+							display: block;
+							clear: both;
+							padding: 8px;
+
+							> .image-preview {
+								display: block;
+								padding: 8px;
+								margin: 0;
+								background: #fff;
+								border: solid 1px #E4E4E4;
+
+								img {
+									width: 100%;
+									max-width: 128px;
+								}
 							}
 						}
 					}
