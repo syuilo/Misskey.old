@@ -200,6 +200,7 @@ window.STATUS_CORE = {}
 					reader = new FileReader!
 						..onload = ->
 							$img = $ '<img>' .attr \src reader.result
+							$input.parents '.reply-form' .find '.image-preview-container' .css \display \block
 							$input.parents '.reply-form' .find '.image-preview' .find 'img' .remove!
 							$input.parents '.reply-form' .find '.image-preview' .append $img
 						..readAsDataURL file
