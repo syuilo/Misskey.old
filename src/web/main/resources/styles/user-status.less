@@ -14,6 +14,10 @@ main {
 
 #status {
 	padding: 16px 0;
+
+	> .main .status.article > article {
+		margin: 0;
+	}
 }
 
 #read-before, #read-after {
@@ -32,7 +36,6 @@ main {
 	background: transparent;
 	outline: none;
 	border: none;
-	border-bottom: solid 1px #e8e8e8;
 	box-shadow: none;
 
 	&:hover {
@@ -40,7 +43,7 @@ main {
 	}
 
 	&:active {
-		background: #ddd;
+		background: #e0e0e0;
 	}
 
 	&:disabled {
