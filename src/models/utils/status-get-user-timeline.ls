@@ -10,7 +10,6 @@ module.exports = (user-id, limit, since-cursor, max-cursor) -> new Promise (reso
 	sort = | !since-cursor? and !max-cursor? => \-createdAt
 		| since-cursor? => \createdAt
 		| max-cursor?   => \-createdAt
-	console.log since-cursor
 	Status
 		.find query
 		.sort sort
