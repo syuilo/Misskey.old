@@ -1,8 +1,10 @@
 function init-read-before-statuses-button
 	$button = $ \#read-before
-		..attr \disabled on
-		..attr \title '読み込み中...'
-		..find \i .attr \class 'fa fa-spinner fa-pulse'
+	$button.click ->
+		$button
+			..attr \disabled on
+			..attr \title '読み込み中...'
+			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
 	$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
 		type: \get
