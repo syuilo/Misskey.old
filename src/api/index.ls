@@ -5,7 +5,6 @@
 require! {
 	express
 	cookie
-	multer
 	redis
 	cors
 	'body-parser'
@@ -41,7 +40,6 @@ api-server
 			* 'http://dev.misskey.xyz'
 			* 'http://dev.misskey.xyz:1205'
 	..use body-parser.urlencoded {+extended}
-	..use multer!
 	..use cookie-parser config.cookie-pass
 	..use session do
 		key: config.session-key
