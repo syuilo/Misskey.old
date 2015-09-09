@@ -44,7 +44,7 @@
     "moment": "2.10.6",
     "mongoose": "4.0.8",
     "mongoose-auto-increment": "4.0.0",
-    "multer": "1.0.3",
+    "multer": "0.1.8",
     "nodemailer": "1.4.0",
     "prelude-ls": "1.1.2",
     "redis": "1.0.0",
