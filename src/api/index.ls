@@ -5,8 +5,8 @@
 require! {
 	express
 	cookie
-	multer
 	redis
+	multer
 	cors
 	'body-parser'
 	'cookie-parser'
