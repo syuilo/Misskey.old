@@ -224,12 +224,12 @@ div.status.article(
 					div.main
 						textarea(name='text', placeholder='この投稿に返信...', role='textbox', aria-multiline)= '@' + status.user.screenName + ' '
 						div.design-allow(role='presentation')
+						input(name='in-reply-to-status-id', type='hidden', value=status.id)
+						input.submit-button(type='submit', value!='&#xf112; Reply', role='button', disabled)
 						div.image-attacher
 							p
 								i.fa.fa-picture-o
 							input(name='image', type='file', accept='image/*')
-						input(name='in-reply-to-status-id', type='hidden', value=status.id)
-						input.submit-button(type='submit', value!='&#xf112; Reply', role='button', disabled)
 					div.image-preview-container
 						div.image-preview
 			
