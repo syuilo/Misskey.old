@@ -122,6 +122,8 @@ div.status.article(
 							i.fa.fa-retweet
 							| Reposted by 
 							a.name(href=config.url + '/' + status.repostedByUser.screenName)= status.repostedByUser.name
+							if status.repostedByUser.isVerified
+								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
 					if status.source.text != null && status.source.text != ''
 						article
 							div.text
