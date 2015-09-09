@@ -18,8 +18,8 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 		meta(property='twitter:image', content='')
 		meta(property='twitter:url', content=config.url)
 		block title
-		script(src='/resources/scripts/common/status-core.js')
-		link(rel='stylesheet', href='/resources/styles/common/status-timeline.css')
+		script(src='/resources/scripts/common/detail-status-core.js')
+		link(rel='stylesheet', href='/resources/styles/common/status-timeline-detail.css')
 		link(rel='stylesheet', href='/resources/styles/home.css')
 		link(rel='stylesheet', href='/resources/styles/theme/home.css')
 		block assets
@@ -39,23 +39,14 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 								img.icon(src=me.iconImageUrl, alt='icon')
 							table.status
 								tr
-									th 投稿
-									th フォロー
-									th フォロワー
+									th Statuses
+									th Following
+									th Followers
 								tr
 									td: a(href='/' + me.screenName)= me.statusesCount
 									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
 									td: a(href='/' + me.screenName + '/followers')= me.followersCount
 					div#notices(data-ui-background-wallpaper-blur='true')
-						div.nav
-							select.filter-type(title='表示を絞り込み')
-								option(value='all') すべて
-								option(value='self-notice') self-notice
-								option(value='follow') 被フォロー
-								option(value='status-favorite') つぶやきの被お気に入り
-								option(value='status-repost') つぶやきの被Repost
-							button.delete-all-button(title='全ての通知を削除')
-								i.fa.fa-trash-o
 						ol.notices
 					div#recommendation-users(data-ui-background-wallpaper-blur='true')
 						ol.users
