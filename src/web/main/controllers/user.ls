@@ -124,8 +124,8 @@ module.exports = (req, res, page = \home) ->
 				.sort {created-at: \desc}
 				.limit 12photos
 				.exec (, statuses) ->
-					resolve statuses |> map (status) ->
-						status .= to-object!
+					resolve (statuses |> map (status) ->
+						status .= to-object!)
 	] .then (results) -> res.display do
 		req
 		res
