@@ -100,6 +100,7 @@ module.exports = (status, me, callback) ->
 	status <- get-reply-source status
 	status <- get-replies yes status
 	status <- get-stargazers status
+	console.log \kyoppie
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then
