@@ -266,38 +266,4 @@ div.status.article(
 													p!= textParser(reply.text)
 												if reply.isImageAttached
 													img.image(src=reply.imageUrls[0], alt='image')
-										
-									aside.replies(itemprop='comment')
-										ol.statuses
-											if reply.replies.length > 0 && reply.replies[0] != null
-												each replyInReply in reply.replies
-													li.status(title!= '#{replyInReply.createdAt}&#x0A;'
-															data-id= replyInReply.id
-															data-user-id= replyInReply.user.id
-															data-user-color= replyInReply.user.color
-															data-user-verified!= replyInReply.user.isVerified.toString()
-															data-user-profile-widget-url= config.url + '/widget/user/' + replyInReply.user.screenName)
-														article
-															div.main
-																div.icon-area
-																	a.icon-anchor(href=config.url + '/' + replyInReply.user.screenName, title= replyInReply.user.comment != null ? replyInReply.user.comment : '@' + replyInReply.user.screenName, rel='icon')
-																		img.icon(src=replyInReply.user.iconImageUrl, alt='icon')
-																div.main
-																	header.header
-																		h2.name
-																			a(href=config.url + '/' + replyInReply.user.screenName)= replyInReply.user.name
-																		if replyInReply.user.isVerified
-																			img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-																		p.screen-name= '@' + replyInReply.user.screenName
-																		p.created-at
-																			a.time-anchor(href=config.url + '/' + replyInReply.user.screenName + '/status/' + replyInReply.id, itemprop='url')
-																				time(datetime=replyInReply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= replyInReply.createdAt
-																	div.content
-																		div.text
-																			p!= textParser(replyInReply.text)
-																		if replyInReply.isImageAttached
-																			img.image(src=replyInReply.imageUrls[0], alt='image')
-															if replyInReply.replies.length > 0
-																aside.replies(itemprop='comment')
-																	p.more
-																		| さらに返信があります
+									
