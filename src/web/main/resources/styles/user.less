@@ -789,8 +789,11 @@ main {
 
 			> .photos {
 				> h2 {
+					margin: 12px;
+					text-align: left;
 					color: #777;
 					font-size: 1.2em;
+					font-weight: normal;
 
 					> i {
 						margin-right: 0.25em;
@@ -821,6 +824,12 @@ main {
 							display: block;
 							width: 100%;
 							min-height: 128px;
+							box-shadow: none;
+							transition: all 0.5s ease;
+
+							&:hover {
+								box-shadow: 0 0 64px rgba(0, 0, 0, 0.8) inset;
+							}
 						}
 					}
 				}
