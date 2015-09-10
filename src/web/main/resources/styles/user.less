@@ -416,7 +416,7 @@ main {
 						}
 					}
 
-					> .contents {
+					> .comment-container {
 						display: block;
 						position: absolute;
 						z-index: 1;
@@ -470,60 +470,6 @@ main {
 								color: rgba(0, 0, 0, 0.35);
 							}
 						}
-
-						> #location {
-							display: block;
-							color: #555;
-
-							i {
-								margin-right: 0.25em;
-							}
-						}
-
-						> #website {
-							display: block;
-							color: #444;
-							word-break: break-all;
-
-							a {
-								color: #444;
-
-								&:hover,
-								&:focus {
-									text-decoration: underline;
-								}
-							}
-
-							i {
-								margin-right: 0.25em;
-							}
-						}
-
-						> #followers {
-							margin: 32px 0;
-
-							h2 {
-								display: none;
-							}
-
-							ol {
-								margin: 0;
-								padding: 0;
-								list-style: none;
-
-								li {
-									display: inline-block;
-
-									a {
-										img {
-											width: 32px;
-											height: 32px;
-											vertical-align: bottom;
-										}
-									}
-								}
-							}
-						}
 					}
 				}
 
@@ -573,7 +519,7 @@ main {
 	#contents {
 		position: relative;
 
-		#content {
+		#main-content {
 			box-sizing: border-box;
 			margin: 0 auto;
 			padding: 16px 0;
@@ -684,10 +630,94 @@ main {
 			}
 		}
 
-		#side-content {
+		> #left-sub-contents {
+			display: block;
+			position: absolute;
+			z-index: 1;
+			top: 100%;
+			width: 100%;
+			margin: 4px 0 0 0;
+			text-align: center;
+
+			> #location {
+				display: block;
+				color: #555;
+
+				i {
+					margin-right: 0.25em;
+				}
+			}
+
+			> #website {
+				display: block;
+				color: #444;
+				word-break: break-all;
+
+				a {
+					color: #444;
+
+					&:hover,
+					&:focus {
+						text-decoration: underline;
+					}
+				}
+
+				i {
+					margin-right: 0.25em;
+				}
+			}
+
+			> #followers {
+				margin: 32px 0;
+
+				h2 {
+					display: none;
+				}
+
+				ol {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					li {
+						display: inline-block;
+
+						a {
+							img {
+								width: 32px;
+								height: 32px;
+								vertical-align: bottom;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#side-contents {
 			position: absolute;
 			top: 0;
 			right: 0;
+
+
+			> .photos {
+				> .photos {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+
+					> .photo {
+						display: block;
+						float: left;
+						width: 30%;
+						height:;
+						background-color: #fff;
+						background-repeat: no-repeat;
+						background-position: center center;
+						background-size: cover;
+					}
+				}
+			}
 		}
 	}
 }
