@@ -637,6 +637,7 @@
 				}
 
 				> .replies {
+					padding-top: 4px;
 					padding-left: 32px;
 
 					> .statuses {
@@ -832,11 +833,29 @@
 								}
 
 								> .replies {
+									padding-top: 4px;
 									padding-left: 64px;
 
 									> .more {
 										margin: 0;
-										color: #666;
+
+										> a {
+											color: #666;
+											text-decoration: none;
+
+											&:hover {
+												text-decoration: underline;
+											}
+
+											&:active {
+												color: #444;
+												text-decoration: underline;
+											}
+
+											> i {
+												margin-right: 0.25em;
+											}
+										}
 									}
 								}
 							}

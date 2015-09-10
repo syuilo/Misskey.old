@@ -299,4 +299,6 @@ div.status.article(
 															if replyInReply.replies.length > 0
 																aside.replies(itemprop='comment')
 																	p.more
-																		| さらに返信があります
+																		a(href=config.url + '/' + replyInReply.user.screenName + '/status/' + replyInReply.id + '/replies')
+																			i.fa.fa-reply
+																			| さらに返信があります
