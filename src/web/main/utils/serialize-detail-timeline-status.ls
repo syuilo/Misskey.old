@@ -61,7 +61,7 @@ module.exports = (status, me, callback) ->
 						status.reply-source.user = reply-user
 						callback status
 
-	function get-replies(status, callback)
+	function get-replies(status, recursion, callback)
 		status-get-replies status .then (replies) ->
 			| !replies? => callback status
 			| _ =>
@@ -72,7 +72,11 @@ module.exports = (status, me, callback) ->
 								reply .= to-object!
 								reply.is-reply = reply.in-reply-to-status-id?
 								reply.user = reply-user.to-object!
-								resolve reply
+								if recursion
+									get-replies reply, no (serialized-reply) ->
+										resolve serialized-reply
+								else
+									resolve reply
 						else
 							resolve null)
 					.then (replies) ->
@@ -94,7 +98,7 @@ module.exports = (status, me, callback) ->
 	status <- get-app status
 	status <- get-user status
 	status <- get-reply-source status
-	status <- get-replies status
+	status <- get-replies status, yes
 	status <- get-stargazers status
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
