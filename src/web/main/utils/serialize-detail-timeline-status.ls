@@ -73,7 +73,8 @@ module.exports = (status, me, callback) ->
 								reply.is-reply = reply.in-reply-to-status-id?
 								reply.user = reply-user.to-object!
 								if recursion
-									resolve <- get-replies no reply
+									get-replies no reply, (serialized-reply) ->
+										resolve serialized-reply
 								else
 									resolve reply
 						else
