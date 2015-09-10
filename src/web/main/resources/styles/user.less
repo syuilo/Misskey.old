@@ -517,14 +517,19 @@ main {
 	}
 
 	#contents {
+		display: -webkit-flexbox;
+		display: -moz-flexbox;
+		display: -ms-flexbox;
+		display: -o-flexbox;
+		display: flexbox;
+		justify-content: center;
 		position: relative;
 
 		#main-content {
+			flex: 1 1 600px;
 			box-sizing: border-box;
-			margin: 0 auto;
+			margin: 0;
 			padding: 16px 0;
-			width: ~"calc(100% - 615px)";
-			max-width: 600px;
 
 			&:after {
 				content: "";
@@ -631,12 +636,7 @@ main {
 		}
 
 		> #left-sub-contents {
-			display: block;
-			position: absolute;
-			z-index: 1;
-			top: 100%;
-			width: 100%;
-			margin: 4px 0 0 0;
+			flex: 1 1 300px;
 			text-align: center;
 
 			> #location {
@@ -695,10 +695,7 @@ main {
 		}
 
 		#side-contents {
-			position: absolute;
-			top: 0;
-			right: 0;
-
+			flex: 1 1 300px;
 
 			> .photos {
 				> .photos {
