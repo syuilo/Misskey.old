@@ -165,7 +165,7 @@ html(lang='ja'
 								button#follow-button.following フォロー中
 							else
 								button#follow-button.notFollowing フォロー
-					if recentPhotoStatuses.length > 0
+					if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
 						div.photos
 							ol.photos
 								each status in recentPhotoStatuses
