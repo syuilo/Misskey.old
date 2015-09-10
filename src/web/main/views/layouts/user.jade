@@ -156,15 +156,16 @@ html(lang='ja'
 					block content
 				div#right-sub-contents
 					if login
-							if me.id != user.id
-								if isFollowMe
-									p#friend-status フォローされています
-					if login
 						if me.id != user.id
-							if isFollowing
-								button#follow-button.following フォロー中
-							else
-								button#follow-button.notFollowing フォロー
+							div#friend-form
+								if isFollowMe
+									p#friend-status
+										i.fa.fa-heart
+										| フォローされています
+								if isFollowing
+									button#friend-button.following フォロー中
+								else
+									button#friend-button.not-following フォロー
 					if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
 						div.photos
 							ol.photos
