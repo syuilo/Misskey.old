@@ -527,14 +527,21 @@ main {
 
 		#main-content {
 			flex: 1 1 600px;
-			box-sizing: border-box;
-			margin: 0;
 			padding: 16px 0;
+			max-width: 600px;
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
+			#timeline {
+				> .timeline {
+					> .statuses {
+						> .status:first-child {
+							> .status.article {
+								> article {
+									margin: 0 0 16px 0;
+								}
+							}
+						}
+					}
+				}
 			}
 
 			#followings-list, #followers-list {
