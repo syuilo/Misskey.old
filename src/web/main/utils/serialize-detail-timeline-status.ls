@@ -98,9 +98,8 @@ module.exports = (status, me, callback) ->
 	status <- get-app status
 	status <- get-user status
 	status <- get-reply-source status
-	status <- get-replies yes status
+	status <- get-replies status yes
 	status <- get-stargazers status
-	console.log status
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then
