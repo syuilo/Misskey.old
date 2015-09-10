@@ -8,6 +8,8 @@ $ ->
 		init-icon-edit-form!
 		init-header-image-edit-form!
 
+	$ \#left-sub-contents .css \padding-top "#{$ \#comment .outer-height! - 16px}px"
+
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUS_CORE.set-event $ @
 
