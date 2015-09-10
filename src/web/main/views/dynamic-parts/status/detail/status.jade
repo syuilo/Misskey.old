@@ -270,34 +270,34 @@ div.status.article(
 									aside.replies(itemprop='comment')
 										ol.statuses
 											if reply.replies.length > 0 && reply.replies[0] != null
-												each reply in reply.replies
-													li.status(title!= '#{reply.createdAt}&#x0A;'
-															data-id= reply.id
-															data-user-id= reply.user.id
-															data-user-color= reply.user.color
-															data-user-verified!= reply.user.isVerified.toString()
-															data-user-profile-widget-url= config.url + '/widget/user/' + reply.user.screenName)
+												each replyInReply in reply.replies
+													li.status(title!= '#{replyInReply.createdAt}&#x0A;'
+															data-id= replyInReply.id
+															data-user-id= replyInReply.user.id
+															data-user-color= replyInReply.user.color
+															data-user-verified!= replyInReply.user.isVerified.toString()
+															data-user-profile-widget-url= config.url + '/widget/user/' + replyInReply.user.screenName)
 														article
 															div.main
 																div.icon-area
-																	a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
-																		img.icon(src=reply.user.iconImageUrl, alt='icon')
+																	a.icon-anchor(href=config.url + '/' + replyInReply.user.screenName, title= replyInReply.user.comment != null ? replyInReply.user.comment : '@' + replyInReply.user.screenName, rel='icon')
+																		img.icon(src=replyInReply.user.iconImageUrl, alt='icon')
 																div.main
 																	header.header
 																		h2.name
-																			a(href=config.url + '/' + reply.user.screenName)= reply.user.name
-																		if reply.user.isVerified
+																			a(href=config.url + '/' + replyInReply.user.screenName)= replyInReply.user.name
+																		if replyInReply.user.isVerified
 																			img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-																		p.screen-name= '@' + reply.user.screenName
+																		p.screen-name= '@' + replyInReply.user.screenName
 																		p.created-at
-																			a.time-anchor(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id, itemprop='url')
-																				time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
+																			a.time-anchor(href=config.url + '/' + replyInReply.user.screenName + '/status/' + replyInReply.id, itemprop='url')
+																				time(datetime=replyInReply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= replyInReply.createdAt
 																	div.content
 																		div.text
-																			p!= textParser(reply.text)
-																		if reply.isImageAttached
-																			img.image(src=reply.imageUrls[0], alt='image')
-															if reply.replies.length > 0
+																			p!= textParser(replyInReply.text)
+																		if replyInReply.isImageAttached
+																			img.image(src=replyInReply.imageUrls[0], alt='image')
+															if replyInReply.replies.length > 0
 																aside.replies(itemprop='comment')
 																	p.more
 																		| さらに返信があります
