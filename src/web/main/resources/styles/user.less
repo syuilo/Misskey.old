@@ -789,15 +789,20 @@ main {
 
 			> .photos {
 				> .photos {
+					display: -webkit-flex;
+					display: -moz-flex;
+					display: -ms-flex;
+					display: -o-flex;
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
 					margin: 0;
 					padding: 0;
 					list-style: none;
 
 					> .photo {
 						display: block;
-						float: left;
-						width: 30%;
-						height:;
+						flex: 1 1 30%;
 						background-color: #fff;
 						background-repeat: no-repeat;
 						background-position: center center;
