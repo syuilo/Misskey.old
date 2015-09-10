@@ -803,11 +803,15 @@ main {
 					> .photo {
 						display: block;
 						flex: 1 1 30%;
-						min-width: 128px;
 						background-color: #fff;
 						background-repeat: no-repeat;
 						background-position: center center;
 						background-size: cover;
+
+						> a {
+							width: 100%;
+							min-height: 128px;
+						}
 					}
 				}
 			}
