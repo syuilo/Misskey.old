@@ -142,12 +142,12 @@ window.STATUS_CORE = {}
 						} 100ms \linear
 
 			# Init the profile popup of the user of the reply of the replies
-			..children 'article > .main > .replies > .statuses > .status' .each ->
+			..find '> article > .main > .replies > .statuses > .status' .each ->
 				$reply = $ @
 				init-user-profile-popup do
 					$reply.find 'article > .main > .icon-area > .icon-anchor'
 					$reply.attr \data-user-profile-widget-url
-				$reply.children 'article > .replies > .statuses > .status' .each ->
+				$reply.find '> article > .replies > .statuses > .status' .each ->
 					$reply-in-reply = $ @
 					init-user-profile-popup do
 						$reply-in-reply.find 'article > .main > .icon-area > .icon-anchor'
