@@ -88,24 +88,25 @@ div.status.article(
 						data-user-verified!= status.replySource.user.isVerified.toString()
 						data-user-profile-widget-url= config.url + '/widget/user/' + status.replySource.user.screenName)
 					article
-						div.icon-area
-							a.icon-anchor(href=config.url + '/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName, rel='icon')
-								img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
 						div.main
-							header.header
-								h2.name
-									a(href=config.url + '/' + status.replySource.user.screenName)= status.replySource.user.name
-								if status.replySource.user.isVerified
-									img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-								p.screen-name= '@' + status.replySource.user.screenName
-								p.created-at
-									a.time-anchor(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id, itemprop='url')
-										time(datetime=status.replySource.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.replySource.createdAt
-							div.content
-								div.text
-									p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
-								if status.replySource.isImageAttached
-									img.image(src=status.replySource.imageUrls[0], alt='image')
+							div.icon-area
+								a.icon-anchor(href=config.url + '/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName, rel='icon')
+									img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
+							div.main
+								header.header
+									h2.name
+										a(href=config.url + '/' + status.replySource.user.screenName)= status.replySource.user.name
+									if status.replySource.user.isVerified
+										img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+									p.screen-name= '@' + status.replySource.user.screenName
+									p.created-at
+										a.time-anchor(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id, itemprop='url')
+											time(datetime=status.replySource.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.replySource.createdAt
+								div.content
+									div.text
+										p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+									if status.replySource.isImageAttached
+										img.image(src=status.replySource.imageUrls[0], alt='image')
 			
 			if status.isPinnedStatus
 				section.pin-information
@@ -246,21 +247,57 @@ div.status.article(
 									data-user-verified!= reply.user.isVerified.toString()
 									data-user-profile-widget-url= config.url + '/widget/user/' + reply.user.screenName)
 								article
-									div.icon-area
-										a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
-											img.icon(src=reply.user.iconImageUrl, alt='icon')
 									div.main
-										header.header
-											h2.name
-												a(href=config.url + '/' + reply.user.screenName)= reply.user.name
-											if reply.user.isVerified
-												img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
-											p.screen-name= '@' + reply.user.screenName
-											p.created-at
-												a.time-anchor(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id, itemprop='url')
-													time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
-										div.content
-											div.text
-												p!= textParser(reply.text)
-											if reply.isImageAttached
-												img.image(src=reply.imageUrls[0], alt='image')
+										div.icon-area
+											a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
+												img.icon(src=reply.user.iconImageUrl, alt='icon')
+										div.main
+											header.header
+												h2.name
+													a(href=config.url + '/' + reply.user.screenName)= reply.user.name
+												if reply.user.isVerified
+													img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+												p.screen-name= '@' + reply.user.screenName
+												p.created-at
+													a.time-anchor(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id, itemprop='url')
+														time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
+											div.content
+												div.text
+													p!= textParser(reply.text)
+												if reply.isImageAttached
+													img.image(src=reply.imageUrls[0], alt='image')
+										
+										aside.replies(itemprop='comment')
+											ol.statuses
+												if reply.replies.length > 0 && reply.replies[0] != null
+													each reply in reply.replies
+														li.status(title!= '#{reply.createdAt}&#x0A;'
+																data-id= reply.id
+																data-user-id= reply.user.id
+																data-user-color= reply.user.color
+																data-user-verified!= reply.user.isVerified.toString()
+																data-user-profile-widget-url= config.url + '/widget/user/' + reply.user.screenName)
+															article
+																div.main
+																	div.icon-area
+																		a.icon-anchor(href=config.url + '/' + reply.user.screenName, title= reply.user.comment != null ? reply.user.comment : '@' + reply.user.screenName, rel='icon')
+																			img.icon(src=reply.user.iconImageUrl, alt='icon')
+																	div.main
+																		header.header
+																			h2.name
+																				a(href=config.url + '/' + reply.user.screenName)= reply.user.name
+																			if reply.user.isVerified
+																				img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+																			p.screen-name= '@' + reply.user.screenName
+																			p.created-at
+																				a.time-anchor(href=config.url + '/' + reply.user.screenName + '/status/' + reply.id, itemprop='url')
+																					time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
+																		div.content
+																			div.text
+																				p!= textParser(reply.text)
+																			if reply.isImageAttached
+																				img.image(src=reply.imageUrls[0], alt='image')
+																if reply.replies.length > 0
+																	aside.replies(itemprop='comment')
+																		p.more
+																			| さらに返信があります
