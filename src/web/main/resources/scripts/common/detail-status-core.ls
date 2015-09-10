@@ -145,8 +145,13 @@ window.STATUS_CORE = {}
 			..find 'article > .main > .replies > .statuses > .status' .each ->
 				$reply = $ @
 				init-user-profile-popup do
-					$reply.find 'article > .icon-area > .icon-anchor'
+					$reply.find 'article > .main > .icon-area > .icon-anchor'
 					$reply.attr \data-user-profile-widget-url
+				$reply.find 'article > .replies > .statuses > .status' .each ->
+					$reply-in-reply = $ @
+					init-user-profile-popup do
+						$reply-in-reply.find 'article > .main > .icon-area > .icon-anchor'
+						$reply-in-reply.attr \data-user-profile-widget-url
 
 			# Init stargazer tooltips
 			..find '.main .stargazers > .stargazers > .stargazer > a' .each ->
