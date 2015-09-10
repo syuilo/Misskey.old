@@ -116,6 +116,16 @@ module.exports = (req, res, page = \home) ->
 							User.find-by-id follower.follower-id, (, user) ->
 								resolve user.to-object!)
 						.then (follower-users) -> resolve follower-users
+
+		# Get recent photo statuses
+		new Promise (resolve, reject) ->
+			Status
+				.find (user-id: user.id) `$and` (is-image-attached: yes)
+				.sort {created-at: \desc}
+				.limit 12photos
+				.exec (, statuses) ->
+					resolve (statuses |> map (status) ->
+						status .= to-object!)
 	] .then (results) -> res.display do
 		req
 		res
@@ -128,6 +138,7 @@ module.exports = (req, res, page = \home) ->
 			followings: results.4
 			followers: results.5
 			followers-recent: results.6
+			recent-photo-statuses: results.7
 			user
 			tags: user.tags
 			page

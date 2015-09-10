@@ -111,28 +111,12 @@ html(lang='ja'
 						div#icon-area
 							a.icon-anchor
 								img#icon(src=user.iconImageUrl, alt='icon', itemprop='image')
-							div.contents
+							div.comment-container
 								p#comment
 									if user.comment != null && user.comment != ""
 										= user.comment
 									else
 										span.no-comment no comment
-								if user.location != null && user.location != ""
-									p#location
-										i.fa.fa-map-marker
-										= user.location
-								if user.url != null && user.url != ""
-									p#website
-										a(href= user.url)
-											i.fa.fa-link
-											= user.url
-								div#followers
-									h2 Followers
-									ol
-										each user in followersRecent
-											li
-												a(href= '/' + user.screenName)
-													img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
 						ul#main-nav
 							li(class= page == 'home' ? 'active' : '')
 								a(href='/' + user.screenName)
@@ -151,16 +135,45 @@ html(lang='ja'
 									i.fa.fa-users
 									| フォロワー
 			div#contents
-				div#content
+				div#left-sub-contents
+					if user.location != null && user.location != ""
+						p#location
+							i.fa.fa-map-marker
+							= user.location
+					if user.url != null && user.url != ""
+						p#website
+							a(href= user.url)
+								i.fa.fa-link
+								= user.url
+					section#followers
+						h2
+							i.fa.fa-users
+							| Followers
+						ol
+							each user in followersRecent
+								li
+									a(href= '/' + user.screenName)
+										img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
+				div#main-content
 					block content
-				div#side-content
-					if login
-							if me.id != user.id
-								if isFollowMe
-									p#friend-status フォローされています
+				div#right-sub-contents
 					if login
 						if me.id != user.id
-							if isFollowing
-								button#follow-button.following フォロー中
-							else
-								button#follow-button.notFollowing フォロー
+							div#friend-form
+								if isFollowMe
+									p#friend-status
+										i.fa.fa-heart
+										| フォローされています
+								if isFollowing
+									button#friend-button.following フォロー中
+								else
+									button#friend-button.not-following フォロー
+					if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
+						section#photos
+							h2
+								i.fa.fa-camera
+								| Photos
+							ol.photos
+								each status in recentPhotoStatuses
+									li.photo(style='background-image: url("' + status.imageUrls[0] + '")')
+										a(href=config.url + '/' + user.screenName + '/status/' + status.id)

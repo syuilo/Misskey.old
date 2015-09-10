@@ -8,6 +8,8 @@ $ ->
 		init-icon-edit-form!
 		init-header-image-edit-form!
 
+	$ \#left-sub-contents .css \padding-top "#{$ \#comment .outer-height! - 16px}px"
+
 	$ '#timeline .statuses .status .status.article' .each ->
 		window.STATUS_CORE.set-event $ @
 
@@ -24,7 +26,17 @@ $ ->
 		rng.select-node-contents element
 		window.get-selection!.add-range rng
 
-	$ '#follow-button' .click ->
+	$ '#friend-button' .hover do
+		->
+			if check-follow!
+				$ '#friend-button' .add-class \danger
+				$ '#friend-button' .text 'フォロー解除'
+		->
+			if check-follow!
+				$ '#friend-button' .remove-class \danger
+				$ '#friend-button' .text 'フォロー中'
+
+	$ '#friend-button' .click ->
 		$button = $ @
 			..attr \disabled on
 		if check-follow!
@@ -34,6 +46,7 @@ $ ->
 				data-type: \json
 				xhr-fields: {+with-credentials}}
 			.done ->
+				$button .remove-class \danger
 				$button
 					..attr \disabled off
 					..remove-class \following
