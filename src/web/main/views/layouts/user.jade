@@ -157,9 +157,9 @@ html(lang='ja'
 				div#main-content
 					block content
 				div#right-sub-contents
-					if login
-						if me.id != user.id
-							div#friend-form
+					div#friend-form
+						if login
+							if me.id != user.id
 								if isFollowMe
 									p#friend-status
 										i.fa.fa-heart
@@ -168,6 +168,14 @@ html(lang='ja'
 									button#friend-button.following フォロー中
 								else
 									button#friend-button.not-following フォロー
+							else
+								p#friend-status
+									i.fa.fa-smile-o
+									| You
+						else
+							p
+								| このユーザーをフォローするにはログインしてください
+									
 					if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
 						section#photos
 							h2
