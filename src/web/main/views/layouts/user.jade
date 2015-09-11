@@ -183,5 +183,5 @@ html(lang='ja'
 								| Photos
 							ol.photos
 								each status in recentPhotoStatuses
-									li.photo(style='background-image: url("' + status.imageUrls[0] + '")')
+									li.photo(style='background-image: url("' + status.imageUrls[0] + '")', title=status.displayCreatedAt)
 										a(href=config.url + '/' + user.screenName + '/status/' + status.id)
