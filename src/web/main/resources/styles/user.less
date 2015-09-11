@@ -14,7 +14,12 @@ html, body {
 
 html {
 	color: #000;
-	background: #eee;
+	background-color: #eee;
+	background-image: url(@wallpaperUrl);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 
 #icon-edit-form-back,
@@ -199,7 +204,6 @@ main {
 	> header {
 		display: block;
 		//border-bottom: solid 1px #ddd;
-
 		&[data-name-editing='true'] {
 			> #header-data {
 				> .bottom {
