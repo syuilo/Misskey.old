@@ -8,17 +8,24 @@ body {
 }
 
 main {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	max-width: 800px;
-	margin: 0 auto;
+	margin: 32px auto;
 	padding: 0;
 	background: #fff;
 
 	> nav {
 		display: block;
+		flex: 1 1 200px;
 		margin: 0;
 		padding: 0;
-		width: 200px;
+		max-width: 200px;
 
 		ul {
 			display: block;
@@ -65,6 +72,10 @@ main {
 				background: #fff;
 			}
 		}
+	}
+
+	> #content {
+		flex: 1 1;
 	}
 }
 
