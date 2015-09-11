@@ -65,6 +65,12 @@ html(lang='ja', dir='ltr')
 								div.content
 									input.ui-input-color(name='color', type='color', value=me.color)
 							input.ui-button.submit-button(type='submit', value='アップデート')
+						form#wallpaper-form
+							label
+								h2.title 壁紙
+								div.content
+									input(name='image', type='file', accept='image/*')
+							input.ui-button.submit-button(type='submit', value='アップデート')
 
 					div#webtheme
 						button#webthemeResetButton デフォルトのテーマに戻す
