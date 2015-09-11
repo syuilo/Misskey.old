@@ -1,5 +1,6 @@
 require! {
 	marked
+	moment
 	'../../../models/user': User
 	'../../../models/user-following': UserFollowing
 	'../../../models/status': Status
@@ -125,7 +126,9 @@ module.exports = (req, res, page = \home) ->
 				.limit 12photos
 				.exec (, statuses) ->
 					resolve (statuses |> map (status) ->
-						status .= to-object!)
+						status .= to-object!
+						status.display-created-at = moment status.created-at .format 'YYYY年M月D日'
+						status)
 	] .then (results) -> res.display do
 		req
 		res
