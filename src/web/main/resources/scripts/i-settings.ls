@@ -28,7 +28,7 @@ $ ->
 		$submit-button.attr \disabled on
 		$submit-button.attr \value '保存中...'
 
-		$.ajax "#{config.api-url}/account/update" {
+		$.ajax "#{config.api-url}/account/update-color" {
 			type: \PUT
 			data: new FormData $form.0
 			data-type: \json
