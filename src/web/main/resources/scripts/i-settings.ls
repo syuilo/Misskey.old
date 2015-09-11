@@ -10,7 +10,9 @@ $ ->
 		$submit-button.attr \value '保存中...'
 
 		$.ajax "#{config.api-url}/account/update" {
-			type: \PUT
+			type: \put
+			-process-data
+			-content-type
 			data: new FormData $form.0
 			data-type: \json
 			xhr-fields: {+with-credentials}}
@@ -29,7 +31,9 @@ $ ->
 		$submit-button.attr \value '保存中...'
 
 		$.ajax "#{config.api-url}/account/update-color" {
-			type: \PUT
+			type: \put
+			-process-data
+			-content-type
 			data: new FormData $form.0
 			data-type: \json
 			xhr-fields: {+with-credentials}}
