@@ -39,27 +39,23 @@ html(lang='ja', dir='ltr')
 							label
 								h2.title 名前
 								div.content
-									input.ui-input-text(name='name', type='text', value=me.name)
+									input.ui-input-text(name='name', type='text', value=me.name, placeholder=me.name)
 							label
 								h2.title ひとことコメント
 								div.content
-									input.ui-input-text(name='comment', type='text', value=me.comment)
+									input.ui-input-text(name='comment', type='text', value=me.comment, placeholder=me.comment)
 							label
 								h2.title WebサイトURL
 								div.content
-									input.ui-input-text(name='url', type='url', value=me.url)
+									input.ui-input-text(name='url', type='url', value=me.url, placeholder=me.url)
 							label
 								h2.title 現在地
 								div.content
-									input.ui-input-text(name='location', type='text', value=me.location)
+									input.ui-input-text(name='location', type='text', value=me.location, placeholder=me.location)
 							label
 								h2.title BIO
 								div.content
-									textarea.ui-textarea(name='bio')= me.bio
-							label
-								h2.title タグ
-								div.content
-									input.ui-input-text(name='tag', type='text', value=me.tag)
+									textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
 							label
 								h2.title ユーザーカラー
 								div.content
