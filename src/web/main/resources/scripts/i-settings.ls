@@ -11,8 +11,6 @@ $ ->
 
 		$.ajax "#{config.api-url}/account/update" {
 			type: \PUT
-			-process-data
-			-content-type
 			data: new FormData $form.0
 			data-type: \json
 			xhr-fields: {+with-credentials}}
@@ -32,8 +30,6 @@ $ ->
 
 		$.ajax "#{config.api-url}/account/update" {
 			type: \PUT
-			-process-data
-			-content-type
 			data: new FormData $form.0
 			data-type: \json
 			xhr-fields: {+with-credentials}}
