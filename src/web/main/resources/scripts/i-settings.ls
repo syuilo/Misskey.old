@@ -42,3 +42,37 @@ $ ->
 			$submit-button.attr \disabled off
 		.fail (data) ->
 			$submit-button.attr \disabled off
+
+	$ \#wallpaper-form .submit (event) ->
+		event.prevent-default!
+		$form = $ @
+		$submit-button = $form.find '[type=submit]'
+
+		$submit-button.attr \disabled on
+		$submit-button.attr \value '更新中...'
+		$.ajax config.api-url + '/account/update-wallpaper' {
+			+async
+			type: \put
+			-process-data
+			-content-type
+			data: new FormData $form.0
+			data-type: \json
+			xhr-fields: {+with-credentials}
+			xhr: ->
+				XHR = $.ajax-settings.xhr!
+				if XHR.upload
+					XHR.upload.add-event-listener \progress (e) ->
+						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
+						$form.find \progress
+							..attr \max e.total
+							..attr \value e.loaded
+						$form.find '.progress .status' .text "アップロードしています... #{percentage}%"
+					, false
+				XHR
+		}
+		.done (data) ->
+			location.reload!
+		.fail (data) ->
+			window.display-message '更新に失敗しました。'
+			$submit-button.attr \disabled offf
+			$submit-button.attr \value 'アップデート'
