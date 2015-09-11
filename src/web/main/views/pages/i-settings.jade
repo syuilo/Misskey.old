@@ -56,7 +56,7 @@ html(lang='ja', dir='ltr')
 								h2.title BIO
 								div.content
 									textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
-							input.ui-button(type='submit', value='アップデート')
+							input.ui-button.submit-button(type='submit', value='アップデート')
 						
 					div#design
 						form#user-color-form
@@ -64,7 +64,7 @@ html(lang='ja', dir='ltr')
 								h2.title ユーザーカラー
 								div.content
 									input.ui-input-color(name='color', type='color', value=me.color)
-							input.ui-button(type='submit', value='アップデート')
+							input.ui-button.submit-button(type='submit', value='アップデート')
 
 					div#webtheme
 						button#webthemeResetButton デフォルトのテーマに戻す
