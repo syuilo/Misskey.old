@@ -1,7 +1,14 @@
 @themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
 
 html {
-	background: #eee;
+	background-color: #eee;
+	background-image: url(@wallpaperUrl);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 
 body {
