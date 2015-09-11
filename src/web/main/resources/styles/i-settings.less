@@ -33,7 +33,7 @@ main {
 			display: block;
 			flex: 1 1 230px;
 			margin: 0;
-			padding: 32px;
+			padding: 32px 16px 32px 32px;
 			max-width: 230px;
 
 			ul {
@@ -86,9 +86,18 @@ main {
 
 		> #content {
 			flex: 1 1;
-			padding: 32px;
+			padding: 32px 32px 32px 16px;
 
 			form {
+				border: solid 1px #eee;
+				padding: 32px;
+
+				&:after {
+					content: "";
+					display: block;
+					clear: both;
+				}
+
 				label {
 					display: block;
 					padding: 16px 0;
