@@ -12,84 +12,85 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
-			nav
-				ul
-					li: a(href='#profile')
-						i(class='fa fa-user')
-						| プロフィール
-					li: a(href='#design')
-						i(class='fa fa-paint-brush')
-						| デザイン
-					li: a(href='#webtheme')
-						i(class='fa fa-desktop')
-						| テーマ
-					li: a(href='#application')
-						i(class='fa fa-puzzle-piece')
-						| アプリケーション
-					li: a(href='#mail')
-						i(class='fa fa-envelope-o')
-						| メールアドレス
-					li: a(href='#logout')
-						i(class='fa fa-power-off')
-						| ログアウト
-			div#content
-				div#profile
-					form#profileEditForm
-						label
-							h2.title 名前
-							div.content
-								input.ui-input-text(name='name', type='text', value=me.name)
-						label
-							h2.title ひとことコメント
-							div.content
-								input.ui-input-text(name='comment', type='text', value=me.comment)
-						label
-							h2.title WebサイトURL
-							div.content
-								input.ui-input-text(name='url', type='url', value=me.url)
-						label
-							h2.title 現在地
-							div.content
-								input.ui-input-text(name='location', type='text', value=me.location)
-						label
-							h2.title BIO
-							div.content
-								textarea.ui-textarea(name='bio')= me.bio
-						label
-							h2.title タグ
-							div.content
-								input.ui-input-text(name='tag', type='text', value=me.tag)
-						label
-							h2.title ユーザーカラー
-							div.content
-								input.ui-input-color(name='color', type='color', value=me.color)
-						input.ui-button(type='submit', value='アップデート')
-					
-				div#design
-
-				div#webtheme
-					button#webthemeResetButton デフォルトのテーマに戻す
-					ul.themes
-						each theme in webthemes
-							li.theme
+			div.main
+				nav
+					ul
+						li: a(href='#profile')
+							i(class='fa fa-user')
+							| プロフィール
+						li: a(href='#design')
+							i(class='fa fa-paint-brush')
+							| デザイン
+						li: a(href='#webtheme')
+							i(class='fa fa-desktop')
+							| テーマ
+						li: a(href='#application')
+							i(class='fa fa-puzzle-piece')
+							| アプリケーション
+						li: a(href='#mail')
+							i(class='fa fa-envelope-o')
+							| メールアドレス
+						li: a(href='#logout')
+							i(class='fa fa-power-off')
+							| ログアウト
+				div#content
+					div#profile
+						form#profileEditForm
+							label
+								h2.title 名前
 								div.content
-									div.thumbnail(style='background-image: url("https://misskey.xyz/img/webtheme_thumbnail/#{theme.id}")')
-									div.form
-										cite.title= theme.name
-										p.description= theme.description
-										div.author
-											span.name= theme.user.screenName
-											img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
-										form
-											input(name='theme_id', value=theme.id, type='hidden')
-											input.ui-button(type='submit', value='インストール')
-								h2.title= theme.name
+									input.ui-input-text(name='name', type='text', value=me.name)
+							label
+								h2.title ひとことコメント
+								div.content
+									input.ui-input-text(name='comment', type='text', value=me.comment)
+							label
+								h2.title WebサイトURL
+								div.content
+									input.ui-input-text(name='url', type='url', value=me.url)
+							label
+								h2.title 現在地
+								div.content
+									input.ui-input-text(name='location', type='text', value=me.location)
+							label
+								h2.title BIO
+								div.content
+									textarea.ui-textarea(name='bio')= me.bio
+							label
+								h2.title タグ
+								div.content
+									input.ui-input-text(name='tag', type='text', value=me.tag)
+							label
+								h2.title ユーザーカラー
+								div.content
+									input.ui-input-color(name='color', type='color', value=me.color)
+							input.ui-button(type='submit', value='アップデート')
+						
+					div#design
 
-				div#application
-					p coming soon....
+					div#webtheme
+						button#webthemeResetButton デフォルトのテーマに戻す
+						ul.themes
+							each theme in webthemes
+								li.theme
+									div.content
+										div.thumbnail(style='background-image: url("https://misskey.xyz/img/webtheme_thumbnail/#{theme.id}")')
+										div.form
+											cite.title= theme.name
+											p.description= theme.description
+											div.author
+												span.name= theme.user.screenName
+												img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
+											form
+												input(name='theme_id', value=theme.id, type='hidden')
+												input.ui-button(type='submit', value='インストール')
+									h2.title= theme.name
 
-				div#mail
-					p coming soon....
+					div#application
+						p coming soon....
 
-				div#logout
-					a(href='/logout') ログアウト
+					div#mail
+						p coming soon....
+
+					div#logout
+						a(href='/logout') ログアウト
