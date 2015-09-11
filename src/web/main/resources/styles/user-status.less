@@ -1,5 +1,6 @@
 @themeColor: <%themeColor%>;
 @wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
 
 html {
 	background-color: #eee;
@@ -38,7 +39,12 @@ main {
 	text-align: center;
 	color: #999;
 	cursor: pointer;
-	background: transparent;
+	background-color: transparent;
+	background-image: url(@blurredWallpaperUrl);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 	outline: none;
 	border: none;
 	box-shadow: none;
