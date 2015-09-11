@@ -127,7 +127,8 @@ module.exports = (req, res, page = \home) ->
 				.exec (, statuses) ->
 					resolve (statuses |> map (status) ->
 						status .= to-object!
-						status.display-created-at = moment status.created-at .format 'YYYY年M月D日')
+						status.display-created-at = moment status.created-at .format 'YYYY年M月D日'
+						status)
 	] .then (results) -> res.display do
 		req
 		res
