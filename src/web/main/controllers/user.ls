@@ -26,7 +26,7 @@ module.exports = (req, res, page = \home) ->
 				Status
 					.find {user-id: user.id}
 					.sort {created-at: \desc}
-					.limit 10status
+					.limit 6status
 					.exec (, statuses) ->
 						# Get pinned statuses
 						if user.pinned-status?
