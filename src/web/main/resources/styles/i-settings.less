@@ -123,6 +123,39 @@ main {
 	}
 }
 
+#wallpaper-form {
+	.progress {
+		display: none;
+
+		.status {
+			margin: 0;
+			padding: 0;
+			color: rgba(0, 0, 0, 0.7);
+		}
+
+		progress {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			margin: 0;
+			width: 100%;
+			height: 8px;
+			border: solid 1px #ddd;
+			border-radius: 8px;
+			overflow: hidden;
+
+			&::-webkit-progress-value {
+				background-color: @themeColor;
+			}
+
+			&::-webkit-progress-bar {
+				background-color: #fff;
+			}
+		}
+	}
+}
+
 #webtheme {
 	.themes {
 		display: block;
