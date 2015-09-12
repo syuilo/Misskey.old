@@ -23,7 +23,7 @@ module.exports = (app) ->
 	function compile-less (less-css, style-user, callback)
 		color = if style-user? && style-user.color == /#[a-fA-F0-9]{6}/
 			then style-user.color
-			else config.theme-color
+			else config.public-config.theme-color
 		less.render do
 			pre-compile less-css, style-user, color
 			{+compress}
@@ -135,7 +135,7 @@ module.exports = (app) ->
 								if req.login then req.me else null
 				else if fs.exists-sync css-path
 					res.send-file css-path
-					
+
 			| req.url.index-of '.less' == -1 =>
 				resource-path = path.resolve "#__dirname/..#{req.path}"
 				res.send-file resource-path
