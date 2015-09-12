@@ -49,7 +49,7 @@ $ ->
 		$submit-button = $form.find '[type=submit]'
 		$progress = $form.find \.progress
 		$progress-bar = $form.find \progress
-		$progress-status = $form.find '.progress .status'
+		$progress-status = $form.find '.progress .status .text'
 
 		$progress.css \display \block
 		$submit-button.attr \disabled on
@@ -69,8 +69,8 @@ $ ->
 						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
 						if percentage == 100
 							$progress-bar
-								..attr \max ''
-								..attr \value ''
+								..remove-attr \value
+								..remove-attr \max
 							$progress-status .text "いろいろと処理しています... しばらくお待ちください"
 						else
 							$progress-bar
