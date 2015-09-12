@@ -235,7 +235,7 @@ window.STATUS_CORE = {}
 					$statuses.each ->
 						$talk-status = $ @
 						init-user-profile-popup do
-							$talk-status.find 'article > .icon-area > .icon-anchor'
+							$talk-status.find 'article > .main > .icon-area > .icon-anchor'
 							$talk-status.attr \data-user-profile-widget-url
 						$talk-status.append-to $status.find 'article > .main > .talk > .statuses'
 				.fail (data) ->
