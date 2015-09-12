@@ -158,6 +158,10 @@ main {
 			&::-webkit-progress-bar {
 				background-color: #fff;
 			}
+
+			&:not([value])::-webkit-progress-bar {
+				background-image: url('/resources/images/indeter.gif');
+			}
 		}
 	}
 }
