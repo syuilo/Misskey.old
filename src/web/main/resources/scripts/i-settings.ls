@@ -47,7 +47,11 @@ $ ->
 		event.prevent-default!
 		$form = $ @
 		$submit-button = $form.find '[type=submit]'
+		$progress = $form.find \.progress
+		$progress-bar = $form.find \progress
+		$progress-status = $form.find '.progress .status .text'
 
+		$progress.css \display \block
 		$submit-button.attr \disabled on
 		$submit-button.attr \value '更新中...'
 		$.ajax config.api-url + '/account/update-wallpaper' {
@@ -63,10 +67,16 @@ $ ->
 				if XHR.upload
 					XHR.upload.add-event-listener \progress (e) ->
 						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
-						$form.find \progress
-							..attr \max e.total
-							..attr \value e.loaded
-						$form.find '.progress .status' .text "アップロードしています... #{percentage}%"
+						if percentage == 100
+							$progress-bar
+								..remove-attr \value
+								..remove-attr \max
+							$progress-status .text "いろいろと処理しています... しばらくお待ちください"
+						else
+							$progress-bar
+								..attr \max e.total
+								..attr \value e.loaded
+							$progress-status .text "アップロードしています... #{percentage}%"
 					, false
 				XHR
 		}
