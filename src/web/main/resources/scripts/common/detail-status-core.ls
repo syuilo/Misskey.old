@@ -87,7 +87,7 @@ window.STATUS_CORE = {}
 
 		# Init the profile popup of the user of the reply source
 		init-user-profile-popup do
-			$status.find 'article > .main > .reply-source > article > .icon-area > .icon-anchor'
+			$status.find 'article > .main > .reply-source > article > .main > .icon-area > .icon-anchor'
 			$status.find 'article > .main > .reply-source' .attr \data-user-profile-widget-url
 
 		$status
