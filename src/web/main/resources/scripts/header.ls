@@ -365,6 +365,8 @@ $ ->
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
 			$progress.css \display \none
+			$ \#misskey-create-status-form .find '.image-preview-container' .css \display \none
+			$ \#misskey-create-status-form .find '.image-preview' .find 'img' .remove!
 			$ \#misskey-create-status-form-back .animate {
 				opacity: 0
 			} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
