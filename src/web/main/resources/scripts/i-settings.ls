@@ -84,5 +84,5 @@ $ ->
 			location.reload!
 		.fail (data) ->
 			window.display-message '更新に失敗しました。'
-			$submit-button.attr \disabled offf
+			$submit-button.attr \disabled off
 			$submit-button.attr \value 'アップデート'
