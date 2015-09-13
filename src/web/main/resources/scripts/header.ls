@@ -354,6 +354,7 @@ $ ->
 		}
 		.done (data) ->
 			window.display-message '投稿しました！'
+			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
 			$form.find \textarea .val ''
 			$ \#misskey-create-status-form-back .animate {
