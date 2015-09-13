@@ -280,7 +280,7 @@ $ ->
 		$ \#misskey-create-status-form .animate {
 			opacity: 1
 		} 100ms \linear
-	$ \#misskey-create-status-form-back .click ->
+	$ \#misskey-create-status-form-container .click ->
 		$ \#misskey-create-status-form-back .animate {
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
