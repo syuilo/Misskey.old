@@ -277,7 +277,7 @@ $ ->
 			opacity: 1
 		} 100ms \linear
 		$ \#misskey-create-status-form-container .css \display \block
-		$ \#misskey-create-status-form-container .animate {
+		$ \#misskey-create-status-form .animate {
 			opacity: 1
 		} 100ms \linear
 
