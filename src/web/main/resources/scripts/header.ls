@@ -280,6 +280,20 @@ $ ->
 		$ \#misskey-create-status-form .animate {
 			opacity: 1
 		} 100ms \linear
+	$ \#misskey-create-status-form-back .click ->
+		$ \#misskey-create-status-form-back .animate {
+			opacity: 0
+		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
+		$ \#misskey-create-status-form-container .animate {
+			opacity: 0
+		} 100ms \linear -> \#misskey-create-status-form-container .css \display \none
+	$ \#misskey-create-status-form .find \.close-button .click ->
+		$ \#misskey-create-status-form-back .animate {
+			opacity: 0
+		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
+		$ \#misskey-create-status-form-container .animate {
+			opacity: 0
+		} 100ms \linear -> \#misskey-create-status-form-container .css \display \none
 
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
