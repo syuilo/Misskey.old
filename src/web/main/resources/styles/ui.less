@@ -152,6 +152,27 @@ textarea {
 		display: block;
 		float: left;
 		width: ~"calc(100% - 80px)";
+
+		> textarea {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			box-sizing: border-box;
+			cursor: auto;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			font-size: 1em;
+			color: #444;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+		}
 	}
 }
 
