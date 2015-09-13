@@ -326,12 +326,19 @@ $ ->
 		$submit-button.attr \disabled on
 		$submit-button.attr \value 'Updating'
 		$form.find \textarea .attr \disabled on
+
+		fd = new FormData!
+		fd.append \image
+		fd.append \text $form.find \textarea .val!
+		jQuery.each $form[0].files (i, file) ->
+			fd.append \image file
+
 		$.ajax config.api-url + '/status/update' {
 			+async
 			type: \post
 			-process-data
 			-content-type
-			data: new FormData $form.0
+			data: fd
 			data-type: \json
 			xhr-fields: {+with-credentials}
 			xhr: ->
