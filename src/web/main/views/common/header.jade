@@ -1,3 +1,19 @@
+if login
+	div#misskey-create-status-form-back(role='presentation')
+	div#misskey-create-status-form-container
+		form#misskey-create-status-form(enctype='multipart/form-data', role='form')
+			div.me-icon-area
+				img.icon(src=me.iconImageUrl, alt='icon', title=me.comment)
+			div.main
+				textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+				div.image-attacher
+					p
+						i.fa.fa-picture-o
+					input(name='image', type='file', accept='image/*')
+				input.ui-button(type='submit', value!='Update &#xf1d8;', role='button')
+			div.image-preview-container
+				div.image-preview
+
 header#misskey-main-header(
 		role='banner'
 		data-user-color= (rootUser != null) ? rootUser.color : login ? me.color : config.themeColor)
