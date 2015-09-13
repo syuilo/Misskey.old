@@ -272,12 +272,12 @@ $ ->
 			.fail ->
 
 	$ \#misskey-post-button .click ->
-		$status.find \#misskey-create-status-form-back .css \display \block
-		$status.find \#misskey-create-status-form-back .animate {
+		$ \#misskey-create-status-form-back .css \display \block
+		$ \#misskey-create-status-form-back .animate {
 			opacity: 1
 		} 100ms \linear
-		$status.find \#misskey-create-status-form-container .css \display \block
-		$status.find \#misskey-create-status-form-container .animate {
+		$ \#misskey-create-status-form-container .css \display \block
+		$ \#misskey-create-status-form-container .animate {
 			opacity: 1
 		} 100ms \linear
 
