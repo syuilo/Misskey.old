@@ -1177,6 +1177,8 @@ textarea {
 
 				> .post {
 					display: inline-block;
+					height: 100%;
+					vertical-align: top;
 
 					> button {
 						-webkit-appearance: none;
@@ -1186,7 +1188,6 @@ textarea {
 						box-sizing: border-box;
 						margin: 0;
 						padding: 0;
-						cursor: pointer;
 						line-height: 1em;
 						font-size: 1em;
 						font-weight: normal;
@@ -1199,14 +1200,18 @@ textarea {
 						box-shadow: none;
 						transition: background 0.1s ease;
 
-						&:hover {
-							background: lighten(@themeColor, 10%) !important;
+						&, * {
+							cursor: pointer;
 						}
 
-						&:active {
-							background: darken(@themeColor, 10%) !important;
-							transition: background 0s ease;
-						}
+							&:hover {
+								background: lighten(@themeColor, 10%) !important;
+							}
+
+							&:active {
+								background: darken(@themeColor, 10%) !important;
+								transition: background 0s ease;
+							}
 					}
 				}
 
@@ -1373,7 +1378,6 @@ textarea {
 	margin: 0;
 	padding: 0;
 	min-width: 5em;
-	cursor: pointer;
 	line-height: 1em !important;
 	font-size: 1em !important;
 	font-weight: normal;
@@ -1389,6 +1393,7 @@ textarea {
 	&, * {
 		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 		font-weight: bold;
+		cursor: pointer;
 	}
 
 	> * {
