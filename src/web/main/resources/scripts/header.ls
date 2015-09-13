@@ -313,6 +313,60 @@ $ ->
 					$ \#misskey-create-status-form .find '.image-preview' .append $img
 				..readAsDataURL file
 
+	$ \#misskey-create-status-form .submit (event) ->
+		event.prevent-default!
+		$form = $ @
+		$submit-button = $form.find '[type=submit]'
+		$progress = $form.find \.progress
+		$progress-bar = $form.find \progress
+		$progress-status = $form.find '.progress .status .text'
+
+		$progress.css \display \block
+		$submit-button.attr \disabled on
+		$submit-button.attr \value 'Updating'
+		$form.find \textarea .attr \disabled on
+		$.ajax config.api-url + '/status/update' {
+			+async
+			type: \post
+			-process-data
+			-content-type
+			data: new FormData $form.0
+			data-type: \json
+			xhr-fields: {+with-credentials}
+			xhr: ->
+				XHR = $.ajax-settings.xhr!
+				if XHR.upload
+					XHR.upload.add-event-listener \progress (e) ->
+						percentage = Math.floor (parse-int e.loaded / e.total * 10000) / 100
+						if percentage == 100
+							$progress-bar
+								..remove-attr \value
+								..remove-attr \max
+							$progress-status .text "いろいろと処理しています... しばらくお待ちください"
+						else
+							$progress-bar
+								..attr \max e.total
+								..attr \value e.loaded
+							$progress-status .text "アップロードしています... #{percentage}%"
+					, false
+				XHR
+		}
+		.done (data) ->
+			window.display-message '投稿しました！'
+			$form.find \textarea .attr \disabled off
+			$form.find \textarea .val ''
+			$ \#misskey-create-status-form-back .animate {
+				opacity: 0
+			} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
+			$ \#misskey-create-status-form .animate {
+				opacity: 0
+			} 100ms \linear -> $ \#misskey-create-status-form-container .css \display \none
+		.fail (data) ->
+			window.display-message '投稿に失敗しました。'
+			$submit-button.attr \disabled off
+			$submit-button.attr \value 'Re Update'
+
+
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
