@@ -152,6 +152,38 @@ textarea {
 		}
 	}
 
+	> .close-button {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		width: 32px;
+		height: 32px;
+		color: #555;
+		border: none;
+		outline: none;
+		background: transparent;
+		cursor: pointer;
+
+		&:hover {
+			color: #333;
+		}
+
+		&:active {
+			color: #000;
+		}
+
+		* {
+			pointer-events: none;
+		}
+	}
+
 	> .me-icon-area {
 		display: block;
 		float: left;
