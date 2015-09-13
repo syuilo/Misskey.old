@@ -15,6 +15,11 @@ if login
 						i.fa.fa-picture-o
 					input(name='image', type='file', accept='image/*')
 				input.ui-button.submit-button(type='submit', value!='Update &#xf1d8;', role='button', disabled)
+			div.progress
+				p.status
+					i.fa.fa-spinner.fa-pulse
+					span.text
+				progress(form='misskey-create-status-form', value='0')
 			div.image-preview-container
 				div.image-preview
 
