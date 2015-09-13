@@ -298,6 +298,7 @@ $ ->
 		} 100ms \linear -> $ \#misskey-create-status-form-container .css \display \none
 
 	$ \#misskey-create-status-form .find \textarea .bind \input ->
+		console.log \a
 		$ \#misskey-create-status-form .find \.submit-button .attr \disabled off
 
 	$ \#misskey-create-status-form .find '.image-attacher input[name=image]' .change ->
