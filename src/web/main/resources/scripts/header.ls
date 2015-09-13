@@ -272,6 +272,7 @@ $ ->
 			.fail ->
 
 	$ \#misskey-post-button .click ->
+		$ \#misskey-create-status-form .find \textarea .focus!
 		$ \#misskey-create-status-form-back .css \display \block
 		$ \#misskey-create-status-form-back .animate {
 			opacity: 1
