@@ -243,7 +243,7 @@ textarea {
 			font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 			font-weight: bold;
 			color: contrast(@themeColor, #000, #fff, 70%);
-			background: @themeColor !important;
+			background: @themeColor;
 			outline: none;
 			border: none;
 			border-radius: 2px;
@@ -255,11 +255,11 @@ textarea {
 			}
 
 			&:hover {
-				background: lighten(@themeColor, 10%) !important;
+				background: lighten(@themeColor, 10%);
 			}
 
 			&:active {
-				background: darken(@themeColor, 10%) !important;
+				background: darken(@themeColor, 10%);
 			}
 		}
 	}
