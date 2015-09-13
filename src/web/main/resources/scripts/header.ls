@@ -343,7 +343,7 @@ $ ->
 							$progress-bar
 								..remove-attr \value
 								..remove-attr \max
-							$progress-status .text "いろいろと処理しています... しばらくお待ちください"
+							$progress-status .text "しばらくお待ちください..."
 						else
 							$progress-bar
 								..attr \max e.total
@@ -357,6 +357,7 @@ $ ->
 			$submit-button.attr \disabled off
 			$form.find \textarea .attr \disabled off
 			$form.find \textarea .val ''
+			$progress.css \display \none
 			$ \#misskey-create-status-form-back .animate {
 				opacity: 0
 			} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
@@ -366,6 +367,7 @@ $ ->
 		.fail (data) ->
 			window.display-message '投稿に失敗しました。'
 			$submit-button.attr \disabled off
+			$progress.css \display \none
 			$submit-button.attr \value 'Re Update'
 
 
