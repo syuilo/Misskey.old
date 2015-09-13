@@ -284,14 +284,14 @@ $ ->
 		$ \#misskey-create-status-form-back .animate {
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
-		$ \#misskey-create-status-form-container .animate {
+		$ \#misskey-create-status-form .animate {
 			opacity: 0
 		} 100ms \linear -> \#misskey-create-status-form-container .css \display \none
 	$ \#misskey-create-status-form .find \.close-button .click ->
 		$ \#misskey-create-status-form-back .animate {
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-create-status-form-back .css \display \none
-		$ \#misskey-create-status-form-container .animate {
+		$ \#misskey-create-status-form .animate {
 			opacity: 0
 		} 100ms \linear -> \#misskey-create-status-form-container .css \display \none
 
