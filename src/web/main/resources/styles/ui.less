@@ -100,6 +100,231 @@ textarea {
 
 /* UI
  * ---------------------------------------------------------------- */
+#misskey-create-status-form-back {
+	display: none;
+	position: fixed;
+	z-index: 127;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+}
+
+#misskey-create-status-form-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	z-index: 128;
+	width: 100%;
+	height: 100%;
+}
+
+#misskey-create-status-form {
+	display: block;
+	position: absolute;
+	top: 20%;
+	left: 0;
+	right: 0;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 550px;
+	margin: auto;
+	padding: 0 32px 24px 32px;
+	background: #fff;
+	opacity: 0;
+
+	h1 {
+		display: block;
+		position: relative;
+		margin: 0;
+		padding: 10px 0 8px 0;
+		text-align: center;
+		font-size: 1em;
+		font-weight: bold;
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+		color: #555;
+		border-bottom: solid 1px #eee;
+
+		i {
+			margin-right: 8px;
+		}
+	}
+
+	> .close-button {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		width: 42px;
+		height: 42px;
+		color: #555;
+		border: none;
+		outline: none;
+		background: transparent;
+		cursor: pointer;
+
+		&:hover {
+			color: #333;
+		}
+
+		&:active {
+			color: #000;
+		}
+
+		* {
+			pointer-events: none;
+		}
+	}
+
+	> .me-icon-area {
+		display: block;
+		float: left;
+		width: 56px;
+
+		> .icon {
+			display: block;
+			width: 48px;
+			height: 48px;
+			margin: 8px;
+		}
+	}
+
+	> .main {
+		display: block;
+		float: left;
+		width: ~"calc(100% - 56px)";
+
+		> textarea {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			user-select: text;
+			-moz-user-select: text;
+			-webkit-user-select: text;
+			-ms-user-select: text;
+			display: block;
+			box-sizing: border-box;
+			cursor: auto;
+			margin: 0;
+			padding: 12px 12px;
+			width: 100%;
+			min-width: 100%;
+			max-width: 100%;
+			height: 6em;
+			font-size: 1em;
+			color: #444;
+			outline: none;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+		}
+
+		> .submit-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			float: right;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 12px 16px;
+			min-width: 5em;
+			line-height: 1em !important;
+			font-size: 1em !important;
+			text-decoration: none;
+			font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+			font-weight: bold;
+			color: contrast(@themeColor, #000, #fff, 70%);
+			background: @themeColor;
+			outline: none;
+			border: none;
+			border-radius: 2px;
+			box-shadow: none;
+			cursor: pointer;
+
+			&:disabled {
+				background: #ddd;
+			}
+
+			&:hover {
+				background: lighten(@themeColor, 10%);
+			}
+
+			&:active {
+				background: darken(@themeColor, 10%);
+			}
+		}
+	}
+
+	.progress {
+		display: none;
+		margin-bottom: 16px;
+
+		.status {
+			margin: 0 0 4px 0;
+			padding: 0;
+			font-size: 0.8em;
+			color: rgba(0, 0, 0, 0.7);
+
+			> i {
+				margin-right: 0.25em;
+			}
+		}
+
+		progress {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: block;
+			margin: 0;
+			width: 100%;
+			height: 8px;
+			border: solid 1px #ddd;
+			border-radius: 8px;
+			overflow: hidden;
+
+			&::-webkit-progress-value {
+				background-color: @themeColor;
+			}
+
+			&::-webkit-progress-bar {
+				background-color: #fff;
+			}
+
+			&:not([value])::-webkit-progress-bar {
+				background-image: url('/resources/images/indeter.gif');
+			}
+		}
+	}
+
+	> .image-preview-container {
+		display: none;
+		clear: both;
+		padding: 8px 0 4px 0;
+
+		> .image-preview {
+			display: block;
+			padding: 8px;
+			margin: 0;
+			background: #fff;
+
+			img {
+				width: 100%;
+				max-width: 128px;
+				vertical-align: bottom;
+			}
+		}
+	}
+}
+
 #misskey-main-header {
 	position: fixed;
 	top: 0;
@@ -1175,6 +1400,48 @@ textarea {
 					}
 				}
 
+				> .post {
+					display: inline-block;
+					box-sizing: border-box;
+					padding: 8px;
+					height: 100%;
+					vertical-align: top;
+
+					> button {
+						-webkit-appearance: none;
+						-moz-appearance: none;
+						appearance: none;
+						display: inline-block;
+						box-sizing: border-box;
+						margin: 0;
+						padding: 0 10px;
+						height: 100%;
+						font-size: 1.2em;
+						font-weight: normal;
+						text-decoration: none;
+						color: contrast(@themeColor, #000, #fff, 70%);
+						background: @themeColor !important;
+						outline: none;
+						border: none;
+						border-radius: 2px;
+						box-shadow: none;
+						transition: background 0.1s ease;
+
+						&, * {
+							cursor: pointer;
+						}
+
+							&:hover {
+								background: lighten(@themeColor, 10%) !important;
+							}
+
+							&:active {
+								background: darken(@themeColor, 10%) !important;
+								transition: background 0s ease;
+							}
+					}
+				}
+
 				> .time {
 					display: inline-block;
 
@@ -1338,10 +1605,8 @@ textarea {
 	margin: 0;
 	padding: 0;
 	min-width: 5em;
-	cursor: pointer;
 	line-height: 1em !important;
 	font-size: 1em !important;
-	font-weight: normal;
 	text-decoration: none;
 	color: contrast(@themeColor, #000, #fff, 70%);
 	background: @themeColor !important;
@@ -1354,6 +1619,7 @@ textarea {
 	&, * {
 		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
 		font-weight: bold;
+		cursor: pointer;
 	}
 
 	> * {
