@@ -367,6 +367,7 @@ $ ->
 		.fail (data) ->
 			window.display-message '投稿に失敗しました。'
 			$submit-button.attr \disabled off
+			$form.find \textarea .attr \disabled off
 			$progress.css \display \none
 			$submit-button.attr \value 'Re Update &#xf1d8;'
 
