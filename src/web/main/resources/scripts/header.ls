@@ -297,6 +297,22 @@ $ ->
 			opacity: 0
 		} 100ms \linear -> $ \#misskey-create-status-form-container .css \display \none
 
+	$ \#misskey-create-status-form .find \textarea .bind \input ->
+		$ \#misskey-create-status-form .find \.submit-button .attr \disabled off
+
+	$ \#misskey-create-status-form .find '.image-attacher input[name=image]' .change ->
+		$input = $ @
+		$ \#misskey-create-status-form .find '.image-preview-container' .css \display \block
+		$ \#misskey-create-status-form .find \.submit-button .attr \disabled off
+		file = $input.prop \files .0
+		if file.type.match 'image.*'
+			reader = new FileReader!
+				..onload = ->
+					$img = $ '<img>' .attr \src reader.result
+					$ \#misskey-create-status-form .find '.image-preview' .find 'img' .remove!
+					$ \#misskey-create-status-form .find '.image-preview' .append $img
+				..readAsDataURL file
+
 $ window .load ->
 	header-height = $ 'body > #misskey-main-header' .outer-height!
 	$ \body .css \margin-top "#{header-height}px"
