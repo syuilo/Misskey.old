@@ -328,7 +328,6 @@ $ ->
 		$form.find \textarea .attr \disabled on
 
 		fd = new FormData!
-		fd.append \image
 		fd.append \text $form.find \textarea .val!
 		jQuery.each $form[0].files (i, file) ->
 			fd.append \image file
