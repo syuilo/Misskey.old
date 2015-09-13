@@ -235,19 +235,20 @@ textarea {
 			float: right;
 			box-sizing: border-box;
 			margin: 0;
-			padding: 0;
+			padding: 12px 16px;
 			min-width: 5em;
 			line-height: 1em !important;
 			font-size: 1em !important;
-			font-weight: normal;
 			text-decoration: none;
+			font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+			font-weight: bold;
 			color: contrast(@themeColor, #000, #fff, 70%);
 			background: @themeColor !important;
 			outline: none;
 			border: none;
 			border-radius: 2px;
 			box-shadow: none;
-			font-family: FontAwesome, 'Proxima Nova Reg', "FOT-スーラ Pro M", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+			cursor: pointer;
 
 			&:disabled {
 				background: #ddd;
@@ -1606,7 +1607,6 @@ textarea {
 	min-width: 5em;
 	line-height: 1em !important;
 	font-size: 1em !important;
-	font-weight: normal;
 	text-decoration: none;
 	color: contrast(@themeColor, #000, #fff, 70%);
 	background: @themeColor !important;
