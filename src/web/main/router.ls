@@ -25,6 +25,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'user-not-found' {}
+					
 	app.param \statusId (req, res, next, status-id) ->
 		Status.find-by-id status-id, (, status) ->
 			if status?
@@ -34,6 +35,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'status-not-found' {}
+					
 	app.param \bbsThreadId (req, res, next, thread-id) ->
 		BBSThread.find-by-id thread-id, (, thread) ->
 			if thread?
