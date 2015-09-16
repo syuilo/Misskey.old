@@ -19,6 +19,8 @@ function send-empty-style(res)
 		..send '*{}'
 
 module.exports = (app) ->
+	console.log \ti-na
+
 	function compile-less (less-css, style-user, callback)
 		color = if style-user? && style-user.color == /#[a-fA-F0-9]{6}/
 			then style-user.color
