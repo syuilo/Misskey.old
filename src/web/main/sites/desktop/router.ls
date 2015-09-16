@@ -44,6 +44,7 @@ module.exports = (app) ->
 
 	# Root
 	app.get '/' (req, res) ->
+		console.log \kyoppie
 		if req.login
 			(require './controllers/home') req, res
 		else
