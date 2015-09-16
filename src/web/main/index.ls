@@ -15,6 +15,7 @@ require! {
 	'../../models/user': User
 	'./resources': resources-router
 	'./sites/desktop/router': desktop-router
+	'./sites/desktop/resources-router': desktop-resources-router
 	'./sites/mobile/router': mobile-router
 }
 
@@ -131,6 +132,7 @@ server.all '*' (req, res, next) -> server.init-session req, res, -> next!
 server.all '*' (req, res, next) ->
 	if req.is-mobile
 		server.set 'views' "#__dirname/sites/mobile/views/pages"
+		desktop-resources-router server
 		desktop-router server
 	else
 		server.set 'views' "#__dirname/sites/desktop/views/pages"
