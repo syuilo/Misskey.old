@@ -6,8 +6,8 @@ require! {
 	'../../models/user': User
 	'../../models/bbs-thread': BBSThread
 	'../../models/bbs-post': BBSPost
-	'../../web/main/utils/parse-bbs-thread-post-text'
-	'../../web/main/utils/bbs-post-serialyzer'
+	'../../web/main/sites/desktop/utils/parse-bbs-thread-post-text'
+	'../../web/main/sites/desktop/utils/bbs-post-serialyzer'
 	'../../config'
 	'express-session': session
 }
@@ -59,7 +59,7 @@ module.exports = (io, session-store) ->
 								# Find post
 								err, post <- BBSPost.find-by-id content.value.id
 								# Send HTML
-								post-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/bbs-post/post.jade"
+								post-compiler = jade.compile-file "#__dirname/../../web/main/sites/desktop/views/dynamic-parts/bbs-post/post.jade"
 								bbs-post-serialyzer post, (serialized-post) ->
 									socket.emit content.type, post-compiler do
 										post: serialized-post
