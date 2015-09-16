@@ -5,11 +5,11 @@
 require! {
 	fs
 	express
-	'../../../models/user': User
-	'../../../models/status': Status
-	'../../../models/bbs-thread': BBSThread
-	'../../../utils/login': do-login
-	'../../../config'
+	'../../models/user': User
+	'../../models/status': Status
+	'../../models/bbs-thread': BBSThread
+	'../../utils/login': do-login
+	'../../config'
 }
 
 module.exports = (app) ->
@@ -46,9 +46,9 @@ module.exports = (app) ->
 	app.get '/' (req, res) ->
 		if req.login
 			if req.is-mobile
-				(require '../controllers/mobile/home') req, res
+				(require './sites/mobile/controllers/home') req, res
 			else
-				(require '../controllers/home') req, res
+				(require './sites/desktop/controllers/home') req, res
 		else
 			res.display req, res, 'entrance', {}
 
@@ -61,29 +61,29 @@ module.exports = (app) ->
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 
 	# search
-	app.get '/search' (req, res) -> (require '../controllers/search') req, res
+	app.get '/search' (req, res) -> (require './sites/desktop/controllers/search') req, res
 
 	# questionnaire
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
 
 	# questionnaire (submit)
-	app.post '/questionnaire' (req, res) -> (require '../controllers/questionnaire-post') req, res
+	app.post '/questionnaire' (req, res) -> (require './sites/desktop/controllers/questionnaire-post') req, res
 
 	# about
 	app.get '/about/:title' (req, res) ->
 		res.display req, res, "about-articles/#{req.params.title}"
 
 	# talk widget
-	app.get '/widget/talk/:userSn' (req, res) -> (require '../controllers/user-talk') req, res, \widget
+	app.get '/widget/talk/:userSn' (req, res) -> (require './sites/desktop/controllers/user-talk') req, res, \widget
 
 	# BBS home
-	app.get '/bbs' (req, res) -> (require '../controllers/bbs-home') req, res
+	app.get '/bbs' (req, res) -> (require './sites/desktop/controllers/bbs-home') req, res
 
 	# BBS thread
-	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require '../controllers/bbs-thread') req, res
+	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require './sites/desktop/controllers/bbs-thread') req, res
 
 	# BBS thread settings form
-	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require '../controllers/bbs-thread-settings') req, res
+	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require './sites/desktop/controllers/bbs-thread-settings') req, res
 
 	# BBS new thread form
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
@@ -91,53 +91,53 @@ module.exports = (app) ->
 	# Create status form
 	app.get '/i/status-new' (req, res) ->
 		if req.is-mobile
-			(require '../controllers/mobile/i-status-new') req, res
+			(require './sites/mobile/controllers/i-status-new') req, res
 		else
-			(require '../controllers/i-status-new') req, res
+			(require './sites/desktop/controllers/i-status-new') req, res
 
 	# mentions
 	app.get '/i/mentions' (req, res) ->
 		if req.is-mobile
-			(require '../controllers/mobile/i-mentions') req, res
+			(require './sites/mobile/controllers/i-mentions') req, res
 		else
-			(require '../controllers/i-mentions') req, res
+			(require './sites/desktop/controllers/i-mentions') req, res
 
 	# notices
 	app.get '/i/notices' (req, res) ->
 		if req.is-mobile
-			(require '../controllers/mobile/i-notices') req, res
+			(require './sites/mobile/controllers/i-notices') req, res
 		else
 			#(require '../controllers/i-notices') req, res
 
 	# talks
 	app.get '/i/talks' (req, res) ->
 		if req.is-mobile
-			(require '../controllers/mobile/i-talks') req, res
+			(require './sites/mobile/controllers/i-talks') req, res
 		else
-			(require '../controllers/i-talks') req, res
+			(require './sites/desktop/controllers/i-talks') req, res
 
 	# settings
 	app.get '/i/settings' (req, res) ->
 		if req.is-mobile
-			(require '../controllers/mobile/i-settings') req, res
+			(require './sites/mobile/controllers/i-settings') req, res
 		else
-			(require '../controllers/i-settings') req, res
+			(require './sites/desktop/controllers/i-settings') req, res
 
 	# profile setting
 	app.get '/i/settings/profile' (req, res) ->
-		(require '../controllers/mobile/i-settings-profile') req, res
+		(require './sites/mobile/controllers/i-settings-profile') req, res
 
 	# name setting
 	app.get '/i/settings/name' (req, res) ->
-		res.display req, res, 'mobile/i-settings-name'
+		res.display req, res, './sites/mobile/views/pages/i-settings-name'
 
 	# comment setting
 	app.get '/i/settings/comment' (req, res) ->
-		res.display req, res, 'mobile/i-settings-comment'
+		res.display req, res, './sites/mobile/views/pages/i-settings-comment'
 
 	# bio setting
 	app.get '/i/settings/bio' (req, res) ->
-		res.display req, res, 'mobile/i-settings-bio'
+		res.display req, res, './sites/mobile/views/pages/i-settings-bio'
 
 	# location setting
 	app.get '/i/settings/location' (req, res) ->

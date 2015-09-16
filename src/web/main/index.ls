@@ -14,7 +14,8 @@ require! {
 	'express-session': session
 	'../../models/user': User
 	'./routes/resources': resources-router
-	'./routes/index': index-router
+	'./sites/desktop/router': desktop-router
+	'./sites/mobile/router': mobile-router
 }
 
 RedisStore = connect-redis session
@@ -127,7 +128,11 @@ resources-router server
 server.all '*' (req, res, next) -> server.init-session req, res, -> next!
 
 # General rooting
-index-router server
+server.all '*' (req, res, next) ->
+	if req.is-mobile
+		desktop-router server
+	else
+		mobile-router server
 
 # Not found handling
 server.use (req, res) ->
