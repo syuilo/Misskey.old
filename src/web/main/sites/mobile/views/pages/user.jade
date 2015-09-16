@@ -1,0 +1,42 @@
+extends ../../layouts/mobile/user
+
+block title
+	title= user.name
+
+block stylesheet
+	link(rel='stylesheet', href='/resources/styles/mobile/timeline.css')
+
+block content
+	if page == 'home'
+		div#timeline!= timelineHtml
+	if page == 'profile'
+		div#profile
+			div#bio!= bio
+	if page == 'followings'
+		div#followings-list
+			h2 Followings
+			div.usersList
+				ol
+					each user in followings
+						li(data-user-verified!= user.isPlus.toString())
+							a(href= '/' + user.screenName)
+								img.icon(src=user.iconImageUrl, alt='icon')
+							h2
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment
+	if page == 'followers'
+		div#followers-list
+			h2 Followers
+			div.usersList
+				ol
+					each user in followers
+						li(data-user-verified!= user.isPlus.toString())
+							a(href= '/' + user.screenName)
+								img.icon(src=user.iconImageUrl, alt='icon')
+							h2
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment
