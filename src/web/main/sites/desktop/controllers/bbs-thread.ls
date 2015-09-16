@@ -6,8 +6,8 @@ require! {
 	'../../../../../models/utils/check-bbs-thread-watched'
 	'../utils/generate-bbs-posts-html'
 }
-module.exports = (req, res) ->
-	thread = req.root-thread
+module.exports = (req, res, options) ->
+	thread = options.thread
 	is-favorited-promise = if req.login then check-bbs-thread-favorited req.me.id, thread.id else new Promise (resolve, reject) -> resolve no
 	is-watched-promise = if req.login then check-bbs-thread-watched req.me.id, thread.id else new Promise (resolve, reject) -> resolve no
 	is-favorited <- is-favorited-promise.then

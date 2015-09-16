@@ -37,7 +37,7 @@ module.exports = (app) ->
 	app.param \bbsThreadId (req, res, next, thread-id) ->
 		BBSThread.find-by-id thread-id, (, thread) ->
 			if thread?
-				req.root-thread = req.data.root-thread = thread
+				req.root-bbs-thread = req.data.root-bbs-thread = thread
 				next!
 			else
 				res
@@ -80,10 +80,11 @@ module.exports = (app) ->
 		view: \widget
 
 	# BBS home
-	app.get '/bbs' (req, res) -> (require './controllers/bbs-home') req, res
+	app.get '/bbs' (req, res) -> CallController req, res, \bbs-home
 
 	# BBS thread
-	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require './controllers/bbs-thread') req, res
+	app.get '/bbs/thread/:bbsThreadId' (req, res) -> CallController req, res, \bbs-thread do
+		thread: req.root-bbs-thread
 
 	# BBS thread settings form
 	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require './controllers/bbs-thread-settings') req, res
