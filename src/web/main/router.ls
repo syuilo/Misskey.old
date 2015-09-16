@@ -44,25 +44,25 @@ module.exports = (app) ->
 					..status 404
 					..display req, res, 'thread-not-found' {}
 
-	function CallController(req, res, name)
+	function CallController(req, res, name, options = null)
 		if req.is-mobile
-			(require "./sites/mobile/controllers/#name") req, res
+			(require "./sites/mobile/controllers/#name") req, res, options
 		else
-			(require "./sites/desktop/controllers/#name") req, res
-
-	# Root
-	app.get '/' (req, res) -> CallController req, res, \home
+			(require "./sites/desktop/controllers/#name") req, res, options
 
 	# Config javascript
 	app.get '/config' (req, res) ->
 		res.set 'Content-Type' 'application/javascript'
 		res.send "var config = conf = #{to-json config.public-config};"
 
+	# Root
+	app.get '/' (req, res) -> CallController req, res, \home
+
 	# log viewer
-	app.get '/log' (req, res) -> res.display req, res, 'log'
+	app.get '/log' (req, res) -> res.render './sites/desktop/views/pages/log'
 
 	# search
-	app.get '/search' (req, res) -> (require './controllers/search') req, res
+	app.get '/search' (req, res) -> (require "./sites/desktop/controllers/search")
 
 	# questionnaire
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
@@ -113,22 +113,22 @@ module.exports = (app) ->
 		req.session.destroy (err) -> res.redirect '/'
 
 	# User page
-	app.get '/:userSn' (req, res) -> (require './controllers/user') req, res, \home
+	app.get '/:userSn' (req, res) -> CallController req, res, \user \home
 
 	# User profile
-	app.get '/:userSn/profile' (req, res) -> (require './controllers/user') req, res, \profile
+	app.get '/:userSn/profile' (req, res) -> CallController req, res, \user \profile
 
 	# User followings
-	app.get '/:userSn/followings' (req, res) -> (require './controllers/user') req, res, \followings
+	app.get '/:userSn/followings' (req, res) -> CallController req, res, \user \followings
 
 	# User followers
-	app.get '/:userSn/followers' (req, res) -> (require './controllers/user') req, res, \followers
+	app.get '/:userSn/followers' (req, res) -> CallController req, res, \user \followers
 
 	# talk
 	app.get '/:userSn/talk' (req, res) -> (require './controllers/user-talk') req, res, \normal
 
 	# staus detail page
-	app.get '/:userSn/status/:statusId' (req, res) -> (require './controllers/status') req, res
+	app.get '/:userSn/status/:statusId' (req, res) -> CallController req, res, \status
 
 	# User profile widget
 	app.get '/widget/user/:userSn' (req, res) -> (require './controllers/widget-user-profile') req, res
