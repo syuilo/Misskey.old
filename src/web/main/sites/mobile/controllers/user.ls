@@ -76,7 +76,7 @@ module.exports = (req, res, options) ->
 	] .then (results) -> res.display do
 		req
 		res
-		\mobile/user
+		\user
 		{
 			timeline-html: results.0
 			is-following: results.1
