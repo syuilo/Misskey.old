@@ -1,5 +1,5 @@
 #
-# Web index router
+# Web router
 #
 
 require! {
@@ -13,6 +13,8 @@ require! {
 }
 
 module.exports = (app) ->
+	console.log 'Web router loaded'
+
 	# Preset
 	app.param \userSn (req, res, next, screen-name) ->
 		User.find-one {screen-name-lower: screen-name.to-lower-case!} (, user) ->
