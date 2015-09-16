@@ -95,7 +95,7 @@ module.exports = (app) ->
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
 
 	# Create status form
-	app.get '/i/status-new' (req, res) -> (require './controllers/i-status-new') req, res
+	app.get '/i/status-new' (req, res) -> CallController req, res, \i-status-new
 
 	# mentions
 	app.get '/i/mentions' (req, res) -> CallController req, res, \i-mentions
