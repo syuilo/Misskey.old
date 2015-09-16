@@ -1,10 +1,10 @@
-extends ../../layouts/mobile/user
+extends ../layouts/user
 
 block title
 	title= user.name
 
 block stylesheet
-	link(rel='stylesheet', href='/resources/styles/mobile/timeline.css')
+	link(rel='stylesheet', href='/resources/styles/common/timeline.css')
 
 block content
 	if page == 'home'
