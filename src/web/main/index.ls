@@ -132,11 +132,11 @@ server.all '*' (req, res, next) -> server.init-session req, res, -> next!
 server.all '*' (req, res, next) ->
 	if req.is-mobile
 		server.set 'views' "#__dirname/sites/mobile/views/pages"
-		desktop-resources-router server
-		desktop-router server
+		mobile-router server
 	else
 		server.set 'views' "#__dirname/sites/desktop/views/pages"
-		mobile-router server
+		desktop-resources-router server
+		desktop-router server
 
 # Not found handling
 server.use (req, res) ->
