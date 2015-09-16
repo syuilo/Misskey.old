@@ -8,7 +8,7 @@ $ ->
 	$ '#statuses .timeline .statuses .status .status.article' .each ->
 		$status = $ @
 		window.STATUS_CORE.set-event $status
-		$text = $status.find 'article > .main > .main > .content > .text'
+		$text = $status.find '> article > .main > .main > .content > .text'
 		$text .html ($text.html!.replace q-reg, "<mark>#{q}</mark>")
 
 	$ '#search input' .bind \input ->

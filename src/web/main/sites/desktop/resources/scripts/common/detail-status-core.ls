@@ -186,7 +186,7 @@ window.STATUS_CORE = {}
 				.done (html) ->
 					$reply = $ html
 					$submit-button.attr \disabled off
-					$reply.prepend-to $status.find 'article > .main > .replies > .statuses'
+					$reply.prepend-to $status.find '> article > .main > .replies > .statuses'
 					init-user-profile-popup do
 						$reply.find 'article > .icon-area > .icon-anchor'
 						$reply.attr \data-user-profile-widget-url
