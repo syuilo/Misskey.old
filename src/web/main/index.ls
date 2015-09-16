@@ -122,9 +122,6 @@ server.all '*' (req, res, next) ->
 			done: yes
 	}
 
-# Resources rooting
-resources-router server
-
 # Init session
 server.all '*' (req, res, next) ->
 	server.init-session req, res, ->
@@ -133,6 +130,9 @@ server.all '*' (req, res, next) ->
 		else
 			server.set 'views' "#__dirname/sites/desktop/views/pages"
 		next!
+
+# Resources rooting
+resources-router server
 
 # General rooting
 router server
