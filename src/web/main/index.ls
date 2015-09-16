@@ -141,6 +141,7 @@ server.all '*' (req, res, next) ->
 		desktop-resources-router server
 		console.log \akari
 		desktop-router server
+	next!
 
 # Not found handling
 server.use (req, res) ->
