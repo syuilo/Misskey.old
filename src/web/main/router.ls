@@ -118,13 +118,19 @@ module.exports = (app) ->
 		user: req.root-user
 
 	# User profile
-	app.get '/:userSn/profile' (req, res) -> CallController req, res, \user \profile
+	app.get '/:userSn/profile' (req, res) -> CallController req, res, \user do
+		page: \profile
+		user: req.root-user
 
 	# User followings
-	app.get '/:userSn/followings' (req, res) -> CallController req, res, \user \followings
+	app.get '/:userSn/followings' (req, res) -> CallController req, res, \user do
+		page: \followings
+		user: req.root-user
 
 	# User followers
-	app.get '/:userSn/followers' (req, res) -> CallController req, res, \user \followers
+	app.get '/:userSn/followers' (req, res) -> CallController req, res, \user do
+		page: \followers
+		user: req.root-user
 
 	# talk
 	app.get '/:userSn/talk' (req, res) -> (require './controllers/user-talk') req, res, \normal
