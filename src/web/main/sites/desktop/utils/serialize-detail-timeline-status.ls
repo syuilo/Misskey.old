@@ -1,13 +1,13 @@
 require! {
 	moment
-	'../../../models/application': Application
-	'../../../models/user': User
-	'../../../models/status': Status
-	'../../../models/utils/status-get-replies'
-	'../../../models/utils/status-get-stargazers'
-	'../../../models/utils/status-check-favorited'
-	'../../../models/utils/status-check-reposted'
-	'../../../config'
+	'../../../../../models/application': Application
+	'../../../../../models/user': User
+	'../../../../../models/status': Status
+	'../../../../../models/utils/status-get-replies'
+	'../../../../../models/utils/status-get-stargazers'
+	'../../../../../models/utils/status-check-favorited'
+	'../../../../../models/utils/status-check-reposted'
+	'../../../../../config'
 }
 
 module.exports = (status, me, callback) ->

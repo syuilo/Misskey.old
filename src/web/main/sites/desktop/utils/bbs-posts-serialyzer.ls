@@ -1,6 +1,6 @@
 require! {
 	'./bbs-post-serialyzer'
-	'../../../config'
+	'../../../../../config'
 }
 
 module.exports = (posts) ->

@@ -1,6 +1,6 @@
 require! {
 	'./serialize-mobile-timeline-status'
-	'../../../config'
+	'../../../../../config'
 }
 
 # [Status] -> User -> Promise [Status]

@@ -2,7 +2,7 @@ require! {
 	jade
 	'./parse-bbs-thread-post-text'
 	'./bbs-posts-serialyzer'
-	'../../../config'
+	'../../../../../config'
 }
 
 module.exports = (posts, callback) ->

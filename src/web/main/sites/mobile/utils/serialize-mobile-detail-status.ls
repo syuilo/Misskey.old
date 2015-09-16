@@ -1,13 +1,13 @@
 require! {
 	moment
-	'../../../models/application': Application
-	'../../../models/user': User
-	'../../../models/status': Status
-	'../../../models/utils/status-get-talk'
-	'../../../models/utils/status-get-replies'
-	'../../../models/utils/status-check-favorited'
-	'../../../models/utils/status-check-reposted'
-	'../../../config'
+	'../../../../../models/application': Application
+	'../../../../../models/user': User
+	'../../../../../models/status': Status
+	'../../../../../models/utils/status-get-talk'
+	'../../../../../models/utils/status-get-replies'
+	'../../../../../models/utils/status-check-favorited'
+	'../../../../../models/utils/status-check-reposted'
+	'../../../../../config'
 }
 
 module.exports = (status, me, callback) ->
@@ -98,4 +98,3 @@ module.exports = (status, me, callback) ->
 		status.is-favorited = null
 		status.is-reposted = null
 		callback status
-	

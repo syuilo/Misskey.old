@@ -1,10 +1,10 @@
 require! {
 	moment
-	'../../../models/user': User
-	'../../../models/status': Status
-	'../../../models/utils/status-check-favorited'
-	'../../../models/utils/status-check-reposted'
-	'../../../config'
+	'../../../../../models/user': User
+	'../../../../../models/status': Status
+	'../../../../../models/utils/status-check-favorited'
+	'../../../../../models/utils/status-check-reposted'
+	'../../../../../config'
 }
 
 module.exports = (status, me, callback) ->

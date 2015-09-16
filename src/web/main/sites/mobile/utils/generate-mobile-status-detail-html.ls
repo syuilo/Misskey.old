@@ -2,7 +2,7 @@ require! {
 	jade
 	'./serialize-mobile-detail-status'
 	'./parse-text'
-	'../../../config'
+	'../../../../../config'
 }
 
 module.exports = (status, viewer, callback) ->

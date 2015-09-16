@@ -1,6 +1,6 @@
 require! {
-	'../../../models/utils/serialize-bbs-post'
-	'../../../config'
+	'../../../../../models/utils/serialize-bbs-post'
+	'../../../../../config'
 }
 
 module.exports = (post, callback) ->

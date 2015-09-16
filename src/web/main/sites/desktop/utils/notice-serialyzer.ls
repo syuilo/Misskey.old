@@ -1,11 +1,11 @@
 require! {
-	'../../../models/notice': Notice
-	'../../../models/application': Application
-	'../../../models/user': User
-	'../../../models/status': Status
-	'../../../models/bbs-thread': BBSThread
-	'../../../models/bbs-post': BBSPost
-	'../../../config'
+	'../../../../../models/notice': Notice
+	'../../../../../models/application': Application
+	'../../../../../models/user': User
+	'../../../../../models/status': Status
+	'../../../../../models/bbs-thread': BBSThread
+	'../../../../../models/bbs-post': BBSPost
+	'../../../../../config'
 }
 
 module.exports = (notice) -> new Promise (resolve, reject) ->
