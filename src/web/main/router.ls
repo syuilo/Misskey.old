@@ -106,6 +106,42 @@ module.exports = (app) ->
 	# settings
 	app.get '/i/settings' (req, res) -> CallController req, res, \i-settings
 
+	# profile setting
+	app.get '/i/settings/profile' (req, res) ->
+		(require './sites/mobile/controllers/mobile/i-settings-profile') req, res
+
+	# name setting
+	app.get '/i/settings/name' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-name'
+
+	# comment setting
+	app.get '/i/settings/comment' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-comment'
+
+	# bio setting
+	app.get '/i/settings/bio' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-bio'
+
+	# location setting
+	app.get '/i/settings/location' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-location'
+
+	# website url setting
+	app.get '/i/settings/url' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-url'
+
+	# color setting
+	app.get '/i/settings/color' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-color'
+
+	# icon setting
+	app.get '/i/settings/icon' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-icon'
+
+	# header setting
+	app.get '/i/settings/header' (req, res) ->
+		res.display req, res, './sites/mobile/views/pages/i-settings-header'
+
 	# mobile header design setting
 	app.get '/i/settings/mobile-header-design' (req, res) ->
 		(require './sites/mobile/controllers/i-settings-mobile-header-design') req, res
