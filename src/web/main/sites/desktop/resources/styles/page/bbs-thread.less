@@ -287,17 +287,17 @@ main {
 					> .icon {
 						display: block;
 						float: left;
-						min-width: 50px;
-						min-height: 50px;
-						max-width: 50px;
-						max-height: 50px;
+						min-width: 58px;
+						min-height: 58px;
+						max-width: 58px;
+						max-height: 58px;
 						margin: 0 16px 0 0;
-						border-radius: 8px;
+						border-radius: 100%;
 					}
 
 					> .main {
 						float: left;
-						width: ~"calc(100% - 70px)";
+						width: ~"calc(100% - 74px)";
 
 						> header {
 							h2 {
@@ -328,17 +328,9 @@ main {
 								}
 
 								time.relative {
-									margin: 4px;
-
-									&:before {
-										content: '(';
-									}
-
-									&:after {
-										content: ')';
-									}
-
-									color: rgba(0, 0, 0, 0.8);
+									float: right;
+									font-size: 0.8em;
+									color: rgba(0, 0, 0, 0.5);
 								}
 							}
 						}
