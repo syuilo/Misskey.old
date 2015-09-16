@@ -1,15 +1,16 @@
 require! {
 	marked
-	'../../../../models/user': User
-	'../../../../models/user-following': UserFollowing
-	'../../../../models/status': Status
-	'../../../../models/utils/user-following-check'
-	'../../utils/generate-mobile-home-timeline-html'
-	'../../../../config'
+	'../../../../../models/user': User
+	'../../../../../models/user-following': UserFollowing
+	'../../../../../models/status': Status
+	'../../../../../models/utils/user-following-check'
+	'../../utils/generate-home-timeline-html'
+	'../../../../../config'
 }
 
-module.exports = (req, res, page = \home) ->
-	user = req.root-user
+module.exports = (req, res, options) ->
+	user = options.user
+	page = options.page
 	me = if req.login then req.me else null
 	Promise.all [
 		# Get statuses timeline (home page only)
@@ -20,7 +21,7 @@ module.exports = (req, res, page = \home) ->
 				.sort {created-at: \desc}
 				.limit 30status
 				.exec (, statuses) ->
-					generate-mobile-home-timeline-html statuses, me, (html) ->
+					generate-home-timeline-html statuses, me, (html) ->
 						resolve html
 
 		# Get is following
