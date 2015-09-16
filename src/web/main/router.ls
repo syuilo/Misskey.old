@@ -108,7 +108,7 @@ module.exports = (app) ->
 
 	# profile setting
 	app.get '/i/settings/profile' (req, res) ->
-		(require './sites/mobile/controllers/mobile/i-settings-profile') req, res
+		(require './sites/mobile/controllers/i-settings-profile') req, res
 
 	# name setting
 	app.get '/i/settings/name' (req, res) ->
