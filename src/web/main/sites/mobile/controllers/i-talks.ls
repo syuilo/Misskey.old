@@ -1,9 +1,9 @@
 require! {
 	moment
-	'../../../../models/user': User
-	'../../../../models/talk-message': TalkMessage
-	'../../../../models/talk-history': TalkHistory
-	'../../../../models/utils/get-talk-history-messages'
+	'../../../../../models/user': User
+	'../../../../../models/talk-message': TalkMessage
+	'../../../../../models/talk-history': TalkHistory
+	'../../../../../models/utils/get-talk-history-messages'
 }
 
 module.exports = (req, res) ->
@@ -28,5 +28,5 @@ module.exports = (req, res) ->
 			done null
 
 	function done(messages)
-		res.display req, res, 'mobile/i-talks' do
+		res.display req, res, \i-talks do
 			messages: messages
