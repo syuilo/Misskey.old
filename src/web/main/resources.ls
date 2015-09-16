@@ -104,9 +104,6 @@ module.exports = (app) ->
 					res.send-file css-path
 
 			| req.url.index-of '.less' == -1 =>
-				if req.is-mobile
-					resource-path = path.resolve "#__dirname/sites/mobile/#{req.path}"
-				else
-					resource-path = path.resolve "#__dirname/sites/desktop/#{req.path}"
+				resource-path = path.resolve "#__dirname/#{req.path}"
 				res.send-file resource-path
 			| _ => next!
