@@ -42,6 +42,8 @@ module.exports = (app) ->
 					..status 404
 					..display req, res, 'thread-not-found' {}
 
+	console.log \himawari
+
 	# Root
 	app.get '/' (req, res) ->
 		console.log \kyoppie
