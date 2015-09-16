@@ -79,8 +79,13 @@ module.exports = (app) ->
 		| _ =>
 			switch
 			| req.path == /\.css$/ =>
-				css-path = path.resolve "#__dirname/..#{req.path}"
-				less-path = path.resolve "#__dirname/..#{req.path.replace /\.css$/ '.less'}"
+				if req.is-mobile
+					css-path = path.resolve "#__dirname/sites/mobile/#{req.path}"
+					less-path = path.resolve "#__dirname/sites/mobile/#{req.path.replace /\.css$/ '.less'}"
+				else
+					css-path = path.resolve "#__dirname/sites/desktop/#{req.path}"
+					less-path = path.resolve "#__dirname/sites/desktop/#{req.path.replace /\.css$/ '.less'}"
+
 				if fs.exists-sync less-path
 					if req.query.user?
 						User.find-one {screen-name: req.query.user} (, style-user) ->
@@ -99,6 +104,9 @@ module.exports = (app) ->
 					res.send-file css-path
 
 			| req.url.index-of '.less' == -1 =>
-				resource-path = path.resolve "#__dirname/..#{req.path}"
+				if req.is-mobile
+					resource-path = path.resolve "#__dirname/sites/mobile/#{req.path}"
+				else
+					resource-path = path.resolve "#__dirname/sites/desktop/#{req.path}"
 				res.send-file resource-path
 			| _ => next!
