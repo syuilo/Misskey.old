@@ -93,13 +93,13 @@ module.exports = (app) ->
 	app.get '/i/status-new' (req, res) -> (require './controllers/i-status-new') req, res
 
 	# mentions
-	app.get '/i/mentions' (req, res) -> (require './controllers/i-mentions') req, res
+	app.get '/i/mentions' (req, res) -> CallController req, res, \i-mentions
 
 	# talks
-	app.get '/i/talks' (req, res) -> (require './controllers/i-talks') req, res
+	app.get '/i/talks' (req, res) -> CallController req, res, \i-talks
 
 	# settings
-	app.get '/i/settings' (req, res) -> (require './controllers/i-settings') req, res
+	app.get '/i/settings' (req, res) -> CallController req, res, \i-settings
 
 	# login
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
