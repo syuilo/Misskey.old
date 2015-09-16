@@ -81,20 +81,19 @@ module.exports = (app) ->
 				css-path = path.resolve "#__dirname/#{req.path}"
 				less-path = path.resolve "#__dirname/#{req.path.replace /\.css$/ '.less'}"
 				if fs.exists-sync less-path
-					app.init-session req, res, ->
-						| req.query.user? =>
-							User.find-one {screen-name: req.query.user} (, style-user) ->
-								read-file-send-less do
-									req
-									res
-									less-path
-									if style-user? then style-user else null
-						| _ =>
+					if req.query.user?
+						User.find-one {screen-name: req.query.user} (, style-user) ->
 							read-file-send-less do
 								req
 								res
 								less-path
-								if req.login then req.me else null
+								if style-user? then style-user else null
+					else
+						read-file-send-less do
+							req
+							res
+							less-path
+							if req.login then req.me else null
 				else if fs.exists-sync css-path
 					res.send-file css-path
 
