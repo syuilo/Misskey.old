@@ -9,9 +9,8 @@ require! {
 	gm
 	compression
 	less
-	'../../models/user': User
-	'../../models/webtheme': Webtheme
-	'../../config'
+	'../../../../models/user': User
+	'../../../../config'
 }
 
 function send-empty-style(res)
