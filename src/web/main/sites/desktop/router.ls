@@ -44,6 +44,10 @@ module.exports = (app) ->
 
 	console.log \himawari
 
+	app.all '*' (req, res, next) ->
+		console.log req.page
+		next!
+		
 	# Root
 	app.get '/' (req, res) ->
 		console.log \kyoppie
