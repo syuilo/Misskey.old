@@ -77,6 +77,7 @@ module.exports = (app) ->
 	# talk widget
 	app.get '/widget/talk/:userSn' (req, res) -> CallController req, res, \user-talk do
 		user: req.root-user
+		view: \widget
 
 	# BBS home
 	app.get '/bbs' (req, res) -> (require './controllers/bbs-home') req, res
