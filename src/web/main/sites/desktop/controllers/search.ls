@@ -1,5 +1,5 @@
 require! {
-	'../../../models/status': Status
+	'../../../../../models/status': Status
 	'../utils/generate-detail-status-timeline-html'
 }
 

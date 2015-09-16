@@ -1,9 +1,9 @@
 require! {
-	'../../../models/bbs-thread': BBSThread
-	'../../../models/user': User
-	'../../../models/utils/get-bbs-posts'
-	'../../../models/utils/check-bbs-thread-favorited'
-	'../../../models/utils/check-bbs-thread-watched'
+	'../../../../../models/bbs-thread': BBSThread
+	'../../../../../models/user': User
+	'../../../../../models/utils/get-bbs-posts'
+	'../../../../../models/utils/check-bbs-thread-favorited'
+	'../../../../../models/utils/check-bbs-thread-watched'
 	'../utils/generate-bbs-posts-html'
 }
 module.exports = (req, res) ->

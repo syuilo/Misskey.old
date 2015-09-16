@@ -1,13 +1,13 @@
 require! {
 	jade
 	nodemailer
-	'../../../models/user': User
-	'../../../config'
+	'../../../../../models/user': User
+	'../../../../../config'
 }
 
 module.exports = (req, res) ->
 	me = if req.login then req.me else null
-	
+
 	status-timeline-frequency = req.body\status-timeline-frequency
 	status-timeline-usability = req.body\status-timeline-usability
 	status-timeline-usability-suggestion = req.body\status-timeline-usability-suggestion
@@ -19,9 +19,9 @@ module.exports = (req, res) ->
 	bbs-usability-suggestion = req.body\bbs-usability-suggestion
 	design = req.body\design
 	message = req.body\message
-	
+
 	questionnaire-compiler = jade.compile-file "#__dirname/../views/questionnaire.jade"
-	
+
 	html = questionnaire-compiler {
 		me
 		status-timeline-frequency
@@ -36,7 +36,7 @@ module.exports = (req, res) ->
 		design
 		message
 	}
-	
+
 	# SMTP Settings
 	setting =
 		host: config.email-smtp-host

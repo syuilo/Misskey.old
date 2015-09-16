@@ -1,6 +1,6 @@
 require! {
-	'../../../models/bbs-thread': BBSThread
-	'../../../models/user': User
+	'../../../../../models/bbs-thread': BBSThread
+	'../../../../../models/user': User
 }
 
 module.exports = (req, res) ->
