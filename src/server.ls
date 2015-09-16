@@ -15,6 +15,8 @@ require! {
 	'./config'
 }
 
+console.log 'Core server loaded'
+
 # Init express
 app = express!
 app.disable \x-powered-by
