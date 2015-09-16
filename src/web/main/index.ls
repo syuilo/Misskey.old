@@ -137,6 +137,7 @@ server.all '*' (req, res, next) ->
 	else
 		server.set 'views' "#__dirname/sites/desktop/views/pages"
 		desktop-resources-router server
+		console.log \akari
 		desktop-router server
 
 # Not found handling
