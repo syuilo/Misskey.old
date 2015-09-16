@@ -106,6 +106,10 @@ module.exports = (app) ->
 	# settings
 	app.get '/i/settings' (req, res) -> CallController req, res, \i-settings
 
+	# mobile header design setting
+	app.get '/i/settings/mobile-header-design' (req, res) ->
+		(require './sites/mobile/controllers/i-settings-mobile-header-design') req, res
+	
 	# login
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
 	app.post '/login' (req, res) ->
