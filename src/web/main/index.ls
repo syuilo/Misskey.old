@@ -155,6 +155,4 @@ server.use (err, req, res, next) ->
 	else
 		res.send err
 
-console.log \sakurako
-
 exports.server = server
