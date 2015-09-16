@@ -4,7 +4,7 @@ require! {
 	'../../../../../models/user-following': UserFollowing
 	'../../../../../models/status': Status
 	'../../../../../models/utils/user-following-check'
-	'../../utils/generate-home-timeline-html'
+	'../utils/generate-home-timeline-html'
 	'../../../../../config'
 }
 
