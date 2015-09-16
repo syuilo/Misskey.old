@@ -113,7 +113,9 @@ module.exports = (app) ->
 		req.session.destroy (err) -> res.redirect '/'
 
 	# User page
-	app.get '/:userSn' (req, res) -> CallController req, res, \user \home
+	app.get '/:userSn' (req, res) -> CallController req, res, \user do
+		page: \home
+		user: req.root-user
 
 	# User profile
 	app.get '/:userSn/profile' (req, res) -> CallController req, res, \user \profile

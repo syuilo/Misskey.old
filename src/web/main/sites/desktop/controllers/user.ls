@@ -9,8 +9,10 @@ require! {
 	'../../../../../config'
 }
 
-module.exports = (req, res, page = \home) ->
-	user = req.root-user
+module.exports = (req, res, options) ->
+	user = options.user
+	page = options.page
+	
 	me = if req.login then req.me else null
 
 	marked.set-options {
