@@ -5,11 +5,11 @@
 require! {
 	fs
 	express
-	'../../models/user': User
-	'../../models/status': Status
-	'../../models/bbs-thread': BBSThread
-	'../../utils/login': do-login
-	'../../config'
+	'../../../../models/user': User
+	'../../../../models/status': Status
+	'../../../../models/bbs-thread': BBSThread
+	'../../../../utils/login': do-login
+	'../../../../config'
 }
 
 module.exports = (app) ->
