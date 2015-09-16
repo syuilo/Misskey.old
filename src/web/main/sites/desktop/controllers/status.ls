@@ -7,7 +7,10 @@ require! {
 	'../../../../../config'
 }
 
-module.exports = (req, res, user, status) ->
+module.exports = (req, res, options) ->
+	user = options.user
+	status = options.status
+
 	me = req.me
 	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail/status.jade"
 	Status.find-by-id status.id, (, status) ->
