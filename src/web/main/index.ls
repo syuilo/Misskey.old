@@ -19,6 +19,8 @@ require! {
 	'./sites/mobile/router': mobile-router
 }
 
+console.log 'Web server loaded'
+
 RedisStore = connect-redis session
 
 session-expires = 1000ms * 60seconds * 60minutes * 24hours * 365days
