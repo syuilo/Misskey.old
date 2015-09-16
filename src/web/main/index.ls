@@ -130,8 +130,10 @@ server.all '*' (req, res, next) -> server.init-session req, res, -> next!
 # General rooting
 server.all '*' (req, res, next) ->
 	if req.is-mobile
+		server.set 'views' "#__dirname/sites/mobile/views/pages"
 		desktop-router server
 	else
+		server.set 'views' "#__dirname/sites/desktop/views/pages"
 		mobile-router server
 
 # Not found handling
