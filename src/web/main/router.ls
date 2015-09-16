@@ -75,7 +75,8 @@ module.exports = (app) ->
 		res.display req, res, "about-articles/#{req.params.title}"
 
 	# talk widget
-	app.get '/widget/talk/:userSn' (req, res) -> (require './controllers/user-talk') req, res, \widget
+	app.get '/widget/talk/:userSn' (req, res) -> CallController req, res, \user-talk do
+		user: req.root-user
 
 	# BBS home
 	app.get '/bbs' (req, res) -> (require './controllers/bbs-home') req, res

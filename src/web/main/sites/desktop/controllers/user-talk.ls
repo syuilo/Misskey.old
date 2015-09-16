@@ -9,9 +9,12 @@ require! {
 	'../utils/generate-talk-messages-html'
 }
 
-module.exports = (req, res, view) ->
+module.exports = (req, res, options) ->
+	user = options.user
+	view = options.view
+
 	me = req.me.to-object!
-	otherparty = req.root-user.to-object!
+	otherparty = user.to-object!
 
 	get-talk-timeline null, me, otherparty.id, 32messages, null, null .then (messages) ->
 		messages .= reverse!
