@@ -61,107 +61,44 @@ module.exports = (app) ->
 	app.get '/log' (req, res) -> res.display req, res, 'log'
 
 	# search
-	app.get '/search' (req, res) -> (require './sites/desktop/controllers/search') req, res
+	app.get '/search' (req, res) -> (require './controllers/search') req, res
 
 	# questionnaire
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
 
 	# questionnaire (submit)
-	app.post '/questionnaire' (req, res) -> (require './sites/desktop/controllers/questionnaire-post') req, res
+	app.post '/questionnaire' (req, res) -> (require './controllers/questionnaire-post') req, res
 
 	# about
 	app.get '/about/:title' (req, res) ->
 		res.display req, res, "about-articles/#{req.params.title}"
 
 	# talk widget
-	app.get '/widget/talk/:userSn' (req, res) -> (require './sites/desktop/controllers/user-talk') req, res, \widget
+	app.get '/widget/talk/:userSn' (req, res) -> (require './controllers/user-talk') req, res, \widget
 
 	# BBS home
-	app.get '/bbs' (req, res) -> (require './sites/desktop/controllers/bbs-home') req, res
+	app.get '/bbs' (req, res) -> (require './controllers/bbs-home') req, res
 
 	# BBS thread
-	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require './sites/desktop/controllers/bbs-thread') req, res
+	app.get '/bbs/thread/:bbsThreadId' (req, res) -> (require './controllers/bbs-thread') req, res
 
 	# BBS thread settings form
-	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require './sites/desktop/controllers/bbs-thread-settings') req, res
+	app.get '/bbs/thread/:bbsThreadId/settings' (req, res) -> (require './controllers/bbs-thread-settings') req, res
 
 	# BBS new thread form
 	app.get '/bbs/new' (req, res) -> res.display req, res, 'bbs-new-thread'
 
 	# Create status form
-	app.get '/i/status-new' (req, res) ->
-		if req.is-mobile
-			(require './sites/mobile/controllers/i-status-new') req, res
-		else
-			(require './sites/desktop/controllers/i-status-new') req, res
+	app.get '/i/status-new' (req, res) -> (require './controllers/i-status-new') req, res
 
 	# mentions
-	app.get '/i/mentions' (req, res) ->
-		if req.is-mobile
-			(require './sites/mobile/controllers/i-mentions') req, res
-		else
-			(require './sites/desktop/controllers/i-mentions') req, res
-
-	# notices
-	app.get '/i/notices' (req, res) ->
-		if req.is-mobile
-			(require './sites/mobile/controllers/i-notices') req, res
-		else
-			#(require '../controllers/i-notices') req, res
+	app.get '/i/mentions' (req, res) -> (require './controllers/i-mentions') req, res
 
 	# talks
-	app.get '/i/talks' (req, res) ->
-		if req.is-mobile
-			(require './sites/mobile/controllers/i-talks') req, res
-		else
-			(require './sites/desktop/controllers/i-talks') req, res
+	app.get '/i/talks' (req, res) -> (require './controllers/i-talks') req, res
 
 	# settings
-	app.get '/i/settings' (req, res) ->
-		if req.is-mobile
-			(require './sites/mobile/controllers/i-settings') req, res
-		else
-			(require './sites/desktop/controllers/i-settings') req, res
-
-	# profile setting
-	app.get '/i/settings/profile' (req, res) ->
-		(require './sites/mobile/controllers/i-settings-profile') req, res
-
-	# name setting
-	app.get '/i/settings/name' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-name'
-
-	# comment setting
-	app.get '/i/settings/comment' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-comment'
-
-	# bio setting
-	app.get '/i/settings/bio' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-bio'
-
-	# location setting
-	app.get '/i/settings/location' (req, res) ->
-		res.display req, res, 'mobile/i-settings-location'
-
-	# website url setting
-	app.get '/i/settings/url' (req, res) ->
-		res.display req, res, 'mobile/i-settings-url'
-
-	# color setting
-	app.get '/i/settings/color' (req, res) ->
-		res.display req, res, 'mobile/i-settings-color'
-
-	# icon setting
-	app.get '/i/settings/icon' (req, res) ->
-		res.display req, res, 'mobile/i-settings-icon'
-
-	# header setting
-	app.get '/i/settings/header' (req, res) ->
-		res.display req, res, 'mobile/i-settings-header'
-
-	# mobile header design setting
-	app.get '/i/settings/mobile-header-design' (req, res) ->
-		(require '../controllers/mobile/i-settings-mobile-header-design') req, res
+	app.get '/i/settings' (req, res) -> (require './controllers/i-settings') req, res
 
 	# login
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
@@ -175,34 +112,22 @@ module.exports = (app) ->
 		req.session.destroy (err) -> res.redirect '/'
 
 	# User page
-	app.get '/:userSn' (req, res) ->
-		if req.is-mobile
-			(require '../controllers/mobile/user') req, res, \home
-		else
-			(require '../controllers/user') req, res, \home
+	app.get '/:userSn' (req, res) -> (require './controllers/user') req, res, \home
 
 	# User profile
-	app.get '/:userSn/profile' (req, res) -> (require '../controllers/user') req, res, \profile
+	app.get '/:userSn/profile' (req, res) -> (require './controllers/user') req, res, \profile
 
 	# User followings
-	app.get '/:userSn/followings' (req, res) -> (require '../controllers/user') req, res, \followings
+	app.get '/:userSn/followings' (req, res) -> (require './controllers/user') req, res, \followings
 
 	# User followers
-	app.get '/:userSn/followers' (req, res) -> (require '../controllers/user') req, res, \followers
+	app.get '/:userSn/followers' (req, res) -> (require './controllers/user') req, res, \followers
 
 	# talk
-	app.get '/:userSn/talk' (req, res) ->
-		if req.is-mobile
-			(require '../controllers/mobile/user-talk') req, res, \normal
-		else
-			(require '../controllers/user-talk') req, res, \normal
+	app.get '/:userSn/talk' (req, res) -> (require './controllers/user-talk') req, res, \normal
 
 	# staus detail page
-	app.get '/:userSn/status/:statusId' (req, res) ->
-		if req.is-mobile
-			(require '../controllers/mobile/status') req, res
-		else
-			(require '../controllers/status') req, res
+	app.get '/:userSn/status/:statusId' (req, res) -> (require './controllers/status') req, res
 
 	# User profile widget
-	app.get '/widget/user/:userSn' (req, res) -> (require '../controllers/widget-user-profile') req, res
+	app.get '/widget/user/:userSn' (req, res) -> (require './controllers/widget-user-profile') req, res
