@@ -1,10 +1,10 @@
 require! {
 	jade
-	'../../../models/status': Status
-	'../../../models/user': User
+	'../../../../../models/status': Status
+	'../../../../../models/user': User
 	'../utils/serialize-detail-timeline-status'
 	'../utils/parse-text'
-	'../../../config'
+	'../../../../../config'
 }
 
 module.exports = (req, res, user, status) ->
