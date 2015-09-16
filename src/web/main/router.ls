@@ -128,7 +128,9 @@ module.exports = (app) ->
 	app.get '/:userSn/talk' (req, res) -> (require './controllers/user-talk') req, res, \normal
 
 	# staus detail page
-	app.get '/:userSn/status/:statusId' (req, res) -> CallController req, res, \status
+	app.get '/:userSn/status/:statusId' (req, res) -> CallController req, res, \status do
+		user: req.root-user
+		status: req.root-status
 
 	# User profile widget
 	app.get '/widget/user/:userSn' (req, res) -> (require './controllers/widget-user-profile') req, res

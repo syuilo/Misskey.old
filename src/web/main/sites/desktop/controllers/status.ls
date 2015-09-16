@@ -7,11 +7,10 @@ require! {
 	'../../../config'
 }
 
-module.exports = (req, res) ->
-	user = req.root-user
+module.exports = (req, res, user, status) ->
 	me = req.me
 	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail/status.jade"
-	Status.find-by-id req.root-status.id, (, status) ->
+	Status.find-by-id status.id, (, status) ->
 		serialize-detail-timeline-status status, me, (detail-status) ->
 			html = status-compiler do
 				status: detail-status
