@@ -8,12 +8,12 @@ html(
 		data-otherparty-id= otherparty.id
 		data-otherparty-screen-name= otherparty.screenName)
 	head
-		include ../../common/mobile/head
+		include ../common/head
 		title= 'トーク: ' + otherparty.name
-		link(rel='stylesheet', href='/resources/styles/mobile/user-talk.css')
+		link(rel='stylesheet', href='/resources/styles/page/user-talk.css')
 		script(src=webStreamingUrl + '/socket.io/socket.io.js')
-		script(src='/resources/scripts/mobile/user-talk.js')
-		script(src='/resources/scripts/mobile/header.js')
+		script(src='/resources/scripts/page/user-talk.js')
+		script(src='/resources/scripts/common/header.js')
 		
 	body
 		header#misskey-main-header
@@ -21,7 +21,7 @@ html(
 			h1
 				i.fa.fa-comments
 				= otherparty.name
-		include ../../common/mobile/nav
+		include ../common/nav
 		
 		main#misskey-main(role='main')
 			div#timeline
