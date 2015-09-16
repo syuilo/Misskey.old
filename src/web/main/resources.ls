@@ -70,6 +70,11 @@ module.exports = (app) ->
 					..header 'Content-type' 'text/css'
 					..send css
 
+	# Common
+	app.get /^\/resources\/common\/.*/ (req, res, next) ->
+		resource-path = path.resolve "#__dirname/#{req.path}"
+		res.send-file resource-path
+
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
 		| (req.path.index-of '..') > -1 =>
@@ -104,6 +109,9 @@ module.exports = (app) ->
 					res.send-file css-path
 
 			| req.url.index-of '.less' == -1 =>
-				resource-path = path.resolve "#__dirname/#{req.path}"
+				if req.is-mobile
+					resource-path = path.resolve "#__dirname/sites/mobile/#{req.path}"
+				else
+					resource-path = path.resolve "#__dirname/sites/desktop/#{req.path}"
 				res.send-file resource-path
 			| _ => next!

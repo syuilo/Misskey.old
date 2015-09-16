@@ -42,7 +42,7 @@ div.status.article(
 										img.icon(src=talkPost.user.iconImageUrl, alt='icon')
 									header
 										if talkPost.user.isVerified
-											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+											img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 										h2
 											a(href=config.url + '/' + talkPost.user.screenName)= talkPost.user.name
 										span.screen-name= '@' + talkPost.user.screenName
@@ -63,7 +63,7 @@ div.status.article(
 							img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
 						header
 							if status.replySource.user.isVerified
-								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 							h2
 								a(href=config.url + '/' + status.replySource.user.screenName)= status.replySource.user.name
 							span.screen-name= '@' + status.replySource.user.screenName
@@ -79,7 +79,7 @@ div.status.article(
 				header.header
 					div.author(itemprop='author')
 						if status.user.isVerified
-							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+							img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 						h2
 							a.user-name(href=config.url + '/' + status.user.screenName, rel='author')= status.user.name
 						span.screen-name= '@' + status.user.screenName
@@ -127,7 +127,7 @@ div.status.article(
 										img.icon(src=reply.user.iconImageUrl, alt='icon')
 									header
 										if reply.user.isVerified
-											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+											img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 										h2
 											a(href=config.url + '/' + reply.user.screenName)= reply.user.name
 										span.screen-name= '@' + reply.user.screenName

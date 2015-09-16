@@ -43,7 +43,7 @@ div.status.article(
 							h3
 								a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
 							if status.user.isVerified
-								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 							span.screen-name= '@' + status.user.screenName
 							a(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url'): time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
 						div.main(itemprop='articleBody')
@@ -82,7 +82,7 @@ div.status.article(
 										img.icon(src=talkPost.user.iconImageUrl, alt='icon')
 									header
 										if talkPost.user.isVerified
-											img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+											img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 										h2
 											a(href=config.url + '/' + talkPost.user.screenName, target='_blank')= talkPost.user.name
 										span.screen-name= '@' + talkPost.user.screenName
@@ -118,7 +118,7 @@ div.status.article(
 							img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
 						header
 							if status.replySource.user.isVerified
-								img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 							h2
 								a(href=config.url + '/' + status.replySource.user.screenName, target='_blank')= status.replySource.user.name
 							span.screen-name= '@' + status.replySource.user.screenName
@@ -137,7 +137,7 @@ div.status.article(
 						h2
 							a.user-name(href=config.url + '/' + status.user.screenName, target='_blank', rel='author')= status.user.name
 						if status.user.isVerified
-							img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+							img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 						span.screen-name= '@' + status.user.screenName
 					div.right
 						if status.app != null
@@ -238,7 +238,7 @@ div.status.article(
 											img.icon(src=reply.user.iconImageUrl, alt='icon')
 										header
 											if reply.user.isVerified
-												img.verified-icon(src='/resources/images/verified.png', alt='verified', title='認証済み')
+												img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
 											h2
 												a(href=config.url + '/' + reply.user.screenName, target='_blank')= reply.user.name
 											span.screen-name= '@' + reply.user.screenName
