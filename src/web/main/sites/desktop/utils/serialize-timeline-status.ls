@@ -1,14 +1,14 @@
 require! {
 	moment
-	'../../../models/application': Application
-	'../../../models/user': User
-	'../../../models/status': Status
-	'../../../models/utils/status-get-talk'
-	'../../../models/utils/status-get-replies'
-	'../../../models/utils/status-get-stargazers'
-	'../../../models/utils/status-check-favorited'
-	'../../../models/utils/status-check-reposted'
-	'../../../config'
+	'../../../../../models/application': Application
+	'../../../../../models/user': User
+	'../../../../../models/status': Status
+	'../../../../../models/utils/status-get-talk'
+	'../../../../../models/utils/status-get-replies'
+	'../../../../../models/utils/status-get-stargazers'
+	'../../../../../models/utils/status-check-favorited'
+	'../../../../../models/utils/status-check-reposted'
+	'../../../../../config'
 }
 
 module.exports = (status, me, callback) ->
@@ -84,7 +84,7 @@ module.exports = (status, me, callback) ->
 					.then (replies) ->
 						status.replies = replies
 						callback status
-	
+
 	function get-stargazers(status, callback)
 		status-get-stargazers status .then (stargazers) ->
 			| !stargazers? => callback status
@@ -109,4 +109,3 @@ module.exports = (status, me, callback) ->
 		status.is-favorited = null
 		status.is-reposted = null
 		callback status
-	
