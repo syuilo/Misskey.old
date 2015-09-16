@@ -13,7 +13,7 @@ require! {
 	'connect-redis'
 	'express-session': session
 	'../../models/user': User
-	'./routes/resources': resources-router
+	'./resources': resources-router
 	'./sites/desktop/router': desktop-router
 	'./sites/mobile/router': mobile-router
 }
