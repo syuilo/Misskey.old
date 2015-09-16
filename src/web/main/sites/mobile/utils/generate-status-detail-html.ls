@@ -1,14 +1,14 @@
 require! {
 	jade
-	'./serialize-mobile-detail-status'
+	'./serialize-detail-status'
 	'./parse-text'
 	'../../../../../config'
 }
 
 module.exports = (status, viewer, callback) ->
-	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/mobile/status-detail.jade"
+	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/normal/status-detail.jade"
 	if status?
-		serialize-mobile-detail-status status, viewer, (detail-status) ->
+		serialize-detail-status status, viewer, (detail-status) ->
 			html = status-compiler do
 				status: detail-status
 				login: viewer?

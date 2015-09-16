@@ -1,5 +1,5 @@
 require! {
-	'./serialize-mobile-timeline-status'
+	'./serialize-timeline-status'
 	'../../../../../config'
 }
 
@@ -7,5 +7,5 @@ require! {
 module.exports = (statuses, me) ->
 	Promise.all (statuses |> map (status) ->
 		resolve, reject <- new Promise!
-		serialize-mobile-timeline-status status, me, (serialized-status) ->
+		serialize-timeline-status status, me, (serialized-status) ->
 			resolve serialized-status)
