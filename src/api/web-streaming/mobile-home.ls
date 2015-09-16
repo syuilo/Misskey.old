@@ -46,7 +46,7 @@ module.exports = (io, session-store) -> io.of '/streaming/web/mobile/home' .on \
 							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML
 							status-compiler = jade.compile-file "#__dirname/../../web/main/sites/mobile/views/dynamic-parts/status/normal/status.jade"
-							serialize-mobile-timeline-status status, socket.user, (serialized-status) ->
+							serialize-timeline-status status, socket.user, (serialized-status) ->
 								socket.emit content.type, status-compiler do
 									status: serialized-status
 									login: yes
