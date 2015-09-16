@@ -62,7 +62,7 @@ module.exports = (app) ->
 	app.get '/log' (req, res) -> res.render './sites/desktop/views/pages/log'
 
 	# search
-	app.get '/search' (req, res) -> (require "./sites/desktop/controllers/search")
+	app.get '/search' (req, res) -> (require './sites/desktop/controllers/search')
 
 	# questionnaire
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
