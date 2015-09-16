@@ -2,11 +2,11 @@ doctype html
 
 html(lang='ja', dir='ltr')
 	head
-		include ../../common/mobile/head
+		include ../common/head
 		title ヘッダー
-		link(rel='stylesheet', href='/resources/styles/mobile/i-settings.css')
-		script(src='/resources/scripts/mobile/header.js')
-		script(src='/resources/scripts/mobile/i-settings.js')
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/i-settings.js')
 	
 	body
 		header#misskey-main-header
@@ -14,7 +14,7 @@ html(lang='ja', dir='ltr')
 			h1
 				i.fa.fa-cog
 				| ヘッダー
-		include ../../common/mobile/nav
+		include ../common/nav
 		
 		main#misskey-main(role='main')
 			form#form(action= apiUrl + '/account/update-header', method='put', enctype='multipart/form-data')
