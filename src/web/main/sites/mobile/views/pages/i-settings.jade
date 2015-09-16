@@ -2,10 +2,10 @@ doctype html
 
 html(lang='ja', dir='ltr')
 	head
-		include ../../common/mobile/head
+		include ../common/head
 		title Misskey - 設定
-		link(rel='stylesheet', href='/resources/styles/mobile/i-settings.css')
-		script(src='/resources/scripts/mobile/header.js')
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
 	
 	body
 		header#misskey-main-header
@@ -13,7 +13,7 @@ html(lang='ja', dir='ltr')
 			h1
 				i.fa.fa-cog
 				| 設定
-		include ../../common/mobile/nav
+		include ../common/nav
 		
 		main#misskey-main(role='main')
 			p#message= 'Hello, ' + me.name + '!'
