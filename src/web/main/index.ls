@@ -14,9 +14,7 @@ require! {
 	'express-session': session
 	'../../models/user': User
 	'./resources': resources-router
-	'./sites/desktop/router': desktop-router
-	'./sites/desktop/resources-router': desktop-resources-router
-	'./sites/mobile/router': mobile-router
+	'./router'
 }
 
 console.log 'Web server loaded'
@@ -128,20 +126,16 @@ server.all '*' (req, res, next) ->
 resources-router server
 
 # Init session
-server.all '*' (req, res, next) -> server.init-session req, res, -> next!
+server.all '*' (req, res, next) ->
+	server.init-session req, res, ->
+		if req.is-mobile
+			server.set 'views' "#__dirname/sites/mobile/views/pages"
+		else
+			server.set 'views' "#__dirname/sites/desktop/views/pages"
+		next!
 
 # General rooting
-server.all '*' (req, res, next) ->
-	console.log \yuppie
-	if req.is-mobile
-		server.set 'views' "#__dirname/sites/mobile/views/pages"
-		mobile-router server
-	else
-		server.set 'views' "#__dirname/sites/desktop/views/pages"
-		desktop-resources-router server
-		console.log \akari
-		desktop-router server
-	next!
+router server
 
 # Not found handling
 server.use (req, res) ->
