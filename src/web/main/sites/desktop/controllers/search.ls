@@ -18,7 +18,7 @@ module.exports = (req, res) ->
 					generate-detail-status-timeline-html statuses, me, (timeline-html) -> resolve timeline-html
 		new Promise (resolve, reject) ->
 			resolve null
-	] .then (results) -> res.display req, res, 'search' do
+	] .then (results) -> res.display req, res, \search do
 		query: q
 		search-type: search-type
 		statuses-html: results.0
