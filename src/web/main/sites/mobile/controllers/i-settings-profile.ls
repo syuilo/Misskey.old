@@ -1,6 +1,6 @@
 require! {
-	'../../../../models/user': User
+	'../../../../../models/user': User
 }
 
 module.exports = (req, res) ->
-	res.display req, res, 'mobile/i-settings-profile'
+	res.display req, res, \i-settings-profile
