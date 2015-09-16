@@ -25,7 +25,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'user-not-found' {}
-					
+
 	app.param \statusId (req, res, next, status-id) ->
 		Status.find-by-id status-id, (, status) ->
 			if status?
@@ -35,7 +35,7 @@ module.exports = (app) ->
 				res
 					..status 404
 					..display req, res, 'status-not-found' {}
-					
+
 	app.param \bbsThreadId (req, res, next, thread-id) ->
 		BBSThread.find-by-id thread-id, (, thread) ->
 			if thread?
@@ -64,7 +64,7 @@ module.exports = (app) ->
 	app.get '/log' (req, res) -> res.render './sites/desktop/views/pages/log'
 
 	# search
-	app.get '/search' (req, res) -> (require './sites/desktop/controllers/search')
+	app.get '/search' (req, res) -> CallController req, res, \search
 
 	# questionnaire
 	app.get '/questionnaire' (req, res) -> res.display req, res, 'questionnaire'
@@ -109,7 +109,7 @@ module.exports = (app) ->
 	# mobile header design setting
 	app.get '/i/settings/mobile-header-design' (req, res) ->
 		(require './sites/mobile/controllers/i-settings-mobile-header-design') req, res
-	
+
 	# login
 	app.get '/login' (req, res) -> res.display req, res, 'login', {}
 	app.post '/login' (req, res) ->
