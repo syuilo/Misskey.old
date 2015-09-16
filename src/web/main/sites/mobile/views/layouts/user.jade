@@ -12,7 +12,7 @@ html(lang='ja'
 	data-user-name= user.name
 	data-user-screen-name= user.screenName)
 	head(prefix='og: http://ogp.me/ns#')
-		include ../../common/mobile/head
+		include ../common/head
 		meta(name='robots', content='all')
 		meta(name='description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(name='keywords', content='Misskey,' + user.screenName)
@@ -29,17 +29,17 @@ html(lang='ja'
 		meta(property='twitter:image', content=user.iconImageUrl)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
 		block title
-		link(rel='stylesheet', href='/resources/styles/mobile/user.css?user=' + user.screenName)
+		link(rel='stylesheet', href='/resources/styles/page/user.css?user=' + user.screenName)
 		block stylesheet
-		script(src='/resources/scripts/mobile/header.js')
-		script(src='/resources/scripts/mobile/user.js')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/user.js')
 	
 	body
 		header#misskey-main-header
 			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
 			h1= user.name
 			button.post: i.fa.fa-pencil-square-o
-		include ../../common/mobile/nav
+		include ../common/nav
 		
 		main#misskey-main(role='main')
 			header
