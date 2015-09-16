@@ -1,8 +1,8 @@
 require! {
 	jade
-	'../../../../models/notice': Notice
-	'../../../../models/utils/notice-get-timeline'
-	'../../utils/generate-mobile-notice-timeline-html'
+	'../../../../../models/notice': Notice
+	'../../../../../models/utils/notice-get-timeline'
+	'../utils/generate-notice-timeline-html'
 }
 
 module.exports = (req, res) ->
@@ -11,10 +11,10 @@ module.exports = (req, res) ->
 		20notices
 	.then (notices) ->
 		if notices?
-			generate-mobile-notice-timeline-html req.me, notices .then (html) ->
-				res.display req, res, 'mobile/i-notices' do
+			generate-notice-timeline-html req.me, notices .then (html) ->
+				res.display req, res, \i-notices do
 					timeline-html: html
 		else
-			res.display req, res, 'mobile/i-notices' do
+			res.display req, res, \i-notices do
 				timeline-html: null
 			
