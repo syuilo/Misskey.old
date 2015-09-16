@@ -143,4 +143,5 @@ module.exports = (app) ->
 		status: req.root-status
 
 	# User profile widget
-	app.get '/widget/user/:userSn' (req, res) -> (require './controllers/widget-user-profile') req, res
+	app.get '/widget/user/:userSn' (req, res) -> CallController req, res, \widget-user-profile do
+		user: req.root-user
