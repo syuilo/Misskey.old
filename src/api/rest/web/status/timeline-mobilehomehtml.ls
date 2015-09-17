@@ -18,7 +18,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		if !empty max-cursor then Number max-cursor else null
 	.then (statuses) ->
 		status-compiler = jade.compile-file "#__dirname/../../../../web/main/sites/mobile/views/dynamic-parts/status/normal/status.jade"
-		mobile-timeline-serialyzer statuses, user .then (timeline) ->
+		timeline-serialyzer statuses, user .then (timeline) ->
 			statuses-htmls = map do
 				(status) ->
 					status-compiler do
