@@ -103,6 +103,9 @@ module.exports = (app) ->
 	# talks
 	app.get '/i/talks' (req, res) -> CallController req, res, \i-talks
 
+	# notices
+	app.get '/i/notices' (req, res) -> CallController req, res, \i-notices
+
 	# settings
 	app.get '/i/settings' (req, res) -> CallController req, res, \i-settings
 
