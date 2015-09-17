@@ -62,10 +62,10 @@ module.exports = (app) ->
 		if req.login
 			CallController req, res, \home
 		else
-			res.display "#__dirname/sites/desktop/views/pages/entrance"
+			res.display req, res, "#__dirname/sites/desktop/views/pages/entrance"
 
 	# log viewer
-	app.get '/log' (req, res) -> res.display "#__dirname/sites/desktop/views/pages/log"
+	app.get '/log' (req, res) -> res.display req, res, "#__dirname/sites/desktop/views/pages/log"
 
 	# search
 	app.get '/search' (req, res) -> CallController req, res, \search
