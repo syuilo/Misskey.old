@@ -1,22 +1,24 @@
 require! {
 	jade
-	'../../../../models/status': Status
-	'../../utils/serialize-mobile-detail-status'
-	'../../utils/parse-text'
-	'../../../../config'
+	'../../../../../../models/status': Status
+	'../utils/serialize-detail-status'
+	'../utils/parse-text'
+	'../../../../../../config'
 }
 
-module.exports = (req, res) ->
+module.exports = (req, res, options) ->
+	user = options.user
+	status = options.status
 	me = req.me
-	status-compiler = jade.compile-file "#__dirname/../../views/dynamic-parts/status/mobile/status-detail.jade"
+	status-compiler = jade.compile-file "#__dirname/../../views/dynamic-parts/status/normal/status-detail.jade"
 	Status.find-by-id req.root-status.id, (, status) ->
-		serialize-mobile-detail-status status, me, (detail-status) ->
+		serialize-detail-status status, me, (detail-status) ->
 			html = status-compiler do
 				status: detail-status
 				login: me?
 				me: me
 				text-parser: parse-text
 				config: config.public-config
-			res.display req, res, 'mobile/status' do
+			res.display req, res, \status do
 				status: detail-status
 				status-html: html
