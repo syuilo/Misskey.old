@@ -10,7 +10,7 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
-	[since-cursor, max-cursor] = get-express-params req, <[ since-cursor, max-cursor ]>
+	[since-cursor, max-cursor] = get-express-params req, <[ since-cursor max-cursor ]>
 	status-get-timeline do
 		user.id
 		30statuses
