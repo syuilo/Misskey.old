@@ -112,35 +112,35 @@ module.exports = (app) ->
 
 	# name setting
 	app.get '/i/settings/name' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-name'
+		(require './sites/mobile/controllers/i-settings-name') req, res
 
 	# comment setting
 	app.get '/i/settings/comment' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-comment'
+		(require './sites/mobile/controllers/i-settings-comment') req, res
 
 	# bio setting
 	app.get '/i/settings/bio' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-bio'
+		(require './sites/mobile/controllers/i-settings-bio') req, res
 
 	# location setting
 	app.get '/i/settings/location' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-location'
+		(require './sites/mobile/controllers/i-settings-location') req, res
 
 	# website url setting
 	app.get '/i/settings/url' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-url'
+		(require './sites/mobile/controllers/i-settings-url') req, res
 
 	# color setting
 	app.get '/i/settings/color' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-color'
+		(require './sites/mobile/controllers/i-settings-color') req, res
 
 	# icon setting
 	app.get '/i/settings/icon' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-icon'
+		(require './sites/mobile/controllers/i-settings-icon') req, res
 
 	# header setting
 	app.get '/i/settings/header' (req, res) ->
-		res.display req, res, './sites/mobile/views/pages/i-settings-header'
+		(require './sites/mobile/controllers/i-settings-header') req, res
 
 	# mobile header design setting
 	app.get '/i/settings/mobile-header-design' (req, res) ->
