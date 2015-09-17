@@ -1,9 +1,9 @@
 require! {
 	jade
-	'../../../../../../models/status': Status
+	'../../../../../models/status': Status
 	'../utils/serialize-detail-status'
 	'../utils/parse-text'
-	'../../../../../../config'
+	'../../../../../config'
 }
 
 module.exports = (req, res, options) ->
