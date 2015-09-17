@@ -58,7 +58,11 @@ module.exports = (app) ->
 		res.send "var config = conf = #{to-json config.public-config};"
 
 	# Root
-	app.get '/' (req, res) -> CallController req, res, \home
+	app.get '/' (req, res) ->
+		if req.login
+			CallController req, res, \home
+		else
+			res.render './sites/desktop/views/entrance'
 
 	# log viewer
 	app.get '/log' (req, res) -> res.render './sites/desktop/views/pages/log'
