@@ -65,7 +65,7 @@ module.exports = (app) ->
 			res.display "#__dirname/sites/desktop/views/pages/entrance"
 
 	# log viewer
-	app.get '/log' (req, res) -> res.render "#__dirname/sites/desktop/views/pages/log"
+	app.get '/log' (req, res) -> res.display "#__dirname/sites/desktop/views/pages/log"
 
 	# search
 	app.get '/search' (req, res) -> CallController req, res, \search
