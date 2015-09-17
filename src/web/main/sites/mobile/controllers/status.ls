@@ -11,7 +11,7 @@ module.exports = (req, res, options) ->
 	status = options.status
 	me = req.me
 	status-compiler = jade.compile-file "#__dirname/../../views/dynamic-parts/status/normal/status-detail.jade"
-	Status.find-by-id req.root-status.id, (, status) ->
+	Status.find-by-id status.id, (, status) ->
 		serialize-detail-status status, me, (detail-status) ->
 			html = status-compiler do
 				status: detail-status
