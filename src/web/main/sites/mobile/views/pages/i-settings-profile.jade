@@ -1,0 +1,45 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title プロフィール設定
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-cog
+				| プロフィール
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			p#message= 'Hello, ' + me.name + '!'
+			ul.menu
+				li
+					a(href='/i/settings/name')
+						| 名前
+				li
+					a(href='/i/settings/comment')
+						| ひとことコメント
+				li
+					a(href='/i/settings/bio')
+						| 自己紹介
+				li
+					a(href='/i/settings/location')
+						| ロケーション
+				li
+					a(href='/i/settings/url')
+						| Webサイト
+				li
+					a(href='/i/settings/color')
+						| ユーザーカラー
+				li
+					a(href='/i/settings/icon')
+						| アイコン
+				li
+					a(href='/i/settings/header')
+						| ヘッダー画像
+					

@@ -4,8 +4,8 @@ require! {
 	'../../../auth': authorize
 	'../../../../utils/get-express-params'
 	'../../../../models/user': User
-	'../../../../web/main/utils/serialize-talk-messages'
-	'../../../../web/main/utils/generate-talk-messages-html'
+	'../../../../web/main/sites/desktop/utils/serialize-talk-messages'
+	'../../../../web/main/sites/desktop/utils/generate-talk-messages-html'
 	'../../../../config'
 }
 

@@ -1,0 +1,20 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title Misskey - 通知
+		link(rel='stylesheet', href='/resources/styles/page/i-notices.css')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/i-notices.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-bell-o
+				| 通知
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			div#notices!= timelineHtml

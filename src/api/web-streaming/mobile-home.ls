@@ -5,8 +5,8 @@ require! {
 	'../../models/user': User
 	'../../models/status': Status
 	'../../models/notice': Notice
-	'../../web/main/utils/serialize-mobile-timeline-status'
-	'../../web/main/utils/parse-text'
+	'../../web/main/sites/mobile/utils/serialize-timeline-status'
+	'../../web/main/sites/mobile/utils/parse-text'
 	'../../config'
 }
 
@@ -45,8 +45,8 @@ module.exports = (io, session-store) -> io.of '/streaming/web/mobile/home' .on \
 							# Find status
 							err, status <- Status.find-by-id content.value.id
 							# Send timeline status HTML
-							status-compiler = jade.compile-file "#__dirname/../../web/main/views/dynamic-parts/status/mobile/status.jade"
-							serialize-mobile-timeline-status status, socket.user, (serialized-status) ->
+							status-compiler = jade.compile-file "#__dirname/../../web/main/sites/mobile/views/dynamic-parts/status/normal/status.jade"
+							serialize-timeline-status status, socket.user, (serialized-status) ->
 								socket.emit content.type, status-compiler do
 									status: serialized-status
 									login: yes

@@ -1,0 +1,130 @@
+if login
+	div#misskey-create-status-form-back(role='presentation')
+	div#misskey-create-status-form-container
+		form#misskey-create-status-form(enctype='multipart/form-data', role='form')
+			h1
+				| 新しい投稿
+			button.close-button(type='button', role='button')
+				i.fa.fa-times
+			div.me-icon-area
+				img.icon(src=me.iconImageUrl, alt='icon', title=me.comment)
+			div.main
+				textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
+				div.image-attacher
+					p
+						i.fa.fa-picture-o
+					input(name='image', type='file', accept='image/*')
+				input.submit-button(type='submit', value!='Update &#xf1d8;', role='button', disabled)
+			div.progress
+				p.status
+					i.fa.fa-spinner.fa-pulse
+					span.text
+				progress(form='misskey-create-status-form', value='0')
+			div.image-preview-container
+				div.image-preview
+
+header#misskey-main-header(
+		role='banner'
+		data-user-color= (rootUser != null) ? rootUser.color : login ? me.color : config.themeColor)
+	script(src='/resources/scripts/lib/moment.js')
+	script(src='/resources/scripts/common/header.js')
+	img(src='/resources/images/notices-loading.gif', alt='', style='display: none;')
+	if config.env == 'development'
+		p.env-development-info
+			strong
+				em 開発チャンネル
+				| を利用しています。
+			| このチャンネルでは開発中の機能・デザインなどをいち早く利用できますが、不具合が存在する場合があります。
+			em.go-production-channel
+				a(href= config.productionChannelUrl)
+					i.fa.fa-angle-right
+					| 安定チャンネル
+	div.main
+		div.mainContentsContainer
+			if login
+				div.left
+					nav
+						div.mainNav
+							button(role='button').misskey Misskey
+							ul
+								li.home(class= pagePath == '/' ? 'active' : ''): a.ui-waves-effect(href='/')
+									i.fa.fa-home
+									| Home
+								li.mention(class= pagePath == '/i/mentions' ? 'active' : ''): a.ui-waves-effect(href='/i/mentions')
+									i.fa.fa-at
+									| Mentions
+								li.talk(class= pagePath == '/i/talks' ? 'active' : ''): a.ui-waves-effect(href='/i/talks')
+									i.fa.fa-comments
+									| Talks
+								li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
+									i.fa.fa-users
+									| Boards
+				div.right
+					form.search(action='/search', method='get', role='search')
+						input(type='search', name='q', placeholder!='&#xf002; Search')
+						input(type='hidden', name='type', value='general')
+						input(type='hidden', name='ref', value='header')
+						div.result
+					div.account
+						div.dropdown(data-active='false')
+							div.dropdown-header(role='button')
+								span.screenName
+									= '@' + me.screenName
+									i.fa.fa-angle-down
+								img.icon(src= me.iconImageUrl, alt='icon')
+							div.dropdown-content
+								ul
+									li: a.ui-waves-effect(href= url + '/' + me.screenName)
+										i.fa.fa-laptop
+										| My page
+								ul
+									li: a.ui-waves-effect(href='/i/apps')
+										i.fa.fa-plug
+										| Plugins
+									li: a.ui-waves-effect(href='/i/settings')
+										i.fa.fa-cog
+										| Settings
+								ul
+									li: a.ui-waves-effect(href='/logout')
+										i(class='fa fa-power-off')
+										| Signout
+					div.notices
+						div.dropdown(data-active='false')
+							div.dropdown-header(role='button')
+								p
+									i.fa.fa-envelope
+							div.dropdown-content
+								div.nav
+									select.filter-type(title='表示を絞り込み')
+										option(value='all') すべて
+										option(value='self-notice') self-notice
+										option(value='follow') 被フォロー
+										option(value='status-favorite') つぶやきの被お気に入り
+										option(value='status-repost') つぶやきの被Repost
+									button.delete-all-button(title='全ての通知を削除')
+										i.fa.fa-trash-o
+								div.main
+					div.post
+						button#misskey-post-button(role='button', title='新しい投稿を作成')
+							i.fa.fa-pencil-square-o
+					div.time
+						div.dropdown(data-active='false')
+							div.dropdown-header(role='button')
+								time.now(datetime= Date.now())
+									= moment().format('YYYY/MM/DD')
+									br
+									= moment().format('HH:mm')
+							div.dropdown-content
+								canvas.clock#misskey-main-clock-canvas(width='256', height='256')
+			else
+				div.left
+					nav
+						div.mainNav
+							button(role='button').misskey Misskey
+							ul
+								li.home: a.ui-waves-effect(href='/')
+									i.fa.fa-home
+									| エントランス
+								li.mention(class= pagePath == '/bbs' ? 'active' : ''): a.ui-waves-effect(href='/bbs')
+									i.fa.fa-users
+									| Boards

@@ -1,0 +1,40 @@
+nav#misskey-main-nav(role='navigation')
+	script(src='/resources/scripts/lib/sp-slidemenu.js')
+	script(src='/resources/scripts/common/nav.js')
+	div.slidemenu-body
+		div.slidemenu-content
+			a.me(href='/' + me.screenName)
+				img.icon(src=me.iconImageUrl, alt='icon')
+				p.name= me.name
+			div.links
+				ul
+					li
+						a(href='/i/status-new')
+							i.fa.fa-pencil-square-o
+							| 新規投稿
+				ul
+					li
+						a(href='/')
+							i.fa.fa-home
+							| ホーム
+					li
+						a(href='/i/mentions')
+							i.fa.fa-at
+							| メンション
+					li
+						a(href='/i/notices')
+							i.fa.fa-bell
+							| 通知
+					li
+						a(href='/i/talks')
+							i.fa.fa-comments
+							| トーク
+					li
+						a(href='/' + me.screenName)
+							i.fa.fa-user
+							| アカウント
+				ul
+					li
+						a(href='/i/settings')
+							i.fa.fa-cog
+							| 設定

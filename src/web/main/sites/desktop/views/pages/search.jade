@@ -1,0 +1,23 @@
+doctype html
+
+html(lang='ja', dir='ltr', data-query=query)
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title= '「' + query + '」の検索結果'
+		script(src='/resources/scripts/common/detail-status-core.js')
+		script(src='/resources/scripts/page/search.js')
+		link(rel='stylesheet', href='/resources/styles/common/status-timeline-detail.css')
+		link(rel='stylesheet', href='/resources/styles/page/search.css')
+		
+	body
+		include ../common/header
+		
+		main(role='main')
+			form#search(action='/search', method='get', role='search')
+				input(type='search', name='q', placeholder!='&#xf002; Search', value=query)
+				input(type='hidden', name='type', value='general')
+				input(type='hidden', name='ref', value='search')
+				div.result
+			div#results
+				div#statuses!= statusesHtml

@@ -1,0 +1,70 @@
+doctype html
+
+html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
+	head(prefix='og: http://ogp.me/ns#')
+		include ../common/head
+		meta(name='description', content='ママに咲いたカーネーション')
+		meta(name='keywords', content='Misskey')
+		meta(property='og:title', content='Misskey')
+		meta(property='og:type', content='article')
+		meta(property='og:description', content='Misskey')
+		meta(property='og:url', content=config.url)
+		meta(property='og:image', content='')
+		meta(property='og:site_name', content='Misskey')
+		meta(property='twitter:card', content='summary')
+		meta(property='twitter:site', content='@syuilo')
+		meta(property='twitter:title', content='Misskey')
+		meta(property='twitter:description', content='Misskey')
+		meta(property='twitter:image', content='')
+		meta(property='twitter:url', content=config.url)
+		block title
+		script(src='/resources/scripts/common/status-core.js')
+		link(rel='stylesheet', href='/resources/styles/common/status-timeline.css')
+		link(rel='stylesheet', href='/resources/styles/page/home.css')
+		block assets
+		
+	body
+		include ../common/header
+		
+		main
+			div#contents
+				div#main-contents(role='main')
+					block content
+				div#right-contents
+					div#me
+						header
+						nav(role='navigation')
+							a.icon-anchor(href='/' + me.screenName)
+								img.icon(src=me.iconImageUrl, alt='icon')
+							table.status
+								tr
+									th Statuses
+									th Following
+									th Followers
+								tr
+									td: a(href='/' + me.screenName)= me.statusesCount
+									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
+									td: a(href='/' + me.screenName + '/followers')= me.followersCount
+					div#notices(data-ui-background-wallpaper-blur='true')
+						ol.notices
+					div#recommendation-users(data-ui-background-wallpaper-blur='true')
+						ol.users
+							each user in recommendationUsers
+								li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+									div.icon-area
+										a.icon-anchor(href='/' + user.screenName)
+											img.icon(src=user.iconImageUrl, alt='icon')
+									div.main
+										a.name-anchor(href='/' + user.screenName)
+											p.name= user.name
+										if user.isFollowing
+											button.follow-button(role='button') フォロー解除
+										else
+											button.follow-button(role='button') フォロー
+					article#donate(data-ui-background-wallpaper-blur='true')
+						h1 寄付のお願い
+						p
+							| Misskeyの運営にはドメイン、サーバー等のコストが掛かります。Misskeyは広告を掲載したりしないため、収入を皆様からの寄付に頼っています。もしご興味があれば、
+							a(href='/syuilo') @syuilo
+							| までご連絡ください。ご協力ありがとうございます。
+						img(src='/resources/images/sakurako.png')

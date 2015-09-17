@@ -1,0 +1,23 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title Misskey
+		link(rel='stylesheet', href='/resources/styles/common/timeline.css')
+		link(rel='stylesheet', href='/resources/styles/page/home.css')
+		script(src=webStreamingUrl + '/socket.io/socket.io.js')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/home.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-home
+				| Home
+			button.post: i.fa.fa-pencil-square-o
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			div#timeline!= timelineHtml

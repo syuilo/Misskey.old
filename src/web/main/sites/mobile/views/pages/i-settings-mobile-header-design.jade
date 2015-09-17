@@ -1,0 +1,33 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title ヘッダーデザイン
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/i-settings.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-cog
+				| ヘッダーデザイン
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			form#form(action= apiUrl + '/account/update-mobile-header-design', method='put')
+				select.ui-select(name='id')
+					option(value='none', selected= me.mobileHeaderDesignId == null) なし
+					option(value='light-gradation', selected= me.mobileHeaderDesignId == 'light-gradation') 明るいグラデーション
+					option(value='dark-gradation', selected= me.mobileHeaderDesignId == 'dark-gradation') 暗いグラデーション
+					option(value='glossy', selected= me.mobileHeaderDesignId == 'glossy') Glossy
+					option(value='halftone', selected= me.mobileHeaderDesignId == 'halftone') ハーフトーン
+					option(value='stripe', selected= me.mobileHeaderDesignId == 'stripe') ストライプ(明)
+					option(value='dark-stripe', selected= me.mobileHeaderDesignId == 'dark-stripe') ストライプ(暗)
+					option(value='grid', selected= me.mobileHeaderDesignId == 'grid') グリッド
+					option(value='bubbles', selected= me.mobileHeaderDesignId == 'bubbles') バブル
+					option(value='musicsheet', selected= me.mobileHeaderDesignId == 'musicsheet') 楽譜
+					option(value='city', selected= me.mobileHeaderDesignId == 'city') City
+				input.ui-button(type='submit', value='決定')

@@ -5,7 +5,7 @@ require! {
 	'../../../../models/user': User
 	'../../../../models/status': Status
 	'../../../../models/utils/status-get-talk'
-	'../../../../web/main/utils/parse-text'
+	'../../../../web/main/sites/desktop/utils/parse-text'
 	'../../../../config'
 }
 
@@ -24,7 +24,7 @@ module.exports = (req, res) ->
 		if source-status?
 			if source-status.in-reply-to-status-id?
 				status-get-talk source-status .then (talk) ->
-					status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/detail/reply.jade"
+					status-compiler = jade.compile-file "#__dirname/../../../../web/main/sites/desktop/views/dynamic-parts/status/detail/reply.jade"
 					Promise.all (talk |> map (status) -> new Promise (resolve,) ->
 						(err, status-user) <- User.find-by-id status.user-id
 						status.user = status-user

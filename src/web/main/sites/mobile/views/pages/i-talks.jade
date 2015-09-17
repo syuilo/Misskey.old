@@ -1,0 +1,38 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title トーク
+		link(rel='stylesheet', href='/resources/styles/page/i-talks.css')
+		script(src='/resources/scripts/page/i-talks.js')
+		script(src='/resources/scripts/common/header.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-comments
+				| トーク
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			if messages != null
+				ol#talks
+					each message in messages
+						li.talk(data-is-my-message!= (message.userId == me.id).toString(), data-is-unread!= (message.userId != me.id && !message.isReaded).toString())
+							a(href= '/' + message.user.screenName + '/talk')
+								article
+									img.icon(src=message.user.iconImageUrl, alt='icon')
+									header
+										h2= message.user.name
+										span.screenName= '@' + message.user.screenName
+										time(datetime=message.createdAt, data-display-type='relative')= message.displayCreatedAt
+									p.text
+										if message.userId == me.id
+											span.me あなた:
+										= message.text
+									if message.isImageAttached
+										img.image(src=message.imageUrls[0], alt='image')
+			else
+				p#empty-histories 履歴はありません。

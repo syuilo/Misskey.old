@@ -1,0 +1,105 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title 設定
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/lib/syuiloui.js')
+		script(src='/resources/scripts/page/i-settings.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			div.main
+				nav#nav
+					ul
+						li: a(href='#profile')
+							i(class='fa fa-user')
+							| プロフィール
+						li: a(href='#design')
+							i(class='fa fa-paint-brush')
+							| デザイン
+						li: a(href='#webtheme')
+							i(class='fa fa-desktop')
+							| テーマ
+						li: a(href='#application')
+							i(class='fa fa-puzzle-piece')
+							| アプリケーション
+						li: a(href='#mail')
+							i(class='fa fa-envelope-o')
+							| メールアドレス
+						li: a(href='#logout')
+							i(class='fa fa-power-off')
+							| ログアウト
+				div#content
+					div#profile
+						form#profile-form
+							label
+								h2.title 名前
+								div.content
+									input.ui-input-text(name='name', type='text', value=me.name, placeholder=me.name)
+							label
+								h2.title ひとことコメント
+								div.content
+									input.ui-input-text(name='comment', type='text', value=me.comment, placeholder=me.comment)
+							label
+								h2.title WebサイトURL
+								div.content
+									input.ui-input-text(name='url', type='url', value=me.url, placeholder=me.url)
+							label
+								h2.title 現在地
+								div.content
+									input.ui-input-text(name='location', type='text', value=me.location, placeholder=me.location)
+							label
+								h2.title BIO
+								div.content
+									textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
+							input.ui-button.submit-button(type='submit', value='アップデート')
+						
+					div#design
+						form#user-color-form
+							label
+								h2.title ユーザーカラー
+								div.content
+									input.ui-input-color(name='color', type='color', value=me.color)
+							input.ui-button.submit-button(type='submit', value='アップデート')
+						form#wallpaper-form
+							label
+								h2.title 壁紙
+								div.content
+									input(name='image', type='file', accept='image/*')
+							div.progress
+								p.status
+									i.fa.fa-spinner.fa-pulse
+									span.text
+								progress(form='wallpaper-form', value='0')
+							input.ui-button.submit-button(type='submit', value='アップデート')
+
+					div#webtheme
+						button#webthemeResetButton デフォルトのテーマに戻す
+						ul.themes
+							each theme in webthemes
+								li.theme
+									div.content
+										div.thumbnail(style='background-image: url("https://misskey.xyz/img/webtheme_thumbnail/#{theme.id}")')
+										div.form
+											cite.title= theme.name
+											p.description= theme.description
+											div.author
+												span.name= theme.user.screenName
+												img.icon(src='/img/icon/' + theme.user.screenName, alt='icon')
+											form
+												input(name='theme_id', value=theme.id, type='hidden')
+												input.ui-button(type='submit', value='インストール')
+									h2.title= theme.name
+
+					div#application
+						p coming soon....
+
+					div#mail
+						p coming soon....
+
+					div#logout
+						a(href='/logout') ログアウト

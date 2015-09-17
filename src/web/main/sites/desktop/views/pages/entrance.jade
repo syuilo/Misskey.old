@@ -1,0 +1,121 @@
+doctype html
+
+html(lang='ja', dir='ltr', itemscope, itemtype='https://schema.org/WebPage')
+	head(prefix='og: http://ogp.me/ns#')
+		include ../common/head
+		meta(name='description', content='思い出した時に来るくらいが丁度いい、ゆるいSNS「Misskey」！')
+		meta(name='keywords', content='Misskey')
+		meta(property='og:title', content='Misskey')
+		meta(property='og:type', content='website')
+		meta(property='og:description', content='Misskeyは開発中のゆるいSNSです。')
+		meta(property='og:url', content=url)
+		meta(property='og:image', content='')
+		meta(property='og:site_name', content='Misskey')
+		title Misskey
+		link(rel='stylesheet', href='/resources/styles/page/entrance.css')
+		script(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')
+		script(src='/resources/scripts/page/entrance.js')
+	
+	body
+		//
+			div.github-forkMe.
+				<a href="https://github.com/syuilo/Misskey"><img style="position: absolute; top: 0; right: 0; z-index: 1; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+		
+		//
+			div.design-layer#circles
+					div.c1
+						div.c2
+							div.c3
+		
+		main
+			img#logo(src='/resources/common/images/misskey-logo-entrance.svg', alt='misskey')
+			div.main
+				div.contents
+					form#login-form(action='/login', method='post')
+						h2
+							| ログイン
+							i.fa.fa-sign-in
+						label
+							p.caption
+								i.fa.fa-user
+								| ユーザー名
+							div.field
+								input#id(name='screen-name'
+									type='text'
+									pattern='^[0-9A-Za-z_]+$'
+									placeholder='User name'
+									autocomplete='off'
+									autofocus
+									required)
+								i.at @
+						label
+							p.caption
+								i.fa.fa-lock
+								| パスワード
+							input(name='password'
+								type='password'
+								placeholder='Password'
+								autocomplete='off'
+								required)
+						input(type='submit', value!='Login &#xf105;')
+					button.ui-waves-effect#new
+						i.fa.fa-pencil-square-o
+						| アカウントを作成する
+			h1 Misskey
+		
+		div#register-form-background(role='presentation')
+		div#register-form
+			div.main
+				header
+					h2
+						i.fa.fa-child
+						| 新しいアカウントを作成する(新規登録)
+				progress(max=7, value=0)
+				form
+					img#register-form-cursor(src='/resources/images/register-form-arrow.svg', alt='')
+					p.hello
+						| MisskeyはTwitter風SNSです。いますぐアカウントを作成して、Misskeyを楽しみましょう。
+					div.column.user-name
+						label
+							p.caption
+								i.fa.fa-at
+								| ユーザー名
+							div.field
+								input.user-name-input(name='screen-name', type='text', pattern='^[a-zA-Z0-9_]+$', required)
+								i.at @
+								p.profile-page-url-preview https://misskey.xyz/
+					div.column.nickname
+						label
+							p.caption
+								i.fa.fa-user
+								| ニックネーム
+							div.field
+								input.nickname-input(name='name', type='text', required)
+					div.column.password
+						label
+							p.caption
+								i.fa.fa-lock
+								| パスワード
+							div.field
+								input.password-input(name='password', type='password', required)
+					div.column.password-retype
+						label
+							p.caption
+								i.fa.fa-lock
+								| パスワード(再入力)
+							div.field
+								input.password-retype-input(name='retype-password', type='password', required)
+					div.column.user-color
+						label
+							p.caption
+								i.fa.fa-paint-brush
+								| ユーザーカラー
+							div.field
+								input.user-color-input(name='color', type='color', required)
+					div.actions
+						button#register-cancel(type='button')
+							i.fa.fa-ban
+							| キャンセル
+						button#register-accept(type='submit')
+							i.fa.fa-check
+							| 作成

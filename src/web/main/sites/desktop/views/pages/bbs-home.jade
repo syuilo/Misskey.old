@@ -1,0 +1,58 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey,掲示板')
+		title Misskey掲示板
+		link(rel='stylesheet', href='/resources/styles/page/bbs-home.css')
+		script(src='/resources/scripts/page/bbs-home.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			header(role='banner')
+				h1
+					i.fa.fa-angle-double-right
+					| Misskey掲示板
+			div.contents
+				div#new
+					p
+						| Misskey掲示板では、共通の話題で話し合えます。スレッドが見つからなければ
+						a(href='/bbs/new') 新しくスレッドを作成
+						| しましょう。
+				article#hot-threads
+					h2
+						i.fa.fa-angle-double-right
+						| 注目のスレッド
+					ol.threads
+						each thread in hotThreads
+							li.thread(title= thread.title)
+								a(href= '/bbs/thread/' + thread.id, style='background-image: url("' + thread.eyecatchImageUrl + '")')
+									header
+										ul.counts
+											li.count.watchers-count
+												i.fa.fa-eye
+												span.number= thread.watchersCount
+											li.count.favorites-count
+												i.fa.fa-star
+												span.number= thread.favoritesCount
+										h3.title= thread.title
+				article#recent-threads
+					h2
+						i.fa.fa-angle-double-right
+						| 新着スレッド
+					ol.threads
+						each thread in recentThreads
+							li.thread(title= thread.title)
+								a(href= '/bbs/thread/' + thread.id, style='background-image: url("' + thread.eyecatchImageUrl + '")')
+									header
+										ul.counts
+											li.count.watchers-count
+												i.fa.fa-eye
+												span.number= thread.watchersCount
+											li.count.favorites-count
+												i.fa.fa-star
+												span.number= thread.favoritesCount
+										h3.title= thread.title

@@ -1,0 +1,26 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title= status.user.name + 'さんの' + status.displayCreatedAt + 'の投稿'
+		link(rel='stylesheet', href='/resources/styles/common/status-timeline-detail-flat.css?user=' + user.screenName)
+		link(rel='stylesheet', href='/resources/styles/page/user-status.css?user=' + user.screenName)
+		script(src='/resources/scripts/common/detail-status-core.js')
+		script(src='/resources/scripts/page/user-status.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			div#status
+				button#read-after(role='button', title='これより後の投稿を読む', data-ui-background-wallpaper-blur='true')
+					i.fa.fa-angle-up
+				aside.timeline#after-timeline
+					ol.statuses
+				div.ui-status.main!= statusHtml
+				aside.timeline#before-timeline
+					ol.statuses
+				button#read-before(role='button', title='これより前の投稿を読む', data-ui-background-wallpaper-blur='true')
+					i.fa.fa-angle-down

@@ -4,8 +4,8 @@ require! {
 	'../../../internal/create-status'
 	'../../../auth': authorize
 	'../../../../utils/get-express-params'
-	'../../../../web/main/utils/serialize-detail-timeline-status'
-	'../../../../web/main/utils/parse-text'
+	'../../../../web/main/sites/desktop/utils/serialize-detail-timeline-status'
+	'../../../../web/main/sites/desktop/utils/parse-text'
 	'../../../../config'
 }
 
@@ -24,7 +24,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		app, user, text, in-reply-to-status-id, image
 	.then do
 		(status) ->
-			status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/detail/reply.jade"
+			status-compiler = jade.compile-file "#__dirname/../../../../web/main/sites/desktop/views/dynamic-parts/status/detail/reply.jade"
 			serialize-detail-timeline-status status, user, (serialized-status) ->
 				res.api-render status-compiler do
 					status: serialized-status

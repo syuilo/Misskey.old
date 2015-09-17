@@ -1,0 +1,20 @@
+li.status(title= status.displayCreatedAt
+	data-id= status.id
+	data-user-id= status.user.id
+	data-user-color= status.user.color
+	data-user-verified!= status.user.isVerified.toString())
+	article
+		a.icon-anchor(href= config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName)
+			img.icon(src=status.user.iconImageUrl, alt='icon')
+		header
+			if status.user.isVerified
+				img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+			h2
+				a(href=config.url + '/' + status.user.screenName, target='_blank')= status.user.name
+			span.screen-name= '@' + status.user.screenName
+			a(href=config.url + '/' + status.user.screenName + '/status/' + status.id): time(datetime=status.createdAt, pubdate, data-display-type='relative')= status.createdAt
+		div.main
+			div.text
+				p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+			if status.isImageAttached
+				img.image(src=status.imageUrls[0], alt='image')

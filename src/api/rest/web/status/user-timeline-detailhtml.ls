@@ -4,8 +4,8 @@ require! {
 	'../../../../utils/get-express-params'
 	'../../../../models/status': Status
 	'../../../../models/utils/status-get-user-timeline'
-	'../../../../web/main/utils/detail-timeline-serialyzer'
-	'../../../../web/main/utils/parse-text'
+	'../../../../web/main/sites/desktop/utils/detail-timeline-serialyzer'
+	'../../../../web/main/sites/desktop/utils/parse-text'
 	'../../../../config'
 }
 
@@ -26,7 +26,7 @@ module.exports = (req, res) ->
 			if not empty since-cursor then Number since-cursor else null
 			if not empty max-cursor then Number max-cursor else null
 		.then (statuses) ->
-			status-compiler = jade.compile-file "#__dirname/../../../../web/main/views/dynamic-parts/status/detail/status.jade"
+			status-compiler = jade.compile-file "#__dirname/../../../../web/main/sites/desktop/views/dynamic-parts/status/detail/status.jade"
 			detail-timeline-serialyzer statuses, user .then (timeline) ->
 				statuses-htmls = map do
 					(status) ->

@@ -1,0 +1,23 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title アイコン
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/i-settings.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-cog
+				| アイコン
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			form#form(action= apiUrl + '/account/update-icon', method='put', enctype='multipart/form-data')
+				img.icon-preview(src='/img/icon/' + me.screenName, alt='icon')
+				input.ui-input-file(name='image', type='file', accept='image/*')
+				input.ui-button(type='submit', value='決定')

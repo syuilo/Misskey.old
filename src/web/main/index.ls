@@ -13,9 +13,11 @@ require! {
 	'connect-redis'
 	'express-session': session
 	'../../models/user': User
-	'./routes/resources': resources-router
-	'./routes/index': index-router
+	'./resources': resources-router
+	'./router'
 }
+
+console.log 'Web server loaded'
 
 RedisStore = connect-redis session
 
@@ -120,14 +122,20 @@ server.all '*' (req, res, next) ->
 			done: yes
 	}
 
+# Init session
+server.all '*' (req, res, next) ->
+	server.init-session req, res, ->
+		if req.is-mobile
+			server.set 'views' "#__dirname/sites/mobile/views/pages"
+		else
+			server.set 'views' "#__dirname/sites/desktop/views/pages"
+		next!
+
 # Resources rooting
 resources-router server
 
-# Init session
-server.all '*' (req, res, next) -> server.init-session req, res, -> next!
-
 # General rooting
-index-router server
+router server
 
 # Not found handling
 server.use (req, res) ->

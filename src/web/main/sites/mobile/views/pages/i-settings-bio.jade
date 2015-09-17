@@ -1,0 +1,22 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title 自己紹介
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/i-settings.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-cog
+				| 自己紹介
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			form#form(action= apiUrl + '/account/update-bio', method='put')
+				textarea.ui-textarea(name='bio', placeholder=me.bio)= me.bio
+				input.ui-button(type='submit', value='決定')

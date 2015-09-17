@@ -15,6 +15,8 @@ require! {
 	'./config'
 }
 
+console.log 'Core server loaded'
+
 # Init express
 app = express!
 app.disable \x-powered-by
@@ -56,13 +58,16 @@ app.all '*' (req, res, next) ->
 		next!
 
 # Define servers
-app.use vhost \misskey.xyz (require "#__dirname/web/main" .server)
-app.use vhost \api.misskey.xyz (require "#__dirname/api" .server)
-app.use vhost \web-streaming.misskey.xyz (require "#__dirname/api/web-streaming-server" .server)
+main-server = require "#__dirname/web/main" .server
+api-server = require "#__dirname/api" .server
+web-streaming-server = require "#__dirname/api/web-streaming-server" .server
+app.use vhost \misskey.xyz main-server
+app.use vhost \api.misskey.xyz api-server
+app.use vhost \web-streaming.misskey.xyz web-streaming-server
 #app.use vhost \streaming.misskey.xyz (require "#__dirname/api/streaming" .server server)
 #app.use vhost \dev.misskey.xyz (require "#__dirname/web/dev" .server)
 
-## Listen HTTPS server after create 
+## Listen HTTPS server after create
 #https.create-server certs, app .listen config.port.web-https
 
 server.listen config.port.web-http

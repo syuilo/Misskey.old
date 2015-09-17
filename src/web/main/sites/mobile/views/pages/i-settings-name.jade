@@ -1,0 +1,22 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title 名前
+		link(rel='stylesheet', href='/resources/styles/page/i-settings.css')
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/i-settings.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1
+				i.fa.fa-cog
+				| 名前
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			form#form(action= apiUrl + '/account/update-name', method='put')
+				input.ui-input-text(name='name', type='text', placeholder=me.name, value=me.name)
+				input.ui-button(type='submit', value='決定')

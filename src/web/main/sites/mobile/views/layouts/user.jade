@@ -1,0 +1,98 @@
+- var isMe = login && me.id == user.id
+
+doctype html
+
+html(lang='ja'
+	dir='ltr'
+	itemscope
+	itemtype='http://schema.org/ProfilePage'
+	data-user-id= user.id
+	data-is-following!= login ? isFollowing.toString() : null
+	data-is-me!= isMe.toString()
+	data-user-name= user.name
+	data-user-screen-name= user.screenName)
+	head(prefix='og: http://ogp.me/ns#')
+		include ../common/head
+		meta(name='robots', content='all')
+		meta(name='description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
+		meta(name='keywords', content='Misskey,' + user.screenName)
+		meta(property='og:title', content=user.name)
+		meta(property='og:type', content='article')
+		meta(property='og:description', content=user.name + 'さんのMisskeyプロフィール')
+		meta(property='og:url', content=url + '/' + user.screenName)
+		meta(property='og:image', content=user.iconImageUrl)
+		meta(property='og:site_name', content='Misskey')
+		meta(property='twitter:card', content='summary')
+		meta(property='twitter:site', content='@syuilo')
+		meta(property='twitter:title', content=user.name + 'さんのMisskeyプロフィール')
+		meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
+		meta(property='twitter:image', content=user.iconImageUrl)
+		meta(property='twitter:url', content=url + '/' + user.screenName)
+		block title
+		link(rel='stylesheet', href='/resources/styles/page/user.css?user=' + user.screenName)
+		block stylesheet
+		script(src='/resources/scripts/common/header.js')
+		script(src='/resources/scripts/page/user.js')
+	
+	body
+		header#misskey-main-header
+			button#open-misskey-main-nav-button(role='button'): i.fa.fa-bars
+			h1= user.name
+			button.post: i.fa.fa-pencil-square-o
+		include ../common/nav
+		
+		main#misskey-main(role='main')
+			header
+				div.main
+					img.icon(src=user.iconImageUrl, alt='icon')
+					div.title
+						h1.name
+							= user.name
+							if user.isVerified
+								img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+						div.bottom
+							p.screen-name= '@' + user.screenName
+							if login
+								if me.id != user.id
+									if isFollowMe
+										p#friend-status フォローされています
+					if login
+						if me.id != user.id
+							if isFollowing
+								button#friend-button.following フォロー解除
+							else
+								button#friend-button.not-following フォロー
+				div#profile
+					p#comment
+						if user.comment != null && user.comment != ""
+							= user.comment
+						else
+							span.no-comment no comment
+					if user.location != null && user.location != ""
+						p#location
+							i.fa.fa-map-marker
+							= user.location
+					if user.url != null && user.url != ""
+						p#website
+							a(href= user.url)
+								i.fa.fa-link
+								= user.url
+				nav
+					table.count-table
+						tr
+							th 投稿
+							th お気に入り
+							th フォロー
+							th フォロワー
+						tr
+							td(class= page == 'home' ? 'active' : '')
+								a(href='/' + user.screenName)= user.statusesCount
+							td(class= page == 'status-favorites' ? 'active' : '')
+								a(href='/' + user.screenName + '/status-favorites')= user.statusFavoritesCount
+							td(class= page == 'followings' ? 'active' : '')
+								a(href='/' + user.screenName + '/followings')= user.followingsCount
+							td(class= page == 'followers' ? 'active' : '')
+								a(href='/' + user.screenName + '/followers')= user.followersCount
+			
+			div.main
+				block content

@@ -1,0 +1,26 @@
+li.status(title!= '#{status.createdAt}&#x0A;'
+		data-id= status.id
+		data-user-id= status.user.id
+		data-user-color= status.user.color
+		data-user-verified!= status.user.isVerified.toString()
+		data-user-profile-widget-url= config.url + '/widget/user/' + status.user.screenName)
+	article
+		div.main
+			div.icon-area
+				a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+					img.icon(src=status.user.iconImageUrl, alt='icon')
+			div.main
+				header.header
+					h2.name
+						a(href=config.url + '/' + status.user.screenName)= status.user.name
+					if status.user.isVerified
+						img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+					p.screen-name= '@' + status.user.screenName
+					p.created-at
+						a.time-anchor(href=config.url + '/' + status.user.screenName + '/status/' + status.id, itemprop='url')
+							time(datetime=status.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.createdAt
+				div.content
+					div.text
+						p!= (status.isReply ? '<a href="' + config.url + '/' + status.user.screenName + '/status/' + status.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.text)
+					if status.isImageAttached
+						img.image(src=status.imageUrls[0], alt='image')
