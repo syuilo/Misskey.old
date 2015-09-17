@@ -28,11 +28,14 @@ app.all '*' (req, res) ->
 	res.send message
 
 # Listen HTTPS server after create 
-https.create-server certs, app .listen config.port.web-https
+# https.create-server certs, app .listen config.port.web-https
+app.listen config.port.web-http
 
 # Redirect HTTP
+/*
 http-app = express!
 http-app.disable \x-powered-by
 http-app.all '*' (req, res, next) ->
 	res.redirect 'https://misskey.xyz'
 http-app.listen config.port.web-http
+*/
