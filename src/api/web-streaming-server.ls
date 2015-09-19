@@ -17,6 +17,8 @@ require! {
 	'socket.io': SocketIO
 }
 
+console.log 'Web-streaming server loaded'
+
 read-file = (path) -> fs.read-file-sync path .to-string!
 
 server = http.create-server (req, res) ->
