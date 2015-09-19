@@ -1,11 +1,11 @@
 require! {
 	'../../auth': authorize
 	'../../internal/delete-talk-message'
-	'../../../utils/publish-redis-streaming'
 	'../../../models/talk-message': TalkMessage
 	'../../../models/utils/filter-talk-message-for-response'
 	'../../../utils/get-express-params'
 }
+
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[message-id] = get-express-params do
 		req, <[ message-id ]>
