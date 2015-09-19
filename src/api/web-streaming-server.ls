@@ -19,7 +19,10 @@ require! {
 
 read-file = (path) -> fs.read-file-sync path .to-string!
 
-server = http.create-server!
+server = http.create-server (req, res) ->
+	res
+		..write-head 200 'Content-Type': 'text/plain'
+		..end 'kyoppie'
 
 io = SocketIO.listen server
 
@@ -53,5 +56,4 @@ bbs-thread io, session-store
 # Misskey log stream
 log io
 
-exports.server = (req, res) ->
-	server.emit \request req, res
+server.listen config.port.web-streaming
