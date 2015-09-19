@@ -68,13 +68,39 @@ function check-can-scroll
 	document-height = $ document .height!
 	height + scroll-top >= (document-height - 64px)
 
+function send-message
+	$form = $ \#post-form
+	$submit-button = $form.find '[type=submit]'
+
+	$submit-button.attr \disabled yes
+
+	$.ajax config.api-url + '/talk/say' {
+		type: \post
+		-process-data
+		-content-type
+		data: new FormData $form[0]
+		data-type: \json
+		xhr-fields: {+with-credentials}
+	} .done (data) ->
+		$form[0].reset!
+		$form.find \textarea .focus!
+		$form.find \.image-attacher .find 'p, img' .remove!
+		$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
+		$submit-button.attr \disabled no
+		$.remove-cookie "talk-autosave-#{otherparty-id}"
+	.fail (data) ->
+		$form[0].reset!
+		$form.find \textarea .focus!
+		/*alert('error');*/
+		$submit-button.attr \disabled no
+
 $ ->
 	me-id = $ \html .attr \data-me-id
 	me-sn = $ \html .attr \data-me-screen-name
 	otherparty-id = $ \html .attr \data-otherparty-id
 	otherparty-sn = $ \html .attr \data-otherparty-screen-name
 	otherparty-icon-image-url = $ \html .attr \data-otherparty-icon-image-url
-	
+
 	$ '.messages .message.me' .each ->
 		window.TALKSTREAM.set-event $ @
 
@@ -207,6 +233,10 @@ $ ->
 
 		socket.emit \type text
 
+	$ '#post-form textarea' .keydown (e) ->
+		if e.ctrl-key and e.key-code == 13
+			send-message!
+
 	$ \#post-form .find '.image-attacher input[name=image]' .change ->
 		$input = $ @
 		file = ($input.prop \files)[0]
@@ -220,31 +250,8 @@ $ ->
 
 	$ \#post-form .submit (event) ->
 		event.prevent-default!
-		$form = $ @
-		$submit-button = $form.find '[type=submit]'
+		send-message!
 
-		$submit-button.attr \disabled yes
-
-		$.ajax config.api-url + '/talk/say' {
-			type: \post
-			-process-data
-			-content-type
-			data: new FormData $form[0]
-			data-type: \json
-			xhr-fields: {+with-credentials}
-		} .done (data) ->
-			$form[0].reset!
-			$form.find \textarea .focus!
-			$form.find \.image-attacher .find 'p, img' .remove!
-			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
-			$submit-button.attr \disabled no
-			$.remove-cookie "talk-autosave-#{otherparty-id}"
-		.fail (data) ->
-			$form[0].reset!
-			$form.find \textarea .focus!
-			/*alert('error');*/
-			$submit-button.attr \disabled no
-	
 	$ '#read-more' .click ->
 		$button = $ @
 		$button.attr \disabled yes
@@ -275,4 +282,3 @@ $ window .load ->
 
 $ window .resize ->
 	$ \body .css \margin-bottom ($ \#post-form-container .outer-height! + \px)
-	
