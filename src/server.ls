@@ -64,7 +64,7 @@ api-server = require "#__dirname/api" .server
 dev-server = require "#__dirname/web/dev" .server
 app.use vhost \misskey.xyz main-server
 app.use vhost \api.misskey.xyz api-server
-app.use vhost \web-streaming.misskey.xyz web-streaming-server
+#app.use vhost \web-streaming.misskey.xyz web-streaming-server
 #app.use vhost \streaming.misskey.xyz (require "#__dirname/api/streaming" .server server)
 app.use vhost \dev.misskey.xyz dev-server
 
