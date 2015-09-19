@@ -1,7 +1,7 @@
 prelude = require 'prelude-ls'
 
-function post($form)
-	$form = \#post-form
+function post
+	$form = $ \#post-form
 	$submit-button = $form.find '[type=submit]'
 
 	$submit-button.attr \disabled yes
