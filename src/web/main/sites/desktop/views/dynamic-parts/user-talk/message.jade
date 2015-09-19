@@ -22,7 +22,7 @@ div(class= 'message ' + (message.userId == me.id ? 'me' : 'otherparty')
 					if message.isImageAttached
 						img.image(src= message.imageUrls[0], alt='image')
 				else
-					p.isDeleted このメッセージは削除されました
+					p.is-deleted このメッセージは削除されました
 			footer
 				time(datetime= message.createdAt, data-display-type='relative')= message.createdAt
 				if message.isEdited
