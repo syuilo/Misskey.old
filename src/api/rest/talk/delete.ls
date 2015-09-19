@@ -17,8 +17,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		| talk-message.is-deleted => res.api-error 400 'This message has already been deleted.'
 		| _ => talk-message
 			..is-deleted = yes
-			..save (err) -> filter-talk-message-for-response talk-message, (obj) ->
-				res.api-render obj
+			..save (err) ->
+				res.api-render \ok
 				publish-redis-streaming "talkStream:#{talk-message.otherparty-id}-#{user.id}", to-json do
 					type: \otherparty-message-delete
 					value: talk-message.id
