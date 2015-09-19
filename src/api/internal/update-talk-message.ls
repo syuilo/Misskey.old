@@ -6,10 +6,10 @@ require! {
 
 module.exports = (app, user, message-id, text) ->
 	resolve, reject <- new Promise!
-	
+
 	function throw-error(code, message)
 		reject {code, message}
-	
+
 	if null-or-empty message-id
 		throw-error \empty-message-id 'Empty message-id.'
 	else
@@ -34,8 +34,8 @@ module.exports = (app, user, message-id, text) ->
 				# Streaming events
 				obj <- filter-talk-message-for-response message
 				publish-redis-streaming "talkStream:#{message.otherparty-id}-#{user.id}" to-json do
-					type: \otherpartyMessageUpdate
+					type: \otherparty-message-update
 					value: obj
 				publish-redis-streaming "talkStream:#{user.id}-#{message.otherparty-id}" to-json do
-					type: \meMessageUpdate
+					type: \me-message-update
 					value: obj
