@@ -4,6 +4,7 @@ require! {
 }
 module.exports = (src-talk-msg, callback) ->
 	talk-msg = {
+		id: src-talk-msg.id
 		created-at: src-talk-msg.created-at
 		is-image-attached: src-talk-msg.is-image-attached
 		is-readed: src-talk-msg.is-readed
