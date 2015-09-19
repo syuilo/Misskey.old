@@ -1,5 +1,42 @@
 prelude = require 'prelude-ls'
 
+function post($form)
+	$form = \#post-form
+	$submit-button = $form.find '[type=submit]'
+
+	$submit-button.attr \disabled yes
+	$submit-button.attr \value 'Updating...'
+
+	$.ajax config.api-url + '/status/update' {
+		type: \post
+		-process-data
+		-content-type
+		data: new FormData $form.0
+		data-type: \json
+		xhr-fields: {+with-credentials}}
+	.done (data) ->
+		$form[0].reset!
+		$form.find \textarea .focus!
+		$form.find \.image-attacher .find 'p, img' .remove!
+		$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
+		$submit-button.attr \disabled no
+		$submit-button.attr \value 'Update \uf1d8'
+		$.remove-cookie \post-autosave {path: '/'}
+		window.display-message '投稿しました！'
+	.fail (data) ->
+		#$form[0].reset!
+		$form.find \textarea .focus!
+		$submit-button.attr \disabled no
+		$submit-button.attr \value 'Update \uf1d8'
+		error-code = JSON.parse data.response-text .error.code
+		switch error-code
+		| \empty-text => window.display-message 'テキストを入力してください。'
+		| \too-long-text => window.display-message 'テキストが長過ぎます。'
+		| \duplicate-content => window.display-message '投稿が重複しています。'
+		| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
+		| \denied-gif-upload => window.display-message 'GIFを投稿可能なのはplus-accountのみです。'
+		| _ => window.display-message "不明なエラー (#error-code)"
+
 $ ->
 	try
 		Notification.request-permission!
@@ -120,49 +157,17 @@ $ ->
 
 	$ \#post-form .submit (event) ->
 		event.prevent-default!
-		post $ @
-
-	function post($form)
-		$submit-button = $form.find '[type=submit]'
-
-		$submit-button.attr \disabled yes
-		$submit-button.attr \value 'Updating...'
-
-		$.ajax config.api-url + '/status/update' {
-			type: \post
-			-process-data
-			-content-type
-			data: new FormData $form.0
-			data-type: \json
-			xhr-fields: {+with-credentials}}
-		.done (data) ->
-			$form[0].reset!
-			$form.find \textarea .focus!
-			$form.find \.image-attacher .find 'p, img' .remove!
-			$form.find \.image-attacher .append $ '<p><i class="fa fa-picture-o"></i></p>'
-			$submit-button.attr \disabled no
-			$submit-button.attr \value 'Update \uf1d8'
-			$.remove-cookie \post-autosave {path: '/'}
-			window.display-message '投稿しました！'
-		.fail (data) ->
-			#$form[0].reset!
-			$form.find \textarea .focus!
-			$submit-button.attr \disabled no
-			$submit-button.attr \value 'Update \uf1d8'
-			error-code = JSON.parse data.response-text .error.code
-			switch error-code
-			| \empty-text => window.display-message 'テキストを入力してください。'
-			| \too-long-text => window.display-message 'テキストが長過ぎます。'
-			| \duplicate-content => window.display-message '投稿が重複しています。'
-			| \failed-attach-image => window.display-message '画像の添付に失敗しました。Misskeyが対応していない形式か、ファイルが壊れているかもしれません。'
-			| \denied-gif-upload => window.display-message 'GIFを投稿可能なのはplus-accountのみです。'
-			| _ => window.display-message "不明なエラー (#error-code)"
+		post!
 
 	$ '#post-form textarea' .bind \input ->
 		text = $ '#post-form textarea' .val!
 
 		# オートセーブ
 		$.cookie \post-autosave text, { path: '/', expires: 365 }
+
+	$ '#post-form textarea' .keydown (e) ->
+		if e.ctrl-key and e.key-code == 13
+			post!
 
 	# Read more
 	$ window .scroll ->
