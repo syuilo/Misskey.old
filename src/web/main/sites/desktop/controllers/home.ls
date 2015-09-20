@@ -8,9 +8,11 @@ require! {
 
 status-gets =
 	home: status-get-timeline
-	mention: status-get-mentions
+	mentions: status-get-mentions
 
-module.exports = (req, res, content = \home) ->
+module.exports = (req, res, option) ->
+	content = if option.page? then option.page else \home
+	customize-mode = if option.customize? then option.customize else no
 	me = req.me
 	Promise.all [
 		new Promise (resolve, reject) ->
@@ -27,5 +29,6 @@ module.exports = (req, res, content = \home) ->
 				.then (res) ->
 					resolve res
 	] .then (results) -> res.display req, res, \home do
+		customize-mode: customize-mode
 		timeline-html: results.0
 		recommendation-users: results.1

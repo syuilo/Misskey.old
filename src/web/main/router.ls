@@ -64,6 +64,18 @@ module.exports = (app) ->
 		else
 			res.display req, res, "#__dirname/sites/desktop/views/pages/entrance"
 
+	# home
+	app.get '/home' (req, res) ->
+		if req.login
+			CallController req, res, \home
+		else
+			res.display req, res, "#__dirname/sites/desktop/views/pages/entrance"
+
+	# home customize
+	app.get '/home/customize' (req, res) ->
+		CallController req, res, \home-customize do
+			customize-mode: yes
+
 	# log viewer
 	app.get '/log' (req, res) -> res.display req, res, "#__dirname/sites/desktop/views/pages/log"
 
@@ -103,7 +115,6 @@ module.exports = (app) ->
 
 	# mentions
 	app.get '/i/mentions' (req, res) -> CallController req, res, \i-mentions
-
 	# talks
 	app.get '/i/talks' (req, res) -> CallController req, res, \i-talks
 

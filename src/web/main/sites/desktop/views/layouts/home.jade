@@ -27,6 +27,11 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 		include ../common/header
 		
 		main
+			if customizeMode
+				div#customizer-menu
+					p
+						i.fa.fa-wrench
+						| ホームのカスタマイズ中
 			div#contents
 				div#main-contents(role='main')
 					block content
