@@ -74,7 +74,7 @@ module.exports = (app) ->
 	# home customize
 	app.get '/home/customize' (req, res) ->
 		CallController req, res, \home do
-			customize-mode: yes
+			customize: yes
 
 	# log viewer
 	app.get '/log' (req, res) -> res.display req, res, "#__dirname/sites/desktop/views/pages/log"
