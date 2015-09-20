@@ -73,7 +73,7 @@ module.exports = (app) ->
 
 	# home customize
 	app.get '/home/customize' (req, res) ->
-		CallController req, res, \home-customize do
+		CallController req, res, \home do
 			customize-mode: yes
 
 	# log viewer
@@ -115,6 +115,7 @@ module.exports = (app) ->
 
 	# mentions
 	app.get '/i/mentions' (req, res) -> CallController req, res, \i-mentions
+
 	# talks
 	app.get '/i/talks' (req, res) -> CallController req, res, \i-talks
 
