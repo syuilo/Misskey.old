@@ -23,7 +23,7 @@ module.exports = (req, res, option) ->
 		left: <[]>
 		center: <[ timeline ]>
 		right: <[ my-status notices recommendation-users donate ]>
-	layout = if user-layout? then user-layout else default-layout
+	layout = if user-layout? then user-layout.layout else default-layout
 	use-widgets = layout.left.concat layout.center.concat layout.right
 	unuse-widgets = widgets |> map (widget) ->
 		if (use-widgets.index-of widget) == -1
