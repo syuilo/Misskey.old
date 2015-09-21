@@ -18,6 +18,8 @@ $ ->
 			position = $widget.offset!
 			click-x = e.client-x
 			click-y = e.client-y
+			margin-top = parse-int($widget.css \margin-top)
+			margin-left = parse-int($widget.css \margin-left)
 			scroll-top = $ window .scroll-top!
 			move-base-x = click-x - position.left
 			move-base-y = click-y - position.top + scroll-top
@@ -25,12 +27,12 @@ $ ->
 			browser-height = $ window .height!
 			widget-width = $widget.outer-width!
 			widget-height = $widget.outer-height!
-			page-top = parse-int ($ \body .css \margin-top)
+			page-top = parse-int($ \body .css \margin-top)
 
 			$widget.css {
 				position: \fixed
-				top: position.top - scroll-top
-				left: position.left
+				top: position.top - scroll-top - margin-top
+				left: position.left - margin-left
 				width: widget-width
 				height: widget-height
 				'z-index': 128
@@ -44,8 +46,8 @@ $ ->
 			}
 
 			$ \html .mousemove (me) ->
-				move-left = me.client-x - move-base-x
-				move-top = me.client-y - move-base-y
+				move-top = me.client-y - move-base-y - margin-top
+				move-left = me.client-x - move-base-x - margin-left
 
 				#if move-left < 0
 				#	move-left = 0
