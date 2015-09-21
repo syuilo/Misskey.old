@@ -13,7 +13,7 @@ $ ->
 					left: 0
 				}
 
-			position = $widget.position!
+			position = $widget.offset!
 			click-x = e.client-x
 			click-y = e.client-y
 			move-base-x = click-x - position.left
