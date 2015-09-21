@@ -8,7 +8,6 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	console.log req.body
 	layout = req.body
-	console.log JSON.parse(layout)
 
 	save-layout = {
 		left: []
