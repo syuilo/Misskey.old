@@ -85,6 +85,26 @@ main {
 	margin: 0 auto;
 	padding: 16px;
 	background: #fff;
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	.add-widget-form {
+		float: left;
+
+		> p {
+			display: inline-block;
+			float: left;
+			margin: 0;
+		}
+	}
+
+	.save-or-cancel {
+		float: right;
+	}
 }
 
 #customizer-garbage-storage {
