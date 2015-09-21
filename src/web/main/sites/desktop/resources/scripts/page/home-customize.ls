@@ -60,7 +60,7 @@ $ ->
 			-process-data
 			data: JSON.stringify layout
 			data-type: \json
-			content-type: \application/json
+			content-type: \text/plain
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			document.location.href = '/'
