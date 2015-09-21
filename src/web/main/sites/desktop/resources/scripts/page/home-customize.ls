@@ -57,7 +57,6 @@ $ ->
 
 		$.ajax "#{config.api-url}/account/update-home-layout" {
 			type: \put
-			-process-data
 			data: JSON.stringify layout
 			data-type: \json
 			'Content-Type': \text/plain
