@@ -2,11 +2,14 @@ List of softwares that related to Misskey
 ====
 
 ## Apps
-### Web based
-* [MUCS](http://surume.exout.net/mucs/) - Misskey Unofficial Client for Surume
- 
 ### Multi platform
 * [Disskey](https://github.com/AyaMorisawa/Disskey) - Misskey client for desktop
+
+### Web based
+* [MUCS](http://surume.exout.net/mucs/) - Misskey Unofficial Client for Surume
+
+### .NET
+* [MisskeyNowPlaying](https://github.com/marihachi/MisskeyNowPlaying) - Let's post to Misskey your playing song info
 
 ## Libraries
 ### .NET
