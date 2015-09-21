@@ -104,8 +104,43 @@ main {
 
 	.save-or-cancel {
 		float: right;
+
+		button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			display: inline-block;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0 10px;
+			height: 100%;
+			font-size: 1.2em;
+			font-weight: normal;
+			text-decoration: none;
+			color: contrast(@themeColor, #000, #fff, 70%);
+			background: @themeColor !important;
+			outline: none;
+			border: none;
+			border-radius: 2px;
+			box-shadow: none;
+			transition: background 0.1s ease;
+
+			&, * {
+				cursor: pointer;
+			}
+
+			&:hover {
+				background: lighten(@themeColor, 10%) !important;
+			}
+
+			&:active {
+				background: darken(@themeColor, 10%) !important;
+				transition: background 0s ease;
+			}
+		}
 	}
 }
+
 
 #customizer-garbage-storage {
 	display: none;
