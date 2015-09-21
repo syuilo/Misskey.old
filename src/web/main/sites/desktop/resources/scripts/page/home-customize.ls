@@ -58,7 +58,6 @@ $ ->
 		$.ajax "#{config.api-url}/account/update-home-layout" {
 			type: \put
 			-process-data
-			-content-type
 			data: JSON.stringify {
 				layout: layout
 			}
