@@ -384,8 +384,8 @@ window.STATUS_CORE = {}
 		new Audio '/resources/sounds/pop.mp3' .play!
 
 		$status = $ '<li class="status">' .append($status).hide!
-		$recent-status = ($ ($tl.find '.timeline > .statuses > .status')[0]) .children \.status
+		$recent-status = ($ ($tl.children '.statuses' .children '.status')[0]) .children \.status
 		if ($recent-status.attr \data-display-html-is-active) == \true
 			$status.children \.status .add-class \display-html-active-status-prev
 		window.STATUS_CORE.set-event $status.children '.status.article'
-		$status.prepend-to (($tl.find '.timeline > .statuses')[0]) .show 200
+		$status.prepend-to ($tl.children '.statuses') .show 200
