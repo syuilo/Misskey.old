@@ -1,5 +1,6 @@
 require! {
 	moment
+	'../../../../../models/user-home-layout': UserHomeLayout
 	'../../../../../models/utils/status-get-timeline'
 	'../../../../../models/utils/status-get-mentions'
 	'../../../../../models/utils/get-new-users'
@@ -17,11 +18,12 @@ module.exports = (req, res, option) ->
 	customize-mode = if option.customize? then option.customize else no
 	me = req.me
 	widgets = <[ timeline my-status notices recommendation-users donate big-analog-clock small-analog-clock big-calendar small-calendar ]>
+	(err, user-layout) <- UserHomeLayout.find-one {user-id: me.id}
 	default-layout =
 		left: <[]>
 		center: <[ timeline ]>
 		right: <[ my-status notices recommendation-users donate ]>
-	layout = if me.home-layout? then me.home-layout else default-layout
+	layout = if user-layout? then user-layout else default-layout
 	use-widgets = layout.left.concat layout.center.concat layout.right
 	unuse-widgets = widgets |> map (widget) ->
 		if (use-widgets.index-of widget) == -1
