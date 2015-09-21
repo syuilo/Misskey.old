@@ -26,6 +26,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 		layout.right |> each (widget) ->
 			save-layout.right.concat widget
 
+	console.log save-layout
+
 	(err, user-home-layout) <- UserHomeLayout.find-one {user-id: user.id}
 	if user-home-layout?
 		user-home-layout.layout = save-layout
