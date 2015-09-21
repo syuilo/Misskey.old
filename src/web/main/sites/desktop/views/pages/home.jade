@@ -33,7 +33,23 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 					i.fa.fa-wrench
 					| ホームのカスタマイズ中
 			div#customizer-garbage-storage
-		
+				if layout.left != null && layout.left.length > 0
+					each widget in unuse-widgets
+						case widget
+							when 'timeline'
+								include ../dynamic-parts/home-widgets/timeline
+							when 'my-status'
+								include ../dynamic-parts/home-widgets/my-status
+							when 'notices'
+								include ../dynamic-parts/home-widgets/notices
+							when 'recommendation-users'
+								include ../dynamic-parts/home-widgets/recommendation-users
+							when 'donate'
+								include ../dynamic-parts/home-widgets/donate
+							when 'clock'
+								include ../dynamic-parts/home-widgets/clock
+							when 'calendar'
+								include ../dynamic-parts/home-widgets/calendar
 		main
 			div#contents
 				if customizeMode || (layout.left != null && layout.left.length > 0)
@@ -51,6 +67,10 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 										include ../dynamic-parts/home-widgets/recommendation-users
 									when 'donate'
 										include ../dynamic-parts/home-widgets/donate
+									when 'clock'
+										include ../dynamic-parts/home-widgets/clock
+									when 'calendar'
+										include ../dynamic-parts/home-widgets/calendar
 				div#main-contents(role='main')
 					if layout.center != null && layout.center.length > 0
 						each widget in layout.center
@@ -65,6 +85,10 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									include ../dynamic-parts/home-widgets/recommendation-users
 								when 'donate'
 									include ../dynamic-parts/home-widgets/donate
+								when 'clock'
+									include ../dynamic-parts/home-widgets/clock
+								when 'calendar'
+									include ../dynamic-parts/home-widgets/calendar
 				if customizeMode || (layout.right != null && layout.right.length > 0)
 					div#right-contents
 						if layout.right != null && layout.right.length > 0
@@ -80,4 +104,8 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 										include ../dynamic-parts/home-widgets/recommendation-users
 									when 'donate'
 										include ../dynamic-parts/home-widgets/donate
+									when 'clock'
+										include ../dynamic-parts/home-widgets/clock
+									when 'calendar'
+										include ../dynamic-parts/home-widgets/calendar
 						
