@@ -60,7 +60,7 @@ function update-clock
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	#ctx.stroke-style = \#ffffff
-	ctx.stroke-style = $ '#misskey-main-header' .attr \data-user-color
+	ctx.stroke-style = $ '#widget-clock' .attr \data-user-color
 	ctx.line-width = 2
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 5
