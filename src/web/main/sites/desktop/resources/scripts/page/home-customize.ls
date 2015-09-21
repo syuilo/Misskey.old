@@ -49,7 +49,7 @@ $ ->
 
 			$shadow.animate {
 				height: 0
-			}, 1000ms \ease ->
+			}, 1000ms \swing ->
 				$shadow.remove!
 
 			$ \html .css {
