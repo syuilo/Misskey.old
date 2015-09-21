@@ -27,7 +27,7 @@ $ ->
 
 	$ \#customizer-add-widget-button .click ->
 		add-widget-id = $ \#customizer-available-widgets .val!
-		$widget = $ \#customizer-available-widgets .find "[data-widget-id='#add-widget-id']"
+		$widget = ($ \#customizer-available-widgets .find "[data-widget-id='#add-widget-id']").0
 		$ \#left-contents .prepend $widget
 		update-available-widgets-list!
 
