@@ -18,8 +18,9 @@ $ ->
 			position = $widget.offset!
 			click-x = e.client-x
 			click-y = e.client-y
+			scroll-top = $ window .scroll-top!
 			move-base-x = click-x - position.left
-			move-base-y = click-y - position.top
+			move-base-y = click-y - position.top + scroll-top
 			browser-width = $ window .width!
 			browser-height = $ window .height!
 			widget-width = $widget.outer-width!
