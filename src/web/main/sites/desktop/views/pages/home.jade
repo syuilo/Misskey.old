@@ -51,6 +51,22 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 							when 'calendar'
 								include ../dynamic-parts/home-widgets/calendar
 		main
+			if customizeMode
+				div#customizer-nav
+					div.add-widget-form
+						p
+							| 利用可能なウィジェット:
+						select
+						button#customizer-add-widget-button(role='button')
+							i.fa.fa-check
+							| 追加
+					div.save-or-cancel
+						button#customizer-save-button(role='button')
+							i.fa.fa-check
+							| 変更を保存
+						button#customizer-cancel-button(role='button')
+							i.fa.fa-ban
+							| 変更を破棄
 			div#contents
 				if customizeMode || (layout.left != null && layout.left.length > 0)
 					div#left-contents
