@@ -91,6 +91,9 @@ $ ->
 
 			$widget-lapper.append $widget-remove-button
 
+		$widget-caption = $ '<p class="caption">' .text $widget.attr \data-widget-name
+		$widget-lapper.append $widget-caption
+
 		if ($widget.attr \data-widget-not-allow-move) != \true
 			$widget-lapper.mousedown (e) ->
 				| $ e.target .is \button =>
