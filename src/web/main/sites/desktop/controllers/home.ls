@@ -11,6 +11,7 @@ status-gets =
 	mentions: status-get-mentions
 
 module.exports = (req, res, option) ->
+	option = if option? then option else {}
 	content = if option.page? then option.page else \home
 	customize-mode = if option.customize? then option.customize else no
 	me = req.me
