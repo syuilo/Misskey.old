@@ -379,10 +379,9 @@ window.STATUS_CORE = {}
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
-	..add-status = ($tl, $status) ->
+	..add-status = (tl-selector, $status) ->
+		$tl = $ tl-selector
 		new Audio '/resources/sounds/pop.mp3' .play!
-		console.log $tl
-		console.log $tl.find '.timeline > .statuses'
 
 		$status = $ '<li class="status">' .append($status).hide!
 		$recent-status = ($ ($tl.find '.timeline > .statuses > .status')[0]) .children \.status
