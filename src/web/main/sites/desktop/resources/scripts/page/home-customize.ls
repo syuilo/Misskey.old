@@ -7,7 +7,22 @@ $ ->
 		}
 
 		$widget-lapper.mousedown (e) ->
-			function end-move
+			function end-move(x, y)
+				console.log x
+				console.log y
+
+				$ \.misskey-home-widget .each ->
+					$target-widget = $ @
+					target-widget-position = $target-widget.offset!
+					target-widget-width = $target-widget.outer-width!
+					target-widget-height = $target-widget.outer-height!
+
+					if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
+						if y > target-widget-height / 2
+							$target-widget.after $widget
+						else
+							$target-widget.before $widget
+
 				$widget.css {
 					position: \relative
 					top: 0
@@ -29,6 +44,9 @@ $ ->
 			widget-width = $widget.outer-width!
 			widget-height = $widget.outer-height!
 			page-top = parse-int($ \body .css \margin-top)
+
+			x = 0
+			y = 0
 
 			$widget.css {
 				position: \fixed
@@ -65,6 +83,8 @@ $ ->
 			}
 
 			$ \html .mousemove (me) ->
+				x = me.client-x
+				y = me.client-y
 				move-top = me.client-y - move-base-y - margin-top
 				move-left = me.client-x - move-base-x - margin-left
 
@@ -84,18 +104,18 @@ $ ->
 
 			$ \html .mouseleave ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move!
+				end-move x, y
 
 			$ \html .mouseup ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move!
+				end-move x, y
 
 			$ \html .bind \dragstart (e) ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move!
+				end-move x, y
 
 			$ \html .bind \dragend (e) ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move!
+				end-move x, y
 
 		$widget.append $widget-lapper
