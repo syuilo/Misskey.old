@@ -28,7 +28,7 @@ $ ->
 	$ \#customizer-add-widget-button .click ->
 		add-widget-id = $ \#customizer-available-widgets .val!
 		console.log add-widget-id
-		$widget = ($ \#customizer-available-widgets .find "[data-widget-id='#add-widget-id']").0
+		$widget = ($ \#customizer-garbage-storage .find "[data-widget-id='#add-widget-id']").0
 		console.log $widget
 		$ \#left-contents .prepend $widget
 		update-available-widgets-list!
