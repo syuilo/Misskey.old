@@ -59,9 +59,7 @@ $ ->
 			type: \put
 			-process-data
 			-content-type
-			data: {
-				layout: JSON.stringify layout
-			}
+			data: JSON.stringify layout
 			data-type: \json
 			#'Content-Type': \application/json
 			xhr-fields: {+with-credentials}}
