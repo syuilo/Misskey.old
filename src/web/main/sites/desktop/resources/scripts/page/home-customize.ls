@@ -55,12 +55,15 @@ $ ->
 			$widget = $ @
 			layout.right.push $widget.attr \data-widget-id
 
+		fd = new FormData!
+		fd.append \layout JSON.stringify layout
+
 		$.ajax "#{config.api-url}/account/update-home-layout" {
 			type: \put
 			-process-data
-			data: JSON.stringify layout
+			-content-type
+			data: fd
 			data-type: \json
-			content-type: \text/plain
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			document.location.href = '/'

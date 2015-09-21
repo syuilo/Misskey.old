@@ -6,8 +6,11 @@ require! {
 }
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
+	[layout] = get-express-params req, <[ layout ]>
+
 	console.log req.body
-	layout = req.body
+	console.log layout
+	console.log JSON.parse(layout)
 
 	save-layout = {
 		left: []
