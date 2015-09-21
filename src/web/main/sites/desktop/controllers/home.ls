@@ -16,7 +16,7 @@ module.exports = (req, res, option) ->
 	content = if option.page? then option.page else \home
 	customize-mode = if option.customize? then option.customize else no
 	me = req.me
-	widgets = <[ timeline my-status notices recommendation-users donate clock calendar ]>
+	widgets = <[ timeline my-status notices recommendation-users donate big-clock small-clock calendar ]>
 	default-layout =
 		left: <[]>
 		center: <[ timeline ]>
