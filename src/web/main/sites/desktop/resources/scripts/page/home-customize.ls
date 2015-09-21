@@ -17,7 +17,7 @@ $ ->
 		if ($widget.attr \data-widget-not-move) != \true
 			$widget-lapper.mousedown (e) ->
 				function end-move(x, y)
-					moved = no
+					$widget.moved = no
 
 					$ \.misskey-home-widget .each ->
 						$target-widget = $ @
@@ -30,25 +30,25 @@ $ ->
 								$target-widget.after $widget
 							else
 								$target-widget.before $widget
-							moved = yes
+							$widget.moved = yes
 
-					if not moved
+					if not $widget.moved
 						$left-area = $ \#left-contents
 						left-area-position = $left-area.offset!
 						left-area-width = $left-area.outer-width!
 						left-area-height = $left-area.outer-height!
 						if (x > left-area-position.left) and (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
 							$left-area.append $widget
-							moved = yes
+							$widget.moved = yes
 
-					if not moved
+					if not $widget.moved
 						$right-area = $ \#right-contents
 						right-area-position = $right-area.offset!
 						right-area-width = $right-area.outer-width!
 						right-area-height = $right-area.outer-height!
 						if (x > right-area-position.left) and (x < right-area-position.left + right-area-width) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
 							$right-area.append $widget
-							moved = yes
+							$widget.moved = yes
 
 					$widget.css {
 						position: \relative
