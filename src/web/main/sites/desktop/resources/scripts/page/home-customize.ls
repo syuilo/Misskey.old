@@ -58,7 +58,7 @@ $ ->
 		$.ajax "#{config.api-url}/account/update-home-layout" {
 			type: \put
 			-process-data
-			data: layout
+			data: JSON.stringify layout
 			data-type: \json
 			content-type: \application/json
 			xhr-fields: {+with-credentials}}
