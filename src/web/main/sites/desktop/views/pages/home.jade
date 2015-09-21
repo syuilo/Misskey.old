@@ -34,11 +34,16 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 						i.fa.fa-wrench
 						| ホームのカスタマイズ中
 			div#contents
+				div#left-contents
+					if layout.left != null && layout.left.length > 0
+						each widget in layout.left
+							include "../dynamic-parts/home-widgets/" + widget
 				div#main-contents(role='main')
-					include ../dynamic-parts/home-widgets/timeline
+					if layout.center != null && layout.center.length > 0
+						each widget in layout.center
+							include "../dynamic-parts/home-widgets/" + widget
 				div#right-contents
-					include ../dynamic-parts/home-widgets/my-status
-					include ../dynamic-parts/home-widgets/notices
-					include ../dynamic-parts/home-widgets/recommendation-users
-					include ../dynamic-parts/home-widgets/donate
+					if layout.right != null && layout.right.length > 0
+						each widget in layout.right
+							include "../dynamic-parts/home-widgets/" + widget
 					
