@@ -69,7 +69,7 @@ $ ->
 			}
 
 			$widget-remove-button.click ->
-				$widget.remove!
+				$ \#customizer-garbage-storage .append $widget
 
 			$widget-lapper.append $widget-remove-button
 
