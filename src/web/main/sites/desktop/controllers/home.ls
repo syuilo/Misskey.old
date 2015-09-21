@@ -23,7 +23,7 @@ module.exports = (req, res, option) ->
 		right: <[ my-status notices recommendation-users donate ]>
 	layout = if me.home-layout? then me.home-layout else default-layout
 	use-widgets = layout.left.concat layout.center.concat layout.right
-	unuse-widgets = widgets |> each (widget) ->
+	unuse-widgets = widgets |> map (widget) ->
 		if (use-widgets.index-of widget) == -1
 			widget
 	Promise.all [
