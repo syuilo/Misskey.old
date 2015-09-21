@@ -30,6 +30,7 @@ $ ->
 								$target-widget.after $widget
 							else
 								$target-widget.before $widget
+							console.log \moved
 							$widget.moved = yes
 
 					if not $widget.moved
