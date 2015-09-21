@@ -1,11 +1,9 @@
 $ ->
 	$ \#left-contents .css {
-		width: \270px
 		background: 'rgba(0, 0, 0, 0.2)'
 	}
 
 	$ \#right-contents .css {
-		width: \270px
 		background: 'rgba(0, 0, 0, 0.2)'
 	}
 

@@ -23,26 +23,29 @@ html {
 }
 
 main {
-	display: block;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
 	position: relative;
-	width: 100%;
-	max-width: 900px;
-	margin: 0 auto;
 
-	#contents {
-		#main-contents {
-			box-sizing: border-box;
-			float: left;
-			width: 600px;
-			margin: 0;
-		}
+	#main-contents {
+		flex: 1 1 600px;
+		box-sizing: border-box;
+		width: 600px;
+		margin: 0;
+	}
+
+	#left-contents {
+		flex: 1 1 270px;
+		max-width: 270px;
 	}
 
 	#right-contents {
-		box-sizing: border-box;
-		float: left;
-		width: 270px;
-		margin: 0;
+		flex: 1 1 270px;
+		max-width: 270px;
 	}
 }
 
