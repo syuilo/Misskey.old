@@ -9,6 +9,8 @@ $ ->
 			function end-move
 				$widget.css {
 					position: \relative
+					top: 0
+					left: 0
 				}
 
 			position = $widget.position!
