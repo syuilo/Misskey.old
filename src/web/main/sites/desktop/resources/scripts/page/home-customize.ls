@@ -1,4 +1,11 @@
 $ ->
+	$ \html .css {
+		user-select: \none
+		'-moz-user-select': \none
+		'-webkit-user-select': \none
+		'-ms-user-select': \none
+	}
+	
 	#$ \#left-contents .css {
 	#	background: 'rgba(0, 0, 0, 0.1)'
 	#}
@@ -103,13 +110,6 @@ $ ->
 					margin-bottom: \0px
 				}, 500ms \swing ->
 					$shadow.remove!
-
-				$ \html .css {
-					user-select: \none
-					'-moz-user-select': \none
-					'-webkit-user-select': \none
-					'-ms-user-select': \none
-				}
 
 				$ \html .mousemove (me) ->
 					$widget.x = me.client-x
