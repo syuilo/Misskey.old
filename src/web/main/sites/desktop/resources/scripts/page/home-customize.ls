@@ -3,7 +3,8 @@ function update-available-widgets-list
 	$ '#customizer-garbage-storage > .misskey-home-widget' .each ->
 		$widget = $ @
 		$item = $ '<option>'
-		$item.attr \value $widget.attr \data-widget-name
+		$item.attr \value $widget.attr \data-widget-id
+		$item.text $widget.attr \data-widget-name
 		$ \#customizer-available-widgets .append $item
 
 $ ->
