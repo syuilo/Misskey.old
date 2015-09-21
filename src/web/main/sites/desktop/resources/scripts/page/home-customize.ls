@@ -8,9 +8,7 @@ $ ->
 
 		$widget-lapper.mousedown (e) ->
 			function end-move(x, y)
-				console.log x
-				console.log y
-
+				console.log $widget
 				$ \.misskey-home-widget .each ->
 					$target-widget = $ @
 					target-widget-position = $target-widget.offset!
