@@ -62,7 +62,7 @@ $ ->
 				layout: layout
 			}
 			data-type: \json
-			content-type: \application/json
+			'Content-Type': \application/json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			document.location.href = '/'
