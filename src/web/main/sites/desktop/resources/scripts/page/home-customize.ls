@@ -1,10 +1,10 @@
 $ ->
 	$ \#left-contents .css {
-		background: 'rgba(0, 0, 0, 0.2)'
+		background: 'rgba(0, 0, 0, 0.1)'
 	}
 
 	$ \#right-contents .css {
-		background: 'rgba(0, 0, 0, 0.2)'
+		background: 'rgba(0, 0, 0, 0.1)'
 	}
 
 	$ \.misskey-home-widget .each ->
