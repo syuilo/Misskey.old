@@ -380,7 +380,8 @@ window.STATUS_CORE = {}
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
 	..add-status = (tl-selector, $status) ->
-		$tl = $ tl-selector
+		$tl = ($ tl-selector)[0]
+		console.log ($tl.children '.statuses')[0]
 		new Audio '/resources/sounds/pop.mp3' .play!
 
 		$status = $ '<li class="status">' .append($status).hide!
@@ -388,5 +389,4 @@ window.STATUS_CORE = {}
 		#if ($recent-status.attr \data-display-html-is-active) == \true
 		#	$status.children \.status .add-class \display-html-active-status-prev
 		window.STATUS_CORE.set-event $status.children '.status.article'
-		console.log ($tl.children '.statuses')[0]
 		$status.prepend-to (($tl.children '.statuses')[0]) .show 200
