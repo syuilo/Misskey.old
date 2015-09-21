@@ -11,10 +11,10 @@ $ ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
 			class: \misskey-home-widget-lapper
-			title: if (($widget.attr \data-widget-not-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは移動できません'
+			title: if (($widget.attr \data-widget-not-allow-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは移動できません'
 		}
 
-		if ($widget.attr \data-widget-not-move) != \true
+		if ($widget.attr \data-widget-not-allow-move) != \true
 			$widget-lapper.mousedown (e) ->
 				function end-move(x, y)
 					$widget.moved = no
