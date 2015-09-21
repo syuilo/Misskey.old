@@ -9,7 +9,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[layout] = get-express-params req, <[ layout ]>
 
 	console.log req.body
-	console.log req.body.layout
+	console.log JSON.parse(req.body).layout
 	console.log layout
 
 	save-layout = {
