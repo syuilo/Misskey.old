@@ -2,7 +2,7 @@ $ ->
 	$ \.misskey-home-widget .each ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
-			class: \.misskey-home-widget-lapper
+			class: \misskey-home-widget-lapper
 		}
 
 		$widget-lapper.mousedown (e) ->
