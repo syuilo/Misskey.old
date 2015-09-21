@@ -31,6 +31,43 @@ $ ->
 		$ \#left-contents .prepend $widget
 		update-available-widgets-list!
 
+	$ \#customizer-cancel-button .click ->
+		document.location.href = '/'
+
+	$ \#customizer-save-button .click ->
+		$submit-button = $ \#customizer-save-button
+		$submit-button.attr \disabled yes
+		$submit-button.attr \value '保存中...'
+
+		layout = {
+			left: []
+			center: []
+			right: []
+		}
+
+		$ '#left-contents > .misskey-home-widget' .each ->
+			$widget = $ @
+			layout.left.push $widget.attr \widget-id
+		$ '#main-contents > .misskey-home-widget' .each ->
+			$widget = $ @
+			layout.center.push $widget.attr \widget-id
+		$ '#right-contents > .misskey-home-widget' .each ->
+			$widget = $ @
+			layout.right.push $widget.attr \widget-id
+
+		$.ajax "#{config.api-url}/account/update-home-layout" {
+			type: \put
+			-process-data
+			-content-type
+			data: layout
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			document.location.href = '/'
+		.fail (data) ->
+			$submit-button.attr \disabled no
+			$submit-button.attr \value '失敗'
+
 	$ \.misskey-home-widget .each ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
