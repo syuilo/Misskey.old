@@ -388,4 +388,4 @@ window.STATUS_CORE = {}
 		if ($recent-status.attr \data-display-html-is-active) == \true
 			$status.children \.status .add-class \display-html-active-status-prev
 		window.STATUS_CORE.set-event $status.children '.status.article'
-		$status.prepend-to ($tl.find '.timeline > .statuses') .show 200
+		$status.prepend-to (($tl.find '.timeline > .statuses')[0]) .show 200
