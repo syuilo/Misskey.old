@@ -26,6 +26,8 @@ $ ->
 
 			$widget.css {
 				position: \fixed
+				width: widget-width
+				height: widget-height
 			}
 
 			$ \html .mousemove (me) ->
