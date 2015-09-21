@@ -58,9 +58,9 @@ $ ->
 		$.ajax "#{config.api-url}/account/update-home-layout" {
 			type: \put
 			-process-data
-			data: layout
+			data: JSON.stringify layout
 			data-type: \json
-			'Content-Type': \application/json
+			'Content-Type': \text/plain
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			document.location.href = '/'
