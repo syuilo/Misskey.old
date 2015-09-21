@@ -28,6 +28,8 @@ $ ->
 
 			$widget.css {
 				position: \fixed
+				top: position.top
+				left: position.left
 				width: widget-width
 				height: widget-height
 			}
