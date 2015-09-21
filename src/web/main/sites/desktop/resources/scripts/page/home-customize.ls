@@ -21,6 +21,48 @@ $ ->
 			title: if (($widget.attr \data-widget-not-allow-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは編集できません'
 		}
 
+		function end-move(x, y)
+			$widget.moved = no
+
+			$ \.misskey-home-widget .each ->
+				$target-widget = $ @
+				if ($target-widget.attr \id) != ($widget.attr \id)
+					target-widget-position = $target-widget.offset!
+					target-widget-width = $target-widget.outer-width!
+					target-widget-height = $target-widget.outer-height!
+
+					if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
+						if y > (target-widget-position.top + (target-widget-height / 2))
+							$target-widget.after $widget
+						else
+							$target-widget.before $widget
+						$widget.moved = yes
+
+			if not $widget.moved
+				$left-area = $ \#left-contents
+				left-area-position = $left-area.offset!
+				left-area-width = $left-area.outer-width!
+				left-area-height = $left-area.outer-height!
+				if (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
+					$left-area.append $widget
+					$widget.moved = yes
+
+			if not $widget.moved
+				$right-area = $ \#right-contents
+				right-area-position = $right-area.offset!
+				right-area-width = $right-area.outer-width!
+				right-area-height = $right-area.outer-height!
+				if (x > right-area-position.left) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
+					$right-area.append $widget
+					$widget.moved = yes
+
+			$widget.css {
+				position: \relative
+				top: 0
+				left: 0
+				'z-index': 0
+			}
+
 		if ($widget.attr \data-widget-not-allow-move) != \true
 			$widget-remove-button = $ '<button><i class="fa fa-times"></button>' .attr {
 				title: 'このウィジェットをリムーブ'
@@ -31,52 +73,9 @@ $ ->
 
 			$widget-lapper.append $widget-remove-button
 
-		if ($widget.attr \data-widget-not-allow-move) != \true
 			$widget-lapper.mousedown (e) ->
 				| $ e.target .is \button =>
 				| _ =>
-					function end-move(x, y)
-						$widget.moved = no
-
-						$ \.misskey-home-widget .each ->
-							$target-widget = $ @
-							if ($target-widget.attr \id) != ($widget.attr \id)
-								target-widget-position = $target-widget.offset!
-								target-widget-width = $target-widget.outer-width!
-								target-widget-height = $target-widget.outer-height!
-
-								if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
-									if y > (target-widget-position.top + (target-widget-height / 2))
-										$target-widget.after $widget
-									else
-										$target-widget.before $widget
-									$widget.moved = yes
-
-						if not $widget.moved
-							$left-area = $ \#left-contents
-							left-area-position = $left-area.offset!
-							left-area-width = $left-area.outer-width!
-							left-area-height = $left-area.outer-height!
-							if (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
-								$left-area.append $widget
-								$widget.moved = yes
-
-						if not $widget.moved
-							$right-area = $ \#right-contents
-							right-area-position = $right-area.offset!
-							right-area-width = $right-area.outer-width!
-							right-area-height = $right-area.outer-height!
-							if (x > right-area-position.left) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
-								$right-area.append $widget
-								$widget.moved = yes
-
-						$widget.css {
-							position: \relative
-							top: 0
-							left: 0
-							'z-index': 0
-						}
-
 					position = $widget.offset!
 					click-x = e.client-x
 					click-y = e.client-y
