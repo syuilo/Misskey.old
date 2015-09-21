@@ -43,9 +43,9 @@ $ ->
 				class: \misskey-home-widget-shadow
 			}
 			$shadow.css {
-				height: widget-height
-				'margin-top': margin-top
-				'margin-bottom': margin-bottom
+				height: "#{widget-height}px"
+				'margin-top':  "#{margin-top}px"
+				'margin-bottom':  "#{margin-bottom}px"
 			}
 
 			$widget.after $shadow
