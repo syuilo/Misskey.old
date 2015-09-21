@@ -46,10 +46,6 @@ $ ->
 	$ '.timeline .statuses .status .status.article' .each ->
 		window.STATUS_CORE.set-event $ @
 
-	$ \#notices .hover do
-		-> $ '#notices .nav' .show 200ms
-		-> $ '#notices .nav' .hide 200ms
-
 	# オートセーブがあるなら復元
 	if $.cookie \post-autosave
 		$ '#post-form textarea' .val $.cookie \post-autosave
@@ -65,10 +61,10 @@ $ ->
 			$notices = $ data
 			$notices.each ->
 				$notice = $ @
-				$notice.append-to $ '#notices .notices'
+				$notice.append-to $ '#widget-notices .notices'
 		else
 			$info = $ '<p class="notice-empty">通知はありません</p>'
-			$info.append-to $ '#notices'
+			$info.append-to $ '#widget-notices'
 	.fail (data) ->
 
 	socket = io.connect config.web-streaming-url + '/streaming/web/home'
@@ -81,10 +77,10 @@ $ ->
 	socket.on \notice (notice) ->
 		console.log \notice notice
 
-		$ '#notices .notice-empty' .remove!
+		$ '#widget-notices .notice-empty' .remove!
 
 		$notice = ($ notice).hide!
-		$notice.prepend-to ($ '#notices .notices') .show 200
+		$notice.prepend-to ($ '#widget-notices .notices') .show 200
 
 	socket.on \status (status) ->
 		console.log \status status
@@ -179,7 +175,7 @@ $ ->
 				$.ajax config.api-url + '/web/status/timeline-homehtml' {
 					type: \get
 					data: {
-						'max-cursor': $ '#timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
+						'max-cursor': $ '#widget-timeline .timeline > .statuses > .status:last-child > .status.article' .attr \data-timeline-cursor
 					}
 					data-type: \json
 					xhr-fields: {+with-credentials}}
@@ -189,7 +185,7 @@ $ ->
 					$statuses.each ->
 						$status = $ '<li class="status">' .append $ @
 						window.STATUS_CORE.set-event $status.children '.status.article'
-						$status.append-to $ '#timeline .timeline > .statuses'
+						$status.append-to $ '#widget-timeline .timeline > .statuses'
 					# Attach Wave effects
 					init-waves-effects!
 				.fail (data) ->

@@ -1,0 +1,7 @@
+div.misskey-home-widget#widget-big-calendar(data-ui-background-wallpaper-blur='true', data-widget-id='big-calendar', data-widget-name='大きなカレンダー')
+    - moment.locale('ja');
+    p.day-of-the-week= moment().format('dddd')
+    p.day= moment().format('Do')
+    p.month-and-year
+        span.month= moment().format('MMMM')
+        span.year= moment().format('YYYY年')

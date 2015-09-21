@@ -1,0 +1,14 @@
+div.misskey-home-widget#widget-my-status(data-widget-id='my-status', data-widget-name='ステータス')
+    header
+    nav(role='navigation')
+        a.icon-anchor(href='/' + me.screenName)
+            img.icon(src=me.iconImageUrl, alt='icon')
+        table.status
+            tr
+                th Statuses
+                th Following
+                th Followers
+            tr
+                td: a(href='/' + me.screenName)= me.statusesCount
+                td: a(href='/' + me.screenName + '/followings')= me.followingsCount
+                td: a(href='/' + me.screenName + '/followers')= me.followersCount

@@ -1,25 +1,149 @@
-extends ../layouts/home
+doctype html
 
-block title
-	title Misskey
-
-block assets
-	script(src=webStreamingUrl + '/socket.io/socket.io.js')
-	script(src='/resources/scripts/page/home.js')
-
-block content
-	div#timeline
-		div#post-form-container
-			form#post-form(enctype='multipart/form-data', role='form', data-ui-background-wallpaper-blur='true')
-				img.icon(src=me.iconImageUrl, alt='icon', title=me.comment)
-				div.form
-					textarea(name='text', placeholder='What\'s up?', role='textbox', aria-multiline)
-					div.design-allow(role='presentation')
-					input.ui-button(type='submit', value!='Update &#xf1d8;', role='button')
-					ul.tag.ui-taginput
-					div.image-attacher
-						p
-							i.fa.fa-picture-o
-						input(name='image', type='file', accept='image/*')
-		div.timeline-container
-			div.timeline-main!= timelineHtml
+html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', data-user-id= me.id)
+	head(prefix='og: http://ogp.me/ns#')
+		include ../common/head
+		meta(name='description', content='ママに咲いたカーネーション')
+		meta(name='keywords', content='Misskey')
+		meta(property='og:title', content='Misskey')
+		meta(property='og:type', content='article')
+		meta(property='og:description', content='Misskey')
+		meta(property='og:url', content=config.url)
+		meta(property='og:image', content='')
+		meta(property='og:site_name', content='Misskey')
+		meta(property='twitter:card', content='summary')
+		meta(property='twitter:site', content='@syuilo')
+		meta(property='twitter:title', content='Misskey')
+		meta(property='twitter:description', content='Misskey')
+		meta(property='twitter:image', content='')
+		meta(property='twitter:url', content=config.url)
+		title Misskey
+		script(src='/resources/scripts/common/status-core.js')
+		script(src=webStreamingUrl + '/socket.io/socket.io.js')
+		script(src='/resources/scripts/page/home.js')
+		if customizeMode
+			script(src='/resources/scripts/page/home-customize.js')
+		link(rel='stylesheet', href='/resources/styles/common/status-timeline.css')
+		link(rel='stylesheet', href='/resources/styles/page/home.css')
+		
+	body
+		if !customizeMode
+			include ../common/header
+		
+		if customizeMode
+			div#customizer-menu
+				p
+					i.fa.fa-wrench
+					| ホームのカスタマイズ中
+			div#customizer-garbage-storage
+				if unuseWidgets != null && unuseWidgets.length > 0
+					each widget in unuseWidgets
+						case widget
+							when 'timeline'
+								include ../dynamic-parts/home-widgets/timeline
+							when 'my-status'
+								include ../dynamic-parts/home-widgets/my-status
+							when 'notices'
+								include ../dynamic-parts/home-widgets/notices
+							when 'recommendation-users'
+								include ../dynamic-parts/home-widgets/recommendation-users
+							when 'donate'
+								include ../dynamic-parts/home-widgets/donate
+							when 'big-analog-clock'
+								include ../dynamic-parts/home-widgets/big-analog-clock
+							when 'small-analog-clock'
+								include ../dynamic-parts/home-widgets/small-analog-clock
+							when 'big-calendar'
+								include ../dynamic-parts/home-widgets/big-calendar
+							when 'small-calendar'
+								include ../dynamic-parts/home-widgets/small-calendar
+		main
+			if customizeMode
+				div#customizer-nav-container
+					div#customizer-nav
+						div.add-widget-form
+							p
+								| 利用可能な
+								b ウィジェット
+								| :
+							select#customizer-available-widgets
+							button#customizer-add-widget-button(role='button')
+								i.fa.fa-check
+								| 追加
+						div.save-or-cancel
+							button#customizer-cancel-button(role='button')
+								i.fa.fa-ban
+								| 変更を破棄
+							button#customizer-save-button(role='button')
+								i.fa.fa-check
+								| 変更を保存
+			div#contents
+				if customizeMode || (layout.left != null && layout.left.length > 0)
+					div#left-contents
+						if layout.left != null && layout.left.length > 0
+							each widget in layout.left
+								case widget
+									when 'timeline'
+										include ../dynamic-parts/home-widgets/timeline
+									when 'my-status'
+										include ../dynamic-parts/home-widgets/my-status
+									when 'notices'
+										include ../dynamic-parts/home-widgets/notices
+									when 'recommendation-users'
+										include ../dynamic-parts/home-widgets/recommendation-users
+									when 'donate'
+										include ../dynamic-parts/home-widgets/donate
+									when 'big-analog-clock'
+										include ../dynamic-parts/home-widgets/big-analog-clock
+									when 'small-analog-clock'
+										include ../dynamic-parts/home-widgets/small-analog-clock
+									when 'big-calendar'
+										include ../dynamic-parts/home-widgets/big-calendar
+									when 'small-calendar'
+										include ../dynamic-parts/home-widgets/small-calendar
+				div#main-contents(role='main')
+					if layout.center != null && layout.center.length > 0
+						each widget in layout.center
+							case widget
+								when 'timeline'
+									include ../dynamic-parts/home-widgets/timeline
+								when 'my-status'
+									include ../dynamic-parts/home-widgets/my-status
+								when 'notices'
+									include ../dynamic-parts/home-widgets/notices
+								when 'recommendation-users'
+									include ../dynamic-parts/home-widgets/recommendation-users
+								when 'donate'
+									include ../dynamic-parts/home-widgets/donate
+								when 'big-analog-clock'
+									include ../dynamic-parts/home-widgets/big-analog-clock
+								when 'small-analog-clock'
+									include ../dynamic-parts/home-widgets/small-analog-clock
+								when 'big-calendar'
+									include ../dynamic-parts/home-widgets/big-calendar
+								when 'small-calendar'
+									include ../dynamic-parts/home-widgets/small-calendar
+				if customizeMode || (layout.right != null && layout.right.length > 0)
+					div#right-contents
+						if layout.right != null && layout.right.length > 0
+							each widget in layout.right
+								case widget
+									when 'timeline'
+										include ../dynamic-parts/home-widgets/timeline
+									when 'my-status'
+										include ../dynamic-parts/home-widgets/my-status
+									when 'notices'
+										include ../dynamic-parts/home-widgets/notices
+									when 'recommendation-users'
+										include ../dynamic-parts/home-widgets/recommendation-users
+									when 'donate'
+										include ../dynamic-parts/home-widgets/donate
+									when 'big-analog-clock'
+										include ../dynamic-parts/home-widgets/big-analog-clock
+									when 'small-analog-clock'
+										include ../dynamic-parts/home-widgets/small-analog-clock
+									when 'big-calendar'
+										include ../dynamic-parts/home-widgets/big-calendar
+									when 'small-calendar'
+										include ../dynamic-parts/home-widgets/small-calendar
+						

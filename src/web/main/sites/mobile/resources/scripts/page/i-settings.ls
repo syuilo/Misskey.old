@@ -1,4 +1,4 @@
-$ ->	
+$ ->
 	$ \#form .submit (event) ->
 		event.prevent-default!
 

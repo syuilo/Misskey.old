@@ -1,0 +1,14 @@
+div.misskey-home-widget#widget-recommendation-users(data-ui-background-wallpaper-blur='true', data-widget-id='recommendation-users', data-widget-name='おすすめユーザー')
+    ol.users
+        each user in recommendationUsers
+            li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+                div.icon-area
+                    a.icon-anchor(href='/' + user.screenName)
+                        img.icon(src=user.iconImageUrl, alt='icon')
+                div.main
+                    a.name-anchor(href='/' + user.screenName)
+                        p.name= user.name
+                    if user.isFollowing
+                        button.follow-button(role='button') フォロー解除
+                    else
+                        button.follow-button(role='button') フォロー

@@ -35,6 +35,7 @@ routing =
 		[\put    /\/account\/update-icon(\..+)?$/                 './rest/account/update-icon']
 		[\put    /\/account\/update-banner(\..+)?$/               './rest/account/update-banner']
 		[\put    /\/account\/update-wallpaper(\..+)?$/            './rest/account/update-wallpaper']
+		[\put    /\/account\/update-home-layout(\..+)?$/          './rest/account/update-home-layout']
 		[\delete /\/account\/delete-wallpaper(\..+)?$/            './rest/account/delete-wallpaper']
 		[\put    /\/account\/update-mobile-header-design(\..+)?$/ './rest/account/update-mobile-header-design']
 		[\put    /\/account\/update-webtheme(\..+)?$/             './rest/account/update-webtheme']
