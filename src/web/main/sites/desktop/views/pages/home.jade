@@ -33,7 +33,7 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 					i.fa.fa-wrench
 					| ホームのカスタマイズ中
 			div#customizer-garbage-storage
-				if layout.left != null && layout.left.length > 0
+				if unuse-widgets != null && unuse-widgets.length > 0
 					each widget in unuse-widgets
 						case widget
 							when 'timeline'
