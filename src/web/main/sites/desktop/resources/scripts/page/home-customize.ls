@@ -45,8 +45,8 @@ $ ->
 			widget-height = $widget.outer-height!
 			page-top = parse-int($ \body .css \margin-top)
 
-			x = 0
-			y = 0
+			$widget.x = 0
+			$widget.y = 0
 
 			$widget.css {
 				position: \fixed
@@ -83,8 +83,8 @@ $ ->
 			}
 
 			$ \html .mousemove (me) ->
-				x = me.client-x
-				y = me.client-y
+				$widget.x = me.client-x
+				$widget.y = me.client-y
 				move-top = me.client-y - move-base-y - margin-top
 				move-left = me.client-x - move-base-x - margin-left
 
@@ -104,18 +104,18 @@ $ ->
 
 			$ \html .mouseleave ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move x, y
+				end-move $widget.x, $widget.y
 
 			$ \html .mouseup ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move x, y
+				end-move $widget.x, $widget.y
 
 			$ \html .bind \dragstart (e) ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move x, y
+				end-move $widget.x, $widget.y
 
 			$ \html .bind \dragend (e) ->
 				$ @ .unbind 'mouseup mousemove mouseleave'
-				end-move x, y
+				end-move $widget.x, $widget.y
 
 		$widget.append $widget-lapper
