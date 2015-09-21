@@ -61,12 +61,12 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 							i.fa.fa-check
 							| 追加
 					div.save-or-cancel
-						button#customizer-save-button(role='button')
-							i.fa.fa-check
-							| 変更を保存
 						button#customizer-cancel-button(role='button')
 							i.fa.fa-ban
 							| 変更を破棄
+						button#customizer-save-button(role='button')
+							i.fa.fa-check
+							| 変更を保存
 			div#contents
 				if customizeMode || (layout.left != null && layout.left.length > 0)
 					div#left-contents
