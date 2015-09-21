@@ -8,16 +8,28 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[layout] = get-express-params req, <[ layout ]>
 
-	console.log 'xxxxxxxxxxxxxxxxxxxxxxxx'
-	console.log req.body
-	console.log 'xxxxxxxxxxxxxxxxxxxxxxxx'
+	save-layout = {
+		left: []
+		center: []
+		right: []
+	}
+
+	if layout.left?
+		layout.left |> each (widget) ->
+			save-layout.left.concat widget
+	if layout.center?
+		layout.center |> each (widget) ->
+			save-layout.center.concat widget
+	if layout.right?
+		layout.right |> each (widget) ->
+			save-layout.right.concat widget
 
 	(err, user-home-layout) <- UserHomeLayout.find-one {user-id: user.id}
 	if user-home-layout?
-		user-home-layout.layout = layout
+		user-home-layout.layout = save-layout
 		user-home-layout.save!
 		res.api-render user.to-object!
 	else
-		new-layout = new UserHomeLayout {user-id: user.id, layout: layout}
+		new-layout = new UserHomeLayout {user-id: user.id, layout: save-layout}
 		err, created-layout <- new-layout.save
 		res.api-render user.to-object!
