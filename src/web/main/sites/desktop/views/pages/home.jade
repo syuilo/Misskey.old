@@ -37,40 +37,8 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 				div#main-contents(role='main')
 					include ../dynamic-parts/home-widgets/timeline
 				div#right-contents
-					div#me
-						header
-						nav(role='navigation')
-							a.icon-anchor(href='/' + me.screenName)
-								img.icon(src=me.iconImageUrl, alt='icon')
-							table.status
-								tr
-									th Statuses
-									th Following
-									th Followers
-								tr
-									td: a(href='/' + me.screenName)= me.statusesCount
-									td: a(href='/' + me.screenName + '/followings')= me.followingsCount
-									td: a(href='/' + me.screenName + '/followers')= me.followersCount
-					div#notices(data-ui-background-wallpaper-blur='true')
-						ol.notices
-					div#recommendation-users(data-ui-background-wallpaper-blur='true')
-						ol.users
-							each user in recommendationUsers
-								li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
-									div.icon-area
-										a.icon-anchor(href='/' + user.screenName)
-											img.icon(src=user.iconImageUrl, alt='icon')
-									div.main
-										a.name-anchor(href='/' + user.screenName)
-											p.name= user.name
-										if user.isFollowing
-											button.follow-button(role='button') フォロー解除
-										else
-											button.follow-button(role='button') フォロー
-					article#donate(data-ui-background-wallpaper-blur='true')
-						h1 寄付のお願い
-						p
-							| Misskeyの運営にはドメイン、サーバー等のコストが掛かります。Misskeyは広告を掲載したりしないため、収入を皆様からの寄付に頼っています。もしご興味があれば、
-							a(href='/syuilo') @syuilo
-							| までご連絡ください。ご協力ありがとうございます。
-						img(src='/resources/common/images/sakurako.png')
+					include ../dynamic-parts/home-widgets/my-status
+					include ../dynamic-parts/home-widgets/notices
+					include ../dynamic-parts/home-widgets/recommendation-users
+					include ../dynamic-parts/home-widgets/donate
+					
