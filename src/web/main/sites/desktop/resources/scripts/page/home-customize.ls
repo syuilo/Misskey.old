@@ -29,7 +29,7 @@ $ ->
 
 			$widget.css {
 				position: \fixed
-				top: position.top + scroll-top
+				top: position.top - scroll-top
 				left: position.left
 				width: widget-width
 				height: widget-height
