@@ -59,7 +59,9 @@ $ ->
 			type: \put
 			-process-data
 			-content-type
-			data: layout
+			data: {
+				layout: layout
+			}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
