@@ -17,7 +17,7 @@ module.exports = (req, res, option) ->
 	default-layout =
 		left: null
 		center: <[ timeline ]>
-		right: <[ my-status notices donate recommendation-users ]>
+		right: <[ my-status notices recommendation-users donate ]>
 	layout = if me.home-layout? then me.home-layout else default-layout
 	Promise.all [
 		new Promise (resolve, reject) ->

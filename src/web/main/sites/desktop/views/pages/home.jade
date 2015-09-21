@@ -37,13 +37,43 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 				div#left-contents
 					if layout.left != null && layout.left.length > 0
 						each widget in layout.left
-							include "../dynamic-parts/home-widgets/" + widget
+							case widget
+								when 'timeline'
+									include ../dynamic-parts/home-widgets/timeline
+								when 'my-status'
+									include ../dynamic-parts/home-widgets/my-status
+								when 'notices'
+									include ../dynamic-parts/home-widgets/notices
+								when 'recommendation-users'
+									include ../dynamic-parts/home-widgets/recommendation-users
+								when 'donate'
+									include ../dynamic-parts/home-widgets/donate
 				div#main-contents(role='main')
 					if layout.center != null && layout.center.length > 0
 						each widget in layout.center
-							include "../dynamic-parts/home-widgets/" + widget
+							case widget
+								when 'timeline'
+									include ../dynamic-parts/home-widgets/timeline
+								when 'my-status'
+									include ../dynamic-parts/home-widgets/my-status
+								when 'notices'
+									include ../dynamic-parts/home-widgets/notices
+								when 'recommendation-users'
+									include ../dynamic-parts/home-widgets/recommendation-users
+								when 'donate'
+									include ../dynamic-parts/home-widgets/donate
 				div#right-contents
 					if layout.right != null && layout.right.length > 0
 						each widget in layout.right
-							include "../dynamic-parts/home-widgets/" + widget
+							case widget
+								when 'timeline'
+									include ../dynamic-parts/home-widgets/timeline
+								when 'my-status'
+									include ../dynamic-parts/home-widgets/my-status
+								when 'notices'
+									include ../dynamic-parts/home-widgets/notices
+								when 'recommendation-users'
+									include ../dynamic-parts/home-widgets/recommendation-users
+								when 'donate'
+									include ../dynamic-parts/home-widgets/donate
 					
