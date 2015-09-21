@@ -32,6 +32,7 @@ $ ->
 				left: position.left
 				width: widget-width
 				height: widget-height
+				'z-index': 128
 			}
 
 			$ \html .css {
@@ -57,7 +58,6 @@ $ ->
 				$widget.css {
 					left: move-left + \px
 					top: move-top + \px
-					'z-index': 128
 				}
 
 			$ \html .mouseleave ->
