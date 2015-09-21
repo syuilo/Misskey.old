@@ -117,7 +117,7 @@ main {
 			font-weight: normal;
 			text-decoration: none;
 			color: contrast(@themeColor, #000, #fff, 70%);
-			background: @themeColor !important;
+			background: @themeColor;
 			outline: none;
 			border: none;
 			border-radius: 2px;
@@ -133,13 +133,17 @@ main {
 			}
 
 			&:hover {
-				background: lighten(@themeColor, 10%) !important;
+				background: lighten(@themeColor, 10%);
 			}
 
 			&:active {
-				background: darken(@themeColor, 10%) !important;
+				background: darken(@themeColor, 10%);
 				transition: background 0s ease;
 			}
+		}
+
+		> #customizer-cancel-button {
+			background: #7e7e7e !important;
 		}
 	}
 }
