@@ -1,3 +1,9 @@
+function update-available-widgets-list
+	$ \#customizer-available-widgets .empty!
+	$ '#customizer-garbage-storage > .misskey-home-widget' .each ->
+		$widget = $ @
+		$ \#customizer-available-widgets .append $ '<option>' .text $widget.attr \data-widget-name
+
 $ ->
 	$ \html .css {
 		user-select: \none
@@ -5,6 +11,8 @@ $ ->
 		'-webkit-user-select': \none
 		'-ms-user-select': \none
 	}
+
+	update-available-widgets-list!
 
 	#$ \#left-contents .css {
 	#	background: 'rgba(0, 0, 0, 0.1)'
@@ -70,6 +78,7 @@ $ ->
 
 			$widget-remove-button.click ->
 				$ \#customizer-garbage-storage .append $widget
+				update-available-widgets-list!
 
 			$widget-lapper.append $widget-remove-button
 
