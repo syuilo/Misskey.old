@@ -102,13 +102,17 @@ main {
 
 	&:hover {
 		background: rgba(0, 0, 0, 0.2);
+
+		> button {
+			display: block;
+		}
 	}
 
 	> button {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
-		display: block;
+		display: none;
 		position: absolute;
 		top: 0;
 		right: 0;
