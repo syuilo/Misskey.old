@@ -21,17 +21,17 @@ $ ->
 
 					$ \.misskey-home-widget .each ->
 						$target-widget = $ @
-						target-widget-position = $target-widget.offset!
-						target-widget-width = $target-widget.outer-width!
-						target-widget-height = $target-widget.outer-height!
+						if ($target-widget.attr \id) != ($widget.attr \id)
+							target-widget-position = $target-widget.offset!
+							target-widget-width = $target-widget.outer-width!
+							target-widget-height = $target-widget.outer-height!
 
-						if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
-							if y > (target-widget-position.top + (target-widget-height / 2))
-								$target-widget.after $widget
-							else
-								$target-widget.before $widget
-							console.log \moved
-							$widget.moved = yes
+							if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
+								if y > (target-widget-position.top + (target-widget-height / 2))
+									$target-widget.after $widget
+								else
+									$target-widget.before $widget
+								$widget.moved = yes
 
 					if not $widget.moved
 						$left-area = $ \#left-contents
