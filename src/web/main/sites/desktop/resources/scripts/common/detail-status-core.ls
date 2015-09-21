@@ -381,6 +381,8 @@ window.STATUS_CORE = {}
 
 	..add-status = ($tl, $status) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
+		console.log $tl
+		console.log $tl.find '.timeline > .statuses'
 
 		$status = $ '<li class="status">' .append($status).hide!
 		$recent-status = ($ ($tl.find '.timeline > .statuses > .status')[0]) .children \.status
