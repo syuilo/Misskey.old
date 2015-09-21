@@ -52,8 +52,8 @@ $ ->
 
 			$shadow.animate {
 				height: 0
-				margin-top: 0
-				margin-bottom: 0
+				margin-top: \0px
+				margin-bottom: \0px
 			}, 500ms \swing ->
 				$shadow.remove!
 
