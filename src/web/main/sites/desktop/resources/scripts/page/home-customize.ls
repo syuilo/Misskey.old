@@ -25,6 +25,9 @@ $ ->
 	#	background: 'rgba(0, 0, 0, 0.1)'
 	#}
 
+	$ \#customizer-add-widget-button .click ->
+		
+
 	$ \.misskey-home-widget .each ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
