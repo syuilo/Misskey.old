@@ -30,6 +30,13 @@ $ ->
 				height: widget-height
 			}
 
+			$ \html .css {
+				user-select: none;
+				'-moz-user-select': none;
+				'-webkit-user-select': none;
+				'-ms-user-select': none;
+			}
+
 			$ \html .mousemove (me) ->
 				move-left = me.client-x - move-base-x
 				move-top = me.client-y - move-base-y
