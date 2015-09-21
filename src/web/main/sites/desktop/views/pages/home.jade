@@ -29,12 +29,13 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 	body
 		include ../common/header
 		
+		if customizeMode
+			div#customizer-menu
+				p
+					i.fa.fa-wrench
+					| ホームのカスタマイズ中
+		
 		main
-			if customizeMode
-				div#customizer-menu
-					p
-						i.fa.fa-wrench
-						| ホームのカスタマイズ中
 			div#contents
 				div#left-contents
 					if layout.left != null && layout.left.length > 0
