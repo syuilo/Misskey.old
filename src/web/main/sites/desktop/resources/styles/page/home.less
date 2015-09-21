@@ -78,87 +78,89 @@ main {
 	}
 }
 
-#customizer-nav {
-	box-sizing: border-box;
-	max-width: 800px;
+#customizer-nav-container {
 	width: 100%;
-	margin: 0 auto;
-	padding: 16px;
-	background: #fff;
-	border-radius: 0 0 8px 8px;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.7);
 
-	&:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
+	#customizer-nav {
+		box-sizing: border-box;
+		max-width: 800px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 16px;
+		border-radius: 0 0 8px 8px;
 
-	.add-widget-form {
-		float: left;
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
 
-		> p {
-			display: inline-block;
+		.add-widget-form {
 			float: left;
-			margin: 0;
-		}
-	}
 
-	.save-or-cancel {
-		float: right;
-
-		button {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: inline-block;
-			box-sizing: border-box;
-			margin: 0 8px;
-			padding: 8px 12px;
-			font-size: 1em;
-			font-weight: normal;
-			text-decoration: none;
-			color: contrast(@themeColor, #000, #fff, 70%);
-			background: @themeColor;
-			outline: none;
-			border: none;
-			border-radius: 2px;
-			box-shadow: none;
-			transition: background 0.1s ease;
-
-			> i {
-				margin-right: 0.25em;
-			}
-
-			&, * {
-				cursor: pointer;
-			}
-
-			&:hover {
-				background: lighten(@themeColor, 10%);
-			}
-
-			&:active {
-				background: darken(@themeColor, 10%);
-				transition: background 0s ease;
+			> p {
+				display: inline-block;
+				float: left;
+				margin: 0;
 			}
 		}
 
-		> #customizer-cancel-button {
-			background: #7e7e7e !important;
+		.save-or-cancel {
+			float: right;
 
-			&:hover {
-				background: #8e8e8e !important;
+			button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: inline-block;
+				box-sizing: border-box;
+				margin: 0 8px;
+				padding: 8px 12px;
+				font-size: 1em;
+				font-weight: normal;
+				text-decoration: none;
+				color: contrast(@themeColor, #000, #fff, 70%);
+				background: @themeColor;
+				outline: none;
+				border: none;
+				border-radius: 2px;
+				box-shadow: none;
+				transition: background 0.1s ease;
+
+				> i {
+					margin-right: 0.25em;
+				}
+
+				&, * {
+					cursor: pointer;
+				}
+
+				&:hover {
+					background: lighten(@themeColor, 10%);
+				}
+
+				&:active {
+					background: darken(@themeColor, 10%);
+					transition: background 0s ease;
+				}
 			}
 
-			&:active {
-				background: #6e6e6e !important;
-				transition: background 0s ease;
+			> #customizer-cancel-button {
+				background: #7e7e7e !important;
+
+				&:hover {
+					background: #8e8e8e !important;
+				}
+
+				&:active {
+					background: #6e6e6e !important;
+					transition: background 0s ease;
+				}
 			}
 		}
 	}
 }
-
 
 #customizer-garbage-storage {
 	display: none;
