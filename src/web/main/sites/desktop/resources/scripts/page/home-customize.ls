@@ -92,6 +92,7 @@ $ ->
 					height: "#{widget-height}px"
 					'margin-top':  "#{margin-top}px"
 					'margin-bottom':  "#{margin-bottom}px"
+					'pointer-events': \none
 				}
 
 				$widget.after $shadow
