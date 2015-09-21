@@ -240,15 +240,15 @@ window.STATUS_CORE = {}
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
 
-	..add-status = ($status) ->
+	..add-status = ($tl, $status) ->
 		new Audio '/resources/sounds/pop.mp3' .play!
 
 		$status = $ '<li class="status">' .append($status).hide!
-		$recent-status = ($ ($ '#timeline .timeline > .statuses > .status')[0]) .children \.status
-		if ($recent-status.attr \data-display-html-is-active) == \true
-			$status.children \.status .add-class \display-html-active-status-prev
+		#$recent-status = ($ ($tl.children '.statuses' .children '.status')[0]) .children \.status
+		#if ($recent-status.attr \data-display-html-is-active) == \true
+		#	$status.children \.status .add-class \display-html-active-status-prev
 		window.STATUS_CORE.set-event $status.children '.status.article'
-		$status.prepend-to ($ '#timeline .timeline > .statuses') .show 200
+		$status.prepend-to (($tl.children '.statuses')[0]) .show 200
 
 		# Attach Wave effects
 		init-waves-effects!
