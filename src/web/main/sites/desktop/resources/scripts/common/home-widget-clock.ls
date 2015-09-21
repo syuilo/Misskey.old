@@ -86,5 +86,5 @@ function update-clock
 	ctx.stroke!
 
 $ ->
-    update-clock!
-    set-interval update-clock, 1000ms
+	update-clock!
+	set-interval update-clock, 1000ms
