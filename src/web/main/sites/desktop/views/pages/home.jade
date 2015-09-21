@@ -37,20 +37,21 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 		
 		main
 			div#contents
-				div#left-contents
-					if layout.left != null && layout.left.length > 0
-						each widget in layout.left
-							case widget
-								when 'timeline'
-									include ../dynamic-parts/home-widgets/timeline
-								when 'my-status'
-									include ../dynamic-parts/home-widgets/my-status
-								when 'notices'
-									include ../dynamic-parts/home-widgets/notices
-								when 'recommendation-users'
-									include ../dynamic-parts/home-widgets/recommendation-users
-								when 'donate'
-									include ../dynamic-parts/home-widgets/donate
+				if customizeMode || (layout.left != null && layout.left.length > 0)
+					div#left-contents
+						if layout.left != null && layout.left.length > 0
+							each widget in layout.left
+								case widget
+									when 'timeline'
+										include ../dynamic-parts/home-widgets/timeline
+									when 'my-status'
+										include ../dynamic-parts/home-widgets/my-status
+									when 'notices'
+										include ../dynamic-parts/home-widgets/notices
+									when 'recommendation-users'
+										include ../dynamic-parts/home-widgets/recommendation-users
+									when 'donate'
+										include ../dynamic-parts/home-widgets/donate
 				div#main-contents(role='main')
 					if layout.center != null && layout.center.length > 0
 						each widget in layout.center
@@ -65,18 +66,19 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									include ../dynamic-parts/home-widgets/recommendation-users
 								when 'donate'
 									include ../dynamic-parts/home-widgets/donate
-				div#right-contents
-					if layout.right != null && layout.right.length > 0
-						each widget in layout.right
-							case widget
-								when 'timeline'
-									include ../dynamic-parts/home-widgets/timeline
-								when 'my-status'
-									include ../dynamic-parts/home-widgets/my-status
-								when 'notices'
-									include ../dynamic-parts/home-widgets/notices
-								when 'recommendation-users'
-									include ../dynamic-parts/home-widgets/recommendation-users
-								when 'donate'
-									include ../dynamic-parts/home-widgets/donate
-					
+				if customizeMode || (layout.right != null && layout.right.length > 0)
+					div#right-contents
+						if layout.right != null && layout.right.length > 0
+							each widget in layout.right
+								case widget
+									when 'timeline'
+										include ../dynamic-parts/home-widgets/timeline
+									when 'my-status'
+										include ../dynamic-parts/home-widgets/my-status
+									when 'notices'
+										include ../dynamic-parts/home-widgets/notices
+									when 'recommendation-users'
+										include ../dynamic-parts/home-widgets/recommendation-users
+									when 'donate'
+										include ../dynamic-parts/home-widgets/donate
+						
