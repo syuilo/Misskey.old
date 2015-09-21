@@ -1,4 +1,4 @@
-List of softwares that related to Misskey
+List of softwares related to Misskey
 ====
 
 ## Apps
