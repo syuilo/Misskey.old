@@ -38,6 +38,20 @@ $ ->
 				'z-index': 128
 			}
 
+			$shadow = $ '<div>' .attr {
+				class: \misskey-home-widget-shadow
+			}
+			$shadow.css {
+				height: widget-height
+			}
+
+			$widget.after $shadow
+
+			$shadow.animate {
+				height: 0
+			}, 1000ms \ease ->
+				$shadow.remove!
+
 			$ \html .css {
 				user-select: \none
 				'-moz-user-select': \none
