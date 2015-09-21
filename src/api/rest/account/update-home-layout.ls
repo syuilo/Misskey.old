@@ -8,7 +8,9 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[layout] = get-express-params req, <[ layout ]>
 
+	console.log 'xxxxxxxxxxxxxxxxxxxxxxxx'
 	console.log layout
+	console.log 'xxxxxxxxxxxxxxxxxxxxxxxx'
 
 	(err, user-home-layout) <- UserHomeLayout.find-one {user-id: user.id}
 	if user-home-layout?
