@@ -49,12 +49,14 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 								include ../dynamic-parts/home-widgets/recommendation-users
 							when 'donate'
 								include ../dynamic-parts/home-widgets/donate
-							when 'big-clock'
-								include ../dynamic-parts/home-widgets/big-clock
-							when 'small-clock'
-								include ../dynamic-parts/home-widgets/small-clock
-							when 'calendar'
-								include ../dynamic-parts/home-widgets/calendar
+							when 'big-analog-clock'
+								include ../dynamic-parts/home-widgets/big-analog-clock
+							when 'small-analog-clock'
+								include ../dynamic-parts/home-widgets/small-analog-clock
+							when 'big-calendar'
+								include ../dynamic-parts/home-widgets/big-calendar
+							when 'small-calendar'
+								include ../dynamic-parts/home-widgets/small-calendar
 		main
 			if customizeMode
 				div#customizer-nav-container
@@ -89,12 +91,14 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 										include ../dynamic-parts/home-widgets/recommendation-users
 									when 'donate'
 										include ../dynamic-parts/home-widgets/donate
-									when 'big-clock'
-										include ../dynamic-parts/home-widgets/big-clock
-									when 'small-clock'
-										include ../dynamic-parts/home-widgets/small-clock
-									when 'calendar'
-										include ../dynamic-parts/home-widgets/calendar
+									when 'big-analog-clock'
+										include ../dynamic-parts/home-widgets/big-analog-clock
+									when 'small-analog-clock'
+										include ../dynamic-parts/home-widgets/small-analog-clock
+									when 'big-calendar'
+										include ../dynamic-parts/home-widgets/big-calendar
+									when 'small-calendar'
+										include ../dynamic-parts/home-widgets/small-calendar
 				div#main-contents(role='main')
 					if layout.center != null && layout.center.length > 0
 						each widget in layout.center
@@ -109,12 +113,14 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 									include ../dynamic-parts/home-widgets/recommendation-users
 								when 'donate'
 									include ../dynamic-parts/home-widgets/donate
-								when 'big-clock'
-									include ../dynamic-parts/home-widgets/big-clock
-								when 'small-clock'
-									include ../dynamic-parts/home-widgets/small-clock
-								when 'calendar'
-									include ../dynamic-parts/home-widgets/calendar
+								when 'big-analog-clock'
+									include ../dynamic-parts/home-widgets/big-analog-clock
+								when 'small-analog-clock'
+									include ../dynamic-parts/home-widgets/small-analog-clock
+								when 'big-calendar'
+									include ../dynamic-parts/home-widgets/big-calendar
+								when 'small-calendar'
+									include ../dynamic-parts/home-widgets/small-calendar
 				if customizeMode || (layout.right != null && layout.right.length > 0)
 					div#right-contents
 						if layout.right != null && layout.right.length > 0
@@ -130,10 +136,12 @@ html(lang=me.lang, dir='ltr', itemscope, itemtype='http://schema.org/WebPage', d
 										include ../dynamic-parts/home-widgets/recommendation-users
 									when 'donate'
 										include ../dynamic-parts/home-widgets/donate
-									when 'big-clock'
-										include ../dynamic-parts/home-widgets/big-clock
-									when 'small-clock'
-										include ../dynamic-parts/home-widgets/small-clock
-									when 'calendar'
-										include ../dynamic-parts/home-widgets/calendar
+									when 'big-analog-clock'
+										include ../dynamic-parts/home-widgets/big-analog-clock
+									when 'small-analog-clock'
+										include ../dynamic-parts/home-widgets/small-analog-clock
+									when 'big-calendar'
+										include ../dynamic-parts/home-widgets/big-calendar
+									when 'small-calendar'
+										include ../dynamic-parts/home-widgets/small-calendar
 						

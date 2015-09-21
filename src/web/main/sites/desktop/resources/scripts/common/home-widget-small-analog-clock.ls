@@ -8,7 +8,7 @@ function update-clock
 		@.x = x
 		@.y = y
 
-	canvas = document.get-element-by-id \widget-small-clock-canvas
+	canvas = document.get-element-by-id \widget-small-analog-clock-canvas
 	ctx = canvas.get-context \2d
 	canv-w = canvas.width
 	canv-h = canvas.height
@@ -60,7 +60,7 @@ function update-clock
 	uv = new vec2 (Math.sin angle), (-Math.cos angle)
 	ctx.begin-path!
 	#ctx.stroke-style = \#ffffff
-	ctx.stroke-style = $ '#widget-small-clock' .attr \data-user-color
+	ctx.stroke-style = $ '#widget-small-analog-clock' .attr \data-user-color
 	ctx.line-width = 2
 	ctx.move-to do
 		(canv-w / 2) - uv.x * length / 5
