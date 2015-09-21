@@ -138,12 +138,12 @@ $ ->
 					$ @ .unbind 'mouseup mousemove mouseleave'
 					end-move $widget.x, $widget.y
 
-				#$ \html .bind \dragstart (e) ->
-				#	$ @ .unbind 'mouseup mousemove mouseleave'
-				#	end-move $widget.x, $widget.y
+				$ \html .bind \dragstart (e) ->
+					$ @ .unbind 'mouseup mousemove mouseleave'
+					end-move $widget.x, $widget.y
 
-				#$ \html .bind \dragend (e) ->
-				#	$ @ .unbind 'mouseup mousemove mouseleave'
-				#	end-move $widget.x, $widget.y
+				$ \html .bind \dragend (e) ->
+					$ @ .unbind 'mouseup mousemove mouseleave'
+					end-move $widget.x, $widget.y
 
 		$widget.append $widget-lapper
