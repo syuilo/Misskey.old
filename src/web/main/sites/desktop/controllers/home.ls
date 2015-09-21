@@ -1,4 +1,5 @@
 require! {
+	moment
 	'../../../../../models/utils/status-get-timeline'
 	'../../../../../models/utils/status-get-mentions'
 	'../../../../../models/utils/get-new-users'
@@ -36,6 +37,7 @@ module.exports = (req, res, option) ->
 					resolve res
 	] .then (results) -> res.display req, res, \home do
 		layout: layout
+		moment: moment
 		customize-mode: customize-mode
 		timeline-html: results.0
 		recommendation-users: results.1
