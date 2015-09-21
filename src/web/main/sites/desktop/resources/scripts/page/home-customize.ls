@@ -59,10 +59,11 @@ $ ->
 			type: \put
 			-process-data
 			-content-type
-			data: {
+			data: JSON.stringify {
 				layout: layout
 			}
 			data-type: \json
+			content-type: \application/json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			document.location.href = '/'
