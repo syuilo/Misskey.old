@@ -1,2 +1,5 @@
 div.misskey-home-widget#widget-small-calendar(data-ui-background-wallpaper-blur='true', data-widget-id='small-calendar', data-widget-name='小さなカレンダー')
-    p= moment().format('YYYY/MM/DD')
+    p
+        span.yyyy= moment().format('YYYY年')
+        span.m= moment().format('M月')
+        span.d= moment().format('D日')
