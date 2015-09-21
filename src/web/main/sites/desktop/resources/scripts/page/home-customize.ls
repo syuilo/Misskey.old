@@ -63,7 +63,7 @@ $ ->
 				'z-index': 0
 			}
 
-		if ($widget.attr \data-widget-not-allow-move) != \true
+		if ($widget.attr \data-widget-not-allow-remove) != \true
 			$widget-remove-button = $ '<button><i class="fa fa-times"></button>' .attr {
 				title: 'このウィジェットをリムーブ'
 			}
@@ -73,6 +73,7 @@ $ ->
 
 			$widget-lapper.append $widget-remove-button
 
+		if ($widget.attr \data-widget-not-allow-move) != \true
 			$widget-lapper.mousedown (e) ->
 				| $ e.target .is \button =>
 				| _ =>
