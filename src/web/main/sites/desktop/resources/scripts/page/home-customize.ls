@@ -26,7 +26,10 @@ $ ->
 	#}
 
 	$ \#customizer-add-widget-button .click ->
-		
+		add-widget-id = $ \#customizer-available-widgets .val!
+		$widget = $ \#customizer-available-widgets .find "[data-widget-id='#add-widget-id']"
+		$ \#left-contents .prepend $widget
+		update-available-widgets-list!
 
 	$ \.misskey-home-widget .each ->
 		$widget = $ @
