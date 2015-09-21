@@ -8,7 +8,6 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[layout] = get-express-params req, <[ layout ]>
 	layout = JSON.parse layout
-	console.log layout
 
 	save-layout = {
 		left: []
@@ -18,13 +17,13 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 
 	if layout.left?
 		layout.left |> each (widget) ->
-			save-layout.left.concat widget
+			save-layout.left.push widget
 	if layout.center?
 		layout.center |> each (widget) ->
-			save-layout.center.concat widget
+			save-layout.center.push widget
 	if layout.right?
 		layout.right |> each (widget) ->
-			save-layout.right.concat widget
+			save-layout.right.push widget
 
 	console.log save-layout
 
