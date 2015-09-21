@@ -5,7 +5,7 @@ $ ->
 		'-webkit-user-select': \none
 		'-ms-user-select': \none
 	}
-	
+
 	#$ \#left-contents .css {
 	#	background: 'rgba(0, 0, 0, 0.1)'
 	#}
@@ -18,134 +18,146 @@ $ ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
 			class: \misskey-home-widget-lapper
-			title: if (($widget.attr \data-widget-not-allow-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは移動できません'
+			title: if (($widget.attr \data-widget-not-allow-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは編集できません'
 		}
 
 		if ($widget.attr \data-widget-not-allow-move) != \true
+			$widget-remove-button = $ '<button><i class="fa fa-times"></button>' .attr {
+				title: 'このウィジェットをリムーブ'
+			}
+
+			$widget-remove-button.click ->
+				$widget.remove!
+
+			$widget-lapper.append $widget-remove-button
+
+		if ($widget.attr \data-widget-not-allow-move) != \true
 			$widget-lapper.mousedown (e) ->
-				function end-move(x, y)
-					$widget.moved = no
+				| $ e.target .is \button =>
+				| _ =>
+					function end-move(x, y)
+						$widget.moved = no
 
-					$ \.misskey-home-widget .each ->
-						$target-widget = $ @
-						if ($target-widget.attr \id) != ($widget.attr \id)
-							target-widget-position = $target-widget.offset!
-							target-widget-width = $target-widget.outer-width!
-							target-widget-height = $target-widget.outer-height!
+						$ \.misskey-home-widget .each ->
+							$target-widget = $ @
+							if ($target-widget.attr \id) != ($widget.attr \id)
+								target-widget-position = $target-widget.offset!
+								target-widget-width = $target-widget.outer-width!
+								target-widget-height = $target-widget.outer-height!
 
-							if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
-								if y > (target-widget-position.top + (target-widget-height / 2))
-									$target-widget.after $widget
-								else
-									$target-widget.before $widget
+								if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
+									if y > (target-widget-position.top + (target-widget-height / 2))
+										$target-widget.after $widget
+									else
+										$target-widget.before $widget
+									$widget.moved = yes
+
+						if not $widget.moved
+							$left-area = $ \#left-contents
+							left-area-position = $left-area.offset!
+							left-area-width = $left-area.outer-width!
+							left-area-height = $left-area.outer-height!
+							if (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
+								$left-area.append $widget
 								$widget.moved = yes
 
-					if not $widget.moved
-						$left-area = $ \#left-contents
-						left-area-position = $left-area.offset!
-						left-area-width = $left-area.outer-width!
-						left-area-height = $left-area.outer-height!
-						if (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
-							$left-area.append $widget
-							$widget.moved = yes
+						if not $widget.moved
+							$right-area = $ \#right-contents
+							right-area-position = $right-area.offset!
+							right-area-width = $right-area.outer-width!
+							right-area-height = $right-area.outer-height!
+							if (x > right-area-position.left) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
+								$right-area.append $widget
+								$widget.moved = yes
 
-					if not $widget.moved
-						$right-area = $ \#right-contents
-						right-area-position = $right-area.offset!
-						right-area-width = $right-area.outer-width!
-						right-area-height = $right-area.outer-height!
-						if (x > right-area-position.left) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
-							$right-area.append $widget
-							$widget.moved = yes
+						$widget.css {
+							position: \relative
+							top: 0
+							left: 0
+							'z-index': 0
+						}
 
-					$widget.css {
-						position: \relative
-						top: 0
-						left: 0
-						'z-index': 0
-					}
+					position = $widget.offset!
+					click-x = e.client-x
+					click-y = e.client-y
+					margin-top = parse-int($widget.css \margin-top)
+					margin-left = parse-int($widget.css \margin-left)
+					margin-bottom = parse-int($widget.css \margin-bottom)
+					scroll-top = $ window .scroll-top!
+					move-base-x = click-x - position.left
+					move-base-y = click-y - position.top + scroll-top
+					browser-width = $ window .width!
+					browser-height = $ window .height!
+					widget-width = $widget.outer-width!
+					widget-height = $widget.outer-height!
+					page-top = parse-int($ \body .css \margin-top)
 
-				position = $widget.offset!
-				click-x = e.client-x
-				click-y = e.client-y
-				margin-top = parse-int($widget.css \margin-top)
-				margin-left = parse-int($widget.css \margin-left)
-				margin-bottom = parse-int($widget.css \margin-bottom)
-				scroll-top = $ window .scroll-top!
-				move-base-x = click-x - position.left
-				move-base-y = click-y - position.top + scroll-top
-				browser-width = $ window .width!
-				browser-height = $ window .height!
-				widget-width = $widget.outer-width!
-				widget-height = $widget.outer-height!
-				page-top = parse-int($ \body .css \margin-top)
-
-				$widget.x = 0
-				$widget.y = 0
-
-				$widget.css {
-					position: \fixed
-					top: position.top - scroll-top - margin-top
-					left: position.left - margin-left
-					width: widget-width
-					height: widget-height
-					'z-index': 128
-				}
-
-				$shadow = $ '<div>' .attr {
-					class: \misskey-home-widget-shadow
-				}
-				$shadow.css {
-					height: "#{widget-height}px"
-					'margin-top':  "#{margin-top}px"
-					'margin-bottom':  "#{margin-bottom}px"
-					'pointer-events': \none
-				}
-
-				$widget.after $shadow
-
-				$shadow.animate {
-					height: 0
-					margin-top: \0px
-					margin-bottom: \0px
-				}, 500ms \swing ->
-					$shadow.remove!
-
-				$ \html .mousemove (me) ->
-					$widget.x = me.client-x
-					$widget.y = me.client-y + ($ window .scroll-top!)
-					move-top = me.client-y - move-base-y - margin-top
-					move-left = me.client-x - move-base-x - margin-left
-
-					#if move-left < 0
-					#	move-left = 0
-					#if move-top < page-top
-					#	move-top = page-top
-					#if move-left + widget-width > browser-width
-					#	move-left = browser-width - widget-width
-					#if move-top + widget-height > browser-height
-					#	move-top = browser-height - widget-height
+					$widget.x = 0
+					$widget.y = 0
 
 					$widget.css {
-						left: move-left + \px
-						top: move-top + \px
+						position: \fixed
+						top: position.top - scroll-top - margin-top
+						left: position.left - margin-left
+						width: widget-width
+						height: widget-height
+						'z-index': 128
 					}
 
-				$ \html .mouseleave ->
-					$ @ .unbind 'mouseup mousemove mouseleave'
-					end-move $widget.x, $widget.y
+					$shadow = $ '<div>' .attr {
+						class: \misskey-home-widget-shadow
+					}
+					$shadow.css {
+						height: "#{widget-height}px"
+						'margin-top':  "#{margin-top}px"
+						'margin-bottom':  "#{margin-bottom}px"
+						'pointer-events': \none
+					}
 
-				$ \html .mouseup ->
-					$ @ .unbind 'mouseup mousemove mouseleave'
-					end-move $widget.x, $widget.y
+					$widget.after $shadow
 
-				$ \html .bind \dragstart (e) ->
-					$ @ .unbind 'mouseup mousemove mouseleave'
-					end-move $widget.x, $widget.y
+					$shadow.animate {
+						height: 0
+						margin-top: \0px
+						margin-bottom: \0px
+					}, 500ms \swing ->
+						$shadow.remove!
 
-				$ \html .bind \dragend (e) ->
-					$ @ .unbind 'mouseup mousemove mouseleave'
-					end-move $widget.x, $widget.y
+					$ \html .mousemove (me) ->
+						$widget.x = me.client-x
+						$widget.y = me.client-y + ($ window .scroll-top!)
+						move-top = me.client-y - move-base-y - margin-top
+						move-left = me.client-x - move-base-x - margin-left
+
+						#if move-left < 0
+						#	move-left = 0
+						#if move-top < page-top
+						#	move-top = page-top
+						#if move-left + widget-width > browser-width
+						#	move-left = browser-width - widget-width
+						#if move-top + widget-height > browser-height
+						#	move-top = browser-height - widget-height
+
+						$widget.css {
+							left: move-left + \px
+							top: move-top + \px
+						}
+
+					$ \html .mouseleave ->
+						$ @ .unbind 'mouseup mousemove mouseleave'
+						end-move $widget.x, $widget.y
+
+					$ \html .mouseup ->
+						$ @ .unbind 'mouseup mousemove mouseleave'
+						end-move $widget.x, $widget.y
+
+					$ \html .bind \dragstart (e) ->
+						$ @ .unbind 'mouseup mousemove mouseleave'
+						end-move $widget.x, $widget.y
+
+					$ \html .bind \dragend (e) ->
+						$ @ .unbind 'mouseup mousemove mouseleave'
+						end-move $widget.x, $widget.y
 
 		$widget.append $widget-lapper
 

@@ -103,6 +103,38 @@ main {
 	&:hover {
 		background: rgba(0, 0, 0, 0.2);
 	}
+
+	> button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		width: 32px;
+		height: 32px;
+		color: #fff;
+		border: none;
+		outline: none;
+		background: transparent;
+		cursor: pointer;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.1);
+		}
+
+		&:active {
+			background: rgba(255, 255, 255, 0.2);
+		}
+
+		* {
+			pointer-events: none;
+		}
+	}
 }
 
 #widget-timeline {
