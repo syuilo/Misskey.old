@@ -40,6 +40,8 @@ $ ->
 						if (x > left-area-position.left) and (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
 							$left-area.append $widget
 							moved = yes
+					
+					if not moved
 						$right-area = $ \#right-contents
 						right-area-position = $right-area.offset!
 						right-area-width = $right-area.outer-width!
