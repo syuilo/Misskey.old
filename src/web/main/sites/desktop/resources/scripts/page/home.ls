@@ -84,11 +84,11 @@ $ ->
 
 	socket.on \status (status) ->
 		console.log \status status
-		window.STATUS_CORE.add-status $ status
+		window.STATUS_CORE.add-status ($ '#widget-timeline'), $ status
 
 	socket.on \repost (status) ->
 		console.log \repost status
-		window.STATUS_CORE.add-status $ status
+		window.STATUS_CORE.add-status ($ '#widget-timeline'), $ status
 
 	socket.on \reply (status) ->
 		console.log \reply status
