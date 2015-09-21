@@ -81,7 +81,7 @@ $ ->
 
 			$ \html .mousemove (me) ->
 				$widget.x = me.client-x
-				$widget.y = me.client-y
+				$widget.y = me.client-y + ($ window .scroll-top!)
 				move-top = me.client-y - move-base-y - margin-top
 				move-left = me.client-x - move-base-x - margin-left
 
