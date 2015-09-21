@@ -69,6 +69,10 @@ main {
 .misskey-home-widget {
 	display: block;
 	position: relative;
+
+	&[data-widget-not-move='true'] > .misskey-home-widget-lapper {
+		cursor: not-allowed !important;
+	}
 }
 
 .misskey-home-widget-lapper {
