@@ -3,6 +3,7 @@ $ ->
 		$widget = $ @
 		$widget-lapper = $ '<div>' .attr {
 			class: \misskey-home-widget-lapper
+			title: 'ドラッグして並び替え'
 		}
 
 		$widget-lapper.mousedown (e) ->
