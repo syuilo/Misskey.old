@@ -47,13 +47,13 @@ $ ->
 
 		$ '#left-contents > .misskey-home-widget' .each ->
 			$widget = $ @
-			layout.left.push $widget.attr \widget-id
+			layout.left.push $widget.attr \data-widget-id
 		$ '#main-contents > .misskey-home-widget' .each ->
 			$widget = $ @
-			layout.center.push $widget.attr \widget-id
+			layout.center.push $widget.attr \data-widget-id
 		$ '#right-contents > .misskey-home-widget' .each ->
 			$widget = $ @
-			layout.right.push $widget.attr \widget-id
+			layout.right.push $widget.attr \data-widget-id
 
 		$.ajax "#{config.api-url}/account/update-home-layout" {
 			type: \put
