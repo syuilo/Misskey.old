@@ -38,7 +38,7 @@ $ ->
 						left-area-position = $left-area.offset!
 						left-area-width = $left-area.outer-width!
 						left-area-height = $left-area.outer-height!
-						if (x > left-area-position.left) and (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
+						if (x < left-area-position.left + left-area-width) and (y > left-area-position.top) and (y < left-area-position.top + left-area-height)
 							$left-area.append $widget
 							$widget.moved = yes
 
@@ -47,7 +47,7 @@ $ ->
 						right-area-position = $right-area.offset!
 						right-area-width = $right-area.outer-width!
 						right-area-height = $right-area.outer-height!
-						if (x > right-area-position.left) and (x < right-area-position.left + right-area-width) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
+						if (x > right-area-position.left) and (y > right-area-position.top) and (y < right-area-position.top + right-area-height)
 							$right-area.append $widget
 							$widget.moved = yes
 
