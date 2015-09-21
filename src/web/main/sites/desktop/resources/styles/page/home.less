@@ -105,6 +105,28 @@ main {
 				float: left;
 				margin: 0;
 			}
+
+			select {
+				vertical-align: middle;
+				background-color: #fff;
+				background-image: url("/resources/images/select-arrow.svg");
+				background-repeat: no-repeat;
+				background-position: ~"calc(100% - 8px)" center;
+				border: 2px solid #ddd;
+				outline: none;
+				box-shadow: none;
+
+				&:hover {
+					border: solid 2px @themeColor;
+					transition: border 0.2s ease, box-shadow 0.2s ease;
+				}
+
+				&:focus {
+					color: darken(@themeColor, 20%);
+					border: solid 2px @themeColor;
+					transition: color 0, border 0.5s ease, box-shadow 0.05s ease;
+				}
+			}
 		}
 
 		.save-or-cancel {
