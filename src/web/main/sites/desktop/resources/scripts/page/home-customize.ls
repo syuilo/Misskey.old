@@ -20,6 +20,7 @@ $ ->
 			click-y = e.client-y
 			margin-top = parse-int($widget.css \margin-top)
 			margin-left = parse-int($widget.css \margin-left)
+			margin-bottom = parse-int($widget.css \margin-bottom)
 			scroll-top = $ window .scroll-top!
 			move-base-x = click-x - position.left
 			move-base-y = click-y - position.top + scroll-top
@@ -43,12 +44,16 @@ $ ->
 			}
 			$shadow.css {
 				height: widget-height
+				'margin-top': margin-top
+				'margin-bottom': margin-bottom
 			}
 
 			$widget.after $shadow
 
 			$shadow.animate {
 				height: 0
+				'margin-top': 0
+				'margin-bottom': 0
 			}, 500ms \swing ->
 				$shadow.remove!
 
