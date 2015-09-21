@@ -8,7 +8,6 @@ $ ->
 
 		$widget-lapper.mousedown (e) ->
 			function end-move(x, y)
-				console.log $widget
 				$ \.misskey-home-widget .each ->
 					$target-widget = $ @
 					target-widget-position = $target-widget.offset!
@@ -16,7 +15,7 @@ $ ->
 					target-widget-height = $target-widget.outer-height!
 
 					if (x > target-widget-position.left) and (x < target-widget-position.left + target-widget-width) and (y > target-widget-position.top) and (y < target-widget-position.top + target-widget-height)
-						if y > target-widget-height / 2
+						if y > (target-widget-height / 2)
 							$target-widget.after $widget
 						else
 							$target-widget.before $widget
