@@ -23,29 +23,34 @@ html {
 }
 
 main {
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	justify-content: center;
+	display: block;
 	position: relative;
 
-	#main-contents {
-		flex: 1 1 600px;
-		box-sizing: border-box;
-		width: 600px;
-		margin: 0;
-	}
+	#contents {
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		justify-content: center;
+		position: relative;
 
-	#left-contents {
-		flex: 1 1 270px;
-		max-width: 270px;
-	}
+		#main-contents {
+			flex: 1 1 600px;
+			box-sizing: border-box;
+			width: 600px;
+			margin: 0;
+		}
 
-	#right-contents {
-		flex: 1 1 270px;
-		max-width: 270px;
+		#left-contents {
+			flex: 1 1 270px;
+			max-width: 270px;
+		}
+
+		#right-contents {
+			flex: 1 1 270px;
+			max-width: 270px;
+		}
 	}
 }
 
