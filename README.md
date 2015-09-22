@@ -8,7 +8,6 @@
 # Misskey
 [Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.
 It runs on Node.js.
-Source code of Misskey image server has also been published: [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image)
 
 ## Contribution
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
@@ -26,9 +25,13 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 * `npm run watch` - Watch the files and build when they are changed.
 
 ### Branches
-Note that only `develop` branch is accepting any Pull Request.
 * `master` - Stable version, deployed to https://misskey.xyz/
 * `develop` - Development version, deployed to https://misskey.xyz:1206/
+
+Note that only `develop` branch is accepting any Pull Request.
+
+## Related Project
+* [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image) - Misskey image server
 
 ## API
 Misskey provides web-based API.
