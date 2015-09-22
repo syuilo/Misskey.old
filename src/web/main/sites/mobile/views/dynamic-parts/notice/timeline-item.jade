@@ -14,14 +14,24 @@ li.notice(
 				div.text
 					p
 						i.fa.fa-info-circle
-						p= notice.content.text
+						span= notice.content.text
 			when 'install-app'
 				a.icon-anchor(href='/app/' + notice.content.app.screenName, title= notice.content.app.description, rel='icon')
 					img.icon(src=notice.content.app.iconImageUrl, alt='icon')
 				div.text
 					p
 						i.fa.fa-plug
-						p アプリがインストールされました:
+						| アプリがインストールされました:
+						br
+						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
+			when 'uninstall-app'
+				a.icon-anchor(href='/app/' + notice.content.app.screenName, title= notice.content.app.description, rel='icon')
+					img.icon(src=notice.content.app.iconImageUrl, alt='icon')
+				div.text
+					p
+						i.fa.fa-ban
+						| アプリがアンインストールされました:
+						br
 						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
 			when 'follow'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
@@ -39,8 +49,8 @@ li.notice(
 						i.fa.fa-retweet
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
 						| さんが
-					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
-					P をRepostしました。
+						a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
+						| をRepostしました。
 			when 'status-favorite'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
@@ -49,8 +59,8 @@ li.notice(
 						i.fa.fa-star
 						a(href= '/' + notice.content.user.screenName)= notice.content.user.name
 						| さんが
-					a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
-					P をふぁぼりました。
+						a.status-preview(href= '/' + me.screenName + '/status/' + notice.content.status.id)= notice.content.status.text
+						| をふぁぼりました。
 			when 'bbs-thread-post'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src=notice.content.user.iconImageUrl, alt='icon')

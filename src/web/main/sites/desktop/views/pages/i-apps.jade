@@ -1,0 +1,30 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		title アプリ
+		link(rel='stylesheet', href='/resources/styles/page/i-apps.css')
+		script(src='/resources/scripts/page/i-apps.js')
+	
+	body
+		include ../common/header
+		
+		main(role='main')
+			h1
+				i.fa.fa-plug
+				| インストールされているアプリ
+			ol#apps
+				each app in apps
+					li.app(data-app-id= app.id)
+						div.icon-area
+							a.icon-anchor
+								img.icon(src= app.iconImageUrl, alt='icon')
+						div.main
+							a.name-anchor
+								p.name= app.name
+							p.description= app.description
+							button.remove(role='button')
+								i.fa.fa-trash
+								| アンインストール
+							
