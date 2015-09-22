@@ -839,6 +839,16 @@ textarea {
 						&[data-active='true'] {
 							background: #111111;
 
+							> .dropdown-header {
+								> .icon {
+									filter: saturate(200%);
+									-webkit-filter: saturate(200%);
+									-moz-filter: saturate(200%);
+									-o-filter: saturate(200%);
+									-ms-filter: saturate(200%);
+								}
+							}
+
 							> .dropdown-content {
 								visibility: visible;
 							}
