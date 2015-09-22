@@ -86,6 +86,8 @@ $ ->
 				height: default-height
 			}
 
+			console.log default-width
+
 			$ \.misskey-home-widget .each ->
 				$target-widget = $ @
 				if ($target-widget.attr \id) != ($widget.attr \id)
