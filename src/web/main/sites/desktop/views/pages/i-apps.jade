@@ -11,21 +11,20 @@ html(lang='ja', dir='ltr')
 		include ../common/header
 		
 		main(role='main')
-			div.main
-				h1
-					i.fa.fa-plug
-					| インストールされているアプリ
-				ol#apps
-					each app in apps
-						li.app(data-app-id= app.id)
-							div.icon-area
-								a.icon-anchor
-									img.icon(src= app.iconImageUrl, alt='icon')
-							div.main
-								a.name-anchor
-									p.name= app.name
-								p.description= app.description
-								button.remove(role='button')
-									i.fa.fa-trash
-									| アンインストール
-								
+			h1
+				i.fa.fa-plug
+				| インストールされているアプリ
+			ol#apps
+				each app in apps
+					li.app(data-app-id= app.id)
+						div.icon-area
+							a.icon-anchor
+								img.icon(src= app.iconImageUrl, alt='icon')
+						div.main
+							a.name-anchor
+								p.name= app.name
+							p.description= app.description
+							button.remove(role='button')
+								i.fa.fa-trash
+								| アンインストール
+							
