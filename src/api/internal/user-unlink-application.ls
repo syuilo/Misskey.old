@@ -21,7 +21,7 @@ module.exports = (user, app-id) ->
 
 			# Create notice
 			create-notice null, user.id, \uninstall-app {
-				app-id: app.id
+				app-id: target-app.id
 			} .then ->
 
 			resolve!
