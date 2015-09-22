@@ -389,11 +389,11 @@ textarea {
 			cursor: default;
 		}
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
 
 		> .mainContentsContainer {
 			width: 100%;
@@ -857,6 +857,14 @@ textarea {
 								> .screenName {
 									color: #fff;
 								}
+
+								> .icon {
+									filter: saturate(150%);
+									-webkit-filter: saturate(150%);
+									-moz-filter: saturate(150%);
+									-o-filter: saturate(150%);
+									-ms-filter: saturate(150%);
+								}
 							}
 
 							&:active {
@@ -864,6 +872,14 @@ textarea {
 
 								> .screenName {
 									color: #fff;
+								}
+
+								> .icon {
+									filter: saturate(200%);
+									-webkit-filter: saturate(200%);
+									-moz-filter: saturate(200%);
+									-o-filter: saturate(200%);
+									-ms-filter: saturate(200%);
 								}
 							}
 
@@ -1431,14 +1447,14 @@ textarea {
 							cursor: pointer;
 						}
 
-							&:hover {
-								background: lighten(@themeColor, 10%) !important;
-							}
+						&:hover {
+							background: lighten(@themeColor, 10%) !important;
+						}
 
-							&:active {
-								background: darken(@themeColor, 10%) !important;
-								transition: background 0s ease;
-							}
+						&:active {
+							background: darken(@themeColor, 10%) !important;
+							transition: background 0s ease;
+						}
 					}
 				}
 
@@ -2023,51 +2039,51 @@ input.tagit-hidden-field {
 		cursor: text;
 	}
 
-		li.tagit-choice {
-			position: relative;
-			line-height: inherit;
-		}
+	li.tagit-choice {
+		position: relative;
+		line-height: inherit;
+	}
 
-		li.tagit-choice-read-only {
-			padding: 0;
-		}
+	li.tagit-choice-read-only {
+		padding: 0;
+	}
 
-		li.tagit-choice-editable {
-			padding: 0 18px 0 0;
-		}
+	li.tagit-choice-editable {
+		padding: 0 18px 0 0;
+	}
 
-		li.tagit-new {
-			padding: 0;
-		}
+	li.tagit-new {
+		padding: 0;
+	}
 
-		li.tagit-choice a.tagit-label {
-			cursor: pointer;
-			text-decoration: none;
-		}
+	li.tagit-choice a.tagit-label {
+		cursor: pointer;
+		text-decoration: none;
+	}
 
-		li.tagit-choice .tagit-close {
-			cursor: pointer;
-			position: absolute;
-			right: .1em;
-			top: 50%;
-			margin-top: -8px;
-			line-height: 17px;
-		}
-			/* used for some custom themes that don't need image icons */
-			li.tagit-choice .tagit-close .text-icon {
-				display: none;
-			}
+	li.tagit-choice .tagit-close {
+		cursor: pointer;
+		position: absolute;
+		right: .1em;
+		top: 50%;
+		margin-top: -8px;
+		line-height: 17px;
+	}
+	/* used for some custom themes that don't need image icons */
+	li.tagit-choice .tagit-close .text-icon {
+		display: none;
+	}
 
-		li.tagit-choice input {
-			user-select: text;
-			-moz-user-select: text;
-			-webkit-user-select: text;
-			-ms-user-select: text;
-			display: block;
-			float: left;
-			margin: 2px 5px 2px 0;
-			cursor: text;
-		}
+	li.tagit-choice input {
+		user-select: text;
+		-moz-user-select: text;
+		-webkit-user-select: text;
+		-ms-user-select: text;
+		display: block;
+		float: left;
+		margin: 2px 5px 2px 0;
+		cursor: text;
+	}
 
 	input[type="text"] {
 		user-select: text;
