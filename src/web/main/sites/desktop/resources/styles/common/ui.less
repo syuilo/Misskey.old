@@ -453,7 +453,11 @@ textarea {
 
 									> a {
 										color: contrast(@themeColor, #000, #fff, 70%) !important;
-										border-bottom: solid 4px rgba(255, 255, 255, 0.3) !important;
+										border-bottom: none !important;
+
+										&:hover {
+											border-bottom: none !important;
+										}
 									}
 								}
 
