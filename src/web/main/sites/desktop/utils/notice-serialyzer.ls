@@ -20,6 +20,10 @@ module.exports = (notice) -> new Promise (resolve, reject) ->
 		err, app <- Application.find-by-id notice.content.app-id
 		notice.content.app = app.to-object!
 		resolve notice
+	| \uninstall-app =>
+		err, app <- Application.find-by-id notice.content.app-id
+		notice.content.app = app.to-object!
+		resolve notice
 	| \follow =>
 		err, user <- User.find-by-id notice.content.user-id
 		notice.content.user = user.to-object!

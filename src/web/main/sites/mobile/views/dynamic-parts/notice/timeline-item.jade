@@ -23,6 +23,14 @@ li.notice(
 						i.fa.fa-plug
 						p アプリがインストールされました:
 						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
+			when 'uninstall-app'
+				a.icon-anchor(href='/app/' + notice.content.app.screenName, title= notice.content.app.description, rel='icon')
+					img.icon(src=notice.content.app.iconImageUrl, alt='icon')
+				div.text
+					p
+						i.fa.fa-ban
+						p アプリがアンインストールされました:
+						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
 			when 'follow'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
 					img.icon(src=notice.content.user.iconImageUrl, alt='icon')
