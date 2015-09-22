@@ -93,7 +93,6 @@ module.exports = (status, me, callback) ->
 						callback status
 
 	status .= to-object!
-	status.display-created-at = moment status.created-at .format 'YYYY年M月D日 H時m分s秒'
 	status <- serialyze-repost status
 	status.is-reply = status.in-reply-to-status-id?
 	status <- get-app status
@@ -108,4 +107,3 @@ module.exports = (status, me, callback) ->
 		status.is-favorited = null
 		status.is-reposted = null
 		callback status
-	
