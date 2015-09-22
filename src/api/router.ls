@@ -23,8 +23,9 @@ routing =
 	account:
 		[\post   /\/account\/create(\..+)?$/                      './rest/account/create']
 		[\get    /\/account\/show(\..+)?$/                        './rest/account/show']
-		[\put    /\/account\/update-pinned-status(\..+)?$/ './rest/account/update-pinned-status']
-		[\delete /\/account\/delete-pinned-status(\..+)?$/ './rest/account/delete-pinned-status']
+		[\put    /\/account\/update-pinned-status(\..+)?$/        './rest/account/update-pinned-status']
+		[\delete /\/account\/delete-pinned-status(\..+)?$/        './rest/account/delete-pinned-status']
+		[\delete /\/account\/remove-app(\..+)?$/                  './rest/account/remove-app']
 		[\put    /\/account\/update(\..+)?$/                      './rest/account/update']
 		[\put    /\/account\/update-name(\..+)?$/                 './rest/account/update-name']
 		[\put    /\/account\/update-comment(\..+)?$/              './rest/account/update-comment']
