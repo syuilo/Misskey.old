@@ -12,7 +12,7 @@ module.exports = (req, res) ->
 	app-ids = user-keys |> map (user-key) -> user-key.app-id
 
 	# find apps
-	(, apps) <- App.find {id: {$in: app-ids}}
+	(, apps) <- App.find {_id: {$in: app-ids}}
 
 	# serialize apps
 	Promise.all (apps |> map (app) ->
