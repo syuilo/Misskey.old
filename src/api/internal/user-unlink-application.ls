@@ -5,7 +5,7 @@ require! {
 	'./create-notice'
 }
 
-module.exports = (app, user, app-id) ->
+module.exports = (user, app-id) ->
 	resolve, reject <- new Promise!
 
 	function throw-error(code, message)

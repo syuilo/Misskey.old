@@ -8,9 +8,9 @@ require! {
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	if not app?
 		[app-id] = get-express-params req, <[ app-id ]>
-
+		console.log app-id
 		user-unlink-application do
-			app, user, app-id
+			user, app-id
 		.then do
 			->
 				res.api-render \ok
