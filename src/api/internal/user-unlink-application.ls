@@ -13,7 +13,7 @@ module.exports = (user, app-id) ->
 
 	switch
 	| empty app-id => throw-error \empty-app-id 'app-id is required.'
-	| _ => Application.find-by-id app-id (err, target-app) ->
+	| _ => Application.find-by-id app-id, (err, target-app) ->
 		| not target-app? => throw-error \app-not-found 'Application not found.'
 		| _ =>
 			(err, user-keys) <- UserKey.find {user-id: user.id, app-id: target-app.id}
