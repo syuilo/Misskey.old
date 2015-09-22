@@ -22,6 +22,7 @@ li.notice(
 					p
 						i.fa.fa-plug
 						| アプリがインストールされました:
+						br
 						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
 			when 'uninstall-app'
 				a.icon-anchor(href='/app/' + notice.content.app.screenName, title= notice.content.app.description, rel='icon')
@@ -30,6 +31,7 @@ li.notice(
 					p
 						i.fa.fa-ban
 						| アプリがアンインストールされました:
+						br
 						a(href= '/app/' + notice.content.app.screenId)= notice.content.app.name
 			when 'follow'
 				a.icon-anchor(href='/' + notice.content.user.screenName, title= notice.content.user.comment != null ? notice.content.user.comment : '@' + notice.content.user.screenName, rel='icon')
