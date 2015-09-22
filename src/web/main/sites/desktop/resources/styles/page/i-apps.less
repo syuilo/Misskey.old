@@ -1,0 +1,84 @@
+@themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+
+html {
+	background-color: #eee;
+	background-image: url(@wallpaperUrl);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+body {
+}
+
+main {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 32px;
+
+	> h1 {
+		display: block;
+		margin-bottom: 16px;
+		font-family: 'ŸàƒSƒVƒbƒN', 'YuGothic', 'ƒqƒ‰ƒMƒmŠpƒS ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'ƒƒCƒŠƒI', sans-serif;
+		font-size: 1.2em;
+		font-weight: bold;
+		color: #444;
+	}
+
+	#apps {
+		display: block;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		> .app {
+			display: block;
+			position: relative;
+			float: left;
+			width: 30%;
+
+			> .main {
+				display: block;
+				position: relative;
+				text-align: center;
+
+				&:hover {
+					> .remove {
+						display: block;
+					}
+				}
+
+				> .remove {
+					display: none;
+					position: absolute;
+					top: 0;
+					right: 0;
+				}
+
+				> .icon-anchor {
+					display: block;
+
+					> .icon {
+						width: 64px;
+						height: 64px;
+						border-radius: 8px;
+					}
+				}
+
+				> .name-anchor {
+					color: #222;
+				}
+			}
+		}
+	}
+}
