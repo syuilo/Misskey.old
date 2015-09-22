@@ -229,7 +229,7 @@ $ ->
 		text = $ '#post-form textarea' .val!
 
 		# オートセーブ
-		$.cookie "talk-autosave-#{otherparty-id}" text, {expires: 365days}
+		#$.cookie "talk-autosave-#{otherparty-id}" text, {expires: 365days}
 
 		socket.emit \type text
 
