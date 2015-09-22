@@ -45,35 +45,20 @@ main {
 			padding: 0;
 			list-style: none;
 
-			&:after {
-				content: "";
-				display: block;
-				clear: both;
-			}
-
 			> .app {
 				display: block;
 				position: relative;
-				float: left;
-				width: 25%;
+				background: #fff;
 
-				> .main {
+				&:after {
+					content: "";
 					display: block;
-					position: relative;
-					text-align: center;
+					clear: both;
+				}
 
-					&:hover {
-						> .remove {
-							display: block;
-						}
-					}
-
-					> .remove {
-						display: none;
-						position: absolute;
-						top: 0;
-						right: 0;
-					}
+				> .icon-area {
+					float: left;
+					width: 80px;
 
 					> .icon-anchor {
 						display: block;
@@ -85,6 +70,17 @@ main {
 						}
 					}
 
+				}
+
+				> .main {
+					display: block;
+					position: relative;
+					float: left;
+					width: ~"calc(100% - 80px)";
+
+					> .remove {
+					}
+					
 					> .name-anchor {
 						color: #222;
 
