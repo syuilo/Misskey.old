@@ -78,8 +78,13 @@ $ ->
 			title: if (($widget.attr \data-widget-not-allow-move) != \true) then 'ドラッグして並び替え' else 'このウィジェットは編集できません'
 		}
 
-		function end-move(x, y)
+		function end-move(x, y, default-width, default-height)
 			$widget.moved = no
+
+			$widget.css {
+				width: default-width
+				height: default-height
+			}
 
 			$ \.misskey-home-widget .each ->
 				$target-widget = $ @
@@ -151,6 +156,8 @@ $ ->
 					browser-height = $ window .height!
 					widget-width = $widget.outer-width!
 					widget-height = $widget.outer-height!
+					$widget.default-widget-width = $widget.css \width
+					$widget.default-widget-height = $widget.css \height
 					page-top = parse-int($ \body .css \margin-top)
 
 					$widget.x = 0
@@ -206,19 +213,19 @@ $ ->
 
 					$ \html .mouseleave ->
 						$ @ .unbind 'mouseup mousemove mouseleave'
-						end-move $widget.x, $widget.y
+						end-move $widget.x, $widget.y, $widget.default-widget-width, $widget.default-widget-height
 
 					$ \html .mouseup ->
 						$ @ .unbind 'mouseup mousemove mouseleave'
-						end-move $widget.x, $widget.y
+						end-move $widget.x, $widget.y, $widget.default-widget-width, $widget.default-widget-height
 
 					$ \html .bind \dragstart (e) ->
 						$ @ .unbind 'mouseup mousemove mouseleave'
-						end-move $widget.x, $widget.y
+						end-move $widget.x, $widget.y, $widget.default-widget-width, $widget.default-widget-height
 
 					$ \html .bind \dragend (e) ->
 						$ @ .unbind 'mouseup mousemove mouseleave'
-						end-move $widget.x, $widget.y
+						end-move $widget.x, $widget.y, $widget.default-widget-width, $widget.default-widget-height
 
 		$widget.append $widget-lapper
 
