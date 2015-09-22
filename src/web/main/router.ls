@@ -125,6 +125,9 @@ module.exports = (app) ->
 	# settings
 	app.get '/i/settings' (req, res) -> CallController req, res, \i-settings
 
+	# apps
+	app.get '/i/apps' (req, res) -> CallController req, res, \i-apps
+
 	# profile setting
 	app.get '/i/settings/profile' (req, res) ->
 		(require './sites/mobile/controllers/i-settings-profile') req, res
