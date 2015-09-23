@@ -15,12 +15,12 @@ module.exports = (app-key, user-key) ->
 			if user-key-instance.app-id.to-string! == app.id.to-string!
 				(err, user) <- User.find-by-id user-key-instance.user-id
 				if user?
-					resolve user, app
+					resolve app, user
 				else
-					reject 'User not found'
+					reject 'user-not-found'
 			else
-				reject 'Invalid app-key or user-key'
+				reject 'invalid-app-key-or-user-key'
 		else
-			reject 'Invalid user-key'
+			reject 'invalid-user-key'
 	else
-		reject 'Invalid app-key'
+		reject 'invalid-app-key'
