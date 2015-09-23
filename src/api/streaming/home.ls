@@ -4,7 +4,7 @@ require! {
 	'../../config'
 }
 
-console.log 'Home strreaming server loaded'
+console.log 'Home streaming server loaded'
 
 server = http.create-server (req, res) ->
 	res
