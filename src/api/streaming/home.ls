@@ -4,7 +4,9 @@ require! {
 	'../../config'
 }
 
-module.exports = (server) ->
+module.exports = ->
+	console.log 'Home strreaming server loaded'
+	
 	server = http.create-server (req, res) ->
 		res
 			..write-head 200 'Content-Type': 'text/plain'

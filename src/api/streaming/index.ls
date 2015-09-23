@@ -7,5 +7,5 @@ require! {
 	'./home'
 }
 
-exports.server = (server) ->
-	home server 
+exports.server = ->
+	home!
