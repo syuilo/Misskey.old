@@ -12,9 +12,18 @@ server = http.create-server (req, res) ->
 		..end 'kyoppie'
 
 WebSocketServer = WS.Server
-wss = new WebSocketServer {server}
+wss = new WebSocketServer {
+	server: server
+	verify-client: (info) ->
+		console.log info.req.headers['sauth-app-key']
+		console.log info.req.headers['sauth-user-key']
+		true
+}
 
 wss.on \connection (ws) ->
-	ws.send 'kyoppie'
+	ws.send 'Connected! Welcome to Misskey.'
+
+	ws.on \message (message) ->
+		console.log "received: #message"
 
 server.listen config.port.streaming
