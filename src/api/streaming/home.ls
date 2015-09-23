@@ -2,6 +2,7 @@ require! {
 	http
 	ws: {Server: WebSocketServer}
 	'../../config'
+	'../../utils/sauth-authorize'
 }
 
 console.log 'Home streaming server loaded'
@@ -13,9 +14,10 @@ http-server = http.create-server (req, res) ->
 
 ws-server = new WebSocketServer {
 	server: http-server
-	verify-client: (info) ->
+	verify-client: !(info, cb) ->
 		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
-		true
+		sauth-authorize app-key, user-key .then (-> cb {result: true}), ((error-name) -> cb {result: false, code: 401, name: error-name})
+		void 0
 }
 
 ws-server.on \connection (socket) ->
