@@ -1,5 +1,5 @@
 ################################
-# Core Server
+# Servers Loader
 ################################
 
 require! {
@@ -15,7 +15,7 @@ require! {
 	'./config'
 }
 
-console.log 'Core server loaded'
+console.log 'Servers loader loaded'
 
 # Init express
 app = express!
@@ -60,12 +60,13 @@ app.all '*' (req, res, next) ->
 # Define servers
 main-server = require "#__dirname/web/main" .server
 api-server = require "#__dirname/api" .server
+streaming-server = require "#__dirname/api/streaming" .server
 #web-streaming-server = require "#__dirname/api/web-streaming-server" .server
 dev-server = require "#__dirname/web/dev" .server
 app.use vhost \misskey.xyz main-server
 app.use vhost \api.misskey.xyz api-server
 #app.use vhost \web-streaming.misskey.xyz web-streaming-server
-#app.use vhost \streaming.misskey.xyz (require "#__dirname/api/streaming" .server server)
+app.use vhost \streaming.misskey.xyz streaming-server
 app.use vhost \dev.misskey.xyz dev-server
 
 require "#__dirname/api/web-streaming-server"
@@ -73,6 +74,7 @@ require "#__dirname/api/web-streaming-server"
 ## Listen HTTPS server after create
 #https.create-server certs, app .listen config.port.web-https
 
+# Listen core app
 server.listen config.port.web-http
 
 ## Redirect HTTP

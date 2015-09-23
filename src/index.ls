@@ -2,6 +2,8 @@
 # Misskey Core Server
 ################################
 
+console.log 'Welcome to Misskey!'
+
 # Imports
 global <<< require \prelude-ls
 global <<< require \./utils/json
