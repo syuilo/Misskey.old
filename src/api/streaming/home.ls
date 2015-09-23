@@ -15,6 +15,7 @@ ws-server = new WebSocketServer {
 	server: http-server
 	verify-client: (info) ->
 		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
+		true
 }
 
 ws-server.on \connection (socket) ->
