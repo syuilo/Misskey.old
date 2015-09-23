@@ -4,8 +4,8 @@
 
 require! {
 	'../../config'
-	'./home'
 }
 
 console.log 'Streaming servers loader loaded'
-home!
+
+require "./home"
