@@ -1,26 +1,25 @@
 require! {
 	http
-	ws: WS
+	ws: {Server: WebSocketServer}
 	'../../config'
 }
 
 console.log 'Home streaming server loaded'
 
-server = http.create-server (req, res) ->
+http-server = http.create-server (req, res) ->
 	res
 		..write-head 200 'Content-Type': 'text/plain'
 		..end 'kyoppie'
 
-WebSocketServer = WS.Server
-wss = new WebSocketServer {
-	server: server
+ws-server = new WebSocketServer {
+	server: http-server
 	verify-client: (info) ->
 		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
 }
 
-wss.on \connection (socket) ->
-	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = ws.upgradeReq.headers
+ws-server.on \connection (socket) ->
+	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
 	socket.on \message (message) ->
-		ws.send "#message" # echo
+		socket.send "#message" # echo
 
-server.listen config.port.streaming
+http-server.listen config.port.streaming
