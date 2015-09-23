@@ -22,11 +22,6 @@ module.exports = (app, user, text, in-reply-to-status-id = null, image = null, r
 	max-length = if user.is-plus then 500chars else 300chars
 
 	text .= trim!
-	if user.screen-name == \k_5_
-		text .= replace '俺' \けいご
-		text .= replace '私' \けいご
-		text .= replace '僕' \けいご
-
 	switch
 	| !image? && !repost-from-status? && null-or-empty text => throw-error \empty-text 'Empty text.'
 	| not null-or-empty text and text[0] == \$ => analyze-command text

@@ -4,8 +4,8 @@
 
 require! {
 	'../../config'
-	'./home'
 }
 
-exports.server = (server) ->
-	home server 
+console.log 'Streaming servers loader loaded'
+
+require "./home"
