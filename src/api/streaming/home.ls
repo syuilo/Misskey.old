@@ -11,7 +11,7 @@ module.exports = (server) ->
 			..end 'kyoppie'
 
 	WebSocketServer = WS.Server
-	wss = new WebSocketServer {port: config.ports.streaming}
+	wss = new WebSocketServer {port: config.port.streaming}
 
 	wss.on \connection (ws) ->
 		ws.send 'kyoppie'
