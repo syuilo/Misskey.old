@@ -7,6 +7,5 @@ require! {
 	'./home'
 }
 
-module.exports = ->
-	console.log 'Streaming servers loader loaded'
-	home!
+console.log 'Streaming servers loader loaded'
+home!
