@@ -25,5 +25,6 @@ wss.on \connection (ws) ->
 
 	ws.on \message (message) ->
 		console.log "received: #message"
+		ws.send "#message" # echo
 
 server.listen config.port.streaming
