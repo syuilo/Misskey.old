@@ -8,4 +8,5 @@ require! {
 }
 
 module.exports = ->
+	console.log 'Streaming servers loader loaded'
 	home!
