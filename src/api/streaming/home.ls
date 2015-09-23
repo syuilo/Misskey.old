@@ -12,12 +12,16 @@ server = http.create-server (req, res) ->
 		..end 'kyoppie'
 
 WebSocketServer = WS.Server
-wss = new WebSocketServer {server}
+wss = new WebSocketServer {
+	server: server
+	verify-client: (info) ->
+		console.log info.req.headers['sauth-app-key']
+		console.log info.req.headers['sauth-user-key']
+		true
+}
 
 wss.on \connection (ws) ->
 	ws.send 'Connected! Welcome to Misskey.'
-	console.log ws.upgrade-req.headers['sauth-app-key']
-	console.log ws.upgrade-req.headers['sauth-user-key']
 
 	ws.on \message (message) ->
 		console.log "received: #message"
