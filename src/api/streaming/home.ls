@@ -17,7 +17,7 @@ ws-server = new WebSocketServer {
 	verify-client: !(info, cb) ->
 		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
 		sauth-authorize app-key, user-key .then (-> cb {result: true}), ((error-name) -> cb {result: false, code: 401, name: error-name})
-		void 0
+		void
 }
 
 ws-server.on \connection (socket) ->
