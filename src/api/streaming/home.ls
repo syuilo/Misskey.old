@@ -15,6 +15,11 @@ WebSocketServer = WS.Server
 wss = new WebSocketServer {server}
 
 wss.on \connection (ws) ->
-	ws.send 'kyoppie'
+	ws.send 'Connected! Welcome to Misskey.'
+	console.log ws.upgrade-req.headers['sauth-app-key']
+	console.log ws.upgrade-req.headers['sauth-user-key']
+
+	ws.on \message (message) ->
+		console.log "received: #message"
 
 server.listen config.port.streaming
