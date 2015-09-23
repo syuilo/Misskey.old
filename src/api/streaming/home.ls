@@ -15,16 +15,12 @@ WebSocketServer = WS.Server
 wss = new WebSocketServer {
 	server: server
 	verify-client: (info) ->
-		console.log info.req.headers['sauth-app-key']
-		console.log info.req.headers['sauth-user-key']
-		true
+		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
 }
 
-wss.on \connection (ws) ->
-	ws.send 'Connected! Welcome to Misskey.'
-
-	ws.on \message (message) ->
-		console.log "received: #message"
+wss.on \connection (socket) ->
+	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = ws.upgradeReq.headers
+	socket.on \message (message) ->
 		ws.send "#message" # echo
 
 server.listen config.port.streaming
