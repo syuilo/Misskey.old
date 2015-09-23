@@ -2,30 +2,34 @@ require! {
 	'github-webhook-handler': github-webhook-handler
 	'./internal/create-status'
 	'../models/user': User
+	shelljs
 	'../config'
 }
 
 module.exports = (app) ->
 	app.all '*' (req, res, next) ->
 		handler = github-webhook-handler {path: '/github-webhook', secret: config.github-webhook-secret}
-		
+
 		(err, noticer) <- User.find-one {screen-name: 'misskey_github'}
 
 		handler.on \error (err) ->
 			console.error 'Error:' err.message
 
 		handler.on \push (event) ->
-			text = switch (event.payload.ref)
-				| \refs/heads/master => "安定チャンネルにPushされたようです。(master)\n**まもなくデプロイされる可能性があります。**"
-				| \refs/heads/develop => "開発チャンネルにPushされたようです。(develop)"
-				| _ => "Pushされたようです。#{event.payload.ref}"
-			create-status null noticer, text .then!
-		
+			switch (event.payload.ref)
+			| \refs/heads/master =>
+				create-status null noticer, "安定チャンネルにPushされたようです。(master)\n**まもなくデプロイされる可能性があります。**" .then!
+			| \refs/heads/develop =>
+				create-status null noticer, "開発チャンネルにPushされたようです。(develop)" .then!
+				shelljs.exec '/var/www/misskey/development/deploy'
+			| _ =>
+				create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
+
 		handler.on \fork (event) ->
 			repo = event.payload.forkee
 			text = "Forkされました。\n#{repo.html_url}"
 			create-status null noticer, text .then!
-			
+
 		handler.on \pull_request (event) ->
 			pr = event.payload.pull_request
 			text = switch (event.payload.action)
@@ -51,13 +55,13 @@ module.exports = (app) ->
 				| \closed => "Issueが閉じられました:「#{issue.title}」\n#{issue.html_url}"
 				| \reopened => "Issueが再度開かれました:「#{issue.title}」\n#{issue.html_url}"
 			create-status null noticer, text .then!
-		
+
 		handler.on \issue_comment (event) ->
 			issue = event.payload.issue
 			comment = event.payload.comment
 			text = switch (event.payload.action)
 				| \created => "Issue「#{issue.title}」にコメント:#{comment.user.login}「#{comment.body}」\n#{comment.html_url}"
 			create-status null noticer, text .then!
-		
+
 		handler req, res, (err) ->
 			next!
