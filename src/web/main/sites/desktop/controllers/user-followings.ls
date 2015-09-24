@@ -6,8 +6,6 @@ require! {
 	'../../../../../config'
 }
 
-
-
 module.exports = (req, res, options) ->
 	user = options.user
 	me = if req.login then req.me else null
@@ -75,15 +73,10 @@ module.exports = (req, res, options) ->
 			resolve null
 
 	get-me-following-ids! .then (me-following-ids) ->
-		console.log \x
 		get-all-count! .then (followings-count) ->
-			console.log \a
 			get-all! .then (followings) ->
-				console.log \b
 				get-you-know-count me-following-ids .then (followings-you-know-count) ->
-					console.log \c
 					get-you-know me-following-ids .then (followings-you-know) ->
-						console.log \d
 						res.display req, res, \user-followings {
 							followings-count
 							followings-you-know-count
