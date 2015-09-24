@@ -6,9 +6,20 @@ require! {
 	'../../../../../config'
 }
 
+
+
 module.exports = (req, res, options) ->
 	user = options.user
 	me = if req.login then req.me else null
+
+	function get-me-following-ids
+		resolve, reject <- new Promise!
+		if me?
+			UserFollowing.find {follower-id: me.id} (, me-followings) ->
+				if me-followings? and not empty me-followings
+					resolve (me-followings |> map (me-following) -> me-following.followee-id.to-string!)
+		else
+			resolve null
 
 	function get-all
 		resolve, reject <- new Promise!
@@ -34,49 +45,49 @@ module.exports = (req, res, options) ->
 		UserFollowing.count {follower-id: user.id} (err, c) ->
 			resolve c
 
-	function get-you-know
+	function get-you-know(me-following-ids)
 		resolve, reject <- new Promise!
-		if me?
-			UserFollowing.find {follower-id: me.id} (, me-followings) ->
-				if me-followings? and not empty me-followings
-					me-following-ids = (me-followings |> map (me-following) -> me-following.followee-id.to-string!)
-					UserFollowing
-						.find {follower-id: user.id} `$and` {followee-id: {$in: me-following-ids}}
-						.sort {created-at: \desc}
-						.limit 100users
-						.exec (, followings) ->
-							Promise.all (followings |> map (following) ->
-								resolve, reject <- new Promise!
-								User.find-by-id following.followee-id, (, following-user) ->
-									following-user .= to-object!
-									following-user.is-following = yes
-									user-following-check following-user.id, me.id .then (is-follow-me) ->
-										following-user.is-follow-me = is-follow-me
-										resolve following-user)
-							.then (followings) ->
-								resolve followings
-				else
-					resolve null
+		if me? and me-following-ids?
+			UserFollowing
+				.find {follower-id: user.id} `$and` {followee-id: {$in: me-following-ids}}
+				.sort {created-at: \desc}
+				.limit 100users
+				.exec (, followings) ->
+					Promise.all (followings |> map (following) ->
+						resolve, reject <- new Promise!
+						User.find-by-id following.followee-id, (, following-user) ->
+							following-user .= to-object!
+							following-user.is-following = yes
+							user-following-check following-user.id, me.id .then (is-follow-me) ->
+								following-user.is-follow-me = is-follow-me
+								resolve following-user)
+					.then (followings) ->
+						resolve followings
 		else
 			resolve null
 
-	function get-you-know-count
+	function get-you-know-count(me-following-ids)
 		resolve, reject <- new Promise!
-		UserFollowing.count {follower-id: user.id} `$and` {followee-id: {$in: me-following-ids}} (err, c) ->
-			resolve c
+		if me? and me-following-ids?
+			UserFollowing.count {follower-id: user.id} `$and` {followee-id: {$in: me-following-ids}} (err, c) ->
+				resolve c
+		else
+			resolve null
 
-	get-all-count! .then (followings-count) ->
-		console.log \a
-		get-all! .then (followings) ->
-			console.log \b
-			get-you-know-count! .then (followings-you-know-count) ->
-				console.log \c
-				get-you-know! .then (followings-you-know) ->
-					console.log \d
-					res.display req, res, \user-followings {
-						followings-count
-						followings-you-know-count
-						followings
-						followings-you-know
-						user
-					}
+	get-me-following-ids! .then (me-following-ids) ->
+		console.log \x
+		get-all-count! .then (followings-count) ->
+			console.log \a
+			get-all! .then (followings) ->
+				console.log \b
+				get-you-know-count me-following-ids .then (followings-you-know-count) ->
+					console.log \c
+					get-you-know me-following-ids .then (followings-you-know) ->
+						console.log \d
+						res.display req, res, \user-followings {
+							followings-count
+							followings-you-know-count
+							followings
+							followings-you-know
+							user
+						}
