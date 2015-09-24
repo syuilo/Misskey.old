@@ -13,9 +13,9 @@ block contents
 			ol.users
 				each user in followers
 					li.user(data-user-verified!= user.isVerified.toString())
-						a(href= '/' + user.screenName)
+						a.icon-anchor(href= '/' + user.screenName)
 							img.icon(src=user.iconImageUrl, alt='icon')
-						h2
+						p
 							a(href='/' + user.screenName)= user.name
 							span.screenName= '@' + user.screenName
 						if user.comment != null

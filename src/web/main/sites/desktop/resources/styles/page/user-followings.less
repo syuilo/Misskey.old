@@ -12,4 +12,29 @@
 	display: flex;
 	justify-content: center;
 	position: relative;
+
+	.users {
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		list-style: none;
+
+		.user {
+			flex: 1 1 256px;
+
+			.icon-anchor {
+				.icon {
+					width: 64px;
+					height: 64px;
+				}
+			}
+		}
+	}
 }
