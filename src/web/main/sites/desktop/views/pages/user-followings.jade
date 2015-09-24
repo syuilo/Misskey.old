@@ -46,8 +46,13 @@ block contents
 				li: a(href='#users-list-you-know')
 					| You know
 					span.counter= followingsYouKnowCount
+				li: a(href='#users-list-you-dont-know')
+					| You don't know
+					span.counter= followingsYouDontKnowCount
 		div.users-list
 			div#users-list-all
 				+usersList(followings)
 			div#users-list-you-know
 				+usersList(followingsYouKnow)
+			div#users-list-you-dont-know
+				+usersList(followingsYouDontKnow)

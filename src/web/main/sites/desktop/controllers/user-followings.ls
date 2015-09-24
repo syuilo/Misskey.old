@@ -72,16 +72,49 @@ module.exports = (req, res, options) ->
 		else
 			resolve null
 
+	function get-you-dont-know(me-following-ids)
+		resolve, reject <- new Promise!
+		if me? and me-following-ids?
+			UserFollowing
+				.find {follower-id: user.id} `$and` {followee-id: {$nin: me-following-ids}}
+				.sort {created-at: \desc}
+				.limit 100users
+				.exec (, followings) ->
+					Promise.all (followings |> map (following) ->
+						resolve, reject <- new Promise!
+						User.find-by-id following.followee-id, (, following-user) ->
+							following-user .= to-object!
+							following-user.is-following = no
+							user-following-check following-user.id, me.id .then (is-follow-me) ->
+								following-user.is-follow-me = is-follow-me
+								resolve following-user)
+					.then (followings) ->
+						resolve followings
+		else
+			resolve null
+
+	function get-you-dont-know-count(me-following-ids)
+		resolve, reject <- new Promise!
+		if me? and me-following-ids?
+			UserFollowing.count {follower-id: user.id} `$and` {followee-id: {$nin: me-following-ids}} (err, c) ->
+				resolve c
+		else
+			resolve null
+
 	get-me-following-ids! .then (me-following-ids) ->
 		get-all-count! .then (followings-count) ->
 			get-all! .then (followings) ->
 				get-you-know-count me-following-ids .then (followings-you-know-count) ->
 					get-you-know me-following-ids .then (followings-you-know) ->
-						res.display req, res, \user-followings {
-							followings-count
-							followings-you-know-count
-							followings
-							followings-you-know
-							user
-							page: \followings
-						}
+						get-you-dont-know-count me-following-ids .then (followings-you-dont-know-count) ->
+							get-you-dont-know me-following-ids .then (followings-you-dont-know) ->
+								res.display req, res, \user-followings {
+									followings-count
+									followings-you-know-count
+									followings-you-dont-know-count
+									followings
+									followings-you-know
+									followings-you-dont-know
+									user
+									page: \followings
+								}
