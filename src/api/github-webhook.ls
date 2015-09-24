@@ -21,7 +21,7 @@ module.exports = (app) ->
 				create-status null noticer, "安定チャンネルにPushされたようです。(master)\n**まもなくデプロイされる可能性があります。**" .then!
 			| \refs/heads/develop =>
 				create-status null noticer, "開発チャンネルにPushされたようです。(develop)" .then ->
-					shelljs.exec '/var/www/misskey/development/deploy'
+					shelljs.exec '/var/www/misskey/development/deploy' {async: true}
 			| _ =>
 				create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
 
