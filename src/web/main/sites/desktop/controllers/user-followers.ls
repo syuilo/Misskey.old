@@ -11,7 +11,7 @@ module.exports = (req, res, options) ->
 	me = if req.login then req.me else null
 
 	UserFollowing
-		.find {follower-id: user.id}
+		.find {followee-id: user.id}
 		.sort {created-at: \desc}
 		.limit 100users
 		.exec (, followings) ->
