@@ -1,0 +1,11 @@
+extends ../layouts/user
+
+block title
+	= user.name
+
+block assets
+	link(rel='stylesheet', href='/resources/styles/page/user-profile.css?user=' + user.screenName)
+
+block contents
+	div#profile
+		div#bio!= bio

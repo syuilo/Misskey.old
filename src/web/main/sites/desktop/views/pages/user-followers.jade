@@ -1,0 +1,22 @@
+extends ../layouts/user
+
+block title
+	= user.name
+
+block assets
+	link(rel='stylesheet', href='/resources/styles/page/user-followers.css?user=' + user.screenName)
+	script(src='/resources/scripts/page/user-followers.js')
+
+block contents
+	div#followers-list
+		div.users-list
+			ol.users
+				each user in followers
+					li.user(data-user-verified!= user.isVerified.toString())
+						a(href= '/' + user.screenName)
+							img.icon(src=user.iconImageUrl, alt='icon')
+						h2
+							a(href='/' + user.screenName)= user.name
+							span.screenName= '@' + user.screenName
+						if user.comment != null
+							p.comment= user.comment

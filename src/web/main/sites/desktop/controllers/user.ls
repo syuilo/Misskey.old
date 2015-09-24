@@ -12,7 +12,13 @@ require! {
 module.exports = (req, res, options) ->
 	user = options.user
 	page = options.page
-	
+	page-name = switch (page)
+		| \home => \user
+		| \favorites => \user-favorites
+		| \profile => \user-profile
+		| \followings => \user-followings
+		| \followers => \user-followers
+
 	me = if req.login then req.me else null
 
 	marked.set-options {
@@ -134,7 +140,7 @@ module.exports = (req, res, options) ->
 	] .then (results) -> res.display do
 		req
 		res
-		\user
+		page-name
 		{
 			timeline-html: results.0
 			is-following: results.1
