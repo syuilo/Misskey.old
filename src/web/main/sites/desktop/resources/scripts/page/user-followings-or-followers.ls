@@ -1,4 +1,6 @@
 $ ->
+	SYUILOUI.Tab $ '#contents > .main > .tab > ul'
+
 	$ '#contents .users-list > .users > .user' .each ->
 		$user = $ @
 		user-id = $user.attr \data-user-id
