@@ -7,7 +7,7 @@ html(lang='ja'
 	itemscope
 	itemtype='http://schema.org/ProfilePage'
 	data-user-id= user.id
-	data-is-following!= login ? isFollowing.toString() : null
+	data-is-following!= login ? isFollowing != null ? isFollowing.toString() : null : null
 	data-is-me!= isMe.toString())
 	head(prefix='og: http://ogp.me/ns#')
 		include ../common/head
@@ -26,7 +26,8 @@ html(lang='ja'
 		meta(property='twitter:description', content= user.comment != null ? user.comment : (user.name + 'さんのMisskeyプロフィール'))
 		meta(property='twitter:image', content=user.iconImageUrl)
 		meta(property='twitter:url', content=url + '/' + user.screenName)
-		block title
+		title
+			block title
 		link(rel='stylesheet', href='/resources/styles/common/status-timeline-detail-flat.css?user=' + user.screenName)
 		link(rel='stylesheet', href='/resources/styles/page/user.css?user=' + user.screenName)
 		link(rel='stylesheet', href='/resources/styles/common/cropper.min.css')
@@ -35,6 +36,7 @@ html(lang='ja'
 		script(src='/resources/scripts/lib/cropper.min.js')
 		script(src='/resources/scripts/common/detail-status-core.js')
 		script(src='/resources/scripts/page/user.js')
+		block assets
 	
 	body
 		include ../common/header
@@ -134,53 +136,4 @@ html(lang='ja'
 									i.fa.fa-users
 									| フォロワー
 			div#contents
-				div#left-sub-contents
-					if user.location != null && user.location != ""
-						p#location
-							i.fa.fa-map-marker
-							= user.location
-					if user.url != null && user.url != ""
-						p#website
-							a(href= user.url)
-								i.fa.fa-link
-								= user.url
-					section#followers
-						h2
-							i.fa.fa-users
-							| Followers
-						ol
-							each user in followersRecent
-								li
-									a(href= '/' + user.screenName)
-										img.icon(src=user.iconImageUrl, alt='icon', title=user.name)
-				div#main-content
-					block content
-				div#right-sub-contents
-					div#friend-form
-						if login
-							if me.id != user.id
-								if isFollowMe
-									p#friend-status
-										i.fa.fa-heart
-										| フォローされています
-								if isFollowing
-									button#friend-button.following フォロー中
-								else
-									button#friend-button.not-following フォロー
-							else
-								p#friend-status
-									i.fa.fa-smile-o
-									| You
-						else
-							p
-								| このユーザーをフォローするにはログインしてください
-									
-					if recentPhotoStatuses != null && recentPhotoStatuses.length > 0
-						section#photos
-							h2
-								i.fa.fa-camera
-								| Photos
-							ol.photos
-								each status in recentPhotoStatuses
-									li.photo(style='background-image: url("' + status.imageUrls[0] + '")', title=status.displayCreatedAt)
-										a(href=config.url + '/' + user.screenName + '/status/' + status.id)
+				block contents

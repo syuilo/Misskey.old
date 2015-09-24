@@ -1,0 +1,38 @@
+extends ../layouts/user
+
+block title
+	= user.name
+
+block assets
+	link(rel='stylesheet', href='/resources/styles/page/user-followings-or-followers.css?user=' + user.screenName)
+	script(src='/resources/scripts/page/user-followings-or-followers.js')
+
+block contents
+	div.main
+		div.users-list
+			ol.users
+				each followee in followings
+					li.user(data-user-id= followee.id, data-is-following!= followee.isFollowing.toString())
+						a.icon-anchor(href= '/' + followee.screenName, title= followee.comment)
+							img.icon(src=followee.iconImageUrl, alt='icon')
+						div.main-container
+							p.title
+								a.name(href='/' + followee.screenName)= followee.name
+								span.screen-name= '@' + followee.screenName
+							if login
+								div.friend-form
+									if me.id != followee.id
+										if followee.isFollowing
+											button.friend-button.following(title='フォローを解除する') Following
+										else
+											button.friend-button.not-following(title='フォローする') Follow
+										if followee.isFollowMe
+											p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
+												i.fa.fa-heart
+										else
+											p.friend-status.not-follow-me(data-is-friend='false', data-tooltip='フォローされていません')
+												i.fa.fa-heart-o
+									else
+										p.is-me
+											i.fa.fa-smile-o
+											| You
