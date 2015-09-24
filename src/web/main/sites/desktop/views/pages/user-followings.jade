@@ -21,3 +21,13 @@ block contents
 								span.screenName= '@' + user.screenName
 							if user.comment != null
 								p.comment= user.comment
+							if login
+								if me.id != user.id
+									if user.isFollowing
+										button.friend-button.following フォロー中
+									else
+										button.friend-button.not-following フォロー
+								else
+									p.friend-status
+										i.fa.fa-smile-o
+										| You

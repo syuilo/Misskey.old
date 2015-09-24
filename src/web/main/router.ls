@@ -181,22 +181,18 @@ module.exports = (app) ->
 
 	# User page
 	app.get '/:userSn' (req, res) -> CallController req, res, \user do
-		page: \home
 		user: req.root-user
 
 	# User profile
-	app.get '/:userSn/profile' (req, res) -> CallController req, res, \user do
-		page: \profile
+	app.get '/:userSn/profile' (req, res) -> CallController req, res, \user-profile do
 		user: req.root-user
 
 	# User followings
-	app.get '/:userSn/followings' (req, res) -> CallController req, res, \user do
-		page: \followings
+	app.get '/:userSn/followings' (req, res) -> CallController req, res, \user-followings do
 		user: req.root-user
 
 	# User followers
-	app.get '/:userSn/followers' (req, res) -> CallController req, res, \user do
-		page: \followers
+	app.get '/:userSn/followers' (req, res) -> CallController req, res, \user-followers do
 		user: req.root-user
 
 	# talk
