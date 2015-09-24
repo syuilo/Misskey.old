@@ -14,10 +14,6 @@ module.exports = (req, res, options) ->
 
 	me = if req.login then req.me else null
 
-	marked.set-options {
-		sanitize: yes
-	}
-
 	Promise.all [
 		# Get statuses timeline
 		new Promise (resolve, reject) ->
