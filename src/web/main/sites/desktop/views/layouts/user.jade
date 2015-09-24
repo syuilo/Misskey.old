@@ -7,7 +7,7 @@ html(lang='ja'
 	itemscope
 	itemtype='http://schema.org/ProfilePage'
 	data-user-id= user.id
-	data-is-following!= login ? isFollowing.toString() : null
+	data-is-following!= login ? isFollowing != null ? isFollowing.toString() : null : null
 	data-is-me!= isMe.toString())
 	head(prefix='og: http://ogp.me/ns#')
 		include ../common/head
