@@ -11,19 +11,19 @@ block contents
 	div#followings-list
 		div.users-list
 			ol.users
-				each user in followings
+				each followee in followings
 					li.user
-						a.icon-anchor(href= '/' + user.screenName)
-							img.icon(src=user.iconImageUrl, alt='icon')
+						a.icon-anchor(href= '/' + followee.screenName)
+							img.icon(src=followee.iconImageUrl, alt='icon')
 						div.main-container
 							p
-								a(href='/' + user.screenName)= user.name
-								span.screenName= '@' + user.screenName
-							if user.comment != null
-								p.comment= user.comment
+								a(href='/' + followee.screenName)= followee.name
+								span.screen-name= '@' + followee.screenName
+							if followee.comment != null
+								p.comment= followee.comment
 							if login
-								if me.id != user.id
-									if user.isFollowing
+								if me.id != followee.id
+									if followee.isFollowing
 										button.friend-button.following フォロー中
 									else
 										button.friend-button.not-following フォロー
