@@ -66,9 +66,13 @@ module.exports = (req, res, options) ->
 			resolve c
 
 	get-all-count! .then (followings-count) ->
+		console.log \a
 		get-all! .then (followings) ->
+			console.log \b
 			get-you-know-count! .then (followings-you-know-count) ->
+				console.log \c
 				get-you-know! .then (followings-you-know) ->
+					console.log \d
 					res.display req, res, \user-followings {
 						followings-count
 						followings-you-know-count
