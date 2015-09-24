@@ -11,6 +11,7 @@ module.exports = (req, res, options) ->
 	me = if req.login then req.me else null
 
 	function get-all
+		resolve, reject <- new Promise!
 		UserFollowing
 			.find {follower-id: user.id}
 			.sort {created-at: \desc}
@@ -25,6 +26,8 @@ module.exports = (req, res, options) ->
 							user-following-check following-user.id, me.id .then (is-follow-me) ->
 								following-user.is-follow-me = is-follow-me
 								resolve following-user)
+				.then (followings) ->
+					resolve followings
 
 	function get-all-count
 		resolve, reject <- new Promise!
@@ -32,6 +35,7 @@ module.exports = (req, res, options) ->
 			resolve c
 
 	function get-you-know
+		resolve, reject <- new Promise!
 		if me?
 			UserFollowing.find {follower-id: me.id} (, me-followings) ->
 				if me-followings? and not empty me-followings
@@ -49,11 +53,11 @@ module.exports = (req, res, options) ->
 									user-following-check following-user.id, me.id .then (is-follow-me) ->
 										following-user.is-follow-me = is-follow-me
 										resolve following-user)
+							.then (followings) ->
+								resolve followings
 				else
-					resolve, reject <- new Promise!
 					resolve null
 		else
-			resolve, reject <- new Promise!
 			resolve null
 
 	function get-you-know-count
