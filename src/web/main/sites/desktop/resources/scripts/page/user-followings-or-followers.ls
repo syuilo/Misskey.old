@@ -39,6 +39,7 @@ $ ->
 					$friend-button.remove-class \danger
 					$friend-button
 						..attr \disabled off
+						..attr \title 'フォローする'
 						..remove-class \following
 						..add-class \not-following
 						..text 'Follow'
@@ -54,6 +55,7 @@ $ ->
 				.done ->
 					$friend-button
 						..attr \disabled off
+						..attr \title 'フォローを解除する'
 						..remove-class \not-following
 						..add-class \following
 						..text 'Following'

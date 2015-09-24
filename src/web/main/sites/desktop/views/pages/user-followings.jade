@@ -23,9 +23,9 @@ block contents
 								div.friend-form
 									if me.id != followee.id
 										if followee.isFollowing
-											button.friend-button.following Following
+											button.friend-button.following(title='フォローを解除する') Following
 										else
-											button.friend-button.not-following Follow
+											button.friend-button.not-following(title='フォローする') Follow
 										if followee.isFollowMe
 											p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
 												i.fa.fa-heart
