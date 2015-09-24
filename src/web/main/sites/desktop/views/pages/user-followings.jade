@@ -12,7 +12,7 @@ block contents
 		div.users-list
 			ol.users
 				each user in followings
-					li.user(data-user-verified!= user.isVerified.toString())
+					li.user
 						a.icon-anchor(href= '/' + user.screenName)
 							img.icon(src=user.iconImageUrl, alt='icon')
 						div.main-container
