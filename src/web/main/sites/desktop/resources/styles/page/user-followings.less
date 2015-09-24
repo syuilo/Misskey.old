@@ -13,28 +13,45 @@
 	justify-content: center;
 	position: relative;
 
-	.users {
-		display: -webkit-flex;
-		display: -moz-flex;
-		display: -ms-flex;
-		display: -o-flex;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		position: relative;
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		list-style: none;
+	#followings-list {
+		margin: 32px 64px;
+		background: #fff;
 
-		.user {
-			flex: 1 1 256px;
-			min-width: 256px;
+		.users {
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			position: relative;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			list-style: none;
 
-			.icon-anchor {
-				.icon {
-					width: 64px;
-					height: 64px;
+			.user {
+				flex: 1 1 256px;
+				min-width: 256px;
+				box-sizing: border-box;
+				padding: 20px;
+				margin-bottom: 20px;
+				margin-right: 20px;
+				border-bottom: solid 1px #eee;
+
+				.icon-anchor {
+					display: block;
+
+					.icon {
+						display: block;
+						float: left;
+						width: 64px;
+						height: 64px;
+					}
+				}
+
+				.main-container {
 				}
 			}
 		}

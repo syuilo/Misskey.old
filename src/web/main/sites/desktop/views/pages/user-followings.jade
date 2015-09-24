@@ -15,8 +15,9 @@ block contents
 					li.user(data-user-verified!= user.isVerified.toString())
 						a.icon-anchor(href= '/' + user.screenName)
 							img.icon(src=user.iconImageUrl, alt='icon')
-						p
-							a(href='/' + user.screenName)= user.name
-							span.screenName= '@' + user.screenName
-						if user.comment != null
-							p.comment= user.comment
+						div.main-container
+							p
+								a(href='/' + user.screenName)= user.name
+								span.screenName= '@' + user.screenName
+							if user.comment != null
+								p.comment= user.comment
