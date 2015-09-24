@@ -1,5 +1,5 @@
 mixin usersList(users)
-	if users != null and users.length > 0
+	if users != null && users.length > 0
 		ol.users
 			each user in users
 				li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
