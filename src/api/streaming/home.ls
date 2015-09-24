@@ -12,13 +12,12 @@ http-server = http.create-server (req, res) ->
 		..write-head 200 'Content-Type': 'text/plain'
 		..end 'kyoppie'
 
-ws-server = new WebSocketServer {
+ws-server = new WebSocketServer do
 	server: http-server
 	verify-client: !(info, cb) ->
 		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
 		sauth-authorize app-key, user-key .then (!-> cb true), (!(error-name) -> cb false 401 error-name)
 		void
-}
 
 ws-server.on \connection (socket) ->
 	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
