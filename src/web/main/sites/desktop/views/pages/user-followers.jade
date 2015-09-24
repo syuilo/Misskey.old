@@ -20,18 +20,19 @@ block contents
 								a.name(href='/' + follower.screenName)= follower.name
 								span.screen-name= '@' + follower.screenName
 							if login
-								if me.id != follower.id
-									if follower.isFollowing
-										button.friend-button.following Following
+								div.friend-form
+									if me.id != follower.id
+										if follower.isFollowing
+											button.friend-button.following Following
+										else
+											button.friend-button.not-following Follow
+										if follower.isFollowMe
+											p.is-friend.follow-me(data-is-friend='true')
+												i.fa.fa-heart
+										else
+											p.is-friend.not-follow-me(data-is-friend='false')
+												i.fa.fa-heart-o
 									else
-										button.friend-button.not-following Follow
-									if follower.isFollowMe
-										p.is-friend(data-is-friend='true')
-											i.fa.fa-heart
-									else
-										p.is-friend(data-is-friend='false')
-											i.fa.fa-heart-o
-								else
-									p.friend-status
-										i.fa.fa-smile-o
-										| You
+										p.friend-status
+											i.fa.fa-smile-o
+											| You
