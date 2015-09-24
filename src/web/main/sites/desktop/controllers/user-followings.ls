@@ -61,10 +61,10 @@ module.exports = (req, res, options) ->
 		UserFollowing.count {follower-id: user.id} `$and` {followee-id: {$in: me-following-ids}} (err, c) ->
 			resolve c
 
-	get-all-count .then (followings-count) ->
-		get-all .then (followings) ->
-			get-you-know-count .then (followings-you-know-count) ->
-				get-you-know .then (followings-you-know) ->
+	get-all-count! .then (followings-count) ->
+		get-all! .then (followings) ->
+			get-you-know-count! .then (followings-you-know-count) ->
+				get-you-know! .then (followings-you-know) ->
 					res.display req, res, \user-followings {
 						followings-count
 						followings-you-know-count
