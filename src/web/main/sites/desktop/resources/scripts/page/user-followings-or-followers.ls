@@ -27,7 +27,7 @@ $ ->
 					$friend-button .remove-class \danger
 					$friend-button .text 'Following'
 
-		$ '#friend-button' .click ->
+		$friend-button.click ->
 			$friend-button.attr \disabled on
 			if check-follow!
 				$.ajax "#{config.api-url}/users/unfollow" {
