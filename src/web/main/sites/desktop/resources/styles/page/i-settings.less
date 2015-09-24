@@ -88,14 +88,16 @@ main {
 
 		> #content {
 			flex: 1 1;
-			padding: 32px 32px 32px 16px;
+			//padding: 32px 32px 32px 16px;
+			> div {
+				margin: 32px 32px 32px 16px;
+			}
 
 			form {
-				border-bottom: solid 1px #eee;
-				padding: 32px;
+				border-top: solid 1px #eee;
 
-				&:last-child {
-					border-bottom: none;
+				&:first-child {
+					border-top: none;
 				}
 
 				&:after {
