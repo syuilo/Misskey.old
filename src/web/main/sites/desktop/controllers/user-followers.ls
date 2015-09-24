@@ -11,21 +11,21 @@ module.exports = (req, res, options) ->
 	me = if req.login then req.me else null
 
 	UserFollowing
-		.find {followee-id: user.id}
+		.find {follower-id: user.id}
 		.sort {created-at: \desc}
 		.limit 100users
-		.exec (, followings) ->
-			Promise.all (followings |> map (following) ->
+		.exec (, followers) ->
+			Promise.all (followers |> map (follower) ->
 				resolve, reject <- new Promise!
-				User.find-by-id following.follower-id, (, following-user) ->
-					following-user .= to-object!
-					user-following-check me.id, following-user.id .then (is-following) ->
-						following-user.is-following = is-following
-						user-following-check following-user.id, me.id .then (is-follow-me) ->
-							following-user.is-follow-me = is-follow-me
-							resolve following-user)
-			.then (followings) ->
-				res.display req, res, \user-followings {
-					followings
+				User.find-by-id follower.followee-id, (, follower-user) ->
+					follower-user .= to-object!
+					user-following-check me.id, follower-user.id .then (is-following) ->
+						follower-user.is-following = is-following
+						user-following-check follower-user.id, me.id .then (is-follow-me) ->
+							follower-user.is-follow-me = is-follow-me
+							resolve follower-user)
+			.then (followers) ->
+				res.display req, res, \user-followers {
+					followers
 					user
 				}
