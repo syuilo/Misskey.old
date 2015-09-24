@@ -17,7 +17,7 @@ block contents
 							img.icon(src=follower.iconImageUrl, alt='icon')
 						div.main-container
 							p
-								a(href='/' + follower.screenName)= follower.name
+								a.name(href='/' + follower.screenName)= follower.name
 								span.screen-name= '@' + follower.screenName
 							if follower.comment != null
 								p.comment= follower.comment
