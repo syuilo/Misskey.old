@@ -83,4 +83,5 @@ module.exports = (req, res, options) ->
 							followers
 							followers-you-know
 							user
+							page: \followers
 						}

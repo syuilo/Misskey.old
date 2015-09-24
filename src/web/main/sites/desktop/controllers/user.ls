@@ -89,4 +89,5 @@ module.exports = (req, res, options) ->
 			recent-photo-statuses: results.4
 			user
 			tags: user.tags
+			page: \home
 		}
