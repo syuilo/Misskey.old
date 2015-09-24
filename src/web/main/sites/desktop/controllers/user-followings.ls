@@ -21,7 +21,9 @@ module.exports = (req, res, options) ->
 					follower-user .= to-object!
 					user-following-check me.id, follower-user.id .then (is-following) ->
 						follower-user.is-following = is-following
-						resolve follower-user)
+						user-following-check follower-user.id, me.id .then (is-follow-me) ->
+							follower-user.is-follow-me = is-follow-me
+							resolve follower-user)
 			.then (followers) ->
 				res.display req, res, \user-followers {
 					followers

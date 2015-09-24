@@ -21,10 +21,16 @@ block contents
 								span.screen-name= '@' + followee.screenName
 							if login
 								if me.id != followee.id
-									if followee.isFollowing
-										button.friend-button.following フォロー中
+									if follower.isFollowing
+										button.friend-button.following Following
 									else
-										button.friend-button.not-following フォロー
+										button.friend-button.not-following Follow
+									if follower.isFollowMe
+										p.is-friend(data-is-friend='true')
+											i.fa.fa-heart
+									else
+										p.is-friend(data-is-friend='false')
+											i.fa.fa-heart-o
 								else
 									p.friend-status
 										i.fa.fa-smile-o

@@ -22,9 +22,15 @@ block contents
 							if login
 								if me.id != follower.id
 									if follower.isFollowing
-										button.friend-button.following フォロー中
+										button.friend-button.following Following
 									else
-										button.friend-button.not-following フォロー
+										button.friend-button.not-following Follow
+									if follower.isFollowMe
+										p.is-friend(data-is-friend='true')
+											i.fa.fa-heart
+									else
+										p.is-friend(data-is-friend='false')
+											i.fa.fa-heart-o
 								else
 									p.friend-status
 										i.fa.fa-smile-o
