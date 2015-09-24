@@ -92,84 +92,120 @@ main {
 			> div {
 				margin: 32px 32px 32px 16px;
 			}
-
-			form {
-				margin: 16px 0;
-				border-top: solid 1px #eee;
-
-				&:first-child {
-					border-top: none;
-				}
-
-				&:after {
-					content: "";
-					display: block;
-					clear: both;
-				}
-
-				label {
-					display: block;
-					padding: 16px 0;
-
-					&:first-child {
-						padding: 0 0 16px 0;
-					}
-
-					h2 {
-						margin: 0;
-						font-size: 1em;
-						font-weight: bold;
-						font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
-						color: #444;
-					}
-				}
-
-				.submit-button {
-					float: right;
-				}
-			}
 		}
 	}
 }
 
-#wallpaper-form {
-	.progress {
-		display: none;
-		margin-bottom: 16px;
+#profile-form {
+	margin: 16px 0;
+	border-top: solid 1px #eee;
 
-		.status {
-			margin: 0 0 4px 0;
-			padding: 0;
-			font-size: 0.8em;
-			color: rgba(0, 0, 0, 0.7);
+	&:first-child {
+		border-top: none;
+	}
 
-			> i {
-				margin-right: 0.25em;
-			}
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	label {
+		display: block;
+		padding: 16px 0;
+
+		&:first-child {
+			padding: 0 0 16px 0;
 		}
 
-		progress {
-			-webkit-appearance: none;
-			-moz-appearance: none;
-			appearance: none;
-			display: block;
+		h2 {
 			margin: 0;
-			width: 100%;
-			height: 8px;
-			border: solid 1px #ddd;
-			border-radius: 8px;
-			overflow: hidden;
+			font-size: 1em;
+			font-weight: bold;
+			font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+			color: #444;
+		}
+	}
 
-			&::-webkit-progress-value {
-				background-color: @themeColor;
+	.submit-button {
+		float: right;
+	}
+}
+
+#design {
+	margin: 16px 0;
+	border-top: solid 1px #eee;
+
+	&:first-child {
+		border-top: none;
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	label {
+		display: block;
+		padding: 16px 0;
+
+		&:first-child {
+			padding: 0 0 16px 0;
+		}
+
+		h2 {
+			margin: 0;
+			font-size: 1em;
+			font-weight: bold;
+			font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+			color: #444;
+		}
+	}
+
+	.submit-button {
+		float: right;
+	}
+
+	#wallpaper-form {
+		.progress {
+			display: none;
+			margin-bottom: 16px;
+
+			.status {
+				margin: 0 0 4px 0;
+				padding: 0;
+				font-size: 0.8em;
+				color: rgba(0, 0, 0, 0.7);
+
+				> i {
+					margin-right: 0.25em;
+				}
 			}
 
-			&::-webkit-progress-bar {
-				background-color: #fff;
-			}
+			progress {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				display: block;
+				margin: 0;
+				width: 100%;
+				height: 8px;
+				border: solid 1px #ddd;
+				border-radius: 8px;
+				overflow: hidden;
 
-			&:not([value])::-webkit-progress-bar {
-				background-image: url('/resources/images/indeter.gif');
+				&::-webkit-progress-value {
+					background-color: @themeColor;
+				}
+
+				&::-webkit-progress-bar {
+					background-color: #fff;
+				}
+
+				&:not([value])::-webkit-progress-bar {
+					background-image: url('/resources/images/indeter.gif');
+				}
 			}
 		}
 	}
