@@ -1,3 +1,31 @@
+mixin usersList(users)
+	ol.users
+		each user in users
+			li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+				a.icon-anchor(href= '/' + user.screenName, title= user.comment)
+					img.icon(src=user.iconImageUrl, alt='icon')
+				div.main-container
+					p.title
+						a.name(href='/' + user.screenName)= user.name
+						span.screen-name= '@' + user.screenName
+					if login
+						div.friend-form
+							if me.id != user.id
+								if user.isFollowing
+									button.friend-button.following(title='フォローを解除する') Following
+								else
+									button.friend-button.not-following(title='フォローする') Follow
+								if user.isFollowMe
+									p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
+										i.fa.fa-heart
+								else
+									p.friend-status.not-follow-me(data-is-friend='false', data-tooltip='フォローされていません')
+										i.fa.fa-heart-o
+							else
+								p.is-me
+									i.fa.fa-smile-o
+									| You
+
 extends ../layouts/user
 
 block title
@@ -5,34 +33,21 @@ block title
 
 block assets
 	link(rel='stylesheet', href='/resources/styles/page/user-followings-or-followers.css?user=' + user.screenName)
+	script(src='/resources/scripts/lib/syuiloui.js')
 	script(src='/resources/scripts/page/user-followings-or-followers.js')
 
 block contents
 	div.main
+		nav.tab
+			ul
+				li: a(href='#users-list-all')
+					| All
+					span.counter= followersCount
+				li: a(href='#users-list-you-know')
+					| You know
+					span.counter= followersYouKnowCount
 		div.users-list
-			ol.users
-				each follower in followers
-					li.user(data-user-id= follower.id, data-is-following!= follower.isFollowing.toString())
-						a.icon-anchor(href= '/' + follower.screenName, title= follower.comment)
-							img.icon(src=follower.iconImageUrl, alt='icon')
-						div.main-container
-							p.title
-								a.name(href='/' + follower.screenName)= follower.name
-								span.screen-name= '@' + follower.screenName
-							if login
-								div.friend-form
-									if me.id != follower.id
-										if follower.isFollowing
-											button.friend-button.following(title='フォローを解除する') Following
-										else
-											button.friend-button.not-following(title='フォローする') Follow
-										if follower.isFollowMe
-											p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
-												i.fa.fa-heart
-										else
-											p.friend-status.not-follow-me(data-is-friend='false', data-tooltip='フォローされていません')
-												i.fa.fa-heart-o
-									else
-										p.is-me
-											i.fa.fa-smile-o
-											| You
+			div#users-list-all
+				+usersList(followers)
+			div#users-list-you-know
+				+usersList(followersYouKnow)
