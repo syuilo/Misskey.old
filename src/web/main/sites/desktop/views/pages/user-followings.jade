@@ -13,7 +13,7 @@ block contents
 			ol.users
 				each followee in followings
 					li.user
-						a.icon-anchor(href= '/' + followee.screenName)
+						a.icon-anchor(href= '/' + followee.screenName, title= followee.comment)
 							img.icon(src=followee.iconImageUrl, alt='icon')
 						div.main-container
 							p.title
