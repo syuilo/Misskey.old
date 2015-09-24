@@ -17,11 +17,11 @@ module.exports = (req, res, options) ->
 		.exec (, followings) ->
 			Promise.all (followings |> map (following) ->
 				resolve, reject <- new Promise!
-				User.find-by-id following.followee-id, (, user) ->
-					user .= to-object!
-					user-following-check me.id, user.id .then (is-following) ->
-						user.is-following = is-following
-						resolve user)
+				User.find-by-id following.followee-id, (, following-user) ->
+					following-user .= to-object!
+					user-following-check me.id, following-user.id .then (is-following) ->
+						following-user.is-following = is-following
+						resolve following-user)
 			.then (followings) ->
 				res.display req, res, \user-followings {
 					followings
