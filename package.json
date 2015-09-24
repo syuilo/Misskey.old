@@ -32,8 +32,6 @@
     "gm": "1.19.0",
     "gulp": "3.9.0",
     "gulp-livescript": "2.4.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1",
     "http2": "3.2.0",
     "image-type": "2.0.2",
     "jade": "1.11.0",
