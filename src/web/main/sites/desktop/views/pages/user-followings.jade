@@ -1,30 +1,35 @@
 mixin usersList(users)
-	ol.users
-		each user in users
-			li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
-				a.icon-anchor(href= '/' + user.screenName, title= user.comment)
-					img.icon(src=user.iconImageUrl, alt='icon')
-				div.main-container
-					p.title
-						a.name(href='/' + user.screenName)= user.name
-						span.screen-name= '@' + user.screenName
-					if login
-						div.friend-form
-							if me.id != user.id
-								if user.isFollowing
-									button.friend-button.following(title='フォローを解除する') Following
+	if users != null and users.length > 0
+		ol.users
+			each user in users
+				li.user(data-user-id= user.id, data-is-following!= user.isFollowing.toString())
+					a.icon-anchor(href= '/' + user.screenName, title= user.comment)
+						img.icon(src=user.iconImageUrl, alt='icon')
+					div.main-container
+						p.title
+							a.name(href='/' + user.screenName)= user.name
+							span.screen-name= '@' + user.screenName
+						if login
+							div.friend-form
+								if me.id != user.id
+									if user.isFollowing
+										button.friend-button.following(title='フォローを解除する') Following
+									else
+										button.friend-button.not-following(title='フォローする') Follow
+									if user.isFollowMe
+										p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
+											i.fa.fa-heart
+									else
+										p.friend-status.not-follow-me(data-is-friend='false', data-tooltip='フォローされていません')
+											i.fa.fa-heart-o
 								else
-									button.friend-button.not-following(title='フォローする') Follow
-								if user.isFollowMe
-									p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
-										i.fa.fa-heart
-								else
-									p.friend-status.not-follow-me(data-is-friend='false', data-tooltip='フォローされていません')
-										i.fa.fa-heart-o
-							else
-								p.is-me
-									i.fa.fa-smile-o
-									| You
+									p.is-me
+										i.fa.fa-smile-o
+										| You
+	else
+		p.no-users
+			i.fa.fa-info-circle
+			| No users.
 
 extends ../layouts/user
 
