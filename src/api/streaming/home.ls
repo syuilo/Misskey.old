@@ -1,29 +1,28 @@
 require! {
 	http
-	ws: WS
+	ws: {Server: WebSocketServer}
 	'../../config'
+	'../../utils/sauth-authorize'
 }
 
-console.log 'Home strreaming server loaded'
+console.log 'Home streaming server loaded'
 
-server = http.create-server (req, res) ->
+http-server = http.create-server (req, res) ->
 	res
 		..write-head 200 'Content-Type': 'text/plain'
 		..end 'kyoppie'
 
-WebSocketServer = WS.Server
-wss = new WebSocketServer {
-	server: server
-	verify-client: (info) ->
-		console.log info.req.headers['sauth-app-key']
-		console.log info.req.headers['sauth-user-key']
-		true
+ws-server = new WebSocketServer {
+	server: http-server
+	verify-client: !(info, cb) ->
+		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
+		sauth-authorize app-key, user-key .then (!-> cb {result: true}), (!(error-name) -> cb {result: false, name: error-name})
+		void
 }
 
-wss.on \connection (ws) ->
-	ws.send 'Connected! Welcome to Misskey.'
+ws-server.on \connection (socket) ->
+	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
+	socket.on \message (message) ->
+		socket.send "app-key: #app-key, user-key: #user-key, message: #message" # echo
 
-	ws.on \message (message) ->
-		console.log "received: #message"
-
-server.listen config.port.streaming
+http-server.listen config.port.streaming

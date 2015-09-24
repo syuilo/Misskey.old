@@ -30,8 +30,9 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 
 Note that only `develop` branch is accepting any Pull Request.
 
-## Related Project
+## Related Projects
 * [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image) - Misskey image server
+* [syuilo/Misskey-For-iOS](https://github.com/syuilo/Misskey-For-iOS) - Misskey official iOS client
 
 ## API
 Misskey provides web-based API.

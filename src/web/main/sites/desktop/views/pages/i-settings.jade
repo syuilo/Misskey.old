@@ -78,7 +78,11 @@ html(lang='ja', dir='ltr')
 							input.ui-button.submit-button(type='submit', value='アップデート')
 
 					div#home-layout
-						a(href='/home/customize') ホームをカスタマイズする
+						img(src='/resources/images/home-design.svg', alt='customize')
+						p
+							a(href='/home/customize')
+								| ホームをカスタマイズする
+								i.fa.fa-chevron-right
 
 					div#application
 						if apps != null && apps.length > 0
