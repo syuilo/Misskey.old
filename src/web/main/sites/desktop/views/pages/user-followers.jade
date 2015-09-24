@@ -11,13 +11,23 @@ block contents
 	div#followers-list
 		div.users-list
 			ol.users
-				each user in followers
-					li.user(data-user-verified!= user.isVerified.toString())
-						a.icon-anchor(href= '/' + user.screenName)
-							img.icon(src=user.iconImageUrl, alt='icon')
+				each follower in followers
+					li.user
+						a.icon-anchor(href= '/' + follower.screenName)
+							img.icon(src=follower.iconImageUrl, alt='icon')
 						div.main-container
 							p
-								a(href='/' + user.screenName)= user.name
-								span.screenName= '@' + user.screenName
-							if user.comment != null
-								p.comment= user.comment
+								a(href='/' + follower.screenName)= follower.name
+								span.screen-name= '@' + follower.screenName
+							if follower.comment != null
+								p.comment= follower.comment
+							if login
+								if me.id != follower.id
+									if follower.isFollowing
+										button.friend-button.following フォロー中
+									else
+										button.friend-button.not-following フォロー
+								else
+									p.friend-status
+										i.fa.fa-smile-o
+										| You
