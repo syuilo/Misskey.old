@@ -19,8 +19,6 @@ block contents
 							p
 								a.name(href='/' + follower.screenName)= follower.name
 								span.screen-name= '@' + follower.screenName
-							if follower.comment != null
-								p.comment= follower.comment
 							if login
 								if me.id != follower.id
 									if follower.isFollowing
