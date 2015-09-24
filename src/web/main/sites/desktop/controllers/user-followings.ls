@@ -17,7 +17,7 @@ module.exports = (req, res, options) ->
 		.exec (, followers) ->
 			Promise.all (followers |> map (follower) ->
 				resolve, reject <- new Promise!
-				User.find-by-id follower.follower-id, (, follower-user) ->
+				User.find-by-id follower.followee-id, (, follower-user) ->
 					follower-user .= to-object!
 					user-following-check me.id, follower-user.id .then (is-following) ->
 						follower-user.is-following = is-following

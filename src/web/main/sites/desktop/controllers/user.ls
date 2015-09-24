@@ -17,26 +17,23 @@ module.exports = (req, res, options) ->
 	Promise.all [
 		# Get statuses timeline
 		new Promise (resolve, reject) ->
-			if page != \home
-				resolve null
-			else
-				Status
-					.find {user-id: user.id}
-					.sort {created-at: \desc}
-					.limit 6status
-					.exec (, statuses) ->
-						# Get pinned statuses
-						if user.pinned-status?
-							(err, pinned-status) <- Status.find-by-id user.pinned-status
-							if pinned-status?
-								pinned-status .= to-object!
-								pinned-status.is-pinned-status = yes
-								statuses.unshift pinned-status
-							generate-detail-status-timeline-html statuses, me, (html) ->
-								resolve html
-						else
-							generate-detail-status-timeline-html statuses, me, (html) ->
-								resolve html
+			Status
+				.find {user-id: user.id}
+				.sort {created-at: \desc}
+				.limit 6status
+				.exec (, statuses) ->
+					# Get pinned statuses
+					if user.pinned-status?
+						(err, pinned-status) <- Status.find-by-id user.pinned-status
+						if pinned-status?
+							pinned-status .= to-object!
+							pinned-status.is-pinned-status = yes
+							statuses.unshift pinned-status
+						generate-detail-status-timeline-html statuses, me, (html) ->
+							resolve html
+					else
+						generate-detail-status-timeline-html statuses, me, (html) ->
+							resolve html
 
 		# Get is following
 		new Promise (resolve, reject) ->
