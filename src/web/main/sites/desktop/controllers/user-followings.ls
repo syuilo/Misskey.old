@@ -11,13 +11,13 @@ module.exports = (req, res, options) ->
 	me = if req.login then req.me else null
 
 	UserFollowing
-		.find {followee-id: user.id}
+		.find {follower-id: user.id}
 		.sort {created-at: \desc}
 		.limit 100users
 		.exec (, followings) ->
 			Promise.all (followings |> map (following) ->
 				resolve, reject <- new Promise!
-				User.find-by-id following.follower-id, (, following-user) ->
+				User.find-by-id following.followee-id, (, following-user) ->
 					following-user .= to-object!
 					user-following-check me.id, following-user.id .then (is-following) ->
 						following-user.is-following = is-following
