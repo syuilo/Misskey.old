@@ -27,12 +27,12 @@ block contents
 										else
 											button.friend-button.not-following Follow
 										if followee.isFollowMe
-											p.is-friend.follow-me(data-is-friend='true')
+											p.friend-status.follow-me(data-is-friend='true')
 												i.fa.fa-heart
 										else
-											p.is-friend.not-follow-me(data-is-friend='false')
+											p.friend-status.not-follow-me(data-is-friend='false')
 												i.fa.fa-heart-o
 									else
-										p.friend-status
+										p.is-me
 											i.fa.fa-smile-o
 											| You
