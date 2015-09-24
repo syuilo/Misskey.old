@@ -12,7 +12,7 @@ block contents
 		div.users-list
 			ol.users
 				each followee in followings
-					li.user
+					li.user(data-user-id= followee.id, data-is-following!= followee.isFollowing.toString())
 						a.icon-anchor(href= '/' + followee.screenName, title= followee.comment)
 							img.icon(src=followee.iconImageUrl, alt='icon')
 						div.main-container
@@ -27,10 +27,10 @@ block contents
 										else
 											button.friend-button.not-following Follow
 										if followee.isFollowMe
-											p.friend-status.follow-me(data-is-friend='true')
+											p.friend-status.follow-me(data-is-friend='true', data-tooltip='フォローされています')
 												i.fa.fa-heart
 										else
-											p.friend-status.not-follow-me(data-is-friend='false')
+											p.friend-status.not-follow-me(data-is-friend='false', data-tooltip='フォローされていません')
 												i.fa.fa-heart-o
 									else
 										p.is-me
