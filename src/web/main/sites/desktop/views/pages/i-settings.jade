@@ -79,9 +79,10 @@ html(lang='ja', dir='ltr')
 
 					div#home-layout
 						img(src='/resources/images/home-design.svg', alt='customize')
-						a(href='/home/customize')
-							| ホームをカスタマイズする
-							i.fa.fa-chevron-right
+						p
+							a(href='/home/customize')
+								| ホームをカスタマイズする
+								i.fa.fa-chevron-right
 
 					div#application
 						if apps != null && apps.length > 0
