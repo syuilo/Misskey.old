@@ -28,11 +28,11 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 * `master` - Stable version, deployed to https://misskey.xyz/
 * `develop` - Development version, deployed to https://misskey.xyz:1206/
 
-Note that only `develop` branch is accepting any Pull Request.
+Note that only `develop` branch is accepting any Pull Requests.
 
 ## Related Projects
 * [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image) - Misskey image server
-* [syuilo/Misskey-For-iOS](https://github.com/syuilo/Misskey-For-iOS) - Misskey official iOS client
+
 
 ## API
 Misskey provides web-based API.
@@ -42,4 +42,4 @@ See [Documentation](doc/api-usage.md) for more information.
 古谷向日葵, 大室櫻子 (2014 June ~)
 
 ## License
-[MIT](LICENSE)
+[The MIT License](LICENSE)
