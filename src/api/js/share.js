@@ -115,10 +115,10 @@ window.onload = function() {
 				color: #000;\
 			}\
 		</style>\
-		<a href=\"http://api.misskey.xyz/share?title="+document.title+"&url="+location.href+"\" target='misskey' title=\"Misskeyでみんなと共有\" onclick=\"misskey_open_share_window('https://api.misskey.xyz/share?title="+document.title+"&url="+location.href+"'); return false;\" class=\"b\">\
+		<button title=\"Misskeyでみんなと共有\" onclick=\"misskey_open_share_window('https://api.misskey.xyz/share?title="+document.title+"&url="+location.href+"');\" class=\"b\">\
 			<img src=\"http://misskey.xyz/resources/common/images/sharebutton-icon.png\" alt=\"\">\
 			<span>Share!</span>\
-		</a>\
+		</button>\
 		<div class=\"count\">\
 			<span class=\"misskey-share-count\">-</span>\
 		</div>";
