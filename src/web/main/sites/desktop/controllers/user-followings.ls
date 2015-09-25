@@ -30,11 +30,16 @@ module.exports = (req, res, options) ->
 					resolve, reject <- new Promise!
 					User.find-by-id following.followee-id, (, following-user) ->
 						following-user .= to-object!
-						user-following-check me.id, following-user.id .then (is-following) ->
-							following-user.is-following = is-following
-							user-following-check following-user.id, me.id .then (is-follow-me) ->
-								following-user.is-follow-me = is-follow-me
-								resolve following-user)
+						if me?
+							user-following-check me.id, following-user.id .then (is-following) ->
+								following-user.is-following = is-following
+								user-following-check following-user.id, me.id .then (is-follow-me) ->
+									following-user.is-follow-me = is-follow-me
+									resolve following-user
+						else
+							following-user.is-following = null
+							following-user.is-follow-me = null
+							resolve following-user)
 				.then (followings) ->
 					resolve followings
 

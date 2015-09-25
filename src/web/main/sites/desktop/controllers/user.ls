@@ -88,6 +88,5 @@ module.exports = (req, res, options) ->
 			followers-recent: results.3
 			recent-photo-statuses: results.4
 			user
-			tags: user.tags
 			page: \home
 		}

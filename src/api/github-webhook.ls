@@ -18,10 +18,10 @@ module.exports = (app) ->
 		handler.on \push (event) ->
 			switch (event.payload.ref)
 			| \refs/heads/master =>
-				create-status null noticer, "安定チャンネルにPushされたようです。(master)\n#{event.payload.head}\n**まもなくデプロイされる可能性があります。**" .then!
+				create-status null noticer, "安定チャンネルにPushされたようです。(master)\n#{event.payload.after}\n**まもなくデプロイされる可能性があります。**" .then!
 			| \refs/heads/develop =>
 				shelljs.exec '/var/www/misskey/development/deploy' {async: true}
-				create-status null noticer, "開発チャンネルにPushされたようです。(develop)\n#{event.payload.head}"
+				create-status null noticer, "開発チャンネルにPushされたようです。(develop)\n#{event.payload.after}"
 			| _ =>
 				create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
 
