@@ -1,4 +1,5 @@
 require! {
+	fs
 	'github-webhook-handler': github-webhook-handler
 	'./internal/create-status'
 	'../models/user': User
@@ -20,8 +21,10 @@ module.exports = (app) ->
 			| \refs/heads/master =>
 				create-status null noticer, "安定チャンネルにPushされたようです。(master)\n#{event.payload.after}\n**まもなくデプロイされる可能性があります。**" .then!
 			| \refs/heads/develop =>
-				shelljs.exec '/var/www/misskey/development/deploy' {async: true}
 				create-status null noticer, "開発チャンネルにPushされたようです。(develop)\n#{event.payload.after}"
+				# Start deploy
+				shelljs.exec '/var/www/misskey/development/deploy' (code, output) ->
+					fs.write-file "#__dirname/../../latest-deploy-log" output
 			| _ =>
 				create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
 
