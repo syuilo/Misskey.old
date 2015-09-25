@@ -1,9 +1,10 @@
 require! {
 	fs
+	shelljs
+	moment
 	'github-webhook-handler': github-webhook-handler
 	'./internal/create-status'
 	'../models/user': User
-	shelljs
 	'../config'
 }
 
@@ -25,7 +26,9 @@ module.exports = (app) ->
 				# Start deploy
 				shelljs.exec '/var/www/misskey/development/deploy' (code, output) ->
 					console.log 'Deployed'
-					fs.write-file "#__dirname/../../latest-deploy-log" output, (err) ->
+					now = moment!.format 'YYYY/MM/DD HH:mm:ss Z'
+					text = now + '\r\n\r\n' + output
+					fs.write-file "#__dirname/../../latest-deploy-log" text, (err) ->
 						console.error err
 			| _ =>
 				create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
