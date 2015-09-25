@@ -24,7 +24,9 @@ module.exports = (app) ->
 				create-status null noticer, "開発チャンネルにPushされたようです。(develop)\n#{event.payload.after}"
 				# Start deploy
 				shelljs.exec '/var/www/misskey/development/deploy' (code, output) ->
-					fs.write-file "#__dirname/../../latest-deploy-log" output
+					console.log 'Deployed'
+					fs.write-file "#__dirname/../../latest-deploy-log" output, (err) ->
+						console.error err
 			| _ =>
 				create-status null noticer, "Pushされたようです。#{event.payload.ref}" .then!
 
