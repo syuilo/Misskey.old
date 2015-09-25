@@ -1,5 +1,4 @@
 require! {
-	marked
 	'../../../../../models/user': User
 	'../../../../../models/user-following': UserFollowing
 	'../../../../../models/status': Status
