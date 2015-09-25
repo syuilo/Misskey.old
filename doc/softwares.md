@@ -11,6 +11,9 @@ List of softwares related to Misskey
 ### .NET
 * [MisskeyNowPlaying](https://github.com/marihachi/MisskeyNowPlaying) - Let's post to Misskey your playing song info
 
+### iOS
+* [syuilo/Misskey-For-iOS](https://github.com/syuilo/Misskey-For-iOS) - Misskey official iOS client
+
 ## Libraries
 ### .NET
 * [M#](https://github.com/marihachi/msharp) - MisskeyAPI Library For C#
