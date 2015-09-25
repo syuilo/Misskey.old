@@ -78,6 +78,8 @@ module.exports = (app) ->
 
 	# log viewer
 	app.get '/log' (req, res) -> res.display req, res, "#__dirname/sites/desktop/views/pages/log"
+	
+	app.get '/latest-deploy-log' (req, res) -> CallController req, res, \latest-deploy-log
 
 	# search
 	app.get '/search' (req, res) -> CallController req, res, \search
