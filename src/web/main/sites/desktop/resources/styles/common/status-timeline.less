@@ -196,17 +196,13 @@
 		list-style: none;
 
 		> .status {
-			border-top: solid 1px #eee;
-
-			&:first-child {
-				border-top: none;
-			}
 
 			.status.article {
 				position: relative;
 				margin: 0;
 				padding: 12px 0;
 				background: #fff;
+				border-top: solid 1px #eee;
 				transition: margin 0.2s ease;
 
 				&[data-is-repostpost='true'] {
@@ -262,6 +258,7 @@
 
 				&[data-display-html-is-active='true'] {
 					margin: 16px 0;
+					border-top: none;
 				}
 				/*
 				&:before {
@@ -300,6 +297,8 @@
 				}
 
 				&.display-html-active-status-next {
+					border-top: none;
+					
 					> article > .article-main {
 					}
 				}
