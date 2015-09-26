@@ -124,10 +124,10 @@ module.exports = (req, res, options) ->
 		get-me-following-ids! .then (me-following-ids) ->
 			get-all-users! .then (all-users) ->
 				get-all-users-count! .then (all-users-count) ->
-					get-you-know-users! .then (you-know-users) ->
-						get-you-know-users-count! .then (you-know-users-count) ->
-							get-you-know-users! .then (you-know-users) ->
-								get-you-know-users-count! .then (you-know-users-count) ->
+					get-you-know-users me-following-ids .then (you-know-users) ->
+						get-you-know-users-count me-following-ids .then (you-know-users-count) ->
+							get-you-know-users me-following-ids .then (you-know-users) ->
+								get-you-know-users-count me-following-ids .then (you-know-users-count) ->
 									res.display req, res, 'status-reposts' do
 										user: user
 										all-users: all-users
