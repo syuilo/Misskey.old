@@ -197,7 +197,7 @@ window.STATUS_CORE = {}
 						init-user-profile-popup do
 							$talk-status.find 'article > .main > .icon-area > .icon-anchor'
 							$talk-status.attr \data-user-profile-widget-url
-						$talk-status.append-to $status.find 'article > .main > .talk > .statuses'
+						$talk-status.append-to $status.find 'article > .main > .reply-source-and-more-talks > .talk > .statuses'
 				.fail (data) ->
 					$button = $ @
 						..attr \disabled off
