@@ -1470,29 +1470,28 @@
 					}
 
 					> .stargazers, > .reposters {
+						display: -webkit-flex;
+						display: -moz-flex;
+						display: -ms-flex;
+						display: -o-flex;
+						display: flex;
+						justify-content: center;
 						flex: 1 1;
 						padding: 10px;
 						margin: 0 8px;
 						border-top: solid 1px #eef0f2;
 
-						&:after {
-							content: "";
-							display: block;
-							clear: both;
+						> .caption {
+							flex: 1 1 100px;
+							max-width: 100px;
 						}
 
 						> .stargazers, > .reposters {
 							display: block;
-							float: left;
+							flex: 1 1;
 							margin: 0;
 							padding: 0;
 							list-style: none;
-
-							&:after {
-								content: "";
-								display: block;
-								clear: both;
-							}
 
 							> .stargazer, > .reposter {
 								display: block;

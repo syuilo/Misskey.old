@@ -217,6 +217,10 @@ div.status.article(
 			div.stargazers-and-reposters
 				if status.stargazers != null && status.stargazers.length > 0
 					section.stargazers
+						header.caption
+							a.count= status.favoritesCount
+							h2.title
+								| お気に入り
 						ol.stargazers
 							each stargazer in status.stargazers
 								li.stargazer
@@ -224,6 +228,10 @@ div.status.article(
 										img.icon(src=stargazer.iconImageUrl, alt='icon')
 				if status.reposters != null && status.reposters.length > 0
 					section.reposters
+						header.caption
+							a.count= status.repostsCount
+							h2.title
+								| Repost
 						ol.reposters
 							each reposter in status.reposters
 								li.reposter
