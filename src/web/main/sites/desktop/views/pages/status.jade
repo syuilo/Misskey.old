@@ -16,11 +16,11 @@ html(lang='ja', dir='ltr')
 		main(role='main')
 			div#status
 				button#read-after(role='button', title='これより後の投稿を読む', data-ui-background-wallpaper-blur='true')
-					i.fa.fa-angle-up
+					i.fa.fa-chevron-up
 				aside.timeline#after-timeline
 					ol.statuses
 				div.ui-status.main!= statusHtml
 				aside.timeline#before-timeline
 					ol.statuses
 				button#read-before(role='button', title='これより前の投稿を読む', data-ui-background-wallpaper-blur='true')
-					i.fa.fa-angle-down
+					i.fa.fa-chevron-down
