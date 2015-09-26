@@ -3,18 +3,13 @@
 @blurredWallpaperUrl: <%blurredWallpaperUrl%>;
 
 html {
-	background-color: #eee;
-	background-image: url(@wallpaperUrl);
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+	background: #f5f8fa;
 }
 
 main {
 	display: block;
 	width: 100%;
-	max-width: 600px;
+	max-width: 650px;
 	margin: 0 auto;
 }
 
@@ -39,22 +34,17 @@ main {
 	text-align: center;
 	color: rgba(0, 0, 0, 0.5);
 	cursor: pointer;
-	background-color: transparent;
-	background-image: url(@blurredWallpaperUrl);
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
+	background: transparent;
 	outline: none;
 	border: none;
 	box-shadow: none;
 
 	&:hover {
-		background: #f6f6f6;
+		background: rgba(0, 0, 0, 0.025);
 	}
 
 	&:active {
-		background: #e5e5e5;
+		background: rgba(0, 0, 0, 0.05);
 	}
 
 	&:disabled {

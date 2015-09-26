@@ -1,0 +1,272 @@
+@themeColor: <%themeColor%>;
+@wallpaperUrl: <%wallpaperUrl%>;
+@blurredWallpaperUrl: <%blurredWallpaperUrl%>;
+
+html {
+	background: #eee;
+}
+
+main {
+	display: block;
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+#status {
+	padding: 16px 0;
+
+	> .main .status.article > article {
+		margin: 0;
+	}
+}
+
+#hima {
+	padding: 0 0 32px 0;
+	
+	> h2 {
+		display: block;
+		margin: 0;
+		padding: 8px;
+		font-size: 1.5em;
+		color: #888;
+		font-weight: bold;
+		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
+		
+		> i {
+			margin-right: 0.25em;
+		}
+	}
+
+	.tab {
+		> ul {
+			position: relative;
+			margin: 0;
+			padding: 0;
+
+			> li {
+				display: inline-block;
+
+				&.active {
+					background: #fff;
+
+					> a {
+						color: @themeColor;
+						cursor: default;
+
+						&:hover {
+							color: @themeColor;
+						}
+					}
+				}
+
+				&.unactive {
+
+					> a {
+						color: #777;
+						cursor: pointer;
+
+						&:hover {
+							color: #000;
+						}
+					}
+				}
+
+				> a {
+					display: inline-block;
+					padding: 16px 24px;
+					transition: none;
+
+					> i {
+						margin-right: 8px;
+					}
+
+					.counter {
+						display: inline-block;
+						padding: 2px 5px;
+						margin-left: 1em;
+						font-size: 11px;
+						font-weight: bold;
+						line-height: 1;
+						color: #666;
+						background-color: #eee;
+						border-radius: 20px;
+					}
+				}
+			}
+		}
+	}
+
+	.users-list {
+		padding: 20px;
+		background: #fff;
+
+		.no-users {
+			display: block;
+			margin: 0;
+			padding: 32px;
+			text-align: center;
+			color: #777;
+
+			> i {
+				margin-right: 0.25em;
+			}
+		}
+
+		.users {
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			position: relative;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			list-style: none;
+
+			.user {
+				flex: 1 1 256px;
+				min-width: 256px;
+				box-sizing: border-box;
+				padding: 20px;
+				margin-right: 20px;
+				border-bottom: solid 1px #eee;
+
+				.icon-anchor {
+					display: block;
+
+					.icon {
+						display: block;
+						float: left;
+						width: 64px;
+						height: 64px;
+					}
+				}
+
+				.main-container {
+					margin-left: 80px;
+
+					.title {
+						display: block;
+						margin: 0 0 8px 0;
+
+						.name {
+							display: block;
+							color: #555;
+
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+
+						.screen-name {
+							display: block;
+							color: #999;
+							font-size: 0.9em;
+						}
+					}
+
+					.friend-form {
+						display: block;
+
+						.friend-button {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							cursor: pointer;
+							display: inline;
+							box-sizing: border-box;
+							padding: 4px 0;
+							margin: 0;
+							min-width: 90px;
+							font-size: 0.9em;
+							line-height: 18px;
+							outline: none;
+							border: none;
+							border-radius: 4px 0 0 4px;
+							box-shadow: none;
+							transition: all .5s ease;
+							cursor: pointer;
+
+							&.following {
+								color: contrast(@themeColor, #000, #fff, 70%);
+								background: @themeColor;
+
+								&:hover {
+									background: lighten(@themeColor, 10%);
+								}
+
+								&:active {
+									background: darken(@themeColor, 10%);
+								}
+							}
+
+							&.not-following {
+								color: #fff;
+								background: #aaa;
+
+								&:hover {
+									background: #ddd;
+								}
+
+								&:active {
+									background: #999;
+								}
+							}
+
+							* {
+								pointer-events: none;
+							}
+
+							&:disabled {
+								opacity: 0.5;
+								cursor: wait;
+							}
+
+							&:hover {
+								transition: all .1s ease;
+							}
+
+							&:active {
+								transition: all .1s ease;
+							}
+
+							i {
+								margin-right: 0.5em;
+							}
+						}
+
+						.friend-status {
+							display: inline;
+							position: relative;
+							margin: 0;
+							padding: 4px;
+							font-size: 0.9em;
+							line-height: 18px;
+							border-radius: 0 4px 4px 0;
+
+							&.follow-me {
+								color: contrast(@themeColor, #000, #fff, 70%);
+								background: lighten(@themeColor, 10%);
+							}
+
+							&.not-follow-me {
+								color: #fff;
+								background: #ddd;
+							}
+						}
+
+						.is-me {
+							margin: 0;
+							font-size: 0.9em;
+							color: #555;
+						}
+					}
+				}
+			}
+		}
+	}
+}

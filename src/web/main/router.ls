@@ -206,6 +206,12 @@ module.exports = (app) ->
 	app.get '/:userSn/status/:statusId' (req, res) -> CallController req, res, \status do
 		user: req.root-user
 		status: req.root-status
+	app.get '/:userSn/status/:statusId/reposts' (req, res) -> CallController req, res, \status-reposts do
+		user: req.root-user
+		status: req.root-status
+	app.get '/:userSn/status/:statusId/favorites' (req, res) -> CallController req, res, \status-favorites do
+		user: req.root-user
+		status: req.root-status
 
 	# User profile widget
 	app.get '/widget/user/:userSn' (req, res) -> CallController req, res, \widget-user-profile do
