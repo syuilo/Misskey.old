@@ -121,21 +121,13 @@ module.exports = (req, res, options) ->
 			text-parser: parse-text
 			config: config.public-config
 			
-		console.log \0
 		get-me-following-ids! .then (me-following-ids) ->
-			console.log \1
 			get-all-users! .then (all-users) ->
-				console.log \2
 				get-all-users-count! .then (all-users-count) ->
-					console.log \3
 					get-you-know-users me-following-ids .then (you-know-users) ->
-						console.log \4
 						get-you-know-users-count me-following-ids .then (you-know-users-count) ->
-							console.log \5
 							get-you-dont-know-users me-following-ids .then (you-dont-know-users) ->
-								console.log \6
 								get-you-dont-know-users-count me-following-ids .then (you-dont-know-users-count) ->
-									console.log \7
 									res.display req, res, 'status-reposts' do
 										user: user
 										all-users: all-users
