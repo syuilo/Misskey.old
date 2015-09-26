@@ -79,8 +79,9 @@ div.status.article(
 						i.fa.fa-ellipsis-v
 						
 				div.reply-source-and-more-talks
-					aside.talk
-						ol.statuses
+					if status.replySource.isReply
+						aside.talk
+							ol.statuses
 
 					aside.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
 							data-id= status.replySource.id
