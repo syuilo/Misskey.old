@@ -72,41 +72,42 @@ div.status.article(
 							p キャンセル
 
 		section.main
-		
-			aside.talk
-				ol.statuses
-		
-			if status.isReply && status.replySource.isReply
-				button.read-talk(role='button', title='会話をもっと読む')
-					i.fa.fa-ellipsis-v
 			
 			if status.isReply
-				aside.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
-						data-id= status.replySource.id
-						data-user-id= status.replySource.user.id
-						data-user-color= status.replySource.user.color
-						data-user-verified!= status.replySource.user.isVerified.toString()
-						data-user-profile-widget-url= config.url + '/widget/user/' + status.replySource.user.screenName)
-					article
-						div.main
-							div.icon-area
-								a.icon-anchor(href=config.url + '/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName, rel='icon')
-									img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
+				if status.replySource.isReply
+					button.read-talk(role='button', title='会話をもっと読む')
+						i.fa.fa-ellipsis-v
+						
+				div.reply-source-and-more-talks
+					aside.talk
+						ol.statuses
+
+					aside.reply-source(title!= '#{status.replySource.createdAt}&#x0A;'
+							data-id= status.replySource.id
+							data-user-id= status.replySource.user.id
+							data-user-color= status.replySource.user.color
+							data-user-verified!= status.replySource.user.isVerified.toString()
+							data-user-profile-widget-url= config.url + '/widget/user/' + status.replySource.user.screenName)
+						article
 							div.main
-								header.header
-									h2.name
-										a(href=config.url + '/' + status.replySource.user.screenName)= status.replySource.user.name
-									if status.replySource.user.isVerified
-										img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
-									p.screen-name= '@' + status.replySource.user.screenName
-									p.created-at
-										a.time-anchor(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id, itemprop='url')
-											time(datetime=status.replySource.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.replySource.createdAt
-								div.content
-									div.text
-										p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
-									if status.replySource.isImageAttached
-										img.image(src=status.replySource.imageUrls[0], alt='image')
+								div.icon-area
+									a.icon-anchor(href=config.url + '/' + status.replySource.user.screenName, title= status.replySource.user.comment != null ? status.replySource.user.comment : '@' + status.replySource.user.screenName, rel='icon')
+										img.icon(src=status.replySource.user.iconImageUrl, alt='icon')
+								div.main
+									header.header
+										h2.name
+											a(href=config.url + '/' + status.replySource.user.screenName)= status.replySource.user.name
+										if status.replySource.user.isVerified
+											img.verified-icon(src='/resources/common/images/verified.png', alt='verified', title='認証済み')
+										p.screen-name= '@' + status.replySource.user.screenName
+										p.created-at
+											a.time-anchor(href=config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.id, itemprop='url')
+												time(datetime=status.replySource.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= status.replySource.createdAt
+									div.content
+										div.text
+											p!= (status.replySource.isReply ? '<a href="' + config.url + '/' + status.replySource.user.screenName + '/status/' + status.replySource.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' : '') + textParser(status.replySource.text)
+										if status.replySource.isImageAttached
+											img.image(src=status.replySource.imageUrls[0], alt='image')
 			
 			if status.isPinnedStatus
 				section.pin-information

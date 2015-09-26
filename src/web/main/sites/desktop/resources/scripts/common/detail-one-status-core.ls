@@ -50,25 +50,10 @@ window.STATUS_CORE = {}
 
 		# Init the profile popup of the user of the reply source
 		init-user-profile-popup do
-			$status.find 'article > .main > .reply-source > article > .main > .icon-area > .icon-anchor'
-			$status.find 'article > .main > .reply-source' .attr \data-user-profile-widget-url
+			$status.find 'article > .main > .reply-source-and-more-talks > .reply-source > article > .main > .icon-area > .icon-anchor'
+			$status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-user-profile-widget-url
 
 		$status
-			# Click event
-			..click (event) ->
-				can-event = ! (((<[ input textarea button i time a ]>
-					|> prelude.map (element) -> $ event.target .is element)
-					.index-of yes) >= 0)
-
-				if document.get-selection!.to-string! != ''
-					can-event = no
-
-				if $ event.target .closest \.repost-form .length > 0
-					can-event = no
-
-				if can-event
-					activate-display-state!
-
 			# Images
 			..find '.main .attached-images > .images > .image' .each ->
 				$image = $ @
@@ -200,7 +185,7 @@ window.STATUS_CORE = {}
 				$.ajax config.api-url + '/web/status/get-talk-detail-html.plain' {
 					type: \get
 					data: {
-						'status-id': $status.find 'article > .main > .reply-source' .attr \data-id
+						'status-id': $status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-id
 					}
 					data-type: \text
 					xhr-fields: {+with-credentials}}

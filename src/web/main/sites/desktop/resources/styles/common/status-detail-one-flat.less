@@ -855,21 +855,6 @@
 
 			> .main {
 
-				> .talk {
-					> .statuses {
-						display: block;
-						margin: 0;
-						padding: 0;
-						list-style: none;
-						text-align: left;
-
-						> .status {
-							padding: 8px;
-							.sub-article;
-						}
-					}
-				}
-
 				> .read-talk {
 					-webkit-appearance: none;
 					-moz-appearance: none;
@@ -901,10 +886,27 @@
 					}
 				}
 
-				> .reply-source {
+				> .reply-source-and-more-talks {
 					background: #fdfdfd;
-					padding: 18px 32px !important;
-					.sub-article;
+					padding: 12px 0;
+
+					> .talk {
+						> .statuses {
+							display: block;
+							margin: 0;
+							padding: 0;
+							list-style: none;
+							text-align: left;
+
+							> .status {
+								.sub-article;
+							}
+						}
+					}
+
+					> .reply-source {
+						.sub-article;
+					}
 				}
 
 				> .repost-information {
