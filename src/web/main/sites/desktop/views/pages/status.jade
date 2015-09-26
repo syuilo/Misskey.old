@@ -5,9 +5,9 @@ html(lang='ja', dir='ltr')
 		include ../common/head
 		meta(name='keywords', content='Misskey')
 		title= status.user.name + 'さんの' + status.displayCreatedAt + 'の投稿'
-		link(rel='stylesheet', href='/resources/styles/common/status-timeline-detail-flat.css?user=' + user.screenName)
+		link(rel='stylesheet', href='/resources/styles/common/status-detail-one-flat.css?user=' + user.screenName)
 		link(rel='stylesheet', href='/resources/styles/page/user-status.css?user=' + user.screenName)
-		script(src='/resources/scripts/common/detail-status-core.js')
+		script(src='/resources/scripts/common/detail-one-status-core.js')
 		script(src='/resources/scripts/page/user-status.js')
 	
 	body

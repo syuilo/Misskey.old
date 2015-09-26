@@ -2,7 +2,7 @@ require! {
 	jade
 	'../../../../../models/status': Status
 	'../../../../../models/user': User
-	'../utils/serialize-detail-timeline-status'
+	'../utils/serialize-detail-one-status'
 	'../utils/parse-text'
 	'../../../../../config'
 }
@@ -12,9 +12,9 @@ module.exports = (req, res, options) ->
 	status = options.status
 
 	me = req.me
-	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail/status.jade"
+	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail-one.jade"
 	Status.find-by-id status.id, (, status) ->
-		serialize-detail-timeline-status status, me, (detail-status) ->
+		serialize-detail-one-status status, me, (detail-status) ->
 			html = status-compiler do
 				status: detail-status
 				login: me?
