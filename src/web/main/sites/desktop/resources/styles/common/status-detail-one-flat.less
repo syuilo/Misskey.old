@@ -1477,18 +1477,31 @@
 						display: flex;
 						justify-content: center;
 						flex: 1 1;
-						padding: 10px;
+						padding: 0;
 						margin: 0 8px;
 						border-top: solid 1px #eef0f2;
 
 						> .caption {
-							flex: 1 1 100px;
-							max-width: 100px;
+							flex: 1 1 80px;
+							box-sizing: border-box;
+							max-width: 80px;
+							padding: 8px 5px 0px 10px;
+
+							> .count {
+								display: block;
+								font-size: 1.5em;
+								line-height: 1.4em;
+
+								&:hover {
+									text-decoration: underline;
+								}
+							}
 
 							> .title {
 								display: block;
 								margin: 0;
-								font-size: 0.8em;
+								font-size: 0.7em;
+								line-height: 1em;
 								font-weight: normal;
 								color: #a0a2a5;
 							}
@@ -1498,7 +1511,7 @@
 							display: block;
 							flex: 1 1;
 							margin: 0;
-							padding: 0;
+							padding: 10px 10px 10px 5px;
 							list-style: none;
 
 							> .stargazer, > .reposter {
