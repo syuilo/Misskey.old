@@ -30,6 +30,7 @@ div.status.article(
 		data-is-reposted            != login ? status.isReposted.toString() : null
 		data-is-pinned              != isMyStatus ? (me.pinnedStatus == status.id).toString() : null
 		data-is-repostpost          != status.isRepostToStatus.toString()
+		data-is-not-found-reply-yet != (status.replies.length == 0).toString()
 		data-repost-by-user-id      != status.isRepostToStatus ? status.repostedByUser.id : null
 		data-display-html-is-active='false')
 	article(role='article')
@@ -217,6 +218,10 @@ div.status.article(
 			div.stargazers-and-reposters
 				if status.stargazers != null && status.stargazers.length > 0
 					section.stargazers
+						header.caption
+							a.count= status.favoritesCount
+							h2.title
+								| お気に入り
 						ol.stargazers
 							each stargazer in status.stargazers
 								li.stargazer
@@ -224,6 +229,10 @@ div.status.article(
 										img.icon(src=stargazer.iconImageUrl, alt='icon')
 				if status.reposters != null && status.reposters.length > 0
 					section.reposters
+						header.caption
+							a.count= status.repostsCount
+							h2.title
+								| Repost
 						ol.reposters
 							each reposter in status.reposters
 								li.reposter
