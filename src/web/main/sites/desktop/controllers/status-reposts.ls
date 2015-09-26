@@ -60,15 +60,15 @@ module.exports = (req, res, options) ->
 				.find {repost-from-status-id: status.id} `$and` {user-id: {$in: me-following-ids}}
 				.sort {created-at: \desc}
 				.limit 100posts
-				.exec (, statuses) ->
-					Promise.all (statuses |> map (status) ->
+				.exec (, reposts) ->
+					Promise.all (reposts |> map (repost) ->
 						resolve, reject <- new Promise!
-						User.find-by-id status.user-id, (, user) ->
-							user .= to-object!
-							user.is-following = yes
-							user-following-check user.id, me.id .then (is-follow-me) ->
-								user.is-follow-me = is-follow-me
-								resolve user)
+						User.find-by-id repost.user-id, (, repost-user) ->
+							repost-user .= to-object!
+							repost-user.is-following = yes
+							user-following-check repost-user.id, me.id .then (is-follow-me) ->
+								repost-user.is-follow-me = is-follow-me
+								resolve repost-user)
 					.then (users) ->
 						resolve users
 		else
@@ -89,15 +89,15 @@ module.exports = (req, res, options) ->
 				.find {repost-from-status-id: status.id} `$and` {user-id: {$nin: me-following-ids}}
 				.sort {created-at: \desc}
 				.limit 100posts
-				.exec (, statuses) ->
-					Promise.all (statuses |> map (status) ->
+				.exec (, reposts) ->
+					Promise.all (reposts |> map (repost) ->
 						resolve, reject <- new Promise!
-						User.find-by-id status.user-id, (, user) ->
-							user .= to-object!
-							user.is-following = no
-							user-following-check user.id, me.id .then (is-follow-me) ->
-								user.is-follow-me = is-follow-me
-								resolve user)
+						User.find-by-id repost.user-id, (, repost-user) ->
+							repost-user .= to-object!
+							repost-user.is-following = no
+							user-following-check repost-user.id, me.id .then (is-follow-me) ->
+								repost-user.is-follow-me = is-follow-me
+								resolve repost-user)
 					.then (users) ->
 						resolve users
 		else
