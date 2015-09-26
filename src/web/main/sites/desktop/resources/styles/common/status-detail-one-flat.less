@@ -856,8 +856,15 @@
 			> .main {
 				background: #fff;
 				border: solid 1px #e8eaef;
-				border-radius: 4px;
-				overflow: hidden;
+				border-radius: 6px;
+
+				> *:first-child {
+					border-radius: 6px 6px 0 0;
+				}
+
+				> *:last-child {
+					border-radius: 0 0 6px 6px;
+				}
 
 				> .read-talk {
 					-webkit-appearance: none;
