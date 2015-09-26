@@ -9,7 +9,7 @@ module.exports = (status, limit = 16users) ->
 	Status
 		.find {repost-from-status-id: status.id}
 		.sort {created-at: \desc}
-		.limit 100posts
+		.limit limit
 		.exec (, reposts) ->
 			Promise.all (reposts |> map (repost) ->
 				resolve, reject <- new Promise!
