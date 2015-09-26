@@ -892,7 +892,12 @@
 
 				> .reply-source-and-more-talks {
 					background: #fdfdfd;
+					border-bottom: solid 1px #eef0f2;
 					padding: 12px 0;
+
+					&:empty {
+						display: none;
+					}
 
 					> .talk {
 						> .statuses {
