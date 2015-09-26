@@ -31,22 +31,22 @@ module.exports = (req, res, options) ->
 			.sort {created-at: \desc}
 			.limit 100posts
 			.exec (, reposts) ->
-			Promise.all (reposts |> map (repost) ->
-				resolve, reject <- new Promise!
-				User.find-by-id repost.user-id, (, repost-user) ->
-					repost-user .= to-object!
-					if me?
-						user-following-check me.id, repost-user.id .then (is-following) ->
-							repost-user.is-following = is-following
-							user-following-check repost-user.id, me.id .then (is-follow-me) ->
-								repost-user.is-follow-me = is-follow-me
-								resolve user
-					else
-						repost-user.is-following = null
-						repost-user.is-follow-me = null
-						resolve repost-user)
-			.then (users) ->
-				resolve users
+				Promise.all (reposts |> map (repost) ->
+					resolve, reject <- new Promise!
+					User.find-by-id repost.user-id, (, repost-user) ->
+						repost-user .= to-object!
+						if me?
+							user-following-check me.id, repost-user.id .then (is-following) ->
+								repost-user.is-following = is-following
+								user-following-check repost-user.id, me.id .then (is-follow-me) ->
+									repost-user.is-follow-me = is-follow-me
+									resolve user
+						else
+							repost-user.is-following = null
+							repost-user.is-follow-me = null
+							resolve repost-user)
+				.then (users) ->
+					resolve users
 
 	function get-all-users-count
 		resolve, reject <- new Promise!
