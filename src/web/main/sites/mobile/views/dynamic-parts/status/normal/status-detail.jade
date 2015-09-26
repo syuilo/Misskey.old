@@ -74,7 +74,7 @@ div.status.article(
 							if status.replySource.isImageAttached
 								img.image(src=status.replySource.imageUrls[0], alt='image')
 			div.main
-				a.icon-anchor(href=config.url + '/widget/talk/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
+				a.icon-anchor(href=config.url + '/' + status.user.screenName, title= status.user.comment != null ? status.user.comment : '@' + status.user.screenName, rel='icon')
 					img.icon(src=status.user.iconImageUrl, alt='icon')
 				header.header
 					div.author(itemprop='author')
