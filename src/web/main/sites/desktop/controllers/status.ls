@@ -12,7 +12,7 @@ module.exports = (req, res, options) ->
 	status = options.status
 
 	me = req.me
-	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail-one.jade"
+	status-compiler = jade.compile-file "#__dirname/../views/dynamic-parts/status/detail-one/status.jade"
 	Status.find-by-id status.id, (, status) ->
 		serialize-detail-one-status status, me, (detail-status) ->
 			html = status-compiler do
