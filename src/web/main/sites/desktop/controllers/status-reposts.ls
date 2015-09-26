@@ -82,7 +82,7 @@ module.exports = (req, res, options) ->
 		else
 			resolve null
 	
-	function get-you-know-users(me-following-ids)
+	function get-you-dont-know-users(me-following-ids)
 		resolve, reject <- new Promise!
 		if me? and me-following-ids?
 			Status
@@ -103,7 +103,7 @@ module.exports = (req, res, options) ->
 		else
 			resolve null
 	
-	function get-you-know-users-count(me-following-ids)
+	function get-you-dont-know-users-count(me-following-ids)
 		resolve, reject <- new Promise!
 		if me? and me-following-ids?
 			Status.count {repost-from-status-id: status.id} `$and` {user-id: {$nin: me-following-ids}} (err, count) ->
