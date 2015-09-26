@@ -3,9 +3,29 @@
 #
 
 require! {
+	http
+	ws: {Server: WebSocketServer}
 	'../../config'
+	'../../utils/sauth-authorize'
 }
 
-console.log 'Streaming servers loader loaded'
+console.log 'Streaming API Server loaded'
 
-require "./home"
+http-server = http.create-server (req, res) ->
+	res
+		..write-head 200 'Content-Type': 'text/plain'
+		..end 'kyoppie'
+
+ws-server = new WebSocketServer do
+	server: http-server
+	verify-client: !(info, cb) ->
+		{'sauth-app-key': app-key, 'sauth-user-key': user-key} = info.req.headers
+		sauth-authorize app-key, user-key .then (!-> cb true), (!(error-name) -> cb false 401 error-name)
+		void
+
+ws-server.on \connection (socket) ->
+	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
+	socket.on \message (message) ->
+		socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
+
+http-server.listen config.port.streaming
