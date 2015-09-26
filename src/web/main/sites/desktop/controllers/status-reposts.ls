@@ -30,21 +30,21 @@ module.exports = (req, res, options) ->
 			.find {repost-from-status-id: status.id}
 			.sort {created-at: \desc}
 			.limit 100posts
-			.exec (, statuses) ->
-		Promise.all (statuses |> map (status) ->
+			.exec (, reposts) ->
+		Promise.all (reposts |> map (repost) ->
 			resolve, reject <- new Promise!
-			User.find-by-id status.user-id, (, user) ->
-				user .= to-object!
+			User.find-by-id repost.user-id, (, repost-user) ->
+				repost-user .= to-object!
 				if me?
-					user-following-check me.id, user.id .then (is-following) ->
-						user.is-following = is-following
-						user-following-check user.id, me.id .then (is-follow-me) ->
-							user.is-follow-me = is-follow-me
+					user-following-check me.id, repost-user.id .then (is-following) ->
+						repost-user.is-following = is-following
+						user-following-check repost-user.id, me.id .then (is-follow-me) ->
+							repost-user.is-follow-me = is-follow-me
 							resolve user
 				else
-					user.is-following = null
-					user.is-follow-me = null
-					resolve user)
+					repost-user.is-following = null
+					repost-user.is-follow-me = null
+					resolve repost-user)
 		.then (users) ->
 			resolve users
 
