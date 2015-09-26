@@ -130,6 +130,8 @@ module.exports = (req, res, options) ->
 								get-you-dont-know-users-count me-following-ids .then (you-dont-know-users-count) ->
 									res.display req, res, 'status-reposts' do
 										user: user
+										login: me?
+										me: me
 										all-users: all-users
 										all-users-count: all-users-count
 										you-know-users: you-know-users
