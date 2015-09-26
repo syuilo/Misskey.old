@@ -272,7 +272,7 @@ div.status.article(
 														time(datetime=reply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= reply.createdAt
 											div.content
 												div.text
-													p!= textParser(reply.text)
+													p!= '<a href="' + config.url + '/' + reply.replySource.user.screenName + '/status/' + reply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' + textParser(reply.text)
 												if reply.isImageAttached
 													img.image(src=reply.imageUrls[0], alt='image')
 									aside.replies(itemprop='comment')
@@ -302,7 +302,7 @@ div.status.article(
 																				time(datetime=replyInReply.createdAt, itemprop='dateCreated', pubdate, data-display-type='relative')= replyInReply.createdAt
 																	div.content
 																		div.text
-																			p!= textParser(replyInReply.text)
+																			p!= '<a href="' + config.url + '/' + replyInReply.replySource.user.screenName + '/status/' + replyInReply.inReplyToStatusId + '" class="reply"><i class="fa fa-reply"></i></a>' + textParser(replyInReply.text)
 																		if replyInReply.isImageAttached
 																			img.image(src=replyInReply.imageUrls[0], alt='image')
 															if replyInReply.replies.length > 0
