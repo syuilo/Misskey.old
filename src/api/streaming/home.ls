@@ -22,6 +22,6 @@ ws-server = new WebSocketServer do
 ws-server.on \connection (socket) ->
 	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
 	socket.on \message (message) ->
-		socket.send "app-key: #app-key, user-key: #user-key, message: #message" # echo
+		socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
 
 http-server.listen config.port.streaming
