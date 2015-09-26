@@ -121,6 +121,7 @@ module.exports = (req, res, options) ->
 			text-parser: parse-text
 			config: config.public-config
 			
+		console.log \0
 		get-me-following-ids! .then (me-following-ids) ->
 			console.log \1
 			get-all-users! .then (all-users) ->
