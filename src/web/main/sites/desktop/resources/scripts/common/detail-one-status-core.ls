@@ -136,7 +136,7 @@ window.STATUS_CORE = {}
 				$submit-button = $form.find \.submit-button
 					..attr \disabled on
 					..attr \value 'Replying...'
-				$.ajax "#{config.api-url}/web/status/reply-detail.plain" {
+				$.ajax "#{config.api-url}/web/status/reply-detail-one.plain" {
 					type: \post
 					data: new FormData $form.0
 					-processData
@@ -182,7 +182,7 @@ window.STATUS_CORE = {}
 					..attr \title '読み込み中...'
 					..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-				$.ajax config.api-url + '/web/status/get-talk-detail-html.plain' {
+				$.ajax config.api-url + '/web/status/get-talk-detail-one-html.plain' {
 					type: \get
 					data: {
 						'status-id': $status.find 'article > .main > .reply-source-and-more-talks > .reply-source' .attr \data-id
@@ -266,7 +266,7 @@ window.STATUS_CORE = {}
 
 			# Init reply button
 			..find 'article > .main > .main > .footer > .actions > .reply > .reply-button' .click ->
-				activate-display-state!
+				console.log 'something'
 
 			# Init repost button
 			..find 'article > .main > .main > .footer > .actions > .repost > .repost-button' .click ->
@@ -338,13 +338,3 @@ window.STATUS_CORE = {}
 				$status.find '.repost-form .form' .animate {
 					opacity: 0
 				} 100ms \linear -> $status.find '.repost-form .form' .css \display \none
-
-	..add-status = ($tl, $status) ->
-		new Audio '/resources/sounds/pop.mp3' .play!
-
-		$status = $ '<li class="status">' .append($status).hide!
-		#$recent-status = ($ ($tl.children '.statuses' .children '.status')[0]) .children \.status
-		#if ($recent-status.attr \data-display-html-is-active) == \true
-		#	$status.children \.status .add-class \display-html-active-status-prev
-		window.STATUS_CORE.set-event $status.children '.status.article'
-		$status.prepend-to (($tl.children '.statuses')[0]) .show 200
