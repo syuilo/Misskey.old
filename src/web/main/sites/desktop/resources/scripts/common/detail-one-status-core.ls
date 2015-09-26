@@ -11,43 +11,6 @@ window.STATUS_CORE = {}
 		function check-pinned
 			($status.attr \data-is-pinned) == \true
 
-		function activate-display-state
-			animation-speed = 200ms
-			if ($status.attr \data-display-html-is-active) == \false
-				reply-form-text = $status.children \article .find '.article-main > .form-and-replies .reply-form textarea' .val!
-				$ '.timeline > .statuses > .status > .status.article' .each ->
-					$ @
-						..attr \data-display-html-is-active \false
-						..remove-class \display-html-active-status-prev
-						..remove-class \display-html-active-status-next
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > i' .each ->
-					$ @ .show animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .reply-info' .each ->
-					$ @ .show animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .talk > .statuses' .each ->
-					$ @ .hide animation-speed
-				$ '.timeline > .statuses > .status > .status.article > article > .article-main > .form-and-replies' .each ->
-					$ @ .hide animation-speed
-				$status
-					..attr \data-display-html-is-active \true
-					..parent!.prev!.find '.status.article' .add-class \display-html-active-status-prev
-					..parent!.next!.find '.status.article' .add-class \display-html-active-status-next
-					..children \article .find  '.article-main > .talk > i' .hide animation-speed
-					..children \article .find  '.article-main > .talk > .statuses' .show animation-speed
-					..children \article .find  '.article-main > .reply-info' .hide animation-speed
-					..children \article .find  '.article-main > .form-and-replies' .show animation-speed
-					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .val ''
-					..children \article .find  '.article-main > .form-and-replies .reply-form textarea' .focus! .val reply-form-text
-			else
-				$status
-					..attr \data-display-html-is-active \false
-					..parent!.prev!.find '.status.article' .remove-class \display-html-active-status-prev
-					..parent!.next!.find '.status.article' .remove-class \display-html-active-status-next
-					..children \article .find  '.article-main > .talk > i' .show animation-speed
-					..children \article .find  '.article-main > .talk > .statuses' .hide animation-speed
-					..children \article .find  '.article-main > .reply-info' .show animation-speed
-					..children \article .find  '.article-main > .form-and-replies' .hide animation-speed
-
 		function init-user-profile-popup($trigger, widget-url)
 			$trigger.hover do
 				->
@@ -154,7 +117,7 @@ window.STATUS_CORE = {}
 						$reply-in-reply.attr \data-user-profile-widget-url
 
 			# Init stargazer tooltips
-			..find '.main .stargazers > .stargazers > .stargazer > a' .each ->
+			..find '.main .stargazers-and-reposters > .stargazers > .stargazers > .stargazer > a' .each ->
 				$stargazer = $ @
 				$tooltip = $ '<p class="ui-tooltip">' .text $stargazer.attr \data-tooltip
 				$stargazer.hover do
@@ -164,6 +127,18 @@ window.STATUS_CORE = {}
 						$stargazer.find \.ui-tooltip .css \left ($stargazer.outer-width! / 2) - ($tooltip.outer-width! / 2)
 					->
 						$stargazer.find \.ui-tooltip .remove!
+			
+			# Init reposter tooltips
+			..find '.main .stargazers-and-reposters > .reposters > .reposters > .reposter > a' .each ->
+				$reposter = $ @
+				$tooltip = $ '<p class="ui-tooltip">' .text $reposter.attr \data-tooltip
+				$reposter.hover do
+					->
+						$tooltip.css \bottom $reposter.outer-height! + 4px
+						$reposter.append $tooltip
+						$reposter.find \.ui-tooltip .css \left ($reposter.outer-width! / 2) - ($tooltip.outer-width! / 2)
+					->
+						$reposter.find \.ui-tooltip .remove!
 
 			# Enable reply button
 			..find '.reply-form textarea' .bind \input ->
