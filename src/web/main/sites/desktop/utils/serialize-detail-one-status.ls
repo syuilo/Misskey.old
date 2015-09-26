@@ -5,6 +5,7 @@ require! {
 	'../../../../../models/status': Status
 	'../../../../../models/utils/status-get-replies'
 	'../../../../../models/utils/status-get-stargazers'
+	'../../../../../models/utils/status-get-reposters'
 	'../../../../../models/utils/status-check-favorited'
 	'../../../../../models/utils/status-check-reposted'
 	'../../../../../config'
@@ -89,6 +90,13 @@ module.exports = (status, me, callback) ->
 			| _ =>
 				status.stargazers = stargazers
 				callback status
+	
+	function get-reposters(status, callback)
+		status-get-reposters status .then (reposters) ->
+			| !reposters? => callback status
+			| _ =>
+				status.reposters = reposters
+				callback status
 
 	if status.to-object
 		status .= to-object!
@@ -100,6 +108,7 @@ module.exports = (status, me, callback) ->
 	status <- get-reply-source status
 	status <- get-replies status, yes
 	status <- get-stargazers status
+	status <- get-reposters status
 	if me?
 		status.is-favorited <- status-check-favorited me.id, status.id .then
 		status.is-reposted <- status-check-reposted me.id, status.id .then
