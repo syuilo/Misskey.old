@@ -434,8 +434,13 @@
 		}
 
 		.sub-article {
-			padding: 8px 32px;
-			font-size: 0.9em;
+			padding: 16px 32px;
+			font-size: 1em;
+			border-top: solid 1px #eef0f2;
+
+			&:first-child {
+				border-top: none;
+			}
 
 			> article {
 				display: block;
@@ -453,7 +458,7 @@
 						display: block;
 						float: left;
 						padding: 4px;
-						width: 32px;
+						width: 40px;
 
 						> .icon-anchor {
 							display: block;
@@ -462,12 +467,12 @@
 
 							> .icon {
 								display: block;
-								width: 32px;
-								height: 32px;
-								min-width: 32px;
-								min-height: 32px;
-								max-width: 32px;
-								max-height: 32px;
+								width: 40px;
+								height: 40px;
+								min-width: 40px;
+								min-height: 40px;
+								max-width: 40px;
+								max-height: 40px;
 							}
 						}
 					}
@@ -477,7 +482,7 @@
 						float: left;
 						padding: 4px;
 						box-sizing: border-box;
-						width: ~"calc(100% - (32px + 4px + 4px))";
+						width: ~"calc(100% - (40px + 4px + 4px))";
 
 						> .header {
 							> .name {
@@ -683,7 +688,7 @@
 												display: inline;
 												margin: 0;
 												padding: 0;
-												font-size: 1em;
+												font-size: 0.9em;
 												font-weight: bold;
 												color: #888a8c;
 
