@@ -40,7 +40,7 @@ module.exports = (req, res, options) ->
 								repost-user.is-following = is-following
 								user-following-check repost-user.id, me.id .then (is-follow-me) ->
 									repost-user.is-follow-me = is-follow-me
-									resolve user
+									resolve repost-user
 						else
 							repost-user.is-following = null
 							repost-user.is-follow-me = null
@@ -130,8 +130,6 @@ module.exports = (req, res, options) ->
 								get-you-dont-know-users-count me-following-ids .then (you-dont-know-users-count) ->
 									res.display req, res, 'status-reposts' do
 										user: user
-										login: me?
-										me: me
 										all-users: all-users
 										all-users-count: all-users-count
 										you-know-users: you-know-users
