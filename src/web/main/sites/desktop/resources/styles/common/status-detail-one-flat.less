@@ -1412,6 +1412,10 @@
 					padding: 18px 26px;
 					background: #fff;
 
+					&:empty {
+						display: none;
+					}
+
 					> .stargazers, > .reposters {
 						flex: 1 1;
 						padding: 12px;
@@ -1700,7 +1704,7 @@
 						text-align: left;
 
 						&:empty {
-							padding: 0;
+							display: none;
 						}
 
 						> .status {
