@@ -14,6 +14,7 @@ routing =
 		[\get  /\/web\/status\/get-talk-detail-one-html(\..+)?$/             './rest/web/status/get-talk-detail-one-html']
 		[\get  /\/web\/status\/timeline-homehtml(\..+)?$/ './rest/web/status/timeline-homehtml']
 		[\get  /\/web\/status\/user-timeline-detailhtml(\..+)?$/ './rest/web/status/user-timeline-detailhtml']
+		[\get  /\/web\/status\/user-timeline-detail-one-html(\..+)?$/ './rest/web/status/user-timeline-detail-one-html']
 		[\get  /\/web\/status\/timeline-mobilehomehtml(\..+)?$/ './rest/web/status/timeline-mobilehomehtml']
 		[\get  /\/web\/talk\/timeline-html(\..+)?$/       './rest/web/talk/timeline-html']
 		[\get  /\/web\/get-header-statuses(\..+)?$/       './rest/web/get-header-statuses']
