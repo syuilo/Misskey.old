@@ -46,7 +46,7 @@ ws-server.on \connection (socket) ->
 					| \status, \repost =>
 						# Find status
 						err, status <- Status.find-by-id content.value.id
-						socket.send JSON.stringify status.to-object!
+						socket.send status.to-object!
 			
 			socket.on \message (message) ->
 				socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
