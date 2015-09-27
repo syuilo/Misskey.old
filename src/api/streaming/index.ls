@@ -48,11 +48,10 @@ ws-server.on \connection (socket) ->
 						err, status <- Status.find-by-id content.value.id
 						socket.send status.to-object!
 			
-			socket.on \message (message) ->
-				socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
-	
 			socket.on \close ->
 				subscriber.end!
-
+			
+	socket.on \message (message) ->
+		socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
 
 http-server.listen config.port.streaming
