@@ -5,6 +5,7 @@
 require! {
 	http
 	ws: {Server: WebSocketServer}
+	redis
 	'../../config'
 	'../../utils/sauth-authorize'
 	'../../models/utils/get-app-from-app-key'
@@ -28,7 +29,24 @@ ws-server = new WebSocketServer do
 ws-server.on \connection (socket) ->
 	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
 	
-	socket.on \message (message) ->
-		socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
+	# Load app and user instances
+	get-app-from-app-key app-key .then (app) ->
+		get-user-from-user-key user-key (user) ->
+			
+			# Subscribe stream
+			subscriber = redis.create-client!
+			subscriber.subscribe "misskey:userStream:#{user.id}"
+			
+			subscriber.on \message (, content) ->
+				content = parse-json content
+				if content.type? && content.value?
+					switch content.type
+					| \status, \repost =>
+						# Find status
+						err, status <- Status.find-by-id content.value.id
+						socket.send status.to-object!
+			
+			socket.on \message (message) ->
+				socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
 
 http-server.listen config.port.streaming
