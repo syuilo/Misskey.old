@@ -10,7 +10,7 @@ function init-read-before-statuses-button
 			type: \get
 			data: {
 				'user-id': $ '#status .main > .status.article' .attr \data-user-id
-				'max-cursor': $ '#status .main > .status.article' .attr \data-timeline-cursor
+				'max-cursor': $ \html .attr \data-before-source-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
@@ -20,9 +20,11 @@ function init-read-before-statuses-button
 				..attr \disabled off
 				..attr \title 'これより前の投稿を読む'
 				..find \i .attr \class 'fa fa-chevron-down'
-			$status = $ '<li class="status">' .append $ data
-			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#before-timeline > .statuses' .hide! .slide-down 500ms
+			$status = $ data
+			$ \html .attr \data-before-source-cursor $status.attr \data-cursor
+			$status-item = $ '<li class="status">' .append $status
+			window.STATUS_CORE.set-event $status-item.children '.status.article'
+			$status-item.append-to $ '#before-timeline > .statuses' .hide! .slide-down 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
@@ -43,7 +45,7 @@ function init-read-after-statuses-button
 			type: \get
 			data: {
 				'user-id': $ '#status .main > .status.article' .attr \data-user-id
-				'since-cursor': $ '#status .main > .status.article' .attr \data-timeline-cursor
+				'since-cursor': $ \html .attr \data-after-source-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
@@ -53,9 +55,11 @@ function init-read-after-statuses-button
 				..attr \disabled off
 				..attr \title 'これより後の投稿を読む'
 				..find \i .attr \class 'fa fa-chevron-up'
-			$status = $ '<li class="status">' .append $ data
-			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#after-timeline > .statuses' .hide! .slide-down 500ms
+			$status = $ data
+			$ \html .attr \data-after-source-cursor $status.attr \data-cursor
+			$status-item = $ '<li class="status">' .append $status-item
+			window.STATUS_CORE.set-event $status-item.children '.status.article'
+			$status-item.append-to $ '#after-timeline > .statuses' .hide! .slide-down 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
