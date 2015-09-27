@@ -18,7 +18,7 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 [![Redis](https://img.shields.io/badge/Redis-2.8.19-blue.svg)](http://redis.io)
 [![GraphicsMagick](https://img.shields.io/badge/GraphicsMagick-1.3.20-blue.svg)](http://www.graphicsmagick.org)
 
-### Available commands
+### Commands for development
 * `npm install` - Install npm dependencies
 * `npm run build` - Build
 * `npm test` - Run test
