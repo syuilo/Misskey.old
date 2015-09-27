@@ -498,6 +498,112 @@ textarea {
 							}
 						}
 					}
+
+					> .misskey-menu {
+						display: inline-block;
+						vertical-align: top;
+
+						> .dropdown {
+							display: inline-block;
+							position: relative;
+							overflow: visible;
+							float: right;
+
+							&[data-active='true'] {
+								background: #111111;
+
+								> .dropdown-header {
+								}
+
+								> .dropdown-content {
+									visibility: visible;
+								}
+							}
+
+							> .dropdown-header {
+								cursor: pointer;
+
+								* {
+									cursor: pointer;
+								}
+
+								&:hover {
+									background: rgba(0, 0, 0, 0.1);
+								}
+
+								&:active {
+									background: rgba(0, 0, 0, 0.2);
+								}
+
+								&:after {
+									content: "";
+									display: block;
+									clear: both;
+								}
+							}
+
+							> .dropdown-content {
+								visibility: hidden;
+								display: block;
+								position: absolute;
+								top: auto;
+								left: 0;
+								z-index: 3;
+								width: 270px;
+								margin: 0;
+								padding: 0;
+								background: #111111;
+
+								> ul {
+									margin: 0;
+									padding: 0;
+									list-style: none;
+									font-size: 1em;
+									border-bottom: solid 1px #222;
+
+									&:last-child {
+										border-bottom: none;
+									}
+
+									> li {
+										display: inline-block;
+										width: 100%;
+
+										> a {
+											display: inline-block;
+											z-index: 1;
+											box-sizing: border-box;
+											vertical-align: top;
+											width: 100%;
+											padding: 12px 20px;
+											text-decoration: none;
+											color: rgba(255, 255, 255, 0.7);
+											background-color: #111111;
+											background-image: url("/resources/common/images/arrow-white.svg");
+											background-repeat: no-repeat;
+											background-position: calc(100% - 8px) center;
+											transition: none;
+
+											&:hover {
+												color: #fff;
+												background-color: @themeColor;
+											}
+
+											&:active {
+												color: #fff;
+												background-color: darken(@themeColor, 10%);
+											}
+
+											> i {
+												width: 2em;
+												text-align: center;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 

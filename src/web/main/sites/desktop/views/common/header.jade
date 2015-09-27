@@ -44,6 +44,16 @@ header#misskey-main-header(
 			if login
 				div.left
 					nav
+						div.misskey-menu
+							div.dropdown(data-active='false')
+								div.dropdown-header(role='button')
+									p
+										i.fa.fa-headphones
+								div.dropdown-content
+									ul
+										li: a.ui-waves-effect(href= '/about')
+											i.fa.fa-headphones
+											| About Misskey
 						div.mainNav
 							button(role='button').misskey Misskey
 							ul
