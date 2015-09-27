@@ -10,8 +10,10 @@ require! {
 	'../../utils/sauth-authorize'
 	'../../models/status': Status
 	'../../models/user': User
+	'../../models/notice': Notice
 	'../../models/utils/get-app-from-app-key'
 	'../../models/utils/get-user-from-user-key'
+	'../../models/utils/notice-serialyzer'
 }
 
 console.log 'Streaming API Server loaded'
@@ -54,6 +56,11 @@ ws-server.on \connection (socket) ->
 						# Find status
 						err, status <- Status.find-by-id content.value.id
 						send-event \status-update status.to-object!
+					| \notice =>
+						# Find notice
+						err, notice <- Notice.find-by-id content.value.id
+						notice-serialyzer notice .then (serialized-notice) ->
+							send-event \notice serialized-notice
 			
 			socket.on \close ->
 				subscriber.end!
