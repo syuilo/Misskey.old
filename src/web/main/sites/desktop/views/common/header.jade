@@ -44,6 +44,41 @@ header#misskey-main-header(
 			if login
 				div.left
 					nav
+						div.misskey-menu
+							div.dropdown(data-active='false')
+								div.dropdown-header(role='button')
+									p
+										i.fa.fa-headphones
+								div.dropdown-content
+									ul
+										li: a.ui-waves-effect(href= '/about')
+											i.fa.fa-info-circle
+											| About Misskey
+										li: a.ui-waves-effect(href= '/hekp')
+											i.fa.fa-question-circle
+											| Help
+									ul
+										li: a.ui-waves-effect(href= '/syuilo')
+											i.fa.fa-check-circle
+											| @syuilo
+										li: a.ui-waves-effect(href= '/misskey')
+											i.fa.fa-check-circle
+											| @misskey
+									ul
+										li: a.ui-waves-effect(href= '/about/donate')
+											i.fa.fa-heart
+											| Donate
+									ul
+										li: a.ui-waves-effect(href= 'https://github.com/syuilo/Misskey')
+											i.fa.fa-github
+											| Github repository
+										li: a.ui-waves-effect(href= config.developmentChannelUrl)
+											i.fa.fa-wrench
+											| Development Channel
+										li: a.ui-waves-effect(href= 'http://dev.misskey.xyz')
+											i.fa.fa-terminal
+											| Developers Center
+											
 						div.mainNav
 							button(role='button').misskey Misskey
 							ul

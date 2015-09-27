@@ -146,6 +146,24 @@ $ ->
 		false
 
 	$ \body .css \margin-top "#{$ 'body > #misskey-main-header' .outer-height!}px"
+	
+	# 「Misskey Menu」ドロップダウン
+	$ '#misskey-main-header .misskey-menu .dropdown .dropdown-header' .click ->
+		$dropdown = $ '#misskey-main-header .misskey-menu .dropdown'
+
+		function close
+			$dropdown.attr \data-active \false
+
+		function open
+			$ document .click (e) ->
+				if !$.contains $dropdown[0], e.target
+					close!
+			$dropdown.attr \data-active \true
+
+		if ($dropdown.attr \data-active) == \true
+			close!
+		else
+			open!
 
 	# 「アカウント」ドロップダウン
 	$ '#misskey-main-header .account .dropdown .dropdown-header' .click ->
