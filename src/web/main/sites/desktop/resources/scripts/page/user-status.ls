@@ -18,7 +18,7 @@ function init-read-before-statuses-button
 			#$button.remove!
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#before-timeline > .statuses'
+			$status.append-to $ '#before-timeline > .statuses' .hide! .show 1000ms
 		.fail (data) ->
 			$button = $ @
 				..attr \disabled off
@@ -47,7 +47,7 @@ function init-read-after-statuses-button
 			#$button.remove!
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#after-timeline > .statuses'
+			$status.append-to $ '#after-timeline > .statuses' .hide! .show 1000ms
 		.fail (data) ->
 			$button = $ @
 				..attr \disabled off
