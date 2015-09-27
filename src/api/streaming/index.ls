@@ -31,6 +31,13 @@ ws-server = new WebSocketServer do
 ws-server.on \connection (socket) ->
 	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
 	
+	function send-event(type, data)
+		obj = {
+			event: type
+			data: JSON.stringify data
+		}
+		socket.send obj
+	
 	# Load app and user instances
 	get-app-from-app-key app-key .then (app) ->
 		get-user-from-user-key user-key .then (user) ->
@@ -46,7 +53,7 @@ ws-server.on \connection (socket) ->
 					| \status, \repost =>
 						# Find status
 						err, status <- Status.find-by-id content.value.id
-						socket.send JSON.stringify status.to-object!
+						send-event \status-update status.to-object!
 			
 			socket.on \close ->
 				subscriber.end!
