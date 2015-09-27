@@ -4,7 +4,7 @@
 @blurredWallpaperUrl: <%blurredWallpaperUrl%>;
 
 @header-background-color: #22252a;
-@header-foreground-color: rgba(255, 255, 255, 0.7);
+@header-foreground-color: #abaeb5;
 
 ::selection {
 	background: @themeColor;
@@ -529,16 +529,34 @@ textarea {
 
 								&:hover {
 									background: rgba(0, 0, 0, 0.1);
+
+									> p > i {
+										color: #fff;
+									}
 								}
 
 								&:active {
 									background: rgba(0, 0, 0, 0.2);
+
+									> p > i {
+										color: #fff;
+									}
 								}
 
 								&:after {
 									content: "";
 									display: block;
 									clear: both;
+								}
+
+								> p {
+									display: block;
+									margin: 0 16px;
+									line-height: 48px;
+
+									> i {
+										color: @header-foreground-color;
+									}
 								}
 							}
 
