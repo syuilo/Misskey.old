@@ -20,7 +20,7 @@ function init-read-before-statuses-button
 			window.STATUS_CORE.set-event $status.children '.status.article'
 			$status.append-to $ '#before-timeline > .statuses' .hide! .show 1000ms
 		.fail (data) ->
-			$button = $ @
+			$button
 				..attr \disabled off
 				..attr \title 'これより前の投稿を読む'
 				..find \i .attr \class 'fa fa-angle-down'
@@ -49,7 +49,7 @@ function init-read-after-statuses-button
 			window.STATUS_CORE.set-event $status.children '.status.article'
 			$status.append-to $ '#after-timeline > .statuses' .hide! .show 1000ms
 		.fail (data) ->
-			$button = $ @
+			$button
 				..attr \disabled off
 				..attr \title 'これより後の投稿を読む'
 				..find \i .attr \class 'fa fa-angle-up'
