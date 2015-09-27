@@ -8,6 +8,8 @@ require! {
 	redis
 	'../../config'
 	'../../utils/sauth-authorize'
+	'../../models/status': Status
+	'../../models/user': User
 	'../../models/utils/get-app-from-app-key'
 	'../../models/utils/get-user-from-user-key'
 }
