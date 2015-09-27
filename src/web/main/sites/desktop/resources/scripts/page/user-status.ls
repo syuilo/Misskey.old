@@ -6,26 +6,30 @@ function init-read-before-statuses-button
 			..attr \title '読み込み中...'
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-		$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
+		$.ajax config.api-url + '/web/status/user-timeline-detail-one-html' {
 			type: \get
 			data: {
 				'user-id': $ '#status .main > .status.article' .attr \data-user-id
-				'max-cursor': $ '#status .main > .status.article' .attr \data-timeline-cursor
+				'max-cursor': $ \html .attr \data-before-source-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$button.remove!
-			$statuses = $ data
-			$statuses.each ->
-				$status = $ '<li class="status">' .append $ @
-				window.STATUS_CORE.set-event $status.children '.status.article'
-				$status.append-to $ '#before-timeline > .statuses'
-		.fail (data) ->
-			$button = $ @
+			#$button.remove!
+			$button
 				..attr \disabled off
 				..attr \title 'これより前の投稿を読む'
-				..find \i .attr \class 'fa fa-angle-down'
+				..find \i .attr \class 'fa fa-chevron-down'
+			$status = $ data
+			$ \html .attr \data-before-source-cursor $status.attr \data-cursor
+			$status-item = $ '<li class="status">' .append $status
+			window.STATUS_CORE.set-event $status-item.children '.status.article'
+			$status-item.append-to $ '#before-timeline > .statuses' .hide! .slide-down 500ms
+		.fail (data) ->
+			$button
+				..attr \disabled off
+				..attr \title 'これより前の投稿を読む'
+				..find \i .attr \class 'fa fa-chevron-down'
 
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
@@ -37,26 +41,30 @@ function init-read-after-statuses-button
 			..attr \title '読み込み中...'
 			..find \i .attr \class 'fa fa-spinner fa-pulse'
 
-		$.ajax config.api-url + '/web/status/user-timeline-detailhtml' {
+		$.ajax config.api-url + '/web/status/user-timeline-detail-one-html' {
 			type: \get
 			data: {
 				'user-id': $ '#status .main > .status.article' .attr \data-user-id
-				'since-cursor': $ '#status .main > .status.article' .attr \data-timeline-cursor
+				'since-cursor': $ \html .attr \data-after-source-cursor
 			}
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$button.remove!
-			$statuses = $ data
-			$statuses.each ->
-				$status = $ '<li class="status">' .append $ @
-				window.STATUS_CORE.set-event $status.children '.status.article'
-				$status.append-to $ '#after-timeline > .statuses'
-		.fail (data) ->
-			$button = $ @
+			#$button.remove!
+			$button
 				..attr \disabled off
 				..attr \title 'これより後の投稿を読む'
-				..find \i .attr \class 'fa fa-angle-up'
+				..find \i .attr \class 'fa fa-chevron-up'
+			$status = $ data
+			$ \html .attr \data-after-source-cursor $status.attr \data-cursor
+			$status-item = $ '<li class="status">' .append $status
+			window.STATUS_CORE.set-event $status-item.children '.status.article'
+			$status-item.prepend-to $ '#after-timeline > .statuses' .hide! .slide-down 500ms
+		.fail (data) ->
+			$button
+				..attr \disabled off
+				..attr \title 'これより後の投稿を読む'
+				..find \i .attr \class 'fa fa-chevron-up'
 
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
