@@ -16,6 +16,10 @@ function init-read-before-statuses-button
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			#$button.remove!
+			$button
+				..attr \disabled off
+				..attr \title 'これより前の投稿を読む'
+				..find \i .attr \class 'fa fa-angle-down'
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
 			$status.append-to $ '#before-timeline > .statuses' .hide! .show 1000ms
@@ -45,6 +49,10 @@ function init-read-after-statuses-button
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
 			#$button.remove!
+			$button
+				..attr \disabled off
+				..attr \title 'これより後の投稿を読む'
+				..find \i .attr \class 'fa fa-angle-up'
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
 			$status.append-to $ '#after-timeline > .statuses' .hide! .show 1000ms
