@@ -31,7 +31,7 @@ ws-server.on \connection (socket) ->
 	
 	# Load app and user instances
 	get-app-from-app-key app-key .then (app) ->
-		get-user-from-user-key user-key (user) ->
+		get-user-from-user-key user-key .then (user) ->
 			
 			# Subscribe stream
 			subscriber = redis.create-client!
