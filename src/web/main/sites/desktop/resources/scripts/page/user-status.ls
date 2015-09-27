@@ -59,7 +59,7 @@ function init-read-after-statuses-button
 			$ \html .attr \data-after-source-cursor $status.attr \data-cursor
 			$status-item = $ '<li class="status">' .append $status
 			window.STATUS_CORE.set-event $status-item.children '.status.article'
-			$status-item.append-to $ '#after-timeline > .statuses' .hide! .slide-down 500ms
+			$status-item.prepend-to $ '#after-timeline > .statuses' .hide! .slide-down 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
