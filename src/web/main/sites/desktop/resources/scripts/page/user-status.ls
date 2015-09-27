@@ -22,7 +22,7 @@ function init-read-before-statuses-button
 				..find \i .attr \class 'fa fa-chevron-down'
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#before-timeline > .statuses' .hide! .show 500ms
+			$status.append-to $ '#before-timeline > .statuses' .hide! .slide-down 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
@@ -55,7 +55,7 @@ function init-read-after-statuses-button
 				..find \i .attr \class 'fa fa-chevron-up'
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#after-timeline > .statuses' .hide! .show 500ms
+			$status.append-to $ '#after-timeline > .statuses' .hide! .slide-down 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
