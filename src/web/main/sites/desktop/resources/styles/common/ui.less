@@ -672,6 +672,12 @@ textarea {
 						&[data-active='true'] {
 							background: #111111;
 						}
+
+						&::-webkit-input-placeholder,
+						&:-ms-input-placeholder,
+						&:-moz-placeholder {
+							color: @header-foreground-color;
+						}
 					}
 
 					> .result {
