@@ -50,5 +50,9 @@ ws-server.on \connection (socket) ->
 			
 			socket.on \message (message) ->
 				socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
+	
+			socket.on \close ->
+				subscriber.end!
+
 
 http-server.listen config.port.streaming
