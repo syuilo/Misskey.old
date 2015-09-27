@@ -19,15 +19,15 @@ function init-read-before-statuses-button
 			$button
 				..attr \disabled off
 				..attr \title 'これより前の投稿を読む'
-				..find \i .attr \class 'fa fa-angle-down'
+				..find \i .attr \class 'fa fa-chevron-down'
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#before-timeline > .statuses' .hide! .show 1000ms
+			$status.append-to $ '#before-timeline > .statuses' .hide! .show 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
 				..attr \title 'これより前の投稿を読む'
-				..find \i .attr \class 'fa fa-angle-down'
+				..find \i .attr \class 'fa fa-chevron-down'
 
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
@@ -52,15 +52,15 @@ function init-read-after-statuses-button
 			$button
 				..attr \disabled off
 				..attr \title 'これより後の投稿を読む'
-				..find \i .attr \class 'fa fa-angle-up'
+				..find \i .attr \class 'fa fa-chevron-up'
 			$status = $ '<li class="status">' .append $ data
 			window.STATUS_CORE.set-event $status.children '.status.article'
-			$status.append-to $ '#after-timeline > .statuses' .hide! .show 1000ms
+			$status.append-to $ '#after-timeline > .statuses' .hide! .show 500ms
 		.fail (data) ->
 			$button
 				..attr \disabled off
 				..attr \title 'これより後の投稿を読む'
-				..find \i .attr \class 'fa fa-angle-up'
+				..find \i .attr \class 'fa fa-chevron-up'
 
 			window.display-message '読み込みに失敗しました。再度お試しください。'
 
