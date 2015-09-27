@@ -34,9 +34,9 @@ ws-server.on \connection (socket) ->
 	function send-event(type, data)
 		obj = {
 			event: type
-			data: JSON.stringify data
+			data: data
 		}
-		socket.send obj
+		socket.send JSON.stringify obj
 	
 	# Load app and user instances
 	get-app-from-app-key app-key .then (app) ->
