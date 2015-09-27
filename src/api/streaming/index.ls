@@ -7,6 +7,8 @@ require! {
 	ws: {Server: WebSocketServer}
 	'../../config'
 	'../../utils/sauth-authorize'
+	'../../models/utils/get-app-from-app-key'
+	'../../models/utils/get-user-from-user-key'
 }
 
 console.log 'Streaming API Server loaded'
@@ -25,6 +27,7 @@ ws-server = new WebSocketServer do
 
 ws-server.on \connection (socket) ->
 	{'sauth-app-key': app-key, 'sauth-user-key': user-key} = socket.upgrade-req.headers
+	
 	socket.on \message (message) ->
 		socket.send "app-key: #{app-key}, user-key: #{user-key}, message: #{message}" # echo
 
