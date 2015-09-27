@@ -75,4 +75,4 @@ module.exports = (io, session-store) -> io.of '/streaming/web/home' .on \connect
 		# Disconnect event
 		socket.on \disconnect ->
 			# Disconnect redis
-			subscriber.quit!
+			subscriber.end!
