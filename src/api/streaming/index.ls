@@ -61,6 +61,14 @@ ws-server.on \connection (socket) ->
 						err, notice <- Notice.find-by-id content.value.id
 						notice-serialyzer notice .then (serialized-notice) ->
 							send-event \notice serialized-notice
+					| \talk-message =>
+						# Find sender
+						err, user <- User.find-by-id content.value.user-id
+						send-event \talk-message {
+							id: content.value.id
+							text: content.value.text
+							user: user.to-object!
+						}
 			
 			socket.on \close ->
 				subscriber.end!
