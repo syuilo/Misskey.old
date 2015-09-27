@@ -5,7 +5,6 @@ require! {
 	'../status': Status
 	'../bbs-thread': BBSThread
 	'../bbs-post': BBSPost
-	'../config'
 }
 
 module.exports = (notice) -> new Promise (resolve, reject) ->
