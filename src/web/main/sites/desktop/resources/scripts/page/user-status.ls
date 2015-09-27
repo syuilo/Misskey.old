@@ -15,12 +15,10 @@ function init-read-before-statuses-button
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$button.remove!
-			$statuses = $ data
-			$statuses.each ->
-				$status = $ '<li class="status">' .append $ @
-				window.STATUS_CORE.set-event $status.children '.status.article'
-				$status.append-to $ '#before-timeline > .statuses'
+			#$button.remove!
+			$status = $ '<li class="status">' .append $ data
+			window.STATUS_CORE.set-event $status.children '.status.article'
+			$status.append-to $ '#before-timeline > .statuses'
 		.fail (data) ->
 			$button = $ @
 				..attr \disabled off
@@ -46,12 +44,10 @@ function init-read-after-statuses-button
 			data-type: \json
 			xhr-fields: {+with-credentials}}
 		.done (data) ->
-			$button.remove!
-			$statuses = $ data
-			$statuses.each ->
-				$status = $ '<li class="status">' .append $ @
-				window.STATUS_CORE.set-event $status.children '.status.article'
-				$status.append-to $ '#after-timeline > .statuses'
+			#$button.remove!
+			$status = $ '<li class="status">' .append $ data
+			window.STATUS_CORE.set-event $status.children '.status.article'
+			$status.append-to $ '#after-timeline > .statuses'
 		.fail (data) ->
 			$button = $ @
 				..attr \disabled off
