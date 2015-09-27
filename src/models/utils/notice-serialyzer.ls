@@ -2,9 +2,9 @@ require! {
 	'../notice': Notice
 	'../application': Application
 	'../user': User
-	'../models/status': Status
-	'../models/bbs-thread': BBSThread
-	'../models/bbs-post': BBSPost
+	'../status': Status
+	'../bbs-thread': BBSThread
+	'../bbs-post': BBSPost
 	'../config'
 }
 
