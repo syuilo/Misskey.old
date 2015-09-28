@@ -68,7 +68,7 @@
     - GETパラメータの`pin-code`にPINコードがセットされる
    - Webアプリケーションでない場合はPINコードが表示される
     - ユーザーにPINコードをアプリケーションに入力してもらう
-  - ユーザーがアカウントげのアクセスを拒否するとSession Keyは無効になる
+  - ユーザーがアカウントのアクセスを拒否するとSession Keyは無効になる
 3. User Keyの取得
  - `https://api.misskey.xyz/sauth/get-user-key`にGETリクエスト
   - HTTPヘッダーの`sauth-app-key`にApp Keyをセット
