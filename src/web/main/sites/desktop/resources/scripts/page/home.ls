@@ -24,7 +24,7 @@ function post
 		$.remove-cookie \post-autosave {path: '/'}
 		window.display-message '投稿しました！'
 		$ {saturate: 200} .animate {saturate: 100} {
-			duration: 500ms
+			duration: 1000ms
 			easing: \swing
 			step: ->
 				$ \html .css {
