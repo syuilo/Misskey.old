@@ -80,7 +80,7 @@
 * 各種APIの指定されたエンドポイントに指定されたHTTPメソッドでリクエスト
 * 認証が必要なAPIにはHTTPヘッダに以下の情報をセット
   * `sauth-app-key` - App Key
-  * `sauth-app-key` - User Key
+  * `sauth-user-key` - User Key
 * エンドポイントの最後に拡張子をつけるとレスポンス形式を指定できる
   * デフォルトはJSON
   * 対応している拡張子は.json(JSON)と.yaml(YAML)の２つ
