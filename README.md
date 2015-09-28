@@ -10,7 +10,8 @@
 It runs on Node.js.
 
 ## Contribution
-We appreciate your contribution. See [CONTRIBUTING.md](CONTRIBUTING.md).
+We appreciate your contribution.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
 
 ## Related Projects
@@ -18,7 +19,7 @@ If you have any questions, please feel free to ask on [Issue](https://github.com
 
 ## API
 Misskey provides web-based API.
-See [Documentation](doc/api-usage.md) for more information.
+See [API Usage](doc/api-usage.md).
 
 ## Special thanks
 古谷向日葵, 大室櫻子 (2014 June ~)
