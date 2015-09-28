@@ -28,11 +28,11 @@ function post
 			easing: \swing
 			step: ->
 				$ \html .css {
-					'-webkit-filter': "saturate(#{@.saturate}px)"
-					'-moz-filter': "saturate(#{@.saturate}px)"
-					'-o-filter': "saturate(#{@.saturate}px)"
-					'-ms-filter': "saturate(#{@.saturate}px)"
-					'filter': "saturate(#{@.saturate}px)"
+					'-webkit-filter': "saturate(#{@.saturate}%)"
+					'-moz-filter': "saturate(#{@.saturate}%)"
+					'-o-filter': "saturate(#{@.saturate}%)"
+					'-ms-filter': "saturate(#{@.saturate}%)"
+					'filter': "saturate(#{@.saturate}%)"
 				}
 		}
 	.fail (data) ->
