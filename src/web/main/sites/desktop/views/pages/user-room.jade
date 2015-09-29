@@ -7,10 +7,10 @@ html(lang='ja', dir='ltr')
 		title= user.name + 'さん'
 		link(rel='stylesheet', href='/resources/styles/page/user-room.css?user=' + user.screenName)
 		script(src='/resources/common/scripts/lib/three.min.js')
-		script(src='/resources/scripts/page/user-room.js')
 	
 	body
 		include ../common/header
 		
-		main(role='main')
-			canvas#canvas
+		main#main(role='main')
+		
+		script(src='/resources/scripts/page/user-room.js')

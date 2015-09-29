@@ -3,7 +3,7 @@ scene = new THREE.Scene!
 camera = new THREE.PerspectiveCamera 75 (window.inner-width / window.inner-height), 0.1 1000
 renderer = new THREE.WebGLRenderer!
 renderer.set-size window.inner-width, window.inner-height
-document.body.append-child renderer.dom-element
+document.get-element-by-id.append-child renderer.dom-element
 
 # test object(s)
 cube-geometry = new THREE.CubeGeometry 1 1 1
