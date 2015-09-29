@@ -73,7 +73,11 @@ module.exports = (app) ->
 	# Common
 	app.get /^\/resources\/common\/.*/ (req, res, next) ->
 		resource-path = path.resolve "#__dirname/#{req.path}"
-		res.send-file resource-path
+		if path.exists-sync resource-path
+			res.send-file resource-path
+		else
+			res.status 404
+			res.send 'not found'
 
 	# General
 	app.get /^\/resources\/.*/ (req, res, next) ->
