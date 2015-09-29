@@ -10,13 +10,19 @@ document.get-element-by-id \main .append-child renderer.dom-element
 scene.add new THREE.AxisHelper 1000
 scene.add new THREE.GridHelper 10 1
 
-# DEBUG OBJECT
+# DEBUG OBJECTS
 cube-geometry = new THREE.CubeGeometry 1 1 1
 cube-material = new THREE.MeshPhongMaterial {color: 0xff2200}
 cube = new THREE.Mesh cube-geometry, cube-material
 cube.position.y = 2
 cube.cast-shadow = on
 scene.add cube
+
+loader = new THREE.JSONLoader!
+loader.load '/resources/common/3d-models/suzanne.json' (geometry) ->
+	mesh = new THREE.Mesh geometry, new THREE.MeshFaceMaterial
+	geometry.materials[0].ambient = geometry.materials[0].color
+	scene.add mesh
 
 # Floor
 floor-geometry = new THREE.CubeGeometry 10 1 10
