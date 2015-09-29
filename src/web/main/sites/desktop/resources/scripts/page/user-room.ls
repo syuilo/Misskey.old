@@ -26,16 +26,20 @@ loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
 	object.position.set -2.2 0 -1.8
 	scene.add object
+loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/chair/chair.json' (object) ->
 	object.position.set -1.8 0 -1.8
 	object.rotation.y = - Math.PI / 2
 	scene.add object
+loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/monitor/monitor.json' (object) ->
 	object.position.set -2.2 0.7 -1.8
 	scene.add object
+loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/plant/plant.json' (object) ->
 	object.position.set -2.3 0.7 -1.4
 	scene.add object
+loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
 	object.position.set -2 0.9 -2.4
 	object.rotation.y = Math.PI / 2
