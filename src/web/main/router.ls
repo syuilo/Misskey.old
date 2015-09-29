@@ -201,6 +201,10 @@ module.exports = (app) ->
 	app.get '/:userSn/talk' (req, res) -> CallController req, res, \user-talk do
 		view: \normal
 		user: req.root-user
+	
+	# User room
+	app.get '/:userSn/room' (req, res) -> CallController req, res, \user-room do
+		user: req.root-user
 
 	# staus detail page
 	app.get '/:userSn/status/:statusId' (req, res) -> CallController req, res, \status do
