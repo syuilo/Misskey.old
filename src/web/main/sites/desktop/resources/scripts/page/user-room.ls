@@ -9,11 +9,11 @@ document.get-element-by-id \main .append-child renderer.dom-element
 scene.add new THREE.AxisHelper 1000
 scene.add new THREE.GridHelper 10 1
 
-# test object(s)
-cube-geometry = new THREE.CubeGeometry 1 1 1
-cube-material = new THREE.MeshBasicMaterial {color: 0x00ff00}
-cube = new THREE.Mesh cube-geometry, cube-material
-scene.add cube
+# Floor
+floor-geometry = new THREE.CubeGeometry 10 1 10
+floor-material = new THREE.MeshBasicMaterial {color: 0xdcc38d}
+floor = new THREE.Mesh floor-geometry, floor-material
+scene.add floor
 
 # Camera setting
 camera.position.z = 5
