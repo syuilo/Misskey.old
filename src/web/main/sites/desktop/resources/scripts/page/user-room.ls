@@ -21,6 +21,16 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	mesh.cast-shadow = on
 	scene.add mesh
 
+loader.load '/resources/common/3d-models/desk.json' (geometry, materials) ->
+	geo = geometry
+	mat = new THREE.MeshFaceMaterial materials
+	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
+	mesh = new THREE.Mesh geo, mat
+	mesh.position.set 0 0 0
+	mesh.scale.set 1 1 1
+	mesh.cast-shadow = on
+	scene.add mesh
+
 # Floor
 floor-geometry = new THREE.CubeGeometry 10 1 10
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
