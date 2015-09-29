@@ -42,13 +42,13 @@ floor.position.set 0 -0.5 0
 scene.add floor
 
 # Walls
-wall1-geometry = new THREE.CubeGeometry 0.5 3 5
+wall1-geometry = new THREE.CubeGeometry 0.5 2 5
 wall1-material = new THREE.MeshPhongMaterial {color: 0xFA861B}
 wall1 = new THREE.Mesh wall1-geometry, wall1-material
 wall1.receive-shadow = on
 wall1.position.set -3 1.5 0
 scene.add wall1
-wall2-geometry = new THREE.CubeGeometry 5 3 0.5
+wall2-geometry = new THREE.CubeGeometry 5 2 0.5
 wall2-material = new THREE.MeshPhongMaterial {color: 0xFA861B}
 wall2 = new THREE.Mesh wall2-geometry, wall2-material
 wall2.receive-shadow = on
