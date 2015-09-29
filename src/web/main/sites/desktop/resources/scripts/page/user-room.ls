@@ -22,18 +22,12 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	scene.add mesh
 
 console.log 'WORK PLEASE'
-loader.load '/resources/common/3d-models/desk.json' (geometry, materials) ->
+loader = new THREE.ObjectLoader!
+loader.load '/resources/common/3d-models/desk.json' (object ) ->
 	console.log 'DESK LOADED'
-	console.log geometry
-	console.log materials
-	geo = geometry
-	mat = new THREE.MeshFaceMaterial materials
-	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
-	mesh = new THREE.Mesh geo, mat
-	mesh.position.set 0 0 0
-	mesh.scale.set 1 1 1
-	mesh.cast-shadow = on
-	scene.add mesh
+	console.log object
+
+	scene.add object
 
 # Floor
 floor-geometry = new THREE.CubeGeometry 10 1 10
