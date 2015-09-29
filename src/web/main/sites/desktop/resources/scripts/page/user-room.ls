@@ -52,6 +52,11 @@ loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
 	object.position.set -2 0.9 -2.495
 	object.rotation.y = Math.PI / 2
 	scene.add object
+loader = new THREE.ObjectLoader!
+loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
+	object.position.set 0 0 -2
+	object.rotation.y = Math.PI / 2
+	scene.add object
 
 # Floor
 floor-geometry = new THREE.CubeGeometry 5 1 5
