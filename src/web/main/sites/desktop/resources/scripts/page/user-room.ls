@@ -22,12 +22,13 @@ scene.add cube
 floor-geometry = new THREE.CubeGeometry 10 1 10
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
-floor.receive-shadow  = on
+floor.receive-shadow = on
 scene.add floor
 
 # Sun
 sun-light = new THREE.DirectionalLight 0xffffff 1
 sun-light.position.set 0, 10, 0
+sun-light.cast-shadow = on
 scene.add sun-light
 
 # Room light (for shadow)
@@ -36,9 +37,9 @@ room-light.position.set 0, 10, 0
 room-light.cast-shadow = on
 room-light.shadow-map-width = 1024
 room-light.shadow-map-height = 1024
-room-light.shadow-camera-near = 500
-room-light.shadow-camera-far = 4000
-room-light.shadow-camera-fov = 30
+room-light.shadow-camera-near = 50
+room-light.shadow-camera-far = 1000
+room-light.shadow-camera-fov = 90
 room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
 scene.add room-light
