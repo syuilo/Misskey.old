@@ -23,9 +23,10 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/desk.json' (object) ->
+	object.position.set -2 0 -2
 	scene.add object
 loader.load '/resources/common/3d-models/monitor.json' (object) ->
-	object.position.set 0 1 0
+	object.position.set -2 0.5 -2
 	scene.add object
 
 # Floor
