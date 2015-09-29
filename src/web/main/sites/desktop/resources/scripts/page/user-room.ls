@@ -4,7 +4,7 @@ scene = new THREE.Scene!
 width = window.inner-width
 height = window.inner-height
 scale = 1
-camera = new THREE.OrthographicCamera -(width / 2 * scale), (width / 2 * scale), (height / 2 * scale), -(height / 2 * scale)
+camera = new THREE.OrthographicCamera -(width / 2 * scale), (width / 2 * scale), (height / 2 * scale), -(height / 2 * scale), 0.1, 100
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size window.inner-width, window.inner-height
 renderer.set-clear-color new THREE.Color 0x8ebddb
@@ -108,9 +108,9 @@ room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
 # Camera setting
-camera.position.x = 3
-camera.position.y = 3
-camera.position.z = 3
+camera.position.x = 2
+camera.position.y = 2
+camera.position.z = 2
 camera.look-at new THREE.Vector3 0, 0, 0
 
 # Controller setting
