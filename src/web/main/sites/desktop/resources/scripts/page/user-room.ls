@@ -16,7 +16,7 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	mat = new THREE.MeshFaceMaterial materials
 	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
 	mesh = new THREE.Mesh geo, mat
-	mesh.position.set 0 1 0
+	mesh.position.set 0 0.5 0
 	mesh.scale.set 1 1 1
 	mesh.cast-shadow = on
 	scene.add mesh
