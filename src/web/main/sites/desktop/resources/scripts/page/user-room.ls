@@ -36,8 +36,9 @@ loader.load '/resources/common/3d-models/monitor.json' (object) ->
 loader.load '/resources/common/3d-models/plant.json' (object) ->
 	object.position.set -2.3 0.7 -1.4
 	scene.add object
-loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
-	object.position.set -2 0.8 -2.2
+loader.load '/resources/common/3d-models/-corkboard/corkboard.json' (object) ->
+	object.position.set -2 0.9 -2.4
+	object.rotation.y = Math.PI / 2
 	scene.add object
 
 # Floor
