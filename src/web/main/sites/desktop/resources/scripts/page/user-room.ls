@@ -14,6 +14,7 @@ cube-geometry = new THREE.CubeGeometry 1 1 1
 cube-material = new THREE.MeshPhongMaterial {color: 0xff2200}
 cube = new THREE.Mesh cube-geometry, cube-material
 cube.position.y = 2
+cube.cast-shadow = on
 scene.add cube
 
 # Floor
