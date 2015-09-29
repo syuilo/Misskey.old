@@ -16,7 +16,7 @@ floor = new THREE.Mesh floor-geometry, floor-material
 scene.add floor
 
 # Camera setting
-camera.position.z = 5
+camera.position.z = 20
 
 # Controller setting
 controls = new THREE.OrbitControls camera, renderer.dom-element
