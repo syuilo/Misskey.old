@@ -24,7 +24,7 @@ loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) -
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
 	object.position.set -2.2 0 -1.9
-	object.rotation.y = Math.PI / 4
+	object.rotation.y = Math.PI
 	scene.add object
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/chair/chair.json' (object) ->
