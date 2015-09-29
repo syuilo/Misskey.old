@@ -3,7 +3,7 @@ scene = new THREE.Scene!
 camera = new THREE.PerspectiveCamera 75 (window.inner-width / window.inner-height), 0.1 1000
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size window.inner-width, window.inner-height
-renderer.shadow-map-enabled = on
+renderer.shadow-map.enabled = on
 document.get-element-by-id \main .append-child renderer.dom-element
 
 # DEBUG GUIDE
