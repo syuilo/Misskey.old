@@ -39,6 +39,7 @@ room-light.shadow-camera-near = 500
 room-light.shadow-camera-far = 4000
 room-light.shadow-camera-fov = 30
 room-light.only-shadow = on
+room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
 # Camera setting
