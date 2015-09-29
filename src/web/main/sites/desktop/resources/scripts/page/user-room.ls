@@ -9,6 +9,13 @@ document.get-element-by-id \main .append-child renderer.dom-element
 scene.add new THREE.AxisHelper 1000
 scene.add new THREE.GridHelper 10 1
 
+# DEBUG OBJECT
+cube-geometry = new THREE.CubeGeometry 1 1 1
+cube-material = new THREE.MeshBasicMaterial {color: 0xff2200}
+cube = new THREE.Mesh cube-geometry, cube-material
+cube.position.y = 2
+scene.add cube
+
 # Floor
 floor-geometry = new THREE.CubeGeometry 10 1 10
 floor-material = new THREE.MeshBasicMaterial {color: 0xdcc38d}
@@ -16,7 +23,7 @@ floor = new THREE.Mesh floor-geometry, floor-material
 scene.add floor
 
 # Room light
-room-light = new THREE.DirectionalLight '#ffffff', 1
+room-light = new THREE.DirectionalLight 0xffffff 1
 room-light.position.set 0, 10, 0
 scene.add room-light
 
