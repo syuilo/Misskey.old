@@ -15,7 +15,6 @@ loader = new THREE.JSONLoader!
 loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
 	geo = geometry
 	mat = new THREE.MeshFaceMaterial materials
-	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
 	mesh = new THREE.Mesh geo, mat
 	mesh.position.set 0 0 0
 	mesh.scale.set 1 1 1
@@ -24,24 +23,32 @@ loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) -
 
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
-	object.position.set -2.2 0 -1.8
+	object.position.set -2.2 0 -1.9
 	scene.add object
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/chair/chair.json' (object) ->
-	object.position.set -1.8 0 -1.8
+	object.position.set -1.8 0 -1.9
 	object.rotation.y = - Math.PI / 2
 	scene.add object
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/monitor/monitor.json' (object) ->
-	object.position.set -2.2 0.7 -1.8
+	object.position.set -2.2 0.7 -1.9
 	scene.add object
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/plant/plant.json' (object) ->
-	object.position.set -2.3 0.7 -1.4
+	object.position.set -2.3 0.7 -1.5
 	scene.add object
+loader = new THREE.JSONLoader!
+loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
+	geo = geometry
+	mat = new THREE.MeshFaceMaterial materials
+	mesh = new THREE.Mesh geo, mat
+	mesh.position.set -2.3 0.7 -2.2
+	mesh.rotation.y = - Math.PI / 8
+	scene.add mesh
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
-	object.position.set -2 0.9 -2.49
+	object.position.set -2 0.9 -2.495
 	object.rotation.y = Math.PI / 2
 	scene.add object
 
