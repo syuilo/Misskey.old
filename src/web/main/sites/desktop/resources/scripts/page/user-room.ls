@@ -30,7 +30,7 @@ loader.load '/resources/common/3d-models/desk.json' (object ) ->
 	scene.add object
 
 # Floor
-floor-geometry = new THREE.CubeGeometry 10 1 10
+floor-geometry = new THREE.CubeGeometry 5 1 5
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
 floor.receive-shadow = on
@@ -56,9 +56,9 @@ room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
 # Camera setting
-camera.position.x = 10
+camera.position.x = 5
 camera.position.y = 10
-camera.position.z = 10
+camera.position.z = 5
 camera.look-at new THREE.Vector3 0, 0, 0
 
 # Controller setting
