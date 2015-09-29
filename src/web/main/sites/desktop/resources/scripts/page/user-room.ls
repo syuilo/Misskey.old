@@ -22,6 +22,8 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	scene.add mesh
 
 loader.load '/resources/common/3d-models/desk.json' (geometry, materials) ->
+	console.log geometry
+	console.log materials
 	geo = geometry
 	mat = new THREE.MeshFaceMaterial materials
 	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
