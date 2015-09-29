@@ -24,7 +24,7 @@ loader.load '/resources/common/3d-models/suzanne.json' (geometry, materials) ->
 	mat = new THREE.MeshFaceMaterial materials
 	mesh = new THREE.Mesh geo, mat
 	mesh.position.set -1 1 0
-	mesh.scale.set 100, 100, 100
+	mesh.scale.set 100 100 100
 	mesh.cast-shadow = on
 	scene.add mesh
 
