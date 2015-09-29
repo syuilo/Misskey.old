@@ -14,7 +14,7 @@
         "colorSpecular": [0.5,0.5,0.5],
         "DbgName": "Material",
         "colorAmbient": [0.64,0.64,0.64],
-        "mapDiffuse": "milk.psd",
+        "mapDiffuse": "milk.png",
         "opacity": 1,
         "depthWrite": true,
         "mapDiffuseAnisotropy": 1,
