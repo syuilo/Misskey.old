@@ -36,7 +36,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 				else
 					update buffer, \jpg
 	else
-		res.api-error 400 'image parameter is required :('
+		res.api-error 400 'Not attached image'
 
 	function update(image, img-type)
 		register-image user, \user-icon, "#{user.id}.#{img-type}", img-type, image .then (path) ->
