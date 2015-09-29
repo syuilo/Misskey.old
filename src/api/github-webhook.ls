@@ -67,6 +67,7 @@ module.exports = (app) ->
 		handler.on \issue_comment (event) ->
 			issue = event.payload.issue
 			comment = event.payload.comment
+			comment.body = comment.body.replace /@/g,\@.
 			text = switch (event.payload.action)
 				| \created => "Issue「#{issue.title}」にコメント:#{comment.user.login}「#{comment.body}」\n#{comment.html_url}"
 			create-status null noticer, text .then!
