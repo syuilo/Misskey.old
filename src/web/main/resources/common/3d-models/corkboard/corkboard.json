@@ -97,7 +97,7 @@
         "type": "Object"
     },
     "textures": [{
-        "uuid": "43DB543A-574B-3DF7-A5AD-17757E7D783D",
+        "uuid": "43DB543A-574B-3DF7-A5AD-17757E7D783E",
         "image": "19B3BF6B-1019-384D-BFBE-051A08BEB732",
         "wrap": [1000,1000],
         "minFilter": 1008,
@@ -191,7 +191,7 @@
         "depthWrite": true
     },{
         "uuid": "42D10136-759F-381E-A8BB-C56E1F955887",
-        "map": "43DB543A-574B-3DF7-A5AD-17757E7D783D",
+        "map": "43DB543A-574B-3DF7-A5AD-17757E7D783E",
         "emissive": 0,
         "type": "MeshLambertMaterial",
         "depthTest": true,
