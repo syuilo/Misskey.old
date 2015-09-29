@@ -40,7 +40,7 @@ room-light.shadow-map-height = 1024
 room-light.shadow-camera-near = 50
 room-light.shadow-camera-far = 1000
 room-light.shadow-camera-fov = 90
-room-light.only-shadow = on
+#room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
