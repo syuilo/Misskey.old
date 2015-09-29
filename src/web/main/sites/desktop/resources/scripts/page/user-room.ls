@@ -36,6 +36,9 @@ loader.load '/resources/common/3d-models/monitor.json' (object) ->
 loader.load '/resources/common/3d-models/plant.json' (object) ->
 	object.position.set -2.3 0.7 -1.4
 	scene.add object
+loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
+	object.position.set -2 0.8 -2.2
+	scene.add object
 
 # Floor
 floor-geometry = new THREE.CubeGeometry 5 1 5
