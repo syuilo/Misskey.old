@@ -4,7 +4,7 @@ html(lang='ja', dir='ltr')
 	head
 		include ../common/head
 		meta(name='keywords', content='Misskey')
-		title= status.user.name + 'さん'
+		title= user.name + 'さん'
 		link(rel='stylesheet', href='/resources/styles/page/user-room.css?user=' + user.screenName)
 		script(src='/resources/common/scripts/lib/three.min.js')
 		script(src='/resources/scripts/page/user-room.js')
