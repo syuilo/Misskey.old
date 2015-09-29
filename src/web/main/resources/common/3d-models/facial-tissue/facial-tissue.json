@@ -74,11 +74,11 @@
         "wrap": [1000,1000],
         "minFilter": 1008,
         "anisotropy": 1,
-        "uuid": "43DB543A-574B-3DF7-A5AD-17757E7D783D",
+        "uuid": "43DB543A-574B-3DF7-A5AD-17757E7D783F",
         "magFilter": 1006
     }],
     "materials": [{
-        "map": "43DB543A-574B-3DF7-A5AD-17757E7D783D",
+        "map": "43DB543A-574B-3DF7-A5AD-17757E7D783F",
         "emissive": 0,
         "shininess": 50,
         "ambient": 10724259,
