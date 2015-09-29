@@ -53,7 +53,7 @@ scene.add room-light
 
 # Camera setting
 camera.position.x = 3
-camera.position.y = 7
+camera.position.y = 3
 camera.position.z = 3
 camera.look-at new THREE.Vector3 0, 0, 0
 
