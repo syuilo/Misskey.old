@@ -3,6 +3,7 @@ scene = new THREE.Scene!
 camera = new THREE.PerspectiveCamera 75 (window.inner-width / window.inner-height), 0.1 1000
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size window.inner-width, window.inner-height
+renderer.shadow-map-enabled = on
 document.get-element-by-id \main .append-child renderer.dom-element
 
 # DEBUG GUIDE
@@ -21,7 +22,7 @@ scene.add cube
 floor-geometry = new THREE.CubeGeometry 10 1 10
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
-floor.cast-shadow = on
+floor.receive-shadow  = on
 scene.add floor
 
 # Sun
