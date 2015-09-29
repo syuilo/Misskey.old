@@ -20,7 +20,7 @@ scene.add cube
 
 loader = new THREE.JSONLoader!
 loader.load '/resources/common/3d-models/suzanne.json' (geometry, materials) ->
-	mesh = new THREE.Mesh geometry, new THREE.MeshFaceMaterial materials
+	mesh = new THREE.MorphAnimMesh geometry, new THREE.MeshFaceMaterial materials
 	mesh.position.set -1 1 0
 	scene.add mesh
 
