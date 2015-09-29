@@ -15,6 +15,11 @@ floor-material = new THREE.MeshBasicMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
 scene.add floor
 
+# Room light
+room-light = new THREE.DirectionalLight '#ffffff', 1
+room-light.position.set 0, 10, 0
+scene.add room-light
+
 # Camera setting
 camera.position.z = 20
 
