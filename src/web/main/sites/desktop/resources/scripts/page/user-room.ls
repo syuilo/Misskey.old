@@ -29,7 +29,7 @@ scene.add floor
 sun-light = new THREE.DirectionalLight 0xffffff 1
 sun-light.position.set 0, 10, 0
 sun-light.cast-shadow = on
-scene.add sun-light
+#scene.add sun-light
 
 # Room light (for shadow)
 room-light = new THREE.SpotLight 0xffffff 1
