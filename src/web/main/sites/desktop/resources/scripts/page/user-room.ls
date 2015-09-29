@@ -25,7 +25,7 @@ loader.load '/resources/common/3d-models/suzanne.json' (geometry, materials) ->
 	mat = new THREE.MeshPhongMaterial {color: 0xff0000, ambient: 0xff0000}
 	mesh = new THREE.Mesh geo, mat
 	mesh.position.set -1 1 0
-	mesh.scale.set 100 100 100
+	mesh.scale.set 1 1 1
 	mesh.cast-shadow = on
 	scene.add mesh
 
