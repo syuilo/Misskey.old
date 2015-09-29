@@ -10,7 +10,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[trim-x, trim-y, trim-w, trim-h] = get-express-params req, <[ trim-x trim-y trim-w trim-h ]>
-	if (Object.keys req.files).length == 1
+	if (Object.keys req.files).length >= 1 and req.files.image
 		path = req.files.image.path
 		image = fs.read-file-sync path
 		fs.unlink path
