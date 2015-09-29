@@ -12,7 +12,7 @@ scene.add new THREE.AxisHelper 1000
 scene.add new THREE.GridHelper 10 1
 
 loader = new THREE.JSONLoader!
-loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
+loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
 	geo = geometry
 	mat = new THREE.MeshFaceMaterial materials
 	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
