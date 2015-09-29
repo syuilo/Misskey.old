@@ -21,7 +21,9 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	mesh.cast-shadow = on
 	scene.add mesh
 
+console.log 'WORK PLEASE'
 loader.load '/resources/common/3d-models/desk.json' (geometry, materials) ->
+	console.log 'DESK LOADED'
 	console.log geometry
 	console.log materials
 	geo = geometry
