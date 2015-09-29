@@ -26,6 +26,9 @@ loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/desk.json' (object) ->
 	object.position.set -2.2 0 -1.8
 	scene.add object
+loader.load '/resources/common/3d-models/chair.json' (object) ->
+	object.position.set -2 0 -1.8
+	scene.add object
 loader.load '/resources/common/3d-models/monitor.json' (object) ->
 	object.position.set -2.2 0.7 -1.8
 	scene.add object
