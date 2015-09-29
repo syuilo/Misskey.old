@@ -18,11 +18,11 @@ cube.position.y = 2
 cube.cast-shadow = on
 scene.add cube
 
-#loader = new THREE.JSONLoader!
-#loader.load '/resources/common/3d-models/suzanne.json' (geometry) ->
-#	mesh = new THREE.Mesh geometry, new THREE.MeshFaceMaterial
-#	#geometry.materials[0].ambient = geometry.materials[0].color
-#	scene.add mesh
+loader = new THREE.JSONLoader!
+loader.load '/resources/common/3d-models/suzanne.json' (geometry, materials) ->
+	mesh = new THREE.Mesh geometry, new THREE.MeshFaceMaterial materials
+	mesh.position.set -1 1 0
+	scene.add mesh
 
 # Floor
 floor-geometry = new THREE.CubeGeometry 10 1 10
