@@ -19,10 +19,10 @@ cube.cast-shadow = on
 scene.add cube
 
 loader = new THREE.JSONLoader!
-loader.load '/resources/common/3d-models/suzanne.json' (geometry, materials) ->
+loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	geo = geometry
-	#mat = new THREE.MeshFaceMaterial materials
-	mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
+	mat = new THREE.MeshFaceMaterial materials
+	#mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
 	mesh = new THREE.Mesh geo, mat
 	mesh.position.set -1 1 0
 	mesh.scale.set 1 1 1
