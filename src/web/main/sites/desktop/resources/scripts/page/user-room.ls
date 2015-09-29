@@ -21,7 +21,7 @@ scene.add cube
 loader = new THREE.JSONLoader!
 loader.load '/resources/common/3d-models/suzanne.json' (geometry) ->
 	mesh = new THREE.Mesh geometry, new THREE.MeshFaceMaterial
-	geometry.materials[0].ambient = geometry.materials[0].color
+	#geometry.materials[0].ambient = geometry.materials[0].color
 	scene.add mesh
 
 # Floor
