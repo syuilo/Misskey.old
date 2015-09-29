@@ -41,7 +41,7 @@ loader.load '/resources/common/3d-models/plant/plant.json' (object) ->
 	scene.add object
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
-	object.position.set -2 0.9 -2.45
+	object.position.set -2 0.9 -2.5
 	object.rotation.y = Math.PI / 2
 	scene.add object
 
