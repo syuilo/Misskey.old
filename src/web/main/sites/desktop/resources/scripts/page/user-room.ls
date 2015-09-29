@@ -50,7 +50,7 @@ loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) -
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/facial-tissue/facial-tissue.json' (object) ->
 	object.position.set -2.3 0.7 -2.4
-	object.rotation.y = - Math.PI / 6
+	object.rotation.y = - Math.PI / 4
 	scene.add object
 loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
