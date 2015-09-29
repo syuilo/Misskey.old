@@ -1,7 +1,7 @@
 {
     "images": [{
-        "name": "facial tissue.png",
-        "url": "facial tissue.png",
+        "name": "facial-tissue.png",
+        "url": "facial-tissue.png",
         "uuid": "E13E58DE-6DCD-3B17-BF95-3EC22D484E7C"
     }],
     "object": {
@@ -96,6 +96,6 @@
         "version": 4.3,
         "generator": "io_three",
         "type": "Object",
-        "sourceFile": "facial tissue.blend"
+        "sourceFile": "facial-tissue.blend"
     }
 }
