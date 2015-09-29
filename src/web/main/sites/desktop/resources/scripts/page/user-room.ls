@@ -25,11 +25,10 @@ floor = new THREE.Mesh floor-geometry, floor-material
 floor.receive-shadow = on
 scene.add floor
 
-# Sun
-sun-light = new THREE.DirectionalLight 0xffffff 1
-sun-light.position.set 0, 10, 0
-sun-light.cast-shadow = on
-#scene.add sun-light
+# AmbientLight
+ambient-light = new THREE.AmbientLight 0xffffff 1
+ambient-light.cast-shadow = no
+scene.add ambient-light
 
 # Room light (for shadow)
 room-light = new THREE.SpotLight 0xffffff 1
@@ -37,7 +36,7 @@ room-light.position.set 0, 10, 0
 room-light.cast-shadow = on
 room-light.shadow-map-width = 1024
 room-light.shadow-map-height = 1024
-room-light.shadow-camera-near = 0
+room-light.shadow-camera-near = 1
 room-light.shadow-camera-far = 10
 room-light.shadow-camera-fov = 90
 #room-light.only-shadow = on
