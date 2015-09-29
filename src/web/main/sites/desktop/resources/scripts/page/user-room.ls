@@ -3,8 +3,8 @@ scene = new THREE.Scene!
 #camera = new THREE.PerspectiveCamera 75 (window.inner-width / window.inner-height), 0.1 1000
 width = window.inner-width
 height = window.inner-height
-scale = 32
-camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), 0.01, 1000
+scale = 64
+camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), 2, 1000
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size window.inner-width, window.inner-height
 renderer.set-clear-color new THREE.Color 0x8ebddb
