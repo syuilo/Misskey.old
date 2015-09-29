@@ -37,8 +37,8 @@ room-light.position.set 0, 10, 0
 room-light.cast-shadow = on
 room-light.shadow-map-width = 1024
 room-light.shadow-map-height = 1024
-room-light.shadow-camera-near = 50
-room-light.shadow-camera-far = 1000
+room-light.shadow-camera-near = 0
+room-light.shadow-camera-far = 10
 room-light.shadow-camera-fov = 90
 #room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
