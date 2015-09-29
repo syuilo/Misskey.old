@@ -4,7 +4,7 @@ scene = new THREE.Scene!
 width = window.inner-width
 height = window.inner-height
 scale = 1
-camera = new OrthographicCamera -(width / 2 * scale), (width / 2 * scale), (height / 2 * scale), -(height / 2 * scale)
+camera = new THREE.OrthographicCamera -(width / 2 * scale), (width / 2 * scale), (height / 2 * scale), -(height / 2 * scale)
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size window.inner-width, window.inner-height
 renderer.set-clear-color new THREE.Color 0x8ebddb
