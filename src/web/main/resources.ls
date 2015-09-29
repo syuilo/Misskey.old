@@ -21,7 +21,7 @@ function send-empty-style(res)
 
 module.exports = (app) ->
 	function compile-less (less-css, style-user, callback)
-		color = if style-user? && style-user.color == /#[a-fA-F0-9]{6}/
+		color = if style-user? && style-user.color == /^#[a-fA-F0-9]{6}$/
 			then style-user.color
 			else config.public-config.theme-color
 		less.render do
