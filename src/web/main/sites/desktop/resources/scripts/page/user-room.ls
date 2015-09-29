@@ -84,8 +84,8 @@ scene.add ambient-light
 room-light = new THREE.SpotLight 0xffffff 1
 room-light.position.set 0, 3, 0
 room-light.cast-shadow = on
-room-light.shadow-map-width = 4096
-room-light.shadow-map-height = 4096
+room-light.shadow-map-width = 8192
+room-light.shadow-map-height = 8192
 room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 3
 room-light.shadow-camera-fov = 135
