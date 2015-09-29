@@ -21,12 +21,8 @@ loader.load '/resources/common/3d-models/milk.json' (geometry, materials) ->
 	mesh.cast-shadow = on
 	scene.add mesh
 
-console.log 'WORK PLEASE'
 loader = new THREE.ObjectLoader!
-loader.load '/resources/common/3d-models/desk.json' (object ) ->
-	console.log 'DESK LOADED'
-	console.log object
-
+loader.load '/resources/common/3d-models/desk.json' (object) ->
 	scene.add object
 
 # Floor
