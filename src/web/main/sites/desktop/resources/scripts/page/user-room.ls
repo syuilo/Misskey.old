@@ -22,8 +22,8 @@ scene.add room-light
 
 # Camera setting
 camera.position.x = 10
-camera.position.y = 10
-camera.position.z = 20
+camera.position.y = 15
+camera.position.z = 10
 camera.look-at new THREE.Vector3 0, 0, 0
 
 # Controller setting
