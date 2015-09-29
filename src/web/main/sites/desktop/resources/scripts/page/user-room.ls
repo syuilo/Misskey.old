@@ -22,7 +22,7 @@ loader = new THREE.JSONLoader!
 loader.load '/resources/common/3d-models/suzanne.json' (geometry, materials) ->
 	geo = geometry
 	#mat = new THREE.MeshFaceMaterial materials
-	mat = new THREE.MeshPhongMaterial {color: 0xff0000, ambient: 0xff0000}
+	mat = new THREE.MeshPhongMaterial {color: 0x0000ff, ambient: 0x0000ff}
 	mesh = new THREE.Mesh geo, mat
 	mesh.position.set -1 1 0
 	mesh.scale.set 1 1 1
@@ -45,8 +45,8 @@ scene.add ambient-light
 room-light = new THREE.SpotLight 0xffffff 1
 room-light.position.set 0, 10, 0
 room-light.cast-shadow = on
-room-light.shadow-map-width = 1024
-room-light.shadow-map-height = 1024
+room-light.shadow-map-width = 4096
+room-light.shadow-map-height = 4096
 room-light.shadow-camera-near = 1
 room-light.shadow-camera-far = 10
 room-light.shadow-camera-fov = 90
