@@ -111,11 +111,11 @@ ambient-light.cast-shadow = no
 scene.add ambient-light
 
 # Room light (for shadow)
-room-light = new THREE.SpotLight 0xffffff 1
+room-light = new THREE.SpotLight 0xffffff 0.8
 room-light.position.set 0, 3, 0
 room-light.cast-shadow = on
-room-light.shadow-map-width = 8192
-room-light.shadow-map-height = 8192
+room-light.shadow-map-width = 16384
+room-light.shadow-map-height = 16384
 room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
@@ -123,11 +123,11 @@ room-light.shadow-camera-fov = 135
 room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
-room-light = new THREE.SpotLight 0xffffff 1
+room-light = new THREE.SpotLight 0xffffff 0.5
 room-light.position.set 8, 3, -2
 room-light.cast-shadow = on
-room-light.shadow-map-width = 8192
-room-light.shadow-map-height = 8192
+room-light.shadow-map-width = 16384
+room-light.shadow-map-height = 16384
 room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
