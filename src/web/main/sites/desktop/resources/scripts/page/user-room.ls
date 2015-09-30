@@ -144,6 +144,7 @@ scene.add camera
 
 # Controller setting
 controls = new THREE.OrbitControls camera
+controls.target.set new THREE.Vector3 0 2 0
 controls.no-zoom = yes
 controls.no-pan = yes
 controls.min-polar-angle = 0
