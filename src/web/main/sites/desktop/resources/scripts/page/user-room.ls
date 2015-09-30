@@ -9,7 +9,8 @@ renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size width, height
 renderer.set-clear-color new THREE.Color 0x8ebddb
 renderer.shadow-map.enabled = on
-document.get-element-by-id \main .append-child renderer.dom-element
+#document.get-element-by-id \main .append-child renderer.dom-element
+document.body.append-child renderer.dom-element
 
 # DEBUG GUIDE
 scene.add new THREE.AxisHelper 1000
