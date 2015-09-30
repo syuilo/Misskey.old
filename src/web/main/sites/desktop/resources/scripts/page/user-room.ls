@@ -82,34 +82,34 @@ loader.load '/resources/common/3d-models/room/room.json' (object) ->
 	object.rotation.y = Math.PI
 	scene.add object
 
-# Floor
-floor-geometry = new THREE.CubeGeometry 5 0.25 5
-floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
-floor = new THREE.Mesh floor-geometry, floor-material
-floor.receive-shadow = on
-floor.position.set 0 -0.25 0
-scene.add floor
+## Floor
+#floor-geometry = new THREE.CubeGeometry 5 0.25 5
+#floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
+#floor = new THREE.Mesh floor-geometry, floor-material
+#floor.receive-shadow = on
+#floor.position.set 0 -0.25 0
+#scene.add floor
 
-floor-geometry = new THREE.CubeGeometry 5 0.125 5
-floor-material = new THREE.MeshPhongMaterial {color: 0xEE7C6D}
-floor = new THREE.Mesh floor-geometry, floor-material
-floor.receive-shadow = on
-floor.position.set 0 -0.0625 0
-scene.add floor
+#floor-geometry = new THREE.CubeGeometry 5 0.125 5
+#floor-material = new THREE.MeshPhongMaterial {color: 0xEE7C6D}
+#floor = new THREE.Mesh floor-geometry, floor-material
+#floor.receive-shadow = on
+#floor.position.set 0 -0.0625 0
+#scene.add floor
 
-# Walls
-wall1-geometry = new THREE.CubeGeometry 0.5 2 5
-wall1-material = new THREE.MeshPhongMaterial {color: 0xFA861B}
-wall1 = new THREE.Mesh wall1-geometry, wall1-material
-wall1.receive-shadow = on
-wall1.position.set -2.75 1 0
-scene.add wall1
-wall2-geometry = new THREE.CubeGeometry 5 2 0.5
-wall2-material = new THREE.MeshPhongMaterial {color: 0xFA861B}
-wall2 = new THREE.Mesh wall2-geometry, wall2-material
-wall2.receive-shadow = on
-wall2.position.set 0 1 -2.75
-scene.add wall2
+## Walls
+#wall1-geometry = new THREE.CubeGeometry 0.5 2 5
+#wall1-material = new THREE.MeshPhongMaterial {color: 0xFA861B}
+#wall1 = new THREE.Mesh wall1-geometry, wall1-material
+#wall1.receive-shadow = on
+#wall1.position.set -2.75 1 0
+#scene.add wall1
+#wall2-geometry = new THREE.CubeGeometry 5 2 0.5
+#wall2-material = new THREE.MeshPhongMaterial {color: 0xFA861B}
+#wall2 = new THREE.Mesh wall2-geometry, wall2-material
+#wall2.receive-shadow = on
+#wall2.position.set 0 1 -2.75
+#scene.add wall2
 
 # AmbientLight
 ambient-light = new THREE.AmbientLight 0xffffff 1
