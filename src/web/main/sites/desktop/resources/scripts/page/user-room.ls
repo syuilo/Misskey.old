@@ -120,6 +120,8 @@ camera.look-at new THREE.Vector3 0 32 0
 controls = new THREE.OrbitControls camera, renderer.dom-element
 controls.user-zoom = no
 controls.user-pan = no
+controls.min-polar-angle = 0
+controls.max-polar-angle = Math.PI
 
 # Renderer
 function render
