@@ -80,6 +80,7 @@ loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/room/room.json' (object) ->
 	object.position.set 0 0 0
 	object.rotation.y = Math.PI
+	object.cast-shadow = off
 	scene.add object
 
 ## Floor
