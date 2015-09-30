@@ -116,7 +116,7 @@ scene.add room-light
 camera.position.x = 2
 camera.position.y = 1
 camera.position.z = 2
-camera.look-at new THREE.Vector3 0, 20, 0
+camera.look-at new THREE.Vector3 300 550 20
 
 # Controller setting
 controls = new THREE.OrbitControls camera, renderer.dom-element
