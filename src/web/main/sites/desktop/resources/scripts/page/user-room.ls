@@ -85,7 +85,7 @@ floor-geometry = new THREE.CubeGeometry 5 0.25 5
 floor-material = new THREE.MeshPhongMaterial {color: 0xEE7C6D}
 floor = new THREE.Mesh floor-geometry, floor-material
 floor.receive-shadow = on
-floor.position.set 0 -0.25 0
+floor.position.set 0 -0.125 0
 scene.add floor
 
 # Walls
