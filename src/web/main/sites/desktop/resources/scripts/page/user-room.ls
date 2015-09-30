@@ -3,7 +3,7 @@ scene = new THREE.Scene!
 width = window.inner-width
 height = window.inner-height
 #camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
-camera = new THREE.OrthographicCamera 100, 100, 100, 100, -100, 100
+camera = new THREE.OrthographicCamera 10, 10, 10, 10, -100, 100
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size width, height
 renderer.set-clear-color new THREE.Color 0x8ebddb
@@ -125,7 +125,7 @@ scene.add room-light
 camera.position.x = 2
 camera.position.y = 2
 camera.position.z = 2
-camera.look-at new THREE.Vector3 0 4 0
+camera.look-at new THREE.Vector3 0 2 0
 scene.add camera
 
 # Controller setting
