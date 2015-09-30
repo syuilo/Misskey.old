@@ -139,12 +139,11 @@ scene.add room-light
 camera.position.x = 2
 camera.position.y = 2
 camera.position.z = 2
-camera.look-at new THREE.Vector3 0 2 0
 scene.add camera
 
 # Controller setting
 controls = new THREE.OrbitControls camera
-controls.target.set new THREE.Vector3 0 0 0
+controls.target.set new THREE.Vector3 0 2 0
 controls.enable-zoom = no
 controls.enable-pan = no
 controls.min-polar-angle = 0
