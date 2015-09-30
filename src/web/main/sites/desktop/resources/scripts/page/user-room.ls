@@ -80,8 +80,8 @@ loader = new THREE.OBJMTLLoader!
 loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
 	object.position.set 0 0 0
 	#object.rotation.y = Math.PI
-	#object.cast-shadow = off
-	#object.receive-shadow = off
+	object.cast-shadow = off
+	object.receive-shadow = on
 	scene.add object
 
 ## Floor
