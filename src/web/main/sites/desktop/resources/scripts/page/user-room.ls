@@ -79,7 +79,7 @@ loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
 loader = new THREE.OBJMTLLoader!
 loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
 	object.position.set 0 0 0
-	object.rotation.y = Math.PI
+	#object.rotation.y = Math.PI
 	object.cast-shadow = off
 	object.receive-shadow = off
 	scene.add object
@@ -129,7 +129,7 @@ room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
 #room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
-#scene.add room-light
+scene.add room-light
 
 room-light = new THREE.SpotLight 0xffffff 0.5
 room-light.position.set 8, 3, -2
@@ -141,7 +141,7 @@ room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
 #room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
-#scene.add room-light
+scene.add room-light
 
 # Camera setting
 camera.position.x = 2
