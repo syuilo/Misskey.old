@@ -79,6 +79,12 @@ floor-geometry = new THREE.CubeGeometry 5 0.5 5
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
 floor.receive-shadow = on
+floor.position.set 0 -0.375 0
+scene.add floor
+floor-geometry = new THREE.CubeGeometry 5 0.25 5
+floor-material = new THREE.MeshPhongMaterial {color: 0xEE7C6D}
+floor = new THREE.Mesh floor-geometry, floor-material
+floor.receive-shadow = on
 floor.position.set 0 -0.25 0
 scene.add floor
 
@@ -110,7 +116,7 @@ room-light.shadow-map-height = 8192
 room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 3
 room-light.shadow-camera-fov = 135
-#room-light.only-shadow = on
+room-light.only-shadow = on
 #room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
