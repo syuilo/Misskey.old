@@ -77,11 +77,11 @@ loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
 	scene.add object
 
 # Floor
-floor-geometry = new THREE.CubeGeometry 5 0.5 5
+floor-geometry = new THREE.CubeGeometry 5 0.25 5
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
 floor.receive-shadow = on
-floor.position.set 0 -0.375 0
+floor.position.set 0 -0.25 0
 scene.add floor
 
 floor-geometry = new THREE.CubeGeometry 5 0.125 5
@@ -135,7 +135,9 @@ controls = new THREE.OrbitControls camera
 controls.no-zoom = yes
 controls.no-pan = yes
 controls.min-polar-angle = 0
-controls.max-polar-angle = Math.PI / 3
+controls.max-polar-angle = Math.PI / 2
+controls.min-azimuth-angle = 0
+controls.max-azimuth-angle = Math.PI / 2
 
 # Renderer
 function render
