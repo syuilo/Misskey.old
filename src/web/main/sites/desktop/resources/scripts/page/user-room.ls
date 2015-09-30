@@ -46,7 +46,7 @@ loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/plant/plant.json' (object) ->
 	object.position.set -2.3 0.7 -1.5
 	scene.add object
-loader = new THREE.JSONLoader!
+loader = new THREE.ObjectLoader!
 loader.load '/resources/common/3d-models/eraser/eraser.json' (object) ->
 	object.position.set -2.1 0.7 -1.5
 	scene.add object
