@@ -75,11 +75,11 @@ loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
 	scene.add object
 
 # Floor
-floor-geometry = new THREE.CubeGeometry 5 1 5
+floor-geometry = new THREE.CubeGeometry 5 0.5 5
 floor-material = new THREE.MeshPhongMaterial {color: 0xdcc38d}
 floor = new THREE.Mesh floor-geometry, floor-material
 floor.receive-shadow = on
-floor.position.set 0 -0.5 0
+floor.position.set 0 -0.25 0
 scene.add floor
 
 # Walls
