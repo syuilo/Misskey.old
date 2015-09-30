@@ -118,6 +118,8 @@ camera.look-at new THREE.Vector3 0 32 0
 
 # Controller setting
 controls = new THREE.OrbitControls camera, renderer.dom-element
+controls.user-zoom = no
+controls.user-pan = no
 
 # Renderer
 function render
