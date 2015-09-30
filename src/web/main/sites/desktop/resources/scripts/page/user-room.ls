@@ -114,7 +114,7 @@ loader.load '/resources/common/3d-models/room/room.json' (object) ->
 #scene.add wall2
 
 # AmbientLight
-ambient-light = new THREE.AmbientLight 0xffffff 1
+ambient-light = new THREE.AmbientLight 0xffffff 2
 ambient-light.cast-shadow = no
 scene.add ambient-light
 
