@@ -122,7 +122,7 @@ controls = new THREE.OrbitControls camera
 controls.no-zoom = yes
 controls.no-pan = yes
 controls.min-polar-angle = 0
-controls.max-polar-angle = Math.PI / 4
+controls.max-polar-angle = Math.PI / 3
 
 # Renderer
 function render
