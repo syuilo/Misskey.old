@@ -53,7 +53,7 @@
         "depthTest": true,
         "blending": "NormalBlending",
         "color": 14299942,
-        "type": "MeshLambertMaterial",
+        "type": "MeshPhongMaterial",
         "uuid": "F3A1BEC5-8BD5-3957-AE59-44712F30A4DA",
         "vertexColors": false
     },{
@@ -64,7 +64,7 @@
         "depthTest": true,
         "blending": "NormalBlending",
         "color": 11963203,
-        "type": "MeshLambertMaterial",
+        "type": "MeshPhongMaterial",
         "uuid": "7E048A8F-A1A5-316C-8B55-733DE9FC3143",
         "vertexColors": false
     },{
@@ -75,7 +75,7 @@
         "depthTest": true,
         "blending": "NormalBlending",
         "color": 11963203,
-        "type": "MeshLambertMaterial",
+        "type": "MeshPhongMaterial",
         "uuid": "BC5EA681-B08F-3A26-86A4-DC0BC5C99234",
         "vertexColors": false
     },{
@@ -86,7 +86,7 @@
         "depthTest": true,
         "blending": "NormalBlending",
         "color": 15940610,
-        "type": "MeshLambertMaterial",
+        "type": "MeshPhongMaterial",
         "uuid": "EA9223EB-3360-3C69-84BA-B1D4876E633D",
         "vertexColors": false
     }],
