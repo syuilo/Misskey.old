@@ -116,7 +116,7 @@ loader.load '/resources/common/3d-models/room/room.json' (object) ->
 # AmbientLight
 ambient-light = new THREE.AmbientLight 0xffffff 1
 ambient-light.cast-shadow = no
-scene.add ambient-light
+#scene.add ambient-light
 
 # Room light (for shadow)
 room-light = new THREE.SpotLight 0xffffff 0.8
@@ -127,9 +127,9 @@ room-light.shadow-map-height = 4096
 room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
-room-light.only-shadow = on
+#room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
-scene.add room-light
+#scene.add room-light
 
 room-light = new THREE.SpotLight 0xffffff 0.5
 room-light.position.set 8, 3, -2
@@ -139,9 +139,9 @@ room-light.shadow-map-height = 4096
 room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
-room-light.only-shadow = on
+#room-light.only-shadow = on
 room-light.shadow-camera-visible = on #debug
-scene.add room-light
+#scene.add room-light
 
 # Camera setting
 camera.position.x = 2
