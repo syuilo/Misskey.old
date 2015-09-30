@@ -76,8 +76,8 @@ loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
 	object.rotation.y = Math.PI / 2
 	scene.add object
 	
-loader = new THREE.OBJLoader!
-loader.load '/resources/common/3d-models/room/room.obj' (object) ->
+loader = new THREE.OBJMTLLoader!
+loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
 	object.position.set 0 0 0
 	object.rotation.y = Math.PI
 	object.cast-shadow = off
