@@ -18,8 +18,9 @@ function init
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
 	renderer.set-clear-color new THREE.Color 0x051f2d
 	renderer.shadow-map.enabled = on
-	renderer.shadow-map-soft = off
-	renderer.shadow-map-cull-front-faces = on
+	#renderer.shadow-map-soft = off
+	#renderer.shadow-map-cull-front-faces = on
+	renderer.shadow-map-cull-face = THREE.CullFaceBack
 	
 	#document.get-element-by-id \main .append-child renderer.dom-element
 	document.body.append-child renderer.dom-element
