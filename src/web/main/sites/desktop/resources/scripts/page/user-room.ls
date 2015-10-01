@@ -12,7 +12,7 @@ function init
 	renderer = new THREE.WebGLRenderer {+antialias}
 	renderer.set-pixel-ratio window.device-pixel-ratio
 	renderer.set-size width, height
-	renderer.auto-clear = off
+	#renderer.auto-clear = off
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
 	#renderer.set-clear-color new THREE.Color 0x051f2d
 	renderer.shadow-map.enabled = on
@@ -223,5 +223,6 @@ function init
 	function render
 		request-animation-frame render
 		controls.update!
-		renderer.clear!
-		composer.render!
+		#renderer.clear!
+		#composer.render!
+		renderer.render!
