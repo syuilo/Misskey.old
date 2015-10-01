@@ -7,7 +7,8 @@ scale = 256
 camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size width, height
-renderer.set-clear-color new THREE.Color 0x8ebddb
+#renderer.set-clear-color new THREE.Color 0x8ebddb
+renderer.set-clear-color new THREE.Color 0x111111
 renderer.shadow-map.enabled = on
 #document.get-element-by-id \main .append-child renderer.dom-element
 document.body.append-child renderer.dom-element
@@ -159,11 +160,18 @@ controls.max-polar-angle = Math.PI / 2
 controls.min-azimuth-angle = 0
 controls.max-azimuth-angle = Math.PI / 2
 
+composer = new THREE.EffectComposer renderer
+composer.add-pass new THREE.RenderPass scene, camera
+composer.add-pass new THREE.BloomPass 4.0 25 2.0 512
+to-screen = new THREE.ShaderPass THREE.CopyShader
+to-screen.render-to-screen = on
+composer.add-aass to-screen
+
 # Renderer
 function render
 	request-animation-frame render
 	controls.update!
-	renderer.render scene, camera
+	composer.render!
 
 # Rendering
 render!
