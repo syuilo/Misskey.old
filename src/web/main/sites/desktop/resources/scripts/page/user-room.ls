@@ -26,6 +26,9 @@ function init
 	
 	# SKY
 	sky = new THREE.Sky!
+	sky.uniforms.turbidity.value = 10
+	sky.uniforms.reileigh.value = 4
+	sky.uniforms.luminance.value = 1
 	scene.add sky.mesh
 	sun-sphere = new THREE.Mesh do
 		new THREE.SphereBufferGeometry 20000 16 8
