@@ -78,8 +78,8 @@ function init
 		
 	loader = new THREE.OBJMTLLoader!
 	loader.load '/resources/common/3d-models/bed/bed.obj' '/resources/common/3d-models/bed/bed.mtl' (object) ->
-		object.position.set 2.2 0 -1.9
-		#object.rotation.y = Math.PI
+		object.position.set 2.1 0 -1.7
+		object.rotation.y = Math.PI
 		scene.add object
 
 	loader = new THREE.ObjectLoader!
