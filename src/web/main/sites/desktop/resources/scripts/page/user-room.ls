@@ -25,18 +25,18 @@ function init
 	#scene.add new THREE.GridHelper 10 1
 	
 	# SKY
-	sky = new THREE.Sky!
-	sky.uniforms.turbidity.value = 10
-	sky.uniforms.reileigh.value = 4
-	sky.uniforms.luminance.value = 1
-	sky.uniforms.sun-position.value.copy sun-sphere.position
-	scene.add sky.mesh
 	sun-sphere = new THREE.Mesh do
 		new THREE.SphereBufferGeometry 20000 16 8
 		new THREE.MeshBasicMaterial {color: 0xffffff}
 	sun-sphere.position.y = - 700000
 	sun-sphere.visible = no
 	scene.add sun-sphere
+	sky = new THREE.Sky!
+	sky.uniforms.turbidity.value = 10
+	sky.uniforms.reileigh.value = 4
+	sky.uniforms.luminance.value = 1
+	sky.uniforms.sun-position.value.copy sun-sphere.position
+	scene.add sky.mesh
 
 	loader = new THREE.JSONLoader!
 	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
