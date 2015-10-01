@@ -1,0 +1,27 @@
+doctype html
+
+html(lang='ja', dir='ltr')
+	head
+		include ../common/head
+		meta(name='keywords', content='Misskey')
+		title= user.name + 'さん'
+		link(rel='stylesheet', href='/resources/styles/page/user-room.css?user=' + user.screenName)
+		script(src='/resources/common/scripts/lib/three.js/build/three.min.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/controls/OrbitControls.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/loaders/OBJLoader.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/loaders/MTLLoader.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/loaders/OBJMTLLoader.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/postprocessing/EffectComposer.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/postprocessing/MaskPass.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/postprocessing/RenderPass.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/postprocessing/ShaderPass.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/postprocessing/BloomPass.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/postprocessing/BokehPass.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/shaders/CopyShader.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/shaders/ConvolutionShader.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/shaders/FXAAShader.js')
+		script(src='/resources/common/scripts/lib/three.js/examples/js/SkyShader.js')
+	
+	body
+		//include ../common/header
+		script(src='/resources/scripts/page/user-room.js')

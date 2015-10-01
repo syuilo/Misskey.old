@@ -23,6 +23,18 @@ function post
 		$submit-button.attr \value 'Update \uf1d8'
 		$.remove-cookie \post-autosave {path: '/'}
 		window.display-message '投稿しました！'
+		$ {saturate: 200} .animate {saturate: 100} {
+			duration: 1000ms
+			easing: \swing
+			step: ->
+				$ \html .css {
+					'-webkit-filter': "saturate(#{@.saturate}%)"
+					'-moz-filter': "saturate(#{@.saturate}%)"
+					'-o-filter': "saturate(#{@.saturate}%)"
+					'-ms-filter': "saturate(#{@.saturate}%)"
+					'filter': "saturate(#{@.saturate}%)"
+				}
+		}
 	.fail (data) ->
 		#$form[0].reset!
 		$form.find \textarea .focus!

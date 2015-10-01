@@ -1,0 +1,232 @@
+{
+    "geometries": [{
+        "uuid": "0DC5CB72-D69A-3D20-AA54-7369CB572D29",
+        "data": {
+            "metadata": {
+                "faces": 1,
+                "normals": 1,
+                "version": 3,
+                "vertices": 4,
+                "generator": "io_three",
+                "uvs": 1
+            },
+            "faces": [41,0,1,3,2,0,1,2,3,0,0,0,0],
+            "normals": [0,0,1],
+            "vertices": [-0.045,-0.04,0,0.045,-0.04,0,-0.045,0.04,0,0.045,0.04,0],
+            "name": "\u5e73\u9762Geometry",
+            "uvs": [[9.4e-05,9.4e-05,0.999906,9.4e-05,0.999906,0.888816,9.4e-05,0.888816]]
+        },
+        "type": "Geometry"
+    },{
+        "uuid": "1A841C46-0334-3DD3-BBDB-34D6B0990A51",
+        "data": {
+            "metadata": {
+                "faces": 1,
+                "normals": 1,
+                "version": 3,
+                "vertices": 4,
+                "generator": "io_three",
+                "uvs": 1
+            },
+            "faces": [41,0,1,3,2,0,1,2,3,0,0,0,0],
+            "normals": [0,0,1],
+            "vertices": [-0.0225,-0.02,0,0.0225,-0.02,0,-0.0225,0.02,0,0.0225,0.02,0],
+            "name": "\u5e73\u9762.002Geometry",
+            "uvs": [[9.4e-05,9.4e-05,0.999906,9.4e-05,0.999906,0.888816,9.4e-05,0.888816]]
+        },
+        "type": "Geometry"
+    },{
+        "uuid": "737474BC-24B6-3068-9FCA-FA269B790C3D",
+        "data": {
+            "metadata": {
+                "faces": 1,
+                "normals": 1,
+                "version": 3,
+                "vertices": 4,
+                "generator": "io_three",
+                "uvs": 1
+            },
+            "faces": [41,0,1,3,2,0,1,2,3,0,0,0,0],
+            "normals": [0,0,1],
+            "vertices": [-0.0225,-0.02,0,0.0225,-0.02,0,-0.0225,0.02,0,0.0225,0.02,0],
+            "name": "\u5e73\u9762.001Geometry",
+            "uvs": [[9.4e-05,9.4e-05,0.999906,9.4e-05,0.999906,0.888816,9.4e-05,0.888816]]
+        },
+        "type": "Geometry"
+    },{
+        "uuid": "B220F26E-1F0C-3EA6-86C9-B4C31ACB63FF",
+        "data": {
+            "metadata": {
+                "faces": 6,
+                "normals": 8,
+                "version": 3,
+                "vertices": 8,
+                "generator": "io_three",
+                "uvs": 0
+            },
+            "faces": [33,2,0,1,3,0,1,2,3,33,3,7,6,2,3,4,5,0,33,7,5,4,6,4,6,7,5,33,0,4,5,1,1,7,6,2,33,0,2,6,4,1,0,5,7,33,5,7,3,1,6,4,3,2],
+            "normals": [-0.577349,0.577349,-0.577349,-0.577349,-0.577349,-0.577349,-0.577349,-0.577349,0.577349,-0.577349,0.577349,0.577349,0.577349,0.577349,0.577349,0.577349,0.577349,-0.577349,0.577349,-0.577349,0.577349,0.577349,-0.577349,-0.577349],
+            "vertices": [0,-0.158,-0.034,0,-0.158,0.164,0,0.158,-0.034,0,0.158,0.164,0.0025,-0.158,-0.034,0.0025,-0.158,0.164,0.0025,0.158,-0.034,0.0025,0.158,0.164],
+            "name": "\u7acb\u65b9\u4f53.001Geometry",
+            "uvs": []
+        },
+        "type": "Geometry"
+    },{
+        "uuid": "3660B608-A213-3B78-8DF4-A184A8903FD7",
+        "data": {
+            "metadata": {
+                "faces": 14,
+                "normals": 12,
+                "version": 3,
+                "vertices": 16,
+                "generator": "io_three",
+                "uvs": 0
+            },
+            "faces": [33,2,0,1,3,0,1,2,3,33,3,7,6,2,3,4,5,0,33,4,6,9,11,6,5,7,8,33,0,4,5,1,1,6,9,2,33,0,2,6,4,1,0,5,6,33,5,7,3,1,9,4,3,2,33,11,9,13,15,8,7,9,4,33,7,5,10,8,4,9,10,11,33,6,7,8,9,5,4,11,7,33,5,4,11,10,9,6,8,10,33,12,14,15,13,6,5,4,9,33,8,10,14,12,11,10,5,6,33,10,11,15,14,10,8,4,5,33,9,8,12,13,7,11,6,9],
+            "normals": [-0.577349,0.577349,-0.577349,-0.577349,-0.577349,-0.577349,-0.577349,-0.577349,0.577349,-0.577349,0.577349,0.577349,0.577349,0.577349,0.577349,0.577349,0.577349,-0.577349,0.577349,-0.577349,-0.577349,0.904508,-0.301492,0.301492,0.904508,0.301492,0.301492,0.577349,-0.577349,0.577349,0.904508,0.301492,-0.301492,0.904508,-0.301492,-0.301492],
+            "vertices": [-0.005,-0.175,-0.11,-0.005,-0.175,0.11,-0.005,0.175,-0.11,-0.005,0.175,0.11,0.005,-0.175,-0.11,0.005,-0.175,0.11,0.005,0.175,-0.11,0.005,0.175,0.11,0.005,0.1575,0.099,0.005,0.1575,-0.099,0.005,-0.1575,0.099,0.005,-0.1575,-0.099,-0.00025,0.1575,0.099,-0.00025,0.1575,-0.099,-0.00025,-0.1575,0.099,-0.00025,-0.1575,-0.099],
+            "name": "\u7acb\u65b9\u4f53Geometry",
+            "uvs": []
+        },
+        "type": "Geometry"
+    }],
+    "metadata": {
+        "version": 4.3,
+        "sourceFile": "corkboard.blend",
+        "generator": "io_three",
+        "type": "Object"
+    },
+    "textures": [{
+        "uuid": "43DB543A-574B-3DF7-A5AD-17757E7D783E",
+        "image": "19B3BF6B-1019-384D-BFBE-051A08BEB732",
+        "wrap": [1000,1000],
+        "minFilter": 1008,
+        "mapping": 300,
+        "magFilter": 1006,
+        "name": "\u30c6\u30af\u30b9\u30c1\u30e3",
+        "anisotropy": 1,
+        "repeat": [1,1]
+    }],
+    "object": {
+        "uuid": "A2E2A772-3AE1-432E-A12A-2ED1D7FB8381",
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+        "children": [{
+            "name": "Cork",
+            "uuid": "4D7BA9CE-0BDB-310C-A9B6-51A0461F086E",
+            "matrix": [-1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "4D7BA9CE-0BDB-310C-A9B6-51A0461F086E",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "B220F26E-1F0C-3EA6-86C9-B4C31ACB63FF"
+        },{
+            "name": "Frame",
+            "uuid": "B3E69E8A-AF26-3274-AA11-B6EAA503F502",
+            "matrix": [-1,0,0,0,0,0,1,0,0,1,0,0,0,0.065,0,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "B3E69E8A-AF26-3274-AA11-B6EAA503F502",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "3660B608-A213-3B78-8DF4-A184A8903FD7"
+        },{
+            "name": "Memo1",
+            "uuid": "42D10136-759F-381E-A8BB-C56E1F955887",
+            "matrix": [0,-1,0,0,0,0,1,0,-1,-0,0,0,-0.003,0.04,-0.06,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "42D10136-759F-381E-A8BB-C56E1F955887",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "0DC5CB72-D69A-3D20-AA54-7369CB572D29"
+        },{
+            "name": "Memo1.001",
+            "uuid": "8C3831AC-7AAB-3AEA-84B3-F99064D0B23E",
+            "matrix": [-0,-0.997564,-0.069756,0,0,-0.069756,0.997564,0,-1,0,0,0,-0.003,0.0825,0.055,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "0DDF3DFC-3C01-37B1-8086-07386ECBBDDA",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "737474BC-24B6-3068-9FCA-FA269B790C3D"
+        },{
+            "name": "Memo1.002",
+            "uuid": "863FF423-4B3F-376A-9AFF-6EE3A37FEB5E",
+            "matrix": [-0,-0.99863,0.052336,0,0,0.052336,0.99863,0,-1,0,-0,0,-0.00275,0.0725,0.085579,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "66E43F4F-1A34-3FEE-84AC-9F270C9CE072",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "1A841C46-0334-3DD3-BBDB-34D6B0990A51"
+        }],
+        "type": "Scene"
+    },
+    "materials": [{
+        "emissive": 0,
+        "depthTest": true,
+        "ambient": 10695694,
+        "blending": "NormalBlending",
+        "vertexColors": false,
+        "uuid": "4D7BA9CE-0BDB-310C-A9B6-51A0461F086E",
+        "color": 10695694,
+        "specular": 3355443,
+        "name": "Cork",
+        "shininess": 50,
+        "type": "MeshPhongMaterial",
+        "depthWrite": true
+    },{
+        "emissive": 0,
+        "depthTest": true,
+        "ambient": 10706219,
+        "blending": "NormalBlending",
+        "vertexColors": false,
+        "uuid": "B3E69E8A-AF26-3274-AA11-B6EAA503F502",
+        "color": 10706219,
+        "specular": 1644825,
+        "name": "Frame",
+        "shininess": 50,
+        "type": "MeshPhongMaterial",
+        "depthWrite": true
+    },{
+        "uuid": "42D10136-759F-381E-A8BB-C56E1F955887",
+        "map": "43DB543A-574B-3DF7-A5AD-17757E7D783E",
+        "emissive": 0,
+        "type": "MeshLambertMaterial",
+        "depthTest": true,
+        "ambient": 10724259,
+        "blending": "NormalBlending",
+        "name": "Memo1",
+        "vertexColors": false,
+        "color": 10724259,
+        "depthWrite": true
+    },{
+        "uuid": "0DDF3DFC-3C01-37B1-8086-07386ECBBDDA",
+        "emissive": 0,
+        "type": "MeshLambertMaterial",
+        "depthTest": true,
+        "ambient": 10720562,
+        "blending": "NormalBlending",
+        "name": "Memo2",
+        "vertexColors": false,
+        "color": 10720562,
+        "depthWrite": true
+    },{
+        "uuid": "66E43F4F-1A34-3FEE-84AC-9F270C9CE072",
+        "emissive": 0,
+        "type": "MeshLambertMaterial",
+        "depthTest": true,
+        "ambient": 3836067,
+        "blending": "NormalBlending",
+        "name": "Memo3",
+        "vertexColors": false,
+        "color": 3836067,
+        "depthWrite": true
+    }],
+    "images": [{
+        "uuid": "19B3BF6B-1019-384D-BFBE-051A08BEB732",
+        "name": "memo1.png",
+        "url": "memo1.png"
+    }]
+}
