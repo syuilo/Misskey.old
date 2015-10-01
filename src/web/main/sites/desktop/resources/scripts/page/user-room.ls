@@ -1,7 +1,7 @@
 init!
 
 function init
-	shadow-quolity = 8192
+	shadow-quolity = 2048
 	
 	# Settings
 	scene = new THREE.Scene!
