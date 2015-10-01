@@ -164,7 +164,7 @@ function init
 
 
 	# AmbientLight
-	ambient-light = new THREE.AmbientLight 0xffffff 0.5
+	ambient-light = new THREE.AmbientLight 0xffffff 1
 	ambient-light.cast-shadow = no
 	scene.add ambient-light
 
@@ -178,7 +178,7 @@ function init
 	room-light.shadow-camera-far = 9
 	room-light.shadow-camera-fov = 45
 	#room-light.only-shadow = on
-	room-light.shadow-camera-visible = on #debug
+	#room-light.shadow-camera-visible = on #debug
 	scene.add room-light
 
 	out-light = new THREE.SpotLight 0xffffff 0.4
@@ -190,7 +190,7 @@ function init
 	out-light.shadow-camera-far = 18
 	out-light.shadow-camera-fov = 45
 	#out-light.only-shadow = on
-	out-light.shadow-camera-visible = on #debug
+	#out-light.shadow-camera-visible = on #debug
 	scene.add out-light
 
 	# Camera setting
