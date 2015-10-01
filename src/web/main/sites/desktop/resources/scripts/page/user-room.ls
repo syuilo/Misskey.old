@@ -8,7 +8,7 @@ camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size width, height
 #renderer.set-clear-color new THREE.Color 0x8ebddb
-renderer.set-clear-color new THREE.Color 0x111111
+renderer.set-clear-color new THREE.Color 0x1a4d7c
 renderer.shadow-map.enabled = on
 #document.get-element-by-id \main .append-child renderer.dom-element
 document.body.append-child renderer.dom-element
