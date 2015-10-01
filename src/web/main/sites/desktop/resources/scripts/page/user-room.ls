@@ -73,6 +73,7 @@ function init
 		object.traverse (child) ->
 			if child instanceof THREE.Mesh
 				child.receive-shadow = on
+				child.cast-shadow = on
 		object.position.set 0 0 0
 		scene.add object
 		
