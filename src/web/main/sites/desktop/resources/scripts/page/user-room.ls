@@ -225,4 +225,4 @@ function init
 		controls.update!
 		#renderer.clear!
 		#composer.render!
-		renderer.render!
+		renderer.render scene, camera
