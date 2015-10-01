@@ -169,7 +169,7 @@ function init
 	scene.add ambient-light
 
 	# Room light (for shadow)
-	room-light = new THREE.SpotLight 0xffffff 0.5
+	room-light = new THREE.SpotLight 0xffffff 0.3
 	room-light.position.set 0 8 0
 	room-light.cast-shadow = on
 	room-light.shadow-map-width = shadow-quolity
