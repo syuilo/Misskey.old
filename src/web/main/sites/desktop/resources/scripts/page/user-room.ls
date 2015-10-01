@@ -5,9 +5,9 @@ function init
 	scene = new THREE.Scene!
 	width = window.inner-width
 	height = window.inner-height
-	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	scale = 256
-	camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
+	#camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
 	renderer = new THREE.WebGLRenderer {+antialias}
 	renderer.set-size width, height
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
@@ -19,6 +19,16 @@ function init
 	# DEBUG GUIDE
 	scene.add new THREE.AxisHelper 1000
 	#scene.add new THREE.GridHelper 10 1
+	
+	# SKY
+	sky = new THREE.Sky!
+	scene.add sky.mesh
+	sun-sphere = new THREE.Mesh do
+		new THREE.SphereBufferGeometry 20000 16 8
+		new THREE.MeshBasicMaterial {color: 0xffffff}
+	sun-sphere.position.y = - 700000
+	sun-sphere.visible = no
+	scene.add sun-sphere
 
 	loader = new THREE.JSONLoader!
 	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
@@ -170,7 +180,7 @@ function init
 		format: THREE.RGBFormat
 		-stencil-buffer
 	}
-	render-target = new THREE.WebGLRenderTarget width / scale, height / scale, parameters
+	render-target = new THREE.WebGLRenderTarget width, height, parameters
 
 	composer = new THREE.EffectComposer renderer, render-target
 	composer.add-pass new THREE.RenderPass scene, camera
