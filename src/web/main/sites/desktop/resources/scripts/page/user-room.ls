@@ -12,6 +12,7 @@ function init
 	renderer = new THREE.WebGLRenderer {+antialias}
 	renderer.set-pixel-ratio window.device-pixel-ratio
 	renderer.set-size width, height
+	renderer.auto-clear = off
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
 	#renderer.set-clear-color new THREE.Color 0x051f2d
 	renderer.shadow-map.enabled = on
@@ -176,7 +177,6 @@ function init
 	controls.min-azimuth-angle = 0
 	controls.max-azimuth-angle = Math.PI / 2
 
-	renderer.auto-clear = off
 	parameters = {
 		min-filter: THREE.LinearFilter
 		mag-filter: THREE.LinearFilter
@@ -189,6 +189,7 @@ function init
 	composer.add-pass new THREE.RenderPass scene, camera
 	composer.add-pass new THREE.BloomPass 0.5 25 64.0 512
 	fxaa = new THREE.ShaderPass THREE.FXAAShader
+	fxaa.uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
 	composer.add-pass fxaa
 	to-screen = new THREE.ShaderPass THREE.CopyShader
 	to-screen.render-to-screen = on
