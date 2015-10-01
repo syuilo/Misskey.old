@@ -12,7 +12,7 @@ function init
 	renderer = new THREE.WebGLRenderer {+antialias}
 	renderer.set-pixel-ratio window.device-pixel-ratio
 	renderer.set-size width, height
-	#renderer.auto-clear = off
+	renderer.auto-clear = off
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
 	#renderer.set-clear-color new THREE.Color 0x051f2d
 	renderer.shadow-map.enabled = on
@@ -39,6 +39,8 @@ function init
 		sky.uniforms.turbidity.value = 10
 		sky.uniforms.reileigh.value = 4
 		sky.uniforms.luminance.value = 1
+		sky.uniforms.mie-coefficient.value = 0.005
+		sky.uniforms.mie-directional-g.value = 0.8
 		
 		inclination = 0
 		azimuth = 0
@@ -223,6 +225,6 @@ function init
 	function render
 		request-animation-frame render
 		controls.update!
-		#renderer.clear!
-		#composer.render!
-		renderer.render scene, camera
+		renderer.clear!
+		composer.render!
+		#renderer.render scene, camera
