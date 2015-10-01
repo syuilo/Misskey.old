@@ -172,7 +172,7 @@ composer.add-pass to-screen
 function render
 	request-animation-frame render
 	controls.update!
-	renderer.clear!
+	#renderer.clear!
 	composer.render!
 
 # Rendering
