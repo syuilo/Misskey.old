@@ -57,6 +57,14 @@ function init
 		sky.uniforms.sun-position.value.copy sun-sphere.position
 		
 		scene.add sky.mesh
+	
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.receive-shadow = on
+		object.position.set 0 0 0
+		scene.add object
 
 	loader = new THREE.JSONLoader!
 	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
@@ -78,6 +86,16 @@ function init
 		object.position.set -1.8 0 -1.9
 		object.rotation.y = - Math.PI / 2
 		scene.add object
+		
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/pc/pc.obj' '/resources/common/3d-models/pc/pc.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.cast-shadow = on
+				child.receive-shadow = on
+		object.position.set -2.2 0 -1
+		scene.add object
+		
 	loader = new THREE.ObjectLoader!
 	loader.load '/resources/common/3d-models/monitor/monitor.json' (object) ->
 		object.position.set -2.2 0.7 -1.9
@@ -118,13 +136,7 @@ function init
 		object.rotation.y = Math.PI / 2
 		scene.add object
 
-	loader = new THREE.OBJMTLLoader!
-	loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
-		object.traverse (child) ->
-			if child instanceof THREE.Mesh
-				child.receive-shadow = on
-		object.position.set 0 0 0
-		scene.add object
+
 
 	# AmbientLight
 	ambient-light = new THREE.AmbientLight 0xffffff 1
