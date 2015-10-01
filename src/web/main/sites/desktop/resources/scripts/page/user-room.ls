@@ -163,7 +163,7 @@ controls.max-azimuth-angle = Math.PI / 2
 renderer.auto-clear = off
 composer = new THREE.EffectComposer renderer
 composer.add-pass new THREE.RenderPass scene, camera
-composer.add-pass new THREE.BloomPass 1 25 128 512
+composer.add-pass new THREE.BloomPass 1 50 128 512
 to-screen = new THREE.ShaderPass THREE.CopyShader
 to-screen.render-to-screen = on
 composer.add-pass to-screen
