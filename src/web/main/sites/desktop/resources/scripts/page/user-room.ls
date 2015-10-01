@@ -196,7 +196,7 @@ function init
 	out-light.shadow-camera-far = 15
 	out-light.shadow-camera-fov = 45
 	#out-light.only-shadow = on
-	out-light.shadow-camera-visible = on #debug
+	#out-light.shadow-camera-visible = on #debug
 	scene.add out-light
 
 	# Camera setting
