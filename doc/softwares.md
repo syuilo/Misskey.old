@@ -3,7 +3,7 @@ List of softwares related to Misskey
 
 ## Apps
 ### Multi platform
-* [Disskey](https://github.com/AyaMorisawa/Disskey) - Misskey client for desktop
+* [Disskey](https://github.com/AyaMorisawa/Disskey) - A lightweight Misskey client for desktop
 
 ### Web based
 * [MUCS](http://surume.exout.net/mucs/) - Misskey Unofficial Client for Surume
