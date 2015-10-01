@@ -169,7 +169,7 @@ parameters = {
 }
 render-target = new THREE.WebGLRenderTarget width, height, parameters
 
-composer = new THREE.EffectComposer renderer render-target
+composer = new THREE.EffectComposer renderer, render-target
 composer.add-pass new THREE.RenderPass scene, camera
 composer.add-pass new THREE.BloomPass 0.5 25 64.0 512
 fxaa = new THREE.ShaderPass THREE.FXAAShader
