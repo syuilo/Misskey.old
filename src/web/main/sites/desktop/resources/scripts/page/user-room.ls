@@ -8,11 +8,14 @@ function init
 	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	scale = 256
 	#camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
+	
 	renderer = new THREE.WebGLRenderer {+antialias}
+	renderer.set-pixel-ratio window.device-pixel-ratio
 	renderer.set-size width, height
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
-	renderer.set-clear-color new THREE.Color 0x051f2d
+	#renderer.set-clear-color new THREE.Color 0x051f2d
 	renderer.shadow-map.enabled = on
+	
 	#document.get-element-by-id \main .append-child renderer.dom-element
 	document.body.append-child renderer.dom-element
 
