@@ -164,7 +164,7 @@ function init
 
 
 	# AmbientLight
-	ambient-light = new THREE.AmbientLight 0xffffff 1
+	ambient-light = new THREE.AmbientLight 0xffffff 0.5
 	ambient-light.cast-shadow = no
 	scene.add ambient-light
 
