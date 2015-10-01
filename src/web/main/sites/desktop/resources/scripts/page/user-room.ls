@@ -168,7 +168,7 @@ function init
 	# AmbientLight
 	ambient-light = new THREE.AmbientLight 0xffffff 1
 	ambient-light.cast-shadow = no
-	#scene.add ambient-light
+	scene.add ambient-light
 
 	# Room light (for shadow)
 	room-light = new THREE.SpotLight 0xffffff 0.2
@@ -186,7 +186,7 @@ function init
 	out-light = new THREE.SpotLight 0xffffff 0.4
 	out-light.position.set 8 3 -2
 	out-light.cast-shadow = on
-	out-light.shadow-bias = -0.001
+	out-light.shadow-bias = -0.0001
 	out-light.shadow-map-width = shadow-quolity
 	out-light.shadow-map-height = shadow-quolity
 	out-light.shadow-camera-near = 5
