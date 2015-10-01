@@ -8,14 +8,14 @@ camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height
 renderer = new THREE.WebGLRenderer {+antialias}
 renderer.set-size width, height
 #renderer.set-clear-color new THREE.Color 0x8ebddb
-renderer.set-clear-color new THREE.Color 0x1a4d7c
+renderer.set-clear-color new THREE.Color 0x051f2d
 renderer.shadow-map.enabled = on
 #document.get-element-by-id \main .append-child renderer.dom-element
 document.body.append-child renderer.dom-element
 
 # DEBUG GUIDE
 scene.add new THREE.AxisHelper 1000
-scene.add new THREE.GridHelper 10 1
+#scene.add new THREE.GridHelper 10 1
 
 loader = new THREE.JSONLoader!
 loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
@@ -129,7 +129,7 @@ room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
 #room-light.only-shadow = on
-room-light.shadow-camera-visible = on #debug
+#room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
 room-light = new THREE.SpotLight 0xffffff 0.5
@@ -141,7 +141,7 @@ room-light.shadow-camera-near = 0.1
 room-light.shadow-camera-far = 16
 room-light.shadow-camera-fov = 135
 #room-light.only-shadow = on
-room-light.shadow-camera-visible = on #debug
+#room-light.shadow-camera-visible = on #debug
 scene.add room-light
 
 # Camera setting
