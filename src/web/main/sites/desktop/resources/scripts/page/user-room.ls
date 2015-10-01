@@ -5,9 +5,9 @@ function init
 	scene = new THREE.Scene!
 	width = window.inner-width
 	height = window.inner-height
-	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	scale = 256
-	#camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
+	camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
 	
 	renderer = new THREE.WebGLRenderer {+antialias}
 	renderer.set-pixel-ratio window.device-pixel-ratio
