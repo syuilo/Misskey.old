@@ -24,19 +24,35 @@ function init
 	scene.add new THREE.AxisHelper 1000
 	#scene.add new THREE.GridHelper 10 1
 	
+	init-sky!
+	
 	# SKY
-	sun-sphere = new THREE.Mesh do
-		new THREE.SphereBufferGeometry 20000 16 8
-		new THREE.MeshBasicMaterial {color: 0xffffff}
-	sun-sphere.position.y = - 700000
-	sun-sphere.visible = no
-	scene.add sun-sphere
-	sky = new THREE.Sky!
-	sky.uniforms.turbidity.value = 10
-	sky.uniforms.reileigh.value = 4
-	sky.uniforms.luminance.value = 1
-	sky.uniforms.sun-position.value.copy sun-sphere.position
-	scene.add sky.mesh
+	function init-sky
+		sun-sphere = new THREE.Mesh do
+			new THREE.SphereBufferGeometry 20000 16 8
+			new THREE.MeshBasicMaterial {color: 0xffffff}
+		sun-sphere.position.y = -700000
+		sun-sphere.visible = no
+		scene.add sun-sphere
+
+		sky = new THREE.Sky!
+		sky.uniforms.turbidity.value = 10
+		sky.uniforms.reileigh.value = 4
+		sky.uniforms.luminance.value = 1
+		
+		inclination = 0
+		azimuth = 0
+
+		theta = Math.PI * (inclination - 0.5)
+		phi = 2 * Math.PI * (azimuth - 0.5)
+
+		sun-sphere.position.x = distance * (Math.cos phi)
+		sun-sphere.position.y = distance * (Math.sin phi) * (Math.sin theta)
+		sun-sphere.position.z = distance * (Math.sin phi) * (Math.cos theta)
+		
+		sky.uniforms.sun-position.value.copy sun-sphere.position
+		
+		scene.add sky.mesh
 
 	loader = new THREE.JSONLoader!
 	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
