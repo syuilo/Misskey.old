@@ -207,10 +207,10 @@ function init
 	controls.target.set 0 1 0
 	controls.enable-zoom = yes
 	controls.enable-pan = yes
-	controls.min-polar-angle = 0
-	controls.max-polar-angle = Math.PI / 2
-	controls.min-azimuth-angle = 0
-	controls.max-azimuth-angle = Math.PI / 2
+	#controls.min-polar-angle = 0
+	#controls.max-polar-angle = Math.PI / 2
+	#controls.min-azimuth-angle = 0
+	#controls.max-azimuth-angle = Math.PI / 2
 
 	parameters = {
 		min-filter: THREE.LinearFilter
