@@ -1,5 +1,4 @@
 init!
-render!
 
 function init
 	# Settings
@@ -181,10 +180,12 @@ function init
 	to-screen = new THREE.ShaderPass THREE.CopyShader
 	to-screen.render-to-screen = on
 	composer.add-pass to-screen
+	
+	render!
 
-# Renderer
-function render
-	request-animation-frame render
-	controls.update!
-	renderer.clear!
-	composer.render!
+	# Renderer
+	function render
+		request-animation-frame render
+		controls.update!
+		renderer.clear!
+		composer.render!
