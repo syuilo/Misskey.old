@@ -45,6 +45,8 @@ function init
 
 		theta = Math.PI * (inclination - 0.5)
 		phi = 2 * Math.PI * (azimuth - 0.5)
+		
+		distance = 400000
 
 		sun-sphere.position.x = distance * (Math.cos phi)
 		sun-sphere.position.y = distance * (Math.sin phi) * (Math.sin theta)
