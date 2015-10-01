@@ -175,10 +175,10 @@ function init
 	room-light.shadow-map-width = shadow-quolity
 	room-light.shadow-map-height = shadow-quolity
 	room-light.shadow-camera-near = 0.1
-	room-light.shadow-camera-far = 16
+	room-light.shadow-camera-far = 14
 	room-light.shadow-camera-fov = 135
 	#room-light.only-shadow = on
-	#room-light.shadow-camera-visible = on #debug
+	room-light.shadow-camera-visible = on #debug
 	scene.add room-light
 
 	out-light = new THREE.SpotLight 0xffffff 0.5
