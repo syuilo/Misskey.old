@@ -75,6 +75,12 @@ function init
 				child.receive-shadow = on
 		object.position.set 0 0 0
 		scene.add object
+		
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/bed/bed.obj' '/resources/common/3d-models/bed/bed.mtl' (object) ->
+		object.position.set 2.2 0 -1.9
+		#object.rotation.y = Math.PI
+		scene.add object
 
 	loader = new THREE.ObjectLoader!
 	loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
