@@ -181,7 +181,7 @@ function init
 	room-light.shadow-camera-fov = 45
 	#room-light.only-shadow = on
 	#room-light.shadow-camera-visible = on #debug
-	scene.add room-light
+	#scene.add room-light
 
 	out-light = new THREE.SpotLight 0xffffff 0.4
 	out-light.position.set 8 3 -2
