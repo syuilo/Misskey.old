@@ -89,6 +89,7 @@ function init
 				child.cast-shadow = on
 				child.receive-shadow = on
 		object.position.set -1.8 0 -1.9
+		object.rotation.y = - Math.PI / 2
 		scene.add object
 		
 	loader = new THREE.OBJMTLLoader!
