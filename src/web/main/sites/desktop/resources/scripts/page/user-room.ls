@@ -234,9 +234,10 @@ function init
 
 	# Renderer
 	function render
-		timer = Date.now! * 0.0002
+		timer = Date.now! * 0.0004
 		request-animation-frame render
 		out-light.position.z = (Math.cos timer) * 10
+		out-light.position.x = (Math.sin timer) * 10
 		controls.update!
 		renderer.clear!
 		composer.render!
