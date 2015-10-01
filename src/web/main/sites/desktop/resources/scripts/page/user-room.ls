@@ -67,16 +67,14 @@ function init
 				child.receive-shadow = on
 		object.position.set 0 0 0
 		scene.add object
-
-	loader = new THREE.JSONLoader!
-	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
-		geo = geometry
-		mat = new THREE.MeshFaceMaterial materials
-		mesh = new THREE.Mesh geo, mat
-		mesh.position.set 0 0 0
-		mesh.scale.set 1 1 1
-		mesh.cast-shadow = on
-		scene.add mesh
+	
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/carpet/carpet.obj' '/resources/common/3d-models/carpet/carpet.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.receive-shadow = on
+		object.position.set 0 0 0
+		scene.add object
 
 	loader = new THREE.ObjectLoader!
 	loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
