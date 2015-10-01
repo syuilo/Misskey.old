@@ -23,7 +23,7 @@ function init
 	document.body.append-child renderer.dom-element
 
 	# DEBUG GUIDE
-	scene.add new THREE.AxisHelper 1000
+	#scene.add new THREE.AxisHelper 1000
 	#scene.add new THREE.GridHelper 10 1
 	
 	#init-sky!
