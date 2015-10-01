@@ -187,7 +187,7 @@ function init
 	#scene.add room-light
 
 	out-light = new THREE.SpotLight 0xffffff 0.4
-	out-light.position.set 8 3 -2
+	out-light.position.set 9 3 -2
 	out-light.cast-shadow = on
 	out-light.shadow-bias = -0.0001
 	out-light.shadow-map-width = shadow-quolity
