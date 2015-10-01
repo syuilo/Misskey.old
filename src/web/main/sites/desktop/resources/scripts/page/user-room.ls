@@ -196,7 +196,7 @@ function init
 	out-light.shadow-camera-far = 15
 	out-light.shadow-camera-fov = 45
 	#out-light.only-shadow = on
-	out-light.shadow-camera-visible = on #debug
+	#out-light.shadow-camera-visible = on #debug
 	scene.add out-light
 
 	# Camera setting
@@ -210,10 +210,10 @@ function init
 	controls.target.set 0 1 0
 	controls.enable-zoom = yes
 	controls.enable-pan = yes
-	#controls.min-polar-angle = 0
-	#controls.max-polar-angle = Math.PI / 2
-	#controls.min-azimuth-angle = 0
-	#controls.max-azimuth-angle = Math.PI / 2
+	controls.min-polar-angle = 0
+	controls.max-polar-angle = Math.PI / 2
+	controls.min-azimuth-angle = 0
+	controls.max-azimuth-angle = Math.PI / 2
 
 	parameters = {
 		min-filter: THREE.LinearFilter
