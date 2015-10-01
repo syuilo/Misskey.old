@@ -81,10 +81,14 @@ function init
 		object.position.set -2.2 0 -1.9
 		object.rotation.y = Math.PI
 		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/chair/chair.json' (object) ->
+	
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/chair3/chair3.obj' '/resources/common/3d-models/chair3/chair3.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.cast-shadow = on
+				child.receive-shadow = on
 		object.position.set -1.8 0 -1.9
-		object.rotation.y = - Math.PI / 2
 		scene.add object
 		
 	loader = new THREE.OBJMTLLoader!
