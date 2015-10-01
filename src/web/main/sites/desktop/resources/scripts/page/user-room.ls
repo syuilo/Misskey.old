@@ -14,7 +14,7 @@ function init
 	renderer.set-size width, height
 	renderer.auto-clear = off
 	#renderer.set-clear-color new THREE.Color 0x8ebddb
-	#renderer.set-clear-color new THREE.Color 0x051f2d
+	renderer.set-clear-color new THREE.Color 0x051f2d
 	renderer.shadow-map.enabled = on
 	
 	#document.get-element-by-id \main .append-child renderer.dom-element
