@@ -29,6 +29,7 @@ function init
 	sky.uniforms.turbidity.value = 10
 	sky.uniforms.reileigh.value = 4
 	sky.uniforms.luminance.value = 1
+	sky.uniforms.sun-position.value.copy sun-sphere.position
 	scene.add sky.mesh
 	sun-sphere = new THREE.Mesh do
 		new THREE.SphereBufferGeometry 20000 16 8
