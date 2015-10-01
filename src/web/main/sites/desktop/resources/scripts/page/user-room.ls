@@ -81,6 +81,7 @@ function init
 		object.traverse (child) ->
 			if child instanceof THREE.Mesh
 				child.receive-shadow = on
+				child.cast-shadow = on
 		object.position.set 1.95 0 -1.4
 		object.rotation.y = Math.PI
 		scene.add object
