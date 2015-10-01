@@ -170,7 +170,7 @@ function init
 
 	# Room light (for shadow)
 	room-light = new THREE.SpotLight 0xffffff 0.8
-	room-light.position.set 0, 3, 0
+	room-light.position.set 0, 2.5, 0
 	room-light.cast-shadow = on
 	room-light.shadow-map-width = shadow-quolity
 	room-light.shadow-map-height = shadow-quolity
