@@ -190,7 +190,7 @@ function init
 	out-light.shadow-map-width = shadow-quolity
 	out-light.shadow-map-height = shadow-quolity
 	out-light.shadow-camera-near = 6
-	out-light.shadow-camera-far = 17
+	out-light.shadow-camera-far = 15
 	out-light.shadow-camera-fov = 45
 	#out-light.only-shadow = on
 	out-light.shadow-camera-visible = on #debug
