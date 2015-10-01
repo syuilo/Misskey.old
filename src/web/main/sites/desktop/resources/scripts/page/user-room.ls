@@ -176,7 +176,7 @@ function init
 	room-light.shadow-map-height = shadow-quolity
 	room-light.shadow-camera-near = 0.1
 	room-light.shadow-camera-far = 3
-	room-light.shadow-camera-fov = 180
+	room-light.shadow-camera-fov = 175
 	#room-light.only-shadow = on
 	room-light.shadow-camera-visible = on #debug
 	scene.add room-light
