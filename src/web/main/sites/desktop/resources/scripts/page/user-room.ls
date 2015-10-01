@@ -181,17 +181,17 @@ function init
 	#room-light.shadow-camera-visible = on #debug
 	scene.add room-light
 
-	room-light = new THREE.SpotLight 0xffffff 0.5
-	room-light.position.set 8, 3, -2
-	room-light.cast-shadow = on
-	room-light.shadow-map-width = shadow-quolity
-	room-light.shadow-map-height = shadow-quolity
-	room-light.shadow-camera-near = 0.1
-	room-light.shadow-camera-far = 16
-	room-light.shadow-camera-fov = 135
-	#room-light.only-shadow = on
-	#room-light.shadow-camera-visible = on #debug
-	scene.add room-light
+	out-light = new THREE.SpotLight 0xffffff 0.5
+	out-light.position.set 8, 3, -2
+	out-light.cast-shadow = on
+	out-light.shadow-map-width = shadow-quolity
+	out-light.shadow-map-height = shadow-quolity
+	out-light.shadow-camera-near = 0.1
+	out-light.shadow-camera-far = 16
+	out-light.shadow-camera-fov = 135
+	#out-light.only-shadow = on
+	#out-light.shadow-camera-visible = on #debug
+	scene.add out-light
 
 	# Camera setting
 	camera.position.x = 2
@@ -231,7 +231,9 @@ function init
 
 	# Renderer
 	function render
+		timer = Date.now! * 0.0002
 		request-animation-frame render
+		out-light.position.z = (Math.cos timer) * 1500
 		controls.update!
 		renderer.clear!
 		composer.render!
