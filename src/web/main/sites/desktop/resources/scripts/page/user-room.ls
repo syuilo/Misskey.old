@@ -171,7 +171,7 @@ function init
 		format: THREE.RGBFormat
 		-stencil-buffer
 	}
-	render-target = new THREE.WebGLRenderTarget width, height, parameters
+	render-target = new THREE.WebGLRenderTarget width / scale, height / scale, parameters
 
 	composer = new THREE.EffectComposer renderer, render-target
 	composer.add-pass new THREE.RenderPass scene, camera
