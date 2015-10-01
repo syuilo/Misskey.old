@@ -78,6 +78,9 @@ function init
 		
 	loader = new THREE.OBJMTLLoader!
 	loader.load '/resources/common/3d-models/bed/bed.obj' '/resources/common/3d-models/bed/bed.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.receive-shadow = on
 		object.position.set 1.95 0 -1.4
 		object.rotation.y = Math.PI
 		scene.add object
