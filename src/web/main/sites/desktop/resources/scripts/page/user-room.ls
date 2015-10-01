@@ -95,6 +95,15 @@ function init
 				child.receive-shadow = on
 		object.position.set -2.2 0 -1.15
 		scene.add object
+	
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/mousepad/mousepad.obj' '/resources/common/3d-models/mousepad/mousepad.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.cast-shadow = on
+				child.receive-shadow = on
+		object.position.set -1.9 0.7 -2.4
+		scene.add object
 		
 	loader = new THREE.ObjectLoader!
 	loader.load '/resources/common/3d-models/monitor/monitor.json' (object) ->
