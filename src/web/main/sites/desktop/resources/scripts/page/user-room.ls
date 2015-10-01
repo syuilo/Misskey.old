@@ -189,8 +189,8 @@ function init
 	out-light.shadow-bias = -0.0001
 	out-light.shadow-map-width = shadow-quolity
 	out-light.shadow-map-height = shadow-quolity
-	out-light.shadow-camera-near = 5
-	out-light.shadow-camera-far = 18
+	out-light.shadow-camera-near = 6
+	out-light.shadow-camera-far = 17
 	out-light.shadow-camera-fov = 45
 	#out-light.only-shadow = on
 	out-light.shadow-camera-visible = on #debug
