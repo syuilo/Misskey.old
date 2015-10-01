@@ -165,7 +165,7 @@ composer.add-pass new THREE.RenderPass scene, camera
 composer.add-pass new THREE.BloomPass 4.0 25 2.0 512
 to-screen = new THREE.ShaderPass THREE.CopyShader
 to-screen.render-to-screen = on
-composer.add-aass to-screen
+composer.add-pass to-screen
 
 # Renderer
 function render
