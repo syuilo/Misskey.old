@@ -233,7 +233,7 @@ function init
 	function render
 		timer = Date.now! * 0.0002
 		request-animation-frame render
-		out-light.position.z = (Math.cos timer) * 1500
+		out-light.position.z = (Math.cos timer) * 10
 		controls.update!
 		renderer.clear!
 		composer.render!
