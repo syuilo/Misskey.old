@@ -111,8 +111,8 @@ function init
 		console.log \kyoppie
 		if (ev.target == renderer.dom-element) and (ev.button == 2)
 			mouse = new THREE.Vector2!
-				..x = (event.client-x / renderer.dom-element.inner-width) * 2 - 1
-				..y = -(event.client-y / renderer.dom-element.inner-height) * 2 + 1
+				..x = (ev.client-x / renderer.dom-element.inner-width) * 2 - 1
+				..y = -(ev.client-y / renderer.dom-element.inner-height) * 2 + 1
 			raycaster = new THREE.Raycaster!
 				..set-from-camera mouse, camera
 			intersects = raycaster.intersect-objects scene.children
