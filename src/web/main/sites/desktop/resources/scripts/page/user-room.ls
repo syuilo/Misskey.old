@@ -119,10 +119,11 @@ function init
 			raycaster.set-from-camera pos, camera
 			intersects = raycaster.intersect-objects items, on
 
-			items.traverse (child) ->
-				if child instanceof THREE.Mesh
-					if child.has-own-property \currentHex
-						child.material.emissive.set-hex child.current-hex
+			items.for-each (item) ->
+				item.traverse (child) ->
+					if child instanceof THREE.Mesh
+						if child.has-own-property \currentHex
+							child.material.emissive.set-hex child.current-hex
 
 			if intersects.length > 0
 				console.log intersects
