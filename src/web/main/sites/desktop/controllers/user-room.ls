@@ -87,8 +87,8 @@ module.exports = (req, res, options) ->
 		room .= to-object!
 		Promise.all (room.items |> map (item) ->
 			resolve, reject <- new Promise!
-			item.obj = room-items.filter (room-item, index) ->
-				room-item.id == item.item-id
+			item.obj = (room-items.filter (room-item, index) ->
+				room-item.id == item.item-id).0
 			resolve item)
 		.then (serialized-items) ->
 			room.items = serialized-items
