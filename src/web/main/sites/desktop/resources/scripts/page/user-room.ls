@@ -78,7 +78,7 @@ function init
 			if child instanceof THREE.Mesh
 				child.receive-shadow = on
 				child.cast-shadow = on
-		object.position.set -2.1 0 0.4
+		object.position.set -2.2 0 0.4
 		scene.add object
 	
 	loader = new THREE.OBJMTLLoader!
