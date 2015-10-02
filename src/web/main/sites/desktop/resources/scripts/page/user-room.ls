@@ -120,6 +120,12 @@ function init
 			if obj.length > 0
 				alert obj
 
+	EventsControls = new EventsControls camera, renderer.dom-element
+		..draggable = no
+
+	EventsControls.onclick = ->
+		alert @.focused.id
+
 	#init-sky!
 	init-items!
 
@@ -181,8 +187,10 @@ function init
 						object.rotation.z = item.rotation.z
 						object.cast-shadow = on
 						object.receive-shadow = on
+						object.id = item.individual-id
 						scene.add object
 						items.push object
+						EventsControls.attach object
 				| \objmtl =>
 					loader = new THREE.OBJMTLLoader!
 					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
@@ -196,8 +204,10 @@ function init
 						object.rotation.x = item.rotation.x
 						object.rotation.y = item.rotation.y
 						object.rotation.z = item.rotation.z
+						object.id = item.individual-id
 						scene.add object
 						items.push object
+						EventsControls.attach object
 			else
 				unactive-items.push item
 
