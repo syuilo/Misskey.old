@@ -23,7 +23,7 @@
 	{
 		"name": "黒いイス",
 		"id": "chair3",
-		"price": 800,
+		"price": 900,
 		"place": "floor",
 		"3dmodelType": "objmtl"
 	},
