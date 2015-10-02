@@ -4,7 +4,7 @@ init!
 
 function init
 	shadow-quolity = 8192
-	debug = no
+	debug = yes
 
 	width = window.inner-width
 	height = window.inner-height
@@ -71,12 +71,12 @@ function init
 	# Controller setting
 	controls = new THREE.OrbitControls camera
 		..target.set 0 1 0
-		..enable-zoom = no
-		..enable-pan = no
+		..enable-zoom = debug
+		..enable-pan = debug
 		..min-polar-angle = 0
-		..max-polar-angle = Math.PI / 2
+		..max-polar-angle = if debug then Math.PI else Math.PI / 2
 		..min-azimuth-angle = 0
-		..max-azimuth-angle = Math.PI / 2
+		..max-azimuth-angle = if debug then Math.PI else Math.PI / 2
 
 	# DEBUG
 	if debug
