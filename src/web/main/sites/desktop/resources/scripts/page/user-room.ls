@@ -189,6 +189,8 @@ function init
 					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
 						object.traverse (child) ->
 							if child instanceof THREE.Mesh
+								child.source = object
+								child.name = item.individual-id
 								child.cast-shadow = on
 								child.receive-shadow = on
 						object.position.x = item.position.x
@@ -198,7 +200,6 @@ function init
 						object.rotation.y = item.rotation.y
 						object.rotation.z = item.rotation.z
 						object.name = item.individual-id
-						console.log item.individual-id
 						scene.add object
 						items.push object
 			else
