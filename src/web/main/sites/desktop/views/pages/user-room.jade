@@ -29,13 +29,17 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items))
 				div#menu
 					div#item-menu
 						p.title
-						button.up
+						button.up-button
 							| up
-						button.down
+						button.down-button
 							| down
-						button.left
+						button.left-button
 							| left
-						button.right
+						button.right-button
 							| right
+						input.up(type='text')
+						input.down(type='text')
+						input.left(type='text')
+						input.right(type='text')
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')
