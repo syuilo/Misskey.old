@@ -73,6 +73,15 @@ function init
 		scene.add object
 	
 	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/mat/mat.obj' '/resources/common/3d-models/mat/mat.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.receive-shadow = on
+				child.cast-shadow = on
+		object.position.set -2 0 0.5
+		scene.add object
+	
+	loader = new THREE.OBJMTLLoader!
 	loader.load '/resources/common/3d-models/carpet/carpet.obj' '/resources/common/3d-models/carpet/carpet.mtl' (object) ->
 		object.traverse (child) ->
 			if child instanceof THREE.Mesh
