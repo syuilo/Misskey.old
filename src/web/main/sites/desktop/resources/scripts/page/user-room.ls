@@ -127,6 +127,7 @@ function init
 			if intersects.length > 0
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
+				$ \#item-menu .find \.title .text INTERSECTED.name
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh

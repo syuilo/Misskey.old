@@ -24,5 +24,10 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items))
 		script(src='/resources/common/scripts/lib/three.js/examples/js/SkyShader.js')
 	
 	body
+		if login
+			if me.id == user.id
+				div#menu
+					div#item-menu
+						p.title
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')
