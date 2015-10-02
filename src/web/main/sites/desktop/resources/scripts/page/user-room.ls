@@ -233,7 +233,7 @@ function init
 	
 	composer = new THREE.EffectComposer renderer, render-target
 	composer.add-pass new THREE.RenderPass scene, camera
-	composer.add-pass new THREE.BloomPass 0.5 50 128.0 512
+	composer.add-pass new THREE.BloomPass 0.5 25 128.0 512
 	composer.add-pass fxaa
 	composer.add-pass to-screen
 	
