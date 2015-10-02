@@ -179,6 +179,7 @@ function init
 				if child instanceof THREE.Mesh
 					child.receive-shadow = on
 					child.cast-shadow = on
+					child.material.shininess = 0
 			object.position.set 0 0 0
 			scene.add object
 
