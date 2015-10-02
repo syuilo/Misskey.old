@@ -18,7 +18,7 @@
 
 Note that only `develop` branch is accepting any Pull Requests.
 
-# 部屋のアイテム追加
-- モデルの形式はobj+mtlとします。
-- 単位はメートル法で作ってください。
-- **エクスポート時は三角面化してください。**
+## Adding a item of room
+* Format of model is obj+mtl
+* Use meter for unit of length
+* Export as triangulated model
