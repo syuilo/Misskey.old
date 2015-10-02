@@ -110,9 +110,9 @@ function init
 	window.onmousedown = (ev) ->
 		console.log \kyoppie
 		if (ev.target == renderer.dom-element) and (ev.button == 2)
-			mouse = new THREE.Vector2!
-				..x = (ev.client-x / renderer.dom-element.inner-width) * 2 - 1
-				..y = -(ev.client-y / renderer.dom-element.inner-height) * 2 + 1
+			x = (ev.client-x / renderer.dom-element.inner-width) * 2 - 1
+			y = -(ev.client-y / renderer.dom-element.inner-height) * 2 + 1
+			mouse = new THREE.Vector2 x, y
 			console.log mouse
 			raycaster = new THREE.Raycaster!
 				..set-from-camera mouse, camera
