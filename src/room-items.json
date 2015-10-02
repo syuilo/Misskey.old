@@ -103,5 +103,19 @@
 		"price": 1000,
 		"place": "floor",
 		"3dmodelType": "json"
+	},
+	{
+		"name": "ストライプのカーペット",
+		"id": "carpet",
+		"price": 1000,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "ウェルカムマット",
+		"id": "mat",
+		"price": 500,
+		"place": "floor",
+		"3dmodelType": "objmtl"
 	}
 ]

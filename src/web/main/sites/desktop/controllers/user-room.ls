@@ -46,6 +46,9 @@ module.exports = (req, res, options) ->
 				* individual-id: \e
 					item-id: \milk
 					position: null
+				* individual-id: \f
+					item-id: \facial-tissue
+					position: null
 		
 		room.save ->
 			res.display req, res, \user-room {
