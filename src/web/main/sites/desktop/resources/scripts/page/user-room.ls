@@ -112,11 +112,10 @@ function init
 			x = (ev.client-x / renderer.dom-element.width) * 2 - 1
 			y = -(ev.client-y / renderer.dom-element.height) * 2 + 1
 			mouse = new THREE.Vector2 x, y
-			console.log mouse
 			raycaster = new THREE.Raycaster!
-				..set-from-camera mouse, camera
+			raycaster.set-from-camera mouse, camera
 			intersects = raycaster.intersect-objects scene.children
-			alert intersects
+			console.log intersects
 
 	#init-sky!
 	init-items!
