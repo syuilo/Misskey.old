@@ -29,7 +29,7 @@ module.exports = (req, res, options) ->
 					rotation:
 						x: 0
 						y: 3.141592653589793
-						x: 0
+						z: 0
 				}
 				{
 					individual-id: \b
@@ -41,7 +41,7 @@ module.exports = (req, res, options) ->
 					rotation:
 						x: 0
 						y: 0
-						x: 0
+						z: 0
 				}
 				{
 					individual-id: \c
@@ -53,7 +53,7 @@ module.exports = (req, res, options) ->
 					rotation:
 						x: 0
 						y: 0
-						x: 0
+						z: 0
 				}
 				{
 					individual-id: \d
@@ -65,7 +65,7 @@ module.exports = (req, res, options) ->
 					rotation:
 						x: 0
 						y: 0
-						x: 0
+						z: 0
 				}
 				{
 					individual-id: \e
