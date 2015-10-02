@@ -31,7 +31,8 @@ function init
 	# Camera settings
 	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
-	camera.zoom = 1000
+	camera.zoom = 10
+	camera.update-projection-matrix!
 	camera.position.x = 2
 	camera.position.y = 2
 	camera.position.z = 2
