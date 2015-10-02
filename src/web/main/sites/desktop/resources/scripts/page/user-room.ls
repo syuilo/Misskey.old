@@ -120,7 +120,7 @@ function init
 			intersects = raycaster.intersect-objects items, on
 			if intersects.length > 0
 				console.log intersects
-				intersects[0].object.source.position.y++
+				intersects[0].object.source.position.y += 0.2
 
 	#init-sky!
 	init-items!
