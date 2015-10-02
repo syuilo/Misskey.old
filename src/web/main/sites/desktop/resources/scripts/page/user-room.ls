@@ -111,8 +111,8 @@ function init
 		if (ev.target == renderer.dom-element) and (ev.button == 2)
 			raycaster = new THREE.Raycaster!
 			mouse = new THREE.Vector2!
-			mouse.x = (event.clientX / renderer.dom-element.width) * 2 - 1
-			mouse.y = -(event.clientY / renderer.dom-element.height) * 2 + 1
+			mouse.x = (event.client-x / renderer.dom-element.width) * 2 - 1
+			mouse.y = -(event.client-y / renderer.dom-element.height) * 2 + 1
 			raycaster.set-from-camera mouse, camera
 			intersects = raycaster.intersect-objects items
 			if intersects.length > 0
