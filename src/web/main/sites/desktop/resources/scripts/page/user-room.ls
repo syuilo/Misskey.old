@@ -10,6 +10,7 @@ function init
 	height = window.inner-height
 
 	items = []
+	unactive-items = []
 
 	# Scene settings
 	scene = new THREE.Scene!
@@ -167,35 +168,38 @@ function init
 
 		room-items.for-each (item) ->
 			console.log item
-			switch (item.obj.model-type)
-			| \json =>
-				loader = new THREE.ObjectLoader!
-				loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
-					object.position.x = item.position.x
-					object.position.y = item.position.y
-					object.position.z = item.position.z
-					object.rotation.x = item.rotation.x
-					object.rotation.y = item.rotation.y
-					object.rotation.z = item.rotation.z
-					object.cast-shadow = on
-					object.receive-shadow = on
-					scene.add object
-					items.push object
-			| \objmtl =>
-				loader = new THREE.OBJMTLLoader!
-				loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
-					object.traverse (child) ->
-						if child instanceof THREE.Mesh
-							child.cast-shadow = on
-							child.receive-shadow = on
-					object.position.x = item.position.x
-					object.position.y = item.position.y
-					object.position.z = item.position.z
-					object.rotation.x = item.rotation.x
-					object.rotation.y = item.rotation.y
-					object.rotation.z = item.rotation.z
-					scene.add object
-					items.push object
+			if item.position?
+				switch (item.obj.model-type)
+				| \json =>
+					loader = new THREE.ObjectLoader!
+					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
+						object.position.x = item.position.x
+						object.position.y = item.position.y
+						object.position.z = item.position.z
+						object.rotation.x = item.rotation.x
+						object.rotation.y = item.rotation.y
+						object.rotation.z = item.rotation.z
+						object.cast-shadow = on
+						object.receive-shadow = on
+						scene.add object
+						items.push object
+				| \objmtl =>
+					loader = new THREE.OBJMTLLoader!
+					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
+						object.traverse (child) ->
+							if child instanceof THREE.Mesh
+								child.cast-shadow = on
+								child.receive-shadow = on
+						object.position.x = item.position.x
+						object.position.y = item.position.y
+						object.position.z = item.position.z
+						object.rotation.x = item.rotation.x
+						object.rotation.y = item.rotation.y
+						object.rotation.z = item.rotation.z
+						scene.add object
+						items.push object
+			else
+				unactive-items.push item
 
 	# Renderer
 	function render
