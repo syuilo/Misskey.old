@@ -2,19 +2,19 @@ require! {
 	'../../../../../models/user': User
 	'../../../../../models/user-room': UserRoom
 	'../../../../../config'
+	'../../../../../room-items.json'
 }
 
 module.exports = (req, res, options) ->
 	user = options.user
 	me = if req.login then req.me else null
 	
+	console.log room-items
+	
 	err, room <- UserRoom.find-one {user-id: user.id}
 
 	if room?
-		res.display req, res, \user-room {
-			user
-			room
-		}
+		display room
 	else
 		room = new UserRoom!
 			..user-id = user.id
@@ -81,6 +81,17 @@ module.exports = (req, res, options) ->
 				}
 		
 		room.save ->
+			display room
+	
+	function display(room)
+		room .= to-object!
+		Promise.all (room.items |> map (item) ->
+			resolve, reject <- new Promise!
+			item.obj = room-items.filter (room-item, index) ->
+				room-item.id == item.item-id
+			resolve item)
+		.then (serialized-items) ->
+			room.items = serialized-items
 			res.display req, res, \user-room {
 				user
 				room
