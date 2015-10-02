@@ -1,0 +1,107 @@
+[
+	{
+		"name": "牛乳パック",
+		"id": "milk",
+		"price": 10,
+		"place": "floor",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "オレンジのベッド",
+		"id": "bed",
+		"price": 3500,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "黒いモダンなデスク",
+		"id": "desk",
+		"price": 3200,
+		"place": "floor",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "黒いイス",
+		"id": "chair3",
+		"price": 1400,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "ハイスペそうなPC",
+		"id": "pc",
+		"price": 12000,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "ミニ観葉植物",
+		"id": "plant",
+		"price": 120,
+		"place": "floor",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "消しゴム",
+		"id": "eraser",
+		"price": 110,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "ダンボール箱",
+		"id": "cardboard-box",
+		"price": 200,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "紫の本",
+		"id": "book",
+		"price": 200,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "電子ピアノ",
+		"id": "piano",
+		"price": 11000,
+		"place": "floor",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "ティッシュペーパー",
+		"id": "facial-tissue",
+		"price": 300,
+		"place": "floor",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "コルクボード",
+		"id": "corkboard",
+		"price": 300,
+		"place": "wall",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "青いマウスパッド",
+		"id": "mousepad",
+		"price": 250,
+		"place": "floor",
+		"3dmodelType": "objmtl"
+	},
+	{
+		"name": "モニター",
+		"id": "monitor",
+		"price": 1800,
+		"place": "floor",
+		"3dmodelType": "json"
+	},
+	{
+		"name": "キーボード",
+		"id": "keyboard",
+		"price": 1000,
+		"place": "floor",
+		"3dmodelType": "json"
+	}
+]
