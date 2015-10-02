@@ -166,6 +166,7 @@ function init
 			scene.add object
 
 		console.log room-items
+		console.log JSON.parse room-items
 
 		room-items.for-each (item) ->
 			switch (item.model-type)
