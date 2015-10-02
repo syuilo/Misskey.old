@@ -109,22 +109,14 @@ function init
 
 	window.onmousedown = (ev) ->
 		if (ev.target == renderer.dom-element) and (ev.button == 2)
-			rect = ev.target.get-bounding-client-rect!
-			mouse = { x: 0, y: 0 }
-			mouse.x = ((ev.client-x - rect.left) / width) * 2 - 1
-			mouse.y = ((ev.client-y - rect.top) / height) * 2 + 1
-			vector = new THREE.Vector3 mouse.x, mouse.y, 1
-			vector.unproject camera
-			ray = new THREE.Raycaster camera.position, (vector.sub camera.position).normalize!
-			obj = ray.intersect-objects items
-			if obj.length > 0
-				alert obj
-
-	EventsControls = new EventsControls camera, renderer.dom-element
-		..draggable = no
-
-	EventsControls.onclick = ->
-		alert @.focused.id
+			raycaster = new THREE.Raycaster!
+			mouse = new THREE.Vector2!
+			mouse.x = (event.clientX / renderer.dom-element.width) * 2 - 1
+			mouse.y = -(event.clientY / renderer.dom-element.height) * 2 + 1
+			raycaster.set-from-camera mouse, camera
+			intersects = raycaster.intersect-objects items
+			 if intersects.length > 0
+				 alert intersects
 
 	#init-sky!
 	init-items!
@@ -190,7 +182,6 @@ function init
 						object.id = item.individual-id
 						scene.add object
 						items.push object
-						EventsControls.attach object
 				| \objmtl =>
 					loader = new THREE.OBJMTLLoader!
 					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
@@ -207,7 +198,6 @@ function init
 						object.id = item.individual-id
 						scene.add object
 						items.push object
-						EventsControls.attach object
 			else
 				unactive-items.push item
 
