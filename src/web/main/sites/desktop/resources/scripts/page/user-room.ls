@@ -195,7 +195,6 @@ function init
 						object.traverse (child) ->
 							if child instanceof THREE.Mesh
 								child.source = object
-								child.name = item.individual-id
 								child.cast-shadow = on
 								child.receive-shadow = on
 						object.position.x = item.position.x
