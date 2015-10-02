@@ -1,3 +1,5 @@
+room-items = JSON.parse $ \html .attr \data-room-items
+
 init!
 
 function init
@@ -163,7 +165,36 @@ function init
 			object.position.set 0 0 0
 			scene.add object
 
-		
+		room-items.for-each (item) ->
+			switch (item.model-type)
+			| \json =>
+				loader = new THREE.ObjectLoader!
+				loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
+					object.position.x = item.position.x
+					object.position.y = item.position.y
+					object.position.z = item.position.z
+					object.rotation.x = item.rotation.x
+					object.rotation.y = item.rotation.y
+					object.rotation.z = item.rotation.z
+					object.cast-shadow = on
+					object.receive-shadow = on
+					scene.add object
+					items.push object
+			| \objmtl =>
+				loader = new THREE.OBJMTLLoader!
+				loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
+					object.traverse (child) ->
+						if child instanceof THREE.Mesh
+							child.cast-shadow = on
+							child.receive-shadow = on
+					object.position.x = item.position.x
+					object.position.y = item.position.y
+					object.position.z = item.position.z
+					object.rotation.x = item.rotation.x
+					object.rotation.y = item.rotation.y
+					object.rotation.z = item.rotation.z
+					scene.add object
+					items.push object
 
 	# Renderer
 	function render
