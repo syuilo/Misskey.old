@@ -121,7 +121,7 @@ function init
 
 			items.for-each (item) ->
 				item.traverse (child) ->
-					if child.has-own-property \currentHex
+					if child instanceof THREE.Mesh
 						child.material.emissive.set-hex 0x000000
 
 			if intersects.length > 0
@@ -130,7 +130,6 @@ function init
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
-						child.current-hex = child.material.emissive.get-hex!
 						child.material.emissive.set-hex 0xff0000
 
 	#init-sky!
