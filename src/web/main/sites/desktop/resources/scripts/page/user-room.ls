@@ -16,7 +16,7 @@ function init
 	scene = new THREE.Scene!
 
 	# Renderer settings
-	renderer = new THREE.WebGLRenderer {+antialias}
+	renderer = new THREE.WebGLRenderer {-antialias}
 		..set-pixel-ratio window.device-pixel-ratio
 		..set-size width, height
 		..auto-clear = off
