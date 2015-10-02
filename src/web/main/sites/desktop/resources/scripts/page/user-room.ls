@@ -110,12 +110,12 @@ function init
 	window.onmousedown = (ev) ->
 		console.log \kyoppie
 		#if (ev.target == renderer.dom-element) and (ev.button == 2)
-		raycaster = new THREE.Raycaster!
 		mouse = new THREE.Vector2!
-		mouse.x = (event.client-x / renderer.dom-element.width) * 2 - 1
-		mouse.y = -(event.client-y / renderer.dom-element.height) * 2 + 1
-		raycaster.set-from-camera mouse, camera
-		intersects = raycaster.intersect-objects items
+			..x = (event.client-x / renderer.dom-element.inner-width) * 2 - 1
+			..y = -(event.client-y / renderer.dom-element.inner-height) * 2 + 1
+		raycaster = new THREE.Raycaster!
+			..set-from-camera mouse, camera
+		intersects = raycaster.intersect-objects scene.children
 		if intersects.length > 0
 			alert intersects
 
