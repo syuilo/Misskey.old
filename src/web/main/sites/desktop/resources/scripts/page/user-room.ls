@@ -128,9 +128,9 @@ function init
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
 				$ \#item-menu .find \.title .text INTERSECTED.room-item-info.obj.name
-				$ \#item-menu .find \.x .text INTERSECTED.room-item-info.position.x
-				$ \#item-menu .find \.y .text INTERSECTED.room-item-info.position.y
-				$ \#item-menu .find \.z .text INTERSECTED.room-item-info.position.z
+				$ \#item-menu .find \.x .val INTERSECTED.room-item-info.position.x
+				$ \#item-menu .find \.y .val INTERSECTED.room-item-info.position.y
+				$ \#item-menu .find \.z .val INTERSECTED.room-item-info.position.z
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
