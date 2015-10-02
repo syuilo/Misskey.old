@@ -127,7 +127,7 @@ function init
 			if intersects.length > 0
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
-				$ \#item-menu .find \.title .text INTERSECTED.name
+				$ \#item-menu .find \.title .text INTERSECTED.room-item-info.name
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
@@ -200,11 +200,6 @@ function init
 				| \objmtl =>
 					loader = new THREE.OBJMTLLoader!
 					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
-						object.traverse (child) ->
-							if child instanceof THREE.Mesh
-								child.source = object
-								child.cast-shadow = on
-								child.receive-shadow = on
 						object.position.x = item.position.x
 						object.position.y = item.position.y
 						object.position.z = item.position.z
@@ -212,6 +207,12 @@ function init
 						object.rotation.y = item.rotation.y
 						object.rotation.z = item.rotation.z
 						object.name = item.individual-id
+						object.room-item-info = item
+						object.traverse (child) ->
+							if child instanceof THREE.Mesh
+								child.source = object
+								child.cast-shadow = on
+								child.receive-shadow = on
 						scene.add object
 						items.push object
 			else
