@@ -119,7 +119,7 @@ function init
 		camera.update-matrix-world!
 		raycaster = new THREE.Raycaster!
 		raycaster.set-from-camera pos, camera
-		intersects = raycaster.intersect-objects scene.children
+		intersects = raycaster.intersect-objects scene.children, on
 		console.log intersects
 
 	#init-sky!
