@@ -181,7 +181,7 @@ function init
 						object.rotation.z = item.rotation.z
 						object.cast-shadow = on
 						object.receive-shadow = on
-						object.id = item.individual-id
+						object.name = item.individual-id
 						scene.add object
 						items.push object
 				| \objmtl =>
@@ -197,7 +197,7 @@ function init
 						object.rotation.x = item.rotation.x
 						object.rotation.y = item.rotation.y
 						object.rotation.z = item.rotation.z
-						object.id = item.individual-id
+						object.name = item.individual-id
 						scene.add object
 						items.push object
 			else
