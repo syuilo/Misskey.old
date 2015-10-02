@@ -102,6 +102,20 @@ function init
 
 	################################
 
+	window.onmousedown = (ev) ->
+		if (ev.target == renderer.dom-element) and (ev.button == 2)
+			rect = ev.target.get-bounding-client-rect!
+			mouse = { x: 0, y: 0 }
+			mouse.x = ((ev.client-x - rect.left) / width) * 2 - 1
+			mouse.y = ((ev.client-y - rect.top) / height) * 2 + 1
+			vector = new THREE.Vector3 mouse.x, mouse.y, 1
+			projector = new THREE.Projector!
+			projector.unproject-vector vector, camera
+			ray = new THREE.Raycaster camera.position, (vector.sub camera.position).normalize!
+			obj = ray.intersect-objects!
+			if obj.length > 0
+				alert obj
+
 	#init-sky!
 	init-items!
 
