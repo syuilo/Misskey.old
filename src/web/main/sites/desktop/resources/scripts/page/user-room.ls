@@ -133,7 +133,7 @@ function init
 			raycaster.set-from-camera pos, camera
 			intersects = raycaster.intersect-objects items, on
 
-			SELECTEDITEM = null
+			SELECTEDITEM := null
 
 			items.for-each (item) ->
 				item.traverse (child) ->
@@ -143,7 +143,7 @@ function init
 			if intersects.length > 0
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
-				SELECTEDITEM = INTERSECTED
+				SELECTEDITEM := INTERSECTED
 				$ \#item-menu .find \.title .text INTERSECTED.room-item-info.obj.name
 				$ \#item-menu .find \.x .val INTERSECTED.room-item-info.position.x
 				$ \#item-menu .find \.y .val INTERSECTED.room-item-info.position.y
