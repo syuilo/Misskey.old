@@ -122,8 +122,11 @@ function init
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
 				INTERSECTED.position.y += 0.2
-				INTERSECTED.current-hex = INTERSECTED.material.emissive.get-hex!
-				INTERSECTED.material.emissive.set-hex 0xff0000
+				# Highlight
+				INTERSECTED.traverse (child) ->
+					if child instanceof THREE.Mesh
+						child.current-hex = child.material.emissive.get-hex!
+						child.material.emissive.set-hex 0xff0000
 
 	#init-sky!
 	init-items!
