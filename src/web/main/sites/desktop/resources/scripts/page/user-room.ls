@@ -100,6 +100,16 @@ function init
 		object.position.set 1.95 0 -0.2
 		object.rotation.y = Math.PI
 		scene.add object
+	
+	loader = new THREE.OBJMTLLoader!
+	loader.load '/resources/common/3d-models/cardboard-box/cardboard-box.obj' '/resources/common/3d-models/cardboard-box/cardboard-box.mtl' (object) ->
+		object.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.receive-shadow = on
+				child.cast-shadow = on
+		object.position.set -2.2 0 1.9
+		#object.rotation.y = Math.PI
+		scene.add object
 
 	loader = new THREE.ObjectLoader!
 	loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
