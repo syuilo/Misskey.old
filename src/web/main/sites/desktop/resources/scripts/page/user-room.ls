@@ -166,6 +166,7 @@ function init
 			scene.add object
 
 		room-items.for-each (item) ->
+			console.log item
 			switch (item.model-type)
 			| \json =>
 				loader = new THREE.ObjectLoader!
