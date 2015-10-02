@@ -29,9 +29,8 @@ function init
 	document.body.append-child renderer.dom-element
 
 	# Camera settings
-	scale = 256
-	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
-	#camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
+	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
 		..position.x = 2
 		..position.y = 2
 		..position.z = 2
@@ -113,6 +112,7 @@ function init
 		x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
 		y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
 		pos = new THREE.Vector2 x, y
+		camera.update-matrix-world!
 		raycaster = new THREE.Raycaster!
 		raycaster.set-from-camera pos, camera
 		intersects = raycaster.intersect-objects scene.children
