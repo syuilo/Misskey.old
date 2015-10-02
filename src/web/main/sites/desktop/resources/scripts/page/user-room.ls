@@ -122,7 +122,7 @@ function init
 			items.for-each (item) ->
 				item.traverse (child) ->
 					if child.has-own-property \currentHex
-						child.material.emissive.set-hex child.current-hex
+						child.material.emissive.set-hex 0x000000
 
 			if intersects.length > 0
 				console.log intersects
