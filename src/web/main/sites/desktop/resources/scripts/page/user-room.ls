@@ -116,7 +116,7 @@ function init
 			raycaster.set-from-camera mouse, camera
 			intersects = raycaster.intersect-objects items
 			if intersects.length > 0
-				 alert intersects
+				alert intersects
 
 	#init-sky!
 	init-items!
