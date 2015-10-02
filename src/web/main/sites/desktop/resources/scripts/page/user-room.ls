@@ -7,6 +7,8 @@ function init
 	width = window.inner-width
 	height = window.inner-height
 
+	items = []
+
 	# Scene settings
 	scene = new THREE.Scene!
 
@@ -111,7 +113,7 @@ function init
 			vector = new THREE.Vector3 mouse.x, mouse.y, 1
 			vector.unproject camera
 			ray = new THREE.Raycaster camera.position, (vector.sub camera.position).normalize!
-			obj = ray.intersect-objects!
+			obj = ray.intersect-objects items
 			if obj.length > 0
 				alert obj
 
@@ -169,6 +171,7 @@ function init
 					child.cast-shadow = on
 			object.position.set -2.2 0 0.4
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/carpet/carpet.obj' '/resources/common/3d-models/carpet/carpet.mtl' (object) ->
@@ -178,6 +181,7 @@ function init
 					child.cast-shadow = on
 			object.position.set 0 0 0
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/bed/bed.obj' '/resources/common/3d-models/bed/bed.mtl' (object) ->
@@ -188,6 +192,7 @@ function init
 			object.position.set 1.95 0 -1.4
 			object.rotation.y = Math.PI
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/book/book.obj' '/resources/common/3d-models/book/book.mtl' (object) ->
@@ -198,6 +203,7 @@ function init
 			object.position.set 1.95 0 -0.2
 			object.rotation.y = Math.PI
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/cardboard-box/cardboard-box.obj' '/resources/common/3d-models/cardboard-box/cardboard-box.mtl' (object) ->
@@ -208,12 +214,14 @@ function init
 			object.position.set -2.2 0 1.9
 			#object.rotation.y = Math.PI
 			scene.add object
+			items.push object
 
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
 			object.position.set -2.2 0 -1.9
 			object.rotation.y = Math.PI
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/chair3/chair3.obj' '/resources/common/3d-models/chair3/chair3.mtl' (object) ->
@@ -224,6 +232,7 @@ function init
 			object.position.set -1.8 0 -1.9
 			object.rotation.y = Math.PI / 2
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/pc/pc.obj' '/resources/common/3d-models/pc/pc.mtl' (object) ->
@@ -233,6 +242,7 @@ function init
 					child.receive-shadow = on
 			object.position.set -2.2 0 -1.15
 			scene.add object
+			items.push object
 
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/mousepad/mousepad.obj' '/resources/common/3d-models/mousepad/mousepad.mtl' (object) ->
@@ -243,23 +253,33 @@ function init
 			object.position.set -2.025 0.7 -2.25
 			object.rotation.y = - Math.PI / 16
 			scene.add object
+			items.push object
 
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/monitor/monitor.json' (object) ->
 			object.position.set -2.2 0.7 -1.9
 			scene.add object
+			items.push object
+
+		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/keyboard/keyboard.json' (object) ->
 			object.position.set -2 0.7 -1.9
 			object.rotation.y = Math.PI
 			scene.add object
+			items.push object
+
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/plant/plant.json' (object) ->
 			object.position.set -2.3 0.7 -1.5
 			scene.add object
+			items.push object
+
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/eraser/eraser.json' (object) ->
 			object.position.set -2.1 0.7 -1.5
 			scene.add object
+			items.push object
+
 		loader = new THREE.JSONLoader!
 		loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
 			geo = geometry
@@ -268,21 +288,28 @@ function init
 			mesh.position.set -2.3 0.7 -2.2
 			mesh.rotation.y = - Math.PI / 8
 			scene.add mesh
+			items.push mesh
+
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/facial-tissue/facial-tissue.json' (object) ->
 			object.position.set -2.35 0.7 -2.35
 			object.rotation.y = - Math.PI / 4
 			scene.add object
+			items.push object
+
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
 			object.position.set -2 0.9 -2.495
 			object.rotation.y = Math.PI / 2
 			scene.add object
+			items.push object
+
 		loader = new THREE.ObjectLoader!
 		loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
 			object.position.set 0 0 -2.5
 			object.rotation.y = Math.PI / 2
 			scene.add object
+			items.push object
 
 	# Renderer
 	function render
