@@ -26,6 +26,10 @@ module.exports = (req, res, options) ->
 						x: 1.95
 						y: 0
 						z: -1.4
+					rotation:
+						x: 0
+						y: 3.141592653589793
+						x: 0
 				}
 				{
 					individual-id: \b
@@ -34,6 +38,10 @@ module.exports = (req, res, options) ->
 						x: 0
 						y: 0
 						z: 0
+					rotation:
+						x: 0
+						y: 0
+						x: 0
 				}
 				{
 					individual-id: \c
@@ -42,24 +50,34 @@ module.exports = (req, res, options) ->
 						x: -2.2
 						y: 0
 						z: 0.4
+					rotation:
+						x: 0
+						y: 0
+						x: 0
 				}
 				{
 					individual-id: \d
 					item-id: \cardboard-box
 					position:
-							x: -2.2
-							y: 0
-							z: 1.9
+						x: -2.2
+						y: 0
+						z: 1.9
+					rotation:
+						x: 0
+						y: 0
+						x: 0
 				}
 				{
 					individual-id: \e
 					item-id: \milk
 					position: null
+					rotation: null
 				}
 				{
 					individual-id: \f
 					item-id: \facial-tissue
 					position: null
+					rotation: null
 				}
 		
 		room.save ->
