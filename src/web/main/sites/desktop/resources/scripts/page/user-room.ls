@@ -115,7 +115,7 @@ function init
 			mouse.y = -(event.clientY / renderer.dom-element.height) * 2 + 1
 			raycaster.set-from-camera mouse, camera
 			intersects = raycaster.intersect-objects items
-			 if intersects.length > 0
+			if intersects.length > 0
 				 alert intersects
 
 	#init-sky!
