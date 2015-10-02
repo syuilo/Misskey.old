@@ -29,14 +29,18 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items))
 				div#menu
 					div#item-menu
 						p.title
-						button.up-button
-							| up
-						button.down-button
-							| down
+						button.forward-button
+							| forward
+						button.back-button
+							| back
 						button.left-button
 							| left
 						button.right-button
 							| right
+						button.up-button
+							| up
+						button.down-button
+							| down
 						input.x(type='text')
 						input.y(type='text')
 						input.z(type='text')

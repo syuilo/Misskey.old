@@ -1,4 +1,18 @@
 room-items = JSON.parse ($ \html .attr \data-room-items)
+SELECTEDITEM = null
+
+$ \#item-menu .find \.back-button .click ->
+	SELECTEDITEM.position.x += 0.1
+$ \#item-menu .find \.forward-button .click ->
+	SELECTEDITEM.position.x -= 0.1
+$ \#item-menu .find \.left-button .click ->
+	SELECTEDITEM.position.z += 0.1
+$ \#item-menu .find \.right-button .click ->
+	SELECTEDITEM.position.z -= 0.1
+$ \#item-menu .find \.up-button .click ->
+	SELECTEDITEM.position.y += 0.1
+$ \#item-menu .find \.down-button .click ->
+	SELECTEDITEM.position.y -= 0.1
 
 init!
 
@@ -119,6 +133,8 @@ function init
 			raycaster.set-from-camera pos, camera
 			intersects = raycaster.intersect-objects items, on
 
+			SELECTEDITEM = null
+
 			items.for-each (item) ->
 				item.traverse (child) ->
 					if child instanceof THREE.Mesh
@@ -127,6 +143,7 @@ function init
 			if intersects.length > 0
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
+				SELECTEDITEM = INTERSECTED
 				$ \#item-menu .find \.title .text INTERSECTED.room-item-info.obj.name
 				$ \#item-menu .find \.x .val INTERSECTED.room-item-info.position.x
 				$ \#item-menu .find \.y .val INTERSECTED.room-item-info.position.y
