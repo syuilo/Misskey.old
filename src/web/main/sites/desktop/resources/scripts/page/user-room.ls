@@ -108,6 +108,8 @@ function init
 
 	################################
 
+	scene.add new THREE.Mesh (new THREE.BoxGeometry 2 2 2), (new THREE.MeshLambertMaterial { color: 0xffffff })
+
 	window.onmousemove = (e) ->
 		#if (e.target == renderer.dom-element) and (e.button == 2)
 		rect = e.target.get-bounding-client-rect!
