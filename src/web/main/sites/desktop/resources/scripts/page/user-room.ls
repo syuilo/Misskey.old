@@ -1,4 +1,4 @@
-room-items = $ \html .attr \data-room-items
+room-items = JSON.parse ($ \html .attr \data-room-items)
 
 init!
 
@@ -164,9 +164,6 @@ function init
 					child.cast-shadow = on
 			object.position.set 0 0 0
 			scene.add object
-
-		console.log room-items
-		console.log JSON.parse room-items
 
 		room-items.for-each (item) ->
 			switch (item.model-type)
