@@ -109,6 +109,8 @@ function init
 
 	window.onmousedown = (ev) ->
 		console.log \kyoppie
+		console.log renderer.dom-element.inner-width
+		console.log renderer.dom-element.inner-height
 		if (ev.target == renderer.dom-element) and (ev.button == 2)
 			x = (ev.client-x / renderer.dom-element.inner-width) * 2 - 1
 			y = -(ev.client-y / renderer.dom-element.inner-height) * 2 + 1
