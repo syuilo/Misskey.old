@@ -116,8 +116,7 @@ function init
 		raycaster = new THREE.Raycaster!
 			..set-from-camera mouse, camera
 		intersects = raycaster.intersect-objects scene.children
-		if intersects.length > 0
-			alert intersects
+		alert intersects
 
 	#init-sky!
 	init-items!
