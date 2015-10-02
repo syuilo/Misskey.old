@@ -108,6 +108,7 @@ function init
 	################################
 
 	window.onmousedown = (ev) ->
+		console.log \kyoppie
 		#if (ev.target == renderer.dom-element) and (ev.button == 2)
 		raycaster = new THREE.Raycaster!
 		mouse = new THREE.Vector2!
