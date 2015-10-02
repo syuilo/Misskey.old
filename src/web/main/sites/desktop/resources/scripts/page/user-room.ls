@@ -30,8 +30,8 @@ function init
 
 	# Camera settings
 	scale = 256
-	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
-	camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
+	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+	#camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
 		..position.x = 2
 		..position.y = 2
 		..position.z = 2
