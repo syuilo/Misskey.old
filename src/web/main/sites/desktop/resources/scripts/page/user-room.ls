@@ -118,10 +118,15 @@ function init
 			raycaster = new THREE.Raycaster!
 			raycaster.set-from-camera pos, camera
 			intersects = raycaster.intersect-objects items, on
+
+			scene.traverse (child) ->
+				if child instanceof THREE.Mesh
+					if child.has-own-property \currentHex
+						child.material.emissive.set-hex child.current-hex
+
 			if intersects.length > 0
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
-				INTERSECTED.position.y += 0.2
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
