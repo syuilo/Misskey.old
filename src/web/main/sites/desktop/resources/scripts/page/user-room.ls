@@ -1,4 +1,4 @@
-room-items = JSON.parse $ \html .attr \data-room-items
+room-items = $ \html .attr \data-room-items
 
 init!
 
