@@ -165,6 +165,8 @@ function init
 			object.position.set 0 0 0
 			scene.add object
 
+		console.log room-items
+
 		room-items.for-each (item) ->
 			switch (item.model-type)
 			| \json =>
