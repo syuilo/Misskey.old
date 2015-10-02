@@ -120,7 +120,10 @@ function init
 			intersects = raycaster.intersect-objects items, on
 			if intersects.length > 0
 				console.log intersects
-				intersects[0].object.source.position.y += 0.2
+				INTERSECTED = intersects[0].object.source
+				INTERSECTED.position.y += 0.2
+				INTERSECTED.current-hex = INTERSECTED.material.emissive.get-hex!
+				INTERSECTED.material.emissive.set-hex 0xff0000
 
 	#init-sky!
 	init-items!
