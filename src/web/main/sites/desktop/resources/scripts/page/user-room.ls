@@ -167,7 +167,7 @@ function init
 
 		room-items.for-each (item) ->
 			console.log item
-			switch (item.model-type)
+			switch (item.obj.model-type)
 			| \json =>
 				loader = new THREE.ObjectLoader!
 				loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
