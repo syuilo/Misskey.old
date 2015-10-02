@@ -112,10 +112,9 @@ function init
 		rect = e.target.get-bounding-client-rect!
 		x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
 		y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
-		pos = new THREE.Vector3 x, y, 1
-		pos.unproject camera
-		raycaster = new THREE.Raycaster camera.position, (pos.sub camera.position).normalize!
-		#raycaster.set-from-camera mouse, camera
+		pos = new THREE.Vector2 x, y
+		raycaster = new THREE.Raycaster!
+		raycaster.set-from-camera pos, camera
 		intersects = raycaster.intersect-objects scene.children
 		console.log intersects
 
