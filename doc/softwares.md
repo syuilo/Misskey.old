@@ -18,5 +18,8 @@ List of softwares related to Misskey
 ### .NET
 * [M#](https://github.com/marihachi/msharp) - MisskeyAPI Library For C#
 
+### Java
+* [JMisskey](https://github.com/xReiju/JMisskey) - is a library for Java. You can operate accounts of Misskey in Java with JMisskey.
+
 ----
 Want to add your software to the list? Please send a pull request!
