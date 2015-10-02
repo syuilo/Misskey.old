@@ -108,16 +108,16 @@ function init
 	################################
 
 	window.onmousemove = (e) ->
-		if (e.target == renderer.dom-element) and (e.button == 2)
-			rect = e.target.get-bounding-client-rect!
-			x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
-			y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
-			pos = new THREE.Vector3 x, y, 1
-			pos.unproject camera
-			raycaster = new THREE.Raycaster camera.position, (pos.sub camera.position).normalize!
-			#raycaster.set-from-camera mouse, camera
-			intersects = raycaster.intersect-objects scene.children
-			console.log intersects
+		#if (e.target == renderer.dom-element) and (e.button == 2)
+		rect = e.target.get-bounding-client-rect!
+		x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
+		y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
+		pos = new THREE.Vector3 x, y, 1
+		pos.unproject camera
+		raycaster = new THREE.Raycaster camera.position, (pos.sub camera.position).normalize!
+		#raycaster.set-from-camera mouse, camera
+		intersects = raycaster.intersect-objects scene.children
+		console.log intersects
 
 	#init-sky!
 	init-items!
