@@ -108,19 +108,17 @@ function init
 
 	################################
 
-	scene.add new THREE.Mesh (new THREE.BoxGeometry 2 2 2), (new THREE.MeshLambertMaterial { color: 0xffffff })
-
-	window.onmousemove = (e) ->
-		#if (e.target == renderer.dom-element) and (e.button == 2)
-		rect = e.target.get-bounding-client-rect!
-		x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
-		y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
-		pos = new THREE.Vector2 x, y
-		camera.update-matrix-world!
-		raycaster = new THREE.Raycaster!
-		raycaster.set-from-camera pos, camera
-		intersects = raycaster.intersect-objects scene.children, on
-		console.log intersects
+	window.onmousedown = (e) ->
+		if (e.target == renderer.dom-element) and (e.button == 2)
+			rect = e.target.get-bounding-client-rect!
+			x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
+			y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
+			pos = new THREE.Vector2 x, y
+			camera.update-matrix-world!
+			raycaster = new THREE.Raycaster!
+			raycaster.set-from-camera pos, camera
+			intersects = raycaster.intersect-objects scene.children, on
+			console.log intersects
 
 	#init-sky!
 	init-items!
