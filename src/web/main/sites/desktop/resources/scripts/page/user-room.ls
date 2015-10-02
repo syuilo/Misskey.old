@@ -214,24 +214,30 @@ function init
 	controls.max-polar-angle = Math.PI / 2
 	controls.min-azimuth-angle = 0
 	controls.max-azimuth-angle = Math.PI / 2
+	
+	################################
+	# POST FXs
 
-	parameters = {
+	render-target = new THREE.WebGLRenderTarget width, height, {
 		min-filter: THREE.LinearFilter
 		mag-filter: THREE.LinearFilter
 		format: THREE.RGBFormat
 		-stencil-buffer
 	}
-	render-target = new THREE.WebGLRenderTarget width, height, parameters
 
-	composer = new THREE.EffectComposer renderer, render-target
-	composer.add-pass new THREE.RenderPass scene, camera
-	composer.add-pass new THREE.BloomPass 0.5 25 64.0 512
 	fxaa = new THREE.ShaderPass THREE.FXAAShader
 	fxaa.uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
-	composer.add-pass fxaa
+	
 	to-screen = new THREE.ShaderPass THREE.CopyShader
 	to-screen.render-to-screen = on
+	
+	composer = new THREE.EffectComposer renderer, render-target
+	composer.add-pass new THREE.RenderPass scene, camera
+	composer.add-pass new THREE.BloomPass 0.5 50 128.0 512
+	composer.add-pass fxaa
 	composer.add-pass to-screen
+	
+	################################
 	
 	render!
 
