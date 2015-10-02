@@ -27,59 +27,85 @@ function init
 	scale = 256
 	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
-	camera.position.x = 2
-	camera.position.y = 2
-	camera.position.z = 2
+		..position.x = 2
+		..position.y = 2
+		..position.z = 2
 	scene.add camera
 
 	# AmbientLight
 	ambient-light = new THREE.AmbientLight 0xffffff 1
-	ambient-light.cast-shadow = no
+		..cast-shadow = no
 	scene.add ambient-light
 
 	# Room light (for shadow)
 	room-light = new THREE.SpotLight 0xffffff 0.2
-	room-light.position.set 0 8 0
-	room-light.cast-shadow = on
-	room-light.shadow-map-width = shadow-quolity
-	room-light.shadow-map-height = shadow-quolity
-	room-light.shadow-camera-near = 0.1
-	room-light.shadow-camera-far = 9
-	room-light.shadow-camera-fov = 45
-	#room-light.only-shadow = on
-	#room-light.shadow-camera-visible = on #debug
+		..position.set 0 8 0
+		..cast-shadow = on
+		..shadow-map-width = shadow-quolity
+		..shadow-map-height = shadow-quolity
+		..shadow-camera-near = 0.1
+		..shadow-camera-far = 9
+		..shadow-camera-fov = 45
+		#..only-shadow = on
+		#..shadow-camera-visible = on #debug
 	#scene.add room-light
 
 	out-light = new THREE.SpotLight 0xffffff 0.4
-	out-light.position.set 9 3 -2
-	out-light.cast-shadow = on
-	out-light.shadow-bias = -0.001
-	out-light.shadow-map-width = shadow-quolity
-	out-light.shadow-map-height = shadow-quolity
-	out-light.shadow-camera-near = 6
-	out-light.shadow-camera-far = 15
-	out-light.shadow-camera-fov = 45
-	#out-light.only-shadow = on
-	#out-light.shadow-camera-visible = on #debug
+		..position.set 9 3 -2
+		..cast-shadow = on
+		..shadow-bias = -0.001 # アクネ、アーチファクト対策 その代わりピーターパンが発生する可能性がある
+		..shadow-map-width = shadow-quolity
+		..shadow-map-height = shadow-quolity
+		..shadow-camera-near = 6
+		..shadow-camera-far = 15
+		..shadow-camera-fov = 45
+		..shadow-camera-visible = debug
+		#..only-shadow = on
 	scene.add out-light
 
 	# Controller setting
 	controls = new THREE.OrbitControls camera
-	controls.target.set 0 1 0
-	controls.enable-zoom = yes
-	controls.enable-pan = yes
-	controls.min-polar-angle = 0
-	controls.max-polar-angle = Math.PI / 2
-	controls.min-azimuth-angle = 0
-	controls.max-azimuth-angle = Math.PI / 2
+		..target.set 0 1 0
+		..enable-zoom = no
+		..enable-pan = no
+		..min-polar-angle = 0
+		..max-polar-angle = Math.PI / 2
+		..min-azimuth-angle = 0
+		..max-azimuth-angle = Math.PI / 2
 
 	# DEBUG
 	if debug
 		scene.add new THREE.AxisHelper 1000
 		scene.add new THREE.GridHelper 10 1
 
+	################################
+	# POST FXs
+
+	render-target = new THREE.WebGLRenderTarget width, height, {
+		min-filter: THREE.LinearFilter
+		mag-filter: THREE.LinearFilter
+		format: THREE.RGBFormat
+		-stencil-buffer
+	}
+
+	fxaa = new THREE.ShaderPass THREE.FXAAShader
+		..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+
+	to-screen = new THREE.ShaderPass THREE.CopyShader
+		..render-to-screen = on
+
+	composer = new THREE.EffectComposer renderer, render-target
+		..add-pass new THREE.RenderPass scene, camera
+		..add-pass new THREE.BloomPass 0.5 25 128.0 512
+		..add-pass fxaa
+		..add-pass to-screen
+
+	################################
+
 	#init-sky!
 	init-items!
+
+	render!
 
 	function init-sky
 		sun-sphere = new THREE.Mesh do
@@ -244,32 +270,6 @@ function init
 			object.position.set 0 0 -2.5
 			object.rotation.y = Math.PI / 2
 			scene.add object
-
-	################################
-	# POST FXs
-
-	render-target = new THREE.WebGLRenderTarget width, height, {
-		min-filter: THREE.LinearFilter
-		mag-filter: THREE.LinearFilter
-		format: THREE.RGBFormat
-		-stencil-buffer
-	}
-
-	fxaa = new THREE.ShaderPass THREE.FXAAShader
-	fxaa.uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
-
-	to-screen = new THREE.ShaderPass THREE.CopyShader
-	to-screen.render-to-screen = on
-
-	composer = new THREE.EffectComposer renderer, render-target
-	composer.add-pass new THREE.RenderPass scene, camera
-	composer.add-pass new THREE.BloomPass 0.5 25 128.0 512
-	composer.add-pass fxaa
-	composer.add-pass to-screen
-
-	################################
-
-	render!
 
 	# Renderer
 	function render
