@@ -17,3 +17,8 @@
 * `develop` - Development version, deployed to https://misskey.xyz:1206/
 
 Note that only `develop` branch is accepting any Pull Requests.
+
+# 部屋のアイテム追加
+- モデルの形式はobj+mtlとします。
+- 単位はメートル法で作ってください。
+- **エクスポート時は三角面化してください。**
