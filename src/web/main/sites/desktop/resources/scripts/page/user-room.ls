@@ -198,6 +198,7 @@ function init
 						object.rotation.y = item.rotation.y
 						object.rotation.z = item.rotation.z
 						object.name = item.individual-id
+						console.log item.individual-id
 						scene.add object
 						items.push object
 			else
