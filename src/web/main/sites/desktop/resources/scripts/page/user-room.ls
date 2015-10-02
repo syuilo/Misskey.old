@@ -118,7 +118,9 @@ function init
 			raycaster = new THREE.Raycaster!
 			raycaster.set-from-camera pos, camera
 			intersects = raycaster.intersect-objects items, on
-			console.log intersects
+			if intersects.length > 0
+				console.log intersects
+				intersects[0].object.source.position.y++
 
 	#init-sky!
 	init-items!
