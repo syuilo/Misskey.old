@@ -131,7 +131,7 @@ function init
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
 						child.current-hex = child.material.emissive.get-hex!
-						#child.material.emissive.set-hex 0xff0000
+						child.material.emissive.set-hex 0xff0000
 
 	#init-sky!
 	init-items!
