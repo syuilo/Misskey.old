@@ -110,7 +110,7 @@ function init
 			mouse.y = ((ev.client-y - rect.top) / height) * 2 + 1
 			vector = new THREE.Vector3 mouse.x, mouse.y, 1
 			projector = new THREE.Projector!
-			projector.unproject-vector vector, camera
+			vector.unproject vector, camera
 			ray = new THREE.Raycaster camera.position, (vector.sub camera.position).normalize!
 			obj = ray.intersect-objects!
 			if obj.length > 0
