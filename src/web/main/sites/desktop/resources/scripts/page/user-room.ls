@@ -32,9 +32,9 @@ function init
 	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
 	camera.zoom = 1000
-		..position.x = 2
-		..position.y = 2
-		..position.z = 2
+	camera.position.x = 2
+	camera.position.y = 2
+	camera.position.z = 2
 	scene.add camera
 
 	# AmbientLight
