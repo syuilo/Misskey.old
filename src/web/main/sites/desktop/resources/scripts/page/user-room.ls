@@ -122,7 +122,10 @@ function init
 			items.for-each (item) ->
 				item.traverse (child) ->
 					if child.has-own-property \currentHex
+						console.log "#{item.name} - #{child.current-hex}"
 						child.material.emissive.set-hex child.current-hex
+
+			console.log '----'
 
 			if intersects.length > 0
 				console.log intersects
@@ -130,6 +133,7 @@ function init
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
+						console.log child.material.emissive.get-hex!
 						child.current-hex = child.material.emissive.get-hex!
 						child.material.emissive.set-hex 0xff0000
 
