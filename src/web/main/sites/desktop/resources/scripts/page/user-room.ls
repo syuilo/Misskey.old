@@ -4,7 +4,7 @@ init!
 
 function init
 	shadow-quolity = 8192
-	debug = yes
+	debug = no
 
 	width = window.inner-width
 	height = window.inner-height
@@ -111,6 +111,8 @@ function init
 		if (ev.target == renderer.dom-element) and (ev.button == 2)
 			x = (ev.client-x / renderer.dom-element.width) * 2 - 1
 			y = -(ev.client-y / renderer.dom-element.height) * 2 + 1
+			x = ev.client-x
+			y = ev.client-y
 			mouse = new THREE.Vector2 x, y
 			raycaster = new THREE.Raycaster!
 			raycaster.set-from-camera mouse, camera
