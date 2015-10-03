@@ -1,5 +1,7 @@
 class ItemController
 	->
+		THIS = @
+
 		################################
 		# Init UI
 		@$controller = $ \#item-controller
@@ -21,9 +23,9 @@ class ItemController
 			switch (e.which)
 			| 39 => # Key[→]
 				if e.shift-key
-					@change-pos-z @item.position.z - 0.01
+					THIS.change-pos-z THIS.item.position.z - 0.01
 				else
-					@change-pos-z @item.position.z - 0.1
+					THIS.change-pos-z THIS.item.position.z - 0.1
 			| 37 => # Key[←]
 				if e.shift-key
 					@change-pos-z @item.position.z + 0.01
