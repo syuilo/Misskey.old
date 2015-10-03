@@ -479,7 +479,7 @@ class Room
 		json = @export-layout-json!
 		console.log json
 
-		$.ajax config.api-url + '/web/room/update' {
+		$.ajax config.api-url + '/account/update-room' {
 			type: \put
 			data: {
 				'layout': json
