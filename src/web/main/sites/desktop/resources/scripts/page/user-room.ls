@@ -29,8 +29,8 @@ function load-item(item, cb)
 			object.position.y = if item.position? and item.position.y? then item.position.y else 0
 			object.position.z = if item.position? and item.position.z? then item.position.z else 0
 			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
-			object.rotation.y = if item.rotation? and iitem.rotation.y? then item.rotation.y else 0
-			object.rotation.z = if item.rotation? and iitem.rotation.z? then item.rotation.z else 0
+			object.rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
 			object.cast-shadow = on
 			object.receive-shadow = on
 			object.name = item.individual-id
@@ -42,8 +42,8 @@ function load-item(item, cb)
 			object.position.y = if item.position? and item.position.y? then item.position.y else 0
 			object.position.z = if item.position? and item.position.z? then item.position.z else 0
 			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
-			object.rotation.y = if item.rotation? and iitem.rotation.y? then item.rotation.y else 0
-			object.rotation.z = if item.rotation? and iitem.rotation.z? then item.rotation.z else 0
+			object.rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
 			object.name = item.individual-id
 			object.room-item-info = item
 			object.traverse (child) ->
