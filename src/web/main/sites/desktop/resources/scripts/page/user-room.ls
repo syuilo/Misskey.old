@@ -266,6 +266,7 @@ function init
 						scene.add object
 						items.push object
 			else
+				$ \#box .find \ul .append $ "<li>#{item.obj.name}</li>"
 				unactive-items.push item
 
 	# Renderer
