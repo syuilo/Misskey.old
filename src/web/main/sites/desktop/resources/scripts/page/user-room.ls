@@ -28,55 +28,55 @@ class ItemController
 					THIS.change-pos-z THIS.item.position.z - 0.1
 			| 37 => # Key[←]
 				if e.shift-key
-					@change-pos-z @item.position.z + 0.01
+					THIS.change-pos-z THIS.item.position.z + 0.01
 				else
-					@change-pos-z @item.position.z + 0.1
+					THIS.change-pos-z THIS.item.position.z + 0.1
 			| 38 => # Key[↑]
 				if e.shift-key
-					@change-pos-x @item.position.x - 0.01
+					THIS.change-pos-x THIS.item.position.x - 0.01
 				else
-					@change-pos-x @item.position.x - 0.1
+					THIS.change-pos-x THIS.item.position.x - 0.1
 			| 40 => # Key[↓]
 				if e.shift-key
-					@change-pos-x @item.position.x + 0.01
+					THIS.change-pos-x THIS.item.position.x + 0.01
 				else
-					@change-pos-x @item.position.x + 0.1
+					THIS.change-pos-x THIS.item.position.x + 0.1
 
 		@$controller-pos-back-button.click ->
-			@change-pos-x @item.position.x + 0.1
+			THIS.change-pos-x THIS.item.position.x + 0.1
 
 		@$controller-pos-forward-button.click ->
-			@change-pos-x @item.position.x - 0.1
+			THIS.change-pos-x THIS.item.position.x - 0.1
 
 		@$controller-pos-left-button.click ->
-			@change-pos-z @item.position.z + 0.1
+			THIS.change-pos-z THIS.item.position.z + 0.1
 
 		@$controller-pos-right-button.click ->
-			@change-pos-z @item.position.z - 0.1
+			THIS.change-pos-z THIS.item.position.z - 0.1
 
 		@$controller-pos-up-button.click ->
-			@change-pos-y @item.position.y + 0.1
+			THIS.change-pos-y THIS.item.position.y + 0.1
 
 		@$controller-pos-down-button.click ->
-			@change-pos-y @item.position.y - 0.1
+			THIS.change-pos-y THIS.item.position.y - 0.1
 
 		@$controller-pos-x-input.bind \input ->
-			@change-pos-x @$controller-pos-x-input.val!
+			THIS.change-pos-x THIS.$controller-pos-x-input.val!
 
 		@$controller-pos-y-input.bind \input ->
-			@change-pos-y @$controller-pos-y-input.val!
+			THIS.change-pos-y THIS.$controller-pos-y-input.val!
 
 		@$controller-pos-z-input.bind \input ->
-			@change-pos-z @$controller-pos-z-input.val!
+			THIS.change-pos-z THIS.$controller-pos-z-input.val!
 
 		@$controller-rotate-x-input.bind \input ->
-			@change-rotate-x @$controller-rotate-x-input.val!
+			THIS.change-rotate-x THIS.$controller-rotate-x-input.val!
 
 		@$controller-rotate-y-input.bind \input ->
-			@change-rotate-y @$controller-rotate-y-input.val!
+			THIS.change-rotate-y THIS.$controller-rotate-y-input.val!
 
 		@$controller-rotate-z-input.bind \input ->
-			@change-rotate-z @$controller-rotate-z-input.val!
+			THIS.change-rotate-z THIS.$controller-rotate-z-input.val!
 
 		################################
 		# Init viewer
@@ -128,12 +128,15 @@ class ItemController
 		# https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
 		request-animation-frame @render.bind @
 
-		@camera.position.z = (Math.cos timer) * 10
-		@camera.position.x = (Math.sin timer) * 10
-		@camera.look-at new THREE.Vector3 0 0 0
+		if @item?
+			item-height = @item-bounding-box.size!.y
 
-		#controls.update!
-		@renderer.render @scene, @camera
+			@camera.position.y = 2 + (item-height / 2)
+			@camera.position.z = (Math.cos timer) * 10
+			@camera.position.x = (Math.sin timer) * 10
+			@camera.look-at new THREE.Vector3 0 (item-height / 2) 0
+
+			@renderer.render @scene, @camera
 
 	update:	(item) ->
 		@item = item
@@ -167,6 +170,7 @@ class ItemController
 					child.material = child.material.clone!
 					child.material.emissive.set-hex 0x000000
 
+			@item-bounding-box = new THREE.Box3!.set-from-object preview-obj
 			@scene.add preview-obj
 		else
 			@$controller.css \display \none
