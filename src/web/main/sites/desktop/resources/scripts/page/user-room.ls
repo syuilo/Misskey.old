@@ -417,9 +417,9 @@ class ItemController
 			@$controller-rotate-z-input.val item.rotation.z
 
 			# Remove old object
-			old = item-controller-viewer-scene.get-object-by-name \obj
+			old = @scene.get-object-by-name \obj
 			if old?
-				item-controller-viewer-scene.remove old
+				@scene.remove old
 
 			# Add new object
 			preview-obj = item.clone!
