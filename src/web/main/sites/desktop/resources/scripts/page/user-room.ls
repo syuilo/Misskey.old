@@ -423,13 +423,10 @@ function init-item-controller-viewer
 		..shadow-map.cull-face = THREE.CullFaceBack
 
 	# Camera settings
-	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
-	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
-		..zoom = 100
+	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 		..position.x = 0
 		..position.y = 2
 		..position.z = 0
-		..update-projection-matrix!
 	item-controller-viewer-scene.add camera
 
 	# AmbientLight
