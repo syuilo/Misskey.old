@@ -1,26 +1,8 @@
 room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
 
-$ \#item-menu .find \.back-button .click ->
-	SELECTEDITEM.position.x += 0.1
-$ \#item-menu .find \.forward-button .click ->
-	SELECTEDITEM.position.x -= 0.1
-$ \#item-menu .find \.left-button .click ->
-	SELECTEDITEM.position.z += 0.1
-$ \#item-menu .find \.right-button .click ->
-	SELECTEDITEM.position.z -= 0.1
-$ \#item-menu .find \.up-button .click ->
-	SELECTEDITEM.position.y += 0.1
-$ \#item-menu .find \.down-button .click ->
-	SELECTEDITEM.position.y -= 0.1
-$ \#item-menu .find \.x .bind \input ->
-	SELECTEDITEM.position.x = $ \#item-menu .find \.x .val!
-$ \#item-menu .find \.y .bind \input ->
-	SELECTEDITEM.position.y = $ \#item-menu .find \.y .val!
-$ \#item-menu .find \.z .bind \input ->
-	SELECTEDITEM.position.z = $ \#item-menu .find \.z .val!
-
 init!
+init-item-controller!
 
 function init
 	shadow-quolity = 8192
@@ -254,3 +236,53 @@ function init
 		renderer.clear!
 		composer.render!
 		#renderer.render scene, camera
+
+function init-item-controller
+	$controller-back-button = $ \#item-controller .find \.back-button
+	$controller-forward-button = $ \#item-controller .find \.forward-button
+	$controller-left-button = $ \#item-controller .find \.left-button
+	$controller-right-button = $ \#item-controller .find \.right-button
+	$controller-up-button = $ \#item-controller .find \.up-button
+	$controller-down-button = $ \#item-controller .find \.down-button
+	$controller-x-input = $ \#item-controller .find \.x
+	$controller-y-input = $ \#item-controller .find \.y
+	$controller-z-input = $ \#item-controller .find \.z
+
+	$controller-back-button .click ->
+		change-pos-x SELECTEDITEM.position.x + 0.1
+
+	$controller-forward-button .click ->
+		change-pos-x SELECTEDITEM.position.x - 0.1
+
+	$controller-left-button .click ->
+		change-pos-z SELECTEDITEM.position.z + 0.1
+
+	$controller-right-button .click ->
+		change-pos-z SELECTEDITEM.position.z - 0.1
+
+	$controller-up-button .click ->
+		change-pos-y SELECTEDITEM.position.y + 0.1
+
+	$controller-button-button .click ->
+		change-pos-y SELECTEDITEM.position.y - 0.1
+
+	$controller-x-input .bind \input ->
+		change-pos-x $controller-x-input.val!
+
+	$controller-y-input .bind \input ->
+		change-pos-y $controller-y-input.val!
+
+	$controller-z-input .bind \input ->
+		change-pos-z $controller-z-input.val!
+
+	function change-pos-x(x)
+		SELECTEDITEM.position.x = x
+		$controller-x-input.val x
+
+	function change-pos-y(y)
+		SELECTEDITEM.position.y = y
+		$controller-y-input.val y
+
+	function change-pos-z(z)
+		SELECTEDITEM.position.z = z
+		$controller-z-input.val z
