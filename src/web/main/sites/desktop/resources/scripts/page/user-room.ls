@@ -47,7 +47,7 @@ class ItemController
 
 		# しまうボタン
 		@$controller-item-hide-button.click ->
-			THIS.room.remove THIS.room.get-object-by-name THIS.item.name
+			THIS.room.scene.remove THIS.room.scene.get-object-by-name THIS.item.name
 			THIS.update null
 
 		@$controller-pos-back-button.click ->
