@@ -432,8 +432,8 @@ class Room
 
 	add-item-to-box: (item) ->
 		THIS = @
-		item.room-item-info.position = null
-		item.room-item-info.rotation = null
+		item.position = null
+		item.rotation = null
 		@scene.remove @scene.get-object-by-name item.individual-id
 		@active-items.some (v, i) ->
 			if v.name == item.individual-id
