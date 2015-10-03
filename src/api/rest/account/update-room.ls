@@ -18,5 +18,6 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 
 		console.log old-layout
 		user-room.items = old-layout
-		user-room.save ->
+		user-room.save (err) ->
+			if err? then console.error err
 			res.api-render user.to-object!
