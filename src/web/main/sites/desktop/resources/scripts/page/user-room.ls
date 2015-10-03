@@ -25,12 +25,12 @@ function load-item(item, cb)
 	| \json =>
 		loader = new THREE.ObjectLoader!
 		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
-			object.position.x = if item.position.x? then item.position.x else 0
-			object.position.y = if item.position.y? then item.position.y else 0
-			object.position.z = if item.position.z? then item.position.z else 0
-			object.rotation.x = if item.rotation.x? then item.rotation.x else 0
-			object.rotation.y = if item.rotation.y? then item.rotation.y else 0
-			object.rotation.z = if item.rotation.z? then item.rotation.z else 0
+			object.position.x = if item.position? and item.position.x? then item.position.x else 0
+			object.position.y = if item.position? and item.position.y? then item.position.y else 0
+			object.position.z = if item.position? and item.position.z? then item.position.z else 0
+			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
+			object.rotation.y = if item.rotation? and iitem.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation? and iitem.rotation.z? then item.rotation.z else 0
 			object.cast-shadow = on
 			object.receive-shadow = on
 			object.name = item.individual-id
@@ -38,12 +38,12 @@ function load-item(item, cb)
 	| \objmtl =>
 		loader = new THREE.OBJMTLLoader!
 		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
-			object.position.x = if item.position.x? then item.position.x else 0
-			object.position.y = if item.position.y? then item.position.y else 0
-			object.position.z = if item.position.z? then item.position.z else 0
-			object.rotation.x = if item.rotation.x? then item.rotation.x else 0
-			object.rotation.y = if item.rotation.y? then item.rotation.y else 0
-			object.rotation.z = if item.rotation.z? then item.rotation.z else 0
+			object.position.x = if item.position? and item.position.x? then item.position.x else 0
+			object.position.y = if item.position? and item.position.y? then item.position.y else 0
+			object.position.z = if item.position? and item.position.z? then item.position.z else 0
+			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
+			object.rotation.y = if item.rotation? and iitem.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation? and iitem.rotation.z? then item.rotation.z else 0
 			object.name = item.individual-id
 			object.room-item-info = item
 			object.traverse (child) ->
