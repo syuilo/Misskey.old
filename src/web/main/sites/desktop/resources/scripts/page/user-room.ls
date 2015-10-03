@@ -117,6 +117,11 @@ class ItemController
 
 	render: ->
 		timer = Date.now! * 0.0004
+
+		# SEE:
+		# http://stackoverflow.com/questions/22039180/failed-to-execute-requestanimationframe-on-window-the-callback-provided-as
+		# http://stackoverflow.com/questions/6065169/requestanimationframe-with-this-keyword
+		# https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
 		request-animation-frame @render.bind @
 
 		@camera.position.z = (Math.cos timer) * 10
