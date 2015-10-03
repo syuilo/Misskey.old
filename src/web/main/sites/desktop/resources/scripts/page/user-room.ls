@@ -117,7 +117,7 @@ class ItemController
 
 	render: ->
 		timer = Date.now! * 0.0004
-		request-animation-frame render
+		request-animation-frame @render
 
 		@camera.position.z = (Math.cos timer) * 10
 		@camera.position.x = (Math.sin timer) * 10
