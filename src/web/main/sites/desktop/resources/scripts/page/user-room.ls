@@ -432,6 +432,8 @@ class Room
 
 	add-item-to-box: (item) ->
 		THIS = @
+		item.room-item-info.position = null
+		item.room-item-info.rotation = null
 		@scene.remove @scene.get-object-by-name item.individual-id
 		@active-items.some (v, i) ->
 			if v.name == item.individual-id
@@ -446,6 +448,16 @@ class Room
 					if v.individual-id == item.individual-id
 						THIS.unactive-items.splice i, 1
 				load-item item, (object) ->
+					object.position.set 0 0 0
+					object.rotation.set 0 0 0
+					object.room-item-info.position = {}
+					object.room-item-info.position.x = 0
+					object.room-item-info.position.y = 0
+					object.room-item-info.position.z = 0
+					object.room-item-info.rotation = {}
+					object.room-item-info.rotation.x = 0
+					object.room-item-info.rotation.y = 0
+					object.room-item-info.rotation.z = 0
 					THIS.scene.add object
 					THIS.active-items.push object
 		$item.append $set-button
