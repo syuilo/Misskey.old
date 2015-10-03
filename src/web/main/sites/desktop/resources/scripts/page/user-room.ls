@@ -391,7 +391,8 @@ function update-item-controller
 
 		# Remove old object
 		old = item-controller-viewer-scene.get-object-by-name \obj
-		item-controller-viewer-scene.remove old
+		if old?
+			item-controller-viewer-scene.remove old
 
 		# Add new object
 		preview-obj = SELECTEDITEM.clone!
@@ -442,11 +443,11 @@ function init-item-controller-viewer
 	function render
 		timer = Date.now! * 0.0004
 		request-animation-frame render
-		obj = item-controller-viewer-scene.get-object-by-name \obj
-		if obj?
-			obj.rotation.y = timer
-		#out-light.position.z = (Math.cos timer) * 10
-		#out-light.position.x = (Math.sin timer) * 10
+
+		camera.position.z = (Math.cos timer) * 10
+		camera.position.x = (Math.sin timer) * 10
+		camera.look-at new THREE.Vector3 0 0 0
+
 		#controls.update!
 		#renderer.clear!
 		renderer.render item-controller-viewer-scene, camera
