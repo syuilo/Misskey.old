@@ -3,7 +3,6 @@ SELECTEDITEM = null
 item-controller = new ItemController
 
 init!
-init-item-controller!
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
