@@ -8,9 +8,7 @@ require! {
 module.exports = (req, res, options) ->
 	user = options.user
 	me = if req.login then req.me else null
-	
-	console.log room-items
-	
+		
 	err, room <- UserRoom.find-one {user-id: user.id}
 
 	if room?
