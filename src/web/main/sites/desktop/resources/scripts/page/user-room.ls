@@ -444,6 +444,11 @@ function init-item-controller-viewer
 		..cast-shadow = no
 	item-controller-viewer-scene.add ambient-light
 
+	# PointLight
+	light = new THREE.PointLight 0xffffff 1 100
+	light.position.set 3 3 3
+	item-controller-viewer-scene.add light
+
 	item-controller-viewer-scene.add new THREE.AxisHelper 5
 	item-controller-viewer-scene.add new THREE.GridHelper 5 0.5
 
