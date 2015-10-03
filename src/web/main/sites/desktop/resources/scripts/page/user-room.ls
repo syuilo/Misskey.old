@@ -472,8 +472,24 @@ class Room
 		console.log layout
 		layout
 
-	save: ->
-		@export-layout-json!
+	export-layout-json: ->
+		JSON.stringifi @export-layout!
+
+	save: (done, fail) ->
+		json = @export-layout-json!
+		console.log json
+
+		$.ajax config.api-url + '/web/room/update' {
+			type: \put
+			data: {
+				'layout': json
+			}
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			done!
+		.fail (data) ->
+			fail!
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
@@ -518,4 +534,20 @@ room = new Room
 # Init save button
 $save-button = $ \#save-button
 $save-button.click ->
-	room.save!
+	$save-button
+		..attr \disabled on
+		..text '保存しています...'
+
+	room.save do
+		->
+			$save-button
+				..attr \disabled off
+				..text '部屋を保存'
+
+			window.display-message '保存しました'
+		->
+			$save-button
+				..attr \disabled off
+				..text '部屋を保存'
+
+			window.display-message '保存に失敗しました。再度お試しください。'
