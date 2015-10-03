@@ -291,8 +291,6 @@ class ItemController
 		@$controller-rotate-y-input = $controller.find \.rotate-y
 		@$controller-rotate-z-input = $controller.find \.rotate-z
 
-		init-viewer!
-
 		$ \html .keydown (e) ->
 			switch (e.which)
 			| 39 => # Key[→]
@@ -352,56 +350,57 @@ class ItemController
 		@$controller-rotate-z-input.bind \input ->
 			@change-rotate-z @$controller-rotate-z-input.val!
 
-		function init-viewer
-			canvas = document.get-element-by-id \item-controller-preview-canvas
-			width = canvas.width
-			height = canvas.height
+		################################
+		# Init viewer
+		canvas = document.get-element-by-id \item-controller-preview-canvas
+		width = canvas.width
+		height = canvas.height
 
-			# Scene settings
-			@scene = new THREE.Scene!
+		# Scene settings
+		@scene = new THREE.Scene!
 
-			# Renderer settings
-			renderer = new THREE.WebGLRenderer {canvas, +antialias}
-				..set-pixel-ratio window.device-pixel-ratio
-				..set-size width, height
-				..auto-clear = off
-				..shadow-map.enabled = on
-				..shadow-map.cull-face = THREE.CullFaceBack
+		# Renderer settings
+		renderer = new THREE.WebGLRenderer {canvas, +antialias}
+			..set-pixel-ratio window.device-pixel-ratio
+			..set-size width, height
+			..auto-clear = off
+			..shadow-map.enabled = on
+			..shadow-map.cull-face = THREE.CullFaceBack
 
-			# Camera settings
-			camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
-				..zoom = 10
-				..position.x = 0
-				..position.y = 2
-				..position.z = 0
-				..update-projection-matrix!
-			@scene.add camera
+		# Camera settings
+		camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
+			..zoom = 10
+			..position.x = 0
+			..position.y = 2
+			..position.z = 0
+			..update-projection-matrix!
+		@scene.add camera
 
-			# AmbientLight
-			ambient-light = new THREE.AmbientLight 0xffffff 1
-				..cast-shadow = no
-			@scene.add ambient-light
+		# AmbientLight
+		ambient-light = new THREE.AmbientLight 0xffffff 1
+			..cast-shadow = no
+		@scene.add ambient-light
 
-			# PointLight
-			light = new THREE.PointLight 0xffffff 1 100
-			light.position.set 3 3 3
-			@scene.add light
+		# PointLight
+		light = new THREE.PointLight 0xffffff 1 100
+		light.position.set 3 3 3
+		@scene.add light
 
-			@scene.add new THREE.AxisHelper 5
-			@scene.add new THREE.GridHelper 5 0.5
+		@scene.add new THREE.AxisHelper 5
+		@scene.add new THREE.GridHelper 5 0.5
 
-			render!
+		render!
 
-			function render
-				timer = Date.now! * 0.0004
-				request-animation-frame render
+		function render
+			timer = Date.now! * 0.0004
+			request-animation-frame render
 
-				camera.position.z = (Math.cos timer) * 10
-				camera.position.x = (Math.sin timer) * 10
-				camera.look-at new THREE.Vector3 0 0 0
+			camera.position.z = (Math.cos timer) * 10
+			camera.position.x = (Math.sin timer) * 10
+			camera.look-at new THREE.Vector3 0 0 0
 
-				#controls.update!
-				renderer.render @scene, camera
+			#controls.update!
+			renderer.render @scene, camera
 
 	update:	(item) ->
 		@item = item
