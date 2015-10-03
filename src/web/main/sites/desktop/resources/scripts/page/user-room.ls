@@ -437,6 +437,7 @@ function init-item-controller-viewer
 		..position.y = 2
 		..position.z = 0
 		..update-projection-matrix!
+		..look-at new THREE.Vector3 0 0 0
 	item-controller-viewer-scene.add camera
 
 	# AmbientLight
@@ -460,7 +461,6 @@ function init-item-controller-viewer
 
 		camera.position.z = (Math.cos timer) * 10
 		camera.position.x = (Math.sin timer) * 10
-		camera.look-at new THREE.Vector3 0 0 0
 
 		#controls.update!
 		renderer.render item-controller-viewer-scene, camera
