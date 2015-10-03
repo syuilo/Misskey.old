@@ -48,6 +48,10 @@ class ItemController
 		# しまうボタン
 		@$controller-item-hide-button.click ->
 			THIS.room.scene.remove THIS.room.scene.get-object-by-name THIS.item.name
+			THIS.room.active-items.some (v, i) ->
+				if v.individual-id == THIS.item.room-item-info.individual-id
+					THIS.room.active-items.splice i, 1
+			THIS.room.unactive-items.push THIS.item.room-item-info
 			THIS.update null
 
 		@$controller-pos-back-button.click ->
