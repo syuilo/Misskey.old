@@ -113,7 +113,7 @@ class ItemController
 		@scene.add new THREE.AxisHelper 5
 		@scene.add new THREE.GridHelper 5 0.5
 
-		render!
+		#render!
 
 		function render
 			timer = Date.now! * 0.0004
@@ -198,6 +198,11 @@ class ItemController
 		@item.rotation.z = z
 		@$controller-rotate-z-input.val z
 
+/*
+class Room
+	->
+
+*/
 ################################################################
 
 room-items = JSON.parse ($ \html .attr \data-room-items)
