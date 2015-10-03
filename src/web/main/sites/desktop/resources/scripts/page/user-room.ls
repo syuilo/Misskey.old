@@ -1,6 +1,8 @@
 class ItemController
-	->
+	(room) ->
 		THIS = @
+
+		@room = room
 
 		################################
 		# Init UI
@@ -45,7 +47,7 @@ class ItemController
 
 		# しまうボタン
 		@$controller-item-hide-button.click ->
-			THIS.item.remove!
+			THIS.room.remove THIS.room.get-object-by-name THIS.item.name
 			THIS.update null
 
 		@$controller-pos-back-button.click ->
@@ -221,13 +223,13 @@ class ItemController
 		@$controller-rotate-z-input.val z
 
 class Room
-	(item-controller) ->
+	->
 		THIS = @
 
 		shadow-quolity = 8192
 		debug = no
 
-		@item-controller = item-controller
+		@item-controller = new ItemController @
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
 
 		@active-items = []
@@ -466,5 +468,4 @@ function load-item(item, cb)
 
 ################################################################
 
-item-controller = new ItemController
-room = new Room item-controller
+room = new Room
