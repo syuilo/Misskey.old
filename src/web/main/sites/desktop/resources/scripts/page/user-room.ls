@@ -84,7 +84,7 @@ class ItemController
 		@scene = new THREE.Scene!
 
 		# Renderer settings
-		renderer = new THREE.WebGLRenderer {canvas, +antialias}
+		@renderer = new THREE.WebGLRenderer {canvas, +antialias}
 			..set-pixel-ratio window.device-pixel-ratio
 			..set-size width, height
 			..auto-clear = off
@@ -124,7 +124,7 @@ class ItemController
 		@camera.look-at new THREE.Vector3 0 0 0
 
 		#controls.update!
-		renderer.render @scene, @camera
+		@renderer.render @scene, @camera
 
 	update:	(item) ->
 		@item = item
