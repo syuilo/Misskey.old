@@ -2,15 +2,18 @@ room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
 
 $controller-item-title = $ \#item-controller .find \.title
-$controller-back-button = $ \#item-controller .find \.back-button
-$controller-forward-button = $ \#item-controller .find \.forward-button
-$controller-left-button = $ \#item-controller .find \.left-button
-$controller-right-button = $ \#item-controller .find \.right-button
-$controller-up-button = $ \#item-controller .find \.up-button
-$controller-down-button = $ \#item-controller .find \.down-button
-$controller-x-input = $ \#item-controller .find \.x
-$controller-y-input = $ \#item-controller .find \.y
-$controller-z-input = $ \#item-controller .find \.z
+$controller-pos-back-button = $ \#item-controller .find \.pos-back-button
+$controller-pos-forward-button = $ \#item-controller .find \.pos-forward-button
+$controller-pos-left-button = $ \#item-controller .find \.pos-left-button
+$controller-pos-right-button = $ \#item-controller .find \.pos-right-button
+$controller-pos-up-button = $ \#item-controller .find \.pos-up-button
+$controller-pos-down-button = $ \#item-controller .find \.pos-down-button
+$controller-pos-x-input = $ \#item-controller .find \.pos-x
+$controller-pos-y-input = $ \#item-controller .find \.pos-y
+$controller-pos-z-input = $ \#item-controller .find \.pos-z
+$controller-rotate-x-input = $ \#item-controller .find \.rotate-x
+$controller-rotate-y-input = $ \#item-controller .find \.rotate-y
+$controller-rotate-z-input = $ \#item-controller .find \.rotate-z
 
 init!
 init-item-controller!
@@ -246,53 +249,77 @@ function init
 		#renderer.render scene, camera
 
 function init-item-controller
-	$controller-back-button.click ->
+	$controller-pos-back-button.click ->
 		change-pos-x SELECTEDITEM.position.x + 0.1
 
-	$controller-forward-button.click ->
+	$controller-pos-forward-button.click ->
 		change-pos-x SELECTEDITEM.position.x - 0.1
 
-	$controller-left-button.click ->
+	$controller-pos-left-button.click ->
 		change-pos-z SELECTEDITEM.position.z + 0.1
 
-	$controller-right-button.click ->
+	$controller-pos-right-button.click ->
 		change-pos-z SELECTEDITEM.position.z - 0.1
 
-	$controller-up-button.click ->
+	$controller-pos-up-button.click ->
 		change-pos-y SELECTEDITEM.position.y + 0.1
 
-	$controller-down-button.click ->
+	$controller-pos-down-button.click ->
 		change-pos-y SELECTEDITEM.position.y - 0.1
 
-	$controller-x-input.bind \input ->
-		change-pos-x $controller-x-input.val!
+	$controller-pos-x-input.bind \input ->
+		change-pos-x $controller-pos-x-input.val!
 
-	$controller-y-input.bind \input ->
-		change-pos-y $controller-y-input.val!
+	$controller-pos-y-input.bind \input ->
+		change-pos-y $controller-pos-y-input.val!
 
-	$controller-z-input.bind \input ->
-		change-pos-z $controller-z-input.val!
+	$controller-pos-z-input.bind \input ->
+		change-pos-z $controller-pos-z-input.val!
+
+	$controller-rotate-x-input.bind \input ->
+		change-rotate-x $controller-rotate-x-input.val!
+
+	$controller-rotate-y-input.bind \input ->
+		change-rotate-y $controller-rotate-y-input.val!
+
+	$controller-rotate-z-input.bind \input ->
+		change-rotate-z $controller-rotate-z-input.val!
 
 	function change-pos-x(x)
-		console.log x
 		x = Number x
 		SELECTEDITEM.position.x = x
-		$controller-x-input.val x
+		$controller-pos-x-input.val x
 
 	function change-pos-y(y)
-		console.log y
 		y = Number y
 		SELECTEDITEM.position.y = y
-		$controller-y-input.val y
+		$controller-pos-y-input.val y
 
 	function change-pos-z(z)
-		console.log z
 		z = Number z
 		SELECTEDITEM.position.z = z
-		$controller-z-input.val z
+		$controller-pos-z-input.val z
+
+	function change-rotate-x(x)
+		x = Number x
+		SELECTEDITEM.rotation.x = x
+		$controller-rotate-x-input.val x
+
+	function change-rotate-y(y)
+		y = Number y
+		SELECTEDITEM.rotation.y = y
+		$controller-rotate-y-input.val y
+
+	function change-rotate-z(z)
+		z = Number z
+		SELECTEDITEM.rotation.z = z
+		$controller-rotate-z-input.val z
 
 function update-item-controller
 	$controller-item-title.text SELECTEDITEM.room-item-info.obj.name
-	$controller-x-input.val SELECTEDITEM.position.x
-	$controller-y-input.val SELECTEDITEM.position.y
-	$controller-z-input.val SELECTEDITEM.position.z
+	$controller-pos-x-input.val SELECTEDITEM.position.x
+	$controller-pos-y-input.val SELECTEDITEM.position.y
+	$controller-pos-z-input.val SELECTEDITEM.position.z
+	$controller-rotate-x-input.val SELECTEDITEM.rotation.x
+	$controller-rotate-y-input.val SELECTEDITEM.rotation.y
+	$controller-rotate-z-input.val SELECTEDITEM.rotation.z
