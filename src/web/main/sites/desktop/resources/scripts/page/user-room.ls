@@ -139,13 +139,15 @@ function init
 		items.for-each (item) ->
 			item.traverse (child) ->
 				if child instanceof THREE.Mesh
-					child.material.emissive.set-hex 0x000000
+					if (not child.is-active?) or (not child.is-active)
+						child.material.emissive.set-hex 0x000000
 
 		if intersects.length > 0
 			INTERSECTED = intersects[0].object.source
 			INTERSECTED.traverse (child) ->
 				if child instanceof THREE.Mesh
-					child.material.emissive.set-hex 0x7f7f7f
+					if (not child.is-active?) or (not child.is-active)
+						child.material.emissive.set-hex 0x4c4c4c
 
 	renderer.dom-element.onmousedown = (e) ->
 		if (e.target == renderer.dom-element) and (e.button == 2)
@@ -165,6 +167,7 @@ function init
 				item.traverse (child) ->
 					if child instanceof THREE.Mesh
 						child.material.emissive.set-hex 0x000000
+						child.is-active = no
 
 			if intersects.length > 0
 				console.log intersects
@@ -175,6 +178,7 @@ function init
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
 						child.material.emissive.set-hex 0xff0000
+						child.is-active = yes
 
 	#init-sky!
 	init-items!
