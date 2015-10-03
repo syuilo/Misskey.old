@@ -115,7 +115,9 @@ class ItemController
 		@scene.add light
 
 		#@scene.add new THREE.AxisHelper 5
-		@scene.add new THREE.GridHelper 5 0.5
+		grid = new THREE.GridHelper 5 0.5
+			..set-colors 0x888888 0x888888
+		@scene.add grid
 
 		@render!
 
