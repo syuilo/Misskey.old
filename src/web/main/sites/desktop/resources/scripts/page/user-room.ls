@@ -275,16 +275,19 @@ function init-item-controller
 
 	function change-pos-x(x)
 		console.log x
+		x = Number x
 		SELECTEDITEM.position.x = x
 		$controller-x-input.val x
 
 	function change-pos-y(y)
 		console.log y
+		y = Number y
 		SELECTEDITEM.position.y = y
 		$controller-y-input.val y
 
 	function change-pos-z(z)
 		console.log z
+		z = Number z
 		SELECTEDITEM.position.z = z
 		$controller-z-input.val z
 
