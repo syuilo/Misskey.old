@@ -174,12 +174,14 @@ function init
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
 				SELECTEDITEM := INTERSECTED
-				update-item-controller!
+
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
 						child.material.emissive.set-hex 0xff0000
 						child.is-active = yes
+
+				update-item-controller!
 
 	#init-sky!
 	init-items!
