@@ -19,3 +19,45 @@ html {
 		margin: 0;
 	}
 }
+
+input[type=text],
+input[type=number] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+	box-sizing: border-box;
+	cursor: auto;
+	margin: 0;
+	padding: 8px 16px;
+	width: 20em;
+	font-size: 1em;
+	line-height: 24px;
+	color: #fff;
+	outline: none;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	background: rgba(255, 255, 255, 0.2);
+
+	&:hover {
+	}
+
+	&:focus {
+	}
+
+	&::-webkit-input-placeholder {
+		color: #ddd;
+	}
+
+	&:-ms-input-placeholder {
+		color: #ddd;
+	}
+
+	&:-moz-placeholder {
+		color: #ddd;
+	}
+}
