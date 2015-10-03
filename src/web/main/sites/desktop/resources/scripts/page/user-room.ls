@@ -510,8 +510,12 @@ function load-item(item, cb)
 
 ################################################################
 
+# ENTORY POINT
+
+# INIT ROOM
 room = new Room
 
+# Init save button
 $save-button = $ \#save-button
 $save-button.click ->
 	room.save!
