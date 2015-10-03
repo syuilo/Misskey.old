@@ -421,3 +421,14 @@ function init-item-controller-viewer
 	ambient-light = new THREE.AmbientLight 0xffffff 1
 		..cast-shadow = no
 	item-controller-viewer-scene.add ambient-light
+
+	render!
+
+	function render
+		timer = Date.now! * 0.0004
+		request-animation-frame render
+		#out-light.position.z = (Math.cos timer) * 10
+		#out-light.position.x = (Math.sin timer) * 10
+		#controls.update!
+		#renderer.clear!
+		renderer.render item-controller-viewer-scene, camera
