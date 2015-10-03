@@ -20,6 +20,39 @@ $controller-rotate-z-input = $controller.find \.rotate-z
 init!
 init-item-controller!
 
+function load-item(item, cb)
+	switch (item.obj.model-type)
+	| \json =>
+		loader = new THREE.ObjectLoader!
+		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
+			object.position.x = if item.position.x? then item.position.x else 0
+			object.position.y = if item.position.y? then item.position.y else 0
+			object.position.z = if item.position.z? then item.position.z else 0
+			object.rotation.x = if item.rotation.x? then item.rotation.x else 0
+			object.rotation.y = if item.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation.z? then item.rotation.z else 0
+			object.cast-shadow = on
+			object.receive-shadow = on
+			object.name = item.individual-id
+			cb object
+	| \objmtl =>
+		loader = new THREE.OBJMTLLoader!
+		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
+			object.position.x = if item.position.x? then item.position.x else 0
+			object.position.y = if item.position.y? then item.position.y else 0
+			object.position.z = if item.position.z? then item.position.z else 0
+			object.rotation.x = if item.rotation.x? then item.rotation.x else 0
+			object.rotation.y = if item.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation.z? then item.rotation.z else 0
+			object.name = item.individual-id
+			object.room-item-info = item
+			object.traverse (child) ->
+				if child instanceof THREE.Mesh
+					child.source = object
+					child.cast-shadow = on
+					child.receive-shadow = on
+			cb object
+
 function init
 	shadow-quolity = 8192
 	debug = no
@@ -232,41 +265,18 @@ function init
 		room-items.for-each (item) ->
 			console.log item
 			if item.position?
-				switch (item.obj.model-type)
-				| \json =>
-					loader = new THREE.ObjectLoader!
-					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
-						object.position.x = item.position.x
-						object.position.y = item.position.y
-						object.position.z = item.position.z
-						object.rotation.x = item.rotation.x
-						object.rotation.y = item.rotation.y
-						object.rotation.z = item.rotation.z
-						object.cast-shadow = on
-						object.receive-shadow = on
-						object.name = item.individual-id
-						scene.add object
-						items.push object
-				| \objmtl =>
-					loader = new THREE.OBJMTLLoader!
-					loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
-						object.position.x = item.position.x
-						object.position.y = item.position.y
-						object.position.z = item.position.z
-						object.rotation.x = item.rotation.x
-						object.rotation.y = item.rotation.y
-						object.rotation.z = item.rotation.z
-						object.name = item.individual-id
-						object.room-item-info = item
-						object.traverse (child) ->
-							if child instanceof THREE.Mesh
-								child.source = object
-								child.cast-shadow = on
-								child.receive-shadow = on
-						scene.add object
-						items.push object
+				load-item item, (object) ->
+					scene.add object
+					items.push object
 			else
-				$ \#box .find \ul .append $ "<li>#{item.obj.name}</li>"
+				$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
+				$set-button = $ "<button>置く</button>"
+					..click ->
+						load-item item, (object) ->
+							scene.add object
+							items.push object
+				$item.append $set-button
+				$ \#box .find \ul .append $item
 				unactive-items.push item
 
 	# Renderer
