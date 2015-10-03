@@ -1,21 +1,6 @@
 room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
-item-controller-viewer-scene = null
-
-$controller = $ \#item-controller
-$controller-item-title = $controller.find \.title
-$controller-pos-back-button = $controller.find \.pos-back-button
-$controller-pos-forward-button = $controller.find \.pos-forward-button
-$controller-pos-left-button = $controller.find \.pos-left-button
-$controller-pos-right-button = $controller.find \.pos-right-button
-$controller-pos-up-button = $controller.find \.pos-up-button
-$controller-pos-down-button = $controller.find \.pos-down-button
-$controller-pos-x-input = $controller.find \.pos-x
-$controller-pos-y-input = $controller.find \.pos-y
-$controller-pos-z-input = $controller.find \.pos-z
-$controller-rotate-x-input = $controller.find \.rotate-x
-$controller-rotate-y-input = $controller.find \.rotate-y
-$controller-rotate-z-input = $controller.find \.rotate-z
+item-controller = new ItemController
 
 init!
 init-item-controller!
@@ -195,7 +180,7 @@ function init
 			intersects = raycaster.intersect-objects items, on
 
 			SELECTEDITEM := null
-			update-item-controller!
+			item-controller.update null
 
 			items.for-each (item) ->
 				item.traverse (child) ->
@@ -214,7 +199,7 @@ function init
 						child.material.emissive.set-hex 0xff0000
 						child.is-active = yes
 
-				update-item-controller!
+				item-controller.update SELECTEDITEM
 
 	#init-sky!
 	init-items!
@@ -290,188 +275,203 @@ function init
 		composer.render!
 		#renderer.render scene, camera
 
-function init-item-controller
-	init-item-controller-viewer!
+class ItemController
+	->
+		@$controller = $ \#item-controller
+		@$controller-item-title = $controller.find \.title
+		@$controller-pos-back-button = $controller.find \.pos-back-button
+		@$controller-pos-forward-button = $controller.find \.pos-forward-button
+		@$controller-pos-left-button = $controller.find \.pos-left-button
+		@$controller-pos-right-button = $controller.find \.pos-right-button
+		@$controller-pos-up-button = $controller.find \.pos-up-button
+		@$controller-pos-down-button = $controller.find \.pos-down-button
+		@$controller-pos-x-input = $controller.find \.pos-x
+		@$controller-pos-y-input = $controller.find \.pos-y
+		@$controller-pos-z-input = $controller.find \.pos-z
+		@$controller-rotate-x-input = $controller.find \.rotate-x
+		@$controller-rotate-y-input = $controller.find \.rotate-y
+		@$controller-rotate-z-input = $controller.find \.rotate-z
 
-	$ \html .keydown (e) ->
-		switch (e.which)
-		| 39 => # Key[→]
-			if e.shift-key
-				change-pos-z SELECTEDITEM.position.z - 0.01
-			else
-				change-pos-z SELECTEDITEM.position.z - 0.1
-		| 37 => # Key[←]
-			if e.shift-key
-				change-pos-z SELECTEDITEM.position.z + 0.01
-			else
-				change-pos-z SELECTEDITEM.position.z + 0.1
-		| 38 => # Key[↑]
-			if e.shift-key
-				change-pos-x SELECTEDITEM.position.x - 0.01
-			else
-				change-pos-x SELECTEDITEM.position.x - 0.1
-		| 40 => # Key[↓]
-			if e.shift-key
-				change-pos-x SELECTEDITEM.position.x + 0.01
-			else
-				change-pos-x SELECTEDITEM.position.x + 0.1
+		init-viewer!
 
-	$controller-pos-back-button.click ->
-		change-pos-x SELECTEDITEM.position.x + 0.1
+		$ \html .keydown (e) ->
+			switch (e.which)
+			| 39 => # Key[→]
+				if e.shift-key
+					change-pos-z @item.position.z - 0.01
+				else
+					change-pos-z @item.position.z - 0.1
+			| 37 => # Key[←]
+				if e.shift-key
+					change-pos-z @item.position.z + 0.01
+				else
+					change-pos-z @item.position.z + 0.1
+			| 38 => # Key[↑]
+				if e.shift-key
+					change-pos-x @item.position.x - 0.01
+				else
+					change-pos-x @item.position.x - 0.1
+			| 40 => # Key[↓]
+				if e.shift-key
+					change-pos-x @item.position.x + 0.01
+				else
+					change-pos-x @item.position.x + 0.1
 
-	$controller-pos-forward-button.click ->
-		change-pos-x SELECTEDITEM.position.x - 0.1
+		@$controller-pos-back-button.click ->
+			@change-pos-x @item.position.x + 0.1
 
-	$controller-pos-left-button.click ->
-		change-pos-z SELECTEDITEM.position.z + 0.1
+		@$controller-pos-forward-button.click ->
+			@change-pos-x @item.position.x - 0.1
 
-	$controller-pos-right-button.click ->
-		change-pos-z SELECTEDITEM.position.z - 0.1
+		@$controller-pos-left-button.click ->
+			@change-pos-z @item.position.z + 0.1
 
-	$controller-pos-up-button.click ->
-		change-pos-y SELECTEDITEM.position.y + 0.1
+		@$controller-pos-right-button.click ->
+			@change-pos-z @item.position.z - 0.1
 
-	$controller-pos-down-button.click ->
-		change-pos-y SELECTEDITEM.position.y - 0.1
+		@$controller-pos-up-button.click ->
+			@change-pos-y @item.position.y + 0.1
 
-	$controller-pos-x-input.bind \input ->
-		change-pos-x $controller-pos-x-input.val!
+		@$controller-pos-down-button.click ->
+			@change-pos-y @item.position.y - 0.1
 
-	$controller-pos-y-input.bind \input ->
-		change-pos-y $controller-pos-y-input.val!
+		@$controller-pos-x-input.bind \input ->
+			@change-pos-x @$controller-pos-x-input.val!
 
-	$controller-pos-z-input.bind \input ->
-		change-pos-z $controller-pos-z-input.val!
+		@$controller-pos-y-input.bind \input ->
+			@change-pos-y @$controller-pos-y-input.val!
 
-	$controller-rotate-x-input.bind \input ->
-		change-rotate-x $controller-rotate-x-input.val!
+		@$controller-pos-z-input.bind \input ->
+			@change-pos-z @$controller-pos-z-input.val!
 
-	$controller-rotate-y-input.bind \input ->
-		change-rotate-y $controller-rotate-y-input.val!
+		@$controller-rotate-x-input.bind \input ->
+			@change-rotate-x @$controller-rotate-x-input.val!
 
-	$controller-rotate-z-input.bind \input ->
-		change-rotate-z $controller-rotate-z-input.val!
+		@$controller-rotate-y-input.bind \input ->
+			@change-rotate-y @$controller-rotate-y-input.val!
 
-	function change-pos-x(x)
+		@$controller-rotate-z-input.bind \input ->
+			@change-rotate-z @$controller-rotate-z-input.val!
+
+		function init-viewer
+			canvas = document.get-element-by-id \item-controller-preview-canvas
+			width = canvas.width
+			height = canvas.height
+
+			# Scene settings
+			@scene = new THREE.Scene!
+
+			# Renderer settings
+			renderer = new THREE.WebGLRenderer {canvas, +antialias}
+				..set-pixel-ratio window.device-pixel-ratio
+				..set-size width, height
+				..auto-clear = off
+				..shadow-map.enabled = on
+				..shadow-map.cull-face = THREE.CullFaceBack
+
+			# Camera settings
+			camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
+				..zoom = 10
+				..position.x = 0
+				..position.y = 2
+				..position.z = 0
+				..update-projection-matrix!
+			@scene.add camera
+
+			# AmbientLight
+			ambient-light = new THREE.AmbientLight 0xffffff 1
+				..cast-shadow = no
+			@scene.add ambient-light
+
+			# PointLight
+			light = new THREE.PointLight 0xffffff 1 100
+			light.position.set 3 3 3
+			@scene.add light
+
+			@scene.add new THREE.AxisHelper 5
+			@scene.add new THREE.GridHelper 5 0.5
+
+			render!
+
+			function render
+				timer = Date.now! * 0.0004
+				request-animation-frame render
+
+				camera.position.z = (Math.cos timer) * 10
+				camera.position.x = (Math.sin timer) * 10
+				camera.look-at new THREE.Vector3 0 0 0
+
+				#controls.update!
+				renderer.render @scene, camera
+
+	update:	(item) ->
+		@item = item
+		if item?
+			@$controller.css \display \block
+			@$controller-item-title.text item.room-item-info.obj.name
+			@$controller-pos-x-input.val item.position.x
+			@$controller-pos-y-input.val item.position.y
+			@$controller-pos-z-input.val item.position.z
+			@$controller-rotate-x-input.val item.rotation.x
+			@$controller-rotate-y-input.val item.rotation.y
+			@$controller-rotate-z-input.val item.rotation.z
+
+			# Remove old object
+			old = item-controller-viewer-scene.get-object-by-name \obj
+			if old?
+				item-controller-viewer-scene.remove old
+
+			# Add new object
+			preview-obj = item.clone!
+				..name = \obj
+				..position.x = 0
+				..position.y = 0
+				..position.z = 0
+				..rotation.x = 0
+				..rotation.y = 0
+				..rotation.z = 0
+
+			preview-obj.traverse (child) ->
+				if child instanceof THREE.Mesh
+					child.material = child.material.clone!
+					child.material.emissive.set-hex 0x000000
+
+			@scene.add preview-obj
+		else
+			@$controller.css \display \none
+
+	change-pos-x: (x) ->
 		x = Number x
 		if x > 2.5 then x = 2.5
 		if x < -2.5 then x = -2.5
-		SELECTEDITEM.position.x = x
-		$controller-pos-x-input.val x
+		@item.position.x = x
+		@$controller-pos-x-input.val x
 
-	function change-pos-y(y)
+	change-pos-y: (y) ->
 		y = Number y
 		if y > 1.5 then y = 1.5
 		if y < 0 then y = 0
-		SELECTEDITEM.position.y = y
-		$controller-pos-y-input.val y
+		@item.position.y = y
+		@$controller-pos-y-input.val y
 
-	function change-pos-z(z)
+	change-pos-z: (z) ->
 		z = Number z
 		if z > 2.5 then z = 2.5
 		if z < -2.5 then z = -2.5
-		SELECTEDITEM.position.z = z
-		$controller-pos-z-input.val z
+		@item.position.z = z
+		@$controller-pos-z-input.val z
 
-	function change-rotate-x(x)
+	change-rotate-x: (x) ->
 		x = Number x
-		SELECTEDITEM.rotation.x = x
-		$controller-rotate-x-input.val x
+		@item.rotation.x = x
+		@$controller-rotate-x-input.val x
 
-	function change-rotate-y(y)
+	change-rotate-y: (y) ->
 		y = Number y
-		SELECTEDITEM.rotation.y = y
-		$controller-rotate-y-input.val y
+		@item.rotation.y = y
+		@$controller-rotate-y-input.val y
 
-	function change-rotate-z(z)
+	change-rotate-z: (z) ->
 		z = Number z
-		SELECTEDITEM.rotation.z = z
-		$controller-rotate-z-input.val z
-
-function update-item-controller
-	if SELECTEDITEM?
-		$controller.css \display \block
-		$controller-item-title.text SELECTEDITEM.room-item-info.obj.name
-		$controller-pos-x-input.val SELECTEDITEM.position.x
-		$controller-pos-y-input.val SELECTEDITEM.position.y
-		$controller-pos-z-input.val SELECTEDITEM.position.z
-		$controller-rotate-x-input.val SELECTEDITEM.rotation.x
-		$controller-rotate-y-input.val SELECTEDITEM.rotation.y
-		$controller-rotate-z-input.val SELECTEDITEM.rotation.z
-
-		################################
-		# Display preview
-
-		# Remove old object
-		old = item-controller-viewer-scene.get-object-by-name \obj
-		if old?
-			item-controller-viewer-scene.remove old
-
-		# Add new object
-		preview-obj = SELECTEDITEM.clone!
-			..name = \obj
-			..position.x = 0
-			..position.y = 0
-			..position.z = 0
-			..rotation.x = 0
-			..rotation.y = 0
-			..rotation.z = 0
-		preview-obj.traverse (child) ->
-			if child instanceof THREE.Mesh
-				child.material = child.material.clone!
-				child.material.emissive.set-hex 0x000000
-		item-controller-viewer-scene.add preview-obj
-		################################
-	else
-		$controller.css \display \none
-
-function init-item-controller-viewer
-	canvas = document.get-element-by-id \item-controller-preview-canvas
-	width = canvas.width
-	height = canvas.height
-
-	# Scene settings
-	item-controller-viewer-scene := new THREE.Scene!
-
-	# Renderer settings
-	renderer = new THREE.WebGLRenderer {canvas, +antialias}
-		..set-pixel-ratio window.device-pixel-ratio
-		..set-size width, height
-		..auto-clear = off
-		..shadow-map.enabled = on
-		..shadow-map.cull-face = THREE.CullFaceBack
-
-	# Camera settings
-	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
-		..zoom = 10
-		..position.x = 0
-		..position.y = 2
-		..position.z = 0
-		..update-projection-matrix!
-	item-controller-viewer-scene.add camera
-
-	# AmbientLight
-	ambient-light = new THREE.AmbientLight 0xffffff 1
-		..cast-shadow = no
-	item-controller-viewer-scene.add ambient-light
-
-	# PointLight
-	light = new THREE.PointLight 0xffffff 1 100
-	light.position.set 3 3 3
-	item-controller-viewer-scene.add light
-
-	item-controller-viewer-scene.add new THREE.AxisHelper 5
-	item-controller-viewer-scene.add new THREE.GridHelper 5 0.5
-
-	render!
-
-	function render
-		timer = Date.now! * 0.0004
-		request-animation-frame render
-
-		camera.position.z = (Math.cos timer) * 10
-		camera.position.x = (Math.sin timer) * 10
-		camera.look-at new THREE.Vector3 0 0 0
-
-		#controls.update!
-		renderer.render item-controller-viewer-scene, camera
+		@item.rotation.z = z
+		@$controller-rotate-z-input.val z
