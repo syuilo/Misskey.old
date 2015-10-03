@@ -16,9 +16,9 @@ $ \#item-menu .find \.down-button .click ->
 $ \#item-menu .find \.x .bind \input ->
 	SELECTEDITEM.position.x = $ \#item-menu .find \.x .val!
 $ \#item-menu .find \.y .bind \input ->
-	SELECTEDITEM.position.x = $ \#item-menu .find \.y .val!
+	SELECTEDITEM.position.y = $ \#item-menu .find \.y .val!
 $ \#item-menu .find \.z .bind \input ->
-	SELECTEDITEM.position.x = $ \#item-menu .find \.z .val!
+	SELECTEDITEM.position.z = $ \#item-menu .find \.z .val!
 
 init!
 
