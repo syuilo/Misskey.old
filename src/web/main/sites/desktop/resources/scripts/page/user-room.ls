@@ -440,7 +440,7 @@ class Room
 					THIS.active-items.push object
 		$item.append $set-button
 		$ \#box .find \ul .append $item
-		@.unactive-items.push item
+		@unactive-items.push item
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
