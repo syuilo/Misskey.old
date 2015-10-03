@@ -147,7 +147,7 @@ function init
 			INTERSECTED.traverse (child) ->
 				if child instanceof THREE.Mesh
 					if (not child.is-active?) or (not child.is-active)
-						child.material.emissive.set-hex 0x4c4c4c
+						child.material.emissive.set-hex 0x191919
 
 	renderer.dom-element.onmousedown = (e) ->
 		if (e.target == renderer.dom-element) and (e.button == 2)
