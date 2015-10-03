@@ -385,7 +385,22 @@ function update-item-controller
 		$controller-rotate-x-input.val SELECTEDITEM.rotation.x
 		$controller-rotate-y-input.val SELECTEDITEM.rotation.y
 		$controller-rotate-z-input.val SELECTEDITEM.rotation.z
-		item-controller-viewer-scene.add SELECTEDITEM.clone!
+
+		################################
+		# Display preview
+
+		# Remove old object
+		old = item-controller-viewer-scene.get-object-by-name \obj
+		item-controller-viewer-scene.remove old
+
+		# Add new object
+		preview-obj = SELECTEDITEM.clone!
+			..name = \obj
+			..position.x = 0
+			..position.y = 0
+			..position.z = 0
+		item-controller-viewer-scene.add preview-obj
+		################################
 	else
 		$controller.css \display \none
 
@@ -410,7 +425,7 @@ function init-item-controller-viewer
 	# Camera settings
 	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
-		..zoom = 10
+		..zoom = 100
 		..position.x = 0
 		..position.y = 2
 		..position.z = 0
@@ -430,6 +445,8 @@ function init-item-controller-viewer
 	function render
 		timer = Date.now! * 0.0004
 		request-animation-frame render
+		obj = item-controller-viewer-scene.get-object-by-name \obj
+		obj.rotation.y = timer
 		#out-light.position.z = (Math.cos timer) * 10
 		#out-light.position.x = (Math.sin timer) * 10
 		#controls.update!
