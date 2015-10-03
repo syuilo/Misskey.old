@@ -400,6 +400,9 @@ function update-item-controller
 			..position.x = 0
 			..position.y = 0
 			..position.z = 0
+		preview-obj.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.material.emissive.set-hex 0x000000
 		item-controller-viewer-scene.add preview-obj
 		################################
 	else
