@@ -84,7 +84,7 @@ function init
 	scene.add out-light
 
 	# Controller setting
-	controls = new THREE.OrbitControls camera
+	controls = new THREE.OrbitControls camera, renderer.dom-element
 		..target.set 0 1 0
 		..enable-zoom = debug
 		..enable-pan = debug
@@ -122,7 +122,7 @@ function init
 
 	################################
 
-	window.onmousedown = (e) ->
+	renderer.dom-element.onmousedown = (e) ->
 		if (e.target == renderer.dom-element) and (e.button == 2)
 			rect = e.target.get-bounding-client-rect!
 			x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
