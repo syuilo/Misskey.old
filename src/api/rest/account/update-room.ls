@@ -16,6 +16,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 			old-item.position = item.position
 			old-item.rotation = item.rotation
 
+		console.log old-layout
 		user-room.items = old-layout
 		user-room.save ->
 			res.api-render user.to-object!
