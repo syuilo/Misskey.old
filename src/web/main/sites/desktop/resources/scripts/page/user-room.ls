@@ -191,6 +191,7 @@ class ItemController
 		if x > 2.5 then x = 2.5
 		if x < -2.5 then x = -2.5
 		@item.position.x = x
+		@item.room-item-info.position.x = x
 		@$controller-pos-x-input.val x
 
 	change-pos-y: (y) ->
@@ -198,6 +199,7 @@ class ItemController
 		if y > 1.5 then y = 1.5
 		if y < 0 then y = 0
 		@item.position.y = y
+		@item.room-item-info.position.y = y
 		@$controller-pos-y-input.val y
 
 	change-pos-z: (z) ->
@@ -205,21 +207,25 @@ class ItemController
 		if z > 2.5 then z = 2.5
 		if z < -2.5 then z = -2.5
 		@item.position.z = z
+		@item.room-item-info.position.z = z
 		@$controller-pos-z-input.val z
 
 	change-rotate-x: (x) ->
 		x = Number x
 		@item.rotation.x = x
+		@item.room-item-info.rotation.x = x
 		@$controller-rotate-x-input.val x
 
 	change-rotate-y: (y) ->
 		y = Number y
 		@item.rotation.y = y
+		@item.room-item-info.rotation.y = y
 		@$controller-rotate-y-input.val y
 
 	change-rotate-z: (z) ->
 		z = Number z
 		@item.rotation.z = z
+		@item.room-item-info.rotation.z = z
 		@$controller-rotate-z-input.val z
 
 class Room
