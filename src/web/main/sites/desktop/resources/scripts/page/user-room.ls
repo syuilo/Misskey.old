@@ -410,10 +410,10 @@ function init-item-controller-viewer
 	# Camera settings
 	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
 	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
-		..zoom = 100
-		..position.x = 2
+		..zoom = 10
+		..position.x = 0
 		..position.y = 2
-		..position.z = 2
+		..position.z = 0
 		..update-projection-matrix!
 	item-controller-viewer-scene.add camera
 
@@ -421,6 +421,9 @@ function init-item-controller-viewer
 	ambient-light = new THREE.AmbientLight 0xffffff 1
 		..cast-shadow = no
 	item-controller-viewer-scene.add ambient-light
+
+	item-controller-viewer-scene.add new THREE.AxisHelper 10
+	item-controller-viewer-scene.add new THREE.GridHelper 10 1
 
 	render!
 
