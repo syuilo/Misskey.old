@@ -249,6 +249,17 @@ function init
 		#renderer.render scene, camera
 
 function init-item-controller
+	$ \html .keydown (e) ->
+        switch (e.which)
+        | 39 => # Key[→]
+            change-pos-z SELECTEDITEM.position.z - 0.1
+        | 37 => # Key[←]
+            change-pos-z SELECTEDITEM.position.z + 0.1
+    	| 38 => # Key[↑]
+            change-pos-x SELECTEDITEM.position.x - 0.1
+        | 40 => # Key[↓]
+	        change-pos-x SELECTEDITEM.position.x + 0.1
+
 	$controller-pos-back-button.click ->
 		change-pos-x SELECTEDITEM.position.x + 0.1
 
