@@ -6,6 +6,7 @@ class ItemController
 		# Init UI
 		@$controller = $ \#item-controller
 		@$controller-item-title = @$controller.find \.title
+		@$controller-item-hide-button = @$controller.find \.item-hide-button
 		@$controller-pos-back-button = @$controller.find \.pos-back-button
 		@$controller-pos-forward-button = @$controller.find \.pos-forward-button
 		@$controller-pos-left-button = @$controller.find \.pos-left-button
@@ -41,6 +42,11 @@ class ItemController
 					THIS.change-pos-x THIS.item.position.x + 0.01
 				else
 					THIS.change-pos-x THIS.item.position.x + 0.1
+
+		# しまうボタン
+		@$controller-item-hide-button.click ->
+			THIS.item.remove!
+			THIS.update null
 
 		@$controller-pos-back-button.click ->
 			THIS.change-pos-x THIS.item.position.x + 0.1
