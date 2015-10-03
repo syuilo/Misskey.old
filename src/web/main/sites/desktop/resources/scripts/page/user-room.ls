@@ -460,6 +460,9 @@ class Room
 		console.log layout
 		layout
 
+	save: ->
+		@export-layout-json!
+
 function load-item(item, cb)
 	switch (item.obj.model-type)
 	| \json =>
@@ -496,3 +499,7 @@ function load-item(item, cb)
 ################################################################
 
 room = new Room
+
+$save-button = $ \#save-button
+$save-button.click ->
+	room.save!
