@@ -426,7 +426,7 @@ function init-item-controller-viewer
 
 	# Camera settings
 	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
-		..zoom = 100
+		..zoom = 10
 		..position.x = 0
 		..position.y = 2
 		..position.z = 0
