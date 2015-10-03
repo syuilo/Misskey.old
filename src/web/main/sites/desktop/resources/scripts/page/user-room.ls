@@ -261,7 +261,7 @@ function init-item-controller
 	$controller-up-button.click ->
 		change-pos-y SELECTEDITEM.position.y + 0.1
 
-	$controller-button-button.click ->
+	$controller-bottom-button.click ->
 		change-pos-y SELECTEDITEM.position.y - 0.1
 
 	$controller-x-input.bind \input ->
