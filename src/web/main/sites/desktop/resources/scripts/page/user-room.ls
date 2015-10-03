@@ -404,7 +404,9 @@ function update-item-controller
 			..rotation.y = 0
 			..rotation.z = 0
 		preview-obj.traverse (child) ->
+			console.log \a
 			if child instanceof THREE.Mesh
+				console.log \b
 				child.material.emissive.set-hex 0x000000
 		item-controller-viewer-scene.add preview-obj
 		################################
