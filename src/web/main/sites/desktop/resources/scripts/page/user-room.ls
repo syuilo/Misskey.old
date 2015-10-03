@@ -47,11 +47,6 @@ class ItemController
 
 		# しまうボタン
 		@$controller-item-hide-button.click ->
-			THIS.room.scene.remove THIS.room.scene.get-object-by-name THIS.item.name
-			THIS.room.active-items.some (v, i) ->
-				if v.name == THIS.item.room-item-info.individual-id
-					THIS.room.active-items.splice i, 1
-			THIS.room.unactive-items.push THIS.item.room-item-info
 			THIS.room.add-item-to-box THIS.item.room-item-info
 			THIS.update null
 
@@ -431,16 +426,24 @@ class Room
 
 	add-item-to-box: (item) ->
 		THIS = @
+		@scene.remove @scene.get-object-by-name item.individual-id
+		@active-items.some (v, i) ->
+			if v.name == item.individual-id
+				THIS.active-items.splice i, 1
+		@unactive-items.push item
+
 		$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
 		$set-button = $ "<button>置く</button>"
 			..click ->
 				$item.remove!
+				THIS.unactive-items.some (v, i) ->
+					if v.individual-id == item.individual-id
+						THIS.unactive-items.splice i, 1
 				load-item item, (object) ->
 					THIS.scene.add object
 					THIS.active-items.push object
 		$item.append $set-button
 		$ \#box .find \ul .append $item
-		@unactive-items.push item
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
