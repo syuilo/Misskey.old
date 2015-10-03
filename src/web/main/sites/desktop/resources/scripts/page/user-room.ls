@@ -1,5 +1,7 @@
 class ItemController
 	->
+		################################
+		# Init UI
 		@$controller = $ \#item-controller
 		@$controller-item-title = @$controller.find \.title
 		@$controller-pos-back-button = @$controller.find \.pos-back-button
@@ -19,24 +21,24 @@ class ItemController
 			switch (e.which)
 			| 39 => # Key[→]
 				if e.shift-key
-					change-pos-z @item.position.z - 0.01
+					@change-pos-z @item.position.z - 0.01
 				else
-					change-pos-z @item.position.z - 0.1
+					@change-pos-z @item.position.z - 0.1
 			| 37 => # Key[←]
 				if e.shift-key
-					change-pos-z @item.position.z + 0.01
+					@change-pos-z @item.position.z + 0.01
 				else
-					change-pos-z @item.position.z + 0.1
+					@change-pos-z @item.position.z + 0.1
 			| 38 => # Key[↑]
 				if e.shift-key
-					change-pos-x @item.position.x - 0.01
+					@change-pos-x @item.position.x - 0.01
 				else
-					change-pos-x @item.position.x - 0.1
+					@change-pos-x @item.position.x - 0.1
 			| 40 => # Key[↓]
 				if e.shift-key
-					change-pos-x @item.position.x + 0.01
+					@change-pos-x @item.position.x + 0.01
 				else
-					change-pos-x @item.position.x + 0.1
+					@change-pos-x @item.position.x + 0.1
 
 		@$controller-pos-back-button.click ->
 			@change-pos-x @item.position.x + 0.1
