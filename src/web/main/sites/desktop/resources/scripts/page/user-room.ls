@@ -1,5 +1,6 @@
 room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
+item-controller-viewer-scene = null
 
 $controller = $ \#item-controller
 $controller-item-title = $controller.find \.title
@@ -277,6 +278,8 @@ function init
 		#renderer.render scene, camera
 
 function init-item-controller
+	init-item-controller-viewer!
+
 	$ \html .keydown (e) ->
 		switch (e.which)
 		| 39 => # Key[→]
@@ -382,5 +385,39 @@ function update-item-controller
 		$controller-rotate-x-input.val SELECTEDITEM.rotation.x
 		$controller-rotate-y-input.val SELECTEDITEM.rotation.y
 		$controller-rotate-z-input.val SELECTEDITEM.rotation.z
+		item-controller-viewer-scene.add SELECTEDITEM
 	else
 		$controller.css \display \none
+
+function init-item-controller-viewer
+	canvas = document.get-element-by-id \item-controller-preview-canvas
+	width = canvas.inner-width
+	height = canvas.inner-height
+
+	# Scene settings
+	item-controller-viewer-scene := new THREE.Scene!
+
+	# Renderer settings
+	renderer = new THREE.WebGLRenderer {canvas, +antialias}
+		..set-pixel-ratio window.device-pixel-ratio
+		..set-size width, height
+		..auto-clear = off
+		..shadow-map.enabled = on
+		#..shadow-map-soft = off
+		#..shadow-map-cull-front-faces = on
+		..shadow-map.cull-face = THREE.CullFaceBack
+
+	# Camera settings
+	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
+		..zoom = 100
+		..position.x = 2
+		..position.y = 2
+		..position.z = 2
+		..update-projection-matrix!
+	item-controller-viewer-scenescene.add camera
+
+	# AmbientLight
+	ambient-light = new THREE.AmbientLight 0xffffff 1
+		..cast-shadow = no
+	item-controller-viewer-scenescene.add ambient-light
