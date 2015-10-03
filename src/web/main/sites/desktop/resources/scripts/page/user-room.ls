@@ -13,6 +13,12 @@ $ \#item-menu .find \.up-button .click ->
 	SELECTEDITEM.position.y += 0.1
 $ \#item-menu .find \.down-button .click ->
 	SELECTEDITEM.position.y -= 0.1
+$ \#item-menu .find \.x .bind \input ->
+	SELECTEDITEM.position.x = $ \#item-menu .find \.x .val!
+$ \#item-menu .find \.y .bind \input ->
+	SELECTEDITEM.position.x = $ \#item-menu .find \.y .val!
+$ \#item-menu .find \.z .bind \input ->
+	SELECTEDITEM.position.x = $ \#item-menu .find \.z .val!
 
 init!
 
