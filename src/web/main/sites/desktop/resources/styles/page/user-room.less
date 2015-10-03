@@ -1,3 +1,5 @@
+@themeColor: <%themeColor%>;
+
 html {
 	background: #000;
 }
@@ -81,5 +83,48 @@ input[type=number] {
 
 	&:-moz-placeholder {
 		color: #ddd;
+	}
+}
+
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 8px;
+	text-decoration: none;
+	color: contrast(@themeColor, #000, #fff, 70%);
+	background: @themeColor !important;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	box-shadow: none;
+	transition: background 0.1s ease;
+
+	&, * {
+		font-family: 'ŸàƒSƒVƒbƒN', 'YuGothic', 'ƒqƒ‰ƒMƒmŠpƒS ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'ƒƒCƒŠƒI', sans-serif;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	> * {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		vertical-align: baseline !important;
+		padding: 12px 16px;
+		line-height: 1em !important;
+		font-size: 1em !important;
+	}
+
+	&:hover {
+		background: lighten(@themeColor, 10%) !important;
+	}
+
+	&:active {
+		background: darken(@themeColor, 10%) !important;
+		transition: background 0s ease;
 	}
 }
