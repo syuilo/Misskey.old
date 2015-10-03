@@ -312,16 +312,22 @@ function init-item-controller
 
 	function change-pos-x(x)
 		x = Number x
+		if x > 2.5 then x = 2.5
+		if x < -2.5 then x = -2.5
 		SELECTEDITEM.position.x = x
 		$controller-pos-x-input.val x
 
 	function change-pos-y(y)
 		y = Number y
+		if y > 1.5 then y = 1.5
+		if y < 0 then y = 0
 		SELECTEDITEM.position.y = y
 		$controller-pos-y-input.val y
 
 	function change-pos-z(z)
 		z = Number z
+		if z > 2.5 then z = 2.5
+		if z < -2.5 then z = -2.5
 		SELECTEDITEM.position.z = z
 		$controller-pos-z-input.val z
 
