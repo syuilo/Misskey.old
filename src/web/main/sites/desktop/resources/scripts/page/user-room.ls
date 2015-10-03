@@ -445,6 +445,15 @@ class Room
 		$item.append $set-button
 		$ \#box .find \ul .append $item
 
+	export-layout-json: ->
+		layout = []
+		@unactive-items.for-each (item) ->
+			layout.push item
+		@active-items.for-each (item) ->
+			layout.push item.room-item-info
+		console.log layout
+		layout
+
 function load-item(item, cb)
 	switch (item.obj.model-type)
 	| \json =>
