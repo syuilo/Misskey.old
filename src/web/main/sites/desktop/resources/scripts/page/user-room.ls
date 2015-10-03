@@ -424,7 +424,8 @@ function init-item-controller-viewer
 		..shadow-map.cull-face = THREE.CullFaceBack
 
 	# Camera settings
-	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+	camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
+		..zoom = 2
 		..position.x = 0
 		..position.y = 2
 		..position.z = 0
@@ -435,8 +436,8 @@ function init-item-controller-viewer
 		..cast-shadow = no
 	item-controller-viewer-scene.add ambient-light
 
-	item-controller-viewer-scene.add new THREE.AxisHelper 10
-	item-controller-viewer-scene.add new THREE.GridHelper 10 1
+	item-controller-viewer-scene.add new THREE.AxisHelper 5
+	item-controller-viewer-scene.add new THREE.GridHelper 5 0.5
 
 	render!
 
@@ -449,5 +450,4 @@ function init-item-controller-viewer
 		camera.look-at new THREE.Vector3 0 0 0
 
 		#controls.update!
-		#renderer.clear!
 		renderer.render item-controller-viewer-scene, camera
