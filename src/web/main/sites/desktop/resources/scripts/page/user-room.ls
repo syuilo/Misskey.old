@@ -415,9 +415,9 @@ function init-item-controller-viewer
 		..position.y = 2
 		..position.z = 2
 		..update-projection-matrix!
-	item-controller-viewer-scenescene.add camera
+	item-controller-viewer-scene.add camera
 
 	# AmbientLight
 	ambient-light = new THREE.AmbientLight 0xffffff 1
 		..cast-shadow = no
-	item-controller-viewer-scenescene.add ambient-light
+	item-controller-viewer-scene.add ambient-light
