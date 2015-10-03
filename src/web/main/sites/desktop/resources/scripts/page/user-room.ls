@@ -1,19 +1,20 @@
 room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
 
-$controller-item-title = $ \#item-controller .find \.title
-$controller-pos-back-button = $ \#item-controller .find \.pos-back-button
-$controller-pos-forward-button = $ \#item-controller .find \.pos-forward-button
-$controller-pos-left-button = $ \#item-controller .find \.pos-left-button
-$controller-pos-right-button = $ \#item-controller .find \.pos-right-button
-$controller-pos-up-button = $ \#item-controller .find \.pos-up-button
-$controller-pos-down-button = $ \#item-controller .find \.pos-down-button
-$controller-pos-x-input = $ \#item-controller .find \.pos-x
-$controller-pos-y-input = $ \#item-controller .find \.pos-y
-$controller-pos-z-input = $ \#item-controller .find \.pos-z
-$controller-rotate-x-input = $ \#item-controller .find \.rotate-x
-$controller-rotate-y-input = $ \#item-controller .find \.rotate-y
-$controller-rotate-z-input = $ \#item-controller .find \.rotate-z
+$controller = $ \#item-controller
+$controller-item-title = $controller.find \.title
+$controller-pos-back-button = $controller.find \.pos-back-button
+$controller-pos-forward-button = $controller.find \.pos-forward-button
+$controller-pos-left-button = $controller.find \.pos-left-button
+$controller-pos-right-button = $controller.find \.pos-right-button
+$controller-pos-up-button = $controller.find \.pos-up-button
+$controller-pos-down-button = $controller.find \.pos-down-button
+$controller-pos-x-input = $controller.find \.pos-x
+$controller-pos-y-input = $controller.find \.pos-y
+$controller-pos-z-input = $controller.find \.pos-z
+$controller-rotate-x-input = $controller.find \.rotate-x
+$controller-rotate-y-input = $controller.find \.rotate-y
+$controller-rotate-z-input = $controller.find \.rotate-z
 
 init!
 init-item-controller!
@@ -339,10 +340,14 @@ function init-item-controller
 		$controller-rotate-z-input.val z
 
 function update-item-controller
-	$controller-item-title.text SELECTEDITEM.room-item-info.obj.name
-	$controller-pos-x-input.val SELECTEDITEM.position.x
-	$controller-pos-y-input.val SELECTEDITEM.position.y
-	$controller-pos-z-input.val SELECTEDITEM.position.z
-	$controller-rotate-x-input.val SELECTEDITEM.rotation.x
-	$controller-rotate-y-input.val SELECTEDITEM.rotation.y
-	$controller-rotate-z-input.val SELECTEDITEM.rotation.z
+	if SELECTEDITEM?
+		$controller.css \display \block
+		$controller-item-title.text SELECTEDITEM.room-item-info.obj.name
+		$controller-pos-x-input.val SELECTEDITEM.position.x
+		$controller-pos-y-input.val SELECTEDITEM.position.y
+		$controller-pos-z-input.val SELECTEDITEM.position.z
+		$controller-rotate-x-input.val SELECTEDITEM.rotation.x
+		$controller-rotate-y-input.val SELECTEDITEM.rotation.y
+		$controller-rotate-z-input.val SELECTEDITEM.rotation.z
+	else
+		$controller.css \display \none
