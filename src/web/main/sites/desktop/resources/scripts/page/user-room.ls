@@ -391,8 +391,8 @@ function update-item-controller
 
 function init-item-controller-viewer
 	canvas = document.get-element-by-id \item-controller-preview-canvas
-	width = canvas.inner-width
-	height = canvas.inner-height
+	width = canvas.width
+	height = canvas.height
 
 	# Scene settings
 	item-controller-viewer-scene := new THREE.Scene!
