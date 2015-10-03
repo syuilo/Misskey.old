@@ -385,7 +385,7 @@ function update-item-controller
 		$controller-rotate-x-input.val SELECTEDITEM.rotation.x
 		$controller-rotate-y-input.val SELECTEDITEM.rotation.y
 		$controller-rotate-z-input.val SELECTEDITEM.rotation.z
-		item-controller-viewer-scene.add SELECTEDITEM
+		item-controller-viewer-scene.add SELECTEDITEM.clone!
 	else
 		$controller.css \display \none
 
