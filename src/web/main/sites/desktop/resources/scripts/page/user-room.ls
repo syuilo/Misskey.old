@@ -1,6 +1,17 @@
 room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
 
+$controller-item-title = $ \#item-controller .find \.title
+$controller-back-button = $ \#item-controller .find \.back-button
+$controller-forward-button = $ \#item-controller .find \.forward-button
+$controller-left-button = $ \#item-controller .find \.left-button
+$controller-right-button = $ \#item-controller .find \.right-button
+$controller-up-button = $ \#item-controller .find \.up-button
+$controller-down-button = $ \#item-controller .find \.down-button
+$controller-x-input = $ \#item-controller .find \.x
+$controller-y-input = $ \#item-controller .find \.y
+$controller-z-input = $ \#item-controller .find \.z
+
 init!
 init-item-controller!
 
@@ -132,10 +143,7 @@ function init
 				console.log intersects
 				INTERSECTED = intersects[0].object.source
 				SELECTEDITEM := INTERSECTED
-				$ \#item-menu .find \.title .text INTERSECTED.room-item-info.obj.name
-				$ \#item-menu .find \.x .val INTERSECTED.room-item-info.position.x
-				$ \#item-menu .find \.y .val INTERSECTED.room-item-info.position.y
-				$ \#item-menu .find \.z .val INTERSECTED.room-item-info.position.z
+				update-item-controller!
 				# Highlight
 				INTERSECTED.traverse (child) ->
 					if child instanceof THREE.Mesh
@@ -238,41 +246,31 @@ function init
 		#renderer.render scene, camera
 
 function init-item-controller
-	$controller-back-button = $ \#item-controller .find \.back-button
-	$controller-forward-button = $ \#item-controller .find \.forward-button
-	$controller-left-button = $ \#item-controller .find \.left-button
-	$controller-right-button = $ \#item-controller .find \.right-button
-	$controller-up-button = $ \#item-controller .find \.up-button
-	$controller-down-button = $ \#item-controller .find \.down-button
-	$controller-x-input = $ \#item-controller .find \.x
-	$controller-y-input = $ \#item-controller .find \.y
-	$controller-z-input = $ \#item-controller .find \.z
-
-	$controller-back-button .click ->
+	$controller-back-button.click ->
 		change-pos-x SELECTEDITEM.position.x + 0.1
 
-	$controller-forward-button .click ->
+	$controller-forward-button.click ->
 		change-pos-x SELECTEDITEM.position.x - 0.1
 
-	$controller-left-button .click ->
+	$controller-left-button.click ->
 		change-pos-z SELECTEDITEM.position.z + 0.1
 
-	$controller-right-button .click ->
+	$controller-right-button.click ->
 		change-pos-z SELECTEDITEM.position.z - 0.1
 
-	$controller-up-button .click ->
+	$controller-up-button.click ->
 		change-pos-y SELECTEDITEM.position.y + 0.1
 
-	$controller-button-button .click ->
+	$controller-button-button.click ->
 		change-pos-y SELECTEDITEM.position.y - 0.1
 
-	$controller-x-input .bind \input ->
+	$controller-x-input.bind \input ->
 		change-pos-x $controller-x-input.val!
 
-	$controller-y-input .bind \input ->
+	$controller-y-input.bind \input ->
 		change-pos-y $controller-y-input.val!
 
-	$controller-z-input .bind \input ->
+	$controller-z-input.bind \input ->
 		change-pos-z $controller-z-input.val!
 
 	function change-pos-x(x)
@@ -286,3 +284,9 @@ function init-item-controller
 	function change-pos-z(z)
 		SELECTEDITEM.position.z = z
 		$controller-z-input.val z
+
+function update-item-controller
+	$controller-item-title.text SELECTEDITEM.room-item-info.obj.name
+	$controller-x-input.val SELECTEDITEM.position.x
+	$controller-y-input.val SELECTEDITEM.position.y
+	$controller-z-input.val SELECTEDITEM.position.z
