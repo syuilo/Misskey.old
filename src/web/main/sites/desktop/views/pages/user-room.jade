@@ -41,8 +41,8 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items))
 							| up
 						button.down-button
 							| down
-						input.x(type='number', step=0.01, min=-2.5, max=-2.5)
-						input.z(type='number', step=0.01, min=-2.5, max=-2.5)
+						input.x(type='number', step=0.01, min=-2.5, max=2.5)
+						input.z(type='number', step=0.01, min=-2.5, max=2.5)
 						input.y(type='number', step=0.01, min=0)
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')
