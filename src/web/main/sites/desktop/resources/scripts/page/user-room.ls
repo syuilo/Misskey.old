@@ -2,7 +2,7 @@ room-items = JSON.parse ($ \html .attr \data-room-items)
 SELECTEDITEM = null
 item-controller = new ItemController
 
-init!
+#init!
 /*
 function load-item(item, cb)
 	switch (item.obj.model-type)
