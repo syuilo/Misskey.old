@@ -214,18 +214,215 @@ class ItemController
 		@item.rotation.z = z
 		@$controller-rotate-z-input.val z
 
-/*
 class Room
-	->
+	(item-controller) ->
+		THIS = @
 
-*/
-################################################################
+		shadow-quolity = 8192
+		debug = no
 
-room-items = JSON.parse ($ \html .attr \data-room-items)
-SELECTEDITEM = null
-item-controller = new ItemController
+		@item-controller = item-controller
+		@room-items = JSON.parse ($ \html .attr \data-room-items)
 
-init!
+		@active-items = []
+		@unactive-items = []
+
+		width = window.inner-width
+		height = window.inner-height
+
+		################################
+		# Init scene
+
+		# Scene settings
+		@scene = new THREE.Scene!
+
+		# Renderer settings
+		@renderer = new THREE.WebGLRenderer {-antialias}
+			..set-pixel-ratio window.device-pixel-ratio
+			..set-size width, height
+			..auto-clear = off
+			..set-clear-color new THREE.Color 0x051f2d
+			..shadow-map.enabled = on
+			#..shadow-map-soft = off
+			#..shadow-map-cull-front-faces = on
+			..shadow-map.cull-face = THREE.CullFaceBack
+		#document.get-element-by-id \main .append-child renderer.dom-element
+		document.body.append-child @renderer.dom-element
+
+		# Camera settings
+		#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+		@camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
+			..zoom = 100
+			..position.x = 2
+			..position.y = 2
+			..position.z = 2
+			..update-projection-matrix!
+		@scene.add @camera
+
+		# AmbientLight
+		ambient-light = new THREE.AmbientLight 0xffffff 1
+			..cast-shadow = no
+		@scene.add ambient-light
+
+		# Room light (for shadow)
+		room-light = new THREE.SpotLight 0xffffff 0.2
+			..position.set 0 8 0
+			..cast-shadow = on
+			..shadow-map-width = shadow-quolity
+			..shadow-map-height = shadow-quolity
+			..shadow-camera-near = 0.1
+			..shadow-camera-far = 9
+			..shadow-camera-fov = 45
+			#..only-shadow = on
+			#..shadow-camera-visible = on #debug
+		#@scene.add room-light
+
+		out-light = new THREE.SpotLight 0xffffff 0.4
+			..position.set 9 3 -2
+			..cast-shadow = on
+			..shadow-bias = -0.001 # アクネ、アーチファクト対策 その代わりピーターパンが発生する可能性がある
+			..shadow-map-width = shadow-quolity
+			..shadow-map-height = shadow-quolity
+			..shadow-camera-near = 6
+			..shadow-camera-far = 15
+			..shadow-camera-fov = 45
+			..shadow-camera-visible = debug
+			#..only-shadow = on
+		@scene.add out-light
+
+		# Controller setting
+		@controls = new THREE.OrbitControls @camera, @renderer.dom-element
+			..target.set 0 1 0
+			..enable-zoom = debug
+			..enable-pan = debug
+			..min-polar-angle = 0
+			..max-polar-angle = if debug then Math.PI else Math.PI / 2
+			..min-azimuth-angle = 0
+			..max-azimuth-angle = if debug then Math.PI else Math.PI / 2
+
+		# DEBUG
+		if debug
+			@scene.add new THREE.AxisHelper 10
+			@scene.add new THREE.GridHelper 5 1
+
+		################################
+		# POST FXs
+
+		render-target = new THREE.WebGLRenderTarget width, height, {
+			min-filter: THREE.LinearFilter
+			mag-filter: THREE.LinearFilter
+			format: THREE.RGBFormat
+			-stencil-buffer
+		}
+
+		fxaa = new THREE.ShaderPass THREE.FXAAShader
+			..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+
+		to-screen = new THREE.ShaderPass THREE.CopyShader
+			..render-to-screen = on
+
+		@composer = new THREE.EffectComposer @renderer, render-target
+			..add-pass new THREE.RenderPass @scene, @camera
+			..add-pass new THREE.BloomPass 0.5 25 128.0 512
+			..add-pass fxaa
+			..add-pass to-screen
+
+		################################
+
+		# Hover highlight
+		@renderer.dom-element.onmousemove = (e) ->
+			rect = e.target.get-bounding-client-rect!
+			x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
+			y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
+			pos = new THREE.Vector2 x, y
+			THIS.camera.update-matrix-world!
+			raycaster = new THREE.Raycaster!
+			raycaster.set-from-camera pos, THIS.camera
+			intersects = raycaster.intersect-objects THIS.active-items, on
+
+			THIS.active-items.for-each (item) ->
+				item.traverse (child) ->
+					if child instanceof THREE.Mesh
+						if (not child.is-active?) or (not child.is-active)
+							child.material.emissive.set-hex 0x000000
+
+			if intersects.length > 0
+				INTERSECTED = intersects[0].object.source
+				INTERSECTED.traverse (child) ->
+					if child instanceof THREE.Mesh
+						if (not child.is-active?) or (not child.is-active)
+							child.material.emissive.set-hex 0x191919
+
+		@renderer.dom-element.onmousedown = (e) ->
+			if (e.target == THIS.renderer.dom-element) and (e.button == 2)
+				rect = e.target.get-bounding-client-rect!
+				x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
+				y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
+				pos = new THREE.Vector2 x, y
+				THIS.camera.update-matrix-world!
+				raycaster = new THREE.Raycaster!
+				raycaster.set-from-camera pos, THIS.camera
+				intersects = raycaster.intersect-objects THIS.active-items, on
+
+				THIS.selected-item = null
+				THIS.item-controller.update null
+
+				THIS.active-items.for-each (item) ->
+					item.traverse (child) ->
+						if child instanceof THREE.Mesh
+							child.material.emissive.set-hex 0x000000
+							child.is-active = no
+
+				if intersects.length > 0
+					INTERSECTED = intersects[0].object.source
+					THIS.selected-item = INTERSECTED
+
+					# Highlight
+					INTERSECTED.traverse (child) ->
+						if child instanceof THREE.Mesh
+							child.material.emissive.set-hex 0xff0000
+							child.is-active = yes
+
+					THIS.item-controller.update THIS.selected-item
+
+		################################
+		# Load items of room
+		loader = new THREE.OBJMTLLoader!
+		loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
+			object.traverse (child) ->
+				if child instanceof THREE.Mesh
+					child.receive-shadow = on
+					child.cast-shadow = on
+			object.position.set 0 0 0
+			@scene.add object
+
+		@room-items.for-each (item) ->
+			if item.position?
+				load-item item, (object) ->
+					THIS.scene.add object
+					THIS.active-items.push object
+			else
+				$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
+				$set-button = $ "<button>置く</button>"
+					..click ->
+						load-item item, (object) ->
+							THIS.scene.add object
+							THIS.active-items.push object
+				$item.append $set-button
+				$ \#box .find \ul .append $item
+				THIS.unactive-items.push item
+
+		@render!
+
+	render: ->
+		#timer = Date.now! * 0.0004
+		request-animation-frame @render.bind @
+		#out-light.position.z = (Math.cos timer) * 10
+		#out-light.position.x = (Math.sin timer) * 10
+		@controls.update!
+		@renderer.clear!
+		@composer.render!
+		#renderer.render scene, camera
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
@@ -260,239 +457,7 @@ function load-item(item, cb)
 					child.receive-shadow = on
 			cb object
 
-function init
-	shadow-quolity = 8192
-	debug = no
+################################################################
 
-	width = window.inner-width
-	height = window.inner-height
-
-	items = []
-	unactive-items = []
-
-	# Scene settings
-	scene = new THREE.Scene!
-
-	# Renderer settings
-	renderer = new THREE.WebGLRenderer {-antialias}
-		..set-pixel-ratio window.device-pixel-ratio
-		..set-size width, height
-		..auto-clear = off
-		..set-clear-color new THREE.Color 0x051f2d
-		..shadow-map.enabled = on
-		#..shadow-map-soft = off
-		#..shadow-map-cull-front-faces = on
-		..shadow-map.cull-face = THREE.CullFaceBack
-	#document.get-element-by-id \main .append-child renderer.dom-element
-	document.body.append-child renderer.dom-element
-
-	# Camera settings
-	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
-	camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
-		..zoom = 100
-		..position.x = 2
-		..position.y = 2
-		..position.z = 2
-		..update-projection-matrix!
-	scene.add camera
-
-	# AmbientLight
-	ambient-light = new THREE.AmbientLight 0xffffff 1
-		..cast-shadow = no
-	scene.add ambient-light
-
-	# Room light (for shadow)
-	room-light = new THREE.SpotLight 0xffffff 0.2
-		..position.set 0 8 0
-		..cast-shadow = on
-		..shadow-map-width = shadow-quolity
-		..shadow-map-height = shadow-quolity
-		..shadow-camera-near = 0.1
-		..shadow-camera-far = 9
-		..shadow-camera-fov = 45
-		#..only-shadow = on
-		#..shadow-camera-visible = on #debug
-	#scene.add room-light
-
-	out-light = new THREE.SpotLight 0xffffff 0.4
-		..position.set 9 3 -2
-		..cast-shadow = on
-		..shadow-bias = -0.001 # アクネ、アーチファクト対策 その代わりピーターパンが発生する可能性がある
-		..shadow-map-width = shadow-quolity
-		..shadow-map-height = shadow-quolity
-		..shadow-camera-near = 6
-		..shadow-camera-far = 15
-		..shadow-camera-fov = 45
-		..shadow-camera-visible = debug
-		#..only-shadow = on
-	scene.add out-light
-
-	# Controller setting
-	controls = new THREE.OrbitControls camera, renderer.dom-element
-		..target.set 0 1 0
-		..enable-zoom = debug
-		..enable-pan = debug
-		..min-polar-angle = 0
-		..max-polar-angle = if debug then Math.PI else Math.PI / 2
-		..min-azimuth-angle = 0
-		..max-azimuth-angle = if debug then Math.PI else Math.PI / 2
-
-	# DEBUG
-	if debug
-		scene.add new THREE.AxisHelper 1000
-		scene.add new THREE.GridHelper 10 1
-
-	################################
-	# POST FXs
-
-	render-target = new THREE.WebGLRenderTarget width, height, {
-		min-filter: THREE.LinearFilter
-		mag-filter: THREE.LinearFilter
-		format: THREE.RGBFormat
-		-stencil-buffer
-	}
-
-	fxaa = new THREE.ShaderPass THREE.FXAAShader
-		..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
-
-	to-screen = new THREE.ShaderPass THREE.CopyShader
-		..render-to-screen = on
-
-	composer = new THREE.EffectComposer renderer, render-target
-		..add-pass new THREE.RenderPass scene, camera
-		..add-pass new THREE.BloomPass 0.5 25 128.0 512
-		..add-pass fxaa
-		..add-pass to-screen
-
-	################################
-
-	# Hover highlight
-	renderer.dom-element.onmousemove = (e) ->
-		rect = e.target.get-bounding-client-rect!
-		x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
-		y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
-		pos = new THREE.Vector2 x, y
-		camera.update-matrix-world!
-		raycaster = new THREE.Raycaster!
-		raycaster.set-from-camera pos, camera
-		intersects = raycaster.intersect-objects items, on
-
-		items.for-each (item) ->
-			item.traverse (child) ->
-				if child instanceof THREE.Mesh
-					if (not child.is-active?) or (not child.is-active)
-						child.material.emissive.set-hex 0x000000
-
-		if intersects.length > 0
-			INTERSECTED = intersects[0].object.source
-			INTERSECTED.traverse (child) ->
-				if child instanceof THREE.Mesh
-					if (not child.is-active?) or (not child.is-active)
-						child.material.emissive.set-hex 0x191919
-
-	renderer.dom-element.onmousedown = (e) ->
-		if (e.target == renderer.dom-element) and (e.button == 2)
-			rect = e.target.get-bounding-client-rect!
-			x = ((e.client-x - rect.left) / renderer.dom-element.width) * 2 - 1
-			y = -((e.client-y - rect.top) / renderer.dom-element.height) * 2 + 1
-			pos = new THREE.Vector2 x, y
-			camera.update-matrix-world!
-			raycaster = new THREE.Raycaster!
-			raycaster.set-from-camera pos, camera
-			intersects = raycaster.intersect-objects items, on
-
-			SELECTEDITEM := null
-			item-controller.update null
-
-			items.for-each (item) ->
-				item.traverse (child) ->
-					if child instanceof THREE.Mesh
-						child.material.emissive.set-hex 0x000000
-						child.is-active = no
-
-			if intersects.length > 0
-				console.log intersects
-				INTERSECTED = intersects[0].object.source
-				SELECTEDITEM := INTERSECTED
-
-				# Highlight
-				INTERSECTED.traverse (child) ->
-					if child instanceof THREE.Mesh
-						child.material.emissive.set-hex 0xff0000
-						child.is-active = yes
-
-				item-controller.update SELECTEDITEM
-
-	#init-sky!
-	init-items!
-
-	render!
-
-	function init-sky
-		sun-sphere = new THREE.Mesh do
-			new THREE.SphereBufferGeometry 20000 16 8
-			new THREE.MeshBasicMaterial {color: 0xffffff}
-		sun-sphere.position.y = -700000
-		sun-sphere.visible = no
-		scene.add sun-sphere
-
-		sky = new THREE.Sky!
-		sky.uniforms.turbidity.value = 10
-		sky.uniforms.reileigh.value = 4
-		sky.uniforms.luminance.value = 1
-		sky.uniforms.mie-coefficient.value = 0.005
-		sky.uniforms.mie-directional-g.value = 0.8
-
-		inclination = 0
-		azimuth = 0
-
-		theta = Math.PI * (inclination - 0.5)
-		phi = 2 * Math.PI * (azimuth - 0.5)
-
-		distance = 400000
-
-		sun-sphere.position.x = distance * (Math.cos phi)
-		sun-sphere.position.y = distance * (Math.sin phi) * (Math.sin theta)
-		sun-sphere.position.z = distance * (Math.sin phi) * (Math.cos theta)
-
-		sky.uniforms.sun-position.value.copy sun-sphere.position
-
-		scene.add sky.mesh
-
-	function init-items
-		loader = new THREE.OBJMTLLoader!
-		loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
-			object.traverse (child) ->
-				if child instanceof THREE.Mesh
-					child.receive-shadow = on
-					child.cast-shadow = on
-			object.position.set 0 0 0
-			scene.add object
-
-		room-items.for-each (item) ->
-			console.log item
-			if item.position?
-				load-item item, (object) ->
-					scene.add object
-					items.push object
-			else
-				$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
-				$set-button = $ "<button>置く</button>"
-					..click ->
-						load-item item, (object) ->
-							scene.add object
-							items.push object
-				$item.append $set-button
-				$ \#box .find \ul .append $item
-				unactive-items.push item
-
-	# Renderer
-	function render
-		#timer = Date.now! * 0.0004
-		request-animation-frame render
-		#out-light.position.z = (Math.cos timer) * 10
-		#out-light.position.x = (Math.sin timer) * 10
-		controls.update!
-		renderer.clear!
-		composer.render!
-		#renderer.render scene, camera
+item-controller = new ItemController
+room = new Room item-controller
