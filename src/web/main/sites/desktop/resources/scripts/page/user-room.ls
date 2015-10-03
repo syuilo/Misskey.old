@@ -406,7 +406,7 @@ function update-item-controller
 		preview-obj.traverse (child) ->
 			if child instanceof THREE.Mesh
 				console.log child.material.emissive.get-hex!
-				child.material.emissive.set-hex 0x000000
+				child.material.emissive.set-hex 0x0000ff
 		console.log '-----'
 		preview-obj.traverse (child) ->
 			if child instanceof THREE.Mesh
