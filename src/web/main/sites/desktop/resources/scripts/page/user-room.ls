@@ -405,6 +405,7 @@ class Room
 				$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
 				$set-button = $ "<button>置く</button>"
 					..click ->
+						$item.remove!
 						load-item item, (object) ->
 							THIS.scene.add object
 							THIS.active-items.push object
