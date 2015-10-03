@@ -443,7 +443,8 @@ function init-item-controller-viewer
 		timer = Date.now! * 0.0004
 		request-animation-frame render
 		obj = item-controller-viewer-scene.get-object-by-name \obj
-		obj.rotation.y = timer
+		if obj?
+			obj.rotation.y = timer
 		#out-light.position.z = (Math.cos timer) * 10
 		#out-light.position.x = (Math.sin timer) * 10
 		#controls.update!
