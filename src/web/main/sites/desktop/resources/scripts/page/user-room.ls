@@ -92,13 +92,13 @@ class ItemController
 			..shadow-map.cull-face = THREE.CullFaceBack
 
 		# Camera settings
-		camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
+		@camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
 			..zoom = 10
 			..position.x = 0
 			..position.y = 2
 			..position.z = 0
 			..update-projection-matrix!
-		@scene.add camera
+		@scene.add @camera
 
 		# AmbientLight
 		ambient-light = new THREE.AmbientLight 0xffffff 1
@@ -113,18 +113,18 @@ class ItemController
 		@scene.add new THREE.AxisHelper 5
 		@scene.add new THREE.GridHelper 5 0.5
 
-		#render!
+		@render!
 
-		function render
-			timer = Date.now! * 0.0004
-			request-animation-frame render
+	render: ->
+		timer = Date.now! * 0.0004
+		request-animation-frame render
 
-			camera.position.z = (Math.cos timer) * 10
-			camera.position.x = (Math.sin timer) * 10
-			camera.look-at new THREE.Vector3 0 0 0
+		@camera.position.z = (Math.cos timer) * 10
+		@camera.position.x = (Math.sin timer) * 10
+		@camera.look-at new THREE.Vector3 0 0 0
 
-			#controls.update!
-			renderer.render @scene, camera
+		#controls.update!
+		renderer.render @scene, @camera
 
 	update:	(item) ->
 		@item = item
