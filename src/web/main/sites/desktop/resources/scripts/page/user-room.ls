@@ -463,7 +463,7 @@ class Room
 		$item.append $set-button
 		$ \#box .find \ul .append $item
 
-	export-layout-json: ->
+	export-layout: ->
 		layout = []
 		@unactive-items.for-each (item) ->
 			layout.push item
