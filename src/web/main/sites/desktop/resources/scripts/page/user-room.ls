@@ -137,6 +137,7 @@ function init
 			intersects = raycaster.intersect-objects items, on
 
 			SELECTEDITEM := null
+			update-item-controller!
 
 			items.for-each (item) ->
 				item.traverse (child) ->
