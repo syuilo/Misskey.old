@@ -114,7 +114,7 @@ class ItemController
 		light.position.set 3 3 3
 		@scene.add light
 
-		@scene.add new THREE.AxisHelper 5
+		#@scene.add new THREE.AxisHelper 5
 		@scene.add new THREE.GridHelper 5 0.5
 
 		@render!
