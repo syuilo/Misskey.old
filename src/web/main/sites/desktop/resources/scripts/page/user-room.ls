@@ -142,6 +142,7 @@ function init
 					child.material.emissive.set-hex 0x000000
 
 		if intersects.length > 0
+			INTERSECTED = intersects[0].object.source
 			INTERSECTED.traverse (child) ->
 				if child instanceof THREE.Mesh
 					child.material.emissive.set-hex 0x7f7f7f
