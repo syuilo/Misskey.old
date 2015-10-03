@@ -473,7 +473,7 @@ class Room
 		layout
 
 	export-layout-json: ->
-		JSON.stringifi @export-layout!
+		JSON.stringify @export-layout!
 
 	save: (done, fail) ->
 		json = @export-layout-json!
