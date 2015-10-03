@@ -394,7 +394,7 @@ class Room
 					child.receive-shadow = on
 					child.cast-shadow = on
 			object.position.set 0 0 0
-			@scene.add object
+			THIS.scene.add object
 
 		@room-items.for-each (item) ->
 			if item.position?
