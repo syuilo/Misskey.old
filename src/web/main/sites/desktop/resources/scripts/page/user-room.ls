@@ -88,9 +88,10 @@ class ItemController
 		@scene = new THREE.Scene!
 
 		# Renderer settings
-		@renderer = new THREE.WebGLRenderer {canvas, +antialias}
+		@renderer = new THREE.WebGLRenderer {canvas, +antialias, +alpha}
 			..set-pixel-ratio window.device-pixel-ratio
 			..set-size width, height
+			..set-clear-color 0x000000 0
 			..auto-clear = off
 			..shadow-map.enabled = on
 			..shadow-map.cull-face = THREE.CullFaceBack
