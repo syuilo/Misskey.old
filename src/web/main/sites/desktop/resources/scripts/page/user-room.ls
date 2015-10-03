@@ -3,7 +3,7 @@ SELECTEDITEM = null
 item-controller = new ItemController
 
 init!
-
+/*
 function load-item(item, cb)
 	switch (item.obj.model-type)
 	| \json =>
@@ -273,7 +273,7 @@ function init
 		renderer.clear!
 		composer.render!
 		#renderer.render scene, camera
-
+*/
 class ItemController
 	->
 		@$controller = $ \#item-controller
