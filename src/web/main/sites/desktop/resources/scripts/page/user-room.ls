@@ -52,7 +52,7 @@ class ItemController
 				if v.individual-id == THIS.item.room-item-info.individual-id
 					THIS.room.active-items.splice i, 1
 			THIS.room.unactive-items.push THIS.item.room-item-info
-			THIS.room.add-item-to-box item.room-item-info
+			THIS.room.add-item-to-box THIS.item.room-item-info
 			THIS.update null
 
 		@$controller-pos-back-button.click ->
