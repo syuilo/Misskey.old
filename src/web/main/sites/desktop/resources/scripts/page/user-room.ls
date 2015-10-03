@@ -422,8 +422,6 @@ function init-item-controller-viewer
 		..set-size width, height
 		..auto-clear = off
 		..shadow-map.enabled = on
-		#..shadow-map-soft = off
-		#..shadow-map-cull-front-faces = on
 		..shadow-map.cull-face = THREE.CullFaceBack
 
 	# Camera settings
@@ -432,6 +430,7 @@ function init-item-controller-viewer
 		..position.x = 0
 		..position.y = 2
 		..position.z = 0
+		..update-projection-matrix!
 	item-controller-viewer-scene.add camera
 
 	# AmbientLight
