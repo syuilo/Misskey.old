@@ -52,6 +52,7 @@ class ItemController
 				if v.individual-id == THIS.item.room-item-info.individual-id
 					THIS.room.active-items.splice i, 1
 			THIS.room.unactive-items.push THIS.item.room-item-info
+			THIS.room.add-item-to-box item.room-item-info
 			THIS.update null
 
 		@$controller-pos-back-button.click ->
@@ -414,16 +415,7 @@ class Room
 					THIS.scene.add object
 					THIS.active-items.push object
 			else
-				$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
-				$set-button = $ "<button>置く</button>"
-					..click ->
-						$item.remove!
-						load-item item, (object) ->
-							THIS.scene.add object
-							THIS.active-items.push object
-				$item.append $set-button
-				$ \#box .find \ul .append $item
-				THIS.unactive-items.push item
+				THIS.add-item-to-box item
 
 		@render!
 
@@ -436,6 +428,19 @@ class Room
 		@renderer.clear!
 		@composer.render!
 		#renderer.render scene, camera
+
+	add-item-to-box: (item) ->
+		THIS = @
+		$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
+		$set-button = $ "<button>置く</button>"
+			..click ->
+				$item.remove!
+				load-item item, (object) ->
+					THIS.scene.add object
+					THIS.active-items.push object
+		$item.append $set-button
+		$ \#box .find \ul .append $item
+		@.unactive-items.push item
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
