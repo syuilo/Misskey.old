@@ -1,19 +1,19 @@
 class ItemController
 	->
 		@$controller = $ \#item-controller
-		@$controller-item-title = $controller.find \.title
-		@$controller-pos-back-button = $controller.find \.pos-back-button
-		@$controller-pos-forward-button = $controller.find \.pos-forward-button
-		@$controller-pos-left-button = $controller.find \.pos-left-button
-		@$controller-pos-right-button = $controller.find \.pos-right-button
-		@$controller-pos-up-button = $controller.find \.pos-up-button
-		@$controller-pos-down-button = $controller.find \.pos-down-button
-		@$controller-pos-x-input = $controller.find \.pos-x
-		@$controller-pos-y-input = $controller.find \.pos-y
-		@$controller-pos-z-input = $controller.find \.pos-z
-		@$controller-rotate-x-input = $controller.find \.rotate-x
-		@$controller-rotate-y-input = $controller.find \.rotate-y
-		@$controller-rotate-z-input = $controller.find \.rotate-z
+		@$controller-item-title = @$controller.find \.title
+		@$controller-pos-back-button = @$controller.find \.pos-back-button
+		@$controller-pos-forward-button = @$controller.find \.pos-forward-button
+		@$controller-pos-left-button = @$controller.find \.pos-left-button
+		@$controller-pos-right-button = @$controller.find \.pos-right-button
+		@$controller-pos-up-button = @$controller.find \.pos-up-button
+		@$controller-pos-down-button = @$controller.find \.pos-down-button
+		@$controller-pos-x-input = @$controller.find \.pos-x
+		@$controller-pos-y-input = @$controller.find \.pos-y
+		@$controller-pos-z-input = @$controller.find \.pos-z
+		@$controller-rotate-x-input = @$controller.find \.rotate-x
+		@$controller-rotate-y-input = @$controller.find \.rotate-y
+		@$controller-rotate-z-input = @$controller.find \.rotate-z
 
 		$ \html .keydown (e) ->
 			switch (e.which)
