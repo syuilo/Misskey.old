@@ -235,9 +235,12 @@ class Room
 		shadow-quolity = 8192
 		debug = no
 
-		@item-controller = new ItemController @
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
-
+		@is-me = ($ \html .attr \data-is-me) == \true
+		
+		if @is-me
+			@item-controller = new ItemController @
+		
 		@active-items = []
 		@unactive-items = []
 
@@ -343,32 +346,9 @@ class Room
 
 		################################
 
-		# Hover highlight
-		@renderer.dom-element.onmousemove = (e) ->
-			rect = e.target.get-bounding-client-rect!
-			x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
-			y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
-			pos = new THREE.Vector2 x, y
-			THIS.camera.update-matrix-world!
-			raycaster = new THREE.Raycaster!
-			raycaster.set-from-camera pos, THIS.camera
-			intersects = raycaster.intersect-objects THIS.active-items, on
-
-			THIS.active-items.for-each (item) ->
-				item.traverse (child) ->
-					if child instanceof THREE.Mesh
-						if (not child.is-active?) or (not child.is-active)
-							child.material.emissive.set-hex 0x000000
-
-			if intersects.length > 0
-				INTERSECTED = intersects[0].object.source
-				INTERSECTED.traverse (child) ->
-					if child instanceof THREE.Mesh
-						if (not child.is-active?) or (not child.is-active)
-							child.material.emissive.set-hex 0x191919
-
-		@renderer.dom-element.onmousedown = (e) ->
-			if (e.target == THIS.renderer.dom-element) and (e.button == 2)
+		if @is-me
+			# Hover highlight
+			@renderer.dom-element.onmousemove = (e) ->
 				rect = e.target.get-bounding-client-rect!
 				x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
 				y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
@@ -378,26 +358,50 @@ class Room
 				raycaster.set-from-camera pos, THIS.camera
 				intersects = raycaster.intersect-objects THIS.active-items, on
 
-				THIS.selected-item = null
-				THIS.item-controller.update null
-
 				THIS.active-items.for-each (item) ->
 					item.traverse (child) ->
 						if child instanceof THREE.Mesh
-							child.material.emissive.set-hex 0x000000
-							child.is-active = no
+							if (not child.is-active?) or (not child.is-active)
+								child.material.emissive.set-hex 0x000000
 
 				if intersects.length > 0
 					INTERSECTED = intersects[0].object.source
-					THIS.selected-item = INTERSECTED
-
-					# Highlight
 					INTERSECTED.traverse (child) ->
 						if child instanceof THREE.Mesh
-							child.material.emissive.set-hex 0xff0000
-							child.is-active = yes
+							if (not child.is-active?) or (not child.is-active)
+								child.material.emissive.set-hex 0x191919
 
-					THIS.item-controller.update THIS.selected-item
+			@renderer.dom-element.onmousedown = (e) ->
+				if (e.target == THIS.renderer.dom-element) and (e.button == 2)
+					rect = e.target.get-bounding-client-rect!
+					x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
+					y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
+					pos = new THREE.Vector2 x, y
+					THIS.camera.update-matrix-world!
+					raycaster = new THREE.Raycaster!
+					raycaster.set-from-camera pos, THIS.camera
+					intersects = raycaster.intersect-objects THIS.active-items, on
+
+					THIS.selected-item = null
+					THIS.item-controller.update null
+
+					THIS.active-items.for-each (item) ->
+						item.traverse (child) ->
+							if child instanceof THREE.Mesh
+								child.material.emissive.set-hex 0x000000
+								child.is-active = no
+
+					if intersects.length > 0
+						INTERSECTED = intersects[0].object.source
+						THIS.selected-item = INTERSECTED
+
+						# Highlight
+						INTERSECTED.traverse (child) ->
+							if child instanceof THREE.Mesh
+								child.material.emissive.set-hex 0xff0000
+								child.is-active = yes
+
+						THIS.item-controller.update THIS.selected-item
 
 		################################
 		# Load items of room

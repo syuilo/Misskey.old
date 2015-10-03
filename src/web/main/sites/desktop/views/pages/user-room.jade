@@ -1,6 +1,6 @@
 doctype html
 
-html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items))
+html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-me!= (login && me.id == user.id).toString())
 	head
 		include ../common/head
 		meta(name='keywords', content='Misskey')
