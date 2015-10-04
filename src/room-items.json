@@ -46,7 +46,7 @@
 		"id": "plant",
 		"price": 120,
 		"place": "floor",
-		"modelType": "json"
+		"modelType": "objmtl"
 	},
 	{
 		"name": "消しゴム",
