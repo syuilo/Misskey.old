@@ -471,9 +471,9 @@ class Room
 		name-geometry = new THREE.TextGeometry screen-name, {
 			size: 10
 			height: 4
-			curve-segments: 3
+			curve-segments: 8
 			font: \gentilis
-			weight: \bold
+			weight: \normal
 			style: \normal
 			bevel-thickness: 0
 			bevel-size: 0
