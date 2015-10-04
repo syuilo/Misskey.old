@@ -30,7 +30,7 @@
 	{
 		"name": "ハイスペそうなPC",
 		"id": "pc",
-		"price": 12000,
+		"price": 9000,
 		"place": "floor",
 		"modelType": "objmtl"
 	},
@@ -65,7 +65,7 @@
 	{
 		"name": "電子ピアノ",
 		"id": "piano",
-		"price": 11000,
+		"price": 7000,
 		"place": "floor",
 		"modelType": "json"
 	},
