@@ -20,9 +20,9 @@ module.exports = (app) ->
 		handler.on \push (event) ->
 			switch (event.payload.ref)
 			| \refs/heads/master =>
-				create-status null noticer, "安定チャンネルにPushされたようです。(master)\nhttps://github.com/syuilo/Misskey/commit/#{event.payload.after}\n**まもなくデプロイされる可能性があります。**" .then!
+				create-status null noticer, "Pushed to master branch. **It will be deployed soon**.\nPusher: #{event.payload.pusher.name}\nCompare: #{event.payload.compare}" .then!
 			| \refs/heads/develop =>
-				create-status null noticer, "開発チャンネルにPushされたようです。(develop)\nhttps://github.com/syuilo/Misskey/commit/#{event.payload.after}"
+				create-status null noticer, "Push to develop branch.\nPusher: #{event.payload.pusher.name}\nCompare: #{event.payload.compare}"
 				# Start deploy
 				shelljs.exec '/var/www/misskey/development/deploy' (code, output) ->
 					console.log 'Deployed'
