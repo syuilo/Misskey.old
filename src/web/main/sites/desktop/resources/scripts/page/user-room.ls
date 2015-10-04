@@ -229,10 +229,19 @@ class ItemController
 		@$controller-rotate-z-input.val z
 
 class Room
-	->
+	(graphics-quality) ->
 		THIS = @
 
-		shadow-quolity = 8192
+		@graphics-quality = graphics-quality
+
+		shadow-quality = switch (@graphics-quality)
+			| \ultra => 16384
+			| \high => 8192
+			| \medium => 4096
+			| \low => 2048
+			| \very-low => 1024
+			| \super-low => 0
+
 		debug = no
 
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
@@ -259,7 +268,7 @@ class Room
 			..set-size width, height
 			..auto-clear = off
 			..set-clear-color new THREE.Color 0x051f2d
-			..shadow-map.enabled = on
+			..shadow-map.enabled = if @graphics-quality == \super-low then off else on
 			#..shadow-map-soft = off
 			#..shadow-map-cull-front-faces = on
 			..shadow-map.cull-face = THREE.CullFaceBack
@@ -285,8 +294,8 @@ class Room
 		room-light = new THREE.SpotLight 0xffffff 0.2
 			..position.set 0 8 0
 			..cast-shadow = on
-			..shadow-map-width = shadow-quolity
-			..shadow-map-height = shadow-quolity
+			..shadow-map-width = shadow-quality
+			..shadow-map-height = shadow-quality
 			..shadow-camera-near = 0.1
 			..shadow-camera-far = 9
 			..shadow-camera-fov = 45
@@ -298,8 +307,8 @@ class Room
 			..position.set 9 3 -2
 			..cast-shadow = on
 			..shadow-bias = -0.001 # アクネ、アーチファクト対策 その代わりピーターパンが発生する可能性がある
-			..shadow-map-width = shadow-quolity
-			..shadow-map-height = shadow-quolity
+			..shadow-map-width = shadow-quality
+			..shadow-map-height = shadow-quality
 			..shadow-camera-near = 6
 			..shadow-camera-far = 15
 			..shadow-camera-fov = 45
@@ -327,24 +336,27 @@ class Room
 		################################
 		# POST FXs
 
-		render-target = new THREE.WebGLRenderTarget width, height, {
-			min-filter: THREE.LinearFilter
-			mag-filter: THREE.LinearFilter
-			format: THREE.RGBFormat
-			-stencil-buffer
-		}
+		if @graphics-quality != \super-low
+			render-target = new THREE.WebGLRenderTarget width, height, {
+				min-filter: THREE.LinearFilter
+				mag-filter: THREE.LinearFilter
+				format: THREE.RGBFormat
+				-stencil-buffer
+			}
 
-		fxaa = new THREE.ShaderPass THREE.FXAAShader
-			..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+			fxaa = new THREE.ShaderPass THREE.FXAAShader
+				..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
 
-		to-screen = new THREE.ShaderPass THREE.CopyShader
-			..render-to-screen = on
+			to-screen = new THREE.ShaderPass THREE.CopyShader
+				..render-to-screen = on
 
-		@composer = new THREE.EffectComposer @renderer, render-target
-			..add-pass new THREE.RenderPass @scene, @camera
-			..add-pass new THREE.BloomPass 0.5 25 128.0 512
-			..add-pass fxaa
-			..add-pass to-screen
+			@composer = new THREE.EffectComposer @renderer, render-target
+				..add-pass new THREE.RenderPass @scene, @camera
+				..add-pass new THREE.BloomPass 0.5 25 128.0 512
+				..add-pass fxaa
+				..add-pass to-screen
+		else
+			@composer = null
 
 		################################
 
@@ -427,14 +439,15 @@ class Room
 		@render!
 
 	render: ->
-		#timer = Date.now! * 0.0004
-		request-animation-frame @render.bind @
-		#out-light.position.z = (Math.cos timer) * 10
-		#out-light.position.x = (Math.sin timer) * 10
-		@controls.update!
-		@renderer.clear!
-		@composer.render!
-		#renderer.render scene, camera
+		if @composer?
+			request-animation-frame @render.bind @
+			@controls.update!
+			@renderer.clear!
+			@composer.render!
+		else
+			request-animation-frame @render.bind @
+			@controls.update!
+			renderer.render @scene, @camera
 
 	add-item-to-box: (item) ->
 		THIS = @
@@ -533,6 +546,8 @@ function load-item(item, cb)
 ################################################################
 
 # ENTORY POINT
+
+graphics-quality = if $.cookie \room-graphics-quality then $.cookie \room-graphics-quality else \high
 
 # INIT ROOM
 room = new Room
