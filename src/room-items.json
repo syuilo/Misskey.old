@@ -88,7 +88,7 @@
 		"id": "corkboard",
 		"price": 300,
 		"place": "wall",
-		"modelType": "json"
+		"modelType": "objmtl"
 	},
 	{
 		"name": "青いマウスパッド",
