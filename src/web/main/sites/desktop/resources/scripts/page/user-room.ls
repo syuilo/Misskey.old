@@ -242,7 +242,7 @@ class Room
 			| \very-low => 1024
 			| \super-low => 0
 
-		debug = yes
+		debug = no
 
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
 		@is-me = ($ \html .attr \data-is-me) == \true
@@ -269,8 +269,7 @@ class Room
 			..auto-clear = off
 			..set-clear-color new THREE.Color 0x051f2d
 			..shadow-map.enabled = if @graphics-quality == \super-low then off else on
-			#..shadow-map-soft = off
-			#..shadow-map-cull-front-faces = on
+			..shadow-map-cascade = if @graphics-quality == \ultra then on else off
 			..shadow-map.cull-face = THREE.CullFaceBack
 		#document.get-element-by-id \main .append-child renderer.dom-element
 		document.body.append-child @renderer.dom-element
@@ -295,7 +294,7 @@ class Room
 			room-light = new THREE.SpotLight 0xffffff 0.2
 				..position.set 0 8 0
 				..cast-shadow = on
-				..shadow-bias = -0.001
+				..shadow-bias = -0.0001
 				..shadow-map-width = shadow-quality
 				..shadow-map-height = shadow-quality
 				..shadow-camera-near = 0.1
