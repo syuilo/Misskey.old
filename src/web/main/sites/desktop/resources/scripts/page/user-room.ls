@@ -443,7 +443,7 @@ class Room
 			THIS.scene.add object
 
 		# Label
-		icon-image-url = $ \html .attr \data-icon-url
+		icon-image-url = $ \html .attr \data-user-icon-url
 		icon-texture = THREE.ImageUtils.load-texture icon-image-url
 			..wrap-s = THREE.RepeatWrapping
 			..wrap-t = THREE.RepeatWrapping
@@ -461,6 +461,7 @@ class Room
 
 		icon-object = new THREE.Mesh icon-geometry, icon-material
 			..position.set -2 3 -5
+			..rotation.y = Math.PI / 2
 			..cast-shadow = off
 
 		@scene.add icon-object
