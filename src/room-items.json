@@ -152,5 +152,12 @@
 		"price": 1500,
 		"place": "floor",
 		"modelType": "objmtl"
+	},
+	{
+		"name": "額縁",
+		"id": "photoframe",
+		"price": 1100,
+		"place": "wall",
+		"modelType": "objmtl"
 	}
 ]
