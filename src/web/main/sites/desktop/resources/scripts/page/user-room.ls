@@ -359,8 +359,8 @@ class Room
 			}
 			*/
 
-			to-screen = new THREE.ShaderPass THREE.CopyShader
-				..render-to-screen = on
+			#to-screen = new THREE.ShaderPass THREE.CopyShader
+			#	..render-to-screen = on
 
 			@composer = new THREE.EffectComposer @renderer, render-target
 				..add-pass new THREE.RenderPass @scene, @camera
