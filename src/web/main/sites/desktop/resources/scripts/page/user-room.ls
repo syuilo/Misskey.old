@@ -349,8 +349,8 @@ class Room
 				..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
 
 			bokeh = new THREE.BokehPass @scene, @camera, {
-				focus: 1.5
-				aperture: 0.2
+				focus: 1.0
+				aperture: 0.025
 				maxblur: 1.0
 				width: width
 				height: height
