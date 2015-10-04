@@ -483,7 +483,7 @@ class Room
 		name-material = new THREE.MeshLambertMaterial {color: 0xffffff}
 
 		name-object = new THREE.Mesh name-geometry, name-material
-			..position.set -3 2.0 1
+			..position.set -3 2.25 1.25
 			..rotation.y = Math.PI / 2
 			..cast-shadow = off
 
