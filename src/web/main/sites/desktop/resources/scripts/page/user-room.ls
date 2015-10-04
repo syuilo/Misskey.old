@@ -313,7 +313,7 @@ class Room
 			#..enable-zoom = debug
 			#..enable-pan = debug
 			..enable-zoom = on
-			..enable-pan = on
+			..enable-pan = off
 			..min-polar-angle = 0
 			..max-polar-angle = if debug then Math.PI else Math.PI / 2
 			..min-azimuth-angle = 0
