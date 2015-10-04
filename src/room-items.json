@@ -102,7 +102,7 @@
 		"id": "monitor",
 		"price": 1800,
 		"place": "floor",
-		"modelType": "json"
+		"modelType": "objmtl"
 	},
 	{
 		"name": "キーボード",
