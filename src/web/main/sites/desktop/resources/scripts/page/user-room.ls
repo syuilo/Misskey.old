@@ -242,7 +242,7 @@ class Room
 			| \very-low => 1024
 			| \super-low => 0
 
-		debug = no
+		debug = yes
 
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
 		@is-me = ($ \html .attr \data-is-me) == \true
