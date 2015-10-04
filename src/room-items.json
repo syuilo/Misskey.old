@@ -25,7 +25,7 @@
 		"id": "desk",
 		"price": 3200,
 		"place": "floor",
-		"modelType": "json"
+		"modelType": "objmtl"
 	},
 	{
 		"name": "黒いイス",
