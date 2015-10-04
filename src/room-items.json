@@ -145,5 +145,12 @@
 		"price": 850,
 		"place": "wall",
 		"modelType": "objmtl"
+	},
+	{
+		"name": "キューブ",
+		"id": "cube",
+		"price": 1500,
+		"place": "floor",
+		"modelType": "objmtl"
 	}
 ]
