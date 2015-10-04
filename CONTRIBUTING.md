@@ -23,3 +23,4 @@ Note that only `develop` branch is accepting any Pull Requests.
 * Use meter for unit of length
 * Export as a triangulated model
 * Please include your project that used by create model
+* Use English material, object and texture
