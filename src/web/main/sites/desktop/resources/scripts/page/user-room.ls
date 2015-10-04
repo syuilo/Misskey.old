@@ -237,10 +237,10 @@ class Room
 
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
 		@is-me = ($ \html .attr \data-is-me) == \true
-		
+
 		if @is-me
 			@item-controller = new ItemController @
-		
+
 		@active-items = []
 		@unactive-items = []
 
@@ -310,8 +310,10 @@ class Room
 		# Controller setting
 		@controls = new THREE.OrbitControls @camera, @renderer.dom-element
 			..target.set 0 1 0
-			..enable-zoom = debug
-			..enable-pan = debug
+			#..enable-zoom = debug
+			#..enable-pan = debug
+			..enable-zoom = on
+			..enable-pan = on
 			..min-polar-angle = 0
 			..max-polar-angle = if debug then Math.PI else Math.PI / 2
 			..min-azimuth-angle = 0
