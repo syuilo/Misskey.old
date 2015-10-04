@@ -109,7 +109,7 @@
 		"id": "keyboard",
 		"price": 1000,
 		"place": "floor",
-		"modelType": "json"
+		"modelType": "objmtl"
 	},
 	{
 		"name": "ストライプのカーペット",
