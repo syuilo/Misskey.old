@@ -22,7 +22,7 @@ module.exports = (app) ->
 			| \refs/heads/master =>
 				create-status null noticer, "Pushed to master branch. **It will be deployed soon**.\nPusher: #{event.payload.pusher.name}\nCompare: #{event.payload.compare}" .then!
 			| \refs/heads/develop =>
-				create-status null noticer, "Push to develop branch.\nPusher: #{event.payload.pusher.name}\nCompare: #{event.payload.compare}"
+				create-status null noticer, "Pushed to develop branch.\nPusher: #{event.payload.pusher.name}\nCompare: #{event.payload.compare}"
 				# Start deploy
 				shelljs.exec '/var/www/misskey/development/deploy' (code, output) ->
 					console.log 'Deployed'
