@@ -9,7 +9,7 @@
 	{
 		"name": "オレンジのベッド",
 		"id": "bed",
-		"price": 3500,
+		"price": 3200,
 		"place": "floor",
 		"modelType": "objmtl"
 	},
