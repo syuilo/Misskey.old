@@ -235,7 +235,7 @@ class Room
 		@graphics-quality = graphics-quality
 
 		shadow-quality = switch (@graphics-quality)
-			| \ultra => 16384
+			| \ultra => 8192
 			| \high => 8192
 			| \medium => 4096
 			| \low => 2048
