@@ -27,6 +27,9 @@ html(lang='ja', dir='ltr')
 						li: a(href='#application')
 							i(class='fa fa-puzzle-piece')
 							| アプリケーション
+						li: a(href='#credit')
+							i(class='fa fa-credit-card')
+							| クレジット
 						li: a(href='#mail')
 							i(class='fa fa-envelope-o')
 							| メールアドレス
@@ -102,6 +105,13 @@ html(lang='ja', dir='ltr')
 						else
 							p#no-apps
 								| インストールされているアプリはありません。
+					
+					div#credit
+						p
+							| あなたの保有
+							b ひまゴールド
+							| (名称仮)
+						p.credit= me.point.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 
 					div#mail
 						p coming soon....
