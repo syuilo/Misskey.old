@@ -268,7 +268,7 @@ class Room
 			..set-size width, height
 			..auto-clear = off
 			..set-clear-color new THREE.Color 0x051f2d
-			..shadow-map.enabled = (if @graphics-quality == \super-low then off else on)
+			..shadow-map.enabled = if @graphics-quality == \super-low then off else on
 			#..shadow-map-soft = off
 			#..shadow-map-cull-front-faces = on
 			..shadow-map.cull-face = THREE.CullFaceBack
@@ -437,18 +437,21 @@ class Room
 			else
 				THIS.add-item-to-box item
 
-		@render!
-
-	render: ->
-		if @composer?
-			request-animation-frame @render.bind @
-			@controls.update!
-			@renderer.clear!
-			@composer.render!
+		if @graphics-quality == \super-low
+			@direct-render!
 		else
-			request-animation-frame @render.bind @
-			@controls.update!
-			renderer.render @scene, @camera
+			@post-render!
+
+	post-render: ->
+		request-animation-frame @render.bind @
+		@controls.update!
+		@renderer.clear!
+		@composer.render!
+
+	direct-render: ->
+		request-animation-frame @render.bind @
+		@controls.update!
+		@renderer.render @scene, @camera
 
 	add-item-to-box: (item) ->
 		THIS = @
