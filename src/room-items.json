@@ -79,7 +79,7 @@
 	{
 		"name": "ティッシュペーパー",
 		"id": "facial-tissue",
-		"price": 300,
+		"price": 180,
 		"place": "floor",
 		"modelType": "objmtl"
 	},
@@ -137,6 +137,27 @@
 		"id": "color-box2",
 		"price": 800,
 		"place": "floor",
+		"modelType": "objmtl"
+	},
+	{
+		"name": "壁掛け時計",
+		"id": "clock",
+		"price": 850,
+		"place": "wall",
+		"modelType": "objmtl"
+	},
+	{
+		"name": "キューブ",
+		"id": "cube",
+		"price": 1500,
+		"place": "floor",
+		"modelType": "objmtl"
+	},
+	{
+		"name": "額縁",
+		"id": "photoframe",
+		"price": 1100,
+		"place": "wall",
 		"modelType": "objmtl"
 	}
 ]
