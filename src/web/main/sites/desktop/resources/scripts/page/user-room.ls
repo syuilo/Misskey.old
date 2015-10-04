@@ -295,6 +295,7 @@ class Room
 			room-light = new THREE.SpotLight 0xffffff 0.2
 				..position.set 0 8 0
 				..cast-shadow = on
+				..shadow-bias = -0.001
 				..shadow-map-width = shadow-quality
 				..shadow-map-height = shadow-quality
 				..shadow-camera-near = 0.1
