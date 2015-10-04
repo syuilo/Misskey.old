@@ -126,8 +126,15 @@
 		"modelType": "objmtl"
 	},
 	{
-		"name": "カラーボックス",
+		"name": "ホワイトのカラーボックス",
 		"id": "color-box",
+		"price": 800,
+		"place": "floor",
+		"modelType": "objmtl"
+	},
+	{
+		"name": "ベージュのカラーボックス",
+		"id": "color-box2",
 		"price": 800,
 		"place": "floor",
 		"modelType": "objmtl"

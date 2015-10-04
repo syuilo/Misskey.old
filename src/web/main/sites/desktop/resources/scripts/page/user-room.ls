@@ -229,10 +229,19 @@ class ItemController
 		@$controller-rotate-z-input.val z
 
 class Room
-	->
+	(graphics-quality) ->
 		THIS = @
 
-		shadow-quolity = 8192
+		@graphics-quality = graphics-quality
+
+		shadow-quality = switch (@graphics-quality)
+			| \ultra => 8192
+			| \high => 8192
+			| \medium => 4096
+			| \low => 2048
+			| \very-low => 1024
+			| \super-low => 0
+
 		debug = no
 
 		@room-items = JSON.parse ($ \html .attr \data-room-items)
@@ -259,9 +268,8 @@ class Room
 			..set-size width, height
 			..auto-clear = off
 			..set-clear-color new THREE.Color 0x051f2d
-			..shadow-map.enabled = on
-			#..shadow-map-soft = off
-			#..shadow-map-cull-front-faces = on
+			..shadow-map.enabled = if @graphics-quality == \super-low then off else on
+			..shadow-map-cascade = if @graphics-quality == \ultra then on else off
 			..shadow-map.cull-face = THREE.CullFaceBack
 		#document.get-element-by-id \main .append-child renderer.dom-element
 		document.body.append-child @renderer.dom-element
@@ -281,25 +289,27 @@ class Room
 			..cast-shadow = no
 		@scene.add ambient-light
 
-		# Room light (for shadow)
-		room-light = new THREE.SpotLight 0xffffff 0.2
-			..position.set 0 8 0
-			..cast-shadow = on
-			..shadow-map-width = shadow-quolity
-			..shadow-map-height = shadow-quolity
-			..shadow-camera-near = 0.1
-			..shadow-camera-far = 9
-			..shadow-camera-fov = 45
-			#..only-shadow = on
-			#..shadow-camera-visible = on #debug
-		#@scene.add room-light
+		if @graphics-quality == \ultra
+			# Room light
+			room-light = new THREE.SpotLight 0xffffff 0.2
+				..position.set 0 8 0
+				..cast-shadow = on
+				..shadow-bias = -0.0001
+				..shadow-map-width = shadow-quality
+				..shadow-map-height = shadow-quality
+				..shadow-camera-near = 0.1
+				..shadow-camera-far = 9
+				..shadow-camera-fov = 45
+				..only-shadow = on
+				..shadow-camera-visible = debug
+			@scene.add room-light
 
 		out-light = new THREE.SpotLight 0xffffff 0.4
 			..position.set 9 3 -2
 			..cast-shadow = on
 			..shadow-bias = -0.001 # アクネ、アーチファクト対策 その代わりピーターパンが発生する可能性がある
-			..shadow-map-width = shadow-quolity
-			..shadow-map-height = shadow-quolity
+			..shadow-map-width = shadow-quality
+			..shadow-map-height = shadow-quality
 			..shadow-camera-near = 6
 			..shadow-camera-far = 15
 			..shadow-camera-fov = 45
@@ -327,24 +337,38 @@ class Room
 		################################
 		# POST FXs
 
-		render-target = new THREE.WebGLRenderTarget width, height, {
-			min-filter: THREE.LinearFilter
-			mag-filter: THREE.LinearFilter
-			format: THREE.RGBFormat
-			-stencil-buffer
-		}
+		if @graphics-quality != \super-low
+			render-target = new THREE.WebGLRenderTarget width, height, {
+				min-filter: THREE.LinearFilter
+				mag-filter: THREE.LinearFilter
+				format: THREE.RGBFormat
+				-stencil-buffer
+			}
 
-		fxaa = new THREE.ShaderPass THREE.FXAAShader
-			..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+			fxaa = new THREE.ShaderPass THREE.FXAAShader
+				..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+				..render-to-screen = on
 
-		to-screen = new THREE.ShaderPass THREE.CopyShader
-			..render-to-screen = on
+			/*
+			bokeh = new THREE.BokehPass @scene, @camera, {
+				focus: 1.0
+				aperture: 0.025
+				maxblur: 1.0
+				width: width
+				height: height
+			}
+			*/
 
-		@composer = new THREE.EffectComposer @renderer, render-target
-			..add-pass new THREE.RenderPass @scene, @camera
-			..add-pass new THREE.BloomPass 0.5 25 128.0 512
-			..add-pass fxaa
-			..add-pass to-screen
+			#to-screen = new THREE.ShaderPass THREE.CopyShader
+			#	..render-to-screen = on
+
+			@composer = new THREE.EffectComposer @renderer, render-target
+				..add-pass new THREE.RenderPass @scene, @camera
+				..add-pass new THREE.BloomPass 0.5 25 128.0 512
+				..add-pass fxaa
+				#..add-pass to-screen
+		else
+			@composer = null
 
 		################################
 
@@ -424,17 +448,21 @@ class Room
 			else
 				THIS.add-item-to-box item
 
-		@render!
+		if @graphics-quality == \super-low
+			@direct-render!
+		else
+			@post-render!
 
-	render: ->
-		#timer = Date.now! * 0.0004
-		request-animation-frame @render.bind @
-		#out-light.position.z = (Math.cos timer) * 10
-		#out-light.position.x = (Math.sin timer) * 10
+	post-render: ->
+		request-animation-frame @post-render.bind @
 		@controls.update!
 		@renderer.clear!
 		@composer.render!
-		#renderer.render scene, camera
+
+	direct-render: ->
+		request-animation-frame @direct-render.bind @
+		@controls.update!
+		@renderer.render @scene, @camera
 
 	add-item-to-box: (item) ->
 		THIS = @
@@ -534,8 +562,10 @@ function load-item(item, cb)
 
 # ENTORY POINT
 
+graphics-quality = if $.cookie \room-graphics-quality then $.cookie \room-graphics-quality else \high
+
 # INIT ROOM
-room = new Room
+room = new Room graphics-quality
 
 # Init save button
 $save-button = $ \#save-button
