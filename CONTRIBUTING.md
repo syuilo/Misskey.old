@@ -24,4 +24,4 @@ Note that only `develop` branch is accepting any Pull Requests.
 * Export as a triangulated model
 * Include project files of model in repository
 * Use English for material, object and texture name
-* If you pull request of add model is merged, charge 1,000himagold to your Misskey account.
+* If merged your pull request of add model, we charge 1,000himagold to your Misskey account.
