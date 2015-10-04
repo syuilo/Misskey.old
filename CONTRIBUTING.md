@@ -18,7 +18,7 @@
 
 Note that only `develop` branch is accepting any Pull Requests.
 
-## Adding a item of room
-* Format of model is obj+mtl
+## Adding a room item
+* Use obj+mtl for model format
 * Use meter for unit of length
-* Export as triangulated model
+* Export as a triangulated model
