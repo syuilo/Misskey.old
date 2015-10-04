@@ -431,6 +431,8 @@ class Room
 
 		################################
 		# Load items of room
+
+		# Room
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
 			object.traverse (child) ->
@@ -440,6 +442,30 @@ class Room
 			object.position.set 0 0 0
 			THIS.scene.add object
 
+		# Label
+		icon-image-url = $ \html .attr \data-icon-url
+		icon-texture = THREE.ImageUtils.load-texture icon-image-url
+			..wrap-s = THREE.RepeatWrapping
+			..wrap-t = THREE.RepeatWrapping
+			..anisotropy = 16
+
+		icon-material = new THREE.MeshPhongMaterial {
+			specular: 0x030303
+			emissive: 0x111111
+			map: icon-texture
+			side: THREE.DoubleSide
+			alpha-test: 0.5
+		}
+
+		icon-geometry = new THREE.PlaneGeometry 1 1
+
+		icon-object = new THREE.Mesh icon-geometry, icon-material
+			..position.set -2 3 -5
+			..cast-shadow = off
+
+		@scene.add icon-object
+
+		# User items
 		@room-items.for-each (item) ->
 			if item.position?
 				load-item item, (object) ->
