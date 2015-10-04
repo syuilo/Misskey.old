@@ -347,7 +347,9 @@ class Room
 
 			fxaa = new THREE.ShaderPass THREE.FXAAShader
 				..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+				..render-to-screen = on
 
+			/*
 			bokeh = new THREE.BokehPass @scene, @camera, {
 				focus: 1.0
 				aperture: 0.025
@@ -355,6 +357,7 @@ class Room
 				width: width
 				height: height
 			}
+			*/
 
 			to-screen = new THREE.ShaderPass THREE.CopyShader
 				..render-to-screen = on
@@ -363,8 +366,7 @@ class Room
 				..add-pass new THREE.RenderPass @scene, @camera
 				..add-pass new THREE.BloomPass 0.5 25 128.0 512
 				..add-pass fxaa
-				..add-pass bokeh
-				..add-pass to-screen
+				#..add-pass to-screen
 		else
 			@composer = null
 
