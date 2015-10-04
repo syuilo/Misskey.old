@@ -348,12 +348,21 @@ class Room
 			fxaa = new THREE.ShaderPass THREE.FXAAShader
 				..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
 
+			bokeh = new THREE.BokehPass @scene, @camera, {
+				focus: 1.0
+				aperture: 0.025
+				maxblur: 1.0
+				width: width
+				height: height
+			}
+
 			to-screen = new THREE.ShaderPass THREE.CopyShader
 				..render-to-screen = on
 
 			@composer = new THREE.EffectComposer @renderer, render-target
 				..add-pass new THREE.RenderPass @scene, @camera
 				..add-pass new THREE.BloomPass 0.5 25 128.0 512
+				if @graphics-quality == \ultra then ..add-pass bokeh
 				..add-pass fxaa
 				..add-pass to-screen
 		else
