@@ -461,7 +461,7 @@ class Room
 		icon-geometry = new THREE.PlaneGeometry 1 1
 
 		icon-object = new THREE.Mesh icon-geometry, icon-material
-			..position.set -2.5 2.5 4
+			..position.set -3 2.5 3
 			..rotation.y = Math.PI / 2
 			..cast-shadow = off
 
