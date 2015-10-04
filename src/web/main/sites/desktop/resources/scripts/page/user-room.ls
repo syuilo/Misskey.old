@@ -444,6 +444,7 @@ class Room
 
 		# Label
 		icon-image-url = $ \html .attr \data-user-icon-url
+		THREE.ImageUtils.cross-origin = ''
 		icon-texture = THREE.ImageUtils.load-texture icon-image-url
 			..wrap-s = THREE.RepeatWrapping
 			..wrap-t = THREE.RepeatWrapping
