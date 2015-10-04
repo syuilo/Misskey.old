@@ -469,10 +469,10 @@ class Room
 
 		screen-name = $ \html .attr \data-user-screen-name
 		name-geometry = new THREE.TextGeometry screen-name, {
-			size: 1
+			size: 0.5
 			height: 0
 			curve-segments: 8
-			font: \gentilis
+			font: \helvetiker
 			weight: \normal
 			style: \normal
 			bevel-thickness: 0
@@ -483,7 +483,7 @@ class Room
 		name-material = new THREE.MeshLambertMaterial {color: 0xffffff}
 
 		name-object = new THREE.Mesh name-geometry, name-material
-			..position.set -3 2.5 1
+			..position.set -3 2.0 1
 			..rotation.y = Math.PI / 2
 			..cast-shadow = off
 
