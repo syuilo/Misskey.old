@@ -551,7 +551,7 @@ function load-item(item, cb)
 graphics-quality = if $.cookie \room-graphics-quality then $.cookie \room-graphics-quality else \high
 
 # INIT ROOM
-room = new Room
+room = new Room graphics-quality
 
 # Init save button
 $save-button = $ \#save-button
