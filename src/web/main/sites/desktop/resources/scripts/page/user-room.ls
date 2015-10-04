@@ -469,8 +469,8 @@ class Room
 
 		screen-name = $ \html .attr \data-user-screen-name
 		name-geometry = new THREE.TextGeometry screen-name, {
-			size: 10
-			height: 4
+			size: 1
+			height: 0
 			curve-segments: 8
 			font: \gentilis
 			weight: \normal
