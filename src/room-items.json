@@ -14,6 +14,13 @@
 		"modelType": "objmtl"
 	},
 	{
+		"name": "黒いローテーブル",
+		"id": "blacklowtable",
+		"price": 3100,
+		"place": "floor",
+		"modelType": "objmtl"
+	},
+	{
 		"name": "黒いモダンなデスク",
 		"id": "desk",
 		"price": 3200,
