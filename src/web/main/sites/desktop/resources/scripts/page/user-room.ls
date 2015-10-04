@@ -356,17 +356,15 @@ class Room
 				height: height
 			}
 
-			bokeh.render-to-screen = on
-
-			#to-screen = new THREE.ShaderPass THREE.CopyShader
-			#	..render-to-screen = on
+			to-screen = new THREE.ShaderPass THREE.CopyShader
+				..render-to-screen = on
 
 			@composer = new THREE.EffectComposer @renderer, render-target
 				..add-pass new THREE.RenderPass @scene, @camera
 				..add-pass new THREE.BloomPass 0.5 25 128.0 512
 				..add-pass fxaa
 				..add-pass bokeh
-			#	..add-pass to-screen
+				..add-pass to-screen
 		else
 			@composer = null
 
