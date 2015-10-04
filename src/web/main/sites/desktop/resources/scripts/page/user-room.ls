@@ -467,6 +467,28 @@ class Room
 
 		@scene.add icon-object
 
+		screen-name = $ \html .attr \data-user-screen-name
+		name-geometry = new THREE.TextGeometry screen-name, {
+			size: 10
+			height: 4
+			curve-segments: 3
+			font: \gentilis
+			weight: \bold
+			style: \normal
+			bevel-thickness: 0
+			bevel-size: 0
+			bevel-enabled: no
+		}
+
+		name-material = new THREE.MeshLambertMaterial {color: 0xffffff}
+
+		name-object = new THREE.Mesh name-geometry, name-material
+			..position.set -3 2.5 1
+			..rotation.y = Math.PI / 2
+			..cast-shadow = off
+
+		@scene.add name-object
+
 		# User items
 		@room-items.for-each (item) ->
 			if item.position?
