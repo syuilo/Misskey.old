@@ -23,10 +23,10 @@ public-config:
   env: # ex) production, development
   domain: # ex) misskey.xyz
   hostname: # including port
-  url: # ex)  https://misskey.xyz
-  api-url: # ex) https://api.misskey.xyz
-  streaming-url: # ex) https://api.misskey.xyz:1207
-  production-channel-url: # ex) https://misskey.xyz
-  development-channel-url: # ex) https://misskey.xyz:1206
+  url: # ex)  http://misskey.xyz
+  api-url: # ex) http://api.misskey.xyz
+  streaming-url: # ex) http://api.misskey.xyz:1207
+  production-channel-url: # ex) http://misskey.xyz
+  development-channel-url: # ex) http://misskey.xyz:1206
 webappid:
 ```

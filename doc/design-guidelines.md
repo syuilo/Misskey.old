@@ -1,6 +1,6 @@
 Design guidelines
 ====
 
-* フォントサイズの単位になるべく em または rem を使用
-* 影は基本的に使用禁止
-* 最低でも1280*720(HD)の解像度をサポート それ未満の解像度は無視してよい
+* Should use em or rem for font size
+* Should not use shadow
+* Support 1280*720(HD) at least

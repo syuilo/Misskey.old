@@ -29,6 +29,7 @@ schema = new Schema do
 	location:                {type: String,                required: no,  default: null}
 	name:                    {type: String,                required: yes}
 	password:                {type: String,                required: yes}
+	point:                   {type: Number,                required: no,  default: 3000}
 	screen-name:             {type: String,                required: yes, unique: yes}
 	screen-name-lower:       {type: String,                required: yes, unique: yes}
 	pinned-status: {type: Schema.Types.ObjectId, required: no, default: null}

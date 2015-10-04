@@ -1,201 +1,559 @@
-init!
+class ItemController
+	(room) ->
+		THIS = @
 
-function init
-	# Settings
-	scene = new THREE.Scene!
-	width = window.inner-width
-	height = window.inner-height
-	#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
-	scale = 256
-	camera = new THREE.OrthographicCamera -(width / scale), (width / scale), (height / scale), -(height / scale), -100, 100
-	
-	renderer = new THREE.WebGLRenderer {+antialias}
-	renderer.set-pixel-ratio window.device-pixel-ratio
-	renderer.set-size width, height
-	renderer.auto-clear = off
-	#renderer.set-clear-color new THREE.Color 0x8ebddb
-	renderer.set-clear-color new THREE.Color 0x051f2d
-	renderer.shadow-map.enabled = on
-	
-	#document.get-element-by-id \main .append-child renderer.dom-element
-	document.body.append-child renderer.dom-element
+		@room = room
 
-	# DEBUG GUIDE
-	scene.add new THREE.AxisHelper 1000
-	#scene.add new THREE.GridHelper 10 1
-	
-	#init-sky!
-	
-	# SKY
-	function init-sky
-		sun-sphere = new THREE.Mesh do
-			new THREE.SphereBufferGeometry 20000 16 8
-			new THREE.MeshBasicMaterial {color: 0xffffff}
-		sun-sphere.position.y = -700000
-		sun-sphere.visible = no
-		scene.add sun-sphere
+		################################
+		# Init UI
+		@$controller = $ \#item-controller
+		@$controller-item-title = @$controller.find \.title
+		@$controller-item-hide-button = @$controller.find \.item-hide-button
+		@$controller-pos-back-button = @$controller.find \.pos-back-button
+		@$controller-pos-forward-button = @$controller.find \.pos-forward-button
+		@$controller-pos-left-button = @$controller.find \.pos-left-button
+		@$controller-pos-right-button = @$controller.find \.pos-right-button
+		@$controller-pos-up-button = @$controller.find \.pos-up-button
+		@$controller-pos-down-button = @$controller.find \.pos-down-button
+		@$controller-pos-x-input = @$controller.find \.pos-x
+		@$controller-pos-y-input = @$controller.find \.pos-y
+		@$controller-pos-z-input = @$controller.find \.pos-z
+		@$controller-rotate-x-input = @$controller.find \.rotate-x
+		@$controller-rotate-y-input = @$controller.find \.rotate-y
+		@$controller-rotate-z-input = @$controller.find \.rotate-z
 
-		sky = new THREE.Sky!
-		sky.uniforms.turbidity.value = 10
-		sky.uniforms.reileigh.value = 4
-		sky.uniforms.luminance.value = 1
-		sky.uniforms.mie-coefficient.value = 0.005
-		sky.uniforms.mie-directional-g.value = 0.8
-		
-		inclination = 0
-		azimuth = 0
+		$ \html .keydown (e) ->
+			switch (e.which)
+			| 39 => # Key[→]
+				if e.shift-key
+					THIS.change-pos-z THIS.item.position.z - 0.01
+				else
+					THIS.change-pos-z THIS.item.position.z - 0.1
+			| 37 => # Key[←]
+				if e.shift-key
+					THIS.change-pos-z THIS.item.position.z + 0.01
+				else
+					THIS.change-pos-z THIS.item.position.z + 0.1
+			| 38 => # Key[↑]
+				if e.shift-key
+					THIS.change-pos-x THIS.item.position.x - 0.01
+				else
+					THIS.change-pos-x THIS.item.position.x - 0.1
+			| 40 => # Key[↓]
+				if e.shift-key
+					THIS.change-pos-x THIS.item.position.x + 0.01
+				else
+					THIS.change-pos-x THIS.item.position.x + 0.1
 
-		theta = Math.PI * (inclination - 0.5)
-		phi = 2 * Math.PI * (azimuth - 0.5)
-		
-		distance = 400000
+		# しまうボタン
+		@$controller-item-hide-button.click ->
+			THIS.room.add-item-to-box THIS.item.room-item-info
+			THIS.update null
 
-		sun-sphere.position.x = distance * (Math.cos phi)
-		sun-sphere.position.y = distance * (Math.sin phi) * (Math.sin theta)
-		sun-sphere.position.z = distance * (Math.sin phi) * (Math.cos theta)
-		
-		sky.uniforms.sun-position.value.copy sun-sphere.position
-		
-		scene.add sky.mesh
+		@$controller-pos-back-button.click ->
+			THIS.change-pos-x THIS.item.position.x + 0.1
 
-	loader = new THREE.JSONLoader!
-	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
-		geo = geometry
-		mat = new THREE.MeshFaceMaterial materials
-		mesh = new THREE.Mesh geo, mat
-		mesh.position.set 0 0 0
-		mesh.scale.set 1 1 1
-		mesh.cast-shadow = on
-		scene.add mesh
+		@$controller-pos-forward-button.click ->
+			THIS.change-pos-x THIS.item.position.x - 0.1
 
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/desk/desk.json' (object) ->
-		object.position.set -2.2 0 -1.9
-		object.rotation.y = Math.PI
-		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/chair/chair.json' (object) ->
-		object.position.set -1.8 0 -1.9
-		object.rotation.y = - Math.PI / 2
-		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/monitor/monitor.json' (object) ->
-		object.position.set -2.2 0.7 -1.9
-		scene.add object
-	loader.load '/resources/common/3d-models/keyboard/keyboard.json' (object) ->
-		object.position.set -2 0.7 -1.9
-		object.rotation.y = Math.PI
-		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/plant/plant.json' (object) ->
-		object.position.set -2.3 0.7 -1.5
-		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/eraser/eraser.json' (object) ->
-		object.position.set -2.1 0.7 -1.5
-		scene.add object
-	loader = new THREE.JSONLoader!
-	loader.load '/resources/common/3d-models/milk/milk.json' (geometry, materials) ->
-		geo = geometry
-		mat = new THREE.MeshFaceMaterial materials
-		mesh = new THREE.Mesh geo, mat
-		mesh.position.set -2.3 0.7 -2.2
-		mesh.rotation.y = - Math.PI / 8
-		scene.add mesh
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/facial-tissue/facial-tissue.json' (object) ->
-		object.position.set -2.35 0.7 -2.35
-		object.rotation.y = - Math.PI / 4
-		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/corkboard/corkboard.json' (object) ->
-		object.position.set -2 0.9 -2.495
-		object.rotation.y = Math.PI / 2
-		scene.add object
-	loader = new THREE.ObjectLoader!
-	loader.load '/resources/common/3d-models/piano/piano.json' (object) ->
-		object.position.set 0 0 -2.5
-		object.rotation.y = Math.PI / 2
-		scene.add object
+		@$controller-pos-left-button.click ->
+			THIS.change-pos-z THIS.item.position.z + 0.1
 
-	loader = new THREE.OBJMTLLoader!
-	loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
-		object.traverse (child) ->
-			if child instanceof THREE.Mesh
-				child.receive-shadow = on
-		object.position.set 0 0 0
-		scene.add object
+		@$controller-pos-right-button.click ->
+			THIS.change-pos-z THIS.item.position.z - 0.1
 
-	# AmbientLight
-	ambient-light = new THREE.AmbientLight 0xffffff 1
-	ambient-light.cast-shadow = no
-	scene.add ambient-light
+		@$controller-pos-up-button.click ->
+			THIS.change-pos-y THIS.item.position.y + 0.1
 
-	# Room light (for shadow)
-	room-light = new THREE.SpotLight 0xffffff 0.8
-	room-light.position.set 0, 3, 0
-	room-light.cast-shadow = on
-	room-light.shadow-map-width = 4096
-	room-light.shadow-map-height = 4096
-	room-light.shadow-camera-near = 0.1
-	room-light.shadow-camera-far = 16
-	room-light.shadow-camera-fov = 135
-	#room-light.only-shadow = on
-	#room-light.shadow-camera-visible = on #debug
-	scene.add room-light
+		@$controller-pos-down-button.click ->
+			THIS.change-pos-y THIS.item.position.y - 0.1
 
-	room-light = new THREE.SpotLight 0xffffff 0.5
-	room-light.position.set 8, 3, -2
-	room-light.cast-shadow = on
-	room-light.shadow-map-width = 4096
-	room-light.shadow-map-height = 4096
-	room-light.shadow-camera-near = 0.1
-	room-light.shadow-camera-far = 16
-	room-light.shadow-camera-fov = 135
-	#room-light.only-shadow = on
-	#room-light.shadow-camera-visible = on #debug
-	scene.add room-light
+		@$controller-pos-x-input.bind \input ->
+			THIS.change-pos-x THIS.$controller-pos-x-input.val!
 
-	# Camera setting
-	camera.position.x = 2
-	camera.position.y = 2
-	camera.position.z = 2
-	scene.add camera
+		@$controller-pos-y-input.bind \input ->
+			THIS.change-pos-y THIS.$controller-pos-y-input.val!
 
-	# Controller setting
-	controls = new THREE.OrbitControls camera
-	controls.target.set 0 1 0
-	controls.enable-zoom = no
-	controls.enable-pan = no
-	controls.min-polar-angle = 0
-	controls.max-polar-angle = Math.PI / 2
-	controls.min-azimuth-angle = 0
-	controls.max-azimuth-angle = Math.PI / 2
+		@$controller-pos-z-input.bind \input ->
+			THIS.change-pos-z THIS.$controller-pos-z-input.val!
 
-	parameters = {
-		min-filter: THREE.LinearFilter
-		mag-filter: THREE.LinearFilter
-		format: THREE.RGBFormat
-		-stencil-buffer
-	}
-	render-target = new THREE.WebGLRenderTarget width, height, parameters
+		@$controller-rotate-x-input.bind \input ->
+			THIS.change-rotate-x THIS.$controller-rotate-x-input.val!
 
-	composer = new THREE.EffectComposer renderer, render-target
-	composer.add-pass new THREE.RenderPass scene, camera
-	composer.add-pass new THREE.BloomPass 0.5 25 64.0 512
-	fxaa = new THREE.ShaderPass THREE.FXAAShader
-	fxaa.uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
-	composer.add-pass fxaa
-	to-screen = new THREE.ShaderPass THREE.CopyShader
-	to-screen.render-to-screen = on
-	composer.add-pass to-screen
-	
-	render!
+		@$controller-rotate-y-input.bind \input ->
+			THIS.change-rotate-y THIS.$controller-rotate-y-input.val!
 
-	# Renderer
-	function render
-		request-animation-frame render
-		controls.update!
-		renderer.clear!
-		composer.render!
+		@$controller-rotate-z-input.bind \input ->
+			THIS.change-rotate-z THIS.$controller-rotate-z-input.val!
+
+		################################
+		# Init viewer
+		canvas = document.get-element-by-id \item-controller-preview-canvas
+		width = canvas.width
+		height = canvas.height
+
+		# Scene settings
+		@scene = new THREE.Scene!
+
+		# Renderer settings
+		@renderer = new THREE.WebGLRenderer {canvas, +antialias, +alpha}
+			..set-pixel-ratio window.device-pixel-ratio
+			..set-size width, height
+			..set-clear-color 0x000000 0
+			..auto-clear = off
+			..shadow-map.enabled = on
+			..shadow-map.cull-face = THREE.CullFaceBack
+
+		# Camera settings
+		@camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 100
+			..zoom = 10
+			..position.x = 0
+			..position.y = 2
+			..position.z = 0
+			..update-projection-matrix!
+		@scene.add @camera
+
+		# AmbientLight
+		ambient-light = new THREE.AmbientLight 0xffffff 1
+			..cast-shadow = no
+		@scene.add ambient-light
+
+		# PointLight
+		light = new THREE.PointLight 0xffffff 1 100
+		light.position.set 3 3 3
+		@scene.add light
+
+		#@scene.add new THREE.AxisHelper 5
+		grid = new THREE.GridHelper 5 0.5
+			..set-colors 0x444444 0x444444
+		@scene.add grid
+
+		@render!
+
+	render: ->
+		timer = Date.now! * 0.0004
+
+		# SEE:
+		# http://stackoverflow.com/questions/22039180/failed-to-execute-requestanimationframe-on-window-the-callback-provided-as
+		# http://stackoverflow.com/questions/6065169/requestanimationframe-with-this-keyword
+		# https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+		request-animation-frame @render.bind @
+
+		if @item?
+			item-height = @item-bounding-box.size!.y
+
+			@camera.position.y = 2 + (item-height / 2)
+			@camera.position.z = (Math.cos timer) * 10
+			@camera.position.x = (Math.sin timer) * 10
+			@camera.look-at new THREE.Vector3 0, (item-height / 2), 0
+
+			@renderer.render @scene, @camera
+
+	update:	(item) ->
+		@item = item
+		if item?
+			@$controller.css \display \block
+			@$controller-item-title.text item.room-item-info.obj.name
+			@$controller-pos-x-input.val item.position.x
+			@$controller-pos-y-input.val item.position.y
+			@$controller-pos-z-input.val item.position.z
+			@$controller-rotate-x-input.val item.rotation.x
+			@$controller-rotate-y-input.val item.rotation.y
+			@$controller-rotate-z-input.val item.rotation.z
+
+			# Remove old object
+			old = @scene.get-object-by-name \obj
+			if old?
+				@scene.remove old
+
+			# Add new object
+			preview-obj = item.clone!
+				..name = \obj
+				..position.x = 0
+				..position.y = 0
+				..position.z = 0
+				..rotation.x = 0
+				..rotation.y = 0
+				..rotation.z = 0
+
+			preview-obj.traverse (child) ->
+				if child instanceof THREE.Mesh
+					child.material = child.material.clone!
+					child.material.emissive.set-hex 0x000000
+
+			@item-bounding-box = new THREE.Box3!.set-from-object preview-obj
+			@scene.add preview-obj
+		else
+			@$controller.css \display \none
+
+	change-pos-x: (x) ->
+		x = Number x
+		if x > 2.5 then x = 2.5
+		if x < -2.5 then x = -2.5
+		@item.position.x = x
+		@item.room-item-info.position.x = x
+		@$controller-pos-x-input.val x
+
+	change-pos-y: (y) ->
+		y = Number y
+		if y > 1.5 then y = 1.5
+		if y < 0 then y = 0
+		@item.position.y = y
+		@item.room-item-info.position.y = y
+		@$controller-pos-y-input.val y
+
+	change-pos-z: (z) ->
+		z = Number z
+		if z > 2.5 then z = 2.5
+		if z < -2.5 then z = -2.5
+		@item.position.z = z
+		@item.room-item-info.position.z = z
+		@$controller-pos-z-input.val z
+
+	change-rotate-x: (x) ->
+		x = Number x
+		@item.rotation.x = x
+		@item.room-item-info.rotation.x = x
+		@$controller-rotate-x-input.val x
+
+	change-rotate-y: (y) ->
+		y = Number y
+		@item.rotation.y = y
+		@item.room-item-info.rotation.y = y
+		@$controller-rotate-y-input.val y
+
+	change-rotate-z: (z) ->
+		z = Number z
+		@item.rotation.z = z
+		@item.room-item-info.rotation.z = z
+		@$controller-rotate-z-input.val z
+
+class Room
+	->
+		THIS = @
+
+		shadow-quolity = 8192
+		debug = no
+
+		@room-items = JSON.parse ($ \html .attr \data-room-items)
+		@is-me = ($ \html .attr \data-is-me) == \true
+
+		if @is-me
+			@item-controller = new ItemController @
+
+		@active-items = []
+		@unactive-items = []
+
+		width = window.inner-width
+		height = window.inner-height
+
+		################################
+		# Init scene
+
+		# Scene settings
+		@scene = new THREE.Scene!
+
+		# Renderer settings
+		@renderer = new THREE.WebGLRenderer {-antialias}
+			..set-pixel-ratio window.device-pixel-ratio
+			..set-size width, height
+			..auto-clear = off
+			..set-clear-color new THREE.Color 0x051f2d
+			..shadow-map.enabled = on
+			#..shadow-map-soft = off
+			#..shadow-map-cull-front-faces = on
+			..shadow-map.cull-face = THREE.CullFaceBack
+		#document.get-element-by-id \main .append-child renderer.dom-element
+		document.body.append-child @renderer.dom-element
+
+		# Camera settings
+		#camera = new THREE.PerspectiveCamera 75 (width / height), 0.1 1000
+		@camera = new THREE.OrthographicCamera width / - 2, width / 2, height / 2, height / - 2, -10, 10
+			..zoom = 100
+			..position.x = 2
+			..position.y = 2
+			..position.z = 2
+			..update-projection-matrix!
+		@scene.add @camera
+
+		# AmbientLight
+		ambient-light = new THREE.AmbientLight 0xffffff 1
+			..cast-shadow = no
+		@scene.add ambient-light
+
+		# Room light (for shadow)
+		room-light = new THREE.SpotLight 0xffffff 0.2
+			..position.set 0 8 0
+			..cast-shadow = on
+			..shadow-map-width = shadow-quolity
+			..shadow-map-height = shadow-quolity
+			..shadow-camera-near = 0.1
+			..shadow-camera-far = 9
+			..shadow-camera-fov = 45
+			#..only-shadow = on
+			#..shadow-camera-visible = on #debug
+		#@scene.add room-light
+
+		out-light = new THREE.SpotLight 0xffffff 0.4
+			..position.set 9 3 -2
+			..cast-shadow = on
+			..shadow-bias = -0.001 # アクネ、アーチファクト対策 その代わりピーターパンが発生する可能性がある
+			..shadow-map-width = shadow-quolity
+			..shadow-map-height = shadow-quolity
+			..shadow-camera-near = 6
+			..shadow-camera-far = 15
+			..shadow-camera-fov = 45
+			..shadow-camera-visible = debug
+			#..only-shadow = on
+		@scene.add out-light
+
+		# Controller setting
+		@controls = new THREE.OrbitControls @camera, @renderer.dom-element
+			..target.set 0 1 0
+			#..enable-zoom = debug
+			#..enable-pan = debug
+			..enable-zoom = on
+			..enable-pan = off
+			..min-polar-angle = 0
+			..max-polar-angle = if debug then Math.PI else Math.PI / 2
+			..min-azimuth-angle = 0
+			..max-azimuth-angle = if debug then Math.PI else Math.PI / 2
+
+		# DEBUG
+		if debug
+			@scene.add new THREE.AxisHelper 10
+			@scene.add new THREE.GridHelper 5 1
+
+		################################
+		# POST FXs
+
+		render-target = new THREE.WebGLRenderTarget width, height, {
+			min-filter: THREE.LinearFilter
+			mag-filter: THREE.LinearFilter
+			format: THREE.RGBFormat
+			-stencil-buffer
+		}
+
+		fxaa = new THREE.ShaderPass THREE.FXAAShader
+			..uniforms['resolution'].value = new THREE.Vector2 (1 / width), (1 / height)
+
+		to-screen = new THREE.ShaderPass THREE.CopyShader
+			..render-to-screen = on
+
+		@composer = new THREE.EffectComposer @renderer, render-target
+			..add-pass new THREE.RenderPass @scene, @camera
+			..add-pass new THREE.BloomPass 0.5 25 128.0 512
+			..add-pass fxaa
+			..add-pass to-screen
+
+		################################
+
+		if @is-me
+			# Hover highlight
+			@renderer.dom-element.onmousemove = (e) ->
+				rect = e.target.get-bounding-client-rect!
+				x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
+				y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
+				pos = new THREE.Vector2 x, y
+				THIS.camera.update-matrix-world!
+				raycaster = new THREE.Raycaster!
+				raycaster.set-from-camera pos, THIS.camera
+				intersects = raycaster.intersect-objects THIS.active-items, on
+
+				THIS.active-items.for-each (item) ->
+					item.traverse (child) ->
+						if child instanceof THREE.Mesh
+							if (not child.is-active?) or (not child.is-active)
+								child.material.emissive.set-hex 0x000000
+
+				if intersects.length > 0
+					INTERSECTED = intersects[0].object.source
+					INTERSECTED.traverse (child) ->
+						if child instanceof THREE.Mesh
+							if (not child.is-active?) or (not child.is-active)
+								child.material.emissive.set-hex 0x191919
+
+			@renderer.dom-element.onmousedown = (e) ->
+				if (e.target == THIS.renderer.dom-element) and (e.button == 2)
+					rect = e.target.get-bounding-client-rect!
+					x = ((e.client-x - rect.left) / THIS.renderer.dom-element.width) * 2 - 1
+					y = -((e.client-y - rect.top) / THIS.renderer.dom-element.height) * 2 + 1
+					pos = new THREE.Vector2 x, y
+					THIS.camera.update-matrix-world!
+					raycaster = new THREE.Raycaster!
+					raycaster.set-from-camera pos, THIS.camera
+					intersects = raycaster.intersect-objects THIS.active-items, on
+
+					THIS.selected-item = null
+					THIS.item-controller.update null
+
+					THIS.active-items.for-each (item) ->
+						item.traverse (child) ->
+							if child instanceof THREE.Mesh
+								child.material.emissive.set-hex 0x000000
+								child.is-active = no
+
+					if intersects.length > 0
+						INTERSECTED = intersects[0].object.source
+						THIS.selected-item = INTERSECTED
+
+						# Highlight
+						INTERSECTED.traverse (child) ->
+							if child instanceof THREE.Mesh
+								child.material.emissive.set-hex 0xff0000
+								child.is-active = yes
+
+						THIS.item-controller.update THIS.selected-item
+
+		################################
+		# Load items of room
+		loader = new THREE.OBJMTLLoader!
+		loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
+			object.traverse (child) ->
+				if child instanceof THREE.Mesh
+					child.receive-shadow = on
+					child.cast-shadow = on
+			object.position.set 0 0 0
+			THIS.scene.add object
+
+		@room-items.for-each (item) ->
+			if item.position?
+				load-item item, (object) ->
+					THIS.scene.add object
+					THIS.active-items.push object
+			else
+				THIS.add-item-to-box item
+
+		@render!
+
+	render: ->
+		#timer = Date.now! * 0.0004
+		request-animation-frame @render.bind @
+		#out-light.position.z = (Math.cos timer) * 10
+		#out-light.position.x = (Math.sin timer) * 10
+		@controls.update!
+		@renderer.clear!
+		@composer.render!
 		#renderer.render scene, camera
+
+	add-item-to-box: (item) ->
+		THIS = @
+		item.position = null
+		item.rotation = null
+		@scene.remove @scene.get-object-by-name item.individual-id
+		@active-items.some (v, i) ->
+			if v.name == item.individual-id
+				THIS.active-items.splice i, 1
+		@unactive-items.push item
+
+		$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
+		$set-button = $ "<button>置く</button>"
+			..click ->
+				$item.remove!
+				THIS.unactive-items.some (v, i) ->
+					if v.individual-id == item.individual-id
+						THIS.unactive-items.splice i, 1
+				load-item item, (object) ->
+					object.position.set 0 0 0
+					object.rotation.set 0 0 0
+					object.room-item-info.position = {}
+					object.room-item-info.position.x = 0
+					object.room-item-info.position.y = 0
+					object.room-item-info.position.z = 0
+					object.room-item-info.rotation = {}
+					object.room-item-info.rotation.x = 0
+					object.room-item-info.rotation.y = 0
+					object.room-item-info.rotation.z = 0
+					THIS.scene.add object
+					THIS.active-items.push object
+		$item.append $set-button
+		$ \#box .find \ul .append $item
+
+	export-layout: ->
+		layout = []
+		@unactive-items.for-each (item) ->
+			layout.push item
+		@active-items.for-each (item) ->
+			layout.push item.room-item-info
+		console.log layout
+		layout
+
+	export-layout-json: ->
+		JSON.stringify @export-layout!
+
+	save: (done, fail) ->
+		json = @export-layout-json!
+		console.log json
+
+		$.ajax config.api-url + '/account/update-room' {
+			type: \put
+			data: {
+				'layout': json
+			}
+			data-type: \json
+			xhr-fields: {+with-credentials}}
+		.done (data) ->
+			done!
+		.fail (data) ->
+			fail!
+
+function load-item(item, cb)
+	switch (item.obj.model-type)
+	| \json =>
+		loader = new THREE.ObjectLoader!
+		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
+			object.position.x = if item.position? and item.position.x? then item.position.x else 0
+			object.position.y = if item.position? and item.position.y? then item.position.y else 0
+			object.position.z = if item.position? and item.position.z? then item.position.z else 0
+			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
+			object.rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
+			object.cast-shadow = on
+			object.receive-shadow = on
+			object.name = item.individual-id
+			cb object
+	| \objmtl =>
+		loader = new THREE.OBJMTLLoader!
+		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
+			object.position.x = if item.position? and item.position.x? then item.position.x else 0
+			object.position.y = if item.position? and item.position.y? then item.position.y else 0
+			object.position.z = if item.position? and item.position.z? then item.position.z else 0
+			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
+			object.rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
+			object.rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
+			object.name = item.individual-id
+			object.room-item-info = item
+			object.traverse (child) ->
+				if child instanceof THREE.Mesh
+					child.source = object
+					child.cast-shadow = on
+					child.receive-shadow = on
+			cb object
+
+################################################################
+
+# ENTORY POINT
+
+# INIT ROOM
+room = new Room
+
+# Init save button
+$save-button = $ \#save-button
+$save-button.click ->
+	$save-button
+		..attr \disabled on
+		..text '保存しています...'
+
+	room.save do
+		->
+			$save-button
+				..attr \disabled off
+				..text '部屋を保存'
+
+			window.display-message '保存しました'
+		->
+			$save-button
+				..attr \disabled off
+				..text '部屋を保存'
+
+			window.display-message '保存に失敗しました。再度お試しください。'

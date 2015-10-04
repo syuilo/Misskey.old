@@ -1,0 +1,11 @@
+# Blender MTL File: 'chair3.blend'
+# Material Count: 1
+
+newmtl Cgair
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.040000 0.040000 0.040000
+Ks 0.200000 0.200000 0.200000
+Ni 1.000000
+d 1.000000
+illum 2

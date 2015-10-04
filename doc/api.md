@@ -57,13 +57,13 @@
 
 ## SAuthの認証の仕方
 1. Session keyの取得
-  - `https://api.misskey.xyz/sauth/get-authentication-session-key`にGETリクエスト
+  - `http://api.misskey.xyz/sauth/get-authentication-session-key`にGETリクエスト
     - HTTPヘッダーの`sauth-app-key`にApp Keyをセット
     - レスポンスは`{"authenticationSessionKey": string}`の形式のJSON
       - authenticationSessionKeyがSession key
 2. 認証フォームを開いてユーザーにアカウントへのアクセス許可をもらいPINコードを取得
-  1. 認証フォーム `https://api.misskey.xyz/authorize@(Session key)` をユーザーのブラウザで開く
-    - 例えばSession Keyが`kyoppie`ならURLは`https://api.misskey.xyz/authorize@kyoppie`
+  1. 認証フォーム `http://api.misskey.xyz/authorize@(Session key)` をユーザーのブラウザで開く
+    - 例えばSession Keyが`kyoppie`ならURLは`http://api.misskey.xyz/authorize@kyoppie`
     - ユーザーがアカウントへのアクセスを許可したとき
       - Webアプリケーションの場合はCallback URLに遷移
         - GETパラメータの`pin-code`にPINコードがセットされる
@@ -71,7 +71,7 @@
         - ユーザーにPINコードをアプリケーションに入力してもらう
     - ユーザーがアカウントのアクセスを拒否するとSession Keyは無効になる
 3. User Keyの取得
-  - `https://api.misskey.xyz/sauth/get-user-key`にGETリクエスト
+  - `http://api.misskey.xyz/sauth/get-user-key`にGETリクエスト
     - HTTPヘッダーの`sauth-app-key`にApp Keyをセット
     - GETパラメータの`pin-code`にPINコードをセット
     - GETパラメータの`authentication-session-key`にSession Keyをセット

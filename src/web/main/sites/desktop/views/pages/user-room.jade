@@ -1,10 +1,10 @@
 doctype html
 
-html(lang='ja', dir='ltr')
+html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-me!= (login && me.id == user.id).toString())
 	head
 		include ../common/head
 		meta(name='keywords', content='Misskey')
-		title= user.name + 'さん'
+		title= user.name + '\'s room'
 		link(rel='stylesheet', href='/resources/styles/page/user-room.css?user=' + user.screenName)
 		script(src='/resources/common/scripts/lib/three.js/build/three.min.js')
 		script(src='/resources/common/scripts/lib/three.js/examples/js/controls/OrbitControls.js')
@@ -20,8 +20,59 @@ html(lang='ja', dir='ltr')
 		script(src='/resources/common/scripts/lib/three.js/examples/js/shaders/CopyShader.js')
 		script(src='/resources/common/scripts/lib/three.js/examples/js/shaders/ConvolutionShader.js')
 		script(src='/resources/common/scripts/lib/three.js/examples/js/shaders/FXAAShader.js')
+		//script(src='/resources/common/scripts/lib/three.js/examples/js/renderers/Projector.js')
 		script(src='/resources/common/scripts/lib/three.js/examples/js/SkyShader.js')
 	
 	body
+		if login
+			if me.id == user.id
+				div#kyoppie-container
+					div#menu
+						button#save-button
+							| 部屋を保存
+					div#box
+						h1
+							| 所持品
+						ul
+				div#item-controller
+					h1.title
+					canvas#item-controller-preview-canvas(width=224, height=128)
+					button.item-hide-button
+						| しまう
+					//
+						button.pos-forward-button
+							| forward
+						button.pos-back-button
+							| back
+						button.pos-left-button
+							| left
+						button.pos-right-button
+							| right
+						button.pos-up-button
+							| up
+						button.pos-down-button
+							| down
+					section
+						h2 位置
+						label
+							p X
+							input.pos-x(type='number', step=0.01, min=-2.5, max=2.5)
+						label
+							p Z
+							input.pos-z(type='number', step=0.01, min=-2.5, max=2.5)
+						label
+							p Y
+							input.pos-y(type='number', step=0.01, min=0, max=1.5)
+					section
+						h2 回転
+						label
+							p X
+							input.rotate-x(type='number', step=0.01, min=-3.14, max=3.14)
+						label
+							p Z
+							input.rotate-z(type='number', step=0.01, min=-3.14, max=3.14)
+						label
+							p Y
+							input.rotate-y(type='number', step=0.01, min=-3.14, max=3.14)
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')

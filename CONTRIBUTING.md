@@ -17,3 +17,8 @@
 * `develop` - Development version, deployed to https://misskey.xyz:1206/
 
 Note that only `develop` branch is accepting any Pull Requests.
+
+## Adding a item of room
+* Format of model is obj+mtl
+* Use meter for unit of length
+* Export as triangulated model

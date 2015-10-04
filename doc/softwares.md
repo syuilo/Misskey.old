@@ -3,7 +3,7 @@ List of softwares related to Misskey
 
 ## Apps
 ### Multi platform
-* [Disskey](https://github.com/AyaMorisawa/Disskey) - Misskey client for desktop
+* [Disskey](https://github.com/AyaMorisawa/Disskey) - A lightweight Misskey client for desktop
 
 ### Web based
 * [MUCS](http://surume.exout.net/mucs/) - Misskey Unofficial Client for Surume
@@ -17,6 +17,9 @@ List of softwares related to Misskey
 ## Libraries
 ### .NET
 * [M#](https://github.com/marihachi/msharp) - MisskeyAPI Library For C#
+
+### Java
+* [JMisskey](https://github.com/xReiju/JMisskey) - is a library for Java. You can operate accounts of Misskey in Java with JMisskey.
 
 ----
 Want to add your software to the list? Please send a pull request!
