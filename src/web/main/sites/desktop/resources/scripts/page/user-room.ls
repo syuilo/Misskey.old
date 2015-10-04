@@ -431,6 +431,8 @@ class Room
 
 		################################
 		# Load items of room
+
+		# Room
 		loader = new THREE.OBJMTLLoader!
 		loader.load '/resources/common/3d-models/room/room.obj' '/resources/common/3d-models/room/room.mtl' (object) ->
 			object.traverse (child) ->
@@ -440,6 +442,54 @@ class Room
 			object.position.set 0 0 0
 			THIS.scene.add object
 
+		# Label
+		icon-image-url = $ \html .attr \data-user-icon-url
+		THREE.ImageUtils.cross-origin = ''
+		icon-texture = THREE.ImageUtils.load-texture icon-image-url
+			..wrap-s = THREE.RepeatWrapping
+			..wrap-t = THREE.RepeatWrapping
+			..anisotropy = 16
+
+		icon-material = new THREE.MeshPhongMaterial {
+			specular: 0x030303
+			emissive: 0x111111
+			map: icon-texture
+			side: THREE.DoubleSide
+			alpha-test: 0.5
+		}
+
+		icon-geometry = new THREE.PlaneGeometry 1 1
+
+		icon-object = new THREE.Mesh icon-geometry, icon-material
+			..position.set -3 2.5 2
+			..rotation.y = Math.PI / 2
+			..cast-shadow = off
+
+		@scene.add icon-object
+
+		screen-name = $ \html .attr \data-user-screen-name
+		name-geometry = new THREE.TextGeometry screen-name, {
+			size: 0.5
+			height: 0
+			curve-segments: 8
+			font: \helvetiker
+			weight: \normal
+			style: \normal
+			bevel-thickness: 0
+			bevel-size: 0
+			bevel-enabled: no
+		}
+
+		name-material = new THREE.MeshLambertMaterial {color: 0xffffff}
+
+		name-object = new THREE.Mesh name-geometry, name-material
+			..position.set -3 2.25 1.25
+			..rotation.y = Math.PI / 2
+			..cast-shadow = off
+
+		@scene.add name-object
+
+		# User items
 		@room-items.for-each (item) ->
 			if item.position?
 				load-item item, (object) ->
