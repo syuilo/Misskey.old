@@ -22,3 +22,4 @@ Note that only `develop` branch is accepting any Pull Requests.
 * Use obj+mtl for model format
 * Use meter for unit of length
 * Export as a triangulated model
+* Please include your project that used by create model
