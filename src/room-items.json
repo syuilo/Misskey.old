@@ -121,7 +121,14 @@
 	{
 		"name": "ウェルカムマット",
 		"id": "mat",
-		"price": 500,
+		"price": 400,
+		"place": "floor",
+		"modelType": "objmtl"
+	},
+	{
+		"name": "カラーボックス",
+		"id": "color-box",
+		"price": 800,
 		"place": "floor",
 		"modelType": "objmtl"
 	}
