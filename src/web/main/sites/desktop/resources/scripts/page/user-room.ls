@@ -290,18 +290,19 @@ class Room
 			..cast-shadow = no
 		@scene.add ambient-light
 
-		# Room light (for shadow)
-		room-light = new THREE.SpotLight 0xffffff 0.2
-			..position.set 0 8 0
-			..cast-shadow = on
-			..shadow-map-width = shadow-quality
-			..shadow-map-height = shadow-quality
-			..shadow-camera-near = 0.1
-			..shadow-camera-far = 9
-			..shadow-camera-fov = 45
-			#..only-shadow = on
-			#..shadow-camera-visible = on #debug
-		#@scene.add room-light
+		if @graphics-quality == \ultra
+			# Room light
+			room-light = new THREE.SpotLight 0xffffff 0.2
+				..position.set 0 8 0
+				..cast-shadow = on
+				..shadow-map-width = shadow-quality
+				..shadow-map-height = shadow-quality
+				..shadow-camera-near = 0.1
+				..shadow-camera-far = 9
+				..shadow-camera-fov = 45
+				..only-shadow = on
+				..shadow-camera-visible = debug
+			@scene.add room-light
 
 		out-light = new THREE.SpotLight 0xffffff 0.4
 			..position.set 9 3 -2
