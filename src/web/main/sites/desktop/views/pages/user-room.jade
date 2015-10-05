@@ -40,8 +40,6 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 				div#item-controller
 					h1.title
 					canvas#item-controller-preview-canvas(width=224, height=128)
-					button.item-hide-button
-						| しまう
 					//
 						button.pos-forward-button
 							| forward
@@ -77,5 +75,8 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 						label
 							p Y
 							input.rotate-y(type='number', step=0.01, min=-3.14, max=3.14)
+					button.item-hide-button
+						i.fa.fa-archive
+						| しまう
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')
