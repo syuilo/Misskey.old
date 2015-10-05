@@ -213,6 +213,12 @@ main {
 }
 
 #home-layout {
+	img {
+		display: block;
+		max-height: 256px;
+		margin: 0 auto;
+	}
+
 	p {
 		text-align: center;
 		font-family: '游ゴシック', 'YuGothic', 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'Meiryo UI', 'Meiryo', 'メイリオ', sans-serif;
@@ -344,15 +350,22 @@ main {
 }
 
 #credit {
-	.title {
-		margin: 0;
-		color: #4C5C71;
-	}
+	.main {
+		padding: 16px 24px;
+		border: solid 1px #eee;
+		border-radius: 4px;
 
-	.credit {
-		margin: 8px;
-		padding: 8px;
-		color: #0F366D;
-		font-size: 1.5em;
+		.title {
+			margin: 0;
+			color: #4C5C71;
+			line-height: 1em;
+		}
+
+		.credit {
+			margin: 8px;
+			padding: 8px;
+			color: #0F366D;
+			font-size: 1.5em;
+		}
 	}
 }
