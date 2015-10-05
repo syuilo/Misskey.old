@@ -32,7 +32,8 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 				div#kyoppie-container
 					div#menu
 						button#save-button
-							| 部屋を保存
+							i.fa.fa-cloud-upload
+							p 部屋を保存
 					div#box
 						h1
 							| 所持品
@@ -78,6 +79,6 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 					div.hide
 						button.item-hide-button
 							i.fa.fa-archive
-							| しまう
+							p しまう
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')
