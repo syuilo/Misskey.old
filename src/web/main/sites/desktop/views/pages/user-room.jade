@@ -32,16 +32,16 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 				div#kyoppie-container
 					div#menu
 						button#save-button
-							| 部屋を保存
+							i.fa.fa-cloud-upload
+							p 部屋を保存
 					div#box
 						h1
+							i.fa.fa-archive
 							| 所持品
 						ul
 				div#item-controller
 					h1.title
 					canvas#item-controller-preview-canvas(width=224, height=128)
-					button.item-hide-button
-						| しまう
 					//
 						button.pos-forward-button
 							| forward
@@ -77,5 +77,9 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 						label
 							p Y
 							input.rotate-y(type='number', step=0.01, min=-3.14, max=3.14)
+					div.hide
+						button.item-hide-button
+							i.fa.fa-archive
+							p しまう
 		//include ../common/header
 		script(src='/resources/scripts/page/user-room.js')
