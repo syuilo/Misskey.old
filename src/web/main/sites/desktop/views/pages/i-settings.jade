@@ -112,7 +112,9 @@ html(lang='ja', dir='ltr')
 								| あなたの保有
 								b ひまゴールド
 								| (名称仮)
-							p.credit= me.point.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+							p.credit
+								i.fa.fa-leaf
+								= me.point.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
 
 					div#mail
 						p coming soon....
