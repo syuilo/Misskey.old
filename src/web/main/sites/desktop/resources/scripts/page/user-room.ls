@@ -120,7 +120,7 @@ class ItemController
 
 		# PointLight
 		light = new THREE.PointLight 0xffffff 1 100
-		light.position.set 3 3 3
+			..position.set 3 3 3
 		@scene.add light
 
 		#@scene.add new THREE.AxisHelper 5
@@ -142,10 +142,11 @@ class ItemController
 		if @item?
 			item-height = @item-bounding-box.size!.y
 
-			@camera.position.y = 2 + (item-height / 2)
-			@camera.position.z = (Math.cos timer) * 10
-			@camera.position.x = (Math.sin timer) * 10
-			@camera.look-at new THREE.Vector3 0, (item-height / 2), 0
+			@camera
+				..position.y = 2 + (item-height / 2)
+				..position.z = (Math.cos timer) * 10
+				..position.x = (Math.sin timer) * 10
+				..look-at new THREE.Vector3 0, (item-height / 2), 0
 
 			@renderer.render @scene, @camera
 
@@ -418,16 +419,8 @@ class Room
 								child.is-active = no
 
 					if intersects.length > 0
-						INTERSECTED = intersects[0].object.source
-						THIS.selected-item = INTERSECTED
-
-						# Highlight
-						INTERSECTED.traverse (child) ->
-							if child instanceof THREE.Mesh
-								child.material.emissive.set-hex 0xff0000
-								child.is-active = yes
-
-						THIS.item-controller.update THIS.selected-item
+						selected-obj = intersects[0].object.source
+						THIS.select-item selected-obj
 
 		################################
 		# Load items of room
@@ -505,45 +498,81 @@ class Room
 
 	post-render: ->
 		request-animation-frame @post-render.bind @
+
+		# Camera controller
 		@controls.update!
+
 		@renderer.clear!
 		@composer.render!
 
 	direct-render: ->
 		request-animation-frame @direct-render.bind @
+
+		# Camera controller
 		@controls.update!
+
 		@renderer.render @scene, @camera
+
+	select-item: (item-obj) ->
+		@selected-item = item-obj
+
+		# Highlight
+		item-obj.traverse (child) ->
+			if child instanceof THREE.Mesh
+				child.material.emissive.set-hex 0xff0000
+				child.is-active = yes
+
+		# Display to controller
+		@item-controller.update @selected-item
 
 	add-item-to-box: (item) ->
 		THIS = @
+
 		item.position = null
 		item.rotation = null
+
+		# Remove the item from scene
 		@scene.remove @scene.get-object-by-name item.individual-id
+
+		# Remove the item from active items list
 		@active-items.some (v, i) ->
 			if v.name == item.individual-id
 				THIS.active-items.splice i, 1
+
+		# Add the item to unactive items list
 		@unactive-items.push item
 
+		# Add to Box
 		$item = $ "<li><p class='name'>#{item.obj.name}</p></li>"
 		$set-button = $ "<button>置く</button>"
 			..click ->
 				$item.remove!
+
+				# Remove the item from unactive items list
 				THIS.unactive-items.some (v, i) ->
 					if v.individual-id == item.individual-id
 						THIS.unactive-items.splice i, 1
+
+				# Load item
 				load-item item, (object) ->
-					object.position.set 0 0 0
-					object.rotation.set 0 0 0
-					object.room-item-info.position = {}
-					object.room-item-info.position.x = 0
-					object.room-item-info.position.y = 0
-					object.room-item-info.position.z = 0
-					object.room-item-info.rotation = {}
-					object.room-item-info.rotation.x = 0
-					object.room-item-info.rotation.y = 0
-					object.room-item-info.rotation.z = 0
+					object
+						..position.set 0 0 0
+						..rotation.set 0 0 0
+						..room-item-info.position = {}
+						..room-item-info.position.x = 0
+						..room-item-info.position.y = 0
+						..room-item-info.position.z = 0
+						..room-item-info.rotation = {}
+						..room-item-info.rotation.x = 0
+						..room-item-info.rotation.y = 0
+						..room-item-info.rotation.z = 0
+
+					# Add to scene and active items list
 					THIS.scene.add object
 					THIS.active-items.push object
+
+					# Select
+					THIS.select-item object
 		$item.append $set-button
 		$ \#box .find \ul .append $item
 
@@ -553,7 +582,6 @@ class Room
 			layout.push item
 		@active-items.for-each (item) ->
 			layout.push item.room-item-info
-		console.log layout
 		layout
 
 	export-layout-json: ->
@@ -561,7 +589,6 @@ class Room
 
 	save: (done, fail) ->
 		json = @export-layout-json!
-		console.log json
 
 		$.ajax config.api-url + '/account/update-room' {
 			type: \put
@@ -577,35 +604,38 @@ class Room
 
 function load-item(item, cb)
 	switch (item.obj.model-type)
-	| \json =>
+	| \json => # No longer supported
 		loader = new THREE.ObjectLoader!
 		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.json" (object) ->
-			object.position.x = if item.position? and item.position.x? then item.position.x else 0
-			object.position.y = if item.position? and item.position.y? then item.position.y else 0
-			object.position.z = if item.position? and item.position.z? then item.position.z else 0
-			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
-			object.rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
-			object.rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
-			object.cast-shadow = on
-			object.receive-shadow = on
-			object.name = item.individual-id
+			object
+				..position.x = if item.position? and item.position.x? then item.position.x else 0
+				..position.y = if item.position? and item.position.y? then item.position.y else 0
+				..position.z = if item.position? and item.position.z? then item.position.z else 0
+				..rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
+				..rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
+				..rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
+				..cast-shadow = on
+				..receive-shadow = on
+				..name = item.individual-id
 			cb object
 	| \objmtl =>
 		loader = new THREE.OBJMTLLoader!
 		loader.load "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.obj" "/resources/common/3d-models/#{item.obj.id}/#{item.obj.id}.mtl" (object) ->
-			object.position.x = if item.position? and item.position.x? then item.position.x else 0
-			object.position.y = if item.position? and item.position.y? then item.position.y else 0
-			object.position.z = if item.position? and item.position.z? then item.position.z else 0
-			object.rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
-			object.rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
-			object.rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
-			object.name = item.individual-id
-			object.room-item-info = item
-			object.traverse (child) ->
-				if child instanceof THREE.Mesh
-					child.source = object
-					child.cast-shadow = on
-					child.receive-shadow = on
+			object
+				..position.x = if item.position? and item.position.x? then item.position.x else 0
+				..position.y = if item.position? and item.position.y? then item.position.y else 0
+				..position.z = if item.position? and item.position.z? then item.position.z else 0
+				..rotation.x = if item.rotation? and item.rotation.x? then item.rotation.x else 0
+				..rotation.y = if item.rotation? and item.rotation.y? then item.rotation.y else 0
+				..rotation.z = if item.rotation? and item.rotation.z? then item.rotation.z else 0
+				..name = item.individual-id
+				..room-item-info = item
+				..traverse (child) ->
+					if child instanceof THREE.Mesh
+						child
+							..source = object
+							..cast-shadow = on
+							..receive-shadow = on
 			cb object
 
 ################################################################
