@@ -35,12 +35,12 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 				label.graphics-quality
 					p グラフィックス クオリティ
 					select
-						option 最高
-						option 高
-						option 中
-						option 低
-						option 最低
-						option FuckingQuality
+						option(value='ultra') 最高
+						option(value='high') 高
+						option(value='medium') 中
+						option(value='low') 低
+						option(value='very-low') 最低
+						option(value='super-low') FuckingQuality
 		if login
 			if me.id == user.id
 				div#kyoppie-container

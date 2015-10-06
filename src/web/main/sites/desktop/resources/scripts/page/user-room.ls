@@ -642,11 +642,18 @@ function load-item(item, cb)
 
 # ENTORY POINT
 
-graphics-quality = if $.cookie \room-graphics-quality then $.cookie \room-graphics-quality else \high
+################################
+# Load graphics quality setting
+graphics-quality = $.cookie \room-graphics-quality
+if not $.cookie \room-graphics-quality
+	graphics-quality = \high
+	$.cookie \room-graphics-quality graphics-quality, { path: '/', expires: 365 }
+################################
 
 # INIT ROOM
 room = new Room graphics-quality
 
+################################
 # Init settings button
 $ \#setting-button .click ->
 	$ \#settings-form-background .css \display \block
@@ -657,7 +664,10 @@ $ \#setting-button .click ->
 	$ \#settings-form .animate {
 		opacity: 1
 	} 100ms \linear
+################################
 
+################################
+# Init settings form
 $ \#settings-form .click (e) ->
 	e.stop-propagation!
 
@@ -669,6 +679,21 @@ $ \#settings-form-container .click ->
 		opacity: 0
 	} 100ms \linear -> $ \#settings-form-container .css \display \none
 
+switch (graphics-quality)
+	| \ultra => $ \#settings-form .find \.graphics-quality .find 'option[value=ultra]' .attr \selected \true
+	| \high => $ \#settings-form .find \.graphics-quality .find 'option[value=high]' .attr \selected \true
+	| \medium => $ \#settings-form .find \.graphics-quality .find 'option[value=medium]' .attr \selected \true
+	| \low => $ \#settings-form .find \.graphics-quality .find 'option[value=low]' .attr \selected \true
+	| \very-low => $ \#settings-form .find \.graphics-quality .find 'option[value=very-low]' .attr \selected \true
+	| \super-low => $ \#settings-form .find \.graphics-quality .find 'option[value=super-low]' .attr \selected \true
+
+$ \#settings-form .find \.graphics-quality .find \select .change ->
+	graphics-quality = $ \#settings-form .find \.graphics-quality .find \select .val!
+	$.cookie \room-graphics-quality graphics-quality, { path: '/', expires: 365 }
+	alert 'グラフィックスの設定は、ページのリロード後に反映されます。'
+################################
+
+################################
 # Init save button
 $save-button = $ \#save-button
 $save-button.click ->
@@ -690,3 +715,4 @@ $save-button.click ->
 				..find \p .text '部屋を保存'
 
 			window.display-message '保存に失敗しました。再度お試しください。'
+################################
