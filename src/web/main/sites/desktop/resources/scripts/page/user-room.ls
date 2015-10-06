@@ -647,6 +647,25 @@ graphics-quality = if $.cookie \room-graphics-quality then $.cookie \room-graphi
 # INIT ROOM
 room = new Room graphics-quality
 
+# Init settings button
+$ \#setting-button .click ->
+	$ \#settings-form-background .css \display \block
+	$ \#settings-form-background .animate {
+		opacity: 1
+	} 100ms \linear
+	$ \#settings-form-container .css \display \block
+	$ \#settings-form .animate {
+		opacity: 1
+	} 100ms \linear
+
+$ \#settings-form-container .click ->
+	$ \#settings-form-background .animate {
+		opacity: 0
+	} 100ms \linear -> $ \#settings-form-background .css \display \none
+	$ \#settings-form .animate {
+		opacity: 0
+	} 100ms \linear -> $ \#settings-form-container .css \display \none
+
 # Init save button
 $save-button = $ \#save-button
 $save-button.click ->

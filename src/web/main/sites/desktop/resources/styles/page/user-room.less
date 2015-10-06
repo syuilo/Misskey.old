@@ -55,7 +55,6 @@ body {
 	}
 }
 
-
 #item-controller {
 	display: none;
 	box-sizing: border-box;
@@ -215,4 +214,42 @@ button {
 		margin: 0;
 		line-height: 32px;
 	}
+}
+
+#settings-form-background {
+	display: none;
+	position: fixed;
+	z-index: 127;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+}
+
+#settings-form-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	z-index: 128;
+	width: 100%;
+	height: 100%;
+}
+
+#settings-form {
+	display: block;
+	position: absolute;
+	top: 20%;
+	left: 0;
+	right: 0;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 550px;
+	margin: auto;
+	padding: 0 32px 24px 32px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.8);
+	border: solid 1px rgba(255, 255, 255, 0.3);
+	opacity: 0;
 }
