@@ -8,8 +8,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	
 	name .= trim!
 	
-	if name.length > 30
-		res.api-error 400 'name too long'
+	if name.length > 20
+		res.api-error 400 'name is too long'
 	else
 		user
 			..name = name
