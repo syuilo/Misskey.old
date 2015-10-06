@@ -654,14 +654,15 @@ $save-button.click ->
 		..attr \disabled on
 		..find \p .text '保存しています...'
 
+	# Save the room
 	room.save do
-		->
+		-> # Success
 			$save-button
 				..attr \disabled off
 				..find \p .text '部屋を保存'
 
 			window.display-message '保存しました'
-		->
+		-> # Failed
 			$save-button
 				..attr \disabled off
 				..find \p .text '部屋を保存'
