@@ -27,6 +27,20 @@ html(lang='ja', dir='ltr', data-room-items= JSON.stringify(room.items), data-is-
 		//script(src='/resources/common/scripts/lib/three.js/examples/js/Cloth.js')
 	
 	body
+		button#setting-button(title='設定')
+			i.fa.fa-cog
+		div#settings-form-background(role='presentation')
+		div#settings-form-container
+			div#settings-form
+				label.graphics-quality
+					p グラフィックス クオリティ
+					select
+						option(value='ultra') 最高
+						option(value='high') 高
+						option(value='medium') 中
+						option(value='low') 低
+						option(value='very-low') 最低
+						option(value='super-low') FuckingQuality
 		if login
 			if me.id == user.id
 				div#kyoppie-container
