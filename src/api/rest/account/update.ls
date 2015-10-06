@@ -7,7 +7,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[name, comment, url, location, bio] = get-express-params req, <[ name comment url location bio ]>
 
 	switch
-	| name.length > 20 => res.api-error 400 'name too long'
+	| name.length > 20 => res.api-error 400 'name is too long'
 	| _ =>
 		user
 			..name = name
