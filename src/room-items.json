@@ -154,9 +154,16 @@
 		"modelType": "objmtl"
 	},
 	{
-		"name": "額縁",
+		"name": "花の写真が飾られた茶色い額縁",
 		"id": "photoframe",
-		"price": 1100,
+		"price": 950,
+		"place": "wall",
+		"modelType": "objmtl"
+	},
+	{
+		"name": "小高い丘から望む町の風景の写真が飾られた青い額縁",
+		"id": "photoframe2",
+		"price": 950,
 		"place": "wall",
 		"modelType": "objmtl"
 	}
