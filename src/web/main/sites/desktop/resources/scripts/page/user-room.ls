@@ -658,6 +658,9 @@ $ \#setting-button .click ->
 		opacity: 1
 	} 100ms \linear
 
+$ \#settings-form .click (e) ->
+	e.stop-propagation!
+
 $ \#settings-form-container .click ->
 	$ \#settings-form-background .animate {
 		opacity: 0
