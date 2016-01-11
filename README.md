@@ -1,5 +1,5 @@
 # **This repository is no longer maintained.**
-それぞれ[MissKernel/Misskey-Web](https://github.com/MissKernel/Misskey-Web)、[MissKernel/Misskey-API](https://github.com/MissKernel/Misskey-API)、[MissKernel/Misskey-UserContents](https://github.com/MissKernel/Misskey-UserContents)にリポジトリが分離されました。今後はそちらで開発します。
+Moved to [MissKernel/Misskey](https://github.com/MissKernel/Misskey).
 
 ![](misskey-logo.png)
 
