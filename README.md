@@ -3,17 +3,12 @@ Moved to [MissKernel/Misskey](https://github.com/MissKernel/Misskey).
 
 ![](misskey-logo.png)
 
-[![Build Status](https://travis-ci.org/syuilo/Misskey.svg)](https://travis-ci.org/syuilo/Misskey)
-[![Dependency Status](https://gemnasium.com/syuilo/Misskey.svg)](https://gemnasium.com/syuilo/Misskey)
-
 # Misskey
 [Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.
 It runs on Node.js.
 
 ## Contribution
-We appreciate your contribution.
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-If you have any questions, please feel free to ask on [Issue](https://github.com/syuilo/Misskey/issues).
+This repository is no longer maintained.
 
 ## Related Projects
 * [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image) - Misskey image server
