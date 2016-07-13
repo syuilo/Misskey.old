@@ -7,9 +7,6 @@ Moved to [MissKernel/Misskey](https://github.com/MissKernel/Misskey).
 [Misskey](https://misskey.xyz/) is a mysterious Twitter-style SNS.
 It runs on Node.js.
 
-## Contribution
-This repository is no longer maintained.
-
 ## Related Projects
 * [syuilo/Misskey-Image](https://github.com/syuilo/Misskey-Image) - Misskey image server
 
