@@ -4,6 +4,7 @@ require! {
 	'../../../utils/get-express-params'
 	'../../../models/notice': Notice
 	'../../../models/utils/notice-get-timeline'
+	'../../../models/utils/notice-serialyzer'
 	'../../../config'
 }
 
@@ -27,7 +28,7 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					..is-read = yes
 					..save!
 			serialized-notices = notices |> map (notice) ->
-				notice.to-object!
+				notice-serialyzer notice
 			
 			res.api-render serialized-notices
 		else
