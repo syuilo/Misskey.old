@@ -10,7 +10,7 @@ require! {
 
 module.exports = (req, res) -> authorize req, res, (user, app) ->
 	[trim-x, trim-y, trim-w, trim-h] = get-express-params req, <[ trim-x trim-y trim-w trim-h ]>
-	if (Object.keys req.files).length == 1
+	if (Object.keys req.files).length >= 1 and req.files.image
 		path = req.files.image.path
 		image = fs.read-file-sync path
 		fs.unlink path
@@ -35,6 +35,8 @@ module.exports = (req, res) -> authorize req, res, (user, app) ->
 					res.api-error 500 'error'
 				else
 					update buffer, \jpg
+	else
+		res.api-error 400 'Not attached image'
 
 	function update(image, img-type)
 		register-image user, \user-icon, "#{user.id}.#{img-type}", img-type, image .then (path) ->
