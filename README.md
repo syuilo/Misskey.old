@@ -1,4 +1,7 @@
 # **This repository is no longer maintained.**
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/syuilo/Misskey.old.svg)](https://greenkeeper.io/)
+
 Moved to [MissKernel/Misskey](https://github.com/MissKernel/Misskey).
 
 ![](misskey-logo.png)
